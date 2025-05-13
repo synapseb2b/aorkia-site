@@ -1,42 +1,1284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AORKIA</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AORKIA - Orquestrador Inteligente para Operações Complexas</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#1E40AF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(1rem);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@keyframes cardEntry {
+from {
+opacity: 0;
+transform: translateY(1rem);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.pillar-card {
+transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+border-left: 4px solid transparent;
+cursor: pointer;
+animation-fill-mode: both;
+opacity: 1;
+}
+#xyz-cards .pillar-card:nth-child(1) { animation-delay: 0.3s; }
+#xyz-cards .pillar-card:nth-child(2) { animation-delay: 0.4s; }
+#xyz-cards .pillar-card:nth-child(3) { animation-delay: 0.5s; }
+#a-cards .pillar-card { animation-delay: 0.3s; }
+.visual-panel {
+transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0;
+transform: translateX(20px);
+}
+.visual-panel.active {
+opacity: 1;
+transform: translateX(0);
+}
+.visual-panel.exit {
+opacity: 0;
+transform: translateX(-20px);
+}
+@media (max-width: 768px) {
+.grid {
+grid-template-columns: 1fr;
+}
+#right-panel {
+height: auto;
+min-height: 400px;
+}
+.visual-panel {
+position: relative;
+height: auto;
+}
+}
+.pillar-card.active {
+border-left: 4px solid #3B82F6;
+transform: translateX(10px);
+background: #f8fafc;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+opacity: 1;
+}
+.pillar-card:not(.active) {
+opacity: 0.5;
+transform: translateX(0);
+}
+.pillar-card:not(.active) {
+opacity: 0.7;
+}
+.visual-panel {
+transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0;
+transform: translateX(20px);
+}
+.visual-panel.active {
+opacity: 1;
+transform: translateX(0);
+}
+.visual-panel.exit {
+opacity: 0;
+transform: translateX(-20px);
+}
+.solution-card {
+transition: all 0.3s ease;
+cursor: pointer;
+border-left: 4px solid transparent;
+}
+.solution-active {
+border-left: 4px solid #3B82F6;
+transform: translateX(10px);
+background: #f8fafc;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.visual {
+transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0;
+transform: translateX(30px);
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+}
+.visual.active {
+opacity: 1;
+transform: translateX(0);
+}
+.visual.exit {
+opacity: 0;
+transform: translateX(-30px);
+}
+.visual.exit {
+opacity: 0;
+transform: translateX(-30px);
+}
+@media (max-width: 1024px) {
+.visual {
+position: relative;
+transform: translateY(20px);
+}
+.visual.active {
+transform: translateY(0);
+}
+.visual.exit {
+transform: translateY(-20px);
+}
+}
+.video-container {
+position: relative;
+width: 100%;
+height: 100vh;
+overflow: hidden;
+}
+.video-container video {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.video-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
+}
+.card {
+transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+cursor: pointer;
+position: relative;
+border-left: 4px solid transparent;
+}
+.card-active {
+border-left: 4px solid #3B82F6;
+transform: translateX(10px);
+background: #f8fafc;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.card-inactive {
+opacity: 0.7;
+}
+.card-active {
+border-left: 4px solid #3B82F6;
+transform: translateX(10px);
+opacity: 1;
+background: #f8fafc;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.card-inactive {
+border-left: 4px solid transparent;
+transform: translateX(0);
+opacity: 0.6;
+}
+.visual {
+transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0;
+transform: translateX(30px);
+}
+.visual.active {
+opacity: 1;
+transform: translateY(0);
+}
+.visual {
+transition: opacity 0.5s ease-in-out;
+opacity: 0;
+}
+.visual.active {
+opacity: 1;
+}
+input:focus {
+outline: none;
+}
+</style>
 </head>
-<body>
-  <header>
-    <h1>AORKIA</h1>
-    <p>Plataforma de inteligência aplicada que orquestra tecnologia e converte complexidade em resultados estratégicos.</p>
-    <a href="#contato" class="cta">Solicite um diagnóstico arquitetural</a>
-  </header>
-  <main>
-    <section id="pilares">
-      <h2>Pilares Estratégicos</h2>
-      <ul>
-        <li>Infraestrutura como Inteligência Estratégica</li>
-        <li>Soluções SaaS Direcionadas</li>
-        <li>Receita Previsível e Vantagem Competitiva</li>
-      </ul>
-    </section>
-    <section id="manifesto">
-      <h2>Manifesto</h2>
-      <p>Tecnologia como estrutura. Estratégia como engenharia. Execução como disciplina.</p>
-    </section>
-    <section id="contato">
-      <h2>Contato Estratégico</h2>
-      <form>
-        <input type="text" placeholder="Seu nome" required />
-        <input type="email" placeholder="Seu e-mail" required />
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 AORKIA</p>
-  </footer>
+<body class="bg-white text-gray-900">
+<!-- Faixa branca superior com mensagem -->
+<!-- Navbar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+<div class="container mx-auto px-4 py-1 flex justify-between items-center">
+<a href="#" class="flex items-center">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/02b5483f340efdfa7b149408c8b344c4.png" alt="AORKIA Logo" class="h-28">
+</a>
+<div class="hidden md:flex space-x-8">
+<a href="#" class="font-medium hover:text-primary transition-colors">Nossa Abordagem Estratégica</a>
+<a href="https://readdy.ai/home/a6f8ff07-9d76-453a-a130-d70b8292b2c8/49273a0d-8b23-4bde-b0e6-cdbd24caa315" data-readdy="true" class="font-medium hover:text-primary transition-colors">Estrutura de Serviços</a>
+<a href="/insights" class="font-medium hover:text-primary transition-colors">Insights Estratégicos</a>
+<a href="#" class="font-medium hover:text-primary transition-colors">Contato</a>
+</div>
+<div class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center">
+<div class="absolute inset-0 w-full h-full overflow-hidden video-container">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/70c1dfc55fd8927de29207378deac35c.png" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30"></div>
+</div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="max-w-3xl">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Orquestrador Inteligente para Operações Complexas.</h1>
+<p class="text-xl text-white/90 mb-8 whitespace-nowrap">Convertendo Complexidade Operacional em Vantagem Competitiva e Receita Previsível.</p>
+<a href="/contato" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-block">Converta Complexidade em Vantagem Real</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção: Dois Pilares -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-4 opacity-0 transform translate-y-4 animate-[fadeIn_0.6s_ease-out_forwards]">Dois Pilares. Uma Arquitetura de Precisão Estratégica.</h2>
+<p class="text-gray-600 text-lg text-center mb-12 max-w-3xl mx-auto opacity-0 transform translate-y-4 animate-[fadeIn_0.6s_ease-out_0.2s_forwards]">Nossa arquitetura de precisão se desdobra em <strong>dois pilares fundamentais</strong>, cada um projetado para <strong>converter desafios específicos em crescimento</strong> sustentável.</p>
+<p class="text-gray-600 text-lg text-center mb-12 max-w-3xl mx-auto opacity-0 transform translate-y-4 animate-[fadeIn_0.6s_ease-out_0.3s_forwards]"><strong>Selecione abaixo o pilar mais alinhado à sua necessidade imediata</strong>.</p>
+<div class="flex justify-center gap-4 mb-12">
+<button id="products-xyz" class="bg-white text-primary px-8 py-3 !rounded-button transition-all whitespace-nowrap border-b-[3px] border-primary shadow-lg">Infraestrutura como Inteligência Estratégica</button>
+<button id="product-a" class="bg-gray-50 text-gray-500 px-8 py-3 !rounded-button border-b-[3px] border-transparent hover:text-primary hover:bg-white transition-all whitespace-nowrap">Engenharia de Performance e Excelência Operacional</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div id="left-panel" class="h-full flex flex-col">
+<div id="xyz-cards" class="flex flex-col h-full gap-6">
+<div class="pillar-card bg-white p-8 rounded-lg shadow-md transition-all duration-500 hover:shadow-lg hover:scale-[1.02] opacity-0 transform translate-y-4 min-h-[180px] flex flex-col justify-between" style="animation: cardEntry 0.6s ease-out forwards;" data-product="z">
+<h3 class="text-lg font-semibold mb-4">Dados SaaS Desprotegidos? Risco de Perda Irreversível?</h3>
+<p class="text-gray-600">Perda de dados em E-mail, CRM ou Colaboração por ransomware/falha compromete o negócio. Backup comum tem limites.</p>
+</div>
+<div class="pillar-card bg-white p-8 rounded-lg shadow-md transition-all duration-500 hover:shadow-lg hover:scale-[1.02] opacity-0 transform translate-y-4 min-h-[180px] flex flex-col justify-between" style="animation: cardEntry 0.6s ease-out forwards;" data-product="x">
+<h3 class="text-lg font-semibold mb-4">Sua Infraestrutura: Ativo Estratégico ou Risco Oculto?</h3>
+<p class="text-gray-600">Infraestruturas críticas exigem decisões arquitetônicas fundamentadas. Falhas aqui comprometem toda a operação.</p>
+</div>
+<div class="pillar-card bg-white p-8 rounded-lg shadow-md transition-all duration-500 hover:shadow-lg hover:scale-[1.02] opacity-0 transform translate-y-4 min-h-[180px] flex flex-col justify-between" style="animation: cardEntry 0.6s ease-out forwards;" data-product="y">
+<h3 class="text-lg font-semibold mb-4">Risco Cibernético? Conformidade Desafiadora?</h3>
+<p class="text-gray-600">Segurança reativa custa milhões e expõe sua operação. Conformidade contínua é um desafio crescente para muitos.</p>
+</div>
+</div>
+<div id="a-cards" class="hidden h-full flex flex-col">
+<div class="pillar-card bg-white p-8 rounded-lg shadow-md transition-all duration-500 hover:shadow-lg hover:scale-[1.02] opacity-0 transform translate-y-4 min-h-[180px] flex flex-col justify-between active" style="animation: cardEntry 0.6s ease-out forwards;">
+<h3 class="text-lg font-semibold mb-4">Receita Estagnada? Operações de Vendas Caóticas?</h3>
+<p class="text-gray-600">Desalinhamento entre Marketing, Vendas e CS custa 5-10% da receita e limita o crescimento. Ferramentas isoladas não geram previsibilidade.</p>
+</div>
+</div>
+</div>
+<div id="right-panel" class="relative h-[600px]">
+<div id="xyz-visual" class="visual-panel absolute inset-0 bg-white rounded-lg shadow-md overflow-hidden transition-all duration-500">
+<div id="product-x-details" class="product-details p-8 pt-16 transition-all duration-300 relative">
+<div class="absolute top-4 right-4">
+<a href="#" class="bg-primary text-white px-6 py-3 !rounded-button hover:bg-primary/90 transition-all whitespace-nowrap">Ative sua Curadoria</a>
+</div>
+<h3 class="text-xl font-bold mb-4">Arquitetura Tática AORKIA: Comando e Clareza</h3>
+<p class="text-gray-600 mb-4">A AORKIA entrega:</p>
+<ol class="text-gray-600 mb-4 list-decimal pl-5">
+<li>Diagnóstico Técnico Profundo;</li>
+<li>Curadoria Agnóstica de Soluções;</li>
+<li>Blueprint Tático com Governança de Decisão.</li>
+</ol>
+<p class="text-gray-600 mb-4">Transformamos ambientes complexos em estruturas coerentes, controladas e com rastreabilidade técnica total.</p>
+<div class="h-[280px] overflow-hidden rounded-lg mb-4">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/ebaa4eef6f017c0a9b315be493015eb8.png" alt="Infraestrutura Crítica Overview" class="w-full h-full object-contain object-left">
+</div>
+</div>
+<div id="product-y-details" class="product-details hidden p-8 pt-16 relative">
+<div class="absolute top-4 right-4">
+<a href="#" class="bg-primary text-white px-5 py-2.5 !rounded-button hover:bg-primary/90 transition-all whitespace-nowrap text-base">Blindar Operações</a>
+</div>
+<h3 class="text-xl font-bold mb-4">Segurança AORKIA: Inteligência e Resposta Gerenciada</h3>
+<p class="text-gray-600 mb-4">Nossa Plataforma Gerenciada (CSPM/CNAPP) entrega:</p>
+<ul class="text-gray-600 mb-4 list-disc pl-5">
+<li>Prevenção Contínua;</li>
+<li>Detecção Multicanal de Riscos;</li>
+<li>Resposta Orquestrada e Conformidade Ativa.</li>
+</ul>
+<p class="text-gray-600 mb-4">Convertemos segurança reativa em capacidade estratégica.</p>
+<div class="h-[280px] overflow-hidden rounded-lg mb-6">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/75a10e4654dd96ec75c44a3a8eb5e38a.png" alt="Product Y Overview" class="w-full h-full object-contain object-left">
+</div>
+</div>
+<div id="product-z-details" class="product-details hidden p-8 pt-16 relative">
+<div class="absolute top-4 right-4">
+<a href="#" class="bg-primary text-white px-5 py-2.5 !rounded-button hover:bg-primary/90 transition-all whitespace-nowrap text-base">Blindar Dados SaaS Agora</a>
+</div>
+<h3 class="text-xl font-bold mb-4">AORKIA + Keepit: Resiliência SaaS Inteligente</h3>
+<p class="text-gray-600 mb-4">AORKIA + Keepit: proteção SaaS imutável. Entregamos:</p>
+<ul class="text-gray-600 mb-4 list-disc pl-5">
+<li>Backup Air-Gapped, Auditável;</li>
+<li>Governança AORKIA com Dashboards;</li>
+<li>Ativação de Dados para BI/IA.</li>
+</ul>
+<p class="text-gray-600 mb-4">Resiliência que protege, governa e ativa seus dados.</p>
+<div class="h-[308px] overflow-hidden rounded-lg mb-6">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/5c0651b82f2cf4f5a6a5f9f1c18f4c40.png" alt="AORKIA + Keepit Overview" class="w-full h-full object-cover object-left">
+</div>
+</div>
+</div>
+<div id="a-visual" class="visual-panel absolute inset-0 bg-white rounded-lg shadow-md p-8 pt-16 transition-all duration-500 opacity-0">
+<div class="absolute top-4 right-4">
+<a href="#" class="bg-primary text-white px-5 py-2.5 !rounded-button hover:bg-primary/90 transition-all whitespace-nowrap text-base">Orquestrar sua Receita</a>
+</div>
+<h3 class="text-xl font-bold mb-4">Arquitetura de Receita AORKIA: Comando e Performance</h3>
+<p class="text-gray-600 mb-4">AORKIA projeta a engenharia da sua receita:</p>
+<ul class="text-gray-600 mb-4 list-disc pl-5">
+<li>Diagnóstico Estrutural da Operação Comercial;</li>
+<li>Frameworks para Alinhar Mkt-Vendas-CS;</li>
+<li>Governança para Performance Contínua.</li>
+</ul>
+<p class="text-gray-600 mb-4">Transformamos fragmentação em um sistema de receita previsível.</p>
+<div class="h-[280px] overflow-hidden rounded-lg mb-6">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/63345c48619f779b0b26bf85283f259e.png" alt="Arquitetura de Receita Overview" class="w-full h-full object-contain object-left">
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const xyzButton = document.getElementById('products-xyz');
+const aButton = document.getElementById('product-a');
+const xyzCards = document.getElementById('xyz-cards');
+const aCards = document.getElementById('a-cards');
+const xyzVisual = document.getElementById('xyz-visual');
+const aVisual = document.getElementById('a-visual');
+const pillarCards = document.querySelectorAll('.pillar-card');
+const productDetails = document.querySelectorAll('.product-details');
+// Show XYZ section and "Dados SaaS" card by default
+showXYZ();
+function showProductDetails(product) {
+productDetails.forEach(detail => {
+detail.classList.add('hidden');
+detail.style.backgroundColor = '';
+});
+const selectedDetail = document.getElementById(`product-${product}-details`);
+selectedDetail.classList.remove('hidden');
+selectedDetail.style.backgroundColor = '#f8fafc';
+pillarCards.forEach(card => {
+if (card.dataset.product === product) {
+card.classList.add('active');
+} else {
+card.classList.remove('active');
+}
+});
+}
+pillarCards.forEach(card => {
+card.addEventListener('click', () => {
+const product = card.dataset.product;
+showProductDetails(product);
+});
+});
+function showXYZ() {
+xyzButton.classList.remove('bg-gray-50', 'text-gray-500', 'border-transparent');
+xyzButton.classList.add('bg-white', 'text-primary', 'border-primary', 'shadow-lg');
+aButton.classList.remove('bg-white', 'text-primary', 'border-primary', 'shadow-lg');
+aButton.classList.add('bg-gray-50', 'text-gray-500', 'border-transparent');
+xyzCards.classList.remove('hidden');
+aCards.classList.add('hidden');
+xyzVisual.style.opacity = '1';
+xyzVisual.style.transform = 'translateX(0)';
+aVisual.style.opacity = '0';
+aVisual.style.transform = 'translateX(20px)';
+// Show the "Dados SaaS" card first
+const pillarCards = document.querySelectorAll('.pillar-card');
+pillarCards.forEach(card => card.classList.remove('active'));
+const dadosSaaSCard = document.querySelector('[data-product="z"]');
+if (dadosSaaSCard) {
+dadosSaaSCard.classList.add('active');
+const productDetails = document.querySelectorAll('.product-details');
+productDetails.forEach(detail => detail.classList.add('hidden'));
+document.getElementById('product-z-details').classList.remove('hidden');
+}
+}
+function showA() {
+aButton.classList.remove('bg-gray-50', 'text-gray-500', 'border-transparent');
+aButton.classList.add('bg-white', 'text-primary', 'border-primary', 'shadow-lg');
+xyzButton.classList.remove('bg-white', 'text-primary', 'border-primary', 'shadow-lg');
+xyzButton.classList.add('bg-gray-50', 'text-gray-500', 'border-transparent');
+aCards.classList.remove('hidden');
+xyzCards.classList.add('hidden');
+aVisual.style.opacity = '1';
+aVisual.style.transform = 'translateX(0)';
+xyzVisual.style.opacity = '0';
+xyzVisual.style.transform = 'translateX(-20px)';
+}
+xyzButton.addEventListener('click', showXYZ);
+aButton.addEventListener('click', showA);
+showXYZ();
+});
+</script>
+</div>
+</section>
+<!-- Seção: Proteção de Dados -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="bg-white p-12 rounded-lg shadow-lg">
+<div class="max-w-5xl mx-auto">
+<div class="text-center">
+<h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-12">Proteção de Dados Não É Backup. É Continuidade Estratégica.</h2>
+<p class="text-gray-600 text-lg mb-12">Violação de dados, erros humanos ou falhas em SaaS podem custar milhões. Com a AORKIA + Keepit, seus dados em plataformas como M365, Google Workspace e Salesforce permanecem imutáveis, soberanos e sempre recuperáveis — mesmo sob ataque.</p>
+<div class="mb-12">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/a3bd0cd5ff0deb86434f4abe6bfd2159.png" alt="Keepit Backup Solutions" class="w-full max-w-4xl mx-auto rounded-lg shadow-lg">
+</div>
+<a href="/estrutura-de-servicos#backup-saas" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-block">Evite Perdas Irreversíveis com Backup Imutável</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção: Engenharia Validada -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-12">Engenharia de Precisão. Resultado Inabalável.</h2>
+<p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto text-center">A complexidade não precisa ser um obstáculo — quando é enfrentada com critério. Na AORKIA, cada arquitetura é fundamentada em engenharia validada, execução disciplinada e foco absoluto no impacto estratégico.</p>
+<div class="flex flex-col gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-bold">Metodologia Baseada em Critérios</h3>
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-settings-3-line ri-2x text-primary"></i>
+</div>
+</div>
+<p class="text-gray-600 text-lg mb-6">Garantia de execução precisa e resultados previsíveis. Operamos sob critérios, não sob tentativa.</p>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-checkbox-circle-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">Critérios Definidos</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-flow-chart-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">Execução Precisa</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-bar-chart-2-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">Resultados Medidos</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-bold">Foco Obsessivo em Time to Value</h3>
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-timer-flash-line ri-2x text-primary"></i>
+</div>
+</div>
+<p class="text-gray-600 text-lg mb-6">Arquiteturas desenhadas para acelerar seu retorno estratégico e a entrega de valor contínuo.</p>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-rocket-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">Aceleração de Resultados</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-line-chart-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">Valor Contínuo</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+<i class="ri-funds-box-line ri-2x text-primary mb-2"></i>
+<span class="text-sm text-gray-600 text-center">ROI Acelerado</span>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-16">
+<div class="max-w-3xl mx-auto">
+<a href="/estrutura-de-servicos#infraestrutura-inteligente" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-block">Conheça Nossa Engenharia de Resultados</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 bg-primary text-white">
+<div class="container mx-auto px-4 text-center">
+<h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-12">Elimine a Fricção Estratégica. Libere a Performance Previsível.</h2>
+<p class="text-xl mb-10 max-w-3xl mx-auto">A complexidade operacional não precisa ser um obstáculo. Com a abordagem integrada e a engenharia de precisão da AORKIA, instauramos clareza, eficiência e controle. Transformamos seus desafios em um motor de crescimento sustentável e performance previsível. Vamos arquitetar seus resultados exponenciais?</p>
+<form action="" method="POST" class="max-w-2xl mx-auto mb-10 bg-white/10 backdrop-blur-sm p-8 rounded-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-white text-sm mb-2">Nome</label>
+<input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50" placeholder="Seu nome completo">
+</div>
+<div>
+<label for="position" class="block text-white text-sm mb-2">Cargo</label>
+<input type="text" id="position" name="position" required class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50" placeholder="Seu cargo atual">
+</div>
+<div>
+<label for="email" class="block text-white text-sm mb-2">Email</label>
+<input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50" placeholder="seu@email.com">
+</div>
+<div>
+<label for="phone" class="block text-white text-sm mb-2">Telefone</label>
+<input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50" placeholder="(00) 00000-0000">
+</div>
+</div>
+<div class="mb-6">
+<label for="challenge" class="block text-white text-sm mb-2">Desafio Principal</label>
+<select id="challenge" name="challenge" required class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50 pr-8 [&>option]:bg-primary">
+<option value="" disabled selected class="text-white bg-primary">Selecione seu principal desafio</option>
+<option value="infra">Recupere receita cortando desperdícios na sua infraestrutura</option>
+<option value="security">Evite perdas milionárias com segurança proativa de verdade</option>
+<option value="continuity">Mantenha sua operação rodando — mesmo sob falhas ou ataques</option>
+<option value="alignment">Alinhe vendas, marketing e dados para crescer com precisão</option>
+<option value="intelligence">Decida com inteligência real, não com achismo</option>
+<option value="automation">Automatize processos críticos e recupere o tempo do seu time</option>
+</select>
+</div>
+<div class="mb-6">
+<label for="considerations" class="block text-white text-sm mb-2">Considerações</label>
+<textarea id="considerations" name="considerations" rows="3" class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/50" placeholder="Compartilhe mais detalhes sobre seu desafio..."></textarea>
+</div>
+<div class="mb-6">
+<label class="block text-white text-sm mb-2">Canal Preferencial de Contato</label>
+<div class="flex gap-4">
+<label class="flex items-center">
+<input type="radio" name="contact_preference" value="phone" class="mr-2" required>
+<span class="text-white">Telefone</span>
+</label>
+<label class="flex items-center">
+<input type="radio" name="contact_preference" value="whatsapp" class="mr-2">
+<span class="text-white">WhatsApp</span>
+</label>
+<label class="flex items-center">
+<input type="radio" name="contact_preference" value="email" class="mr-2">
+<span class="text-white">Email</span>
+</label>
+</div>
+</div>
+<button type="submit" class="w-full bg-white text-primary hover:bg-white/90 px-8 py-4 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl">Iniciar Conversa Estratégica</button>
+</form>
+<div class="flex justify-center items-center text-sm">
+<a href="/insights" class="text-white hover:text-white/80 transition-colors flex items-center">
+<i class="ri-lightbulb-line mr-2"></i>
+Leia Nossos Insights
+</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<a href="#" class="block mb-3">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1508c3b2ba3e6bc5dcbde380b3d222b4.png" alt="AORKIA Logo" class="h-16 brightness-0 invert">
+</a>
+<p class="text-gray-400 text-sm">Disciplina operacional para estruturas que sustentam o core do negócio.</p>
+</div>
+<div class="md:text-right">
+<h3 class="text-base font-semibold mb-3">Contato</h3>
+<ul class="space-y-1.5">
+<li class="flex items-center md:justify-end">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-400 text-sm">+55 31 98801-9006</span>
+</li>
+<li class="flex items-center md:justify-end">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-400 text-sm">contato@aorkia.com</span>
+</li>
+<li class="flex items-center md:justify-end">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-map-pin-line"></i>
+</div>
+<div class="text-gray-400 text-sm text-right">
+<p>Av. Getúlio Vargas, 671 Sl 500</p>
+<p>Ed. Paraúna - Savassi</p>
+<p>Belo Horizonte - MG, 30112-021</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<p class="text-gray-400 text-sm">Copyright © 2025 AORKIA. Todos os direitos reservados.</p>
+<div class="flex items-center gap-4">
+<a href="#" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
+<span class="text-gray-600">|</span>
+<a href="#" class="text-gray-400 hover:text-white text-sm">Termos de Uso</a>
+</div>
+</div>
+<div class="flex gap-3">
+<a href="https://www.linkedin.com/company/inoovv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="https://www.instagram.com/inoovv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+function updatePillarContent(type) {
+const cardsContainer = document.getElementById('pillar-cards');
+const visualContainer = document.getElementById('pillar-visual');
+const data = pillarData[type];
+cardsContainer.innerHTML = data.cards.map((card, index) => `
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-500 flex flex-col cursor-pointer pillar-card ${index === 0 ? 'active' : ''}" data-index="${index}">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="${card.icon} text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold">${card.title}</h3>
+</div>
+<p class="text-gray-600 mb-6 flex-grow">${card.description}</p>
+<button class="text-primary hover:text-primary/80 font-medium transition-colors text-left flex items-center gap-2">
+${card.button}
+<i class="ri-arrow-right-line"></i>
+</button>
+</div>
+`).join('');
+const oldVisual = visualContainer.querySelector('.visual-panel');
+const newVisual = document.createElement('div');
+newVisual.className = 'visual-panel absolute inset-0';
+newVisual.innerHTML = `
+<div class="h-[300px]">
+<img src="${data.visual.image}" alt="${data.visual.title}" class="w-full h-full object-cover">
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-4">${data.visual.title}</h3>
+<p class="text-gray-600 leading-relaxed">${data.visual.description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.add('exit');
+setTimeout(() => oldVisual.remove(), 500);
+}
+visualContainer.appendChild(newVisual);
+requestAnimationFrame(() => {
+newVisual.classList.add('active');
+});
+const cards = cardsContainer.querySelectorAll('.pillar-card');
+cards.forEach((card, index) => {
+card.addEventListener('click', () => {
+cards.forEach(c => c.classList.remove('active'));
+card.classList.add('active');
+const oldVisual = visualContainer.querySelector('.visual-panel');
+const newVisual = document.createElement('div');
+newVisual.className = 'visual-panel absolute inset-0 opacity-0 transition-opacity duration-500';
+newVisual.innerHTML = `
+<div class="h-[300px]">
+<img src="${data.cards[index].image || data.visual.image}" alt="${data.cards[index].title}" class="w-full h-full object-cover">
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-4">${data.cards[index].title}</h3>
+<p class="text-gray-600 leading-relaxed">${data.cards[index].description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.add('opacity-0');
+setTimeout(() => oldVisual.remove(), 500);
+}
+visualContainer.appendChild(newVisual);
+setTimeout(() => newVisual.classList.remove('opacity-0'), 50);
+});
+});
+}
+const infraBtn = document.getElementById('infra-btn');
+const engBtn = document.getElementById('eng-btn');
+function updateButtonStates(activeBtn, inactiveBtn) {
+activeBtn.classList.remove('bg-white', 'text-primary', 'border-2', 'border-primary');
+activeBtn.classList.add('bg-primary', 'text-white');
+inactiveBtn.classList.remove('bg-primary', 'text-white');
+inactiveBtn.classList.add('bg-white', 'text-primary', 'border-2', 'border-primary');
+}
+infraBtn.addEventListener('click', () => {
+updatePillarContent('infra');
+updateButtonStates(infraBtn, engBtn);
+});
+engBtn.addEventListener('click', () => {
+updatePillarContent('eng');
+updateButtonStates(engBtn, infraBtn);
+});
+updatePillarContent('infra');
+const form = document.querySelector('form');
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(form);
+const data = Object.fromEntries(formData);
+if (data.name && data.position && data.email && data.phone && data.challenge && data.contact_preference) {
+const submitButton = form.querySelector('button[type="submit"]');
+const originalText = submitButton.textContent;
+submitButton.disabled = true;
+submitButton.textContent = 'Enviando...';
+fetch(form.action, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+},
+body: new URLSearchParams(data),
+})
+.then(response => {
+if (response.ok) {
+submitButton.textContent = 'Mensagem Enviada!';
+form.reset();
+setTimeout(() => {
+submitButton.disabled = false;
+submitButton.textContent = originalText;
+}, 3000);
+} else {
+throw new Error('Erro no envio');
+}
+})
+.catch(error => {
+submitButton.textContent = 'Erro no envio. Tente novamente.';
+setTimeout(() => {
+submitButton.disabled = false;
+submitButton.textContent = originalText;
+}, 3000);
+});
+}
+});
+const solutionCards = document.querySelectorAll('.solution-card');
+const solutionsVisuals = [
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/c186897558d04028e1ec8fdf223c9d82.png",
+title: "Automação Inteligente",
+description: "Automação de processos interdepartamentais com rastreabilidade e fluidez."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/20203e4ca77fd7f6e602916c76095d24.png",
+title: "Segurança Proativa",
+description: "Sistema avançado de proteção e monitoramento para manter seus ativos digitais seguros 24/7."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/ba5803f15310e7d78901a7189c727927.png",
+title: "Backup SaaS Estratégico",
+description: "Proteção imutável em nuvem independente para recuperação rápida de dados críticos."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/f5ab51923584e5eaa22ef17cdbd8f6c6.png",
+title: "RevOps Integrado",
+description: "Integração e operacionalização das áreas comerciais para crescimento previsível."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/6f69b5a0095c477e9bc23cffba8d3b5a.png",
+title: "Dados Ativos e Conectados",
+description: "Transformamos dados isolados em inteligência estratégica ativável."
+}
+];
+let currentSolutionIndex = 0;
+let solutionAutoRotateTimeout;
+let solutionInactivityTimeout;
+function updateSolutionVisual(index) {
+const solutionsVisualContainer = document.getElementById('solutions-visual-container');
+const oldVisual = solutionsVisualContainer.querySelector('.solution-visual');
+const newVisual = document.createElement('div');
+newVisual.className = 'solution-visual h-full rounded-lg overflow-hidden shadow-xl absolute top-0 left-0 w-full';
+newVisual.innerHTML = `
+<div style="background-image: url('${solutionsVisuals[index].image}'); background-size: cover; background-position: center;" class="w-full h-[400px]"></div>
+<div class="bg-white p-6 flex-grow">
+<h4 class="text-lg font-bold mb-2">${solutionsVisuals[index].title}</h4>
+<p class="text-gray-600">${solutionsVisuals[index].description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.remove('active');
+setTimeout(() => oldVisual.remove(), 600);
+}
+solutionsVisualContainer.appendChild(newVisual);
+setTimeout(() => newVisual.classList.add('active'), 50);
+}
+function activateSolutionCard(index) {
+solutionCards.forEach((card, i) => {
+if (i === index) {
+card.classList.add('solution-active', 'scale-105', 'z-10');
+card.setAttribute('aria-selected', 'true');
+card.setAttribute('tabindex', '0');
+if (window.innerWidth <= 1024) {
+card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+}
+} else {
+card.classList.remove('solution-active', 'scale-105', 'z-10');
+card.setAttribute('aria-selected', 'false');
+card.setAttribute('tabindex', '-1');
+}
+});
+updateSolutionVisual(index);
+currentSolutionIndex = index;
+}
+function autoRotateSolutions() {
+clearTimeout(solutionAutoRotateTimeout);
+solutionAutoRotateTimeout = setTimeout(() => {
+currentSolutionIndex = (currentSolutionIndex + 1) % solutionCards.length;
+activateSolutionCard(currentSolutionIndex);
+autoRotateSolutions();
+}, 6000);
+}
+function handleUserInteraction() {
+clearTimeout(solutionAutoRotateTimeout);
+clearTimeout(solutionInactivityTimeout);
+solutionInactivityTimeout = setTimeout(() => {
+autoRotateSolutions();
+}, 10000);
+}
+solutionCards.forEach((card, index) => {
+card.addEventListener('click', () => {
+activateSolutionCard(index);
+handleUserInteraction();
+});
+card.addEventListener('mouseenter', () => {
+activateSolutionCard(index);
+handleUserInteraction();
+});
+});
+autoRotateSolutions();
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20visualization%20of%20intelligent%20process%20automation%20with%20flowing%20data%20streams%20and%20automated%20workflows.%20The%20image%20should%20show%20interconnected%20systems%20and%20smooth%20process%20flows%20in%20a%20clean%2C%20professional%20style.%20Use%20cool%20blue%20tones%20and%20subtle%20lighting%20effects.%20Simple%20background%20focusing%20on%20automation%20elements.&width=800&height=400&seq=1&orientation=landscape",
+title: "Automação Inteligente",
+description: "Nossa plataforma de automação inteligente transforma processos complexos em fluxos eficientes e automatizados."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20data%20management%20and%20analytics.%20The%20image%20should%20show%20organized%20data%20flows%20and%20analytical%20insights%20with%20clean%2C%20modern%20design%20elements.%20Use%20professional%20blue%20tones%20and%20subtle%20gradients.%20Simple%20background%20emphasizing%20data%20organization.&width=800&height=400&seq=2&orientation=landscape",
+title: "Gestão de Dados",
+description: "Unifique e ative seus dados críticos para obter insights valiosos e tomar decisões estratégicas mais precisas."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20security%20visualization%20showing%20proactive%20threat%20detection%20and%20protection.%20The%20image%20should%20feature%20security%20shields%20and%20monitoring%20elements%20in%20a%20clean%2C%20professional%20style.%20Use%20cool%20blue%20tones%20and%20subtle%20security%20indicators.%20Simple%20background%20focusing%20on%20security%20aspects.&width=800&height=400&seq=3&orientation=landscape",
+title: "Segurança Proativa",
+description: "Sistema avançado de proteção e monitoramento para manter seus ativos digitais seguros 24/7."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20visualization%20of%20infrastructure%20optimization%20showing%20efficient%20resource%20allocation%20and%20performance%20metrics.%20The%20image%20should%20display%20clean%20architectural%20elements%20and%20performance%20indicators.%20Use%20professional%20blue%20tones%20and%20modern%20design.%20Simple%20background%20emphasizing%20optimization.&width=800&height=400&seq=4&orientation=landscape",
+title: "Infraestrutura Otimizada",
+description: "Maximize o desempenho e reduza custos com nossa solução de otimização de infraestrutura inteligente."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20visualization%20of%20system%20integration%20showing%20connected%20platforms%20and%20seamless%20data%20flow.%20The%20image%20should%20display%20interconnected%20systems%20with%20smooth%20transitions.%20Use%20cool%20blue%20tones%20and%20clean%20design%20elements.%20Simple%20background%20focusing%20on%20integration.&width=800&height=400&seq=5&orientation=landscape",
+title: "Integração Perfeita",
+description: "Conecte seus sistemas críticos eliminando silos e aumentando a produtividade operacional."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20predictive%20analytics%20showing%20data%20patterns%20and%20future%20trend%20predictions.%20The%20image%20should%20feature%20analytical%20graphs%20and%20predictive%20elements.%20Use%20professional%20blue%20tones%20and%20modern%20design.%20Simple%20background%20emphasizing%20analysis.&width=800&height=400&seq=6&orientation=landscape",
+title: "Análise Preditiva",
+description: "Antecipe tendências e tome decisões estratégicas baseadas em análise preditiva avançada."
+}
+];
+let currentSolutionIndex = 0;
+const solutionsVisualContainer = document.getElementById('solutions-visual-container');
+function updateSolutionVisual(index) {
+const oldVisual = solutionsVisualContainer.querySelector('.solution-visual');
+const newVisual = document.createElement('div');
+newVisual.className = 'solution-visual h-full rounded-lg overflow-hidden shadow-xl absolute top-0 left-0 w-full';
+newVisual.setAttribute('role', 'tabpanel');
+newVisual.setAttribute('aria-label', solutionsVisuals[index].title);
+newVisual.innerHTML = `
+<div style="background-image: url('${solutionsVisuals[index].image}'); background-size: cover; background-position: center;" class="w-full h-[400px]"></div>
+<div class="bg-white p-6 flex-grow">
+<h4 class="text-lg font-bold mb-2">${solutionsVisuals[index].title}</h4>
+<p class="text-gray-600">${solutionsVisuals[index].description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.remove('active');
+setTimeout(() => {
+oldVisual.remove();
+}, 500);
+}
+solutionsVisualContainer.appendChild(newVisual);
+setTimeout(() => {
+newVisual.classList.add('active');
+}, 50);
+}
+function activateSolutionCard(index) {
+solutionCards.forEach((card, i) => {
+if (i === index) {
+card.classList.add('solution-active');
+card.classList.add('scale-105');
+card.classList.add('z-10');
+card.setAttribute('aria-selected', 'true');
+card.setAttribute('tabindex', '0');
+card.focus();
+if (window.innerWidth <= 1024) {
+card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+}
+} else {
+card.classList.remove('solution-active');
+card.classList.remove('scale-105');
+card.classList.remove('z-10');
+card.setAttribute('aria-selected', 'false');
+card.setAttribute('tabindex', '-1');
+}
+});
+updateSolutionVisual(index);
+currentSolutionIndex = index;
+}
+solutionCards.forEach((card, index) => {
+card.addEventListener('click', () => {
+activateSolutionCard(index);
+});
+});
+let solutionsAutoRotateInterval;
+function autoRotateSolutions() {
+clearInterval(solutionsAutoRotateInterval);
+solutionsAutoRotateInterval = setInterval(() => {
+currentSolutionIndex = (currentSolutionIndex + 1) % solutionCards.length;
+activateSolutionCard(currentSolutionIndex);
+}, 4000);
+}
+autoRotateSolutions();
+const solutionsContainer = document.getElementById('solutions-container');
+solutionsContainer.addEventListener('mouseenter', () => {
+clearTimeout(solutionAutoRotateTimeout);
+clearTimeout(solutionInactivityTimeout);
+});
+solutionsContainer.addEventListener('mouseleave', () => {
+solutionInactivityTimeout = setTimeout(() => {
+autoRotateSolutions();
+}, 10000);
+});
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+const container = document.getElementById('network-animation');
+canvas.style.width = '100%';
+canvas.style.height = '100%';
+container.appendChild(canvas);
+const NODE_COUNT = 24;
+const RADIUS = 300;
+const nodes = [];
+const connections = [];
+let pulseRadius = 0;
+let animationFrame;
+let startTime = Date.now();
+function resizeCanvas() {
+canvas.width = container.offsetWidth;
+canvas.height = container.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+// Create nodes in a circle
+for (let i = 0; i < NODE_COUNT; i++) {
+const angle = (i * 2 * Math.PI) / NODE_COUNT;
+const x = canvas.width/2 + Math.cos(angle) * RADIUS;
+const y = canvas.height/2 + Math.sin(angle) * RADIUS;
+nodes.push({
+x: x,
+y: y,
+alpha: 0,
+pulseRadius: 0
+});
+}
+// Create connections
+for (let i = 0; i < NODE_COUNT; i++) {
+connections.push({
+from: i,
+to: (i + 3) % NODE_COUNT,
+alpha: 0,
+progress: 0
+});
+}
+}
+function draw() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+const currentTime = (Date.now() - startTime) / 1000;
+// Draw central pulse
+pulseRadius = (pulseRadius + 1) % 200;
+ctx.beginPath();
+ctx.strokeStyle = 'rgba(0, 194, 255, 0.2)';
+ctx.lineWidth = 2;
+ctx.arc(canvas.width/2, canvas.height/2, pulseRadius, 0, 2 * Math.PI);
+ctx.stroke();
+// Draw central dot
+ctx.beginPath();
+ctx.fillStyle = 'rgba(0, 194, 255, 1)';
+ctx.arc(canvas.width/2, canvas.height/2, 5, 0, 2 * Math.PI);
+ctx.fill();
+// Draw central dot
+fill(0, 194, 255);
+noStroke();
+circle(width/2, height/2, 10);
+// Draw connections
+connections.forEach(conn => {
+const from = nodes[conn.from];
+const to = nodes[conn.to];
+conn.progress = (conn.progress + 0.005) % 1;
+conn.alpha = Math.sin(conn.progress * Math.PI) * 0.5;
+ctx.beginPath();
+ctx.strokeStyle = `rgba(0, 240, 255, ${conn.alpha})`;
+ctx.lineWidth = 1;
+ctx.moveTo(from.x, from.y);
+ctx.lineTo(to.x, to.y);
+ctx.stroke();
+});
+// Draw nodes with timing
+nodes.forEach(node => {
+if (currentTime >= 2.5) {
+const progress = Math.min((currentTime - 2.5) / 1.5, 1.0);
+node.alpha = progress;
+} else {
+node.alpha = 0;
+}
+ctx.beginPath();
+ctx.fillStyle = `rgba(0, 240, 255, ${node.alpha})`;
+ctx.arc(node.x, node.y, 3, 0, 2 * Math.PI);
+ctx.fill();
+});
+// Draw connections with timing
+connections.forEach(conn => {
+if (currentTime >= 4) {
+const progress = Math.min((currentTime - 4) / 2, 1.0);
+conn.alpha = progress;
+} else {
+conn.alpha = 0;
+}
+const from = nodes[conn.from];
+const to = nodes[conn.to];
+ctx.beginPath();
+ctx.strokeStyle = `rgba(0, 240, 255, ${conn.alpha})`;
+ctx.lineWidth = 1;
+ctx.moveTo(from.x, from.y);
+ctx.lineTo(to.x, to.y);
+ctx.stroke();
+});
+animationFrame = requestAnimationFrame(draw);
+}
+draw();
+return () => {
+cancelAnimationFrame(animationFrame);
+};
+});
+function windowResized() {
+resizeCanvas(window.innerWidth, window.innerHeight);
+}
+document.addEventListener('DOMContentLoaded', function() {
+{
+image: "https://readdy.ai/api/search-image?query=A%20strong%20protective%20shield%20or%20radar%20system%20actively%20scanning%20for%20security%20threats.%20The%20visualization%20should%20emphasize%20strength%20and%20continuous%20monitoring%20with%20a%20modern%20aesthetic.%20Professional%20blue%20tones%20with%20clean%20design%20elements.%20Simple%20background%20focusing%20on%20security%20elements.&width=800&height=400&seq=8&orientation=landscape",
+title: "Proteção Proativa",
+description: "Nossa plataforma de segurança oferece proteção proativa e monitoramento contínuo para manter seus sistemas seguros."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20continuous%20cycle%20showing%20data%20restoration%20and%20backup%20processes%20in%20motion.%20The%20visualization%20should%20emphasize%20the%20cyclical%20nature%20of%20data%20protection%20with%20flowing%20elements.%20Professional%20blue%20tones%20with%20clean%20design.%20Simple%20background%20focusing%20on%20the%20continuous%20cycle.&width=800&height=400&seq=9&orientation=landscape",
+title: "Recuperação Contínua",
+description: "Sistema de backup e recuperação que garante a continuidade dos seus dados críticos com restauração rápida e eficiente."
+},
+{
+image: "https://readdy.ai/api/search-image?query=An%20optimized%20funnel%20or%20upward%20growth%20arrow%20showing%20clear%20progression%20and%20efficiency.%20The%20visualization%20should%20emphasize%20streamlined%20processes%20and%20growth.%20Professional%20blue%20tones%20with%20clean%20design.%20Simple%20background%20focusing%20on%20the%20optimization%20elements.&width=800&height=400&seq=10&orientation=landscape",
+title: "Crescimento Otimizado",
+description: "Nossa abordagem RevOps otimiza seu funil de vendas para maximizar conversões e acelerar o crescimento da receita."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20brain%20with%20connected%20data%20nodes%20and%20flowing%20information%20streams%2C%20emphasizing%20data%20intelligence%20and%20connectivity.%20The%20visualization%20should%20show%20clear%20data%20pathways%20within%20the%20brain%20structure.%20Professional%20blue%20tones%20with%20clean%20design.%20Simple%20background%20focusing%20on%20the%20neural%20connections.&width=800&height=400&seq=11&orientation=landscape",
+title: "Inteligência Conectada",
+description: "Transformamos dados isolados em insights acionáveis através de análise avançada e inteligência artificial."
+},
+{
+image: "https://readdy.ai/api/search-image?query=Interconnected%20gears%20with%20flowing%20data%20streams%20showing%20automated%20workflow%20processes%20in%20motion.%20The%20visualization%20should%20emphasize%20smooth%20automation%20and%20process%20flow.%20Professional%20blue%20tones%20with%20clean%20design.%20Simple%20background%20focusing%20on%20the%20mechanical%20elements.&width=800&height=400&seq=12&orientation=landscape",
+title: "Automação Inteligente",
+description: "Automatizamos fluxos complexos com precisão e rastreabilidade para eliminar gargalos e maximizar a eficiência operacional."
+}
+];
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20cybersecurity%20threats%20and%20vulnerabilities.%20The%20image%20should%20show%20a%20shield%20or%20protective%20barrier%20being%20tested%20by%20various%20attack%20vectors.%20Use%20professional%20blue%20tones%20and%20clean%20design%20elements.%20The%20style%20should%20be%20corporate%20and%20serious%2C%20emphasizing%20security%20challenges.&width=800&height=400&seq=8&orientation=landscape",
+title: "Riscos de Segurança Reativa",
+description: "Uma abordagem reativa à segurança expõe sua organização a riscos significativos e custos potencialmente devastadores."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20visualization%20of%20cloud%20data%20loss%20and%20protection%20challenges.%20The%20image%20should%20show%20cloud%20storage%20systems%20with%20some%20data%20elements%20appearing%20vulnerable%20or%20at%20risk.%20Use%20cool%20blue%20tones%20and%20professional%20design%20elements.%20The%20style%20should%20be%20clean%20and%20corporate%2C%20highlighting%20data%20protection%20needs.&width=800&height=400&seq=9&orientation=landscape",
+title: "Vulnerabilidade de Dados SaaS",
+description: "A perda de dados críticos em ambientes SaaS pode ter impactos severos na continuidade dos negócios e na conformidade regulatória."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20visualization%20of%20disconnected%20sales%20and%20marketing%20systems.%20The%20image%20should%20show%20fragmented%20workflow%20elements%20with%20gaps%20in%20communication.%20Use%20professional%20blue%20tones%20and%20clean%20design%20elements.%20The%20style%20should%20be%20corporate%2C%20emphasizing%20operational%20challenges.&width=800&height=400&seq=10&orientation=landscape",
+title: "Fragmentação Comercial",
+description: "Times e sistemas desconectados resultam em oportunidades perdidas e eficiência reduzida no processo comercial."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20visualization%20of%20cloud%20computing%20cost%20optimization%20and%20efficiency.%20The%20image%20should%20feature%20a%20cloud%20icon%20with%20ascending%20cost-saving%20graphs%20and%20financial%20metrics.%20Use%20cool%20blue%20tones%20and%20clean%20design%20elements.%20The%20style%20should%20be%20professional%20and%20corporate%2C%20emphasizing%20cloud%20cost%20management%20and%20ROI.&width=800&height=400&seq=11&orientation=landscape",
+title: "Otimização de Custos na Nuvem",
+description: "Nossa abordagem integrada de FinOps e arquitetura tática otimiza custos e maximiza o retorno sobre investimento em infraestrutura."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20cybersecurity%20monitoring%20and%20threat%20detection.%20The%20image%20should%20show%20a%20protective%20shield%20or%20radar%20system%20scanning%20for%20security%20threats.%20Use%20professional%20blue%20tones%20and%20clean%20design%20elements.%20The%20style%20should%20be%20corporate%20and%20serious%2C%20emphasizing%20advanced%20security%20monitoring.&width=800&height=400&seq=12&orientation=landscape",
+title: "Monitoramento de Segurança Avançado",
+description: "Nossa plataforma de segurança oferece proteção proativa e monitoramento contínuo para manter seus sistemas seguros."
+}
+];
+const cards = document.querySelectorAll('#card-container .card');
+const visuals = [
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%2C%20minimalist%20visualization%20of%20a%20network%20architecture%20with%20connected%20nodes%20and%20flowing%20data%20streams.%20The%20image%20should%20show%20glowing%20blue%20lines%20connecting%20various%20technological%20nodes%2C%20creating%20a%20sense%20of%20dynamic%20data%20flow%20and%20system%20integration.%20The%20background%20should%20be%20clean%20and%20simple%2C%20allowing%20the%20network%20visualization%20to%20stand%20out.%20The%20overall%20style%20should%20be%20professional%20and%20sophisticated%2C%20suitable%20for%20a%20corporate%20technology%20website.&width=800&height=400&seq=1&orientation=landscape",
+title: "Arquitetura Tática",
+description: "Nossa abordagem de arquitetura tática integra múltiplas camadas de infraestrutura para garantir performance, segurança e escalabilidade com controle financeiro preciso."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%2C%20minimalist%20visualization%20of%20automated%20workflow%20processes.%20The%20image%20should%20show%20interconnected%20gears%20and%20flowing%20lines%20representing%20automated%20processes%2C%20with%20a%20clean%20and%20professional%20aesthetic.%20Use%20cool%20blue%20tones%20and%20subtle%20gradients%20to%20create%20a%20sense%20of%20efficiency%20and%20technological%20advancement.%20The%20background%20should%20be%20simple%20and%20light%2C%20focusing%20attention%20on%20the%20workflow%20visualization.&width=800&height=400&seq=2&orientation=landscape",
+title: "Automação de Fluxos Complexos",
+description: "Nossa plataforma de automação integra processos interdepartamentais com soluções low-code/no-code para eliminar gargalos e garantir operações eficientes."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20cybersecurity%20and%20data%20protection.%20The%20image%20should%20feature%20a%20digital%20shield%20or%20protective%20barrier%20with%20flowing%20data%20streams%20and%20security%20elements.%20Use%20cool%20blue%20tones%20and%20subtle%20lighting%20effects%20to%20create%20a%20sense%20of%20security%20and%20technological%20advancement.%20The%20background%20should%20be%20clean%20and%20professional%2C%20emphasizing%20the%20security%20aspects.&width=800&height=400&seq=3&orientation=landscape",
+title: "Plataforma de Segurança Gerenciada",
+description: "Nossa plataforma de segurança oferece monitoramento contínuo e integração DevSecOps para manter sua postura de segurança proativa e simplificar auditorias."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20modern%20visualization%20of%20cloud%20data%20backup%20and%20protection.%20The%20image%20should%20show%20multiple%20layers%20of%20data%20storage%20and%20backup%20systems%20with%20connecting%20elements.%20Use%20cool%20blue%20tones%20and%20clean%20design%20elements%20to%20represent%20secure%20and%20efficient%20data%20management.%20The%20background%20should%20be%20simple%20and%20professional%2C%20focusing%20on%20the%20backup%20architecture.&width=800&height=400&seq=4&orientation=landscape",
+title: "Backup SaaS Estratégico",
+description: "Solução de proteção imutável em nuvem independente que garante recuperação rápida e governança efetiva para seus dados críticos em plataformas SaaS."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20dynamic%20visualization%20of%20revenue%20operations%20and%20business%20growth.%20The%20image%20should%20feature%20ascending%20graphs%20and%20connected%20business%20elements%20representing%20integrated%20sales%20and%20marketing%20systems.%20Use%20professional%20blue%20tones%20and%20clean%20design%20elements%20to%20show%20business%20optimization.%20The%20background%20should%20be%20simple%20and%20corporate%2C%20emphasizing%20the%20growth%20aspects.&width=800&height=400&seq=5&orientation=landscape",
+title: "Estruturação de RevOps",
+description: "Nossa abordagem RevOps integra e operacionaliza seu ecossistema de vendas e marketing para garantir crescimento previsível e coordenado."
+},
+{
+image: "https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20data%20transformation%20and%20analytics.%20The%20image%20should%20show%20raw%20data%20elements%20transforming%20into%20organized%2C%20actionable%20insights%20with%20connecting%20flows.%20Use%20cool%20blue%20tones%20and%20professional%20design%20elements%20to%20represent%20data%20intelligence.%20The%20background%20should%20be%20clean%20and%20minimal%2C%20focusing%20on%20the%20data%20transformation%20process.&width=800&height=400&seq=6&orientation=landscape",
+title: "Estratégia de Dados Ativos",
+description: "Transformamos o caos de dados isolados em fluxos de informação unificados e energizados que resultam em clareza, inteligência e decisões de impacto estratégico."
+}
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/c186897558d04028e1ec8fdf223c9d82.png",
+title: "Automação de Fluxos Complexos",
+description: "Nossa plataforma de automação integra processos interdepartamentais com soluções low-code/no-code para eliminar gargalos e garantir operações eficientes."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/20203e4ca77fd7f6e602916c76095d24.png",
+title: "Plataforma de Segurança Gerenciada",
+description: "Nossa plataforma de segurança oferece monitoramento contínuo e integração DevSecOps para manter sua postura de segurança proativa e simplificar auditorias."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/ba5803f15310e7d78901a7189c727927.png",
+title: "Backup SaaS Estratégico",
+description: "Solução de proteção imutável em nuvem independente que garante recuperação rápida e governança efetiva para seus dados críticos em plataformas SaaS."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/f5ab51923584e5eaa22ef17cdbd8f6c6.png",
+title: "Estruturação de RevOps",
+description: "Nossa abordagem RevOps integra e operacionaliza seu ecossistema de vendas e marketing para garantir crescimento previsível e coordenado."
+},
+{
+image: "https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/6f69b5a0095c477e9bc23cffba8d3b5a.png",
+title: "Estratégia de Dados Ativos",
+description: "Transformamos o caos de dados isolados em fluxos de informação unificados e energizados que resultam em clareza, inteligência e decisões de impacto estratégico."
+}
+];
+let currentIndex = 0;
+const visualContainer = document.getElementById('visual-container');
+function updateCostVisual(index) {
+const costVisualContainer = document.getElementById('cost-visual-container');
+const oldVisual = costVisualContainer.querySelector('.visual');
+const newVisual = document.createElement('div');
+newVisual.className = 'visual h-full rounded-lg overflow-hidden shadow-xl absolute top-0 left-0 w-full';
+newVisual.setAttribute('role', 'tabpanel');
+newVisual.setAttribute('aria-label', costVisuals[index].title);
+newVisual.innerHTML = `
+<div style="background-image: url('${costVisuals[index].image}'); background-size: cover; background-position: center;" class="w-full h-[400px]"></div>
+<div class="bg-white p-6 flex-grow">
+<h4 class="text-lg font-bold mb-2">${costVisuals[index].title}</h4>
+<p class="text-gray-600">${costVisuals[index].description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.remove('active');
+setTimeout(() => {
+oldVisual.remove();
+}, 500);
+}
+costVisualContainer.appendChild(newVisual);
+setTimeout(() => {
+newVisual.classList.add('active');
+}, 50);
+}
+function updateVisual(index) {
+const oldVisual = visualContainer.querySelector('.visual');
+const newVisual = document.createElement('div');
+newVisual.className = 'visual h-full rounded-lg overflow-hidden shadow-xl absolute top-0 left-0 w-full';
+newVisual.setAttribute('role', 'tabpanel');
+newVisual.setAttribute('aria-label', visuals[index].title);
+newVisual.innerHTML = `
+<div style="background-image: url('${visuals[index].image}'); background-size: cover; background-position: center;" class="w-full h-[400px] transition-transform duration-700"></div>
+<div class="bg-white p-6 flex-grow">
+<h4 class="text-lg font-bold mb-2">${visuals[index].title}</h4>
+<p class="text-gray-600">${visuals[index].description}</p>
+</div>
+`;
+if (oldVisual) {
+oldVisual.classList.add('exit');
+oldVisual.classList.remove('active');
+setTimeout(() => {
+oldVisual.remove();
+}, 700);
+}
+visualContainer.appendChild(newVisual);
+setTimeout(() => {
+newVisual.classList.add('active');
+}, 50);
+}
+function activateCard(index) {
+cards.forEach((card, i) => {
+if (i === index) {
+card.classList.add('card-active');
+card.classList.remove('card-inactive');
+card.classList.add('scale-105');
+card.classList.add('z-10');
+card.setAttribute('aria-selected', 'true');
+card.setAttribute('tabindex', '0');
+card.focus();
+if (window.innerWidth <= 1024) {
+card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+}
+} else {
+card.classList.remove('card-active');
+card.classList.add('card-inactive');
+card.classList.remove('scale-105');
+card.classList.remove('z-10');
+card.setAttribute('aria-selected', 'false');
+card.setAttribute('tabindex', '-1');
+}
+});
+updateVisual(index);
+currentIndex = index;
+}
+// Adicionar eventos de clique aos cards
+cards.forEach((card, index) => {
+card.addEventListener('click', () => {
+activateCard(index);
+});
+});
+// Alternar cards automaticamente a cada 5 segundos
+let autoRotateInterval;
+function autoRotate() {
+clearInterval(autoRotateInterval);
+autoRotateInterval = setInterval(() => {
+currentIndex = (currentIndex + 1) % cards.length;
+activateCard(currentIndex);
+}, 7000);
+}
+// Start auto-rotation
+autoRotate();
+// Pause auto-rotation on hover
+const cardContainer = document.getElementById('card-container');
+cardContainer.addEventListener('mouseenter', () => {
+clearInterval(autoRotateInterval);
+});
+// Resume auto-rotation when mouse leaves
+cardContainer.addEventListener('mouseleave', () => {
+autoRotate();
+});
+});
+</script>
 </body>
 </html>
-
