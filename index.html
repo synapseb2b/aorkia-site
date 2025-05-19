@@ -19,6 +19,10 @@ body {
 font-family: 'Montserrat', sans-serif;
 scroll-behavior: smooth;
 }
+.header-sticky .container {
+padding-top: 0.75rem;
+padding-bottom: 0.75rem;
+}
 @media (max-width: 768px) {
 .w-16.h-16 {
 width: 48px !important;
@@ -97,12 +101,6 @@ transition: all 0.3s ease;
 transform: translateY(-4px);
 box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
-.section-image {
-transition: transform 0.5s ease;
-}
-.section-image:hover {
-transform: scale(1.03);
-}
 .header-sticky {
 transition: all 0.3s ease;
 }
@@ -121,24 +119,22 @@ box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
 <body class="bg-white text-gray-800">
 <!-- Header -->
 <header class="header-sticky fixed w-full bg-white shadow-md z-50">
-<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<div class="container mx-auto px-4 py-3 flex items-center">
 <a href="#" class="inline-block">
 <img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1508c3b2ba3e6bc5dcbde380b3d222b4.png" alt="AORKIA" class="h-16 w-auto opacity-90 drop-shadow-lg">
 </a>
-<nav class="hidden md:flex items-center space-x-6">
-<a href="#" class="nav-link text-sm font-medium text-primary border-b-2 border-primary">Nossa Engenharia</a>
-<a href="#infra-base" class="nav-link text-sm font-medium hover:text-primary transition-colors">Infraestrutura Base</a>
+<nav class="hidden md:flex items-center space-x-6 ml-12">
 <a href="#resiliencia" class="nav-link text-sm font-medium hover:text-primary transition-colors">Resiliência Estratégica</a>
 <a href="#seguranca" class="nav-link text-sm font-medium hover:text-primary transition-colors">Segurança Inteligente</a>
 <a href="#infraestrutura" class="nav-link text-sm font-medium hover:text-primary transition-colors">Arquitetura de Infraestrutura</a>
 <a href="#receita" class="nav-link text-sm font-medium hover:text-primary transition-colors">Arquitetura de Receita</a>
 </nav>
-<div class="flex items-center space-x-4">
+<div class="flex items-center ml-auto">
 <button class="cta-button hidden md:flex items-center space-x-2 bg-primary text-white px-4 py-2 !rounded-button font-medium text-sm whitespace-nowrap">
 <span>Fale Conosco</span>
 <span class="arrow">→</span>
 </button>
-<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 ml-4">
 <i class="ri-menu-line ri-lg"></i>
 </button>
 </div>
@@ -169,12 +165,11 @@ Diagnosticar Minha Operação
 </div>
 </div>
 </section>
-<!-- Section 1: Introduction -->
-<section class="py-20 bg-white">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto text-center fade-in">
+<section class="py-20 bg-white overflow-x-hidden">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto text-left sm:text-center fade-in">
 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Dois Pilares. Uma Arquitetura de Precisão Estratégica</h2>
-<div class="flex justify-center mb-8">
+<div class="flex sm:justify-center mb-8">
 <div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
 <p class="text-lg text-gray-700 leading-relaxed mb-12">
@@ -201,8 +196,8 @@ A AORKIA atua sobre os pontos mais críticos da operação moderna: infraestrutu
 </section>
 <!-- New Middle Section -->
 <section id="infra-base" class="py-16 bg-gray-50">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto text-center fade-in">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto text-center fade-in">
 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Infraestrutura como Domínio Estratégico</h2>
 <div class="flex justify-center mb-8">
 <div class="w-20 h-1 bg-primary rounded-full"></div>
@@ -220,14 +215,14 @@ Quando a infraestrutura opera com pontos cegos, o resultado é risco, perda de v
 </section>
 <!-- Section 2: Resiliência como Estratégia -->
 <section id="resiliencia" class="py-16 bg-gray-50">
-<div class="container mx-auto px-4">
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div class="fade-in">
-<div class="mb-3">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto">
+<div class="fade-in mb-12">
+<div class="mb-6">
 <span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Resiliência como Estratégia</span>
 </div>
 <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">SaaS sem Backup Imutável? Receita e Reputação em Risco.</h3>
-<p class="text-lg text-gray-700 mb-6">Dados em plataformas SaaS como M365 e Google Workspace não são invulneráveis. Os termos dos provedores são claros: a responsabilidade pelo backup é sua. Um simples erro ou ataque pode levar à perda irreversível de dados, comprometendo sua receita, reputação e compliance.</p>
+<p class="text-lg text-gray-700 mb-12">Dados em plataformas SaaS como M365 e Google Workspace não são invulneráveis. Os termos dos provedores são claros: a responsabilidade pelo backup é sua. Um simples erro ou ataque pode levar à perda irreversível de dados, comprometendo sua receita, reputação e compliance.</p>
 <div class="space-y-4 mb-8">
 <div class="bullet-item text-gray-700 fade-in delay-100">Backup Imutável com Restauração Granular</div>
 <div class="bullet-item text-gray-700 fade-in delay-200">Conformidade com DORA, GDPR, LGPD e NIS2</div>
@@ -252,24 +247,20 @@ Evite perdas irreversíveis e garanta a continuidade
 </span>
 </button>
 </div>
-<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
-<div class="section-image w-full h-full">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/4be0d77855edd4ceeb0ed7e8bd6b9935.png" alt="Backup Imutável" class="w-full h-full object-cover object-top">
-</div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 3: Segurança como Estratégia -->
 <section id="seguranca" class="py-20 bg-white">
-<div class="container mx-auto px-4">
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div class="fade-in">
-<div class="mb-3">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto">
+<div class="fade-in mb-12">
+<div class="mb-6">
 <span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Segurança como Estratégia</span>
 </div>
 <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Ambientes Multi-Cloud? Postura em Risco.</h3>
-<p class="text-lg text-gray-700 mb-6">A dinâmica de ambientes multi-cloud, a exposição gerada por APIs e a velocidade dos deploys contínuos expandem constantemente a superfície de ataque, tornando a proteção integral um desafio estratégico cada vez maior.</p>
+<p class="text-lg text-gray-700 mb-12">A dinâmica de ambientes multi-cloud, a exposição gerada por APIs e a velocidade dos deploys contínuos expandem constantemente a superfície de ataque, tornando a proteção integral um desafio estratégico cada vez maior.</p>
 <div class="space-y-4 mb-8">
 <div class="bullet-item text-gray-700 fade-in delay-100">Monitoramento Contínuo com Inteligência e Contexto</div>
 <div class="bullet-item text-gray-700 fade-in delay-200">Conformidade Dinâmica com Padrões</div>
@@ -294,24 +285,20 @@ Governe riscos invisíveis e automatize sua conformidade
 </span>
 </button>
 </div>
-<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
-<div class="section-image w-full h-full">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/7e80af4e4a6ff334222181f4448ca41e.png" alt="Segurança Multi-Cloud" class="w-full h-full object-cover object-top">
-</div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 4: Infraestrutura como Estratégia -->
 <section id="infraestrutura" class="py-20 bg-gray-50">
-<div class="container mx-auto px-4">
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div class="fade-in">
-<div class="mb-3">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto">
+<div class="fade-in mb-12">
+<div class="mb-6">
 <span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Infraestrutura como Estratégia</span>
 </div>
 <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Infraestrutura Complexa? Performance em Risco.</h3>
-<p class="text-lg text-gray-700 mb-6">Infraestruturas Fragmentadas Geram Risco, Custo Oculto e Decisões sem Critério. A AORKIA redesenha, justifica e projeta decisões arquitetônicas com visão executiva e domínio técnico.</p>
+<p class="text-lg text-gray-700 mb-12">Infraestruturas Fragmentadas Geram Risco, Custo Oculto e Decisões sem Critério. A AORKIA redesenha, justifica e projeta decisões arquitetônicas com visão executiva e domínio técnico.</p>
 <div class="space-y-4 mb-8">
 <div class="bullet-item text-gray-700 fade-in delay-100">Diagnóstico Técnico com Foco em Risco</div>
 <div class="bullet-item text-gray-700 fade-in delay-200">Curadoria Estratégica Agnóstica</div>
@@ -336,18 +323,14 @@ Transforme sua infraestrutura em um ativo estratégico
 </span>
 </button>
 </div>
-<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
-<div class="section-image w-full h-full">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/cd9a0a11541da8b6857e901cbba7a4df.png" alt="Infraestrutura Estratégica" class="w-full h-full object-cover object-top">
-</div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 5: Engenharia de Performance -->
-<section class="py-20 bg-white">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto text-center fade-in">
+<section class="py-20 bg-white overflow-x-hidden">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto text-center fade-in">
 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Receita Previsível Não é<br>Acidente — É Engenharia.</h2>
 <div class="flex justify-center mb-8">
 <div class="w-20 h-1 bg-primary rounded-full"></div>
@@ -364,14 +347,14 @@ Quando o ciclo de receita opera mais por esforço isolado e intuição do que po
 </section>
 <!-- Section 6: Performance como Estratégia -->
 <section id="receita" class="py-20 bg-white">
-<div class="container mx-auto px-4">
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div class="fade-in">
-<div class="mb-3">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto">
+<div class="fade-in mb-12">
+<div class="mb-6">
 <span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Performance como Estratégia</span>
 </div>
 <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Receita Estagnada, Operações em Caos: O Sintoma é Financeiro. A Causa é Estrutural.</h3>
-<p class="text-lg text-gray-700 mb-6">Crescimento inconsistente não é falta de lead — é falta de engenharia. A AORKIA transforma times comerciais dispersos em sistemas de receita com rastreabilidade, ativação coordenada e governança de decisão.</p>
+<p class="text-lg text-gray-700 mb-12">Crescimento inconsistente não é falta de lead — é falta de engenharia. A AORKIA transforma times comerciais dispersos em sistemas de receita com rastreabilidade, ativação coordenada e governança de decisão.</p>
 <div class="space-y-4 mb-8">
 <div class="bullet-item text-gray-700 fade-in delay-100">Orquestração da jornada de receita (do lead à expansão)</div>
 <div class="bullet-item text-gray-700 fade-in delay-200">Desenho de um sistema unificado e data-driven para times de Marketing, Vendas e CS</div>
@@ -398,56 +381,49 @@ Construa um motor de receita previsível e escalável
 </span>
 </button>
 </div>
-<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
-<div class="section-image w-full h-full">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/c776c379fe6326e4ecf5f327bbc390c2.png" alt="Revenue Operations" class="w-full h-full object-cover object-top">
-</div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 7: Estratégia Aplicada -->
 <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
-<div class="container mx-auto px-4">
-<div class="grid lg:grid-cols-2 gap-12">
-<div class="space-y-8 fade-in">
-<h2 class="text-3xl lg:text-4xl font-bold leading-tight text-gray-900">AORKIA: Da Arquitetura de Precisão ao Crescimento Orquestrado.</h2>
-<p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto">
+<div class="space-y-8 fade-in mb-12">
+<h2 class="text-3xl lg:text-4xl font-bold leading-tight text-gray-900 text-center">AORKIA: Da Arquitetura de Precisão ao Crescimento Orquestrado.</h2>
+<p class="text-lg text-gray-700 leading-relaxed">
 A nossa Arquitetura de Precisão Estratégica, fundamentada no domínio da sua infraestrutura e na engenharia da sua receita, é como a AORKIA transforma operações fragmentadas. Cada pilar técnico e comercial é orquestrado com precisão — eliminando o improviso e ativando crescimento sustentável com rastreabilidade real.
 </p>
-<div class="space-y-4">
-<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<div class="space-y-4 mb-12">
+<div class="stat-card flex flex-col p-6 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
 <span class="font-semibold text-lg text-gray-900">Infraestrutura Estratégica</span>
-<span class="text-sm text-gray-600 max-w-xs">Resiliência, segurança e arquitetura como base sólida</span>
+<span class="text-sm text-gray-600">Resiliência, segurança e arquitetura como base sólida</span>
 </div>
-<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<div class="stat-card flex flex-col p-6 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
 <span class="font-semibold text-lg text-gray-900">Engenharia de Receita</span>
-<span class="text-sm text-gray-600 max-w-xs">Operações comerciais previsíveis, rastreáveis e escaláveis</span>
+<span class="text-sm text-gray-600">Operações comerciais previsíveis, rastreáveis e escaláveis</span>
 </div>
-<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<div class="stat-card flex flex-col p-6 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
 <span class="font-semibold text-lg text-gray-900">Resultado Orquestrado</span>
-<span class="text-sm text-gray-600 max-w-xs">Crescimento sustentável através da sinergia técnico-comercial</span>
+<span class="text-sm text-gray-600">Crescimento sustentável através da sinergia técnico-comercial</span>
 </div>
 </div>
-<button class="cta-button mt-8 px-6 py-3 bg-primary text-white font-semibold !rounded-button shadow-lg hover:scale-102 hover:shadow-xl flex items-center whitespace-nowrap">
+<div class="flex justify-center">
+<button class="cta-button px-6 py-3 bg-primary text-white font-semibold !rounded-button shadow-lg hover:shadow-xl flex items-center whitespace-nowrap">
 Estruture com Inteligência. Cresça com Precisão.
 <span class="arrow ml-2">→</span>
 </button>
 </div>
-<div class="relative h-full bg-white shadow-md rounded-lg overflow-hidden border border-gray-100 fade-in delay-200">
-<div class="absolute inset-0 blueprint-grid"></div>
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1525b28803efdcbaef4fc64c058bbe13.png" alt="Blueprint Estratégico" class="object-cover w-full h-full filter contrast-105">
-<div class="absolute inset-0 border-2 border-blue-100"></div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 8: AORKIA + KEEPIT -->
-<section class="py-20 bg-white">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto text-center fade-in">
+<section class="py-20 bg-white overflow-x-hidden">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto text-left sm:text-center fade-in">
 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Proteção SaaS de Classe Mundial</h2>
-<div class="flex justify-center mb-8">
+<div class="flex sm:justify-center mb-8">
 <div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
 <p class="text-lg text-gray-700 leading-relaxed mb-12">
@@ -519,10 +495,10 @@ Conheça a Solução Keepit
 </section>
 <!-- Section 9: Engenharia de Precisão -->
 <section class="py-20 bg-gray-50">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto text-center fade-in">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
+<div class="max-w-4xl lg:max-w-6xl mx-auto text-left sm:text-center fade-in">
 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Aprofunde-se na Estratégia e Soluções AORKIA</h2>
-<div class="flex justify-center mb-8">
+<div class="flex sm:justify-center mb-8">
 <div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
 <p class="text-lg text-gray-700 leading-relaxed mb-12">
@@ -536,10 +512,10 @@ Explore como cada solução da AORKIA traduz essa engenharia em impacto prático
 <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
 <i class="ri-shield-check-line ri-2x text-primary"></i>
 </div>
-<h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Backup SaaS Estratégico</h3>
+<h3 class="text-xl font-semibold mb-4 text-gray-900 text-left sm:text-center">Backup SaaS Estratégico</h3>
 <div class="h-px w-16 bg-primary/30 mx-auto mb-6"></div>
-<p class="text-gray-600 mb-4 text-center">Seus dados em Microsoft 365, Google Workspace ou Salesforce não estão automaticamente seguros.</p>
-<p class="text-gray-600 mb-8 text-center">Evite perdas irreversíveis e proteja sua operação com soberania total.</p>
+<p class="text-gray-600 mb-4 text-left sm:text-center">Seus dados em Microsoft 365, Google Workspace ou Salesforce não estão automaticamente seguros.</p>
+<p class="text-gray-600 mb-8 text-left sm:text-center">Evite perdas irreversíveis e proteja sua operação com soberania total.</p>
 </div>
 <button class="cta-button mt-auto bg-primary/10 hover:bg-primary/20 text-primary px-6 py-3 !rounded-button font-medium text-sm whitespace-nowrap flex items-center justify-center group">
 <span>Blueprint de Backup SaaS</span>
@@ -597,13 +573,13 @@ Explore como cada solução da AORKIA traduz essa engenharia em impacto prático
 </section>
 <!-- Authority Bar -->
 <section class="py-8 bg-secondary text-white">
-<div class="container mx-auto px-4 text-center">
+<div class="container mx-auto px-4 text-left sm:text-center">
 <p class="text-lg md:text-xl font-medium tracking-wide fade-in">Tecnologia Tática. Governança Decisiva. Execução Disciplinada.</p>
 </div>
 </section>
 <!-- Footer -->
 <footer class="bg-gray-900 text-white py-16">
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 md:px-6 lg:px-6">
 <div class="grid md:grid-cols-4 gap-12">
 <div class="col-span-1 md:col-span-2">
 <a href="#" class="mb-6 inline-block">
