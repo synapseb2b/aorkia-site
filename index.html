@@ -2,837 +2,728 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AORKIA - Nossa Abordagem</title>
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>
-tailwind.config={
-theme:{
-extend:{
-colors:{
-primary:'#3B82F6',
-secondary:'#1E40AF'
-},
-borderRadius:{
-'none':'0px',
-'sm':'4px',
-DEFAULT:'8px',
-'md':'12px',
-'lg':'16px',
-'xl':'20px',
-'2xl':'24px',
-'3xl':'32px',
-'full':'9999px',
-'button':'8px'
-},
-screens: {
-'xs': '375px',
-'sm': '640px',
-'md': '768px',
-'lg': '1024px',
-'xl': '1280px',
-'2xl': '1536px',
-}
-}
-}
-}
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A AORKIA transforma ambientes críticos em crescimento previsível. Engenharia de infraestrutura, segurança e receita com rastreabilidade e impacto real.">
+<meta name="robots" content="index, follow">
+<title>Engenharia Estratégica para Crescimento | AORKIA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#1E40AF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
 font-family: 'Montserrat', sans-serif;
--webkit-tap-highlight-color: transparent;
-overscroll-behavior-y: none;
-}
-html {
 scroll-behavior: smooth;
 }
-@media (max-width: 640px) {
-.container {
-padding-left: 1rem;
-padding-right: 1rem;
+@media (max-width: 768px) {
+.w-16.h-16 {
+width: 48px !important;
+height: 48px !important;
+}
+.text-xl {
+font-size: 1.125rem !important;
 }
 }
-@media (min-width: 641px) and (max-width: 1024px) {
-.container {
-padding-left: 2rem;
-padding-right: 2rem;
-}
-}
-.service-card {
-transition: all 0.3s ease;
-cursor: pointer;
-border-left: 4px solid transparent;
-}
-.service-card:hover {
-transform: translateX(10px);
-border-left: 4px solid #3B82F6;
-background: #f8fafc;
-}
-.mobile-menu-enter {
-opacity: 0;
-transform: translateY(-10px);
-}
-.mobile-menu-enter-active {
-opacity: 1;
-transform: translateY(0);
-transition: opacity 200ms, transform 200ms;
-}
-.mobile-menu-exit {
-opacity: 1;
-}
-.mobile-menu-exit-active {
-opacity: 0;
-transform: translateY(-10px);
-transition: opacity 150ms, transform 150ms;
-}
-.service-active {
-border-left: 4px solid #3B82F6;
-transform: translateX(10px);
-background: #f8fafc;
-}
-.visual-panel {
-transition: all 0.5s ease;
-opacity: 0;
-transform: translateX(20px);
-}
-.visual-panel.active {
-opacity: 1;
-transform: translateX(0);
-}
-@keyframes fadeIn {
-from {
+.fade-in {
 opacity: 0;
 transform: translateY(20px);
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-to {
+.fade-in.active {
 opacity: 1;
 transform: translateY(0);
 }
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+.nav-link {
+position: relative;
 }
-.animate-fade-in {
-animation: fadeIn 0.6s ease-out forwards;
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #3B82F6;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+width: 100%;
+}
+.bullet-item {
+position: relative;
+padding-left: 28px;
+}
+.bullet-item::before {
+content: '';
+position: absolute;
+left: 0;
+top: 10px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background-color: #3B82F6;
+}
+.cta-button {
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+}
+.cta-button:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+}
+.cta-button:active {
+transform: translateY(0);
+}
+.cta-button .arrow {
+transition: transform 0.3s ease;
+}
+.cta-button:hover .arrow {
+transform: translateX(4px);
+}
+.stat-card {
+transition: all 0.3s ease;
+}
+.stat-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.section-image {
+transition: transform 0.5s ease;
+}
+.section-image:hover {
+transform: scale(1.03);
+}
+.header-sticky {
+transition: all 0.3s ease;
+}
+.blueprint-grid {
+background-image:
+linear-gradient(to right, rgba(226, 232, 240, 0.3) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(226, 232, 240, 0.3) 1px, transparent 1px);
+background-size: 20px 20px;
+}
+input:focus, button:focus {
+outline: none;
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
 }
 </style>
 </head>
-<body class="bg-white text-gray-900">
-<!-- Navbar -->
-<nav class="bg-white shadow-md sticky top-0 z-50">
-<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-<a href="/" class="flex items-center">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/02b5483f340efdfa7b149408c8b344c4.png" alt="AORKIA Logo" class="h-16 md:h-28">
+<body class="bg-white text-gray-800">
+<!-- Header -->
+<header class="header-sticky fixed w-full bg-white shadow-md z-50">
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<a href="#" class="inline-block">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1508c3b2ba3e6bc5dcbde380b3d222b4.png" alt="AORKIA" class="h-16 w-auto opacity-90 drop-shadow-lg">
 </a>
-<div class="hidden md:flex space-x-8">
-<a href="#" class="font-medium text-primary">Nossa Abordagem</a>
-<a href="/estrutura-servicos" class="font-medium hover:text-primary transition-colors">Estrutura de Serviços</a>
-<a href="/insights" class="font-medium hover:text-primary transition-colors">Insights Estratégicos</a>
-<a href="/contato" class="font-medium hover:text-primary transition-colors">Contato</a>
-</div>
-<button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center">
+<nav class="hidden md:flex items-center space-x-6">
+<a href="#" class="nav-link text-sm font-medium text-primary border-b-2 border-primary">Nossa Engenharia</a>
+<a href="#infra-base" class="nav-link text-sm font-medium hover:text-primary transition-colors">Infraestrutura Base</a>
+<a href="#resiliencia" class="nav-link text-sm font-medium hover:text-primary transition-colors">Resiliência Estratégica</a>
+<a href="#seguranca" class="nav-link text-sm font-medium hover:text-primary transition-colors">Segurança Inteligente</a>
+<a href="#infraestrutura" class="nav-link text-sm font-medium hover:text-primary transition-colors">Arquitetura de Infraestrutura</a>
+<a href="#receita" class="nav-link text-sm font-medium hover:text-primary transition-colors">Arquitetura de Receita</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="cta-button hidden md:flex items-center space-x-2 bg-primary text-white px-4 py-2 !rounded-button font-medium text-sm whitespace-nowrap">
+<span>Fale Conosco</span>
+<span class="arrow">→</span>
+</button>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
 <i class="ri-menu-line ri-lg"></i>
 </button>
 </div>
-<div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-<div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-<a href="#" class="font-medium text-primary">Nossa Abordagem</a>
-<a href="/estrutura-servicos" class="font-medium hover:text-primary transition-colors">Estrutura de Serviços</a>
-<a href="/insights" class="font-medium hover:text-primary transition-colors">Insights Estratégicos</a>
-<a href="/contato" class="font-medium hover:text-primary transition-colors">Contato</a>
 </div>
-</div>
-</nav>
+</header>
 <!-- Hero Section -->
-<section class="relative min-h-[60vh] md:min-h-[85vh] flex items-center">
-<div class="absolute inset-0 w-full h-full overflow-hidden">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/70c1dfc55fd8927de29207378deac35c.png" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+<section class="relative w-full h-[600px] flex items-center overflow-hidden" style="background-image: url('https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/0ba87739b77416c5932e7a652ecd87e3.png'); background-size: cover; background-position: center;">
+<div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.25))"></div>
+<div class="container mx-auto px-4 relative z-10 w-full">
+<div class="max-w-3xl">
+<p class="text-base md:text-lg text-primary font-medium mb-4 fade-in">Orquestração Técnica com Impacto Real</p>
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 fade-in delay-100">Transformamos Ambientes Complexos em Crescimento Previsível</h1>
+<p class="text-lg md:text-xl text-gray-200 mb-8 fade-in delay-200">Engenharia de precisão aplicada à sua infraestrutura e operação comercial.</p>
+<div class="flex items-center space-x-4 fade-in delay-300">
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-6 py-3 !rounded-button font-semibold text-base shadow-lg whitespace-nowrap">
+<span class="flex items-center">
+Conheça Nossa Engenharia
+<span class="arrow ml-2">→</span>
+</span>
+</button>
+<button class="cta-button bg-transparent border-2 border-white hover:bg-white/10 text-white px-6 py-3 !rounded-button font-semibold text-base shadow-lg whitespace-nowrap">
+<span class="flex items-center">
+Diagnosticar Minha Operação
+<span class="arrow ml-2">→</span>
+</span>
+</button>
 </div>
-<div class="container mx-auto relative z-10 py-12 md:py-20">
-<div class="max-w-4xl">
-<div class="flex flex-col gap-4 md:gap-6">
-<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight animate-fade-in">
-Orquestrador Inteligente para Operações Complexas
-</h1>
-<p class="text-base sm:text-lg md:text-xl text-white/90 font-medium leading-relaxed animate-fade-in max-w-2xl" style="animation-delay: 200ms">
-Convertendo Complexidade Operacional em Vantagem Competitiva e Receita Previsível
+</div>
+</div>
+</section>
+<!-- Section 1: Introduction -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Dois Pilares. Uma Arquitetura de Precisão Estratégica</h2>
+<div class="flex justify-center mb-8">
+<div class="w-20 h-1 bg-primary rounded-full"></div>
+</div>
+<p class="text-lg text-gray-700 leading-relaxed mb-12">
+A AORKIA atua sobre os pontos mais críticos da operação moderna: infraestruturas engessadas, vulnerabilidades em dados e estruturas comerciais fragmentadas que comprometem o desempenho, limitam o potencial de crescimento e frequentemente ocultam ineficiências e drenam valor estratégico.
 </p>
-<div class="mt-4 animate-fade-in" style="animation-delay: 400ms">
-<a href="/contato" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Converta Complexidade em Vantagem Real
-<i class="ri-arrow-right-line"></i>
-</a>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-server-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-4">Infraestrutura como Inteligência Estratégica</h3>
+<p class="text-gray-600">Transformamos infraestrutura em vantagem competitiva através de arquiteturas resilientes e governança contínua.</p>
+</div>
+<div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-settings-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-4">Engenharia de Performance e Excelência Operacional</h3>
+<p class="text-gray-600">Orquestramos processos, tecnologia e dados para criar receita previsível e escalável.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- Pillar 1: Infrastructure Section -->
-<section class="py-12 bg-white">
+<!-- New Middle Section -->
+<section id="infra-base" class="py-16 bg-gray-50">
 <div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto mb-16">
-<h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Dois Pilares. Uma Arquitetura de Precisão Estratégica.</h2>
-<p class="text-lg md:text-xl text-gray-600 text-center mb-8">Nossa arquitetura de precisão se desdobra em dois pilares fundamentais, cada um projetado para converter desafios específicos em crescimento sustentável.</p>
-<div class="bg-gray-50 rounded-lg p-6 max-w-3xl mx-auto text-center border-l-4 border-primary shadow-sm">
-<h3 class="text-2xl md:text-3xl font-bold text-gray-800">Pilar 1: Infraestrutura como Inteligência Estratégica</h3>
+<div class="max-w-4xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Infraestrutura como Domínio Estratégico</h2>
+<div class="flex justify-center mb-8">
+<div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
-</div>
-<!-- Pilar 1: Infraestrutura -->
-<div id="pilar1-content" class="mb-12 md:mb-20">
-<div class="flex flex-col gap-8 md:gap-12">
-<!-- Card 1: Dados SaaS -->
-<div class="bg-white p-4 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary">
-<div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-6">
-<div class="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-lg">
-<i class="ri-cloud-line text-primary text-xl md:text-2xl"></i>
-</div>
-<div class="flex-1 flex flex-col md:flex-row gap-4 md:gap-6">
-<div class="flex-1">
-<h4 class="text-xl md:text-2xl font-bold mb-2">Dados SaaS desprotegidos: perda irreversível?</h4>
-<p class="text-base md:text-lg text-gray-600 mb-4 md:mb-6">Backup comum: um risco fatal para seus dados.<br><br>Perda de dados SaaS por ransomware/falha:<br>receita e reputação em jogo.<br><br>Solução: AORKIA + Keepit: proteção SaaS 100% imutável.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Backup Air-Gapped, Auditável;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Governança AORKIA com Dashboards;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Ativação de Dados para BI/IA;</span>
-</li>
-</ul>
-<p class="text-gray-600 mt-4">Resiliência AORKIA: dados protegidos, governados, ativados.</p>
-<div class="mt-8">
-<a href="#" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Blindar Dados SaaS Agora
-<i class="ri-arrow-right-line"></i>
-</a>
-</div>
-</div>
-<div class="w-full md:w-[540px] h-[200px] md:h-[300px] mt-4 md:mt-0">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/2baff7eb3392b6e06e86d60d63879d62.png" alt="Keepit Logo" class="w-full h-full object-contain object-center">
+<div class="relative mb-8">
+<div class="absolute -left-4 top-0 text-6xl text-primary/10 font-bold">"</div>
+<h3 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">Quando a Base Técnica Falha, Todo o Crescimento Está em Risco.</h3>
+<p class="text-base text-gray-700 leading-relaxed">
+Quando a infraestrutura opera com pontos cegos, o resultado é risco, perda de valor e decisões reativas. Para reverter esse quadro, é imperativo que resiliência, segurança e a arquitetura técnica sejam tratadas como estratégia. A AORKIA implementa essa visão.
+</p>
+<div class="absolute -right-4 bottom-0 text-6xl text-primary/10 font-bold rotate-180">"</div>
 </div>
 </div>
 </div>
-<!-- Card 2: Infraestrutura -->
-<div class="mt-8 bg-white p-4 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary">
-<div class="relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-lg">
-<i class="ri-database-2-line text-primary text-2xl"></i>
+</section>
+<!-- Section 2: Resiliência como Estratégia -->
+<section id="resiliencia" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<div class="mb-3">
+<span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Resiliência como Estratégia</span>
 </div>
-<div class="flex-1 flex flex-col gap-4 md:gap-6">
-<div class="flex-1 text-center md:text-left">
-<h4 class="text-xl md:text-2xl font-bold mb-4">Sua Infraestrutura: Ativo Estratégico ou Risco Oculto?</h4>
-<p class="text-base md:text-lg text-gray-600 mb-6">Decisões arquitetônicas sem fundamento técnico geram riscos e comprometem o desempenho do seu negócio.<br><br>Solução: Arquitetura Tática AORKIA: Comando e Clareza Total.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Diagnóstico Técnico Profundo e Imparcial</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Curadoria Agnóstica de Soluções Estratégicas</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Blueprint Tático com Governança de Decisão Clara</span>
-</li>
-</ul>
-<p class="text-gray-600 mt-4">AORKIA: Ambientes complexos convertidos em estruturas coerentes, controladas e com total rastreabilidade técnica.</p>
-<div class="mt-8">
-<a href="#" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Ative sua Curadoria Estratégica
-<i class="ri-arrow-right-line"></i>
-</a>
+<h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">SaaS sem Backup Imutável? Receita e Reputação em Risco.</h3>
+<p class="text-lg text-gray-700 mb-6">Dados em plataformas SaaS como M365 e Google Workspace não são invulneráveis. Os termos dos provedores são claros: a responsabilidade pelo backup é sua. Um simples erro ou ataque pode levar à perda irreversível de dados, comprometendo sua receita, reputação e compliance.</p>
+<div class="space-y-4 mb-8">
+<div class="bullet-item text-gray-700 fade-in delay-100">Backup Imutável com Restauração Granular</div>
+<div class="bullet-item text-gray-700 fade-in delay-200">Conformidade com DORA, GDPR, LGPD e NIS2</div>
+<div class="bullet-item text-gray-700 fade-in delay-300">Governança Executiva e Logs de Auditoria</div>
+</div>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Capacidade de proteção</p>
+<p class="text-2xl font-bold text-gray-900">10M+</p>
+<p class="text-xs text-gray-600">ativos SaaS protegidos</p>
+</div>
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Tempo médio de recuperação</p>
+<p class="text-2xl font-bold text-gray-900">-85%</p>
+<p class="text-xs text-gray-600">com nossa solução</p>
+</div>
+</div>
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-6 py-3 !rounded-button font-medium shadow-md whitespace-nowrap">
+<span class="flex items-center">
+Evite perdas irreversíveis e garanta a continuidade
+<span class="arrow ml-2">→</span>
+</span>
+</button>
+</div>
+<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
+<div class="section-image w-full h-full">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/4be0d77855edd4ceeb0ed7e8bd6b9935.png" alt="Backup Imutável" class="w-full h-full object-cover object-top">
 </div>
 </div>
 </div>
 </div>
-<!-- Card 3: Segurança -->
-<div class="mt-8 bg-white p-4 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary">
-<div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-6">
-<div class="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-lg mx-auto md:mx-0">
-<i class="ri-shield-keyhole-line text-primary text-xl md:text-2xl"></i>
+</section>
+<!-- Section 3: Segurança como Estratégia -->
+<section id="seguranca" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<div class="mb-3">
+<span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Segurança como Estratégia</span>
 </div>
-<div class="flex-1">
-<div class="flex flex-col gap-6">
-<div class="flex-1">
-<h4 class="text-xl md:text-2xl font-bold mb-2 text-center md:text-left">Segurança Reativa: Operação sob risco?</h4>
-<p class="text-base md:text-lg text-gray-600 mb-4 md:mb-6 text-center md:text-left">Abordagens reativas custam milhões.<br><br>Conformidade contínua.<br><br>Solução: Segurança AORKIA: Inteligência e Resposta Gerenciada.</p>
-<ul class="space-y-3 mb-8 text-center md:text-left">
-<li class="flex items-start gap-3 justify-center md:justify-start">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Prevenção Contínua e Detecção Multicanal de Riscos</span>
-</li>
-<li class="flex items-start gap-3 justify-center md:justify-start">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Resposta Orquestrada a Incidentes Críticos</span>
-</li>
-<li class="flex items-start gap-3 justify-center md:justify-start">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Conformidade Ativa e Simplificada (CSPM/CNAPP)</span>
-</li>
-</ul>
-<p class="text-gray-600 mt-4 text-center md:text-left">AORKIA: Convertemos segurança reativa em sua capacidade estratégica de defesa e resiliência.</p>
-<div class="mt-8">
-<a href="#" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Blindar Operações Agora
-<i class="ri-arrow-right-line"></i>
-</a>
+<h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Ambientes Multi-Cloud? Postura em Risco.</h3>
+<p class="text-lg text-gray-700 mb-6">A dinâmica de ambientes multi-cloud, a exposição gerada por APIs e a velocidade dos deploys contínuos expandem constantemente a superfície de ataque, tornando a proteção integral um desafio estratégico cada vez maior.</p>
+<div class="space-y-4 mb-8">
+<div class="bullet-item text-gray-700 fade-in delay-100">Monitoramento Contínuo com Inteligência e Contexto</div>
+<div class="bullet-item text-gray-700 fade-in delay-200">Conformidade Dinâmica com Padrões</div>
+<div class="bullet-item text-gray-700 fade-in delay-300">Correção Priorizada com Critério Técnico</div>
+</div>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Incidentes de segurança</p>
+<p class="text-2xl font-bold text-gray-900">7x</p>
+<p class="text-xs text-gray-600">mais em ambientes sem CSPM</p>
+</div>
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Compliance</p>
+<p class="text-2xl font-bold text-gray-900">98%</p>
+<p class="text-xs text-gray-600">de aderência com CNAPP</p>
 </div>
 </div>
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-6 py-3 !rounded-button font-medium shadow-md whitespace-nowrap">
+<span class="flex items-center">
+Governe riscos invisíveis e automatize sua conformidade
+<span class="arrow ml-2">→</span>
+</span>
+</button>
 </div>
-</div>
-</div>
-<div class="bg-gray-50 rounded-lg p-6 max-w-3xl mx-auto text-center mt-16 mb-8 border-l-4 border-primary shadow-sm">
-<h2 class="text-xl md:text-2xl font-bold text-gray-800">Pilar 2: Engenharia de Performance e Excelência Operacional</h2>
-</div>
-<div class="bg-white p-4 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary">
-<div class="relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-lg">
-<i class="ri-line-chart-line text-primary text-2xl"></i>
-</div>
-<div class="flex-1">
-<div class="flex flex-col gap-6">
-<div class="flex-1 text-center md:text-left">
-<h4 class="text-xl md:text-2xl font-bold mb-4">Receita Estagnada: Operações de Vendas em Caos?</h4>
-<p class="text-base md:text-lg text-gray-600 mb-6">Desalinhamento Mkt-Vendas-CS custa até 10% da sua receita.<br><br>Ferramentas isoladas e processos fragmentados geram imprevisibilidade e limitam seu potencial de crescimento.<br><br>Solução: Arquitetura de Receita AORKIA: Comando e Performance.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Diagnóstico Estrutural Preciso da Operação Comercial</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Frameworks para Sincronia Total Mkt-Vendas-CS</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-primary mt-1"></i>
-<span class="text-gray-600">Governança para Performance de Receita Contínua</span>
-</li>
-</ul>
-<p class="text-gray-600 mt-4">AORKIA: Convertemos fragmentação em um sistema de receita previsível, eficiente e escalável.</p>
-<div class="mt-8">
-<a href="#" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Orquestrar sua Receita Agora
-<i class="ri-arrow-right-line"></i>
-</a>
+<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
+<div class="section-image w-full h-full">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/7e80af4e4a6ff334222181f4448ca41e.png" alt="Segurança Multi-Cloud" class="w-full h-full object-cover object-top">
 </div>
 </div>
 </div>
 </div>
+</section>
+<!-- Section 4: Infraestrutura como Estratégia -->
+<section id="infraestrutura" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<div class="mb-3">
+<span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Infraestrutura como Estratégia</span>
+</div>
+<h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Infraestrutura Complexa? Performance em Risco.</h3>
+<p class="text-lg text-gray-700 mb-6">Infraestruturas Fragmentadas Geram Risco, Custo Oculto e Decisões sem Critério. A AORKIA redesenha, justifica e projeta decisões arquitetônicas com visão executiva e domínio técnico.</p>
+<div class="space-y-4 mb-8">
+<div class="bullet-item text-gray-700 fade-in delay-100">Diagnóstico Técnico com Foco em Risco</div>
+<div class="bullet-item text-gray-700 fade-in delay-200">Curadoria Estratégica Agnóstica</div>
+<div class="bullet-item text-gray-700 fade-in delay-300">Arquitetura Tática com Governança</div>
+</div>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="stat-card bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Redução de custos</p>
+<p class="text-2xl font-bold text-gray-900">32%</p>
+<p class="text-xs text-gray-600">em ambientes otimizados</p>
+</div>
+<div class="stat-card bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Tempo de resposta</p>
+<p class="text-2xl font-bold text-gray-900">+67%</p>
+<p class="text-xs text-gray-600">mais rápido</p>
 </div>
 </div>
-<!-- Benefits Section -->
-<div id="pilar2-content" class="hidden">
-<div class="flex flex-col gap-12">
-<!-- Card 1: Performance Operacional -->
-<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary">
-<div class="relative flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-line-chart-line text-secondary text-2xl"></i>
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-6 py-3 !rounded-button font-medium shadow-md whitespace-nowrap">
+<span class="flex items-center">
+Transforme sua infraestrutura em um ativo estratégico
+<span class="arrow ml-2">→</span>
+</span>
+</button>
 </div>
-<div class="flex-1 flex gap-6">
-<div class="flex-1">
-<h4 class="text-2xl font-bold mb-2">Performance Operacional: Processos Fragmentados?</h4>
-<p class="text-lg text-gray-600 mb-6">Operações desalinhadas geram ineficiência.<br><br>Processos manuais e redundantes:<br>custos elevados e erros frequentes.<br><br>Solução: AORKIA Performance: Excelência Operacional Integrada.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Automação Inteligente de Processos;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Dashboards de Performance em Tempo Real;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Otimização Contínua de Fluxos;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">AORKIA: Convertemos complexidade em excelência operacional escalável.</span>
-</li>
-</ul>
-<div class="mt-8">
-<a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2">
-Otimizar Performance Agora
-<i class="ri-arrow-right-line"></i>
-</a>
-</div>
-</div>
-<div class="w-[540px] flex-shrink-0">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/f5ab51923584e5eaa22ef17cdbd8f6c6.png" alt="Revenue System" class="w-full h-full object-contain">
+<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
+<div class="section-image w-full h-full">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/cd9a0a11541da8b6857e901cbba7a4df.png" alt="Infraestrutura Estratégica" class="w-full h-full object-cover object-top">
 </div>
 </div>
 </div>
-<!-- Card 2: Engenharia de Performance -->
-<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary">
-<div class="relative flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-line-chart-line text-secondary text-2xl"></i>
 </div>
-<div class="flex-1 flex gap-6">
-<div class="flex-1">
-<h4 class="text-2xl font-bold mb-2">Receita Estagnada: Operações de Vendas em Caos?</h4>
-<p class="text-lg text-gray-600 mb-6">Desalinhamento entre times comerciais gera perda de oportunidades.<br><br>Ferramentas isoladas limitam visibilidade e performance.<br><br>Solução: Arquitetura de Receita AORKIA: Crescimento Previsível e Escalável.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Diagnóstico Estrutural Preciso da Operação Comercial</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Frameworks para Sincronia Total Mkt-Vendas-CS</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Governança para Performance de Receita Contínua</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">AORKIA: Convertemos fragmentação em um sistema de receita previsível, eficiente e escalável.</span>
-</li>
-</ul>
-<div class="mt-8">
-<a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2">
-Otimize Sua Máquina de Receita
-<i class="ri-arrow-right-line"></i>
-</a>
+</section>
+<!-- Section 5: Engenharia de Performance -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Receita Previsível Não é<br>Acidente — É Engenharia.</h2>
+<div class="flex justify-center mb-8">
+<div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
-</div>
-<div class="w-[540px] flex-shrink-0">
-<img src="https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20revenue%20operations%20and%20sales%20architecture%20showing%20integrated%20systems%2C%20data%20flows%2C%20and%20performance%20metrics.%20The%20image%20should%20display%20clean%2C%20modern%20elements%20representing%20sales%2C%20marketing%2C%20and%20customer%20success%20alignment.%20Use%20professional%20blue%20tones%20and%20subtle%20lighting%20effects.%20Simple%20background%20focusing%20on%20the%20revenue%20components.&width=800&height=400&seq=1&orientation=landscape" alt="Revenue Architecture" class="w-full h-full object-contain">
+<div class="relative mb-12">
+<div class="absolute -left-4 top-0 text-6xl text-primary/10 font-bold">"</div>
+<p class="text-lg text-gray-700 leading-relaxed mb-12 px-8">
+Quando o ciclo de receita opera mais por esforço isolado e intuição do que por uma operação orquestrada, os resultados tornam-se inconsistentes e o crescimento insustentável. Para reverter este cenário, a AORKIA implementa uma arquitetura de receita precisa, transformando operações dispersas em um motor de crescimento previsível e escalável.
+</p>
+<div class="absolute -right-4 bottom-0 text-6xl text-primary/10 font-bold rotate-180">"</div>
 </div>
 </div>
 </div>
-<div class="relative flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-line-chart-line text-secondary text-2xl"></i>
+</section>
+<!-- Section 6: Performance como Estratégia -->
+<section id="receita" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<div class="mb-3">
+<span class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-medium rounded-full">Performance como Estratégia</span>
 </div>
-<div class="flex-1 flex gap-6">
-<div class="flex-1">
-<h4 class="text-2xl font-bold mb-2">Performance Operacional: Processos Fragmentados?</h4>
-<p class="text-lg text-gray-600 mb-6">Operações desalinhadas geram ineficiência.<br><br>Processos manuais e redundantes:<br>custos elevados e erros frequentes.<br><br>Solução: AORKIA Performance: Excelência Operacional Integrada.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Automação Inteligente de Processos;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Dashboards de Performance em Tempo Real;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Otimização Contínua de Fluxos;</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">AORKIA: Convertemos complexidade em excelência operacional escalável.</span>
-</li>
-</ul>
-<div class="mt-8">
-<a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2">
-Otimizar Performance Agora
-<i class="ri-arrow-right-line"></i>
-</a>
+<h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Receita Estagnada, Operações em Caos: O Sintoma é Financeiro. A Causa é Estrutural.</h3>
+<p class="text-lg text-gray-700 mb-6">Crescimento inconsistente não é falta de lead — é falta de engenharia. A AORKIA transforma times comerciais dispersos em sistemas de receita com rastreabilidade, ativação coordenada e governança de decisão.</p>
+<div class="space-y-4 mb-8">
+<div class="bullet-item text-gray-700 fade-in delay-100">Orquestração da jornada de receita (do lead à expansão)</div>
+<div class="bullet-item text-gray-700 fade-in delay-200">Desenho de um sistema unificado e data-driven para times de Marketing, Vendas e CS</div>
+<div class="bullet-item text-gray-700 fade-in delay-300">Blueprint técnico para integração de stack, processos e inteligência comercial</div>
+<div class="bullet-item text-gray-700 fade-in delay-400">Arquitetura editorial estratégica: presença digital como motor de ativação de pipeline</div>
+<div class="bullet-item text-gray-700 fade-in delay-500">Direcionamento para rastreamento, SEO on-page e IA integrada com lógica narrativa</div>
+</div>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Ciclo de vendas</p>
+<p class="text-2xl font-bold text-gray-900">-28%</p>
+<p class="text-xs text-gray-600">mais curto</p>
+</div>
+<div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+<p class="text-sm text-gray-500">Previsibilidade</p>
+<p class="text-2xl font-bold text-gray-900">93%</p>
+<p class="text-xs text-gray-600">de precisão nas projeções</p>
 </div>
 </div>
-<div class="w-[540px] flex-shrink-0">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/f5ab51923584e5eaa22ef17cdbd8f6c6.png" alt="Revenue System" class="w-full h-full object-contain">
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-6 py-3 !rounded-button font-medium shadow-md whitespace-nowrap">
+<span class="flex items-center">
+Construa um motor de receita previsível e escalável
+<span class="arrow ml-2">→</span>
+</span>
+</button>
 </div>
-</div>
-</div>
-<!-- Card: Arquitetura de Receita -->
-<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary">
-<div class="relative flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-line-chart-line text-secondary text-2xl"></i>
-</div>
-<div class="flex-1 flex gap-6">
-<div class="flex-1">
-<h4 class="text-2xl font-bold mb-2">Receita Estagnada: Operações de Vendas em Caos?</h4>
-<p class="text-lg text-gray-600 mb-6">Desalinhamento entre times comerciais gera perda de oportunidades.<br><br>Ferramentas isoladas limitam visibilidade e performance.<br><br>Solução: Arquitetura de Receita AORKIA: Crescimento Previsível e Escalável.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Diagnóstico Estrutural Preciso da Operação Comercial</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Frameworks para Sincronia Total Mkt-Vendas-CS</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Governança para Performance de Receita Contínua</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">AORKIA: Convertemos fragmentação em um sistema de receita previsível, eficiente e escalável.</span>
-</li>
-</ul>
-<div class="mt-8">
-<a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2">
-Otimize Sua Máquina de Receita
-<i class="ri-arrow-right-line"></i>
-</a>
-</div>
-</div>
-<div class="w-[540px] flex-shrink-0">
-<img src="https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20revenue%20operations%20and%20sales%20architecture%20showing%20integrated%20systems%2C%20data%20flows%2C%20and%20performance%20metrics.%20The%20image%20should%20display%20clean%2C%20modern%20elements%20representing%20sales%2C%20marketing%2C%20and%20customer%20success%20alignment.%20Use%20professional%20blue%20tones%20and%20subtle%20lighting%20effects.%20Simple%20background%20focusing%20on%20the%20revenue%20components.&width=800&height=400&seq=1&orientation=landscape" alt="Revenue Architecture" class="w-full h-full object-contain">
+<div class="relative h-[400px] overflow-hidden rounded-lg shadow-lg fade-in delay-300">
+<div class="section-image w-full h-full">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/c776c379fe6326e4ecf5f327bbc390c2.png" alt="Revenue Operations" class="w-full h-full object-cover object-top">
 </div>
 </div>
 </div>
-<div id="eng-cards" class="flex flex-col gap-6">
-<div class="pillar-card bg-white p-8 rounded-lg shadow-md transition-all duration-500 hover:shadow-lg hover:scale-[1.02] opacity-0 transform translate-y-4 min-h-[180px] flex flex-col justify-between active" data-product="revops">
-<h3 class="text-2xl font-bold mb-6">Arquitetura de Receita AORKIA</h3>
-<p class="text-gray-600 mb-6">Transforme fragmentação em crescimento previsível. Eliminamos o desalinhamento que custa caro, convertendo operações caóticas em um motor de receita eficiente.</p>
+</div>
+</section>
+<!-- Section 7: Estratégia Aplicada -->
+<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+<div class="container mx-auto px-4">
+<div class="grid lg:grid-cols-2 gap-12">
+<div class="space-y-8 fade-in">
+<h2 class="text-3xl lg:text-4xl font-bold leading-tight text-gray-900">AORKIA: Da Arquitetura de Precisão ao Crescimento Orquestrado.</h2>
+<p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
+A nossa Arquitetura de Precisão Estratégica, fundamentada no domínio da sua infraestrutura e na engenharia da sua receita, é como a AORKIA transforma operações fragmentadas. Cada pilar técnico e comercial é orquestrado com precisão — eliminando o improviso e ativando crescimento sustentável com rastreabilidade real.
+</p>
 <div class="space-y-4">
-<div class="flex items-start gap-3">
-<div class="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full bg-secondary/10">
-<i class="ri-line-chart-line text-secondary"></i>
+<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<span class="font-semibold text-lg text-gray-900">Infraestrutura Estratégica</span>
+<span class="text-sm text-gray-600 max-w-xs">Resiliência, segurança e arquitetura como base sólida</span>
 </div>
-<p class="text-gray-600">Crescimento previsível</p>
+<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<span class="font-semibold text-lg text-gray-900">Engenharia de Receita</span>
+<span class="text-sm text-gray-600 max-w-xs">Operações comerciais previsíveis, rastreáveis e escaláveis</span>
 </div>
-<div class="flex items-start gap-3">
-<div class="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full bg-secondary/10">
-<i class="ri-search-eye-line text-secondary"></i>
-</div>
-<p class="text-gray-600">Execução rastreável</p>
-</div>
-<div class="flex items-start gap-3">
-<div class="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full bg-secondary/10">
-<i class="ri-stack-line text-secondary"></i>
-</div>
-<p class="text-gray-600">Sistema escalável</p>
+<div class="stat-card flex flex-col p-4 border-l-4 border-primary bg-white shadow-sm hover:shadow-md transition">
+<span class="font-semibold text-lg text-gray-900">Resultado Orquestrado</span>
+<span class="text-sm text-gray-600 max-w-xs">Crescimento sustentável através da sinergia técnico-comercial</span>
 </div>
 </div>
+<button class="cta-button mt-8 px-6 py-3 bg-primary text-white font-semibold !rounded-button shadow-lg hover:scale-102 hover:shadow-xl flex items-center whitespace-nowrap">
+Estruture com Inteligência. Cresça com Precisão.
+<span class="arrow ml-2">→</span>
+</button>
 </div>
-</div>
-</div>
-<div id="right-panel-eng" class="w-full md:w-1/2 relative h-[600px]">
-<div id="eng-visual" class="visual-panel absolute inset-0 bg-white rounded-lg shadow-md overflow-hidden transition-all duration-500">
-<div id="product-revops-details" class="product-details p-8 pt-16 transition-all duration-300 relative">
-<div class="absolute top-4 right-4">
-<a href="#" class="bg-secondary text-white px-6 py-3 !rounded-button hover:bg-secondary/90 transition-all whitespace-nowrap">Otimize Sua Máquina de Receita</a>
-</div>
-<div class="max-w-2xl">
-<h3 class="text-2xl font-bold mb-6">Arquitetura de Receita AORKIA</h3>
-<p class="text-gray-600 mb-8">Transformamos fragmentação em um sistema de receita unificado e de alta performance, convertendo silos operacionais em crescimento previsível e escalável.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-<div class="bg-gray-50 p-6 rounded-lg">
-<div class="w-10 h-10 flex items-center justify-center bg-secondary/10 rounded-lg mb-4">
-<i class="ri-search-2-line text-secondary text-xl"></i>
-</div>
-<h4 class="font-semibold mb-2">Diagnóstico Estrutural</h4>
-<p class="text-gray-600 text-sm">Análise completa da sua operação comercial, identificando gargalos e oportunidades de otimização.</p>
-</div>
-<div class="bg-gray-50 p-6 rounded-lg">
-<div class="w-10 h-10 flex items-center justify-center bg-secondary/10 rounded-lg mb-4">
-<i class="ri-layout-masonry-line text-secondary text-xl"></i>
-</div>
-<h4 class="font-semibold mb-2">Frameworks Estratégicos</h4>
-<p class="text-gray-600 text-sm">Metodologias comprovadas para unificar equipes e otimizar fluxos de trabalho.</p>
-</div>
-</div>
-</div>
-<div class="h-[280px] overflow-hidden rounded-lg">
-<img src="https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20revenue%20operations%20and%20sales%20architecture%20showing%20integrated%20systems%2C%20data%20flows%2C%20and%20performance%20metrics.%20The%20image%20should%20display%20clean%2C%20modern%20elements%20representing%20sales%2C%20marketing%2C%20and%20customer%20success%20alignment.%20Use%20professional%20blue%20tones%20and%20subtle%20lighting%20effects.%20Simple%20background%20focusing%20on%20the%20revenue%20components.&width=800&height=400&seq=1&orientation=landscape" alt="Arquitetura de Receita Overview" class="w-full h-full object-cover">
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Card 1: Arquitetura de Receita -->
-<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary">
-<div class="relative flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-line-chart-line text-secondary text-2xl"></i>
-</div>
-<div class="flex-1 flex gap-6">
-<div class="flex-1">
-<h4 class="text-2xl font-bold mb-2">Receita Estagnada: Operações de Vendas em Caos?</h4>
-<p class="text-lg text-gray-600 mb-6">Desalinhamento entre times comerciais gera perda de oportunidades.<br><br>Ferramentas isoladas limitam visibilidade e performance.<br><br>Solução: Arquitetura de Receita AORKIA: Crescimento Previsível e Escalável.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Diagnóstico Estrutural Preciso da Operação Comercial: Mapeamos seus processos, ferramentas e o alinhamento entre Marketing, Vendas e CS para identificar os gargalos que limitam seu crescimento.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Frameworks Estratégicos para Sincronia Total Mkt-Vendas-CS: Implementamos modelos comprovados para unificar suas equipes, otimizar fluxos de trabalho e garantir uma jornada do cliente coesa e eficaz.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">Governança de Performance Contínua e Orientada a Dados: Estabelecemos métricas claras, dashboards inteligentes e rituais de gestão para monitorar, ajustar e escalar sua máquina de receita com previsibilidade.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600">AORKIA: Convertemos fragmentação em um sistema de receita unificado e de alta performance, transformando silos operacionais em crescimento previsível e escalável.</span>
-</li>
-</ul>
-<div class="mt-8">
-<a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2">
-Otimize Sua Máquina de Receita
-<i class="ri-arrow-right-line"></i>
-</a>
-</div>
-</div>
-<div class="w-[540px] flex-shrink-0">
-<img src="https://readdy.ai/api/search-image?query=A%20sophisticated%20visualization%20of%20revenue%20operations%20and%20sales%20architecture%20showing%20integrated%20systems%2C%20data%20flows%2C%20and%20performance%20metrics.%20The%20image%20should%20display%20clean%2C%20modern%20elements%20representing%20sales%2C%20marketing%2C%20and%20customer%20success%20alignment.%20Use%20professional%20blue%20tones%20and%20subtle%20lighting%20effects.%20Simple%20background%20focusing%20on%20the%20revenue%20components.&width=800&height=400&seq=1&orientation=landscape" alt="Revenue Architecture" class="w-full h-full object-contain">
-</div>
-</div>
-</div>
-<!-- Card 1 -->
-<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary">
-<div class="flex items-start gap-6">
-<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-secondary/10 rounded-lg">
-<i class="ri-flow-chart-line text-secondary text-2xl"></i>
-</div>
-<div>
-<h4 class="text-2xl font-bold mb-2">Arquitetura de Receita AORKIA</h4>
-<p class="text-lg text-gray-600 mb-6">Transforme Fragmentação em Crescimento Previsível e Escalável: Eliminamos o desalinhamento que custa caro, convertendo operações caóticas em um motor de receita eficiente, rastreável e pronto para escalar.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600"><strong>Diagnóstico Estrutural Preciso da Operação Comercial:</strong> Mapeamos seus processos, ferramentas e o alinhamento entre Marketing, Vendas e CS para identificar os gargalos que limitam seu crescimento.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600"><strong>Frameworks Estratégicos para Sincronia Total Mkt-Vendas-CS:</strong> Implementamos modelos comprovados para unificar suas equipes, otimizar fluxos de trabalho e garantir uma jornada do cliente coesa e eficaz.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600"><strong>Governança de Performance Contínua e Orientada a Dados:</strong> Estabelecemos métricas claras, dashboards inteligentes e rituais de gestão para monitorar, ajustar e escalar sua máquina de receita com previsibilidade.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600"><strong>De Ferramentas Isoladas a um Ecossistema Coordenado de Receita:</strong> Integramos suas tecnologias e processos, transformando silos operacionais em um sistema de receita unificado e de alto desempenho.</span>
-</li>
-<li class="flex items-start gap-3">
-<i class="ri-checkbox-circle-line text-secondary mt-1"></i>
-<span class="text-gray-600"><strong>Transforme Dados em Decisões:</strong> Analytics avançado para forecast preciso e otimização contínua de performance.</span>
-</li>
-</ul>
-<div class="bg-gray-50 p-6 rounded-lg mb-8">
-<h5 class="text-xl font-semibold mb-4">Resultados Estratégicos: A Arquitetura de Receita AORKIA em Ação</h5>
-<div class="grid grid-cols-1 gap-6">
-<div class="bg-white p-4 rounded-lg shadow-sm">
-<p class="text-gray-600 italic">"Nossa receita estava aquém do potencial devido ao desalinhamento interno. A Arquitetura de Receita da AORKIA conectou nossas equipes e processos, criando um sistema previsível que destravou nosso crescimento."</p>
-<p class="text-sm font-semibold text-secondary mt-2">CEO Alavanca o Crescimento e Maximiza o Potencial de Receita</p>
-</div>
-<div class="bg-white p-4 rounded-lg shadow-sm">
-<p class="text-gray-600 italic">"Operações caóticas e falta de visibilidade comprometiam nossas metas. Com os frameworks e a governança da AORKIA, agora temos clareza, eficiência e a previsibilidade necessária para superar nossos objetivos consistentemente."</p>
-<p class="text-sm font-semibold text-secondary mt-2">Líder de Vendas/Marketing Atinge Metas com Previsibilidade</p>
-</div>
-<div class="bg-white p-4 rounded-lg shadow-sm">
-<p class="text-gray-600 italic">"Ferramentas isoladas e processos fragmentados geravam retrabalho e ineficiência. A AORKIA nos ajudou a construir um ecossistema de receita integrado e otimizado, focado em performance e escalabilidade."</p>
-<p class="text-sm font-semibold text-secondary mt-2">Diretor de Operações Constrói uma Máquina de Receita Eficiente</p>
-</div>
-</div>
-</div>
-<div class="mt-8">
-<h5 class="text-lg font-semibold mb-4">Seu Desalinhamento entre Marketing, Vendas e CS Está Custando Receita e Limitando seu Crescimento?</h5>
-<p class="text-gray-600 mb-4">Revele seu principal desafio na operação comercial em nosso formulário e receba o Blueprint de Otimização de Receita AORKIA – seu guia para transformar fragmentação em um sistema de receita previsível e de alta performance.</p>
-<a href="#" class="text-secondary hover:text-secondary/80 font-medium flex items-center gap-2">
-Descrever Desafio e Acessar Blueprint <i class="ri-arrow-right-line"></i>
-</a>
-</div>
-</div>
+<div class="relative h-full bg-white shadow-md rounded-lg overflow-hidden border border-gray-100 fade-in delay-200">
+<div class="absolute inset-0 blueprint-grid"></div>
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1525b28803efdcbaef4fc64c058bbe13.png" alt="Blueprint Estratégico" class="object-cover w-full h-full filter contrast-105">
+<div class="absolute inset-0 border-2 border-blue-100"></div>
 </div>
 </div>
 </div>
 </section>
-<!-- Seção: Proteção de Dados -->
-<section class="py-12 bg-gray-50">
+<!-- Section 8: AORKIA + KEEPIT -->
+<section class="py-20 bg-white">
 <div class="container mx-auto px-4">
-<div class="bg-white p-12 rounded-lg shadow-lg">
-<div class="max-w-5xl mx-auto">
-<div class="text-center">
-<h2 class="text-3xl font-bold text-center mb-8">Proteção de Dados Não É Backup. É Continuidade Estratégica.</h2>
-<p class="text-base text-gray-600 mb-8">Violação de dados, erros humanos ou falhas em SaaS podem custar milhões. Com a AORKIA + Keepit, seus dados em plataformas como M365, Google Workspace e Salesforce permanecem imutáveis, soberanos e sempre recuperáveis — mesmo sob ataque.</p>
+<div class="max-w-4xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Proteção SaaS de Classe Mundial</h2>
+<div class="flex justify-center mb-8">
+<div class="w-20 h-1 bg-primary rounded-full"></div>
+</div>
+<p class="text-lg text-gray-700 leading-relaxed mb-12">
+A AORKIA é parceira oficial da Keepit no Brasil — proteção imutável, compliance e recuperação granular para ambientes críticos como M365, Google Workspace e Salesforce, entre outras Plataformas SaaS.
+</p>
+<div class="relative bg-gray-50 p-8 rounded-xl shadow-md mb-12 fade-in delay-200">
+<div class="absolute top-0 right-0 -mt-4 -mr-4">
+<div class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+Parceiro Oficial
+</div>
+</div>
+<div class="flex flex-col items-center">
 <div class="mb-12">
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/a3bd0cd5ff0deb86434f4abe6bfd2159.png" alt="Keepit Backup Solutions" class="w-full max-w-4xl mx-auto rounded-lg shadow-lg">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/3d32497d3f2e7fe90e542df4717adb28.png" alt="Keepit Logo" class="w-48 h-auto">
 </div>
-<a href="/estrutura-de-servicos#backup-saas" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Evite Perdas Irreversíveis com Backup Imutável
-<i class="ri-arrow-right-line"></i>
-</a>
+<div class="grid grid-cols-6 gap-6 mb-8">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-microsoft-line ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">Microsoft 365</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-google-line ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">Google Workspace</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-cloud-line ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">Salesforce</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-microsoft-fill ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">Dynamics 365</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-customer-service-2-fill ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">Zendesk</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-3">
+<i class="ri-more-fill ri-2x text-primary"></i>
+</div>
+<p class="text-sm font-medium">E mais</p>
 </div>
 </div>
+<div class="flex justify-center">
+<div class="bg-blue-50 px-4 py-2 rounded-lg text-sm text-gray-700">
+<span class="font-medium">Tecnologia confiada por</span>: Empresas Fortune 500 em todo o mundo
+</div>
+</div>
+</div>
+</div>
+<button class="cta-button bg-primary hover:bg-primary/90 text-white px-8 py-4 !rounded-button font-semibold shadow-lg fade-in delay-300 whitespace-nowrap">
+<span class="flex items-center">
+Conheça a Solução Keepit
+<span class="arrow ml-2">→</span>
+</span>
+</button>
 </div>
 </div>
 </section>
-<!-- Seção: Engenharia Validada -->
-<section class="py-24 bg-white">
+<!-- Section 9: Engenharia de Precisão -->
+<section class="py-20 bg-gray-50">
 <div class="container mx-auto px-4">
-<h2 class="text-3xl font-bold text-center mb-8">Engenharia de Precisão. Resultado Inabalável.</h2>
-<p class="text-base text-gray-600 mb-8 max-w-3xl mx-auto text-center">A complexidade não precisa ser um obstáculo — quando é enfrentada com critério. Na AORKIA, cada arquitetura é fundamentada em engenharia validada, execução disciplinada e foco absoluto no impacto estratégico.</p>
-<div class="flex flex-col gap-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-<div class="bg-white p-8 rounded-lg shadow-lg">
-<div class="flex items-center justify-between mb-8">
-<h3 class="text-2xl font-bold">Metodologia Baseada em Critérios</h3>
-<div class="w-12 h-12 flex items-center justify-center">
-<i class="ri-settings-3-line ri-2x text-primary"></i>
+<div class="max-w-4xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Aprofunde-se na Estratégia e Soluções AORKIA</h2>
+<div class="flex justify-center mb-8">
+<div class="w-20 h-1 bg-primary rounded-full"></div>
 </div>
+<p class="text-lg text-gray-700 leading-relaxed mb-12">
+Na AORKIA, não operamos por tentativa. Operamos por critério.<br><br>
+A complexidade que define as operações modernas não se resolve com atalhos genéricos ou promessas vagas. Ela exige domínio técnico, execução disciplinada e uma arquitetura estratégica capaz de transformar dados em decisões e visão em performance real.<br><br>
+Explore como cada solução da AORKIA traduz essa engenharia em impacto prático, com diagnósticos aplicáveis à sua realidade e blueprints prontos para execução estratégica.
+</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-in delay-100 flex flex-col justify-between">
+<div>
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-shield-check-line ri-2x text-primary"></i>
 </div>
-<p class="text-gray-600 text-lg mb-6">Garantia de execução precisa e resultados previsíveis. Operamos sob critérios, não sob tentativa.</p>
-<div class="grid grid-cols-3 gap-4">
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-checkbox-circle-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">Critérios Definidos</span>
+<h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Backup SaaS Estratégico</h3>
+<div class="h-px w-16 bg-primary/30 mx-auto mb-6"></div>
+<p class="text-gray-600 mb-4 text-center">Seus dados em Microsoft 365, Google Workspace ou Salesforce não estão automaticamente seguros.</p>
+<p class="text-gray-600 mb-8 text-center">Evite perdas irreversíveis e proteja sua operação com soberania total.</p>
 </div>
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-flow-chart-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">Execução Precisa</span>
+<button class="cta-button mt-auto bg-primary/10 hover:bg-primary/20 text-primary px-6 py-3 !rounded-button font-medium text-sm whitespace-nowrap flex items-center justify-center group">
+<span>Blueprint de Backup SaaS</span>
+<span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+</button>
 </div>
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-bar-chart-2-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">Resultados Medidos</span>
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-in delay-200 flex flex-col justify-between">
+<div>
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-dashboard-3-line ri-2x text-primary"></i>
 </div>
+<h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Segurança e Conformidade Cloud</h3>
+<div class="h-px w-16 bg-primary/30 mx-auto mb-6"></div>
+<p class="text-gray-600 mb-4 text-center">Ambientes multi-cloud ampliam sua superfície de ataque mais rápido do que sua capacidade de resposta.</p>
+<p class="text-gray-600 mb-8 text-center">Governe riscos invisíveis e automatize sua conformidade.</p>
 </div>
+<button class="cta-button mt-auto bg-primary/10 hover:bg-primary/20 text-primary px-6 py-3 !rounded-button font-medium text-sm whitespace-nowrap flex items-center justify-center group">
+<span>Blueprint de Segurança Cloud</span>
+<span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+</button>
 </div>
-<div class="bg-white p-8 rounded-lg shadow-lg">
-<div class="flex items-center justify-between mb-8">
-<h3 class="text-2xl font-bold">Foco Obsessivo em Time to Value</h3>
-<div class="w-12 h-12 flex items-center justify-center">
-<i class="ri-timer-flash-line ri-2x text-primary"></i>
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-in delay-300 flex flex-col justify-between">
+<div>
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-settings-line ri-2x text-primary"></i>
 </div>
+<h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Curadoria de Infraestrutura</h3>
+<div class="h-px w-16 bg-primary/30 mx-auto mb-6"></div>
+<p class="text-gray-600 mb-4 text-center">Infraestruturas fragmentadas e legadas escondem riscos, ineficiências e decisões sem critério técnico.</p>
+<p class="text-gray-600 mb-8 text-center">Redesenhe sua base com precisão arquitetônica.</p>
 </div>
-<p class="text-gray-600 text-lg mb-6">Arquiteturas desenhadas para acelerar seu retorno estratégico e a entrega de valor contínuo.</p>
-<div class="grid grid-cols-3 gap-4">
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-rocket-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">Aceleração de Resultados</span>
+<button class="cta-button mt-auto bg-primary/10 hover:bg-primary/20 text-primary px-6 py-3 !rounded-button font-medium text-sm whitespace-nowrap flex items-center justify-center group">
+<span>Blueprint de Curadoria</span>
+<span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+</button>
 </div>
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-line-chart-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">Valor Contínuo</span>
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-in delay-400 flex flex-col justify-between">
+<div>
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+<i class="ri-rocket-line ri-2x text-primary"></i>
 </div>
-<div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-<i class="ri-funds-box-line ri-2x text-primary mb-2"></i>
-<span class="text-sm text-gray-600 text-center">ROI Acelerado</span>
+<h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Arquitetura de Receita</h3>
+<div class="h-px w-16 bg-primary/30 mx-auto mb-6"></div>
+<p class="text-gray-600 mb-4 text-center">Crescimento inconsistente não é falta de leads — é ausência de engenharia.</p>
+<p class="text-gray-600 mb-8 text-center">Construa um motor de receita previsível.</p>
 </div>
+<button class="cta-button mt-auto bg-primary/10 hover:bg-primary/20 text-primary px-6 py-3 !rounded-button font-medium text-sm whitespace-nowrap flex items-center justify-center group">
+<span>Blueprint de Receita</span>
+<span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+</button>
 </div>
-</div>
-</div>
-<div class="text-center mt-16">
-<div class="max-w-3xl mx-auto">
-<a href="/estrutura-de-servicos#infraestrutura-inteligente" class="bg-primary hover:bg-primary/90 text-white px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap inline-flex items-center justify-center gap-2 w-full md:w-auto text-center">
-Conheça Nossa Engenharia de Resultados
-<i class="ri-arrow-right-line"></i>
-</a>
 </div>
 </div>
 </div>
 </section>
-<!-- CTA Section -->
-<section class="py-32 bg-primary text-white">
+<!-- Authority Bar -->
+<section class="py-8 bg-secondary text-white">
 <div class="container mx-auto px-4 text-center">
-<h2 class="text-4xl font-bold mb-8">Elimine a Fricção Estratégica. Libere a Performance Previsível.</h2>
-<p class="text-xl mb-8 max-w-3xl mx-auto">A complexidade operacional não precisa ser um obstáculo. Com a abordagem integrada e a engenharia de precisão da AORKIA, instauramos clareza, eficiência e controle.</p>
-<p class="text-xl mb-16 max-w-3xl mx-auto">Transformamos seus desafios em um motor de crescimento sustentável e performance previsível. Vamos arquitetar seus resultados exponenciais?</p>
-<a href="/contato" class="inline-block bg-white text-primary hover:bg-white/90 px-4 md:px-6 py-3 text-sm md:text-base font-semibold !rounded-button shadow-lg transition-all hover:shadow-xl whitespace-normal md:whitespace-nowrap w-full md:w-auto text-center">Converta Complexidade em Vantagem Real</a>
+<p class="text-lg md:text-xl font-medium tracking-wide fade-in">Tecnologia Tática. Governança Decisiva. Execução Disciplinada.</p>
 </div>
 </section>
 <!-- Footer -->
 <footer class="bg-gray-900 text-white py-16">
 <div class="container mx-auto px-4">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div>
-<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/1508c3b2ba3e6bc5dcbde380b3d222b4.png" alt="AORKIA Logo" class="h-16 mb-6 brightness-0 invert">
-<p class="text-gray-400">Disciplina operacional para estruturas que sustentam o core do negócio.</p>
+<div class="grid md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<a href="#" class="mb-6 inline-block">
+<img src="https://static.readdy.ai/image/41b17d88dbefaffdb8ceb7735b153d76/6987c8de37778d01e4c5cc75a8296a3a.png" alt="AORKIA" class="h-24 w-auto">
+</a>
+<p class="text-gray-400 mb-6 max-w-md">Orquestração técnica com impacto real. Transformamos ambientes fragmentados em estruturas coordenadas e orientadas à geração de valor contínuo.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-instagram-fill ri-lg"></i>
+</a>
 </div>
-<div class="md:text-right">
-<h3 class="text-lg font-semibold mb-4">Contato</h3>
-<ul class="space-y-2">
-<li class="flex items-center md:justify-end">
-<i class="ri-phone-line mr-2"></i>
-<span>+55 31 98801-9006</span>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Contato</h4>
+<ul class="space-y-4">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-map-pin-line"></i>
+</div>
+<p class="text-gray-400">Av. Getúlio Vargas, 671 — Sala 500, BH - MG</p>
 </li>
-<li class="flex items-center md:justify-end">
-<i class="ri-mail-line mr-2"></i>
-<span>contato@aorkia.com</span>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-phone-line"></i>
+</div>
+<p class="text-gray-400">+55 31 98801-9006</p>
 </li>
-<li class="flex items-center md:justify-end">
-<i class="ri-map-pin-line mr-2"></i>
-<span>Av. Getúlio Vargas, 671 Sl 500, Savassi - BH</span>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-mail-line"></i>
+</div>
+<p class="text-gray-400">contato@aorkia.com</p>
 </li>
 </ul>
 </div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Links Úteis</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Nossa Abordagem</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Soluções</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Parceiros</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contato</a></li>
+</ul>
 </div>
-<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 AORKIA. Todos os direitos reservados.</p>
-<div class="flex gap-4">
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
-<i class="ri-linkedin-fill text-xl"></i>
-</a>
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
-<i class="ri-instagram-fill text-xl"></i>
-</a>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 AORKIA. Todos os direitos reservados.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-500 text-sm hover:text-white transition-colors">Política de Privacidade</a>
+<a href="#" class="text-gray-500 text-sm hover:text-white transition-colors">Termos de Uso</a>
 </div>
 </div>
 </div>
 </footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-mobileMenuButton.addEventListener('click', () => {
-mobileMenu.classList.toggle('hidden');
-});
-const pilar1Btn = document.getElementById('pilar1-btn');
-const pilar2Btn = document.getElementById('pilar2-btn');
-const pilar1Content = document.getElementById('pilar1-content');
-const pilar2Content = document.getElementById('pilar2-content');
-// Pillar 1 Cards
-const pillarCards = document.querySelectorAll('#xyz-cards .pillar-card');
-const productDetails = document.querySelectorAll('#xyz-visual .product-details');
-// Pillar 2 Cards
-const engCards = document.querySelectorAll('#eng-cards .pillar-card');
-const engProductDetails = document.querySelectorAll('#eng-visual .product-details');
-function showProductDetails(product, isEng = false) {
-const details = isEng ? engProductDetails : productDetails;
-details.forEach(detail => {
-detail.classList.add('hidden');
-detail.style.backgroundColor = '';
-});
-const selectedDetail = document.getElementById(`product-${product}-details`);
-if (selectedDetail) {
-selectedDetail.classList.remove('hidden');
-selectedDetail.style.backgroundColor = '#f8fafc';
-}
-const cards = isEng ? engCards : pillarCards;
-cards.forEach(card => {
-if (card.dataset.product === product) {
-card.classList.add('active');
+// Sticky header
+const header = document.querySelector('.header-sticky');
+const headerHeight = header.offsetHeight;
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+header.classList.add('shadow-lg');
+header.classList.add('bg-white/95');
+header.classList.add('backdrop-blur-sm');
 } else {
-card.classList.remove('active');
+header.classList.remove('shadow-lg');
+header.classList.remove('bg-white/95');
+header.classList.remove('backdrop-blur-sm');
+}
+});
+// Fade-in animations on scroll
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeInObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('active');
+fadeInObserver.unobserve(entry.target);
+}
+});
+}, {
+root: null,
+threshold: 0.1,
+rootMargin: '-50px'
+});
+fadeElements.forEach(element => {
+fadeInObserver.observe(element);
+});
+// Navigation active state
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+const navObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const id = entry.target.getAttribute('id');
+if (id) {
+navLinks.forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${id}`) {
+link.classList.add('active');
 }
 });
 }
-pillarCards.forEach(card => {
-card.addEventListener('click', () => {
-const product = card.dataset.product;
-showProductDetails(product);
+}
 });
+}, {
+root: null,
+threshold: 0.5
 });
-engCards.forEach(card => {
-card.addEventListener('click', () => {
-const product = card.dataset.product;
-showProductDetails(product, true);
+sections.forEach(section => {
+if (section.getAttribute('id')) {
+navObserver.observe(section);
+}
 });
-});
-// Removed toggle functionality
 });
 </script>
 </body>
