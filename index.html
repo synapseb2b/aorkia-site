@@ -1,94 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AORKIA – Engenharia Estratégica para Operações Complexas</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AORKIA – Engenharia Estratégica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #0A0A0A;
-        color: white;
-      }
-      .active-link {
-        color: #0076FF;
-        font-weight: 600;
-      }
+        body { background-color: #0A0A0A; color: #F4F5F0; font-family: 'Montserrat', sans-serif; }
+        .btn-primary { background-color: #0076FF; color: #F4F5F0; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: opacity 0.3s; }
+        .btn-primary:hover { opacity: 0.8; }
     </style>
-  </head>
-  <body class="scroll-smooth">
-    <!-- Header / Navbar -->
-    <header class="w-full fixed top-0 z-50 bg-[#0A0A0A] shadow-md">
-      <nav class="container mx-auto flex justify-between items-center p-4 md:p-6">
-        <div class="text-xl font-bold tracking-tight text-white">
-          <a href="#topo">AORKIA</a>
-        </div>
-        <ul class="hidden md:flex space-x-6 text-sm font-medium text-white">
-          <li><a href="#engenharia" class="nav-link hover:text-[#0076FF] transition-colors">Engenharia AORKIA</a></li>
-          <li><a href="#resiliencia" class="nav-link hover:text-[#0076FF] transition-colors">Resiliência Estratégica</a></li>
-          <li><a href="#seguranca" class="nav-link hover:text-[#0076FF] transition-colors">Segurança Inteligente</a></li>
-          <li><a href="#infraestrutura" class="nav-link hover:text-[#0076FF] transition-colors">Arquitetura de Infraestrutura</a></li>
+</head>
+<body class="scroll-smooth">
+
+<!-- NAVBAR -->
+<header class="w-full fixed top-0 z-50 bg-[#0A0A0A] shadow-md">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+        <div class="text-2xl font-bold">AORKIA</div>
+        <ul class="flex space-x-8 text-[#F4F5F0]">
+            <li><a href="#porque" class="hover:text-[#0076FF]">Por que AORKIA?</a></li>
+            <li><a href="#solucoes" class="hover:text-[#0076FF]">Soluções</a></li>
+            <li><a href="#insights" class="hover:text-[#0076FF]">Insights</a></li>
         </ul>
-        <button id="menuToggle" class="md:hidden text-white focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </nav>
-      <!-- Menu mobile -->
-      <div id="mobileMenu" class="md:hidden hidden flex-col bg-[#0A0A0A] px-4 py-6 border-t border-gray-700 shadow-lg">
-        <a href="#engenharia" class="py-2 text-sm text-white hover:text-[#0076FF]">Engenharia AORKIA</a>
-        <a href="#resiliencia" class="py-2 text-sm text-white hover:text-[#0076FF]">Resiliência Estratégica</a>
-        <a href="#seguranca" class="py-2 text-sm text-white hover:text-[#0076FF]">Segurança Inteligente</a>
-        <a href="#infraestrutura" class="py-2 text-sm text-white hover:text-[#0076FF]">Arquitetura de Infraestrutura</a>
-      </div>
-    </header>
+        <a href="#acao" class="btn-primary">Veja a AORKIA em ação</a>
+    </nav>
+</header>
 
-    <!-- Hero Section permanece igual -->
-    <section id="topo" class="relative w-full h-screen overflow-hidden">
-      <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-        <source src="/mnt/data/video-home.mp4" type="video/mp4">
-        Seu navegador não suporta a reprodução de vídeo.
-      </video>
-      <div class="absolute inset-0 bg-black/60 z-10"></div>
-      <div class="relative z-20 flex flex-col justify-center items-start h-full max-w-4xl px-6 mx-auto text-white">
-        <p class="text-sm font-medium mb-2">Orquestração Técnica com Impacto Real</p>
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Transformamos Ambientes Complexos em Crescimento Previsível</h1>
-        <p class="text-lg md:text-xl font-normal mb-6">Engenharia de precisão aplicada à sua infraestrutura e operação comercial.</p>
-        <div class="flex gap-4">
-          <a href="#engenharia" class="bg-[#0076FF] hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all">Conheça Nossa Engenharia →</a>
-          <a href="#diagnostico" class="bg-[#b4b4b4] text-black font-semibold px-6 py-3 rounded-xl transition-all">Diagnosticar Minha Operação →</a>
-        </div>
-      </div>
-    </section>
+<!-- HERO -->
+<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16">
+    <div class="max-w-lg space-y-6">
+        <p class="text-[#C4C4C4] uppercase">Tecnologia Tática. Governança Decisiva. Execução Disciplinada.</p>
+        <h1 class="text-4xl md:text-5xl font-bold">
+            Orquestração, Otimização e Escalabilidade de Infraestruturas e Sistemas Críticos: Impulsionando o Seu Crescimento, Eficiência e Inovação.
+        </h1>
+        <p class="text-[#C4C4C4]">
+            Convertemos infraestrutura, segurança e dados em plataformas decisivas para a sua expansão e inovação. Paralelamente, estruturamos operações comerciais B2B para gerar eficiência, previsibilidade e crescimento contínuo.
+        </p>
+        <a href="#acao" class="btn-primary inline-block">Veja a AORKIA em ação</a>
+    </div>
+    <div class="max-w-xl">
+        <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="rounded-lg shadow-lg">
+    </div>
+</section>
 
-    <main>
-      <!-- Nova Seção dos Dois Pilares -->
-      <section class="px-6 py-20 bg-[#0A0A0A]">
-        <div class="max-w-6xl mx-auto text-center">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">Dois Pilares. Uma Arquitetura de Precisão Estratégica</h2>
-          <p class="text-lg max-w-3xl mx-auto mb-12">
-            A AORKIA atua sobre os pontos mais críticos da operação moderna: infraestruturas engessadas,
-            vulnerabilidades em dados e estruturas comerciais fragmentadas que comprometem o desempenho,
-            limitam o potencial de crescimento e frequentemente ocultam ineficiências e drenam valor estratégico.
-          </p>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-[#002C4C] border border-[#0076FF] p-8 rounded-xl text-center">
-              <div class="mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10 text-[#0076FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.38 0 2.5-1.12 2.5-2.5S13.38 3 12 3s-2.5 1.12-2.5 2.5S10.62 8 12 8z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v10m0 0H6m6 0h6" /></svg>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Infraestrutura como Inteligência Estratégica</h3>
-              <p class="text-sm text-white/90">Transformamos infraestrutura em vantagem competitiva através de arquiteturas resilientes e governança contínua.</p>
-            </div>
-            <div class="bg-[#002C4C] border border-[#0076FF] p-8 rounded-xl text-center">
-              <div class="mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10 text-[#0076FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12c0-4.97-4.03-9-9-9S3 7.03 3 12c0 3.87 2.43 7.16 5.83 8.47.43.08.57-.19.57-.42v-2.17c-2.37.52-2.87-1.14-2.87-1.14-.39-.98-.96-1.24-.96-1.24-.79-.54.06-.53.06-.53.87.06 1.33.9 1.33.9.78 1.33 2.05.94 2.55.72.08-.57.3-.94.54-1.16-1.89-.22-3.88-.95-3.88-4.22 0-.93.33-1.7.88-2.3-.09-.22-.38-1.12.08-2.33 0 0 .71-.23 2.33.88.68-.19 1.41-.29 2.13-.29s1.45.1 2.13.29c1.61-1.11 2.33-.88 2.33-.88.46 1.21.17 2.11.08 2.33.55.6.88 1.37.88 2.3 0 3.28-2 4-3.89 4.21.31.27.59.8.59 1.61v2.39c0 .24.14.51.58.42A9.001 9.001 0 0021 12z" /></svg>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Engenharia de Performance e Excelência Operacional</h3>
-              <p class="text-sm text-white/90">Orquestramos processos, tecnologia e dados para criar receita previsível e escalável.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+<!-- SOLUÇÕES -->
+<section id="solucoes" class="container mx-auto py-20 space-y-20">
+
+  <!-- Navegação Superior -->
+  <div class="flex justify-center space-x-10 text-[#F4F5F0] font-semibold text-lg">
+    <a href="backup-saas.html" class="hover:text-[#0076FF]">Backup SaaS Estratégico</a>
+    <a href="infraestruturas-criticas.html" class="hover:text-[#0076FF]">Orquestração de Infraestruturas</a>
+    <a href="seguranca-conformidade.html" class="hover:text-[#0076FF]">Segurança e Conformidade</a>
+    <a href="receita-b2b.html" class="hover:text-[#0076FF]">Orquestração de Receita B2B</a>
+  </div>
+
+  <!-- Backup SaaS Estratégico -->
+  <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+    <div class="md:w-1/2 space-y-4">
+      <h2 class="text-3xl font-bold text-[#F4F5F0]">Backup SaaS Estratégico</h2>
+      <p class="text-[#C4C4C4]">Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados — os termos contratuais são explícitos: a responsabilidade pela proteção é inteiramente sua...</p>
+      <a href="backup-saas.html" class="text-[#0076FF] hover:underline">Explore Backup SaaS Estratégico →</a>
+      <img src="Keepit_Backup_SaaS_Estratégico_Home.png" alt="Keepit Logo" class="w-32 mt-4 opacity-80">
+    </div>
+    <div class="md:w-1/2">
+      <img src="Backup_SaaS_Estratégico_Home.png" alt="Backup SaaS" class="rounded-lg shadow-lg">
+    </div>
+  </div>
+
+  <!-- Orquestração Estratégica para Infraestruturas Críticas -->
+  <div class="flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+    <div class="md:w-1/2">
+      <img src="Orquestração_Estratégica_para-Infraestruturas Críticas_Home.png" alt="Infraestruturas Críticas" class="rounded-lg shadow-lg">
+    </div>
+    <div class="md:w-1/2 space-y-4">
+      <h2 class="text-3xl font-bold text-[#F4F5F0]">Orquestração Estratégica para Infraestruturas Críticas</h2>
+      <p class="text-[#C4C4C4]">A sua operação depende de um ecossistema diverso de Edge Computing, Cloud (Pública, Privada, Híbrida) e Data Centers, mas a performance não acompanha a demanda...</p>
+      <a href="infraestruturas-criticas.html" class="text-[#0076FF] hover:underline">Explore Orquestração Estratégica →</a>
+    </div>
+  </div>
+
+  <!-- Arquitetura de Segurança e Conformidade -->
+  <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+    <div class="md:w-1/2 space-y-4">
+      <h2 class="text-3xl font-bold text-[#F4F5F0]">Arquitetura de Segurança e Conformidade</h2>
+      <p class="text-[#C4C4C4]">A sua empresa opera em ambientes multi-cloud ou cloud-native? A agilidade e a escalabilidade são inegáveis, mas a expansão da superfície de ataque e a complexidade da gestão...</p>
+      <a href="seguranca-conformidade.html" class="text-[#0076FF] hover:underline">Explore Arquitetura de Segurança →</a>
+    </div>
+    <div class="md:w-1/2">
+      <img src="Arquitetura_de_Segurança_e _Conformidade_Home.png" alt="Segurança e Conformidade" class="rounded-lg shadow-lg">
+    </div>
+  </div>
+
+  <!-- Orquestração Estratégica de Receita B2B -->
+  <div class="flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+    <div class="md:w-1/2">
+      <img src="Orquestração_Estratégica_de_Receita_Home.png" alt="Receita B2B" class="rounded-lg shadow-lg">
+    </div>
+    <div class="md:w-1/2 space-y-4">
+      <h2 class="text-3xl font-bold text-[#F4F5F0]">Orquestração Estratégica de Receita B2B</h2>
+      <p class="text-[#C4C4C4]">A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa, resultando em forecasts inconsistentes e um crescimento que não escala?</p>
+      <a href="receita-b2b.html" class="text-[#0076FF] hover:underline">Explore Orquestração de Receita →</a>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
