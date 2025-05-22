@@ -32,7 +32,7 @@
 </header>
 
 <!-- HERO -->
-<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12 px-4">
+<section class="container mx-auto flex flex-col md:flex-row-reverse items-center justify-between pt-32 pb-16 gap-12 px-4">
   <div class="w-full md:w-1/2 space-y-6">
     <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
     <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-snug">
@@ -48,50 +48,56 @@
   </div>
 </section>
 
-<!-- SEÇÃO DE SERVIÇOS INTERATIVA -->
-<section id="solucoes" class="container mx-auto py-20 space-y-16 px-4">
+<!-- SEÇÃO DE SERVIÇOS INTERATIVA COM CARROSSEL -->
+<section id="solucoes" class="container mx-auto py-20 space-y-8 px-4 relative">
+
+  <!-- Seta de indicação -->
+  <div class="absolute top-2 right-2 text-[#0076FF] opacity-50 animate-bounce z-10">
+    ➡️
+  </div>
 
   <!-- Navegação Superior -->
   <ul class="flex flex-nowrap overflow-x-auto whitespace-nowrap justify-start md:justify-center gap-4 md:gap-8 font-semibold text-lg mb-6">
-    <li><button class="tab-link border-b-4 border-[#0076FF] text-[#0076FF] font-bold px-2 pb-2" data-product="backup">Backup SaaS</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="infra">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="seguranca">Segurança e Conformidade</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="receita">Orquestração Receita B2B</button></li>
+    <li><button class="tab-link border-b-4 border-[#0076FF] text-[#0076FF] font-bold px-2 pb-2" data-index="0">Backup SaaS</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-index="1">Orquestração Infraestruturas</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-index="2">Segurança e Conformidade</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-index="3">Orquestração Receita B2B</button></li>
   </ul>
 
-  <!-- Conteúdos -->
+  <!-- Conteúdos em carrossel -->
+  <div id="carousel" class="flex overflow-x-auto snap-x space-x-8">
+    <div class="tab-content w-full flex-shrink-0 snap-center space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
+      <p class="text-[#C4C4C4] leading-relaxed">
+        Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...
+      </p>
+      <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+      <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-48 md:w-64 mt-4 opacity-90">
+    </div>
 
-  <div id="backup" class="tab-content space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...
-    </p>
-    <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-    <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-48 md:w-64 mt-4 opacity-90">
-  </div>
+    <div class="tab-content w-full flex-shrink-0 snap-center space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
+      <p class="text-[#C4C4C4] leading-relaxed">
+        A sua operação depende de um ecossistema diverso de Edge Computing, Cloud...
+      </p>
+      <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+    </div>
 
-  <div id="infra" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua operação depende de um ecossistema diverso de Edge Computing, Cloud...
-    </p>
-    <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
+    <div class="tab-content w-full flex-shrink-0 snap-center space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
+      <p class="text-[#C4C4C4] leading-relaxed">
+        A sua empresa opera em ambientes multi-cloud ou cloud-native?...
+      </p>
+      <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+    </div>
 
-  <div id="seguranca" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua empresa opera em ambientes multi-cloud ou cloud-native?...
-    </p>
-    <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
-
-  <div id="receita" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa...
-    </p>
-    <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+    <div class="tab-content w-full flex-shrink-0 snap-center space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
+      <p class="text-[#C4C4C4] leading-relaxed">
+        A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa...
+      </p>
+      <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+    </div>
   </div>
 
 </section>
@@ -107,16 +113,18 @@
     menu.classList.add('flex-col', 'space-y-4', 'mt-4');
   });
 
-  // Tabs interativas
+  // Tabs sincronizadas com carrossel
+  const carousel = document.getElementById('carousel');
   const tabs = document.querySelectorAll('.tab-link');
-  const contents = document.querySelectorAll('.tab-content');
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const product = tab.dataset.product;
-
-      contents.forEach(content => content.classList.add('hidden'));
-      document.getElementById(product).classList.remove('hidden');
+      const index = parseInt(tab.dataset.index);
+      const scrollAmount = carousel.scrollWidth / tabs.length;
+      carousel.scrollTo({
+        left: index * scrollAmount,
+        behavior: 'smooth'
+      });
 
       tabs.forEach(t => t.classList.remove('border-[#0076FF]', 'text-[#0076FF]', 'font-bold'));
       tab.classList.add('border-[#0076FF]', 'text-[#0076FF]', 'font-bold');
