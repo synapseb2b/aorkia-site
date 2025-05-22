@@ -1,116 +1,146 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AORKIA – Engenharia Estratégica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revenue Intelligence - Inspired by Clari</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <meta name="description" content="Revolutionize your revenue operations with predictive insights and revenue intelligence.">
+  <meta name="keywords" content="Revenue, Intelligence, Forecasting, SaaS, Clari">
+  <meta name="author" content="Revenue Intelligence Inc.">
+
   <style>
-    body { background-color: #0A0A0A; color: #F4F5F0; font-family: 'Montserrat', sans-serif; }
-    .btn-primary { background-color: #0076FF; color: #F4F5F0; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: opacity 0.3s; }
-    .btn-primary:hover { opacity: 0.8; }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .transition-all {
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 
-<body class="scroll-smooth">
+<body class="bg-gray-100 text-gray-800">
 
-<!-- NAVBAR -->
-<header class="w-full fixed top-0 z-50 bg-[#0A0A0A] shadow-md">
-  <nav class="container mx-auto flex justify-between items-center p-4">
-    <div class="text-2xl font-bold">AORKIA</div>
-    <ul class="flex space-x-8">
-      <li><a href="#porque" class="hover:text-[#0076FF]">Por que AORKIA?</a></li>
-      <li><a href="#solucoes" class="hover:text-[#0076FF]">Soluções</a></li>
-      <li><a href="#insights" class="hover:text-[#0076FF]">Insights</a></li>
-    </ul>
-    <a href="#acao" class="btn-primary">Veja a AORKIA em ação</a>
-  </nav>
-</header>
+  <!-- Hero Section -->
+  <section class="bg-white py-20 text-center animate__animated animate__fadeInDown">
+    <h1 class="text-4xl md:text-6xl font-bold">Revenue Forecasting Reimagined</h1>
+    <p class="mt-4 text-xl">Transform how your team predicts and manages revenue.</p>
+    <a href="#contact" class="mt-6 inline-block bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700 transition-all">Request Demo</a>
+  </section>
 
-<!-- HERO -->
-<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12">
-  <div class="w-full md:w-1/2 space-y-6">
-    <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
-    <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-snug">
-      Domine a Complexidade. Impulse Resultados.
-    </h1>
-    <p class="text-[#C4C4C4] leading-normal">
-      Orquestramos com precisão sua infraestrutura e operações de receita, gerando crescimento sustentável e vantagem competitiva.
-    </p>
-    <a href="#acao" class="btn-primary inline-block">Veja a AORKIA em ação</a>
-  </div>
-  <div class="w-full md:w-1/2">
-    <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="w-full max-w-5xl object-cover rounded-lg shadow-xl hover:brightness-110 transition">
-  </div>
-</section>
+  <!-- Products Section -->
+  <section class="py-20">
+    <h2 class="text-3xl font-semibold text-center mb-10 animate__animated animate__fadeIn">Our Solutions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-10">
 
-<!-- SEÇÃO DE SERVIÇOS INTERATIVA -->
-<section id="solucoes" class="container mx-auto py-20 space-y-16">
+      <div class="p-6 bg-white shadow-lg rounded-lg text-center animate__animated animate__zoomIn">
+        <h3 class="text-xl font-bold mb-2">Predictive Insights</h3>
+        <p>Leverage AI to forecast revenue outcomes with precision.</p>
+      </div>
 
-  <!-- Navegação Superior -->
-  <ul class="flex flex-wrap justify-center gap-6 font-semibold text-lg">
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="backup">Backup SaaS</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="infra">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="seguranca">Segurança e Conformidade</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="receita">Orquestração Receita B2B</button></li>
-  </ul>
+      <div class="p-6 bg-white shadow-lg rounded-lg text-center animate__animated animate__zoomIn animate__delay-1s">
+        <h3 class="text-xl font-bold mb-2">Revenue Intelligence</h3>
+        <p>Access real-time data across all revenue streams.</p>
+      </div>
 
-  <!-- Conteúdos -->
+      <div class="p-6 bg-white shadow-lg rounded-lg text-center animate__animated animate__zoomIn animate__delay-2s">
+        <h3 class="text-xl font-bold mb-2">Pipeline Management</h3>
+        <p>Optimize sales pipelines and reduce operational friction.</p>
+      </div>
 
-  <div id="backup" class="tab-content space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...
-    </p>
-    <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-    <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-48 md:w-64 mt-4 opacity-90">
-  </div>
+    </div>
+  </section>
 
-  <div id="infra" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua operação depende de um ecossistema diverso de Edge Computing, Cloud...
-    </p>
-    <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
+  <!-- Success Stories Section -->
+  <section class="py-20 bg-white">
+    <h2 class="text-3xl font-semibold text-center mb-10 animate__animated animate__fadeIn">Success Stories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-10">
 
-  <div id="seguranca" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua empresa opera em ambientes multi-cloud ou cloud-native?...
-    </p>
-    <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
+      <div class="p-6 bg-gray-100 rounded-lg animate__animated animate__fadeInLeft">
+        <h3 class="text-xl font-bold mb-2">TechCorp Inc.</h3>
+        <p>Improved forecast accuracy by 35% within the first quarter.</p>
+      </div>
 
-  <div id="receita" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa...
-    </p>
-    <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
+      <div class="p-6 bg-gray-100 rounded-lg animate__animated animate__fadeInRight">
+        <h3 class="text-xl font-bold mb-2">FinPlus Group</h3>
+        <p>Achieved 50% faster pipeline conversion with Clari-inspired solutions.</p>
+      </div>
 
-</section>
+    </div>
+  </section>
 
-<!-- SCRIPT DE INTERAÇÃO DAS TABS -->
-<script>
-  const tabs = document.querySelectorAll('.tab-link');
-  const contents = document.querySelectorAll('.tab-content');
+  <!-- Data Visualization Section -->
+  <section class="py-20 text-center">
+    <h2 class="text-3xl font-semibold mb-6 animate__animated animate__fadeIn">Revenue Trends</h2>
+    <div class="w-11/12 md:w-2/3 mx-auto">
+      <canvas id="revenueChart"></canvas>
+    </div>
+  </section>
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const product = tab.dataset.product;
+  <!-- Contact Form -->
+  <section id="contact" class="py-20 bg-white">
+    <h2 class="text-3xl font-semibold text-center mb-10 animate__animated animate__fadeIn">Get in Touch</h2>
+    <form class="w-11/12 md:w-1/2 mx-auto bg-gray-100 p-8 rounded-lg shadow-lg animate__animated animate__fadeInUp">
+      <label class="block mb-4">
+        <span class="text-gray-700">Name</span>
+        <input type="text" class="mt-1 block w-full p-2 rounded bg-white border border-gray-300" required>
+      </label>
+      <label class="block mb-4">
+        <span class="text-gray-700">Email</span>
+        <input type="email" class="mt-1 block w-full p-2 rounded bg-white border border-gray-300" required>
+      </label>
+      <label class="block mb-4">
+        <span class="text-gray-700">Message</span>
+        <textarea class="mt-1 block w-full p-2 rounded bg-white border border-gray-300" rows="4"></textarea>
+      </label>
+      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-all">Submit</button>
+    </form>
+  </section>
 
-      contents.forEach(content => {
-        content.classList.add('hidden');
-      });
-      document.getElementById(product).classList.remove('hidden');
+  <!-- Call-to-Action -->
+  <section class="bg-blue-600 text-white py-16 text-center animate__animated animate__fadeInUp">
+    <h2 class="text-3xl font-bold">Ready to Transform Your Revenue Operations?</h2>
+    <a href="#contact" class="mt-4 inline-block bg-white text-blue-600 py-3 px-6 rounded hover:bg-gray-100 transition-all">Get Started</a>
+  </section>
 
-      tabs.forEach(t => t.classList.remove('border-[#0076FF]'));
-      tab.classList.add('border-[#0076FF]');
+  <!-- Footer -->
+  <footer class="py-6 text-center text-sm bg-gray-200">
+    <p>&copy; 2025 Revenue Intelligence Inc. All rights reserved.</p>
+  </footer>
+
+  <!-- Chart.js Config -->
+  <script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: 'Revenue ($K)',
+          data: [120, 190, 300, 400],
+          fill: false,
+          borderColor: '#2563EB',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          tooltip: { enabled: true }
+        }
+      }
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
