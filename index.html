@@ -16,19 +16,23 @@
 
 <!-- NAVBAR -->
 <header class="w-full fixed top-0 z-50 bg-[#0A0A0A] shadow-md">
-  <nav class="container mx-auto flex justify-between items-center p-4">
+  <nav class="container mx-auto flex justify-between items-center p-4 px-4">
     <div class="text-2xl font-bold">AORKIA</div>
-    <ul class="flex space-x-8">
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-[#F4F5F0] focus:outline-none text-3xl">
+        ☰
+      </button>
+    </div>
+    <ul id="menu" class="hidden md:flex space-x-8">
       <li><a href="#porque" class="hover:text-[#0076FF]">Por que AORKIA?</a></li>
       <li><a href="#solucoes" class="hover:text-[#0076FF]">Soluções</a></li>
       <li><a href="#insights" class="hover:text-[#0076FF]">Insights</a></li>
     </ul>
-    <a href="#acao" class="btn-primary mt-6 md:mt-0">Veja a AORKIA em ação</a>
   </nav>
 </header>
 
 <!-- HERO -->
-<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12">
+<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12 px-4">
   <div class="w-full md:w-1/2 space-y-6">
     <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
     <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-snug">
@@ -37,7 +41,7 @@
     <p class="text-[#C4C4C4] leading-normal">
       Orquestramos com precisão sua infraestrutura e operações de receita, gerando crescimento sustentável e vantagem competitiva.
     </p>
-    <a href="#acao" class="btn-primary inline-block">Veja a AORKIA em ação</a>
+    <a href="#acao" class="btn-primary inline-block mt-6 mb-4">Veja a AORKIA em ação</a>
   </div>
   <div class="w-full md:w-1/2">
     <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="w-full max-w-5xl object-cover rounded-lg shadow-xl hover:brightness-110 transition">
@@ -45,14 +49,14 @@
 </section>
 
 <!-- SEÇÃO DE SERVIÇOS INTERATIVA -->
-<section id="solucoes" class="container mx-auto py-20 space-y-16">
+<section id="solucoes" class="container mx-auto py-20 space-y-16 px-4">
 
   <!-- Navegação Superior -->
   <ul class="flex flex-nowrap overflow-x-auto whitespace-nowrap justify-start md:justify-center gap-4 md:gap-8 font-semibold text-lg mb-6">
-    <li><button class="tab-link border-b-4 border-[#0076FF] text-[#0076FF] font-bold px-2 pb-1" data-product="backup">Backup SaaS</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="infra">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="seguranca">Segurança e Conformidade</button></li>
-    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="receita">Orquestração Receita B2B</button></li>
+    <li><button class="tab-link border-b-4 border-[#0076FF] text-[#0076FF] font-bold px-2 pb-2" data-product="backup">Backup SaaS</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="infra">Orquestração Infraestruturas</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="seguranca">Segurança e Conformidade</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-2" data-product="receita">Orquestração Receita B2B</button></li>
   </ul>
 
   <!-- Conteúdos -->
@@ -92,8 +96,18 @@
 
 </section>
 
-<!-- SCRIPT DE INTERAÇÃO DAS TABS -->
+<!-- SCRIPTS -->
 <script>
+  // Menu hambúrguer
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+    menu.classList.add('flex-col', 'space-y-4', 'mt-4');
+  });
+
+  // Tabs interativas
   const tabs = document.querySelectorAll('.tab-link');
   const contents = document.querySelectorAll('.tab-content');
 
