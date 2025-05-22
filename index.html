@@ -20,6 +20,14 @@
     .animate-gradient-right {
       animation: gradient-right 1.5s linear infinite;
     }
+    @media (min-width: 768px) {
+      #carousel {
+        scrollbar-width: none;
+      }
+      #carousel::-webkit-scrollbar {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -39,76 +47,192 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="container mx-auto flex flex-col md:flex-row-reverse items-center justify-between pt-32 pb-16 gap-12 px-4">
   <div class="w-full md:w-1/2 space-y-6">
     <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
     <h1 class="text-3xl md:text-5xl font-bold leading-snug">Domine a Complexidade. Impulse Resultados.</h1>
     <p class="text-[#C4C4C4] leading-normal">Orquestramos com precisão sua infraestrutura e operações de receita, gerando crescimento sustentável e vantagem competitiva.</p>
-    <a href="#solucoes" class="inline-block bg-[#0076FF] text-white py-2 px-6 rounded-lg mt-6 hover:bg-[#005bb5] transition">Veja a AORKIA em ação</a>
+    <a href="#acao" class="inline-block bg-[#0076FF] text-white py-2 px-6 rounded-lg mt-6">Veja a AORKIA em ação</a>
   </div>
   <div class="w-full md:w-1/2">
-    <img src="Mulher_Hero_Home.svg" alt="Imagem Hero AORKIA" class="w-full rounded-lg shadow-xl object-cover max-h-[400px]">
+    <img src="Mulher_Hero_Home.svg" alt="Imagem Hero AORKIA" class="w-full rounded-lg shadow-xl">
   </div>
 </section>
 
-<!-- SOLUÇÕES -->
 <section id="solucoes" class="container mx-auto py-20 space-y-8 px-4">
 
-  <ul class="flex flex-wrap justify-center gap-6 font-semibold text-lg mb-6">
-    <li><button class="tab-link text-[#0076FF] font-bold" data-index="0">Backup SaaS</button></li>
-    <li><button class="tab-link" data-index="1">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link" data-index="2">Segurança e Conformidade</button></li>
-    <li><button class="tab-link" data-index="3">Arquitetura Receita B2B</button></li>
+  <ul class="flex overflow-x-auto md:justify-center gap-12 font-semibold text-lg mb-6">
+    <li>
+      <button class="tab-link flex flex-col items-center text-[#0076FF] font-bold" data-index="0">
+        Backup SaaS
+        <div class="relative w-full h-1 bg-gray-600 overflow-hidden">
+          <div class="bar w-1/3 h-full absolute top-0 left-0 bg-[#0076FF]"></div>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button class="tab-link flex flex-col items-center" data-index="1">
+        Orquestração Infraestruturas
+        <div class="relative w-full h-1 bg-gray-600 overflow-hidden">
+          <div class="bar w-1/3 h-full absolute top-0 left-0 bg-[#0076FF]"></div>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button class="tab-link flex flex-col items-center" data-index="2">
+        Segurança e Conformidade
+        <div class="relative w-full h-1 bg-gray-600 overflow-hidden">
+          <div class="bar w-1/3 h-full absolute top-0 left-0 bg-[#0076FF]"></div>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button class="tab-link flex flex-col items-center" data-index="3">
+        Orquestração Receita B2B
+        <div class="relative w-full h-1 bg-gray-600 overflow-hidden">
+          <div class="bar w-1/3 h-full absolute top-0 right-0 bg-[#0076FF]"></div>
+        </div>
+      </button>
+    </li>
   </ul>
 
-  <!-- TAB CONTENT -->
-  <div class="tab-content flex flex-col md:flex-row items-center gap-8 transition-all duration-500 opacity-100 scale-100" data-index="0">
-    <div class="flex-[1_1_0] space-y-4 max-w-[600px]">
-      <h2 class="text-3xl font-bold text-[#F4F5F0]">Backup SaaS Estratégico</h2>
-      <p class="text-lg leading-relaxed text-[#C4C4C4]">Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...</p>
-      <blockquote class="border-l-4 border-[#0076FF] pl-4 italic text-[#C4C4C4]">Para neutralizar esta vulnerabilidade sistémica, a AORKIA implementa o Backup SaaS Estratégico.</blockquote>
-      <ul class="list-disc list-inside ml-4 marker:text-[#0076FF] text-[#C4C4C4]">
-        <li>Imutabilidade total dos seus dados de backup.</li>
-        <li>Recuperação granular precisa.</li>
-        <li>Conformidade com DORA, GDPR, LGPD e NIS2.</li>
-      </ul>
-    </div>
-    <div class="flex-[1_1_0]">
-      <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full rounded-lg shadow-lg object-cover max-h-[300px]">
-    </div>
-  </div>
+  <div id="carousel" class="flex overflow-x-auto snap-x space-x-8 h-auto">
 
-  <!-- REPITA O MESMO PADRÃO PARA OS DEMAIS TABS -->
+    <div class="tab-content min-w-full flex-shrink-0 snap-center flex flex-col md:flex-row items-center gap-6 overflow-visible">
+<div class="w-full md:w-1/2 space-y-4">
+  <h2 class="text-3xl font-bold">Backup SaaS Estratégico</h2>
+  <p class="text-[#C4C4C4]">
+    Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados — os termos contratuais são explícitos: a responsabilidade pela proteção é inteiramente sua.
+  </p>
+  <p class="text-[#C4C4C4]">
+    Consequentemente, um simples erro humano ou um ciberataque podem apagar informações críticas, comprometendo a sua operação, o compliance regulatório e a reputação da sua marca.
+  </p>
+  <p class="text-[#C4C4C4]">
+    Para neutralizar esta vulnerabilidade sistémica, a AORKIA, em parceria com a tecnologia líder e comprovada da Keepit, implementa o Backup SaaS Estratégico. Uma solução que assegura:
+  </p>
+  <ul class="list-disc list-inside text-[#C4C4C4]">
+    <li>Imutabilidade total dos seus dados de backup.</li>
+    <li>Recuperação granular precisa, à velocidade que o seu negócio exige.</li>
+    <li>Conformidade integral com DORA, GDPR, LGPD e NIS2.</li>
+  </ul>
+  <p class="text-[#C4C4C4]">
+    Descubra como o Backup SaaS Estratégico da AORKIA transforma incerteza em soberania e eleva a sua última linha de defesa à mais robusta vantagem competitiva.
+  </p>
+</div>
+      <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full md:w-1/2 rounded-lg shadow-lg">
+    </div>
+
+    <div class="tab-content min-w-full flex-shrink-0 snap-center flex flex-col md:flex-row-reverse items-center gap-6 overflow-visible">
+<div class="w-full md:w-1/2 space-y-4">
+  <h2 class="text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
+  <p class="text-[#C4C4C4]">
+    A sua operação depende de um ecossistema diverso de Edge Computing, Cloud (Pública, Privada, Híbrida) e Data Centers, mas a performance não acompanha a demanda e a complexidade esconde custos e ineficiências?
+  </p>
+  <p class="text-[#C4C4C4]">
+    A falta de uma arquitetura coesa e de uma visão estratégica pode limitar a sua capacidade de inovação e drenar recursos vitais.
+  </p>
+  <p class="text-[#C4C4C4]">
+    Para converter esta complexidade paralisante em poder de execução e um ativo de alto rendimento, a AORKIA implementa a Orquestração Estratégica para Infraestruturas Críticas. Uma curadoria técnica e estratégica que assegura:
+  </p>
+  <ul class="list-disc list-inside text-[#C4C4C4]">
+    <li>Visão arquitetônica clara e diagnóstico preciso do seu ambiente tecnológico distribuído, simplificando a gestão.</li>
+    <li>Design otimizado para performance superior e racionalização inteligente de investimentos.</li>
+    <li>Alinhamento preciso da infraestrutura com os seus objetivos de negócio, garantindo controle e decisões técnicas que impulsionam o crescimento.</li>
+  </ul>
+  <p class="text-[#C4C4C4]">
+    Descubra como a Orquestração Estratégica da AORKIA transforma o seu ecossistema de infraestrutura num motor coeso de inovação, eficiência e resultados de negócio mensuráveis.
+  </p>
+</div>
+      <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full md:w-1/2 rounded-lg shadow-lg">
+    </div>
+
+    <div class="tab-content min-w-full flex-shrink-0 snap-center flex flex-col md:flex-row items-center gap-6 overflow-visible">
+      <div class="w-full md:w-1/2 space-y-4">
+  <h2 class="text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
+  <p class="text-[#C4C4C4]">
+    A sua empresa opera em ambientes multi-cloud ou cloud-native? A agilidade e a escalabilidade são inegáveis, mas a expansão da superfície de ataque e a complexidade da gestão de segurança podem rapidamente superar a sua capacidade de controle, expondo-o a riscos críticos e desafios de conformidade.
+  </p>
+  <p class="text-[#C4C4C4]">
+    Para converter esta gestão reativa de segurança em comando proativo e auditável, a AORKIA implementa e opera a Arquitetura de Segurança e Conformidade, alavancando o poder de plataformas CSPM/CNAPP líderes. Uma solução que assegura:
+  </p>
+  <ul class="list-disc list-inside text-[#C4C4C4]">
+    <li>Visibilidade unificada e inteligência de risco contínua sobre toda a sua infraestrutura cloud.</li>
+    <li>Automação da conformidade com padrões como DORA, LGPD, NIS2, e resposta automatizada a ameaças priorizada por IA.</li>
+    <li>Governança de segurança proativa e uma postura auditável, integrada aos seus processos DevSecOps.</li>
+  </ul>
+  <p class="text-[#C4C4C4]">
+    Descubra como a Arquitetura de Segurança e Conformidade da AORKIA transforma a sua segurança cloud de um desafio complexo num pilar estratégico de confiança e resiliência operacional.
+  </p>
+</div>
+      <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full md:w-1/2 rounded-lg shadow-lg">
+    </div>
+
+    <div class="tab-content min-w-full flex-shrink-0 snap-center flex flex-col md:flex-row-reverse items-center gap-6 overflow-visible">
+<div class="w-full md:w-1/2 space-y-4">
+  <h2 class="text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
+  <p class="text-[#C4C4C4]">
+    A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa, resultando em forecasts inconsistentes e um crescimento que não escala?
+  </p>
+  <p class="text-[#C4C4C4]">
+    Silos entre marketing, vendas e sucesso do cliente, juntamente com processos desconexos, podem minar a sua performance e a previsibilidade que o seu negócio exige.
+  </p>
+  <p class="text-[#C4C4C4]">
+    Para converter esta fragmentação operacional num motor de receita de alto desempenho e precisão estratégica, a AORKIA implementa a Orquestração Estratégica de Receita. Uma arquitetura comercial que assegura:
+  </p>
+  <ul class="list-disc list-inside text-[#C4C4C4]">
+    <li>Sistema de receita unificado e data-driven, estabelecendo uma única fonte da verdade para alinhar todas as equipes e decisões.</li>
+    <li>Processos e cadências comerciais cientificamente orquestrados, desde a geração de leads à retenção, garantindo execução eficiente e escalável.</li>
+    <li>Forecasts com precisão analítica e uma governança operacional baseada em dados, permitindo decisões estratégicas confiáveis e crescimento sustentável.</li>
+  </ul>
+  <p class="text-[#C4C4C4]">
+    Descubra como a Orquestração Estratégica da AORKIA transforma a sua operação comercial numa máquina de resultados previsíveis, impulsionando o crescimento com inteligência e controle.
+  </p>
+</div>
+      <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full md:w-1/2 rounded-lg shadow-lg">
+    </div>
+
+  </div>
 
 </section>
 
 <script>
-  const tabLinks = document.querySelectorAll('.tab-link');
-  const tabContents = document.querySelectorAll('.tab-content');
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+    menu.classList.add('flex-col', 'space-y-4', 'mt-4');
+  });
 
-  tabLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const index = link.dataset.index;
+  const carousel = document.getElementById('carousel');
+  const tabs = document.querySelectorAll('.tab-link');
 
-      tabLinks.forEach(l => l.classList.remove('text-[#0076FF]', 'font-bold'));
-      link.classList.add('text-[#0076FF]', 'font-bold');
-
-      tabContents.forEach(content => {
-        if (content.dataset.index === index) {
-          content.classList.remove('hidden', 'opacity-0', 'scale-95', 'pointer-events-none');
-          content.classList.add('flex', 'opacity-100', 'scale-100');
-        } else {
-          content.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-          setTimeout(() => {
-            content.classList.remove('flex');
-            content.classList.add('hidden');
-          }, 500);
-        }
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const index = parseInt(tab.dataset.index);
+      const scrollAmount = carousel.scrollWidth / tabs.length;
+      carousel.scrollTo({
+        left: index * scrollAmount,
+        behavior: 'smooth'
       });
+    });
+  });
+
+  carousel.addEventListener('scroll', () => {
+    const index = Math.round(carousel.scrollLeft / (carousel.scrollWidth / tabs.length));
+    tabs.forEach((t, i) => {
+      const bar = t.querySelector('.bar');
+      if (i === index) {
+        t.classList.add('text-[#0076FF]', 'font-bold');
+        bar.classList.add(i === 3 ? 'animate-gradient-right' : 'animate-gradient-left');
+      } else {
+        t.classList.remove('text-[#0076FF]', 'font-bold');
+        bar.classList.remove('animate-gradient-left', 'animate-gradient-right');
+      }
     });
   });
 </script>
 
 </body>
 </html>
+
