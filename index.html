@@ -23,7 +23,7 @@
       <li><a href="#solucoes" class="hover:text-[#0076FF]">Soluções</a></li>
       <li><a href="#insights" class="hover:text-[#0076FF]">Insights</a></li>
     </ul>
-    <a href="#acao" class="btn-primary">Veja a AORKIA em ação</a>
+    <a href="#acao" class="btn-primary mt-6 md:mt-0">Veja a AORKIA em ação</a>
   </nav>
 </header>
 
@@ -48,11 +48,11 @@
 <section id="solucoes" class="container mx-auto py-20 space-y-16">
 
   <!-- Navegação Superior -->
-  <ul class="flex flex-wrap justify-center gap-6 font-semibold text-lg">
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="backup">Backup SaaS</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="infra">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="seguranca">Segurança e Conformidade</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="receita">Orquestração Receita B2B</button></li>
+  <ul class="flex flex-nowrap overflow-x-auto whitespace-nowrap justify-start md:justify-center gap-4 md:gap-8 font-semibold text-lg mb-6">
+    <li><button class="tab-link border-b-4 border-[#0076FF] text-[#0076FF] font-bold px-2 pb-1" data-product="backup">Backup SaaS</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="infra">Orquestração Infraestruturas</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="seguranca">Segurança e Conformidade</button></li>
+    <li><button class="tab-link border-b-4 border-transparent hover:border-[#0076FF] px-2 pb-1" data-product="receita">Orquestração Receita B2B</button></li>
   </ul>
 
   <!-- Conteúdos -->
@@ -101,13 +101,11 @@
     tab.addEventListener('click', () => {
       const product = tab.dataset.product;
 
-      contents.forEach(content => {
-        content.classList.add('hidden');
-      });
+      contents.forEach(content => content.classList.add('hidden'));
       document.getElementById(product).classList.remove('hidden');
 
-      tabs.forEach(t => t.classList.remove('border-[#0076FF]'));
-      tab.classList.add('border-[#0076FF]');
+      tabs.forEach(t => t.classList.remove('border-[#0076FF]', 'text-[#0076FF]', 'font-bold'));
+      tab.classList.add('border-[#0076FF]', 'text-[#0076FF]', 'font-bold');
     });
   });
 </script>
