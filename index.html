@@ -11,6 +11,7 @@
     .btn-primary:hover { opacity: 0.8; }
   </style>
 </head>
+
 <body class="scroll-smooth">
 
 <!-- NAVBAR -->
@@ -28,89 +29,88 @@
 
 <!-- HERO -->
 <section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12">
-  <div class="max-w-lg space-y-6">
-    <p class="text-[#C4C4C4] uppercase tracking-wide">Tecnologia Tática. Governança Decisiva. Execução Disciplinada.</p>
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-relaxed">
-      Orquestração, Otimização e Escalabilidade de Infraestruturas e Sistemas Críticos: Impulsionando o Seu Crescimento, Eficiência e Inovação.
+  <div class="w-full md:w-1/2 space-y-6">
+    <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
+    <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-snug">
+      Domine a Complexidade. Impulse Resultados.
     </h1>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      Convertemos infraestrutura, segurança e dados em plataformas decisivas para a sua expansão e inovação. Paralelamente, estruturamos operações comerciais B2B para gerar eficiência, previsibilidade e crescimento contínuo.
+    <p class="text-[#C4C4C4] leading-normal">
+      Orquestramos com precisão sua infraestrutura e operações de receita, gerando crescimento sustentável e vantagem competitiva.
     </p>
     <a href="#acao" class="btn-primary inline-block">Veja a AORKIA em ação</a>
   </div>
-  <div class="w-full max-w-3xl">
-    <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="rounded-lg shadow-xl hover:brightness-110 transition">
+  <div class="w-full md:w-1/2">
+    <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="w-full max-w-5xl object-cover rounded-lg shadow-xl hover:brightness-110 transition">
   </div>
 </section>
 
-<!-- SOLUÇÕES -->
-<section id="solucoes" class="container mx-auto py-20 space-y-24">
+<!-- SEÇÃO DE SERVIÇOS INTERATIVA -->
+<section id="solucoes" class="container mx-auto py-20 space-y-16">
 
-  <div class="flex justify-center space-x-10 font-semibold text-lg">
-    <a href="backup-saas.html" class="hover:text-[#0076FF]">Backup SaaS Estratégico</a>
-    <a href="infraestruturas-criticas.html" class="hover:text-[#0076FF]">Orquestração de Infraestruturas</a>
-    <a href="seguranca-conformidade.html" class="hover:text-[#0076FF]">Segurança e Conformidade</a>
-    <a href="receita-b2b.html" class="hover:text-[#0076FF]">Orquestração de Receita B2B</a>
+  <!-- Navegação Superior -->
+  <ul class="flex flex-wrap justify-center gap-6 font-semibold text-lg">
+    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="backup">Backup SaaS</button></li>
+    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="infra">Orquestração Infraestruturas</button></li>
+    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="seguranca">Segurança e Conformidade</button></li>
+    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="receita">Orquestração Receita B2B</button></li>
+  </ul>
+
+  <!-- Conteúdos -->
+
+  <div id="backup" class="tab-content space-y-6">
+    <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
+    <p class="text-[#C4C4C4] leading-relaxed">
+      Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...
+    </p>
+    <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
+    <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-48 md:w-64 mt-4 opacity-90">
   </div>
 
-  <!-- Backup SaaS Estratégico -->
-  <div class="flex flex-col md:flex-row items-center gap-16 p-6">
-    <div class="md:w-1/2 space-y-4">
-      <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
-      <p class="text-[#C4C4C4] leading-relaxed">
-        Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados — os termos contratuais são explícitos: a responsabilidade pela proteção é inteiramente sua...
-      </p>
-      <a href="backup-saas.html" class="text-[#0076FF] hover:underline">Explore Backup SaaS Estratégico →</a>
-      <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-32 mt-4 opacity-80">
-    </div>
-    <div class="md:w-1/2">
-      <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full rounded-lg shadow-lg hover:scale-105 transition">
-    </div>
+  <div id="infra" class="tab-content hidden space-y-6">
+    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
+    <p class="text-[#C4C4C4] leading-relaxed">
+      A sua operação depende de um ecossistema diverso de Edge Computing, Cloud...
+    </p>
+    <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
   </div>
 
-  <!-- Orquestração Estratégica para Infraestruturas Críticas -->
-  <div class="flex flex-col-reverse md:flex-row items-center gap-16 p-6">
-    <div class="md:w-1/2">
-      <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas Críticas" class="w-full rounded-lg shadow-lg hover:scale-105 transition">
-    </div>
-    <div class="md:w-1/2 space-y-4">
-      <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
-      <p class="text-[#C4C4C4] leading-relaxed">
-        A sua operação depende de um ecossistema diverso de Edge Computing, Cloud (Pública, Privada, Híbrida) e Data Centers, mas a performance não acompanha a demanda...
-      </p>
-      <a href="infraestruturas-criticas.html" class="text-[#0076FF] hover:underline">Explore Orquestração Estratégica →</a>
-    </div>
+  <div id="seguranca" class="tab-content hidden space-y-6">
+    <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
+    <p class="text-[#C4C4C4] leading-relaxed">
+      A sua empresa opera em ambientes multi-cloud ou cloud-native?...
+    </p>
+    <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
   </div>
 
-  <!-- Arquitetura de Segurança e Conformidade -->
-  <div class="flex flex-col md:flex-row items-center gap-16 p-6">
-    <div class="md:w-1/2 space-y-4">
-      <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
-      <p class="text-[#C4C4C4] leading-relaxed">
-        A sua empresa opera em ambientes multi-cloud ou cloud-native? A agilidade e a escalabilidade são inegáveis, mas a expansão da superfície de ataque e a complexidade da gestão...
-      </p>
-      <a href="seguranca-conformidade.html" class="text-[#0076FF] hover:underline">Explore Arquitetura de Segurança →</a>
-    </div>
-    <div class="md:w-1/2">
-      <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança e Conformidade" class="w-full rounded-lg shadow-lg hover:scale-105 transition">
-    </div>
-  </div>
-
-  <!-- Orquestração Estratégica de Receita B2B -->
-  <div class="flex flex-col-reverse md:flex-row items-center gap-16 p-6">
-    <div class="md:w-1/2">
-      <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full rounded-lg shadow-lg hover:scale-105 transition">
-    </div>
-    <div class="md:w-1/2 space-y-4">
-      <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
-      <p class="text-[#C4C4C4] leading-relaxed">
-        A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa, resultando em forecasts inconsistentes e um crescimento que não escala?
-      </p>
-      <a href="receita-b2b.html" class="text-[#0076FF] hover:underline">Explore Orquestração de Receita →</a>
-    </div>
+  <div id="receita" class="tab-content hidden space-y-6">
+    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
+    <p class="text-[#C4C4C4] leading-relaxed">
+      A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa...
+    </p>
+    <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
   </div>
 
 </section>
+
+<!-- SCRIPT DE INTERAÇÃO DAS TABS -->
+<script>
+  const tabs = document.querySelectorAll('.tab-link');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const product = tab.dataset.product;
+
+      contents.forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(product).classList.remove('hidden');
+
+      tabs.forEach(t => t.classList.remove('border-[#0076FF]'));
+      tab.classList.add('border-[#0076FF]');
+    });
+  });
+</script>
 
 </body>
 </html>
