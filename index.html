@@ -1,116 +1,137 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AORKIA – Engenharia Estratégica</title>
+  <title>Clari Clone</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #0A0A0A; color: #F4F5F0; font-family: 'Montserrat', sans-serif; }
-    .btn-primary { background-color: #0076FF; color: #F4F5F0; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: opacity 0.3s; }
-    .btn-primary:hover { opacity: 0.8; }
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
   </style>
 </head>
+<body class="bg-gray-100 text-gray-800">
 
-<body class="scroll-smooth">
-
-<!-- NAVBAR -->
-<header class="w-full fixed top-0 z-50 bg-[#0A0A0A] shadow-md">
-  <nav class="container mx-auto flex justify-between items-center p-4">
-    <div class="text-2xl font-bold">AORKIA</div>
-    <ul class="flex space-x-8">
-      <li><a href="#porque" class="hover:text-[#0076FF]">Por que AORKIA?</a></li>
-      <li><a href="#solucoes" class="hover:text-[#0076FF]">Soluções</a></li>
-      <li><a href="#insights" class="hover:text-[#0076FF]">Insights</a></li>
-    </ul>
-    <a href="#acao" class="btn-primary">Veja a AORKIA em ação</a>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md fixed w-full z-10">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="text-xl font-bold">ClariClone</div>
+      <div class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-blue-500">Home</a>
+        <a href="#solutions" class="hover:text-blue-500">Solutions</a>
+        <a href="#products" class="hover:text-blue-500">Products</a>
+        <a href="#testimonials" class="hover:text-blue-500">Testimonials</a>
+        <a href="#contact" class="hover:text-blue-500">Contact</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-2xl">☰</button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-2 p-4 bg-white">
+      <a href="#home">Home</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#products">Products</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
-</header>
 
-<!-- HERO -->
-<section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-32 pb-16 gap-12">
-  <div class="w-full md:w-1/2 space-y-6">
-    <p class="text-[#C4C4C4] uppercase tracking-wide">Engenharia Estratégica para Performance Previsível.</p>
-    <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-snug">
-      Domine a Complexidade. Impulse Resultados.
-    </h1>
-    <p class="text-[#C4C4C4] leading-normal">
-      Orquestramos com precisão sua infraestrutura e operações de receita, gerando crescimento sustentável e vantagem competitiva.
-    </p>
-    <a href="#acao" class="btn-primary inline-block">Veja a AORKIA em ação</a>
-  </div>
-  <div class="w-full md:w-1/2">
-    <img src="Mulher_Hero_Home.png" alt="Imagem Hero AORKIA" class="w-full max-w-5xl object-cover rounded-lg shadow-xl hover:brightness-110 transition">
-  </div>
-</section>
+  <!-- Hero Section -->
+  <section id="home" class="hero-gradient text-white h-screen flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Domine a Complexidade</h1>
+      <p class="text-xl mb-6">Orquestramos sua receita com precisão e previsibilidade</p>
+      <a href="#solutions" class="bg-blue-500 hover:bg-blue-700 text-white px-6 py-3 rounded">Explore</a>
+    </div>
+  </section>
 
-<!-- SEÇÃO DE SERVIÇOS INTERATIVA -->
-<section id="solucoes" class="container mx-auto py-20 space-y-16">
+  <!-- Solutions Section -->
+  <section id="solutions" class="py-20 container mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Nossas Soluções</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="product-card bg-white p-6 rounded shadow">
+        <img src="https://picsum.photos/300/200" alt="Solution 1" class="mb-4 rounded">
+        <h3 class="text-xl font-semibold mb-2">Capture</h3>
+        <p>Data quality and activity autocapture</p>
+      </div>
+      <div class="product-card bg-white p-6 rounded shadow">
+        <img src="https://picsum.photos/300/200" alt="Solution 2" class="mb-4 rounded">
+        <h3 class="text-xl font-semibold mb-2">Inspect</h3>
+        <p>Opportunity management and inspection</p>
+      </div>
+      <div class="product-card bg-white p-6 rounded shadow">
+        <img src="https://picsum.photos/300/200" alt="Solution 3" class="mb-4 rounded">
+        <h3 class="text-xl font-semibold mb-2">Align</h3>
+        <p>Mutual action plans and collaboration</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Navegação Superior -->
-  <ul class="flex flex-wrap justify-center gap-6 font-semibold text-lg">
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="backup">Backup SaaS</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="infra">Orquestração Infraestruturas</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="seguranca">Segurança e Conformidade</button></li>
-    <li><button class="tab-link border-b-2 border-transparent hover:border-[#0076FF]" data-product="receita">Orquestração Receita B2B</button></li>
-  </ul>
+  <!-- Products Section -->
+  <section id="products" class="py-20 bg-gray-200">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Produtos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="product-card bg-white p-6 rounded shadow">
+          <img src="https://picsum.photos/300/200" alt="Product 1" class="mb-4 rounded">
+          <h3 class="text-xl font-semibold mb-2">Forecast</h3>
+          <p>Forecasting and pipeline management</p>
+        </div>
+        <div class="product-card bg-white p-6 rounded shadow">
+          <img src="https://picsum.photos/300/200" alt="Product 2" class="mb-4 rounded">
+          <h3 class="text-xl font-semibold mb-2">Analyze</h3>
+          <p>Analytics, dashboards, and reporting</p>
+        </div>
+        <div class="product-card bg-white p-6 rounded shadow">
+          <img src="https://picsum.photos/300/200" alt="Product 3" class="mb-4 rounded">
+          <h3 class="text-xl font-semibold mb-2">Groove</h3>
+          <p>Sales engagement and prospecting</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Conteúdos -->
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 container mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Depoimentos</h2>
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="testimonial-card bg-white p-6 rounded shadow">
+        <p>"Clari's AI transformed our forecasts!"</p>
+        <h4 class="mt-4 font-semibold">Paty Hanna</h4>
+      </div>
+      <div class="testimonial-card bg-white p-6 rounded shadow">
+        <p>"Incrível visibilidade sobre nosso pipeline."</p>
+        <h4 class="mt-4 font-semibold">David Lee</h4>
+      </div>
+      <div class="testimonial-card bg-white p-6 rounded shadow">
+        <p>"O Clari é indispensável para nossa operação."</p>
+        <h4 class="mt-4 font-semibold">Graeme Thompson</h4>
+      </div>
+    </div>
+  </section>
 
-  <div id="backup" class="tab-content space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Backup SaaS Estratégico</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      Plataformas SaaS como Microsoft 365 e Google Workspace não garantem o backup real dos seus dados...
-    </p>
-    <img src="Backup_SaaS_Estrategico_Home.png" alt="Backup SaaS" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-    <img src="Keepit_Backup_SaaS_Estrategico_Home.png" alt="Keepit Logo" class="w-48 md:w-64 mt-4 opacity-90">
-  </div>
+  <!-- Footer -->
+  <footer id="contact" class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto text-center">
+      <p>© 2025 ClariClone. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-  <div id="infra" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica para Infraestruturas Críticas</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua operação depende de um ecossistema diverso de Edge Computing, Cloud...
-    </p>
-    <img src="Orquestracao_Estrategica_para_Infraestruturas_Criticas_Home.png" alt="Infraestruturas" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  <div id="seguranca" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Arquitetura de Segurança e Conformidade</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua empresa opera em ambientes multi-cloud ou cloud-native?...
-    </p>
-    <img src="Arquitetura_de_Seguranca_e_Conformidade_Home.png" alt="Segurança" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
-
-  <div id="receita" class="tab-content hidden space-y-6">
-    <h2 class="text-2xl md:text-3xl font-bold">Orquestração Estratégica de Receita B2B</h2>
-    <p class="text-[#C4C4C4] leading-relaxed">
-      A sua geração de receita depende mais de esforços isolados e intuição do que de uma engenharia precisa...
-    </p>
-    <img src="Orquestracao_Estrategica_de_Receita_Home.png" alt="Receita B2B" class="w-full max-w-3xl rounded-lg shadow-lg hover:scale-105 transition">
-  </div>
-
-</section>
-
-<!-- SCRIPT DE INTERAÇÃO DAS TABS -->
-<script>
-  const tabs = document.querySelectorAll('.tab-link');
-  const contents = document.querySelectorAll('.tab-content');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const product = tab.dataset.product;
-
-      contents.forEach(content => {
-        content.classList.add('hidden');
-      });
-      document.getElementById(product).classList.remove('hidden');
-
-      tabs.forEach(t => t.classList.remove('border-[#0076FF]'));
-      tab.classList.add('border-[#0076FF]');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
