@@ -102,6 +102,14 @@
       .hover-scale:hover {
       transform: scale(1.05);
       }
+      h1, h2, h3 {
+      transition: text-shadow 0.3s ease;
+      }
+      h1:hover, h2:hover, h3:hover {
+      text-shadow: 0 0 8px rgba(0, 118, 255, 0.4),
+                   0 0 16px rgba(0, 118, 255, 0.2);
+      cursor: default;
+      }
     </style>
     <!-- Google Analytics -->
     <script
@@ -238,7 +246,7 @@
         >
           <a
             href="/"
-            class="text-gray-800 hover:text-primary font-medium cursor-pointer"
+            class="text-primary font-medium cursor-pointer"
             aria-current="page"
             >Início</a
           >
@@ -257,51 +265,6 @@
             class="text-gray-800 hover:text-primary font-medium cursor-pointer"
             >Contato</a
           >
-        </nav>
-        <nav
-          aria-label="Navegação estrutural"
-          class="container mx-auto max-w-6xl px-4 py-2 mt-4 mb-6"
-        >
-          <ol
-            class="flex items-center space-x-2 text-sm text-gray-500"
-            itemscope
-            itemtype="https://schema.org/BreadcrumbList"
-            role="list"
-          >
-            <li
-              itemprop="itemListElement"
-              itemscope
-              itemtype="https://schema.org/ListItem"
-              class="flex items-center"
-            >
-              <a
-                href="/"
-                class="hover:text-primary transition-colors cursor-pointer"
-                itemprop="item"
-              >
-                <span itemprop="name">Home</span></a
-              >
-              <meta itemprop="position" content="1" />
-              <i
-                class="ri-arrow-right-s-line text-gray-400 ml-2"
-                aria-hidden="true"
-              ></i>
-            </li>
-            <li
-              itemprop="itemListElement"
-              itemscope
-              itemtype="https://schema.org/ListItem"
-              class="flex items-center"
-              aria-current="page"
-            >
-              <span
-                class="text-primary font-medium cursor-default"
-                itemprop="name"
-                >Serviços B2B</span
-              >
-              <meta itemprop="position" content="2" />
-            </li>
-          </ol>
         </nav>
         <button
           class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer"
@@ -408,7 +371,7 @@
               <img
                 src="https://readdy.ai/api/search-image?query=professional%20cloud%20backup%20solution%20visualization%2C%20digital%20data%20protection%20concept%2C%20secure%20storage%20representation%2C%20blue%20technology%20theme%2C%20enterprise-grade%20backup%20system%2C%20data%20recovery%20illustration%2C%20business%20continuity%20planning%2C%20modern%20SaaS%20backup%20interface%2C%20clean%20professional%20design&width=800&height=600&seq=backup1&orientation=landscape"
                 alt="Backup SaaS Estratégico"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg"
+                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                 loading="lazy"
               />
             </div>
@@ -452,7 +415,7 @@
               <img
                 src="https://readdy.ai/api/search-image?query=modern%20data%20center%20infrastructure%2C%20network%20orchestration%20visualization%2C%20critical%20systems%20management%20interface%2C%20enterprise%20IT%20infrastructure%2C%20server%20room%20with%20blue%20lighting%2C%20cloud%20computing%20architecture%20diagram%2C%20hybrid%20infrastructure%20management%2C%20professional%20technology%20environment%2C%20clean%20design&width=800&height=600&seq=infra1&orientation=landscape"
                 alt="Orquestração Estratégica para Infraestruturas Críticas"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg"
+                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                 loading="lazy"
               />
             </div>
@@ -496,7 +459,7 @@
               <img
                 src="https://readdy.ai/api/search-image?query=cybersecurity%20architecture%20visualization%2C%20digital%20security%20framework%2C%20compliance%20management%20dashboard%2C%20enterprise%20security%20operations%20center%2C%20blue-themed%20security%20monitoring%20interface%2C%20data%20protection%20system%2C%20network%20security%20visualization%2C%20professional%20security%20architecture%20diagram%2C%20clean%20design&width=800&height=600&seq=security1&orientation=landscape"
                 alt="Arquitetura de Segurança e Conformidade"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg"
+                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                 loading="lazy"
               />
             </div>
@@ -541,7 +504,7 @@
               <img
                 src="https://readdy.ai/api/search-image?query=B2B%20revenue%20management%20dashboard%2C%20sales%20pipeline%20visualization%2C%20business%20growth%20strategy%20chart%2C%20revenue%20orchestration%20interface%2C%20blue-themed%20analytics%20dashboard%2C%20enterprise%20sales%20management%20system%2C%20customer%20journey%20optimization%2C%20professional%20business%20intelligence%20visualization%2C%20clean%20design&width=800&height=600&seq=revenue1&orientation=landscape"
                 alt="Orquestração Estratégica de Receita B2B"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg"
+                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                 loading="lazy"
               />
             </div>
