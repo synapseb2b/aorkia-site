@@ -1,1051 +1,658 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita para empresas que buscam excelência."
-    />
-    <meta name="theme-color" content="#0076FF" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="AORKIA B2B" />
-    <link
-      rel="alternate"
-      hreflang="pt-BR"
-      href="https://www.aorkia.com.br/servicos-b2b"
-    />
-    <link
-      rel="alternate"
-      hreflang="en"
-      href="https://www.aorkia.com/b2b-services"
-    />
-    <link
-      rel="alternate"
-      hreflang="es"
-      href="https://www.aorkia.com.es/servicios-b2b"
-    />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href="https://www.aorkia.com/b2b-services"
-    />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://* data:; font-src 'self' local('Corbel'); connect-src 'self' https://www.facebook.com https://www.google-analytics.com;"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://www.aorkia.com.br/favicon.png"
-    />
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#0076FF",
-              secondary: "#4A90E2",
-            },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-    />
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      html {
-      scroll-behavior: smooth;
-      }
-      @font-face {
-      font-family: 'Corbel';
-      src: local('Corbel');
-      font-display: swap;
-      }
-      * {
-      font-family: 'Corbel', sans-serif !important;
-      }
-      .font-['Pacifico'] {
-      font-family: 'Pacifico', serif !important;
-      }
-      :focus-visible {
-      outline: 2px solid #0076FF;
-      outline-offset: 2px;
-      border-radius: 4px;
-      }
-      .hover-scale {
-      transition: transform 0.2s ease-in-out;
-      }
-      .hover-scale:hover {
-      transform: scale(1.05);
-      }
-      h1, h2, h3 {
-      transition: text-shadow 0.3s ease;
-      }
-      h1:hover, h2:hover, h3:hover {
-      text-shadow: 0 0 8px rgba(0, 118, 255, 0.4),
-                   0 0 16px rgba(0, 118, 255, 0.2);
-      cursor: default;
-      }
-    </style>
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-XXXXXXXXXX");
-    </script>
-    <!-- Meta Pixel -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js",
-      );
-      fbq("init", "XXXXXXXXXXXXX");
-      fbq("track", "PageView");
-    </script>
-    <title>Serviços B2B | AORKIA</title>
-    <link rel="canonical" href="https://www.aorkia.com.br/servicos-b2b" />
-    <meta property="og:title" content="Serviços B2B | AORKIA" />
-    <meta
-      property="og:description"
-      content="Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita."
-    />
-    <meta
-      property="og:image"
-      content="https://www.aorkia.com.br/images/og-image.jpg"
-    />
-    <meta property="og:url" content="https://www.aorkia.com.br/servicos-b2b" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Serviços B2B | AORKIA" />
-    <meta
-      name="twitter:description"
-      content="Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.aorkia.com.br/images/twitter-image.jpg"
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="AORKIA Blog RSS Feed"
-      href="/feed.xml"
-    />
-    <link
-      rel="sitemap"
-      type="application/xml"
-      title="Sitemap"
-      href="/sitemap.xml"
-    />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="apple-touch-startup-image" href="/launch-screen.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "AORKIA",
-  "url": "https://www.aorkia.com.br",
-  "logo": "https://www.aorkia.com.br/images/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+55-11-3456-7890",
-    "contactType": "customer service",
-    "availableLanguage": ["Portuguese", "English"]
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Av. Paulista, 1000",
-    "addressLocality": "São Paulo",
-    "addressRegion": "SP",
-    "postalCode": "01310-100",
-    "addressCountry": "BR"
-  },
-  "sameAs": [
-    "https://www.facebook.com/aorkia",
-    "https://www.twitter.com/aorkia",
-    "https://www.linkedin.com/company/aorkia",
-    "https://www.instagram.com/aorkia"
-  ]
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Soluções B2B para transformação digital: backup SaaS, infraestrutura, segurança e estratégias. Agende uma demonstração gratuita e transforme seu negócio hoje.">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0076FF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0076FF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AORKIA B2B">
+<link rel="alternate" hreflang="pt-BR" href="https://www.aorkia.com.br/servicos-b2b">
+<link rel="alternate" hreflang="en" href="https://www.aorkia.com/b2b-services">
+<link rel="alternate" hreflang="es" href="https://www.aorkia.com.es/servicios-b2b">
+<link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://* data:; font-src 'self' local('Corbel'); connect-src 'self' https://www.facebook.com https://www.google-analytics.com;">
+<link rel="icon" type="image/png" href="https://www.aorkia.com.br/favicon.png">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config={
+theme:{
+extend:{
+colors:{
+primary:'#0076FF',
+secondary:'#4A90E2'
+},
+borderRadius:{
+'none':'0px',
+'sm':'4px',
+DEFAULT:'8px',
+'md':'12px',
+'lg':'16px',
+'xl':'20px',
+'2xl':'24px',
+'3xl':'32px',
+'full':'9999px',
+'button':'8px'
+}
+}
+}
 }
 </script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+html {
+scroll-behavior: smooth;
+}
+@font-face {
+font-family: 'Corbel';
+src: local('Corbel');
+font-display: swap;
+}
+* {
+font-family: 'Corbel', sans-serif;
+}
+.font-['Pacifico'] {
+font-family: 'Pacifico', serif !important;
+}
+:focus-visible {
+outline: 2px solid #0076FF;
+outline-offset: 2px;
+border-radius: 4px;
+}
+.hover-scale {
+transition: transform 0.2s ease-in-out;
+}
+.hover-scale:hover {
+transform: scale(1.05);
+}
+h1:not(.hero h1), h2:not(.hero h2), h3:not(.hero h3) {
+color: #000;
+transition: all 0.3s ease-in-out;
+}
+h1:not(.hero h1):hover, h2:not(.hero h2):hover, h3:not(.hero h3):hover {
+color: #0076FF;
+text-shadow: 0 0 8px rgba(0, 118, 255, 0.2);
+cursor: default;
+}
+.hero h1, .hero h2, .hero h3, footer h1, footer h2, footer h3, .text-white {
+transition: all 0.3s ease-in-out;
+}
+.hero h1:hover, .hero h2:hover, .hero h3:hover, footer h1:hover, footer h2:hover, footer h3:hover, .text-white:hover {
+color: #0076FF;
+text-shadow: 0 0 8px rgba(0, 118, 255, 0.4),
+0 0 16px rgba(0, 118, 255, 0.2);
+cursor: default;
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'XXXXXXXXXXXXX');
+fbq('track', 'PageView');
+</script>
+<title>Serviços B2B | AORKIA</title>
+<link rel="canonical" href="https://www.aorkia.com.br/servicos-b2b" />
+<meta property="og:title" content="Serviços B2B | AORKIA" />
+<meta property="og:description" content="Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita." />
+<meta property="og:image" content="https://www.aorkia.com.br/images/og-image.jpg" />
+<meta property="og:url" content="https://www.aorkia.com.br/servicos-b2b" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Serviços B2B | AORKIA" />
+<meta name="twitter:description" content="Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita." />
+<meta name="twitter:image" content="https://www.aorkia.com.br/images/twitter-image.jpg" />
+<link rel="alternate" type="application/rss+xml" title="AORKIA Blog RSS Feed" href="/feed.xml" />
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="apple-touch-startup-image" href="/launch-screen.png" />
+<link rel="manifest" href="/site.webmanifest" />
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "AORKIA",
-  "url": "https://www.aorkia.com.br",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://www.aorkia.com.br/search?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "AORKIA",
+"url": "https://www.aorkia.com.br",
+"logo": "https://www.aorkia.com.br/images/logo.png",
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "+55-11-3456-7890",
+"contactType": "customer service",
+"availableLanguage": ["Portuguese", "English"]
+},
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Av. Paulista, 1000",
+"addressLocality": "São Paulo",
+"addressRegion": "SP",
+"postalCode": "01310-100",
+"addressCountry": "BR"
+},
+"sameAs": [
+"https://www.facebook.com/aorkia",
+"https://www.twitter.com/aorkia",
+"https://www.linkedin.com/company/aorkia",
+"https://www.instagram.com/aorkia"
+]
 }
 </script>
-
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Serviços B2B",
-  "provider": {
-    "@type": "Organization",
-    "name": "AORKIA"
-  },
-  "description": "Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita para empresas.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "priceCurrency": "BRL"
-    }
-  }
+"@context": "https://schema.org",
+"@type": "WebSite",
+"name": "AORKIA",
+"url": "https://www.aorkia.com.br",
+"potentialAction": {
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://www.aorkia.com.br/search?q={search_term_string}"
+},
+"query-input": "required name=search_term_string"
+}
 }
 </script>
-  </head>
-  <body>
-    <header
-      class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200"
-      role="banner"
-    >
-      <div
-        class="container mx-auto max-w-6xl px-4 flex justify-between items-center"
-      >
-        <div class="flex items-center gap-4">
-          <a
-            href="/"
-            class="text-2xl font-['Pacifico'] text-primary dark:text-white"
-            aria-label="Home"
-            >logo</a
-          >
-          <button
-            id="darkModeToggle"
-            class="w-8 h-8 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer"
-            aria-label="Toggle dark mode"
-          >
-            <i class="ri-sun-line dark:hidden"></i>
-            <i class="ri-moon-line hidden dark:block"></i>
-          </button>
-        </div>
-        <nav
-          class="hidden md:flex items-center space-x-8"
-          role="navigation"
-          aria-label="Main navigation"
-        >
-          <a
-            href="/"
-            class="text-primary font-medium cursor-pointer"
-            aria-current="page"
-            >Início</a
-          >
-          <a
-            href="/servicos"
-            class="text-gray-800 hover:text-primary font-medium cursor-pointer"
-            >Serviços</a
-          >
-          <a
-            href="/sobre"
-            class="text-gray-800 hover:text-primary font-medium cursor-pointer"
-            >Sobre</a
-          >
-          <a
-            href="/contato"
-            class="text-gray-800 hover:text-primary font-medium cursor-pointer"
-            >Contato</a
-          >
-        </nav>
-        <button
-          class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-        >
-          <i class="ri-menu-line text-gray-800 ri-lg"></i>
-        </button>
-      </div>
-    </header>
-    <main>
-      <!-- Seção Hero -->
-      <section
-        class="relative py-16 md:py-24 overflow-hidden"
-        style="background-image: url('https://readdy.ai/api/search-image?query=modern%20business%20office%20environment%20with%20soft%20lighting%2C%20clean%20minimalist%20design%2C%20professional%20atmosphere%2C%20blue%20accents%2C%20abstract%20geometric%20elements%2C%20corporate%20setting%2C%20high-end%20technology%2C%20blurred%20background%20on%20the%20left%20side%20for%20text%20placement%2C%20clear%20focus%20on%20right%20side&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"
-        ></div>
-        <div class="container mx-auto max-w-6xl px-4 relative">
-          <div class="flex flex-col md:flex-row items-center">
-            <div class="w-full md:w-1/2 text-white space-y-6 py-8">
-              <h1 class="text-4xl md:text-5xl font-bold">
-                Soluções B2B que Transformam Negócios
-              </h1>
-              <p class="text-lg md:text-xl text-gray-200">
-                Oferecemos serviços estratégicos que potencializam a
-                infraestrutura, segurança e receita da sua empresa.
-              </p>
-              <div class="flex flex-wrap gap-4">
-                <button
-                  class="bg-primary hover:bg-primary/90 text-white px-6 py-3 font-medium !rounded-button whitespace-nowrap flex items-center gap-2 hover-scale cursor-pointer"
-                  title="Agende uma demonstração gratuita de 30 minutos com nossa equipe"
-                  aria-describedby="demo-desc"
-                >
-                  <span>Agende sua Demo Gratuita Agora</span>
-                  <i class="ri-arrow-right-line"></i>
-                  <span class="text-xs opacity-90">⚡ Vagas Limitadas</span>
-                </button>
-                <span id="demo-desc" class="sr-only"
-                  >Demonstração personalizada de 30 minutos com especialista
-                  para conhecer nossas soluções</span
-                >
-                <button
-                  class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-3 font-medium !rounded-button whitespace-nowrap flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Ver Cases de Sucesso</span>
-                  <i class="ri-external-link-line"></i>
-                  <span class="text-xs opacity-90">+50 Empresas</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Seção de Serviços B2B -->
-      <section class="py-16 bg-gray-50">
-        <div class="container mx-auto max-w-6xl px-4">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              Serviços Especializados
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-              Desenvolvemos soluções estratégicas para empresas que buscam
-              excelência operacional e vantagem competitiva no mercado.
-            </p>
-          </div>
-          <!-- Backup SaaS Estratégico -->
-          <div
-            class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16"
-          >
-            <div
-              class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm"
-            >
-              <h2 class="text-3xl font-bold text-gray-900">
-                Backup SaaS Estratégico
-              </h2>
-              <p class="text-lg leading-relaxed text-gray-700">
-                Nossa solução de backup para aplicações SaaS oferece proteção
-                abrangente para seus dados críticos em ambientes de nuvem,
-                garantindo continuidade de negócios mesmo em situações adversas.
-              </p>
-              <blockquote
-                class="border-l-4 border-primary pl-4 italic text-gray-600"
-              >
-                Proteja seus dados na nuvem com a mesma segurança que você teria
-                em ambientes locais, mas com a flexibilidade que apenas o SaaS
-                pode oferecer.
-              </blockquote>
-              <ul
-                class="list-disc list-inside text-gray-700 marker:text-primary"
-              >
-                <li>Backup automatizado com agendamento flexível</li>
-                <li>Recuperação granular de dados em minutos</li>
-                <li>Criptografia de ponta a ponta</li>
-                <li>Conformidade com regulamentações internacionais</li>
-              </ul>
-              <p class="text-lg leading-relaxed font-semibold text-gray-700">
-                Garanta a resiliência digital da sua empresa com nossa solução
-                de backup SaaS de última geração.
-              </p>
-            </div>
-            <div class="w-full md:basis-1/2 flex items-center justify-center">
-              <img
-                src="https://readdy.ai/api/search-image?query=professional%20cloud%20backup%20solution%20visualization%2C%20digital%20data%20protection%20concept%2C%20secure%20storage%20representation%2C%20blue%20technology%20theme%2C%20enterprise-grade%20backup%20system%2C%20data%20recovery%20illustration%2C%20business%20continuity%20planning%2C%20modern%20SaaS%20backup%20interface%2C%20clean%20professional%20design&width=800&height=600&seq=backup1&orientation=landscape"
-                alt="Backup SaaS Estratégico"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Orquestração Estratégica para Infraestruturas Críticas -->
-          <div
-            class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8 mb-16"
-          >
-            <div
-              class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm"
-            >
-              <h2 class="text-3xl font-bold text-gray-900">
-                Orquestração de Infraestruturas Críticas
-              </h2>
-              <p class="text-lg leading-relaxed text-gray-700">
-                Oferecemos soluções avançadas de orquestração para gerenciar
-                infraestruturas complexas, garantindo alta disponibilidade,
-                desempenho otimizado e escalabilidade sob demanda.
-              </p>
-              <blockquote
-                class="border-l-4 border-primary pl-4 italic text-gray-600"
-              >
-                Uma infraestrutura bem orquestrada não apenas responde às
-                demandas atuais, mas se adapta proativamente às necessidades
-                futuras do seu negócio.
-              </blockquote>
-              <ul
-                class="list-disc list-inside text-gray-700 marker:text-primary"
-              >
-                <li>Automação de processos de infraestrutura</li>
-                <li>Monitoramento proativo e resolução de problemas</li>
-                <li>Otimização contínua de recursos</li>
-                <li>Implementação de infraestrutura como código (IaC)</li>
-              </ul>
-              <p class="text-lg leading-relaxed font-semibold text-gray-700">
-                Transforme sua infraestrutura em uma vantagem competitiva com
-                nossa solução de orquestração estratégica.
-              </p>
-            </div>
-            <div class="w-full md:basis-1/2 flex items-center justify-center">
-              <img
-                src="https://readdy.ai/api/search-image?query=modern%20data%20center%20infrastructure%2C%20network%20orchestration%20visualization%2C%20critical%20systems%20management%20interface%2C%20enterprise%20IT%20infrastructure%2C%20server%20room%20with%20blue%20lighting%2C%20cloud%20computing%20architecture%20diagram%2C%20hybrid%20infrastructure%20management%2C%20professional%20technology%20environment%2C%20clean%20design&width=800&height=600&seq=infra1&orientation=landscape"
-                alt="Orquestração Estratégica para Infraestruturas Críticas"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Arquitetura de Segurança e Conformidade -->
-          <div
-            class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16"
-          >
-            <div
-              class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm"
-            >
-              <h2 class="text-3xl font-bold text-gray-900">
-                Arquitetura de Segurança e Conformidade
-              </h2>
-              <p class="text-lg leading-relaxed text-gray-700">
-                Desenvolvemos arquiteturas de segurança robustas que protegem
-                seus ativos digitais contra ameaças avançadas, enquanto garantem
-                conformidade com regulamentações nacionais e internacionais.
-              </p>
-              <blockquote
-                class="border-l-4 border-primary pl-4 italic text-gray-600"
-              >
-                A segurança não é apenas uma camada adicional, mas um componente
-                fundamental integrado em cada aspecto da sua infraestrutura
-                digital.
-              </blockquote>
-              <ul
-                class="list-disc list-inside text-gray-700 marker:text-primary"
-              >
-                <li>Avaliação abrangente de vulnerabilidades</li>
-                <li>Implementação de defesa em profundidade</li>
-                <li>Gerenciamento de identidade e acesso (IAM)</li>
-                <li>Conformidade com LGPD, GDPR, ISO 27001 e outras normas</li>
-              </ul>
-              <p class="text-lg leading-relaxed font-semibold text-gray-700">
-                Proteja seu negócio com uma arquitetura de segurança que evolui
-                continuamente para enfrentar as ameaças emergentes.
-              </p>
-            </div>
-            <div class="w-full md:basis-1/2 flex items-center justify-center">
-              <img
-                src="https://readdy.ai/api/search-image?query=cybersecurity%20architecture%20visualization%2C%20digital%20security%20framework%2C%20compliance%20management%20dashboard%2C%20enterprise%20security%20operations%20center%2C%20blue-themed%20security%20monitoring%20interface%2C%20data%20protection%20system%2C%20network%20security%20visualization%2C%20professional%20security%20architecture%20diagram%2C%20clean%20design&width=800&height=600&seq=security1&orientation=landscape"
-                alt="Arquitetura de Segurança e Conformidade"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Orquestração Estratégica de Receita B2B -->
-          <div
-            class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8"
-          >
-            <div
-              class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm"
-            >
-              <h2 class="text-3xl font-bold text-gray-900">
-                Orquestração Estratégica de Receita B2B
-              </h2>
-              <p class="text-lg leading-relaxed text-gray-700">
-                Nossa solução de orquestração de receita integra vendas,
-                marketing e atendimento ao cliente em um ecossistema coeso,
-                maximizando oportunidades de negócio e acelerando o crescimento
-                da receita.
-              </p>
-              <blockquote
-                class="border-l-4 border-primary pl-4 italic text-gray-600"
-              >
-                A verdadeira transformação de receita ocorre quando todas as
-                equipes de geração de valor trabalham em perfeita sincronia,
-                orientadas por dados e insights compartilhados.
-              </blockquote>
-              <ul
-                class="list-disc list-inside text-gray-700 marker:text-primary"
-              >
-                <li>Alinhamento entre marketing e vendas</li>
-                <li>Automação inteligente do funil de vendas</li>
-                <li>Análise preditiva de oportunidades</li>
-                <li>Otimização contínua do ciclo de receita</li>
-              </ul>
-              <p class="text-lg leading-relaxed font-semibold text-gray-700">
-                Impulsione o crescimento sustentável da sua empresa com nossa
-                abordagem integrada de orquestração de receita B2B.
-              </p>
-            </div>
-            <div class="w-full md:basis-1/2 flex items-center justify-center">
-              <img
-                src="https://readdy.ai/api/search-image?query=B2B%20revenue%20management%20dashboard%2C%20sales%20pipeline%20visualization%2C%20business%20growth%20strategy%20chart%2C%20revenue%20orchestration%20interface%2C%20blue-themed%20analytics%20dashboard%2C%20enterprise%20sales%20management%20system%2C%20customer%20journey%20optimization%2C%20professional%20business%20intelligence%20visualization%2C%20clean%20design&width=800&height=600&seq=revenue1&orientation=landscape"
-                alt="Orquestração Estratégica de Receita B2B"
-                class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Seção de Depoimentos -->
-      <section class="py-16 bg-white">
-        <div class="container mx-auto max-w-6xl px-4">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              O Que Nossos Clientes Dizem
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-              Conheça a experiência de empresas que transformaram seus negócios
-              com nossas soluções estratégicas.
-            </p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Depoimento 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4"
-                >
-                  <i class="ri-user-line text-primary ri-lg"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-gray-900">Ricardo Mendes</h3>
-                  <p class="text-sm text-gray-600">CTO, TechSolutions Brasil</p>
-                </div>
-              </div>
-              <p class="text-gray-700 italic">
-                "A implementação da solução de Backup SaaS transformou
-                completamente nossa estratégia de proteção de dados. Reduzimos o
-                tempo de recuperação em 85% e aumentamos nossa conformidade
-                regulatória."
-              </p>
-              <div class="mt-4 flex">
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-              </div>
-            </div>
-            <!-- Depoimento 2 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4"
-                >
-                  <i class="ri-user-line text-primary ri-lg"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-gray-900">Fernanda Oliveira</h3>
-                  <p class="text-sm text-gray-600">CEO, Inova Comércio</p>
-                </div>
-              </div>
-              <p class="text-gray-700 italic">
-                "A Orquestração Estratégica de Receita nos permitiu alinhar
-                vendas e marketing de forma nunca antes vista. Nosso ciclo de
-                vendas reduziu em 40% e a taxa de conversão aumentou
-                significativamente."
-              </p>
-              <div class="mt-4 flex">
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-half-fill text-yellow-400"></i>
-              </div>
-            </div>
-            <!-- Depoimento 3 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4"
-                >
-                  <i class="ri-user-line text-primary ri-lg"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-gray-900">Carlos Eduardo Santos</h3>
-                  <p class="text-sm text-gray-600">CISO, Banco Digital Nexus</p>
-                </div>
-              </div>
-              <p class="text-gray-700 italic">
-                "A Arquitetura de Segurança implementada superou todas as nossas
-                expectativas. Passamos por três auditorias de segurança com zero
-                não-conformidades e reduzimos incidentes em 92%."
-              </p>
-              <div class="mt-4 flex">
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-                <i class="ri-star-fill text-yellow-400"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Seção CTA -->
-      <section class="py-16 bg-primary/5">
-        <div class="container mx-auto max-w-6xl px-4">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div
-                class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center"
-              >
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                  Pronto para transformar seu negócio?
-                </h2>
-                <p class="text-lg text-gray-700 mb-6">
-                  Agende uma consulta gratuita com nossos especialistas e
-                  descubra como nossas soluções podem impulsionar sua empresa.
-                </p>
-                <form
-                  class="space-y-4"
-                  action="mailto:contato@aorkia.com"
-                  method="POST"
-                  enctype="text/plain"
-                >
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Nome"
-                      required
-                      class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      required
-                      class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Telefone"
-                      required
-                      class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    class="w-full bg-primary hover:bg-primary/90 text-white py-3 font-medium !rounded-button whitespace-nowrap hover-scale relative cursor-pointer"
-                    title="Envie seus dados para receber contato da nossa equipe"
-                    aria-describedby="contact-desc"
-                  >
-                    <span>Solicitar Contato</span>
-                    <span
-                      class="loading-spinner hidden absolute right-4 top-1/2 -translate-y-1/2"
-                    >
-                      <i class="ri-loader-4-line animate-spin"></i>
-                    </span>
-                  </button>
-                  <span id="contact-desc" class="sr-only"
-                    >Nossa equipe entrará em contato em até 24 horas úteis</span
-                  >
-                  <div
-                    id="formFeedback"
-                    aria-live="polite"
-                    class="mt-4 text-center hidden"
-                  ></div>
-                </form>
-              </div>
-              <div
-                class="w-full md:w-1/2 bg-gray-100"
-                style="background-image: url('https://readdy.ai/api/search-image?query=business%20meeting%20in%20modern%20office%2C%20professionals%20discussing%20strategy%2C%20collaborative%20workspace%2C%20blue%20accent%20lighting%2C%20business%20consultation%2C%20enterprise%20solution%20planning%2C%20professional%20environment%2C%20clean%20design%2C%20corporate%20setting&width=800&height=800&seq=cta1&orientation=squarish'); background-size: cover; background-position: center;"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="bg-gray-900 text-white py-12" role="contentinfo">
-      <div class="container mx-auto max-w-6xl px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <a
-              href="/"
-              class="text-2xl font-['Pacifico'] text-white mb-4 inline-block cursor-pointer"
-              aria-label="Home"
-              >logo</a
-            >
-            <p class="text-gray-400 mb-4">
-              Soluções estratégicas para empresas que buscam excelência e
-              inovação no mercado B2B.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="https://linkedin.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
-                aria-label="LinkedIn"
-              >
-                <i class="ri-linkedin-fill" aria-hidden="true"></i>
-              </a>
-              <a
-                href="https://twitter.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
-                aria-label="Twitter"
-              >
-                <i class="ri-twitter-x-fill" aria-hidden="true"></i>
-              </a>
-              <a
-                href="https://facebook.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
-                aria-label="Facebook"
-              >
-                <i class="ri-facebook-fill" aria-hidden="true"></i>
-              </a>
-              <a
-                href="https://instagram.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
-                aria-label="Instagram"
-              >
-                <i class="ri-instagram-fill" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">Serviços</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Backup SaaS Estratégico</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Orquestração de Infraestruturas</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Arquitetura de Segurança</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Orquestração de Receita B2B</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">Empresa</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Sobre Nós</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Carreiras</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Blog</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white cursor-pointer"
-                  >Contato</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">Contato</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <i class="ri-map-pin-line mr-2 mt-1"></i>
-                <span class="text-gray-400"
-                  >Av. Paulista, 1000, São Paulo - SP</span
-                >
-              </li>
-              <li class="flex items-center">
-                <i class="ri-phone-line mr-2"></i>
-                <span class="text-gray-400">+55 11 3456-7890</span>
-              </li>
-              <li class="flex items-center">
-                <i class="ri-mail-line mr-2"></i>
-                <span class="text-gray-400">contato@empresa.com.br</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-400 text-sm">
-            © 2025 Todos os direitos reservados.
-          </p>
-          <div class="flex space-x-4 mt-4 md:mt-0">
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white text-sm cursor-pointer"
-              >Política de Privacidade</a
-            >
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white text-sm cursor-pointer"
-              >Termos de Uso</a
-            >
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white text-sm cursor-pointer"
-              >Cookies</a
-            >
-          </div>
-        </div>
-      </div>
-    </footer>
-    <div
-      id="cookieConsent"
-      class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 hidden z-50"
-    >
-      <div
-        class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4"
-      >
-        <div class="flex-1">
-          <p class="text-gray-700">
-            Utilizamos cookies para melhorar sua experiência. Ao continuar
-            navegando, você concorda com nossa
-            <a
-              href="/privacy"
-              class="text-primary hover:underline cursor-pointer"
-              >Política de Privacidade</a
-            >
-            e
-            <a href="/terms" class="text-primary hover:underline cursor-pointer"
-              >Termos de Uso</a
-            >.
-          </p>
-        </div>
-        <div class="flex gap-3">
-          <button
-            id="rejectCookies"
-            class="px-4 py-2 border border-gray-300 !rounded-button text-gray-700 hover:bg-gray-50 whitespace-nowrap cursor-pointer"
-          >
-            Rejeitar Não-Essenciais
-          </button>
-          <button
-            id="acceptCookies"
-            class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-primary/90 whitespace-nowrap cursor-pointer"
-          >
-            Aceitar Todos
-          </button>
-        </div>
-      </div>
-    </div>
-    <script
-      id="analytics-script"
-      nonce="${Math.random().toString(36).substring(2)}"
-    >
-      document.addEventListener("DOMContentLoaded", function () {
-        function trackPageView() {
-          if (typeof gtag === "function") {
-            gtag("event", "page_view");
-          }
-          if (typeof fbq === "function") {
-            fbq("track", "PageView");
-          }
-        }
-        trackPageView();
-      });
-    </script>
-    <script id="form-script" nonce="${Math.random().toString(36).substring(2)}">
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        const formFeedback = document.getElementById("formFeedback");
-        const loadingSpinner = document.querySelector(".loading-spinner");
-        if (form) {
-          form.addEventListener("submit", function (e) {
-            loadingSpinner.classList.remove("hidden");
-            formFeedback.classList.add("hidden");
-            setTimeout(() => {
-              formFeedback.innerHTML =
-                '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-              formFeedback.classList.remove("hidden");
-              loadingSpinner.classList.add("hidden");
-            }, 1000);
-          });
-        }
-      });
-    </script>
-    <script id="menu-script" nonce="${Math.random().toString(36).substring(2)}">
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-        const nav = document.querySelector('nav[role="navigation"]');
-        if (menuButton && nav) {
-          menuButton.addEventListener("click", function () {
-            const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-            menuButton.setAttribute("aria-expanded", !isExpanded);
-            nav.classList.toggle("hidden");
-            menuButton.querySelector("i").classList.toggle("ri-menu-line");
-            menuButton.querySelector("i").classList.toggle("ri-close-line");
-          });
-        }
-      });
-    </script>
-    <script
-      id="cookie-script"
-      nonce="${Math.random().toString(36).substring(2)}"
-    >
-      document.addEventListener("DOMContentLoaded", function () {
-        const cookieConsent = document.getElementById("cookieConsent");
-        const acceptButton = document.getElementById("acceptCookies");
-        const rejectButton = document.getElementById("rejectCookies");
-        if (!localStorage.getItem("cookieConsent")) {
-          cookieConsent.classList.remove("hidden");
-        }
-        if (acceptButton) {
-          acceptButton.addEventListener("click", function () {
-            localStorage.setItem("cookieConsent", "accepted");
-            cookieConsent.classList.add("hidden");
-          });
-        }
-        if (rejectButton) {
-          rejectButton.addEventListener("click", function () {
-            localStorage.setItem("cookieConsent", "rejected");
-            cookieConsent.classList.add("hidden");
-          });
-        }
-      });
-    </script>
-    <script
-      id="dark-mode-script"
-      nonce="${Math.random().toString(36).substring(2)}"
-    >
-      document.addEventListener("DOMContentLoaded", function () {
-        const darkModeToggle = document.getElementById("darkModeToggle");
-        function setDarkMode(isDark) {
-          if (isDark) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("darkMode", "dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("darkMode", "light");
-          }
-        }
-        if (darkModeToggle) {
-          const userPrefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-          ).matches;
-          const storedTheme = localStorage.getItem("darkMode");
-          if (storedTheme) {
-            setDarkMode(storedTheme === "dark");
-          } else {
-            setDarkMode(userPrefersDark);
-          }
-          darkModeToggle.addEventListener("click", () => {
-            const isDark = document.documentElement.classList.contains("dark");
-            setDarkMode(!isDark);
-          });
-          window
-            .matchMedia("(prefers-color-scheme: dark)")
-            .addEventListener("change", (e) => {
-              if (!localStorage.getItem("darkMode")) {
-                setDarkMode(e.matches);
-              }
-            });
-        }
-      });
-    </script>
-  </body>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Service",
+"serviceType": "Serviços B2B",
+"provider": {
+"@type": "Organization",
+"name": "AORKIA"
+},
+"description": "Soluções B2B estratégicas para transformação digital. Oferecemos serviços especializados em backup SaaS, orquestração de infraestrutura, segurança e estratégias de receita para empresas.",
+"offers": {
+"@type": "Offer",
+"availability": "https://schema.org/InStock",
+"priceSpecification": {
+"@type": "PriceSpecification",
+"priceCurrency": "BRL"
+}
+}
+}
+</script>
+</head>
+<body>
+<header class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
+<div class="container mx-auto max-w-6xl px-4 flex justify-between items-center">
+<div>
+<a href="/" class="text-2xl font-['Pacifico'] text-primary dark:text-white" aria-label="Home">logo</a>
+</div>
+<nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+<a href="/" class="text-primary font-medium cursor-pointer" aria-current="page">Início</a>
+<a href="/servicos" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Serviços</a>
+<a href="/insight-engine" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Insight Engine</a>
+<a href="/sobre" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Sobre</a>
+<a href="/contato" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Contato</a>
+</nav>
+<button class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer" aria-label="Toggle menu" aria-expanded="false">
+<i class="ri-close-line text-gray-800 ri-lg hidden"></i>
+<i class="ri-menu-line text-gray-800 ri-lg"></i>
+</button>
+</div>
+<div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50 bg-white dark:bg-gray-900">
+<div class="container mx-auto max-w-6xl px-4 py-8">
+<nav class="flex flex-col space-y-6" role="navigation" aria-label="Mobile navigation">
+<a href="/" class="text-primary text-2xl font-medium cursor-pointer" aria-current="page">Início</a>
+<a href="/servicos" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Serviços</a>
+<a href="/insight-engine" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Insight Engine</a>
+<a href="/sobre" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Sobre</a>
+<a href="/contato" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Contato</a>
+</nav>
+</div>
+</div>
+</header>
+<main>
+<!-- Seção Hero -->
+<section class="relative py-16 md:py-24 overflow-hidden hero" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20business%20office%20environment%20with%20soft%20lighting%2C%20clean%20minimalist%20design%2C%20professional%20atmosphere%2C%20blue%20accents%2C%20abstract%20geometric%20elements%2C%20corporate%20setting%2C%20high-end%20technology%2C%20blurred%20background%20on%20the%20left%20side%20for%20text%20placement%2C%20clear%20focus%20on%20right%20side&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
+<div class="container mx-auto max-w-6xl px-4 relative">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 text-white space-y-6 py-8">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Soluções B2B que Transformam Negócios</h1>
+<p class="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">Potencialize sua empresa com nossas soluções em infraestrutura, segurança e gestão de receita. Agende uma demo gratuita hoje!</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<div class="flex flex-wrap gap-4">
+<a href="tel:+551134567890" class="fixed bottom-4 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg md:hidden hover:bg-primary/90 animate-bounce">
+<i class="ri-phone-fill ri-lg"></i>
+</a>
+<button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-6 py-4 font-medium !rounded-button whitespace-nowrap flex items-center justify-center gap-2 hover-scale cursor-pointer text-lg" title="Agende uma demonstração gratuita de 30 minutos com nossa equipe" aria-describedby="demo-desc">
+<span>Agende Demo Grátis</span>
+<i class="ri-arrow-right-line"></i>
+<span class="text-xs opacity-90">⚡ Últimas Vagas</span>
+</button>
+<span id="demo-desc" class="sr-only">Demonstração personalizada de 30 minutos com especialista para conhecer nossas soluções</span>
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-3 font-medium !rounded-button whitespace-nowrap flex items-center gap-2 cursor-pointer">
+<span>Ver Cases de Sucesso</span>
+<i class="ri-external-link-line"></i>
+<span class="text-xs opacity-90">+50 Empresas</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção de Serviços B2B -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Serviços Especializados</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa: resultados previsíveis, eficiência operacional e expansão sustentável.</p>
+</div>
+<!-- Backup SaaS Estratégico -->
+<div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
+<div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
+<h2 class="text-3xl font-bold text-gray-900 text-center">Backup SaaS Estratégico</h2>
+<p class="text-lg leading-relaxed text-gray-700">A AORKIA orquestra a <span class="text-[#00683f] text-xl font-medium">Keepit</span> – líder em backup SaaS de última geração – para blindar seus dados na nuvem. Garantimos proteção integral e a continuidade decisiva das suas operações.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Proteja seus dados na nuvem com a mesma segurança que você teria em ambientes locais, mas com a flexibilidade que apenas o SaaS pode oferecer.</blockquote>
+<ul class="list-disc list-inside text-gray-700 marker:text-primary">
+<li>Backup automatizado com agendamento flexível</li>
+<li>Recuperação granular de dados em minutos</li>
+<li>Criptografia de ponta a ponta</li>
+<li>Conformidade com regulamentações internacionais</li>
+</ul>
+<p class="text-lg leading-relaxed text-gray-700">Garanta a resiliência digital da sua empresa com nossa solução de backup SaaS de última geração.</p>
+<a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
+<span>Conheça a Solução AORKIA + <span class="text-[#00683f] text-xl">Keepit</span></span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="w-full md:basis-1/2 flex items-center justify-center">
+<img
+src="https://readdy.ai/api/search-image?query=professional%20cloud%20backup%20solution%20visualization%2C%20digital%20data%20protection%20concept%2C%20secure%20storage%20representation%2C%20blue%20technology%20theme%2C%20enterprise-grade%20backup%20system%2C%20data%20recovery%20illustration%2C%20business%20continuity%20planning%2C%20modern%20SaaS%20backup%20interface%2C%20clean%20professional%20design&width=800&height=600&seq=backup1&orientation=landscape"
+alt="Backup SaaS Estratégico"
+class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+loading="lazy"
+>
+</div>
+</div>
+<!-- Orquestração Estratégica para Infraestruturas Críticas -->
+<div class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8 mb-16">
+<div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
+<h2 class="text-3xl font-bold text-gray-900 text-center">Orquestração de Infraestruturas Críticas</h2>
+<p class="text-lg leading-relaxed text-gray-700">Oferecemos soluções avançadas de orquestração para gerenciar infraestruturas complexas, garantindo alta disponibilidade, desempenho otimizado e escalabilidade sob demanda.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Uma infraestrutura bem orquestrada não apenas responde às demandas atuais, mas se adapta proativamente às necessidades futuras do seu negócio.</blockquote>
+<ul class="list-disc list-inside text-gray-700 marker:text-primary">
+<li>Automação de processos de infraestrutura</li>
+<li>Monitoramento proativo e resolução de problemas</li>
+<li>Otimização contínua de recursos</li>
+<li>Implementação de infraestrutura como código (IaC)</li>
+</ul>
+<p class="text-lg leading-relaxed text-gray-700">Transforme sua infraestrutura em uma vantagem competitiva com nossa solução de orquestração estratégica.</p>
+<a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
+<span>Explore o Blueprint de Orquestração Estratégica</span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="w-full md:basis-1/2 flex items-center justify-center">
+<img
+src="https://readdy.ai/api/search-image?query=modern%20data%20center%20infrastructure%2C%20network%20orchestration%20visualization%2C%20critical%20systems%20management%20interface%2C%20enterprise%20IT%20infrastructure%2C%20server%20room%20with%20blue%20lighting%2C%20cloud%20computing%20architecture%20diagram%2C%20hybrid%20infrastructure%20management%2C%20professional%20technology%20environment%2C%20clean%20design&width=800&height=600&seq=infra1&orientation=landscape"
+alt="Orquestração Estratégica para Infraestruturas Críticas"
+class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+loading="lazy"
+>
+</div>
+</div>
+<!-- Arquitetura de Segurança e Conformidade -->
+<div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
+<div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
+<h2 class="text-3xl font-bold text-gray-900 text-center">Arquitetura de Segurança e Conformidade</h2>
+<p class="text-lg leading-relaxed text-gray-700">Desenvolvemos arquiteturas de segurança robustas que protegem seus ativos digitais contra ameaças avançadas, enquanto garantem conformidade com regulamentações nacionais e internacionais.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">A segurança não é apenas uma camada adicional, mas um componente fundamental integrado em cada aspecto da sua infraestrutura digital.</blockquote>
+<ul class="list-disc list-inside text-gray-700 marker:text-primary">
+<li>Avaliação abrangente de vulnerabilidades</li>
+<li>Implementação de defesa em profundidade</li>
+<li>Gerenciamento de identidade e acesso (IAM)</li>
+<li>Conformidade com LGPD, GDPR, ISO 27001 e outras normas</li>
+</ul>
+<p class="text-lg leading-relaxed text-gray-700">Proteja seu negócio com uma arquitetura de segurança que evolui continuamente para enfrentar as ameaças emergentes.</p>
+<a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
+<span>Acesse o Blueprint de Segurança e Conformidade</span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="w-full md:basis-1/2 flex items-center justify-center">
+<img
+src="https://readdy.ai/api/search-image?query=cybersecurity%20architecture%20visualization%2C%20digital%20security%20framework%2C%20compliance%20management%20dashboard%2C%20enterprise%20security%20operations%20center%2C%20blue-themed%20security%20monitoring%20interface%2C%20data%20protection%20system%2C%20network%20security%20visualization%2C%20professional%20security%20architecture%20diagram%2C%20clean%20design&width=800&height=600&seq=security1&orientation=landscape"
+alt="Arquitetura de Segurança e Conformidade"
+class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+loading="lazy"
+>
+</div>
+</div>
+<!-- Orquestração Estratégica de Receita B2B -->
+<div class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8">
+<div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
+<h2 class="text-3xl font-bold text-gray-900 text-center">Orquestração Estratégica de Receita B2B</h2>
+<p class="text-lg leading-relaxed text-gray-700">Nossa solução de orquestração de receita integra vendas, marketing e atendimento ao cliente em um ecossistema coeso, maximizando oportunidades de negócio e acelerando o crescimento da receita.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">A verdadeira transformação de receita ocorre quando todas as equipes de geração de valor trabalham em perfeita sincronia, orientadas por dados e insights compartilhados.</blockquote>
+<ul class="list-disc list-inside text-gray-700 marker:text-primary">
+<li>Alinhamento entre marketing e vendas</li>
+<li>Automação inteligente do funil de vendas</li>
+<li>Análise preditiva de oportunidades</li>
+<li>Otimização contínua do ciclo de receita</li>
+</ul>
+<p class="text-lg leading-relaxed text-gray-700">Impulsione o crescimento sustentável da sua empresa com nossa abordagem integrada de orquestração de receita B2B.</p>
+<a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
+<span>Descubra o Blueprint de Receita B2B Integrada</span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="w-full md:basis-1/2 flex items-center justify-center">
+<img
+src="https://readdy.ai/api/search-image?query=sophisticated%20B2B%20revenue%20orchestration%20platform%20with%20elegant%20data%20visualization%2C%20modern%20enterprise%20dashboard%20showing%20real-time%20revenue%20metrics%2C%20professional%20analytics%20interface%20with%20crisp%203D%20charts%20and%20graphs%2C%20premium%20business%20intelligence%20system%20with%20blue%20gradient%20accents%2C%20immersive%20sales%20pipeline%20visualization%20with%20pristine%20layout%2C%20high-end%20corporate%20design%20aesthetic%2C%20ultra-high%20resolution%20display%20with%20perfect%20clarity%20and%20detail&width=800&height=600&seq=revenue2&orientation=landscape"
+alt="Orquestração Estratégica de Receita B2B"
+class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+loading="lazy"
+>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção de Depoimentos -->
+<section class="py-16 bg-white">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">O Que Nossos Clientes Dizem</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">Conheça a experiência de empresas que transformaram seus negócios com nossas soluções estratégicas.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Depoimento 1 -->
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line text-primary ri-lg"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900">Ricardo Mendes</h3>
+<p class="text-sm text-gray-600">CTO, TechSolutions Brasil</p>
+</div>
+</div>
+<p class="text-gray-700 italic">"A implementação da solução de Backup SaaS transformou completamente nossa estratégia de proteção de dados. Reduzimos o tempo de recuperação em 85% e aumentamos nossa conformidade regulatória."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+</div>
+<!-- Depoimento 2 -->
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line text-primary ri-lg"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900">Fernanda Oliveira</h3>
+<p class="text-sm text-gray-600">CEO, Inova Comércio</p>
+</div>
+</div>
+<p class="text-gray-700 italic">"A Orquestração Estratégica de Receita nos permitiu alinhar vendas e marketing de forma nunca antes vista. Nosso ciclo de vendas reduziu em 40% e a taxa de conversão aumentou significativamente."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+</div>
+<!-- Depoimento 3 -->
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line text-primary ri-lg"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900">Carlos Eduardo Santos</h3>
+<p class="text-sm text-gray-600">CISO, Banco Digital Nexus</p>
+</div>
+</div>
+<p class="text-gray-700 italic">"A Arquitetura de Segurança implementada superou todas as nossas expectativas. Passamos por três auditorias de segurança com zero não-conformidades e reduzimos incidentes em 92%."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a href="/insight-engine" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 font-medium !rounded-button whitespace-nowrap hover-scale">
+<span>Explore nossa Insight Engine</span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Seção CTA -->
+<section class="py-16 bg-primary/5">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Pronto para transformar seu negócio?</h2>
+<p class="text-lg text-gray-700 mb-6">Agende uma consulta gratuita com nossos especialistas e descubra como nossas soluções podem impulsionar sua empresa.</p>
+<form class="space-y-4" action="mailto:contato@aorkia.com" method="POST" enctype="text/plain" autocomplete="on">
+<div>
+<input type="text" name="name" placeholder="Nome" required class="w-full px-4 py-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-base" autocomplete="name" minlength="2">
+</div>
+<div>
+<input type="email" name="email" placeholder="Email corporativo" required class="w-full px-4 py-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-base" autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+</div>
+<div>
+<input type="tel" name="phone" placeholder="WhatsApp / Telefone" required class="w-full px-4 py-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-base" autocomplete="tel" pattern="[0-9]{10,}" inputmode="numeric">
+</div>
+<button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 font-medium !rounded-button whitespace-nowrap hover-scale relative cursor-pointer" title="Envie seus dados para receber contato da nossa equipe" aria-describedby="contact-desc">
+<span>Solicitar Contato</span>
+<span class="loading-spinner hidden absolute right-4 top-1/2 -translate-y-1/2">
+<i class="ri-loader-4-line animate-spin"></i>
+</span>
+</button>
+<small class="text-gray-500 mt-2 block">Após enviar, seu cliente de email será aberto automaticamente.</small>
+<span id="contact-desc" class="sr-only">Nossa equipe entrará em contato em até 24 horas úteis</span>
+<div id="formFeedback" aria-live="polite" class="mt-4 text-center hidden"></div>
+</form>
+</div>
+<div class="w-full md:w-1/2 bg-gray-100" style="background-image: url('https://readdy.ai/api/search-image?query=business%20meeting%20in%20modern%20office%2C%20professionals%20discussing%20strategy%2C%20collaborative%20workspace%2C%20blue%20accent%20lighting%2C%20business%20consultation%2C%20enterprise%20solution%20planning%2C%20professional%20environment%2C%20clean%20design%2C%20corporate%20setting&width=800&height=800&seq=cta1&orientation=squarish'); background-size: cover; background-position: center;"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-900 text-white py-12" role="contentinfo">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="/" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block cursor-pointer" aria-label="Home">logo</a>
+<p class="text-gray-400 mb-4">Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B.</p>
+<div class="flex space-x-4">
+<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="LinkedIn">
+<i class="ri-linkedin-fill" aria-hidden="true"></i>
+</a>
+<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Twitter">
+<i class="ri-twitter-x-fill" aria-hidden="true"></i>
+</a>
+<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Facebook">
+<i class="ri-facebook-fill" aria-hidden="true"></i>
+</a>
+<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Instagram">
+<i class="ri-instagram-fill" aria-hidden="true"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Serviços</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Backup SaaS Estratégico</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Orquestração de Infraestruturas</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Arquitetura de Segurança</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Orquestração de Receita B2B</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Empresa</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Sobre Nós</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Carreiras</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Contato</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Contato</h3>
+<ul class="space-y-2">
+<li class="flex items-start">
+<i class="ri-map-pin-line mr-2 mt-1"></i>
+<span class="text-gray-400">Av. Paulista, 1000, São Paulo - SP</span>
+</li>
+<li class="flex items-center">
+<i class="ri-phone-line mr-2"></i>
+<span class="text-gray-400">+55 11 3456-7890</span>
+</li>
+<li class="flex items-center">
+<i class="ri-mail-line mr-2"></i>
+<span class="text-gray-400">contato@empresa.com.br</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm">© 2025 Todos os direitos reservados.</p>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Política de Privacidade</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Termos de Uso</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+<div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 hidden z-50">
+<div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex-1">
+<p class="text-gray-700">Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="/privacy" class="text-primary hover:underline cursor-pointer">Política de Privacidade</a> e <a href="/terms" class="text-primary hover:underline cursor-pointer">Termos de Uso</a>.</p>
+</div>
+<div class="flex gap-3">
+<button id="rejectCookies" class="px-4 py-2 border border-gray-300 !rounded-button text-gray-700 hover:bg-gray-50 whitespace-nowrap cursor-pointer">Rejeitar Não-Essenciais</button>
+<button id="acceptCookies" class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-primary/90 whitespace-nowrap cursor-pointer">Aceitar Todos</button>
+</div>
+</div>
+</div>
+<script id="analytics-script" nonce="analytics-script">
+document.addEventListener('DOMContentLoaded', function() {
+function trackPageView() {
+if (typeof gtag === 'function') {
+gtag('event', 'page_view');
+}
+if (typeof fbq === 'function') {
+fbq('track', 'PageView');
+}
+}
+trackPageView();
+});
+</script>
+<script id="form-script" nonce="form-script">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.querySelector('form');
+const formFeedback = document.getElementById('formFeedback');
+const loadingSpinner = document.querySelector('.loading-spinner');
+if (form) {
+form.addEventListener('submit', function(e) {
+loadingSpinner.classList.remove('hidden');
+formFeedback.classList.add('hidden');
+setTimeout(() => {
+formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
+formFeedback.classList.remove('hidden');
+loadingSpinner.classList.add('hidden');
+}, 1000);
+});
+}
+});
+</script>
+<script id="mobile-optimization" nonce="mobile-optimization">
+document.addEventListener('DOMContentLoaded', function() {
+const images = document.querySelectorAll('img');
+images.forEach(img => {
+img.loading = 'lazy';
+img.decoding = 'async';
+});
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js').catch(function(err) {
+console.error('Service worker registration failed:', err);
+});
+}
+});
+</script>
+<script id="menu-script" nonce="menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuIcon = menuButton.querySelector('.ri-menu-line');
+const closeIcon = menuButton.querySelector('.ri-close-line');
+if (menuButton && mobileMenu) {
+menuButton.addEventListener('click', function() {
+const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+menuButton.setAttribute('aria-expanded', !isExpanded);
+mobileMenu.classList.toggle('hidden');
+menuIcon.classList.toggle('hidden');
+closeIcon.classList.toggle('hidden');
+document.body.style.overflow = isExpanded ? '' : 'hidden';
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && mobileMenu.classList.contains('hidden') === false) {
+menuButton.click();
+}
+});
+}
+});
+</script>
+<script id="cookie-script" nonce="cookie-script">
+document.addEventListener('DOMContentLoaded', function() {
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptButton = document.getElementById('acceptCookies');
+const rejectButton = document.getElementById('rejectCookies');
+if (!localStorage.getItem('cookieConsent')) {
+cookieConsent.classList.remove('hidden');
+}
+if (acceptButton) {
+acceptButton.addEventListener('click', function() {
+localStorage.setItem('cookieConsent', 'accepted');
+cookieConsent.classList.add('hidden');
+});
+}
+if (rejectButton) {
+rejectButton.addEventListener('click', function() {
+localStorage.setItem('cookieConsent', 'rejected');
+cookieConsent.classList.add('hidden');
+});
+}
+});
+</script>
+</body>
 </html>
