@@ -107,31 +107,30 @@ z-index: 1000;
 <link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://* data:; font-src 'self' local('Corbel'); connect-src 'self' https://www.facebook.com https://www.google-analytics.com;">
 <link rel="icon" type="image/png" href="https://www.aorkia.com.br/favicon.png">
-<script src="https://cdn.tailwindcss.com/3.4.16">
-</script>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        primary: "#0076FF",
-        secondary: "#4A90E2",
-      },
-      borderRadius: {
-        none: "0px",
-        sm: "4px",
-        DEFAULT: "8px",
-        md: "12px",
-        lg: "16px",
-        xl: "20px",
-        "2xl": "24px",
-        "3xl": "32px",
-        full: "9999px",
-        button: "8px",
-      },
-    },
-  },
-};
+tailwind.config={
+theme:{
+extend:{
+colors:{
+primary:'#0076FF',
+secondary:'#4A90E2'
+},
+borderRadius:{
+'none':'0px',
+'sm':'4px',
+DEFAULT:'8px',
+'md':'12px',
+'lg':'16px',
+'xl':'20px',
+'2xl':'24px',
+'3xl':'32px',
+'full':'9999px',
+'button':'8px'
+}
+}
+}
+}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,41 +183,25 @@ cursor: default;
 }
 </style>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">
-</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
-}
-gtag("js", new Date());
-gtag("config", "G-XXXXXXXXXX");
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
 </script>
 <!-- Meta Pixel -->
 <script>
-!(function (f, b, e, v, n, t, s) {
-  if (f.fbq) return;
-  n = f.fbq = function () {
-    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-  };
-  if (!f._fbq) f._fbq = n;
-  n.push = n;
-  n.loaded = !0;
-  n.version = "2.0";
-  n.queue = [];
-  t = b.createElement(e);
-  t.async = !0;
-  t.src = v;
-  s = b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t, s);
-})(
-  window,
-  document,
-  "script",
-  "https://connect.facebook.net/en_US/fbevents.js",
-);
-fbq("init", "XXXXXXXXXXXXX");
-fbq("track", "PageView");
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'XXXXXXXXXXXXX');
+fbq('track', 'PageView');
 </script>
 <title>Serviços B2B | AORKIA</title>
 <link rel="canonical" href="https://www.aorkia.com.br/servicos-b2b" />
@@ -238,7 +221,7 @@ fbq("track", "PageView");
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="apple-touch-startup-image" href="/launch-screen.png" />
 <link rel="manifest" href="/site.webmanifest" />
-
+<script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "Organization",
@@ -266,8 +249,8 @@ fbq("track", "PageView");
 "https://www.instagram.com/aorkia"
 ]
 }
-
-
+</script>
+<script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "WebSite",
@@ -282,8 +265,8 @@ fbq("track", "PageView");
 "query-input": "required name=search_term_string"
 }
 }
-
-
+</script>
+<script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "Service",
@@ -302,7 +285,7 @@ fbq("track", "PageView");
 }
 }
 }
-
+</script>
 </head>
 <body>
 <header class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
@@ -703,97 +686,93 @@ loading="lazy"
 </div>
 </div>
 <script id="analytics-script" nonce="analytics-script">
-document.addEventListener("DOMContentLoaded", function () {
-  function trackPageView() {
-    if (typeof gtag === "function") {
-      gtag("event", "page_view");
-    }
-    if (typeof fbq === "function") {
-      fbq("track", "PageView");
-    }
-  }
-  trackPageView();
+document.addEventListener('DOMContentLoaded', function() {
+function trackPageView() {
+if (typeof gtag === 'function') {
+gtag('event', 'page_view');
+}
+if (typeof fbq === 'function') {
+fbq('track', 'PageView');
+}
+}
+trackPageView();
 });
 </script>
 <script id="form-script" nonce="form-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const formFeedback = document.getElementById("formFeedback");
-  const loadingSpinner = document.querySelector(".loading-spinner");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      loadingSpinner.classList.remove("hidden");
-      formFeedback.classList.add("hidden");
-      setTimeout(() => {
-        formFeedback.innerHTML =
-          '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-        formFeedback.classList.remove("hidden");
-        loadingSpinner.classList.add("hidden");
-      }, 1000);
-    });
-  }
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.querySelector('form');
+const formFeedback = document.getElementById('formFeedback');
+const loadingSpinner = document.querySelector('.loading-spinner');
+if (form) {
+form.addEventListener('submit', function(e) {
+loadingSpinner.classList.remove('hidden');
+formFeedback.classList.add('hidden');
+setTimeout(() => {
+formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
+formFeedback.classList.remove('hidden');
+loadingSpinner.classList.add('hidden');
+}, 1000);
+});
+}
 });
 </script>
 <script id="mobile-optimization" nonce="mobile-optimization">
-document.addEventListener("DOMContentLoaded", function () {
-  const images = document.querySelectorAll("img");
-  images.forEach((img) => {
-    img.loading = "lazy";
-    img.decoding = "async";
-  });
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch(function (err) {
-      console.error("Service worker registration failed:", err);
-    });
-  }
+document.addEventListener('DOMContentLoaded', function() {
+const images = document.querySelectorAll('img');
+images.forEach(img => {
+img.loading = 'lazy';
+img.decoding = 'async';
+});
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js').catch(function(err) {
+console.error('Service worker registration failed:', err);
+});
+}
 });
 </script>
 <script id="menu-script" nonce="menu-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-  const mobileMenu = document.getElementById("mobileMenu");
-  const menuIcon = menuButton.querySelector(".ri-menu-line");
-  const closeIcon = menuButton.querySelector(".ri-close-line");
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", function () {
-      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", !isExpanded);
-      mobileMenu.classList.toggle("hidden");
-      menuIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
-      document.body.style.overflow = isExpanded ? "" : "hidden";
-    });
-    document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "Escape" &&
-        mobileMenu.classList.contains("hidden") === false
-      ) {
-        menuButton.click();
-      }
-    });
-  }
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuIcon = menuButton.querySelector('.ri-menu-line');
+const closeIcon = menuButton.querySelector('.ri-close-line');
+if (menuButton && mobileMenu) {
+menuButton.addEventListener('click', function() {
+const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+menuButton.setAttribute('aria-expanded', !isExpanded);
+mobileMenu.classList.toggle('hidden');
+menuIcon.classList.toggle('hidden');
+closeIcon.classList.toggle('hidden');
+document.body.style.overflow = isExpanded ? '' : 'hidden';
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape' && mobileMenu.classList.contains('hidden') === false) {
+menuButton.click();
+}
+});
+}
 });
 </script>
 <script id="cookie-script" nonce="cookie-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const cookieConsent = document.getElementById("cookieConsent");
-  const acceptButton = document.getElementById("acceptCookies");
-  const rejectButton = document.getElementById("rejectCookies");
-  if (!localStorage.getItem("cookieConsent")) {
-    cookieConsent.classList.remove("hidden");
-  }
-  if (acceptButton) {
-    acceptButton.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "accepted");
-      cookieConsent.classList.add("hidden");
-    });
-  }
-  if (rejectButton) {
-    rejectButton.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "rejected");
-      cookieConsent.classList.add("hidden");
-    });
-  }
+document.addEventListener('DOMContentLoaded', function() {
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptButton = document.getElementById('acceptCookies');
+const rejectButton = document.getElementById('rejectCookies');
+if (!localStorage.getItem('cookieConsent')) {
+cookieConsent.classList.remove('hidden');
+}
+if (acceptButton) {
+acceptButton.addEventListener('click', function() {
+localStorage.setItem('cookieConsent', 'accepted');
+cookieConsent.classList.add('hidden');
+});
+}
+if (rejectButton) {
+rejectButton.addEventListener('click', function() {
+localStorage.setItem('cookieConsent', 'rejected');
+cookieConsent.classList.add('hidden');
+});
+}
 });
 </script>
 </body>
