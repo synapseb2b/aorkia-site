@@ -1,10 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="description" content="Soluções B2B para transformação digital: backup SaaS, infraestrutura, segurança e estratégias. Agende uma demonstração gratuita e transforme seu negócio hoje.">
 <meta name="format-detection" content="telephone=no">
+<style>
+:root {
+--background: #ffffff;
+--primary: #0076FF;
+--secondary: #4A90E2;
+--text-primary: #1A1F36;
+--text-secondary: #697386;
+}
+body {
+background-color: var(--background);
+color: var(--text-primary);
+font-feature-settings: "ss01", "ss02", "ss03";
+}
+.gradient-text {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.hero-gradient {
+background: radial-gradient(circle at 50% 50%, rgba(0, 118, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+}
+.feature-card {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+backdrop-filter: blur(10px);
+border: 1px solid rgba(0, 118, 255, 0.1);
+transition: all 0.3s ease;
+}
+.feature-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 118, 255, 0.1);
+border-color: rgba(0, 118, 255, 0.2);
+}
+.gradient-border::before {
+content: '';
+position: absolute;
+inset: -2px;
+border-radius: 18px;
+background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+opacity: 0.3;
+transition: opacity 0.3s ease;
+}
+.gradient-border:hover::before {
+opacity: 1;
+}
+.hover-glow {
+transition: all 0.3s ease;
+}
+.hover-glow:hover {
+box-shadow: 0 0 20px rgba(0, 118, 255, 0.2);
+transform: translateY(-2px);
+}
+.card-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+}
+.service-card {
+backdrop-filter: blur(10px);
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.floating-element {
+animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+100% { transform: translateY(0px); }
+}
+.text-gradient {
+background: linear-gradient(45deg, var(--primary), var(--text-primary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.scroll-indicator {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: var(--primary);
+transform-origin: 0%;
+z-index: 1000;
+}
+</style>
 <meta name="theme-color" content="#0076FF">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0076FF">
@@ -17,30 +107,31 @@
 <link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://* data:; font-src 'self' local('Corbel'); connect-src 'self' https://www.facebook.com https://www.google-analytics.com;">
 <link rel="icon" type="image/png" href="https://www.aorkia.com.br/favicon.png">
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="https://cdn.tailwindcss.com/3.4.16">
+</script>
 <script>
-tailwind.config={
-theme:{
-extend:{
-colors:{
-primary:'#0076FF',
-secondary:'#4A90E2'
-},
-borderRadius:{
-'none':'0px',
-'sm':'4px',
-DEFAULT:'8px',
-'md':'12px',
-'lg':'16px',
-'xl':'20px',
-'2xl':'24px',
-'3xl':'32px',
-'full':'9999px',
-'button':'8px'
-}
-}
-}
-}
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#0076FF",
+        secondary: "#4A90E2",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,25 +184,41 @@ cursor: default;
 }
 </style>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">
+</script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag("js", new Date());
+gtag("config", "G-XXXXXXXXXX");
 </script>
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'XXXXXXXXXXXXX');
-fbq('track', 'PageView');
+!(function (f, b, e, v, n, t, s) {
+  if (f.fbq) return;
+  n = f.fbq = function () {
+    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+  };
+  if (!f._fbq) f._fbq = n;
+  n.push = n;
+  n.loaded = !0;
+  n.version = "2.0";
+  n.queue = [];
+  t = b.createElement(e);
+  t.async = !0;
+  t.src = v;
+  s = b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t, s);
+})(
+  window,
+  document,
+  "script",
+  "https://connect.facebook.net/en_US/fbevents.js",
+);
+fbq("init", "XXXXXXXXXXXXX");
+fbq("track", "PageView");
 </script>
 <title>Serviços B2B | AORKIA</title>
 <link rel="canonical" href="https://www.aorkia.com.br/servicos-b2b" />
@@ -131,7 +238,7 @@ fbq('track', 'PageView');
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="apple-touch-startup-image" href="/launch-screen.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<script type="application/ld+json">
+
 {
 "@context": "https://schema.org",
 "@type": "Organization",
@@ -159,8 +266,8 @@ fbq('track', 'PageView');
 "https://www.instagram.com/aorkia"
 ]
 }
-</script>
-<script type="application/ld+json">
+
+
 {
 "@context": "https://schema.org",
 "@type": "WebSite",
@@ -175,8 +282,8 @@ fbq('track', 'PageView');
 "query-input": "required name=search_term_string"
 }
 }
-</script>
-<script type="application/ld+json">
+
+
 {
 "@context": "https://schema.org",
 "@type": "Service",
@@ -195,7 +302,7 @@ fbq('track', 'PageView');
 }
 }
 }
-</script>
+
 </head>
 <body>
 <header class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
@@ -235,7 +342,8 @@ fbq('track', 'PageView');
 <div class="flex flex-col md:flex-row items-center">
 <div class="w-full md:w-1/2 text-white space-y-6 py-8">
 <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Soluções B2B que Transformam Negócios</h1>
-<p class="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">Potencialize sua empresa com nossas soluções em infraestrutura, segurança e gestão de receita. Agende uma demo gratuita hoje!</p>
+<p class="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">Potencialize sua empresa com nossas soluções em infraestrutura, segurança e gestão de receita.</p>
+<p class="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed italic">Incluindo Backup SaaS da <span class="text-[#00683f] font-bold bg-white px-1 rounded">Keepit</span> – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.</p>
 <div class="flex flex-col sm:flex-row gap-4">
 <div class="flex flex-wrap gap-4">
 <a href="tel:+551134567890" class="fixed bottom-4 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg md:hidden hover:bg-primary/90 animate-bounce">
@@ -243,14 +351,14 @@ fbq('track', 'PageView');
 </a>
 <button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-6 py-4 font-medium !rounded-button whitespace-nowrap flex items-center justify-center gap-2 hover-scale cursor-pointer text-lg" title="Agende uma demonstração gratuita de 30 minutos com nossa equipe" aria-describedby="demo-desc">
 <span>Agende Demo Grátis</span>
-<i class="ri-arrow-right-line"></i>
+<i class="ri-calendar-line"></i>
 <span class="text-xs opacity-90">⚡ Últimas Vagas</span>
 </button>
 <span id="demo-desc" class="sr-only">Demonstração personalizada de 30 minutos com especialista para conhecer nossas soluções</span>
-<button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-3 font-medium !rounded-button whitespace-nowrap flex items-center gap-2 cursor-pointer">
+<button class="group bg-white hover:bg-gray-50 text-text-primary px-8 py-5 font-medium !rounded-button whitespace-nowrap flex items-center gap-3 hover-scale cursor-pointer text-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
 <span>Ver Cases de Sucesso</span>
-<i class="ri-external-link-line"></i>
-<span class="text-xs opacity-90">+50 Empresas</span>
+<i class="ri-external-link-line transition-transform group-hover:translate-x-1"></i>
+<span class="text-sm text-text-secondary">+50 Empresas</span>
 </button>
 </div>
 </div>
@@ -258,11 +366,31 @@ fbq('track', 'PageView');
 </div>
 </section>
 <!-- Seção de Serviços B2B -->
-<section class="py-16 bg-gray-50">
-<div class="container mx-auto max-w-6xl px-4">
-<div class="text-center mb-16">
-<h2 class="text-3xl font-bold text-gray-900 mb-4">Serviços Especializados</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto">Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa: resultados previsíveis, eficiência operacional e expansão sustentável.</p>
+<section class="py-24 md:py-32 bg-white relative overflow-hidden">
+<div class="absolute inset-0">
+<div class="absolute w-full h-full bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03]"></div>
+<div class="absolute w-[1200px] h-[1200px] -top-[600px] -left-[600px] rounded-full bg-gradient-to-br from-primary/[0.05] via-primary/[0.02] to-transparent"></div>
+<div class="absolute w-[1000px] h-[1000px] -bottom-[500px] -right-[500px] rounded-full bg-gradient-to-tl from-secondary/[0.05] via-secondary/[0.02] to-transparent"></div>
+<div class="absolute inset-0 bg-[url('https://readdy.ai/api/search-image?query=subtle%20abstract%20geometric%20pattern%2C%20extremely%20light%20and%20minimal%2C%20professional%20business%20style%2C%20barely%20visible%20design%20elements%2C%20white%20background%20with%20very%20soft%20blue%20accents%2C%20clean%20modern%20aesthetic&width=1920&height=1080&seq=bg1&orientation=landscape')] opacity-[0.02] bg-cover bg-center mix-blend-overlay"></div>
+</div>
+<div class="container mx-auto max-w-7xl px-4 relative z-10">
+<div class="text-center mb-24">
+<div class="inline-flex flex-col items-center">
+<span class="inline-block text-primary font-medium mb-4 px-6 py-2 bg-primary/[0.05] rounded-full backdrop-blur-sm shadow-sm">Nossas Soluções</span>
+<h2 class="text-4xl md:text-5xl font-bold mb-8 relative">
+<span class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 blur-xl"></span>
+<span class="relative">
+<span class="gradient-text">Serviços</span>
+<span class="relative"> Especializados</span>
+</span>
+</h2>
+<p class="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
+<span class="text-primary font-medium">resultados previsíveis</span>,
+<span class="text-primary font-medium">eficiência operacional</span> e
+<span class="text-primary font-medium">expansão sustentável</span>.
+</p>
+</div>
 </div>
 <!-- Backup SaaS Estratégico -->
 <div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
@@ -394,12 +522,15 @@ loading="lazy"
 </div>
 </div>
 <p class="text-gray-700 italic">"A implementação da solução de Backup SaaS transformou completamente nossa estratégia de proteção de dados. Reduzimos o tempo de recuperação em 85% e aumentamos nossa conformidade regulatória."</p>
-<div class="mt-4 flex">
+<div class="mt-4 flex items-center gap-1">
+<div class="flex">
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
+</div>
+<i class="ri-verified-badge-fill text-primary ml-2"></i>
 </div>
 </div>
 <!-- Depoimento 2 -->
@@ -434,12 +565,15 @@ loading="lazy"
 </div>
 </div>
 <p class="text-gray-700 italic">"A Arquitetura de Segurança implementada superou todas as nossas expectativas. Passamos por três auditorias de segurança com zero não-conformidades e reduzimos incidentes em 92%."</p>
-<div class="mt-4 flex">
+<div class="mt-4 flex items-center gap-1">
+<div class="flex">
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
 <i class="ri-star-fill text-yellow-400"></i>
+</div>
+<i class="ri-verified-badge-fill text-primary ml-2"></i>
 </div>
 </div>
 </div>
@@ -486,69 +620,73 @@ loading="lazy"
 </div>
 </section>
 </main>
-<footer class="bg-gray-900 text-white py-12" role="contentinfo">
-<div class="container mx-auto max-w-6xl px-4">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-<div>
-<a href="/" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block cursor-pointer" aria-label="Home">logo</a>
-<p class="text-gray-400 mb-4">Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B.</p>
-<div class="flex space-x-4">
-<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="LinkedIn">
-<i class="ri-linkedin-fill" aria-hidden="true"></i>
+<footer class="bg-gray-900 text-white py-16 relative overflow-hidden" role="contentinfo">
+<div class="absolute inset-0 bg-[url('https://readdy.ai/api/search-image?query=abstract%20dark%20pattern%2C%20extremely%20subtle%20and%20professional%2C%20corporate%20style%2C%20barely%20visible%20geometric%20elements%2C%20deep%20blue%20and%20black%20gradient%2C%20modern%20minimal%20design&width=1920&height=1080&seq=footer_bg&orientation=landscape')] opacity-[0.03] bg-cover bg-center"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+<div class="container mx-auto max-w-6xl px-4 relative">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 relative">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 opacity-10 blur-3xl"></div>
+<div class="md:col-span-4">
+<a href="/" class="text-2xl font-['Pacifico'] text-white mb-6 inline-block cursor-pointer hover:text-primary transition-colors" aria-label="Home">logo</a>
+<p class="text-gray-400 mb-6 leading-relaxed">Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B. Transformando desafios em oportunidades desde 2015.</p>
+<div class="flex space-x-5">
+<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="LinkedIn">
+<i class="ri-linkedin-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
 </a>
-<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Twitter">
-<i class="ri-twitter-x-fill" aria-hidden="true"></i>
+<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Twitter">
+<i class="ri-twitter-x-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
 </a>
-<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Facebook">
-<i class="ri-facebook-fill" aria-hidden="true"></i>
+<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Facebook">
+<i class="ri-facebook-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
 </a>
-<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer" aria-label="Instagram">
-<i class="ri-instagram-fill" aria-hidden="true"></i>
+<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Instagram">
+<i class="ri-instagram-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
 </a>
 </div>
 </div>
-<div>
-<h3 class="text-lg font-bold mb-4 text-white">Serviços</h3>
-<ul class="space-y-2">
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Backup SaaS Estratégico</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Orquestração de Infraestruturas</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Arquitetura de Segurança</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Orquestração de Receita B2B</a></li>
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold mb-6 text-white">Serviços</h3>
+<ul class="space-y-4">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Backup SaaS Estratégico</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Orquestração de Infraestruturas</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Arquitetura de Segurança</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Orquestração de Receita B2B</a></li>
 </ul>
 </div>
-<div>
-<h3 class="text-lg font-bold mb-4 text-white">Empresa</h3>
-<ul class="space-y-2">
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Sobre Nós</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Carreiras</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Blog</a></li>
-<li><a href="#" class="text-gray-400 hover:text-white cursor-pointer">Contato</a></li>
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold mb-6 text-white">Empresa</h3>
+<ul class="space-y-4">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Sobre Nós</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Carreiras</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Contato</a></li>
 </ul>
 </div>
-<div>
-<h3 class="text-lg font-bold mb-4 text-white">Contato</h3>
-<ul class="space-y-2">
-<li class="flex items-start">
-<i class="ri-map-pin-line mr-2 mt-1"></i>
-<span class="text-gray-400">Av. Paulista, 1000, São Paulo - SP</span>
+<div class="md:col-span-4">
+<h3 class="text-lg font-bold mb-6 text-white">Contato</h3>
+<ul class="space-y-4">
+<li class="flex items-start group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-map-pin-2-fill text-primary mr-3 mt-1"></i>
+<span class="text-gray-400 group-hover:text-primary transition-colors duration-300">Av. Paulista, 1000, Bela Vista<br>São Paulo - SP, 01310-100</span>
 </li>
-<li class="flex items-center">
-<i class="ri-phone-line mr-2"></i>
-<span class="text-gray-400">+55 11 3456-7890</span>
+<li class="flex items-center group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-phone-line text-primary mr-3"></i>
+<span class="text-gray-400 group-hover:text-primary transition-colors duration-300">+55 11 3456-7890</span>
 </li>
-<li class="flex items-center">
-<i class="ri-mail-line mr-2"></i>
-<span class="text-gray-400">contato@empresa.com.br</span>
+<li class="flex items-center group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-mail-line text-primary mr-3"></i>
+<span class="text-gray-400 group-hover:text-primary transition-colors duration-300">contato@empresa.com.br</span>
 </li>
 </ul>
 </div>
 </div>
-<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-<p class="text-gray-400 text-sm">© 2025 Todos os direitos reservados.</p>
-<div class="flex space-x-4 mt-4 md:mt-0">
-<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Política de Privacidade</a>
-<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Termos de Uso</a>
-<a href="#" class="text-gray-400 hover:text-white text-sm cursor-pointer">Cookies</a>
+<div class="border-t border-gray-800/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center relative">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 opacity-10"></div>
+<p class="text-gray-400 text-sm">© 2025 AORKIA. Todos os direitos reservados.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a href="#" class="text-gray-400 hover:text-primary text-sm transition-all duration-300 cursor-pointer hover:-translate-y-0.5 hover:shadow-sm">Política de Privacidade</a>
+<a href="#" class="text-gray-400 hover:text-primary text-sm transition-all duration-300 cursor-pointer hover:-translate-y-0.5 hover:shadow-sm">Termos de Uso</a>
+<a href="#" class="text-gray-400 hover:text-primary text-sm transition-all duration-300 cursor-pointer hover:-translate-y-0.5 hover:shadow-sm">Cookies</a>
 </div>
 </div>
 </div>
@@ -565,93 +703,97 @@ loading="lazy"
 </div>
 </div>
 <script id="analytics-script" nonce="analytics-script">
-document.addEventListener('DOMContentLoaded', function() {
-function trackPageView() {
-if (typeof gtag === 'function') {
-gtag('event', 'page_view');
-}
-if (typeof fbq === 'function') {
-fbq('track', 'PageView');
-}
-}
-trackPageView();
+document.addEventListener("DOMContentLoaded", function () {
+  function trackPageView() {
+    if (typeof gtag === "function") {
+      gtag("event", "page_view");
+    }
+    if (typeof fbq === "function") {
+      fbq("track", "PageView");
+    }
+  }
+  trackPageView();
 });
 </script>
 <script id="form-script" nonce="form-script">
-document.addEventListener('DOMContentLoaded', function() {
-const form = document.querySelector('form');
-const formFeedback = document.getElementById('formFeedback');
-const loadingSpinner = document.querySelector('.loading-spinner');
-if (form) {
-form.addEventListener('submit', function(e) {
-loadingSpinner.classList.remove('hidden');
-formFeedback.classList.add('hidden');
-setTimeout(() => {
-formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-formFeedback.classList.remove('hidden');
-loadingSpinner.classList.add('hidden');
-}, 1000);
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const formFeedback = document.getElementById("formFeedback");
+  const loadingSpinner = document.querySelector(".loading-spinner");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      loadingSpinner.classList.remove("hidden");
+      formFeedback.classList.add("hidden");
+      setTimeout(() => {
+        formFeedback.innerHTML =
+          '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
+        formFeedback.classList.remove("hidden");
+        loadingSpinner.classList.add("hidden");
+      }, 1000);
+    });
+  }
 });
 </script>
 <script id="mobile-optimization" nonce="mobile-optimization">
-document.addEventListener('DOMContentLoaded', function() {
-const images = document.querySelectorAll('img');
-images.forEach(img => {
-img.loading = 'lazy';
-img.decoding = 'async';
-});
-if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('/sw.js').catch(function(err) {
-console.error('Service worker registration failed:', err);
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll("img");
+  images.forEach((img) => {
+    img.loading = "lazy";
+    img.decoding = "async";
+  });
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch(function (err) {
+      console.error("Service worker registration failed:", err);
+    });
+  }
 });
 </script>
 <script id="menu-script" nonce="menu-script">
-document.addEventListener('DOMContentLoaded', function() {
-const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuIcon = menuButton.querySelector('.ri-menu-line');
-const closeIcon = menuButton.querySelector('.ri-close-line');
-if (menuButton && mobileMenu) {
-menuButton.addEventListener('click', function() {
-const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-menuButton.setAttribute('aria-expanded', !isExpanded);
-mobileMenu.classList.toggle('hidden');
-menuIcon.classList.toggle('hidden');
-closeIcon.classList.toggle('hidden');
-document.body.style.overflow = isExpanded ? '' : 'hidden';
-});
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape' && mobileMenu.classList.contains('hidden') === false) {
-menuButton.click();
-}
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuIcon = menuButton.querySelector(".ri-menu-line");
+  const closeIcon = menuButton.querySelector(".ri-close-line");
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", function () {
+      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", !isExpanded);
+      mobileMenu.classList.toggle("hidden");
+      menuIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+      document.body.style.overflow = isExpanded ? "" : "hidden";
+    });
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        mobileMenu.classList.contains("hidden") === false
+      ) {
+        menuButton.click();
+      }
+    });
+  }
 });
 </script>
 <script id="cookie-script" nonce="cookie-script">
-document.addEventListener('DOMContentLoaded', function() {
-const cookieConsent = document.getElementById('cookieConsent');
-const acceptButton = document.getElementById('acceptCookies');
-const rejectButton = document.getElementById('rejectCookies');
-if (!localStorage.getItem('cookieConsent')) {
-cookieConsent.classList.remove('hidden');
-}
-if (acceptButton) {
-acceptButton.addEventListener('click', function() {
-localStorage.setItem('cookieConsent', 'accepted');
-cookieConsent.classList.add('hidden');
-});
-}
-if (rejectButton) {
-rejectButton.addEventListener('click', function() {
-localStorage.setItem('cookieConsent', 'rejected');
-cookieConsent.classList.add('hidden');
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieConsent = document.getElementById("cookieConsent");
+  const acceptButton = document.getElementById("acceptCookies");
+  const rejectButton = document.getElementById("rejectCookies");
+  if (!localStorage.getItem("cookieConsent")) {
+    cookieConsent.classList.remove("hidden");
+  }
+  if (acceptButton) {
+    acceptButton.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "accepted");
+      cookieConsent.classList.add("hidden");
+    });
+  }
+  if (rejectButton) {
+    rejectButton.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "rejected");
+      cookieConsent.classList.add("hidden");
+    });
+  }
 });
 </script>
 </body>
