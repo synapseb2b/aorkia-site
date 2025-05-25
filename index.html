@@ -107,37 +107,39 @@ z-index: 1000;
 <link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://* data:; font-src 'self' local('Corbel'); connect-src 'self' https://www.facebook.com https://www.google-analytics.com;">
 <link rel="icon" type="image/png" href="https://www.aorkia.com.br/favicon.png">
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="https://cdn.tailwindcss.com/3.4.16">
+</script>
 <script>
-tailwind.config={
-theme:{
-extend:{
-colors:{
-primary:'#0076FF',
-secondary:'#4A90E2'
-},
-borderRadius:{
-'none':'0px',
-'sm':'4px',
-DEFAULT:'8px',
-'md':'12px',
-'lg':'16px',
-'xl':'20px',
-'2xl':'24px',
-'3xl':'32px',
-'full':'9999px',
-'button':'8px'
-}
-}
-}
-}
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#0076FF",
+        secondary: "#4A90E2",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 <style>
-:where([class^="ri-"])::before { content: "\f3c2"; }
+:where([class^="ri-"])::before { content: "\ea6b"; }
+.ri-fw { width: 1.25em; text-align: center; }
 html {
 scroll-behavior: smooth;
 }
@@ -176,32 +178,48 @@ cursor: default;
 transition: all 0.3s ease-in-out;
 }
 .hero h1:hover, .hero h2:hover, .hero h3:hover, footer h1:hover, footer h2:hover, footer h3:hover, .text-white:hover {
-color: #0076FF;
+color: #4A90E2;
 text-shadow: 0 0 8px rgba(0, 118, 255, 0.4),
 0 0 16px rgba(0, 118, 255, 0.2);
 cursor: default;
 }
 </style>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">
+</script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag("js", new Date());
+gtag("config", "G-XXXXXXXXXX");
 </script>
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'XXXXXXXXXXXXX');
-fbq('track', 'PageView');
+!(function (f, b, e, v, n, t, s) {
+  if (f.fbq) return;
+  n = f.fbq = function () {
+    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+  };
+  if (!f._fbq) f._fbq = n;
+  n.push = n;
+  n.loaded = !0;
+  n.version = "2.0";
+  n.queue = [];
+  t = b.createElement(e);
+  t.async = !0;
+  t.src = v;
+  s = b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t, s);
+})(
+  window,
+  document,
+  "script",
+  "https://connect.facebook.net/en_US/fbevents.js",
+);
+fbq("init", "XXXXXXXXXXXXX");
+fbq("track", "PageView");
 </script>
 <title>Serviços B2B | AORKIA</title>
 <link rel="canonical" href="https://www.aorkia.com.br/servicos-b2b" />
@@ -221,7 +239,7 @@ fbq('track', 'PageView');
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="apple-touch-startup-image" href="/launch-screen.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<script type="application/ld+json">
+
 {
 "@context": "https://schema.org",
 "@type": "Organization",
@@ -249,8 +267,8 @@ fbq('track', 'PageView');
 "https://www.instagram.com/aorkia"
 ]
 }
-</script>
-<script type="application/ld+json">
+
+
 {
 "@context": "https://schema.org",
 "@type": "WebSite",
@@ -265,8 +283,8 @@ fbq('track', 'PageView');
 "query-input": "required name=search_term_string"
 }
 }
-</script>
-<script type="application/ld+json">
+
+
 {
 "@context": "https://schema.org",
 "@type": "Service",
@@ -285,7 +303,7 @@ fbq('track', 'PageView');
 }
 }
 }
-</script>
+
 </head>
 <body>
 <header class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
@@ -295,22 +313,19 @@ fbq('track', 'PageView');
 </div>
 <nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
 <a href="/" class="text-primary font-medium cursor-pointer" aria-current="page">Início</a>
-<a href="/servicos" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Serviços</a>
-<a href="/insight-engine" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Insight Engine</a>
+<a href="/servicos" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Soluções</a>
 <a href="/sobre" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Sobre</a>
 <a href="/contato" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Contato</a>
 </nav>
 <button class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer" aria-label="Toggle menu" aria-expanded="false">
-<i class="ri-close-line text-gray-800 ri-lg hidden"></i>
-<i class="ri-menu-line text-gray-800 ri-lg"></i>
+Menu
 </button>
 </div>
 <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50 bg-white dark:bg-gray-900">
 <div class="container mx-auto max-w-6xl px-4 py-8">
 <nav class="flex flex-col space-y-6" role="navigation" aria-label="Mobile navigation">
 <a href="/" class="text-primary text-2xl font-medium cursor-pointer" aria-current="page">Início</a>
-<a href="/servicos" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Serviços</a>
-<a href="/insight-engine" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Insight Engine</a>
+<a href="/servicos" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Soluções</a>
 <a href="/sobre" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Sobre</a>
 <a href="/contato" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Contato</a>
 </nav>
@@ -330,18 +345,14 @@ fbq('track', 'PageView');
 <div class="flex flex-col sm:flex-row gap-4">
 <div class="flex flex-wrap gap-4">
 <a href="tel:+551134567890" class="fixed bottom-4 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg md:hidden hover:bg-primary/90 animate-bounce">
-<i class="ri-phone-fill ri-lg"></i>
+Ligar
 </a>
-<button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-6 py-4 font-medium !rounded-button whitespace-nowrap flex items-center justify-center gap-2 hover-scale cursor-pointer text-lg" title="Agende uma demonstração gratuita de 30 minutos com nossa equipe" aria-describedby="demo-desc">
-<span>Agende Demo Grátis</span>
-<i class="ri-calendar-line"></i>
-<span class="text-xs opacity-90">⚡ Últimas Vagas</span>
+<button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-6 py-4 font-medium !rounded-button whitespace-nowrap flex items-center justify-center gap-2 hover-scale cursor-pointer text-lg" title="Fale com um de nossos estrategistas" aria-describedby="demo-desc">
+<span>Fale com um Estrategista AORKIA</span>
 </button>
-<span id="demo-desc" class="sr-only">Demonstração personalizada de 30 minutos com especialista para conhecer nossas soluções</span>
-<button class="group bg-white hover:bg-gray-50 text-text-primary px-8 py-5 font-medium !rounded-button whitespace-nowrap flex items-center gap-3 hover-scale cursor-pointer text-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
-<span>Ver Cases de Sucesso</span>
-<i class="ri-external-link-line transition-transform group-hover:translate-x-1"></i>
-<span class="text-sm text-text-secondary">+50 Empresas</span>
+<span id="demo-desc" class="sr-only">Agende uma conversa com um de nossos estrategistas</span>
+<button class="group bg-white hover:bg-gray-50 text-black px-8 py-5 font-medium !rounded-button whitespace-nowrap flex items-center gap-3 hover-scale cursor-pointer text-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
+<span>Explore Nossas Soluções</span>
 </button>
 </div>
 </div>
@@ -349,23 +360,48 @@ fbq('track', 'PageView');
 </div>
 </section>
 <!-- Seção de Serviços B2B -->
-<section class="py-24 md:py-32 bg-white relative overflow-hidden">
-<div class="absolute inset-0">
-<div class="absolute w-full h-full bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03]"></div>
-<div class="absolute w-[1200px] h-[1200px] -top-[600px] -left-[600px] rounded-full bg-gradient-to-br from-primary/[0.05] via-primary/[0.02] to-transparent"></div>
-<div class="absolute w-[1000px] h-[1000px] -bottom-[500px] -right-[500px] rounded-full bg-gradient-to-tl from-secondary/[0.05] via-secondary/[0.02] to-transparent"></div>
-<div class="absolute inset-0 bg-[url('https://readdy.ai/api/search-image?query=subtle%20abstract%20geometric%20pattern%2C%20extremely%20light%20and%20minimal%2C%20professional%20business%20style%2C%20barely%20visible%20design%20elements%2C%20white%20background%20with%20very%20soft%20blue%20accents%2C%20clean%20modern%20aesthetic&width=1920&height=1080&seq=bg1&orientation=landscape')] opacity-[0.02] bg-cover bg-center mix-blend-overlay"></div>
+<section class="py-24 md:py-32 relative overflow-hidden">
+<div class="absolute inset-0 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/80 to-white"></div>
+<div class="absolute inset-0 animate-gradient-x" style="background: linear-gradient(90deg, rgba(0,118,255,0.1), rgba(74,144,226,0.1), rgba(0,118,255,0.1)); background-size: 200% 100%;"></div>
+<div class="absolute inset-0 animate-gradient-y" style="background: linear-gradient(180deg, rgba(0,118,255,0.08), rgba(74,144,226,0.08), rgba(0,118,255,0.08)); background-size: 100% 200%;"></div>
+<div class="absolute inset-0 animate-gradient-radial">
+<div class="absolute inset-0" style="background: radial-gradient(circle at 30% 30%, rgba(0,118,255,0.12) 0%, transparent 50%);"></div>
+<div class="absolute inset-0" style="background: radial-gradient(circle at 70% 70%, rgba(74,144,226,0.12) 0%, transparent 50%);"></div>
 </div>
+<div class="absolute inset-0 backdrop-blur-[80px]"></div>
+<div class="absolute inset-0 bg-[linear-gradient(to_right,white,transparent_30%,transparent_70%,white)] pointer-events-none"></div>
+</div>
+<style>
+@keyframes gradient-x {
+0% { background-position: 0% 50%; }
+100% { background-position: 200% 50%; }
+}
+@keyframes gradient-y {
+0% { background-position: 50% 0%; }
+100% { background-position: 50% 200%; }
+}
+@keyframes gradient-radial {
+0% { transform: scale(1); opacity: 0.8; }
+50% { transform: scale(1.1); opacity: 1; }
+100% { transform: scale(1); opacity: 0.8; }
+}
+.animate-gradient-x {
+animation: gradient-x 15s linear infinite;
+}
+.animate-gradient-y {
+animation: gradient-y 12s linear infinite;
+}
+.animate-gradient-radial {
+animation: gradient-radial 10s ease-in-out infinite;
+}
+</style>
 <div class="container mx-auto max-w-7xl px-4 relative z-10">
 <div class="text-center mb-24">
 <div class="inline-flex flex-col items-center">
-<span class="inline-block text-primary font-medium mb-4 px-6 py-2 bg-primary/[0.05] rounded-full backdrop-blur-sm shadow-sm">Nossas Soluções</span>
-<h2 class="text-4xl md:text-5xl font-bold mb-8 relative">
-<span class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 blur-xl"></span>
-<span class="relative">
-<span class="gradient-text">Serviços</span>
-<span class="relative"> Especializados</span>
-</span>
+<h2 class="text-4xl md:text-5xl font-bold mb-8">
+<span class="gradient-text">Soluções</span>
+<span> Especializadas</span>
 </h2>
 <p class="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
 Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
@@ -379,23 +415,23 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
 <div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
 <div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
 <h2 class="text-3xl font-bold text-gray-900 text-center">Backup SaaS Estratégico</h2>
-<p class="text-lg leading-relaxed text-gray-700">A AORKIA orquestra a <span class="text-[#00683f] text-xl font-medium">Keepit</span> – líder em backup SaaS de última geração – para blindar seus dados na nuvem. Garantimos proteção integral e a continuidade decisiva das suas operações.</p>
+<p class="text-lg leading-relaxed text-gray-700">A AORKIA Implementa <span class="text-[#00683f] text-xl font-medium">Keepit</span> – líder em backup SaaS de última geração – para blindar seus dados na nuvem. Garantimos proteção integral e a continuidade decisiva das suas operações.</p>
 <blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Proteja seus dados na nuvem com a mesma segurança que você teria em ambientes locais, mas com a flexibilidade que apenas o SaaS pode oferecer.</blockquote>
 <ul class="list-disc list-inside text-gray-700 marker:text-primary">
-<li>Backup automatizado com agendamento flexível</li>
+<li>Backup automatizado e agendamento personalizável</li>
 <li>Recuperação granular de dados em minutos</li>
-<li>Criptografia de ponta a ponta</li>
-<li>Conformidade com regulamentações internacionais</li>
+<li>Criptografia de ponta a ponta para máxima confidencialidade</li>
+<li>Aderência a rigorosas regulamentações internacionais de dados</li>
 </ul>
-<p class="text-lg leading-relaxed text-gray-700">Garanta a resiliência digital da sua empresa com nossa solução de backup SaaS de última geração.</p>
+<p class="text-lg leading-relaxed text-gray-700">A AORKIA ativa camadas adicionais de valor: governança estratégica, dashboards inteligentes, trilhas de auditoria e conectores para BI/IA — transformando o backup em um ativo de inteligência e resiliência sob domínio estratégico.</p>
 <a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
 <span>Conheça a Solução AORKIA + <span class="text-[#00683f] text-xl">Keepit</span></span>
-<i class="ri-arrow-right-line"></i>
+<i class="ri-arrow-right-line text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.3)] ri-fw"></i>
 </a>
 </div>
 <div class="w-full md:basis-1/2 flex items-center justify-center">
 <img
-src="https://readdy.ai/api/search-image?query=professional%20cloud%20backup%20solution%20visualization%2C%20digital%20data%20protection%20concept%2C%20secure%20storage%20representation%2C%20blue%20technology%20theme%2C%20enterprise-grade%20backup%20system%2C%20data%20recovery%20illustration%2C%20business%20continuity%20planning%2C%20modern%20SaaS%20backup%20interface%2C%20clean%20professional%20design&width=800&height=600&seq=backup1&orientation=landscape"
+src="https://readdy.ai/api/search-image?query=3D%20holographic%20data%20protection%20shield%20with%20floating%20cloud%20storage%20elements%2C%20glowing%20blue%20neon%20grid%20lines%2C%20advanced%20security%20visualization%20with%20digital%20particles%2C%20dark%20tech%20background%20with%20geometric%20patterns%2C%20premium%20enterprise%20data%20vault%20concept%2C%20ultra%20modern%20minimalist%20design%2C%20no%20text&width=800&height=600&seq=backup3&orientation=landscape"
 alt="Backup SaaS Estratégico"
 class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
 loading="lazy"
@@ -405,24 +441,24 @@ loading="lazy"
 <!-- Orquestração Estratégica para Infraestruturas Críticas -->
 <div class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8 mb-16">
 <div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
-<h2 class="text-3xl font-bold text-gray-900 text-center">Orquestração de Infraestruturas Críticas</h2>
-<p class="text-lg leading-relaxed text-gray-700">Oferecemos soluções avançadas de orquestração para gerenciar infraestruturas complexas, garantindo alta disponibilidade, desempenho otimizado e escalabilidade sob demanda.</p>
-<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Uma infraestrutura bem orquestrada não apenas responde às demandas atuais, mas se adapta proativamente às necessidades futuras do seu negócio.</blockquote>
+<h2 class="text-3xl font-bold text-gray-900 text-center">Curadoria Estratégica de Infraestruturas Críticas</h2>
+<p class="text-lg leading-relaxed text-gray-700">Com visão estratégica, a AORKIA realiza a curadoria de suas infraestruturas críticas: convertemos complexidade em alta disponibilidade, desempenho superior e escalabilidade dinâmica, impulsionando diretamente seus resultados.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Uma infraestrutura gerida com excelência não apenas atende às demandas atuais, mas também se adapta proativamente às necessidades futuras do seu negócio.</blockquote>
 <ul class="list-disc list-inside text-gray-700 marker:text-primary">
-<li>Automação de processos de infraestrutura</li>
-<li>Monitoramento proativo e resolução de problemas</li>
-<li>Otimização contínua de recursos</li>
-<li>Implementação de infraestrutura como código (IaC)</li>
+<li>Desenho de soluções de infraestrutura sob medida, alinhadas aos seus objetivos estratégicos</li>
+<li>Implementação precisa e integração fluida de ambientes híbridos e de alta performance</li>
+<li>Gestão proativa e otimização contínua para máxima eficiência, disponibilidade e evolução</li>
+<li>Consultoria para governança robusta, segurança integral e conformidade da sua infraestrutura</li>
 </ul>
-<p class="text-lg leading-relaxed text-gray-700">Transforme sua infraestrutura em uma vantagem competitiva com nossa solução de orquestração estratégica.</p>
+<p class="text-lg leading-relaxed text-gray-700">Transforme sua infraestrutura em uma vantagem competitiva com nossa engenharia de infraestrutura estratégica.</p>
 <a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
 <span>Explore o Blueprint de Orquestração Estratégica</span>
-<i class="ri-arrow-right-line"></i>
+<i class="ri-arrow-right-line text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.3)] ri-fw"></i>
 </a>
 </div>
 <div class="w-full md:basis-1/2 flex items-center justify-center">
 <img
-src="https://readdy.ai/api/search-image?query=modern%20data%20center%20infrastructure%2C%20network%20orchestration%20visualization%2C%20critical%20systems%20management%20interface%2C%20enterprise%20IT%20infrastructure%2C%20server%20room%20with%20blue%20lighting%2C%20cloud%20computing%20architecture%20diagram%2C%20hybrid%20infrastructure%20management%2C%20professional%20technology%20environment%2C%20clean%20design&width=800&height=600&seq=infra1&orientation=landscape"
+src="https://readdy.ai/api/search-image?query=3D%20network%20of%20interconnected%20cubes%20with%20glowing%20blue%20neon%20edges%2C%20floating%20server%20racks%20with%20light%20trails%20connecting%20them%2C%20dark%20background%20with%20tech%20grid%2C%20orchestration%20flow%20visualization%2C%20minimalist%20infrastructure%20concept%2C%20no%20text%2C%20enterprise%20architecture&width=800&height=600&seq=infra2&orientation=landscape"
 alt="Orquestração Estratégica para Infraestruturas Críticas"
 class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
 loading="lazy"
@@ -432,24 +468,24 @@ loading="lazy"
 <!-- Arquitetura de Segurança e Conformidade -->
 <div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
 <div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
-<h2 class="text-3xl font-bold text-gray-900 text-center">Arquitetura de Segurança e Conformidade</h2>
-<p class="text-lg leading-relaxed text-gray-700">Desenvolvemos arquiteturas de segurança robustas que protegem seus ativos digitais contra ameaças avançadas, enquanto garantem conformidade com regulamentações nacionais e internacionais.</p>
+<h2 class="text-3xl font-bold text-gray-900 text-center">Engenharia de Segurança Cloud (CSPM/CNAPP)</h2>
+<p class="text-lg leading-relaxed text-gray-700">A AORKIA implementa sua estratégia de segurança cloud (CSPM/CNAPP) para blindar seus ativos digitais. Garantimos conformidade global contínua e uma postura de segurança proativa e auditável.</p>
 <blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">A segurança não é apenas uma camada adicional, mas um componente fundamental integrado em cada aspecto da sua infraestrutura digital.</blockquote>
 <ul class="list-disc list-inside text-gray-700 marker:text-primary">
-<li>Avaliação abrangente de vulnerabilidades</li>
-<li>Implementação de defesa em profundidade</li>
-<li>Gerenciamento de identidade e acesso (IAM)</li>
-<li>Conformidade com LGPD, GDPR, ISO 27001 e outras normas</li>
+<li>Visibilidade unificada e controlo rigoroso da sua postura de segurança em ambientes multicloud (CSPM)</li>
+<li>Proteção integrada de aplicações nativas da nuvem, do desenvolvimento à produção (CNAPP)</li>
+<li>Gestão avançada de identidades, acessos e permissões em toda a sua infraestrutura na nuvem (CIEM)</li>
+<li>Automação inteligente para conformidade contínua (LGPD, GDPR, DORA, NIS2, SOC2, HIPAA) e resposta eficaz a ameaças</li>
 </ul>
-<p class="text-lg leading-relaxed text-gray-700">Proteja seu negócio com uma arquitetura de segurança que evolui continuamente para enfrentar as ameaças emergentes.</p>
+<p class="text-lg leading-relaxed text-gray-700">Fortaleça seu negócio e impulsione a inovação segura na nuvem com a estratégia de segurança especializada da AORKIA.</p>
 <a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
 <span>Acesse o Blueprint de Segurança e Conformidade</span>
-<i class="ri-arrow-right-line"></i>
+<i class="ri-arrow-right-line text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.3)] ri-fw"></i>
 </a>
 </div>
 <div class="w-full md:basis-1/2 flex items-center justify-center">
 <img
-src="https://readdy.ai/api/search-image?query=cybersecurity%20architecture%20visualization%2C%20digital%20security%20framework%2C%20compliance%20management%20dashboard%2C%20enterprise%20security%20operations%20center%2C%20blue-themed%20security%20monitoring%20interface%2C%20data%20protection%20system%2C%20network%20security%20visualization%2C%20professional%20security%20architecture%20diagram%2C%20clean%20design&width=800&height=600&seq=security1&orientation=landscape"
+src="https://readdy.ai/api/search-image?query=3D%20shield%20icon%20with%20digital%20protection%20sphere%2C%20glowing%20blue%20neon%20cybersecurity%20elements%2C%20floating%20security%20nodes%20connected%20with%20light%20trails%2C%20dark%20background%20with%20tech%20grid%2C%20cloud%20security%20visualization%2C%20minimalist%20clean%20design%2C%20no%20text%2C%20enterprise%20protection%20concept&width=800&height=600&seq=security2&orientation=landscape"
 alt="Arquitetura de Segurança e Conformidade"
 class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
 loading="lazy"
@@ -459,24 +495,24 @@ loading="lazy"
 <!-- Orquestração Estratégica de Receita B2B -->
 <div class="flex flex-col md:flex-row-reverse items-stretch gap-6 md:gap-8">
 <div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
-<h2 class="text-3xl font-bold text-gray-900 text-center">Orquestração Estratégica de Receita B2B</h2>
-<p class="text-lg leading-relaxed text-gray-700">Nossa solução de orquestração de receita integra vendas, marketing e atendimento ao cliente em um ecossistema coeso, maximizando oportunidades de negócio e acelerando o crescimento da receita.</p>
-<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">A verdadeira transformação de receita ocorre quando todas as equipes de geração de valor trabalham em perfeita sincronia, orientadas por dados e insights compartilhados.</blockquote>
+<h2 class="text-3xl font-bold text-gray-900 text-center">Engenharia Tática de Operações de Receita B2B</h2>
+<p class="text-lg leading-relaxed text-gray-700">A AORKIA converte sua fragmentação operacional e digital em um motor de receita B2B de alto desempenho. Implementamos precisão estratégica para maximizar cada oportunidade e acelerar seu crescimento exponencial.</p>
+<blockquote class="border-l-4 border-primary pl-4 italic text-gray-600">Para nós, uma Operação de Receitas eficaz integra processos de negócio e sua presença digital como alavancas coesas para resultados superiores e previsíveis.</blockquote>
 <ul class="list-disc list-inside text-gray-700 marker:text-primary">
-<li>Alinhamento entre marketing e vendas</li>
-<li>Automação inteligente do funil de vendas</li>
-<li>Análise preditiva de oportunidades</li>
-<li>Otimização contínua do ciclo de receita</li>
+<li>Diagnóstico e unificação de dados para uma visão 360º das suas operações de receita</li>
+<li>Desenho de processos de receita B2B fluidos, escaláveis e orientados a resultados</li>
+<li>Integração de sistemas e ativação de inteligência para insights acionáveis e previsibilidade</li>
+<li>Otimização da sua presença e plataformas digitais para máxima conversão e engajamento</li>
 </ul>
-<p class="text-lg leading-relaxed text-gray-700">Impulsione o crescimento sustentável da sua empresa com nossa abordagem integrada de orquestração de receita B2B.</p>
+<p class="text-lg leading-relaxed text-gray-700">Transforme suas operações em um motor de crescimento B2B com nossa engenharia de receita estratégica.</p>
 <a href="/servicos" class="inline-flex items-center text-primary hover:text-primary/90 font-medium gap-1">
 <span>Descubra o Blueprint de Receita B2B Integrada</span>
-<i class="ri-arrow-right-line"></i>
+<i class="ri-arrow-right-line text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.3)] ri-fw"></i>
 </a>
 </div>
 <div class="w-full md:basis-1/2 flex items-center justify-center">
 <img
-src="https://readdy.ai/api/search-image?query=sophisticated%20B2B%20revenue%20orchestration%20platform%20with%20elegant%20data%20visualization%2C%20modern%20enterprise%20dashboard%20showing%20real-time%20revenue%20metrics%2C%20professional%20analytics%20interface%20with%20crisp%203D%20charts%20and%20graphs%2C%20premium%20business%20intelligence%20system%20with%20blue%20gradient%20accents%2C%20immersive%20sales%20pipeline%20visualization%20with%20pristine%20layout%2C%20high-end%20corporate%20design%20aesthetic%2C%20ultra-high%20resolution%20display%20with%20perfect%20clarity%20and%20detail&width=800&height=600&seq=revenue2&orientation=landscape"
+src="https://readdy.ai/api/search-image?query=3D%20holographic%20business%20growth%20visualization%20with%20ascending%20geometric%20shapes%2C%20glowing%20blue%20neon%20energy%20flows%20connecting%20floating%20crystal%20structures%2C%20premium%20dark%20tech%20environment%20with%20depth%2C%20abstract%20financial%20success%20representation%2C%20ultra%20modern%20enterprise%20concept%20with%20floating%20particles%20and%20light%20trails%2C%20clean%20minimalist%20design%2C%20no%20text%20or%20numbers&width=800&height=600&seq=revenue5&orientation=landscape"
 alt="Orquestração Estratégica de Receita B2B"
 class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
 loading="lazy"
@@ -489,81 +525,72 @@ loading="lazy"
 <section class="py-16 bg-white">
 <div class="container mx-auto max-w-6xl px-4">
 <div class="text-center mb-12">
-<h2 class="text-3xl font-bold text-gray-900 mb-4">O Que Nossos Clientes Dizem</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto">Conheça a experiência de empresas que transformaram seus negócios com nossas soluções estratégicas.</p>
+<h2 class="text-3xl font-bold text-gray-900 mb-4">A Metodologia AORKIA: Engenharia Estratégica Aplicada ao Seu Negócio</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">Descubra os pilares da nossa atuação e como nossa abordagem consultiva e técnica transforma desafios complexos em crescimento sustentável e performance superior.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- Depoimento 1 -->
-<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-<div class="flex items-center mb-4">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-<i class="ri-user-line text-primary ri-lg"></i>
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center">
+<div class="flex flex-col items-center mb-4">
+<div class="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center mb-4 relative group">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-sm group-hover:blur-md transition-all duration-300"></div>
+<i class="ri-search-eye-line text-2xl text-white relative z-10"></i>
 </div>
 <div>
-<h3 class="font-bold text-gray-900">Ricardo Mendes</h3>
-<p class="text-sm text-gray-600">CTO, TechSolutions Brasil</p>
+<h3 class="font-bold text-gray-900">Diagnóstico Preciso e Curadoria Estratégica</h3>
+<p class="text-sm text-gray-600">Entendimento profundo. Soluções sob medida.</p>
 </div>
 </div>
-<p class="text-gray-700 italic">"A implementação da solução de Backup SaaS transformou completamente nossa estratégia de proteção de dados. Reduzimos o tempo de recuperação em 85% e aumentamos nossa conformidade regulatória."</p>
-<div class="mt-4 flex items-center gap-1">
-<div class="flex">
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-</div>
-<i class="ri-verified-badge-fill text-primary ml-2"></i>
+<p class="text-gray-700">Não aplicamos soluções genéricas. Cada projeto AORKIA inicia com um diagnóstico profundo para entender seus desafios únicos, seguido pela curadoria e desenho de soluções tecnológicas precisamente alinhadas aos seus objetivos.</p>
+<div class="mt-4 flex items-center justify-center gap-2">
+<span class="text-sm text-gray-600">Metodologia AORKIA de Diagnóstico</span>
 </div>
 </div>
 <!-- Depoimento 2 -->
-<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-<div class="flex items-center mb-4">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-<i class="ri-user-line text-primary ri-lg"></i>
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center">
+<div class="flex flex-col items-center mb-4">
+<div class="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center mb-4 relative group">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-sm group-hover:blur-md transition-all duration-300"></div>
+<i class="ri-search-eye-line text-2xl text-white relative z-10"></i>
 </div>
 <div>
-<h3 class="font-bold text-gray-900">Fernanda Oliveira</h3>
-<p class="text-sm text-gray-600">CEO, Inova Comércio</p>
+<h3 class="font-bold text-gray-900">Implementação e Integração de Alta Performance</h3>
+<p class="text-sm text-gray-600">Execução técnica. Resultados otimizados.</p>
 </div>
 </div>
-<p class="text-gray-700 italic">"A Orquestração Estratégica de Receita nos permitiu alinhar vendas e marketing de forma nunca antes vista. Nosso ciclo de vendas reduziu em 40% e a taxa de conversão aumentou significativamente."</p>
-<div class="mt-4 flex">
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-half-fill text-yellow-400"></i>
+<p class="text-gray-700">Nossa expertise técnica garante a implementação fluida e a integração coesa de sistemas, sejam eles legados, híbridos ou de vanguarda na nuvem, sempre com foco na máxima eficiência e disponibilidade para suas operações.</p>
+<div class="mt-4 flex items-center justify-center gap-2">
+<span class="text-sm text-gray-600">Metodologia AORKIA de Integração</span>
 </div>
 </div>
 <!-- Depoimento 3 -->
-<div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-<div class="flex items-center mb-4">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-<i class="ri-user-line text-primary ri-lg"></i>
+<div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center">
+<div class="flex flex-col items-center mb-4">
+<div class="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center mb-4 relative group">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-sm group-hover:blur-md transition-all duration-300"></div>
+<i class="ri-search-eye-line text-2xl text-white relative z-10"></i>
 </div>
 <div>
-<h3 class="font-bold text-gray-900">Carlos Eduardo Santos</h3>
-<p class="text-sm text-gray-600">CISO, Banco Digital Nexus</p>
+<h3 class="font-bold text-gray-900">Gestão Proativa e Foco Contínuo em Resultados</h3>
+<p class="text-sm text-gray-600">Parceria evolutiva. Valor que perdura.</p>
 </div>
 </div>
-<p class="text-gray-700 italic">"A Arquitetura de Segurança implementada superou todas as nossas expectativas. Passamos por três auditorias de segurança com zero não-conformidades e reduzimos incidentes em 92%."</p>
-<div class="mt-4 flex items-center gap-1">
-<div class="flex">
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-<i class="ri-star-fill text-yellow-400"></i>
-</div>
-<i class="ri-verified-badge-fill text-primary ml-2"></i>
+<p class="text-gray-700">O valor da AORKIA se estende além da implementação. Através de uma gestão proativa e otimização constante, asseguramos que suas soluções tecnológicas entreguem continuamente os resultados esperados e evoluam com o seu negócio.</p>
+<div class="mt-4 flex items-center justify-center gap-2">
+<span class="text-sm text-gray-600">Metodologia AORKIA de Evolução Contínua</span>
 </div>
 </div>
 </div>
 <div class="text-center mt-12">
+<p class="text-lg text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed italic bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
+Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
+<span class="text-primary font-medium">Diagnóstico</span> →
+<span class="text-primary font-medium">Arquitetura Tática</span> →
+<span class="text-primary font-medium">Implementação com Engenharia de Precisão</span> →
+<span class="text-primary font-medium">Governança Contínua</span>.
+</p>
 <a href="/insight-engine" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 font-medium !rounded-button whitespace-nowrap hover-scale">
-<span>Explore nossa Insight Engine</span>
-<i class="ri-arrow-right-line"></i>
+<span>Explore Nossas Soluções</span>
 </a>
 </div>
 </div>
@@ -588,9 +615,6 @@ loading="lazy"
 </div>
 <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 font-medium !rounded-button whitespace-nowrap hover-scale relative cursor-pointer" title="Envie seus dados para receber contato da nossa equipe" aria-describedby="contact-desc">
 <span>Solicitar Contato</span>
-<span class="loading-spinner hidden absolute right-4 top-1/2 -translate-y-1/2">
-<i class="ri-loader-4-line animate-spin"></i>
-</span>
 </button>
 <small class="text-gray-500 mt-2 block">Após enviar, seu cliente de email será aberto automaticamente.</small>
 <span id="contact-desc" class="sr-only">Nossa equipe entrará em contato em até 24 horas úteis</span>
@@ -613,51 +637,63 @@ loading="lazy"
 <a href="/" class="text-2xl font-['Pacifico'] text-white mb-6 inline-block cursor-pointer hover:text-primary transition-colors" aria-label="Home">logo</a>
 <p class="text-gray-400 mb-6 leading-relaxed">Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B. Transformando desafios em oportunidades desde 2015.</p>
 <div class="flex space-x-5">
-<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="LinkedIn">
-<i class="ri-linkedin-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
+<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group border border-white/5 backdrop-blur-sm" aria-label="LinkedIn">
+<i class="ri-linkedin-fill text-xl text-white/90"></i>
 </a>
-<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Twitter">
-<i class="ri-twitter-x-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
+<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group border border-white/5 backdrop-blur-sm" aria-label="Twitter">
+<i class="ri-twitter-x-fill text-xl text-white/90"></i>
 </a>
-<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Facebook">
-<i class="ri-facebook-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
+<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group border border-white/5 backdrop-blur-sm" aria-label="Facebook">
+<i class="ri-facebook-fill text-xl text-white/90"></i>
 </a>
-<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group" aria-label="Instagram">
-<i class="ri-instagram-fill text-xl text-white/90 group-hover:text-white" aria-hidden="true"></i>
+<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" class="w-11 h-11 rounded-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-primary/20 group border border-white/5 backdrop-blur-sm" aria-label="Instagram">
+<i class="ri-instagram-fill text-xl text-white/90"></i>
 </a>
 </div>
 </div>
 <div class="md:col-span-2">
 <h3 class="text-lg font-bold mb-6 text-white">Serviços</h3>
 <ul class="space-y-4">
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Backup SaaS Estratégico</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Orquestração de Infraestruturas</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Arquitetura de Segurança</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary group-hover:translate-x-2 transition-transform duration-300"></i>Orquestração de Receita B2B</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">
+<i class="ri-cloud-line w-5 h-5 flex items-center justify-center"></i>
+<span>Backup SaaS Estratégico</span>
+</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">
+<i class="ri-server-line w-5 h-5 flex items-center justify-center"></i>
+<span>Curadoria de Infraestruturas</span>
+</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">
+<i class="ri-shield-keyhole-line w-5 h-5 flex items-center justify-center"></i>
+<span>Engenharia de Segurança Cloud</span>
+</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">
+<i class="ri-funds-line w-5 h-5 flex items-center justify-center"></i>
+<span>Engenharia de Receita B2B</span>
+</a></li>
 </ul>
 </div>
 <div class="md:col-span-2">
 <h3 class="text-lg font-bold mb-6 text-white">Empresa</h3>
 <ul class="space-y-4">
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Sobre Nós</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Carreiras</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Blog</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1"><i class="ri-arrow-right-s-line text-primary/80 group-hover:translate-x-2 transition-transform duration-300"></i>Contato</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">Sobre Nós</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">Carreiras</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:-translate-x-1">Contato</a></li>
 </ul>
 </div>
 <div class="md:col-span-4">
 <h3 class="text-lg font-bold mb-6 text-white">Contato</h3>
 <ul class="space-y-4">
-<li class="flex items-start group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-<i class="ri-map-pin-2-fill text-primary mr-3 mt-1"></i>
+<li class="flex items-start gap-3 group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-map-pin-2-line w-5 h-5 flex items-center justify-center text-gray-400 group-hover:text-primary"></i>
 <span class="text-gray-400 group-hover:text-primary transition-colors duration-300">Av. Paulista, 1000, Bela Vista<br>São Paulo - SP, 01310-100</span>
 </li>
-<li class="flex items-center group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-<i class="ri-phone-line text-primary mr-3"></i>
+<li class="flex items-center gap-3 group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-phone-line w-5 h-5 flex items-center justify-center text-gray-400 group-hover:text-primary"></i>
 <span class="text-gray-400 group-hover:text-primary transition-colors duration-300">+55 11 3456-7890</span>
 </li>
-<li class="flex items-center group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-<i class="ri-mail-line text-primary mr-3"></i>
+<li class="flex items-center gap-3 group hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<i class="ri-mail-line w-5 h-5 flex items-center justify-center text-gray-400 group-hover:text-primary"></i>
 <span class="text-gray-400 group-hover:text-primary transition-colors duration-300">contato@empresa.com.br</span>
 </li>
 </ul>
@@ -686,93 +722,97 @@ loading="lazy"
 </div>
 </div>
 <script id="analytics-script" nonce="analytics-script">
-document.addEventListener('DOMContentLoaded', function() {
-function trackPageView() {
-if (typeof gtag === 'function') {
-gtag('event', 'page_view');
-}
-if (typeof fbq === 'function') {
-fbq('track', 'PageView');
-}
-}
-trackPageView();
+document.addEventListener("DOMContentLoaded", function () {
+  function trackPageView() {
+    if (typeof gtag === "function") {
+      gtag("event", "page_view");
+    }
+    if (typeof fbq === "function") {
+      fbq("track", "PageView");
+    }
+  }
+  trackPageView();
 });
 </script>
 <script id="form-script" nonce="form-script">
-document.addEventListener('DOMContentLoaded', function() {
-const form = document.querySelector('form');
-const formFeedback = document.getElementById('formFeedback');
-const loadingSpinner = document.querySelector('.loading-spinner');
-if (form) {
-form.addEventListener('submit', function(e) {
-loadingSpinner.classList.remove('hidden');
-formFeedback.classList.add('hidden');
-setTimeout(() => {
-formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-formFeedback.classList.remove('hidden');
-loadingSpinner.classList.add('hidden');
-}, 1000);
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const formFeedback = document.getElementById("formFeedback");
+  const loadingSpinner = document.querySelector(".loading-spinner");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      loadingSpinner.classList.remove("hidden");
+      formFeedback.classList.add("hidden");
+      setTimeout(() => {
+        formFeedback.innerHTML =
+          '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
+        formFeedback.classList.remove("hidden");
+        loadingSpinner.classList.add("hidden");
+      }, 1000);
+    });
+  }
 });
 </script>
 <script id="mobile-optimization" nonce="mobile-optimization">
-document.addEventListener('DOMContentLoaded', function() {
-const images = document.querySelectorAll('img');
-images.forEach(img => {
-img.loading = 'lazy';
-img.decoding = 'async';
-});
-if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('/sw.js').catch(function(err) {
-console.error('Service worker registration failed:', err);
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll("img");
+  images.forEach((img) => {
+    img.loading = "lazy";
+    img.decoding = "async";
+  });
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch(function (err) {
+      console.error("Service worker registration failed:", err);
+    });
+  }
 });
 </script>
 <script id="menu-script" nonce="menu-script">
-document.addEventListener('DOMContentLoaded', function() {
-const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuIcon = menuButton.querySelector('.ri-menu-line');
-const closeIcon = menuButton.querySelector('.ri-close-line');
-if (menuButton && mobileMenu) {
-menuButton.addEventListener('click', function() {
-const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-menuButton.setAttribute('aria-expanded', !isExpanded);
-mobileMenu.classList.toggle('hidden');
-menuIcon.classList.toggle('hidden');
-closeIcon.classList.toggle('hidden');
-document.body.style.overflow = isExpanded ? '' : 'hidden';
-});
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape' && mobileMenu.classList.contains('hidden') === false) {
-menuButton.click();
-}
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuIcon = menuButton.querySelector(".ri-menu-line");
+  const closeIcon = menuButton.querySelector(".ri-close-line");
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", function () {
+      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", !isExpanded);
+      mobileMenu.classList.toggle("hidden");
+      menuIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+      document.body.style.overflow = isExpanded ? "" : "hidden";
+    });
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        mobileMenu.classList.contains("hidden") === false
+      ) {
+        menuButton.click();
+      }
+    });
+  }
 });
 </script>
 <script id="cookie-script" nonce="cookie-script">
-document.addEventListener('DOMContentLoaded', function() {
-const cookieConsent = document.getElementById('cookieConsent');
-const acceptButton = document.getElementById('acceptCookies');
-const rejectButton = document.getElementById('rejectCookies');
-if (!localStorage.getItem('cookieConsent')) {
-cookieConsent.classList.remove('hidden');
-}
-if (acceptButton) {
-acceptButton.addEventListener('click', function() {
-localStorage.setItem('cookieConsent', 'accepted');
-cookieConsent.classList.add('hidden');
-});
-}
-if (rejectButton) {
-rejectButton.addEventListener('click', function() {
-localStorage.setItem('cookieConsent', 'rejected');
-cookieConsent.classList.add('hidden');
-});
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieConsent = document.getElementById("cookieConsent");
+  const acceptButton = document.getElementById("acceptCookies");
+  const rejectButton = document.getElementById("rejectCookies");
+  if (!localStorage.getItem("cookieConsent")) {
+    cookieConsent.classList.remove("hidden");
+  }
+  if (acceptButton) {
+    acceptButton.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "accepted");
+      cookieConsent.classList.add("hidden");
+    });
+  }
+  if (rejectButton) {
+    rejectButton.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "rejected");
+      cookieConsent.classList.add("hidden");
+    });
+  }
 });
 </script>
 </body>
