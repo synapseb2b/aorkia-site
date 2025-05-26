@@ -757,16 +757,25 @@ Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
   </div>
 </footer>
 <div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 hidden z-50">
-<div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-<div class="flex-1">
-<p class="text-gray-700">Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="/privacy" class="text-primary hover:underline cursor-pointer">Política de Privacidade</a> e <a href="/terms" class="text-primary hover:underline cursor-pointer">Termos de Uso</a>.</p>
+  <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex-1">
+      <p class="text-gray-700">
+        Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa 
+        <a href="/privacy" class="text-primary hover:underline cursor-pointer">Política de Privacidade</a> e 
+        <a href="/terms" class="text-primary hover:underline cursor-pointer">Termos de Uso</a>.
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <button id="rejectCookies" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 whitespace-nowrap cursor-pointer">
+        Rejeitar Não-Essenciais
+      </button>
+      <button id="acceptCookies" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 whitespace-nowrap cursor-pointer">
+        Aceitar Todos
+      </button>
+    </div>
+  </div>
 </div>
-<div class="flex gap-3">
-<button id="rejectCookies" class="px-4 py-2 border border-gray-300 !rounded-button text-gray-700 hover:bg-gray-50 whitespace-nowrap cursor-pointer">Rejeitar Não-Essenciais</button>
-<button id="acceptCookies" class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-primary/90 whitespace-nowrap cursor-pointer">Aceitar Todos</button>
-</div>
-</div>
-</div>
+
 <script id="analytics-script" nonce="analytics-script">
 document.addEventListener("DOMContentLoaded", function () {
   function trackPageView() {
@@ -780,15 +789,18 @@ document.addEventListener("DOMContentLoaded", function () {
   trackPageView();
 });
 </script>
+
 <script id="form-script" nonce="form-script">
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
   const formFeedback = document.getElementById("formFeedback");
   const loadingSpinner = document.querySelector(".loading-spinner");
-  if (form) {
+
+  if (form && formFeedback && loadingSpinner) {
     form.addEventListener("submit", function (e) {
       loadingSpinner.classList.remove("hidden");
       formFeedback.classList.add("hidden");
+
       setTimeout(() => {
         formFeedback.innerHTML =
           '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
