@@ -796,21 +796,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const formFeedback = document.getElementById("formFeedback");
   const loadingSpinner = document.querySelector(".loading-spinner");
 
-  if (form && formFeedback && loadingSpinner) {
+  if (form) {
     form.addEventListener("submit", function (e) {
-      loadingSpinner.classList.remove("hidden");
-      formFeedback.classList.add("hidden");
+      if (loadingSpinner) loadingSpinner.classList.remove("hidden");
+      if (formFeedback) formFeedback.classList.add("hidden");
 
       setTimeout(() => {
-        formFeedback.innerHTML =
-          '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-        formFeedback.classList.remove("hidden");
-        loadingSpinner.classList.add("hidden");
+        if (formFeedback) {
+          formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
+          formFeedback.classList.remove("hidden");
+        }
+        if (loadingSpinner) loadingSpinner.classList.add("hidden");
       }, 1000);
     });
   }
 });
 </script>
+
 <script id="mobile-optimization" nonce="mobile-optimization">
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll("img");
@@ -825,32 +827,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
 <script id="menu-script" nonce="menu-script">
 document.addEventListener("DOMContentLoaded", function () {
   const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
   const mobileMenu = document.getElementById("mobileMenu");
-  const menuIcon = menuButton.querySelector(".ri-menu-line");
-  const closeIcon = menuButton.querySelector(".ri-close-line");
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", function () {
       const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
       menuButton.setAttribute("aria-expanded", !isExpanded);
       mobileMenu.classList.toggle("hidden");
-      menuIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
       document.body.style.overflow = isExpanded ? "" : "hidden";
     });
+
     document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "Escape" &&
-        mobileMenu.classList.contains("hidden") === false
-      ) {
+      if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
         menuButton.click();
       }
     });
   }
 });
 </script>
+
 <script id="cookie-script" nonce="cookie-script">
 document.addEventListener("DOMContentLoaded", function () {
   const cookieConsent = document.getElementById("cookieConsent");
@@ -873,5 +871,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
+<!-- Adicionado: link de ícones caso falte -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
 </body>
 </html>
