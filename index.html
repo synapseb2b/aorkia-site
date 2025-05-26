@@ -7,98 +7,137 @@
 <meta name="format-detection" content="telephone=no">
 <style>
 :root {
---background: #ffffff;
---primary: #0076FF;
---secondary: #4A90E2;
---text-primary: #1A1F36;
---text-secondary: #697386;
+  --background: #ffffff;
+  --primary: #0076FF;
+  --secondary: #4A90E2;
+  --text-primary: #1A1F36;
+  --text-secondary: #697386;
 }
+
 body {
-background-color: var(--background);
-color: var(--text-primary);
-font-feature-settings: "ss01", "ss02", "ss03";
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-feature-settings: "ss01", "ss02", "ss03";
 }
+
+/* Criar classes utilitárias baseadas nas variáveis */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-primary-hover:hover {
+  background-color: #0063cc !important; /* 10% darker */
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
 .gradient-text {
-background: linear-gradient(135deg, var(--primary), var(--secondary));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .hero-gradient {
-background: radial-gradient(circle at 50% 50%, rgba(0, 118, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 118, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
 }
+
 .feature-card {
-background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-backdrop-filter: blur(10px);
-border: 1px solid rgba(0, 118, 255, 0.1);
-transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 118, 255, 0.1);
+  transition: all 0.3s ease;
 }
+
 .feature-card:hover {
-transform: translateY(-5px);
-box-shadow: 0 20px 40px rgba(0, 118, 255, 0.1);
-border-color: rgba(0, 118, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 118, 255, 0.1);
+  border-color: rgba(0, 118, 255, 0.2);
 }
+
 .gradient-border::before {
-content: '';
-position: absolute;
-inset: -2px;
-border-radius: 18px;
-background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
--webkit-mask:
-linear-gradient(#fff 0 0) content-box,
-linear-gradient(#fff 0 0);
--webkit-mask-composite: xor;
-mask-composite: exclude;
-opacity: 0.3;
-transition: opacity 0.3s ease;
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
 }
+
 .gradient-border:hover::before {
-opacity: 1;
+  opacity: 1;
 }
+
 .hover-glow {
-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
+
 .hover-glow:hover {
-box-shadow: 0 0 20px rgba(0, 118, 255, 0.2);
-transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 118, 255, 0.2);
+  transform: translateY(-2px);
 }
+
 .card-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
+
 .service-card {
-backdrop-filter: blur(10px);
-background: rgba(255, 255, 255, 0.03);
-border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .floating-element {
-animation: float 6s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
+
 @keyframes float {
-0% { transform: translateY(0px); }
-50% { transform: translateY(-20px); }
-100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
+
 .text-gradient {
-background: linear-gradient(45deg, var(--primary), var(--text-primary));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+  background: linear-gradient(45deg, var(--primary), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .scroll-indicator {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-height: 3px;
-background: var(--primary);
-transform-origin: 0%;
-z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+  transform-origin: 0%;
+  z-index: 1000;
 }
-</style>
-<style>
+
+/* Footer fix */
 footer, footer * {
   color: #f3f4f6 !important; /* Tailwind gray-100 */
 }
+
 footer i[class^="ri-"], footer i[class*=" ri-"] {
   display: inline-flex;
   align-items: center;
