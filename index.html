@@ -693,17 +693,17 @@ Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
 
     <div class="md:col-span-4">
       <a href="/" class="inline-block mb-6">
-      <img src="logo_aorkia_white.png" alt="Logo AORKIA" class="h-20 w-auto">
+        <img src="logo_aorkia_white.png" alt="Logo AORKIA" class="h-20 w-auto">
       </a>
       <p class="leading-relaxed mb-6">
         Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B. Transformando desafios em oportunidades desde 2015.
       </p>
       <div class="flex space-x-4">
-        <a href="https://www.linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <i class="ri-linkedin-x-fill"></ic_linkedin.svg>
+        <a href="https://www.linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer">
+          <img src="ic_linkedin.svg" alt="LinkedIn" class="h-6 w-6">
         </a>
-        <a href="https://instagram.com/aorkia" aria-label="Instagram">
-          <i class="ri-instagram-fill"></ic_instagram.svg>
+        <a href="https://instagram.com/aorkia" target="_blank" rel="noopener noreferrer">
+          <img src="ic_instagram.svg" alt="Instagram" class="h-6 w-6">
         </a>
       </div>
     </div>
@@ -711,10 +711,22 @@ Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
     <div class="md:col-span-2">
       <h3 class="text-lg font-bold mb-4">Serviços</h3>
       <ul class="space-y-3">
-        <li class="flex items-center gap-2"><i class="ri-cloud-line"></i> <span>Backup SaaS Estratégico</span></li>
-        <li class="flex items-center gap-2"><i class="ri-server-line"></i> <span>Curadoria de Infraestruturas</span></li>
-        <li class="flex items-center gap-2"><i class="ri-shield-keyhole-line"></i> <span>Engenharia de Segurança Cloud</span></li>
-        <li class="flex items-center gap-2"><i class="ri-funds-line"></i> <span>Engenharia de Receita B2B</span></li>
+        <li class="flex items-center gap-2">
+          <img src="ic_backup.svg" alt="Backup" class="h-5 w-5"> 
+          <span>Backup SaaS Estratégico</span>
+        </li>
+        <li class="flex items-center gap-2">
+          <img src="ic_curadoria.svg" alt="Curadoria" class="h-5 w-5">
+          <span>Curadoria de Infraestruturas</span>
+        </li>
+        <li class="flex items-center gap-2">
+          <img src="ic_devsecops.svg" alt="Segurança Cloud" class="h-5 w-5">
+          <span>Engenharia de Segurança Cloud</span>
+        </li>
+        <li class="flex items-center gap-2">
+          <img src="ic_revops.svg" alt="Receita B2B" class="h-5 w-5">
+          <span>Engenharia de Receita B2B</span>
+        </li>
       </ul>
     </div>
 
@@ -732,11 +744,17 @@ Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
       <h3 class="text-lg font-bold mb-4">Contato</h3>
       <ul class="space-y-3">
         <li class="flex items-start gap-2">
-          <i class="ri-map-pin-2-line"></ic_endereco.svg>
+          <img src="ic_endereco.svg" alt="Endereço" class="h-5 w-5">
           <span>Av. Paulista, 1000, Bela Vista<br>São Paulo - SP, 01310-100</span>
         </li>
-        <li class="flex items-center gap-2"><i class="ri-phone-line"></ic_phone.svg> <span>+55 11 3456-7890</span></li>
-        <li class="flex items-center gap-2"><i class="ri-email-line"></ic_mail.svg> <span>contato@empresa.com.br</span></li>
+        <li class="flex items-center gap-2">
+          <img src="ic_telefone.svg" alt="Telefone" class="h-5 w-5">
+          <span>+55 11 3456-7890</span>
+        </li>
+        <li class="flex items-center gap-2">
+          <img src="ic_email.svg" alt="Email" class="h-5 w-5">
+          <span>contato@empresa.com.br</span>
+        </li>
       </ul>
     </div>
 
@@ -747,127 +765,7 @@ Nossa Metodologia Guarda-Chuva assegura rigor, previsibilidade e escala:
     <div class="flex space-x-6 mt-4 md:mt-0">
       <a href="/privacy.html">Política de Privacidade</a>
       <a href="/terms.html">Termos de Uso</a>
-      <a href="#" class="text-sm">Cookies</a>
+      <a href="#">Cookies</a>
     </div>
   </div>
 </footer>
-<div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 hidden z-50">
-  <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex-1">
-      <p class="text-gray-700">
-        Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa 
-       <a href="/privacy.html" class="text-primary hover:underline cursor-pointer">Política de Privacidade</a> e 
-        <a href="/terms.html" class="text-primary hover:underline cursor-pointer">Termos de Uso</a>.
-      </p>
-    </div>
-    <div class="flex gap-3">
-      <button id="rejectCookies" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 whitespace-nowrap cursor-pointer">
-        Rejeitar Não-Essenciais
-      </button>
-      <button id="acceptCookies" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 whitespace-nowrap cursor-pointer">
-        Aceitar Todos
-      </button>
-    </div>
-  </div>
-</div>
-
-<script id="analytics-script" nonce="analytics-script">
-document.addEventListener("DOMContentLoaded", function () {
-  function trackPageView() {
-    if (typeof gtag === "function") {
-      gtag("event", "page_view");
-    }
-    if (typeof fbq === "function") {
-      fbq("track", "PageView");
-    }
-  }
-  trackPageView();
-});
-</script>
-
-<script id="form-script" nonce="form-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const formFeedback = document.getElementById("formFeedback");
-  const loadingSpinner = document.querySelector(".loading-spinner");
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      if (loadingSpinner) loadingSpinner.classList.remove("hidden");
-      if (formFeedback) formFeedback.classList.add("hidden");
-
-      setTimeout(() => {
-        if (formFeedback) {
-          formFeedback.innerHTML = '<p class="text-green-600">Redirecionando para seu cliente de email...</p>';
-          formFeedback.classList.remove("hidden");
-        }
-        if (loadingSpinner) loadingSpinner.classList.add("hidden");
-      }, 1000);
-    });
-  }
-});
-</script>
-
-<script id="mobile-optimization" nonce="mobile-optimization">
-document.addEventListener("DOMContentLoaded", function () {
-  const images = document.querySelectorAll("img");
-  images.forEach((img) => {
-    img.loading = "lazy";
-    img.decoding = "async";
-  });
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch(function (err) {
-      console.error("Service worker registration failed:", err);
-    });
-  }
-});
-</script>
-
-<script id="menu-script" nonce="menu-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-  const mobileMenu = document.getElementById("mobileMenu");
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", function () {
-      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", !isExpanded);
-      mobileMenu.classList.toggle("hidden");
-      document.body.style.overflow = isExpanded ? "" : "hidden";
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
-        menuButton.click();
-      }
-    });
-  }
-});
-</script>
-
-<script id="cookie-script" nonce="cookie-script">
-document.addEventListener("DOMContentLoaded", function () {
-  const cookieConsent = document.getElementById("cookieConsent");
-  const acceptButton = document.getElementById("acceptCookies");
-  const rejectButton = document.getElementById("rejectCookies");
-  if (!localStorage.getItem("cookieConsent")) {
-    cookieConsent.classList.remove("hidden");
-  }
-  if (acceptButton) {
-    acceptButton.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "accepted");
-      cookieConsent.classList.add("hidden");
-    });
-  }
-  if (rejectButton) {
-    rejectButton.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "rejected");
-      cookieConsent.classList.add("hidden");
-    });
-  }
-});
-</script>
-
-<!-- Adicionado: link de ícones caso falte -->
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-</body>
-</html>
