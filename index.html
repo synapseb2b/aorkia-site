@@ -360,33 +360,34 @@ fbq("track", "PageView");
 </script>
 </head>
 <body>
-<header class="bg-white dark:bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
-<div class="container mx-auto max-w-6xl px-4 flex justify-between items-center">
-<div>
-<a href="/" class="flex items-center" aria-label="Home">
-  <img src="logo_aorkia.png" alt="Logo AORKIA" class="h-20 w-auto">
-</a>
-</div>
-<nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
-<a href="/" class="text-primary font-medium cursor-pointer" aria-current="page">Início</a>
-<a href="/solucoes" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Soluções</a>
-<a href="/sobre" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Sobre</a>
-<a href="/contato" class="text-gray-800 hover:text-primary font-medium cursor-pointer">Contato</a>
-</nav>
-<button class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer" aria-label="Toggle menu" aria-expanded="false">
-Menu
-</button>
-</div>
-<div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50 bg-white dark:bg-gray-900">
-<div class="container mx-auto max-w-6xl px-4 py-8">
-<nav class="flex flex-col space-y-6" role="navigation" aria-label="Mobile navigation">
-<a href="/" class="text-primary text-2xl font-medium cursor-pointer" aria-current="page">Início</a>
-<a href="/solucoes" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Soluções</a>
-<a href="/sobre" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Sobre</a>
-<a href="/contato" class="text-gray-800 hover:text-primary text-2xl font-medium cursor-pointer">Contato</a>
-</nav>
-</div>
-</div>
+<header class="bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
+  <div class="container mx-auto max-w-6xl px-4 flex justify-between items-center">
+    <div>
+      <a href="/" class="flex items-center" aria-label="Home">
+        <img src="logo_aorkia.png" alt="Logo AORKIA" class="h-20 w-auto">
+      </a>
+    </div>
+    <nav class="hidden md:flex items-center space-x-8 text-white" role="navigation" aria-label="Main navigation">
+      <a href="/" class="font-medium cursor-pointer hover:text-primary" aria-current="page">Início</a>
+      <a href="/solucoes" class="font-medium cursor-pointer hover:text-primary">Soluções</a>
+      <a href="/sobre" class="font-medium cursor-pointer hover:text-primary">Sobre</a>
+      <a href="/contato" class="font-medium cursor-pointer hover:text-primary">Contato</a>
+    </nav>
+    <button class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer text-white" aria-label="Toggle menu" aria-expanded="false">
+      Menu
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50 bg-gray-900">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+      <nav class="flex flex-col space-y-6 text-white" role="navigation" aria-label="Mobile navigation">
+        <a href="/" class="text-2xl font-medium cursor-pointer hover:text-primary" aria-current="page">Início</a>
+        <a href="/solucoes" class="text-2xl font-medium cursor-pointer hover:text-primary">Soluções</a>
+        <a href="/sobre" class="text-2xl font-medium cursor-pointer hover:text-primary">Sobre</a>
+        <a href="/contato" class="text-2xl font-medium cursor-pointer hover:text-primary">Contato</a>
+      </nav>
+    </div>
+  </div>
 </header>
 <main>
 <!-- Seção Hero -->
@@ -481,6 +482,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
 <span class="text-primary font-medium">eficiência operacional</span> e
 <span class="text-primary font-medium">expansão sustentável</span>.
 </p>
+</div>
 <!-- Backup SaaS Estratégico -->
 <div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mb-16">
   <div class="w-full md:basis-1/2 md:max-w-[600px] p-4 md:p-6 space-y-4 text-justify break-words hyphens-auto bg-white rounded-lg shadow-sm">
@@ -509,9 +511,8 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
       <i class="ri-arrow-right-line"></i>
     </a>
   </div>
-
   <div class="w-full md:basis-1/2 flex items-center justify-center">
-    <img src="https://readdy.ai/api/search-image?query=3D%20holographic%20data%20protection%20shield..." alt="Backup SaaS Estratégico" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
+    <img src="https://readdy.ai/api/search-image?query=3D%20holographic%20data%20protection%20shield%20with%20floating%20cloud%20storage%20elements%2C%20glowing%20blue%20neon%20grid%20lines%2C%20advanced%20security%20visualization%20with%20digital%20particles%2C%20dark%20tech%20background%20with%20geometric%20patterns%2C%20premium%20enterprise%20data%20vault%20concept%2C%20ultra%20modern%20minimalist%20design%2C%20no%20text&width=800&height=600&seq=backup3&orientation=landscape" alt="Backup SaaS Estratégico" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
   </div>
 </div>
 
@@ -545,7 +546,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
   </div>
 
   <div class="w-full md:basis-1/2 flex items-center justify-center">
-    <img src="https://readdy.ai/api/search-image?query=3D%20network%20of%20interconnected..." alt="Infraestrutura Estratégica" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
+    <img src="https://readdy.ai/api/search-image?query=3D%20network%20of%20interconnected%20cubes%20with%20glowing%20blue%20neon%20edges%2C%20floating%20server%20racks%20with%20light%20trails%20connecting%20them%2C%20dark%20background%20with%20tech%20grid%2C%20orchestration%20flow%20visualization%2C%20minimalist%20infrastructure%20concept%2C%20no%20text%2C%20enterprise%20architecture&width=800&height=600&seq=infra2&orientation=landscape" alt="Infraestrutura Estratégica" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
   </div>
 </div>
 
@@ -579,7 +580,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
   </div>
 
   <div class="w-full md:basis-1/2 flex items-center justify-center">
-    <img src="https://readdy.ai/api/search-image?query=3D%20shield%20icon%20with%20digital..." alt="Segurança Cloud" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
+    <img src="https://readdy.ai/api/search-image?query=3D%20shield%20icon%20with%20digital%20protection%20sphere%2C%20glowing%20blue%20neon%20cybersecurity%20elements%2C%20floating%20security%20nodes%20connected%20with%20light%20trails%2C%20dark%20background%20with%20tech%20grid%2C%20cloud%20security%20visualization%2C%20minimalist%20clean%20design%2C%20no%20text%2C%20enterprise%20protection%20concept&width=800&height=600&seq=security2&orientation=landscape" alt="Segurança Cloud" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
   </div>
 </div>
 
@@ -613,7 +614,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
   </div>
 
   <div class="w-full md:basis-1/2 flex items-center justify-center">
-    <img src="https://readdy.ai/api/search-image?query=3D%20holographic%20business%20growth..." alt="Receita B2B" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
+    <img src="https://readdy.ai/api/search-image?query=3D%20holographic%20business%20growth%20visualization%20with%20ascending%20geometric%20shapes%2C%20glowing%20blue%20neon%20energy%20flows%20connecting%20floating%20crystal%20structures%2C%20premium%20dark%20tech%20environment%20with%20depth%2C%20abstract%20financial%20success%20representation%2C%20ultra%20modern%20enterprise%20concept%20with%20floating%20particles%20and%20light%20trails%2C%20clean%20minimalist%20design%2C%20no%20text%20or%20numbers&width=800&height=600&seq=revenue5&orientation=landscape" alt="Receita B2B" class="w-full h-auto aspect-[4/3] object-cover object-top max-w-[600px] rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" loading="lazy">
   </div>
 </div>
 <!-- Seção Metodologia AORKIA -->
@@ -690,7 +691,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
         <span class="text-primary font-medium">Implementação com Engenharia de Precisão</span> →
         <span class="text-primary font-medium">Governança Contínua</span>.
       </p>
-     <a href="/servicos" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 font-medium rounded-lg whitespace-nowrap hover-scale shadow-lg hover:shadow-xl transition-all duration-300">
+     <a href="/solucoes" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 font-medium rounded-lg whitespace-nowrap hover-scale shadow-lg hover:shadow-xl transition-all duration-300">
       <span>Explorar</span>
      </a>
     </div>
