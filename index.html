@@ -914,17 +914,33 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
 
 <!-- Linha separada, centralizada -->
 <div class="mt-6 border-t border-gray-700 pt-4 text-center">
-  <p class="text-sm sm:text-base md:text-lg text-gray-400">
+  <p class="text-sm sm:text-base md:text-lg text-gray-400 mb-2">
     Desenvolvido por AORKIA
   </p>
-  
-  <form action="https://formspree.io/f/xblongdd" method="POST" class="mt-2">
+
+  <form action="https://formspree.io/f/xblongdd" method="POST" class="flex flex-col items-center gap-2">
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Seu email" 
+      required
+      class="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded text-sm sm:text-base md:text-lg"
+    >
+
+    <textarea 
+      name="message" 
+      rows="3" 
+      placeholder="Sua mensagem (opcional)"
+      class="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded text-sm sm:text-base md:text-lg"
+    ></textarea>
+
     <button type="submit" 
       class="text-sm sm:text-base md:text-lg text-primary hover:underline">
-      Entre em contato
+      Enviar
     </button>
   </form>
 </div>
+
 
 <!-- Outros scripts se houver... -->
 
