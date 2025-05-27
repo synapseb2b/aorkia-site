@@ -798,6 +798,7 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
 <footer class="bg-gray-900 py-16" role="contentinfo">
   <div class="container mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-12 gap-12 text-center md:text-left">
 
+    <!-- Coluna 1: Logo e social -->
     <div class="md:col-span-4">
       <a href="/" class="inline-block mb-6">
         <img src="logo_aorkia_white.png" alt="Logo AORKIA" class="h-20 w-auto mx-auto md:mx-0">
@@ -807,69 +808,93 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
       </p>
       <div class="flex justify-center md:justify-start items-center space-x-6">
         <a href="https://www.linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer">
-          <i class="ri-linkedin-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 hover:scale-110 transition-transform duration-300"></i>
+          <svg id="icon-linkedin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6 hover:scale-110 transition-transform duration-300">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h4v16H4zM6 2a2 2 0 110 4 2 2 0 010-4zm6 8h4v2.5a3 3 0 116 0V20h-4v-5.5a1.5 1.5 0 10-3 0V20h-4v-8z"/>
+          </svg>
         </a>
         <a href="https://instagram.com/aorkia" target="_blank" rel="noopener noreferrer">
-          <i class="ri-instagram-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 hover:scale-110 transition-transform duration-300"></i>
+          <svg id="icon-instagram" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6 hover:scale-110 transition-transform duration-300">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="3.5"/>
+            <circle cx="17" cy="7" r="1.5"/>
+          </svg>
         </a>
       </div>
     </div>
 
+    <!-- Coluna 2: Soluções -->
     <div class="md:col-span-4">
       <h3 class="text-lg font-bold mb-4">Soluções</h3>
       <ul class="space-y-3">
         <li class="flex justify-center md:justify-start items-center gap-2">
           <a href="/solucoes" class="flex items-center gap-2 hover:underline">
-            <i class="ri-save-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-backup-saas" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 16a4 4 0 0 1 0-8 5 5 0 0 1 9.9-1.5A4.5 4.5 0 0 1 20 11.5 4 4 0 0 1 16 16H5z"/>
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">Backup SaaS Estratégico</span>
           </a>
         </li>
         <li class="flex justify-center md:justify-start items-center gap-2">
           <a href="/solucoes" class="flex items-center gap-2 hover:underline">
-            <i class="ri-server-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-infraestrutura" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <rect x="3" y="7" width="18" height="10" rx="2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12h10"/>
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">Infraestrutura Estratégica</span>
           </a>
         </li>
         <li class="flex justify-center md:justify-start items-center gap-2">
           <a href="/solucoes" class="flex items-center gap-2 hover:underline">
-            <i class="ri-shield-keyhole-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-seguranca-cloud" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.8 9.7-8 10-4.2-.3-8-5-8-10V7l8-4z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6v3H9z"/>
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">Segurança Cloud</span>
           </a>
         </li>
         <li class="flex justify-center md:justify-start items-center gap-2">
           <a href="/solucoes" class="flex items-center gap-2 hover:underline">
-            <i class="ri-bar-chart-grouped-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-receita-b2b" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l6-6 4 4 6-6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16"/>
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">Receita B2B</span>
           </a>
         </li>
       </ul>
     </div>
 
+    <!-- Coluna 3: Contato -->
     <div class="md:col-span-4">
       <h3 class="text-lg font-bold mb-4">Contato</h3>
       <ul class="space-y-3">
         <li class="flex justify-center md:justify-start items-start gap-2">
           <button onclick="toggleMap()" class="flex items-start gap-2 hover:underline">
-            <i class="ri-map-pin-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
-            <span class="text-base sm:text-lg md:text-xl leading-relaxed">
+            <svg id="icon-endereco" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-5-5-8-8-8-11a8 8 0 1 1 16 0c0 3-3 6-8 11z" />
+            </svg>
+            <span class="text-base sm:text-lg md:text-xl leading-relaxed text-left">
               Av. Getúlio Vargas, 671 - Sala 500, Savassi<br>Belo Horizonte - MG, 334030
             </span>
           </button>
-          <div id="mapa" class="hidden mt-2">
-            <iframe src="https://www.google.com/maps?q=Av.+Getúlio+Vargas,+671+-+Savassi,+Belo+Horizonte+-+MG&output=embed" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          </div>
         </li>
 
         <li class="flex justify-center md:justify-start items-center gap-2">
           <a href="https://wa.me/5531988019006" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:underline">
-            <i class="ri-phone-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-telefone" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5c0-1.105.895-2 2-2h2c.265 0 .52.105.707.293l2 2A1 1 0 0 1 10 7l-1 2a16.001 16.001 0 0 0 6 6l2-1a1 1 0 0 1 1.707.293l2 2c.188.188.293.442.293.707v2c0 1.105-.895 2-2 2-9.941 0-18-8.059-18-18z"/>
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">+55 31 98801-9006</span>
           </a>
         </li>
 
         <li class="flex justify-center md:justify-start items-center gap-2">
           <button onclick="copiarEmail()" class="flex items-center gap-2 hover:underline">
-            <i class="ri-mail-line h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"></i>
+            <svg id="icon-email" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M22 6l-10 7L2 6" />
+            </svg>
             <span class="text-base sm:text-lg md:text-xl leading-relaxed">contato@aorkia.com</span>
           </button>
         </li>
@@ -888,17 +913,6 @@ Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
   </div>
 </footer>
 
-<!-- Barra de cookies -->
-<div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-gray-100 px-4 py-3 flex flex-col sm:flex-row items-center justify-between z-50">
-  <span class="text-sm sm:text-base">Este site utiliza cookies para melhorar sua experiência.</span>
-  <button onclick="acceptCookies()" class="mt-2 sm:mt-0 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded transition-all duration-300">Aceitar</button>
-</div>
-
-<script>
-function acceptCookies() {
-  document.getElementById('cookieConsent').style.display = 'none';
-}
-</script>
 
 <!-- Outros scripts se houver... -->
 
