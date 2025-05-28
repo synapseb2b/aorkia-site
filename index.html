@@ -409,8 +409,8 @@ fbq("track", "PageView");
       <a href="/sobre" class="font-medium cursor-pointer hover:text-primary">Sobre</a>
       <a href="/contato" class="font-medium cursor-pointer hover:text-primary">Contato</a>
     </nav>
-    <button class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer text-white" aria-label="Toggle menu" aria-expanded="false">
-      Menu
+    <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer text-white" aria-label="Toggle menu" aria-expanded="false">
+      <i class="ri-menu-line text-2xl"></i>
     </button>
   </div>
 
@@ -435,9 +435,9 @@ fbq("track", "PageView");
   <div class="container mx-auto max-w-6xl px-4 relative">
     <div class="flex flex-col md:flex-row items-center">
       <div class="w-full md:w-1/2 text-white space-y-6">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-          Soluções B2B que Transformam Negócios
-        </h1>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+        Soluções B2B que Transformam Negócios
+      </h1>
         <p class="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
           Potencialize sua empresa com nossas soluções: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível.
         </p>
@@ -508,8 +508,8 @@ animation: gradient-radial 10s ease-in-out infinite;
 <div class="text-center mb-24">
 <div class="inline-flex flex-col items-center">
 <h2 class="text-4xl md:text-5xl font-bold mb-8">
-<span class="gradient-text">Soluções</span>
-<span> Especializadas</span>
+  <span class="gradient-text">Metodologia</span>
+  <span> AORKIA</span>
 </h2>
 <p class="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed mb-8">
   Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
@@ -1003,6 +1003,13 @@ function showToast(message) {
       toast.classList.add('opacity-0');
     }, 3000);
   }
+}
+</script>
+
+<script>
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenu.classList.toggle('hidden');
 }
 </script>
 
