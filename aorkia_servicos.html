@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Interface Inteligente de Soluções AORKIA: diagnóstico estratégico preliminar para identificar pontos críticos em suas operações.">
+<meta name="format-detection" content="telephone=no">
+<style>
+:root {
+  --background: #ffffff;
+  --primary: #0076FF;
+  --secondary: #4A90E2;
+  --text-primary: #1A1F36;
+  --text-secondary: #697386;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-feature-settings: "ss01", "ss02", "ss03";
+  overflow-x: hidden;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-primary-hover:hover {
+  background-color: #0063cc !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 118, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+.feature-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 118, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 118, 255, 0.1);
+  border-color: rgba(0, 118, 255, 0.2);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 118, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, var(--primary), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+  transform-origin: 0%;
+  z-index: 1000;
+}
+
+/* Estilos específicos para a Interface Inteligente */
+.chat-container {
+  height: 600px;
+  transition: all 0.5s ease-in-out;
+}
+
+.chat-minimized {
+  height: 200px;
+}
+
+.chat-message {
+  max-width: 85%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.chat-message-user {
+  background-color: var(--primary);
+  color: white;
+  margin-left: auto;
+  border-radius: 1rem 1rem 0 1rem;
+}
+
+.chat-message-ai {
+  background-color: rgba(26, 31, 54, 0.8);
+  color: white;
+  margin-right: auto;
+  border-radius: 1rem 1rem 1rem 0;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  margin-right: 4px;
+  animation: typingAnimation 1.5s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingAnimation {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.content-container {
+  height: 600px;
+  transition: all 0.5s ease-in-out;
+  overflow-y: auto;
+}
+
+.chat-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chat-button:hover {
+  background-color: #0063cc;
+  transform: scale(1.05);
+}
+
+.chat-input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(26, 31, 54, 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 118, 255, 0.2);
+}
+
+.animate-gradient-x {
+  background-size: 200% 100%;
+  animation: gradient-x 15s ease infinite;
+}
+
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+  
+  .w-full-mobile {
+    width: 100%;
+  }
+  
+  .chat-container, .content-container {
+    height: 400px;
+  }
+  
+  .chat-minimized {
+    height: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+<title>Interface Inteligente de Soluções AORKIA</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#0076FF",
+        secondary: "#4A90E2",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
+</script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+<header class="bg-gray-900 shadow-sm py-2 transition-colors duration-200" role="banner">
+  <div class="container mx-auto max-w-6xl px-4 flex justify-between items-center">
+    <div>
+      <a href="/" class="flex items-center" aria-label="Home">
+        <img src="logo_aorkia_white.png" alt="Logo AORKIA" class="h-20 w-auto">
+      </a>
+    </div>
+    <nav class="hidden md:flex items-center space-x-8 text-white" role="navigation" aria-label="Main navigation">
+      <a href="/" class="font-medium cursor-pointer hover:text-primary">Início</a>
+      <a href="/solucoes" class="font-medium cursor-pointer hover:text-primary" aria-current="page">Soluções</a>
+      <a href="/sobre" class="font-medium cursor-pointer hover:text-primary">Sobre</a>
+      <a href="/contato" class="font-medium cursor-pointer hover:text-primary">Contato</a>
+    </nav>
+    <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer text-white" aria-label="Toggle menu" aria-expanded="false">
+      <i class="ri-menu-line text-2xl"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50 bg-gray-900">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+      <nav class="flex flex-col space-y-6 text-white" role="navigation" aria-label="Mobile navigation">
+        <a href="/" class="text-2xl font-medium cursor-pointer hover:text-primary">Início</a>
+        <a href="/solucoes" class="text-2xl font-medium cursor-pointer hover:text-primary" aria-current="page">Soluções</a>
+        <a href="/sobre" class="text-2xl font-medium cursor-pointer hover:text-primary">Sobre</a>
+        <a href="/contato" class="text-2xl font-medium cursor-pointer hover:text-primary">Contato</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Seção Hero -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/80 to-white"></div>
+    <div class="absolute inset-0 animate-gradient-x" style="background: linear-gradient(90deg, rgba(0,118,255,0.1), rgba(74,144,226,0.1), rgba(0,118,255,0.1)); background-size: 200% 100%;"></div>
+    
+    <div class="container mx-auto max-w-7xl px-4 relative">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          <span class="gradient-text">Interface Inteligente</span>
+          <span> de Soluções AORKIA</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          A AORKIA utiliza Coordenação Técnica Inteligente para diagnosticar e solucionar pontos críticos em suas operações,
+          gerando receita previsível e resiliência estratégica.
+        </p>
+      </div>
+      
+      <!-- Interface Inteligente - Área Principal -->
+      <div id="interfaceContainer" class="flex flex-col md:flex-row gap-6 mb-16 flex-col-mobile">
+        <!-- Chat Interface - 70% no primeiro ato -->
+        <div id="chatContainer" class="w-full md:w-7/12 w-full-mobile bg-gradient-to-r from-gray-900/80 to-gray-900/30 backdrop-blur-sm rounded-3xl shadow-lg p-6 chat-container">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border-2 border-primary animate-pulse">
+              <span class="text-white font-bold">A</span>
+            </div>
+            <h2 class="text-lg font-semibold ml-2 text-white">Interface Inteligente de Soluções AORKIA</h2>
+          </div>
+          
+          <div id="chatMessages" class="h-[calc(100%-120px)] overflow-y-auto mb-4 pr-2 text-white">
+            <!-- Mensagens serão adicionadas aqui via JavaScript -->
+          </div>
+          
+          <div id="chatInputContainer" class="flex items-center border-t border-gray-700/50 pt-4">
+            <input 
+              type="text" 
+              id="chatInput" 
+              placeholder="Digite sua mensagem..." 
+              class="chat-input"
+              aria-label="Digite sua mensagem"
+            >
+            <button 
+              id="sendButton" 
+              class="ml-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-all hover:scale-105"
+              aria-label="Enviar mensagem"
+            >
+              <i class="ri-send-plane-fill"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Área Complementar - 30% no primeiro ato -->
+        <div id="contentContainer" class="w-full md:w-5/12 w-full-mobile bg-white rounded-3xl shadow-lg p-6 content-container">
+          <!-- Conteúdo será adicionado aqui via JavaScript -->
+        </div>
+      </div>
+      
+      <!-- Navegação Tradicional -->
+      <div class="text-center mt-12 py-6 border-t border-gray-300">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Explore as soluções especializadas da AORKIA</h3>
+        <p class="text-gray-600 mb-6 max-w-3xl mx-auto">
+          Cada produto foi projetado para resolver desafios críticos de infraestrutura, segurança e receita, 
+          com foco absoluto em eficiência, escalabilidade e vantagem competitiva.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+          <div class="bg-white rounded-xl shadow-md hover-translate-y aspect-[4/3] p-6 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-full bg-blue-600/10 flex items-center justify-center mb-4">
+                <i class="ri-cloud-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">Backup SaaS Estratégico</h4>
+            </div>
+            <a href="/solucoes/backup-saas" class="text-primary hover:text-blue-700 hover:underline transition-colors text-sm flex items-center">
+              Saiba mais
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-md hover-translate-y aspect-[4/3] p-6 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-full bg-blue-600/10 flex items-center justify-center mb-4">
+                <i class="ri-server-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">Infraestrutura Estratégica</h4>
+            </div>
+            <a href="/solucoes/infraestrutura" class="text-primary hover:text-blue-700 hover:underline transition-colors text-sm flex items-center">
+              Saiba mais
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-md hover-translate-y aspect-[4/3] p-6 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-full bg-blue-600/10 flex items-center justify-center mb-4">
+                <i class="ri-shield-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">Segurança Cloud</h4>
+            </div>
+            <a href="/solucoes/seguranca-cloud" class="text-primary hover:text-blue-700 hover:underline transition-colors text-sm flex items-center">
+              Saiba mais
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-md hover-translate-y aspect-[4/3] p-6 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-full bg-blue-600/10 flex items-center justify-center mb-4">
+                <i class="ri-line-chart-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">Receita B2B</h4>
+            </div>
+            <a href="/solucoes/receita-b2b" class="text-primary hover:text-blue-700 hover:underline transition-colors text-sm flex items-center">
+              Saiba mais
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <a href="/solucoes" class="mt-4 inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors hover:scale-[1.02]">
+          Acesse Todos os Nossos Serviços
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-gray-900 text-white py-12 md:py-16">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="md:grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-4 mb-8 md:mb-0">
+        <h2 class="text-2xl font-bold mb-4">AORKIA</h2>
+        <p class="text-gray-300 mb-4">
+          Transformando ambientes críticos em sistemas coordenados, resilientes e escaláveis.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-white hover:text-blue-400 transition-colors" aria-label="LinkedIn">
+            <i class="ri-linkedin-fill text-xl"></i>
+          </a>
+          <a href="#" class="text-white hover:text-blue-400 transition-colors" aria-label="Twitter">
+            <i class="ri-twitter-fill text-xl"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="md:col-span-2 mb-6 md:mb-0">
+        <h3 class="text-lg font-semibold mb-4">Soluções</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Backup SaaS</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Infraestrutura</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Segurança Cloud</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Receita B2B</a></li>
+        </ul>
+      </div>
+      
+      <div class="md:col-span-2 mb-6 md:mb-0">
+        <h3 class="text-lg font-semibold mb-4">Empresa</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Sobre</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Equipe</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Carreiras</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white hover:underline transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      
+      <div class="md:col-span-4">
+        <h3 class="text-lg font-semibold mb-4">Contato</h3>
+        <p class="text-gray-300 mb-2">Entre em contato para uma conversa estratégica</p>
+        <a href="mailto:contato@aorkia.com" class="text-blue-400 hover:underline" id="emailLink">contato@aorkia.com</a>
+        <div class="mt-4">
+          <button 
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all hover:scale-[1.02]"
+            onclick="navigator.clipboard.writeText('contato@aorkia.com');"
+          >
+            Copiar Email
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+      <p class="text-gray-400">&copy; 2025 AORKIA. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Dados de conteúdo para cada combinação de área e perfil
+const contentMap = {
+  'Backup SaaS Estratégico': {
+    'Executivo C-Level': {
+      diagnosis: 'Como executivo, sua prioridade é garantir segurança, continuidade e governança sobre os dados críticos da sua organização.',
+      highlights: [
+        'Blindagem completa contra falhas operacionais e ataques cibernéticos, com a Keepit — líder global em backup SaaS.',
+        'Governança reforçada com dashboards estratégicos para suportar decisões baseadas em dados.',
+        'Backup transformado em um ativo de inteligência e vantagem competitiva.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Backup SaaS.',
+        'Agende uma conversa estratégica para mapear sua resiliência operacional.'
+      ]
+    },
+    'Gestor Técnico / Operacional': {
+      diagnosis: 'Como gestor técnico, sua prioridade é estabilidade, visibilidade e rastreabilidade, com eficiência máxima.',
+      highlights: [
+        'Solução imutável, auditável e automatizada, reduzindo esforço operacional.',
+        'Dashboards e trilhas de auditoria para gestão simplificada e conformidade contínua.',
+        'Recuperação instantânea e granular para resposta rápida a incidentes.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Backup SaaS.',
+        'Agende uma conversa estratégica para garantir conformidade e continuidade.'
+      ]
+    },
+    'Especialista Técnico': {
+      diagnosis: 'Como especialista, você precisa de configurações avançadas, testes robustos e integração nativa com BI e IA.',
+      highlights: [
+        'Políticas configuráveis e retenção estendida sob uma camada técnica robusta.',
+        'AI embarcada para automação inteligente e rastreabilidade total.',
+        'Compatibilidade com integrações avançadas e frameworks de segurança.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Backup SaaS.',
+        'Agende uma conversa para aprofundar a integração com sua stack.'
+      ]
+    },
+    'Outro': {
+      diagnosis: 'Independentemente do seu papel, a resiliência e a governança dos dados SaaS são cruciais para sua organização.',
+      highlights: [
+        'Proteção completa contra perda de dados e ataques de ransomware.',
+        'Visibilidade e controle aprimorados sobre todos os seus dados SaaS.',
+        'Recuperação rápida e confiável em caso de incidentes.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Backup SaaS.',
+        'Agende uma conversa estratégica para entender como proteger seus dados SaaS.'
+      ]
+    }
+  },
+  'Infraestrutura Estratégica': {
+    'Executivo C-Level': {
+      diagnosis: 'Como executivo, sua infraestrutura precisa ser um motor de performance, não um fator de risco.',
+      highlights: [
+        'Diagnóstico profundo para expor riscos ocultos e gargalos.',
+        'Design tático alinhado a eficiência, escalabilidade e segurança.',
+        'Governança contínua para assegurar controle e previsibilidade.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Infraestruturas Críticas.',
+        'Agende uma conversa para transformar sua infraestrutura em ativo estratégico.'
+      ]
+    },
+    'Gestor Técnico / Operacional': {
+      diagnosis: 'Como gestor, sua preocupação central é manter a infraestrutura eficiente e escalável, minimizando complexidade.',
+      highlights: [
+        'Curadoria e redesenho de ambientes híbridos e multicloud.',
+        'Plano de transição para ambientes resilientes, com governança contínua.',
+        'Eficiência operacional com redução de custos e riscos.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Infraestruturas Críticas.',
+        'Agende uma conversa para otimizar sua operação.'
+      ]
+    },
+    'Especialista Técnico': {
+      diagnosis: 'Como especialista, você busca frameworks claros para decisões técnicas e racionalização de workloads.',
+      highlights: [
+        'Diagnóstico técnico detalhado com documentação executiva.',
+        'Frameworks agnósticos para suporte a decisões de arquitetura.',
+        'Marcos de validação claros para cada etapa do ciclo de vida.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Infraestruturas Críticas.',
+        'Agende uma conversa para evoluir sua arquitetura com segurança.'
+      ]
+    },
+    'Outro': {
+      diagnosis: 'Uma infraestrutura robusta e bem gerenciada é a base para qualquer operação de sucesso.',
+      highlights: [
+        'Diagnóstico completo de sua infraestrutura atual.',
+        'Design e implementação de soluções otimizadas.',
+        'Governança contínua para garantir eficiência e segurança.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Infraestruturas Críticas.',
+        'Agende uma conversa estratégica para otimizar sua infraestrutura.'
+      ]
+    }
+  },
+  'Segurança Cloud': {
+    'Executivo C-Level': {
+      diagnosis: 'Como líder, sua responsabilidade é garantir segurança contínua e auditável, protegendo ativos críticos e assegurando conformidade.',
+      highlights: [
+        'Plataforma gerenciada com prevenção contextualizada e resposta automatizada.',
+        'Conformidade contínua com padrões como LGPD, GDPR e DORA.',
+        'Segurança como serviço, integrada e escalável.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Engenharia de Segurança Cloud.',
+        'Agende uma conversa estratégica para evoluir sua segurança.'
+      ]
+    },
+    'Gestor Técnico / Operacional': {
+      diagnosis: 'Como gestor, seu desafio é manter visibilidade unificada, automatizar correções e garantir aderência normativa.',
+      highlights: [
+        'Integração de CSPM/CNAPP líderes com frameworks proprietários.',
+        'Automação inteligente para segurança proativa e estruturada.',
+        'Relatórios contínuos para auditoria e conformidade.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Engenharia de Segurança Cloud.',
+        'Agende uma conversa para fortalecer sua segurança operacional.'
+      ]
+    },
+    'Especialista Técnico': {
+      diagnosis: 'Como especialista, você busca políticas adaptáveis, integração DevSecOps e conformidade em tempo real.',
+      highlights: [
+        'Plataforma completa com integração nativa aos ciclos de desenvolvimento.',
+        'Painel de conformidade atualizado em tempo real.',
+        'Pronto para atender às mais rigorosas exigências regulatórias.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Engenharia de Segurança Cloud.',
+        'Agende uma conversa para integrar segurança ao seu fluxo DevOps.'
+      ]
+    },
+    'Outro': {
+      diagnosis: 'A segurança na nuvem exige uma abordagem proativa e contínua para proteger seus ativos digitais.',
+      highlights: [
+        'Visibilidade completa sobre seus ambientes cloud.',
+        'Prevenção e resposta automatizada a ameaças.',
+        'Conformidade contínua com regulamentações relevantes.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Engenharia de Segurança Cloud.',
+        'Agende uma conversa estratégica para fortalecer sua segurança na nuvem.'
+      ]
+    }
+  },
+  'Receita B2B': {
+    'Executivo C-Level': {
+      diagnosis: 'Como executivo, seu foco é previsibilidade de receita, integração de processos e rastreabilidade total.',
+      highlights: [
+        'Engenharia Tática de Operações de Receita: unificação de marketing, vendas e CS.',
+        'Sistema operacional coerente, orientado à escala e performance.',
+        'Forecasts baseados em dados e eliminação de improviso.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Operações de Receita.',
+        'Agende uma conversa para estruturar sua receita com previsibilidade.'
+      ]
+    },
+    'Gestor Técnico / Operacional': {
+      diagnosis: 'Como gestor, seu desafio é eliminar silos, fluxos manuais e dados desconectados.',
+      highlights: [
+        'Integração sistêmica e automação sob critério estratégico.',
+        'Ativação de fluxos coordenados e previsíveis.',
+        'Otimização da presença digital para acelerar performance.'
+      ],
+      cta: [
+        'Acesse o Blueprint Técnico Exclusivo da AORKIA para Operações de Receita.',
+        'Agende uma conversa para potencializar sua performance.'
+      ]
+    },
+    'Especialista Técnico': {
+      diagnosis: 'Como especialista, você precisa de uma base confiável para dados, IA e automação.',
+      highlights: [
+        'Governança completa sobre o ciclo de receita.',
+        'Unificação de stack comercial e frameworks sólidos.',
+        'Suporte técnico para evolução contínua.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Operações de Receita.',
+        'Agende uma conversa para evoluir sua stack e processos.'
+      ]
+    },
+    'Outro': {
+      diagnosis: 'Otimizar o ciclo de receita B2B requer integração e automação inteligentes.',
+      highlights: [
+        'Unificação de marketing, vendas e sucesso do cliente.',
+        'Automação de processos para maior eficiência.',
+        'Análise de dados para tomada de decisões estratégicas.'
+      ],
+      cta: [
+        'Explore o Blueprint Técnico Exclusivo da AORKIA para Operações de Receita.',
+        'Agende uma conversa estratégica para otimizar suas operações de receita.'
+      ]
+    }
+  }
+};
+
+// Variáveis de estado
+let currentAct = 'act1';
+let selectedArea = null;
+let selectedProfile = null;
+let isTyping = false;
+let step = 'initial';
+
+// Elementos DOM
+const chatContainer = document.getElementById('chatContainer');
+const contentContainer = document.getElementById('contentContainer');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendButton = document.getElementById('sendButton');
+
+// Áreas e perfis
+const areas = [
+  'Backup SaaS Estratégico',
+  'Infraestrutura Estratégica',
+  'Segurança Cloud',
+  'Receita B2B'
+];
+
+const profiles = [
+  'Executivo C-Level',
+  'Gestor Técnico / Operacional',
+  'Especialista Técnico',
+  'Outro'
+];
+
+// Funções auxiliares
+function addMessage(sender, text, isHTML = false) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `chat-message ${sender === 'user' ? 'chat-message-user' : 'chat-message-ai'}`;
+  
+  if (isHTML) {
+    messageDiv.innerHTML = text;
+  } else {
+    messageDiv.textContent = text;
+  }
+  
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTypingIndicator() {
+  isTyping = true;
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'typing-indicator';
+  typingDiv.id = 'typingIndicator';
+  typingDiv.setAttribute('aria-label', 'IA AORKIA está digitando...');
+  
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'typing-dot';
+    typingDiv.appendChild(dot);
+  }
+  
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  isTyping = false;
+  const indicator = document.getElementById('typingIndicator');
+  if (indicator) {
+    indicator.remove();
+  }
+}
+
+function simulateTyping(callback, delay = 1500) {
+  showTypingIndicator();
+  setTimeout(() => {
+    hideTypingIndicator();
+    callback();
+  }, delay);
+}
+
+function switchToAct2() {
+  currentAct = 'act2';
+  
+  // Ajustar tamanhos
+  chatContainer.classList.add('chat-minimized');
+  chatContainer.style.width = window.innerWidth >= 768 ? '30%' : '100%';
+  contentContainer.style.width = window.innerWidth >= 768 ? '70%' : '100%';
+  
+  // Atualizar conteúdo
+  updateContent();
+}
+
+function updateContent() {
+  if (!selectedArea || !selectedProfile) {
+    // Conteúdo inicial/placeholder
+    contentContainer.innerHTML = `
+      <div class="flex flex-col items-center justify-center h-full text-center">
+        <div class="w-16 h-16 rounded-full bg-blue-600/10 flex items-center justify-center mb-4">
+          <i class="ri-information-line text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Painel Informativo AORKIA</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Utilize a Interface Inteligente ao lado para iniciar seu diagnóstico estratégico.
+          Selecionaremos o conteúdo mais relevante para você aqui.
+        </p>
+      </div>
+    `;
+  } else {
+    // Conteúdo personalizado baseado na seleção
+    const content = contentMap[selectedArea][selectedProfile];
+    
+    contentContainer.innerHTML = `
+      <div class="h-full overflow-y-auto">
+        <div class="animate-gradient-x bg-gradient-to-r from-blue-600/10 to-indigo-600/10 p-1 rounded-2xl mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 p-4">Diagnóstico Estratégico: ${selectedArea}</h3>
+        </div>
+        
+        <div class="space-y-6">
+          <div class="text-gray-700 text-justify hyphens-auto leading-relaxed">
+            <p class="font-medium text-lg">${content.diagnosis}</p>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-gray-800">Destaques do Diagnóstico:</h4>
+            <ul class="space-y-3">
+              ${content.highlights.map(highlight => `
+                <li class="flex items-start">
+                  <span class="text-primary mr-2 mt-1">•</span>
+                  <span class="text-gray-700">${highlight}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="space-y-3 mt-6">
+            <h4 class="text-lg font-semibold text-gray-800">Próximos Passos Recomendados:</h4>
+            <div class="space-y-3">
+              ${content.cta.map(action => `
+                <button class="w-full justify-start text-left h-auto py-3 px-4 bg-blue-600 hover:bg-blue-700 hover:scale-[1.02] transition-all shadow-md hover:shadow-lg text-white rounded-lg">
+                  👉 ${action}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="text-gray-600 text-center">
+            Prefere navegar diretamente?
+            <a href="/solucoes" class="text-primary hover:underline hover:text-blue-700 transition-colors">
+              Acesse todos os nossos serviços
+            </a>
+            e descubra como a AORKIA transforma ambientes críticos em sistemas coordenados, resilientes e escaláveis.
+          </p>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Inicialização
+function init() {
+  // Configurar estado inicial
+  updateContent();
+  
+  // Adicionar mensagem inicial
+  simulateTyping(() => {
+    addMessage('ai', `
+      <div class="space-y-3">
+        <p>Bem-vindo à AORKIA.</p>
+        <p>Sou sua assistente estratégica para diagnóstico preliminar.</p>
+        <p>Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata.</p>
+        <p>Selecione abaixo a frente que mais representa o seu foco atual:</p>
+        <div class="flex flex-col space-y-2 mt-3">
+          ${areas.map(area => `
+            <button onclick="handleAreaSelection('${area}')" class="text-left px-3 py-2 bg-gray-800 hover:bg-primary text-white rounded-lg transition-all hover:scale-[1.02]">
+              ➤ ${area}
+            </button>
+          `).join('')}
+        </div>
+        <p class="mt-3">A partir da sua escolha, apresentarei recomendações estratégicas e ações específicas para gerar resultados claros, previsíveis e sustentáveis.</p>
+      </div>
+    `, true);
+    step = 'select_area';
+  });
+  
+  // Configurar eventos
+  sendButton.addEventListener('click', handleSendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  });
+}
+
+// Handlers
+function handleAreaSelection(area) {
+  if (step !== 'select_area') return;
+  
+  addMessage('user', `Meu foco é: ${area}`);
+  selectedArea = area;
+  
+  simulateTyping(() => {
+    addMessage('ai', `
+      <div class="space-y-3">
+        <p>Ótimo, agora me ajude a entender qual o seu papel na organização.</p>
+        <p>Selecione a opção que mais representa seu perfil:</p>
+        <div class="flex flex-col space-y-2 mt-3">
+          ${profiles.map(profile => `
+            <button onclick="handleProfileSelection('${profile}')" class="text-left px-3 py-2 bg-gray-800 hover:bg-primary text-white rounded-lg transition-all hover:scale-[1.02]">
+              ➤ ${profile}
+            </button>
+          `).join('')}
+        </div>
+        <p class="mt-3">Essa informação é fundamental para ajustar o nível de detalhe e o tipo de recomendação que apresentarei.</p>
+      </div>
+    `, true);
+    step = 'select_profile';
+  });
+}
+
+function handleProfileSelection(profile) {
+  if (step !== 'select_profile' || !selectedArea) return;
+  
+  addMessage('user', `Meu perfil é: ${profile}`);
+  selectedProfile = profile;
+  step = 'result';
+  
+  simulateTyping(() => {
+    addMessage('ai', `
+      <div class="space-y-2">
+        <p>Perfeito.</p>
+        <p>Estou analisando o seu contexto e preparando recomendações estratégicas alinhadas à sua realidade.</p>
+        <p>Aguarde alguns instantes...</p>
+      </div>
+    `, true);
+    
+    // Simular análise e mudar para o segundo ato
+    setTimeout(() => {
+      switchToAct2();
+      step = 'finished';
+    }, 2000);
+  });
+}
+
+function handleSendMessage() {
+  const message = chatInput.value.trim();
+  if (!message) return;
+  
+  addMessage('user', message);
+  chatInput.value = '';
+  
+  // Lógica de resposta baseada no estado atual
+  if (step === 'select_area') {
+    const matchedArea = areas.find(a => message.toLowerCase().includes(a.split(' ')[0].toLowerCase()));
+    if (matchedArea) {
+      handleAreaSelection(matchedArea);
+    } else {
+      simulateTyping(() => {
+        addMessage('ai', 'Por favor, selecione uma das opções acima ou descreva sua área de foco.');
+      });
+    }
+  } else if (step === 'select_profile') {
+    const matchedProfile = profiles.find(p => message.toLowerCase().includes(p.split(' ')[0].toLowerCase()));
+    if (matchedProfile) {
+      handleProfileSelection(matchedProfile);
+    } else {
+      simulateTyping(() => {
+        addMessage('ai', 'Por favor, selecione um dos perfis acima ou descreva seu papel.');
+      });
+    }
+  } else {
+    simulateTyping(() => {
+      addMessage('ai', 'Obrigado pelo seu input. No momento, estou focado em guiar você pelas opções.');
+    });
+  }
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenu.classList.toggle('hidden');
+}
+
+// Iniciar quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', init);
+
+// Expor funções para uso global
+window.handleAreaSelection = handleAreaSelection;
+window.handleProfileSelection = handleProfileSelection;
+window.toggleMobileMenu = toggleMobileMenu;
+</script>
+</body>
+</html>
