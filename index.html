@@ -192,11 +192,15 @@ footer i[class^="ri-"], footer i[class*=" ri-"] {
 <link rel="alternate" hreflang="es" href="https://www.aorkia.com.es/servicios-b2b">
 <link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; 
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
-  img-src 'self' https://* data:; 
-  font-src 'self' local('Corbel'); 
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+  img-src 'self' https://* data:;
+  font-src 'self' local('Corbel');
+  frame-src https://www.google.com https://maps.googleapis.com;
+  child-src https://www.google.com https://maps.googleapis.com;
+">
 
 <link rel="icon" type="image/png" href="https://www.aorkia.com.br/favicon.png">
 
@@ -908,15 +912,15 @@ animation: gradient-radial 10s ease-in-out infinite;
 
   <!-- Mapa oculto -->
   <div id="mapa" class="hidden mt-2 w-full">
-    <iframe 
-      width="100%" 
-      height="200" 
-      style="border:0;" 
-      loading="lazy" 
-      allowfullscreen 
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyComjSaxFGqgI3fV5SPWffp2NLWNfHdLl0&q=Av.+Getúlio+Vargas,+671+-+Savassi,+Belo+Horizonte+-+MG">
-    </iframe>
+      <iframe
+        width="100%"
+        height="300"
+        frameborder="0" style="border:0"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=SUA_CHAVE_DE_API&q=Av.+Getúlio+Vargas,+671+-+Savassi,+Belo+Horizonte+-+MG"
+        allowfullscreen>
+      </iframe>
+
   </div>
 </li>
 
