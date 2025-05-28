@@ -893,31 +893,32 @@ animation: gradient-radial 10s ease-in-out infinite;
   <h3 class="text-lg font-bold mb-4">Contato</h3>
   <ul class="space-y-3">
     
-    <!-- Endereço com toggleMap -->
-    <li class="flex flex-col justify-center md:justify-start items-start gap-2">
-      <button onclick="toggleMap()" class="flex items-start gap-2 hover:underline">
-        <svg id="icon-endereco" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-5-5-8-8-8-11a8 8 0 1 1 16 0c0 3-3 6-8 11z"/>
-        </svg>
-        <span class="text-sm sm:text-base md:text-lg leading-relaxed">
-          Av. Getúlio Vargas, 671 - Sala 500, Savassi<br>Belo Horizonte - MG, 334030
-        </span>
-      </button>
+<!-- Endereço com toggleMap -->
+<li class="flex flex-col justify-center md:justify-start items-start gap-2">
+  <button onclick="toggleMap()" class="flex items-start gap-2 hover:underline">
+    <svg id="icon-endereco" xmlns="http://www.w3.org/2000/svg" fill="none" 
+         viewBox="0 0 24 24" stroke="#0076FF" stroke-width="2" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-5-5-8-8-8-11a8 8 0 1 1 16 0c0 3-3 6-8 11z"/>
+    </svg>
+    <span class="text-sm sm:text-base md:text-lg leading-relaxed">
+      Av. Getúlio Vargas, 671 - Sala 500, Savassi<br>Belo Horizonte - MG, 334030
+    </span>
+  </button>
 
-      <!-- Mapa oculto -->
-        <div id="mapa" class="hidden mt-2 w-full">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.7428877415628!2d-43.93233922643924!3d-19.935236738468355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa69959c02048dd%3A0x47253aa7cf5f0872!2sAv.%20Get%C3%BAlio%20Vargas%2C%20671%20-%20Savassi%2C%20Belo%20Horizonte%20-%20MG%2C%2030112-021!5e0!3m2!1spt-BR!2sbr!4v1748395569557!5m2!1spt-BR!2sbr" 
-            width="100%" 
-            height="200" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-    </li>
+  <!-- Mapa oculto -->
+  <div id="mapa" class="hidden mt-2 w-full">
+    <iframe 
+      width="100%" 
+      height="200" 
+      style="border:0;" 
+      loading="lazy" 
+      allowfullscreen 
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyComjSaxFGqgI3fV5SPWffp2NLWNfHdLl0&q=Av.+Getúlio+Vargas,+671+-+Savassi,+Belo+Horizonte+-+MG">
+    </iframe>
+  </div>
+</li>
 
     <!-- Telefone -->
     <li class="flex justify-center md:justify-start items-center gap-2">
