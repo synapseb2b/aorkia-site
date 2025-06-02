@@ -1,0 +1,3 @@
+git Add .well-known/mta-sts.txt for MTA-STS
+git Add MTA-STS policy file (.well-known/mta-sts.txt)
+git push
