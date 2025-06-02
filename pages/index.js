@@ -38,20 +38,20 @@ export default function Home() {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="AORKIA B2B" />
         
-        <link rel="canonical" href="https://www.aorkia.com.br/solucoes-b2b" />
-        <link rel="alternate" hreflang="pt-BR" href="https://www.aorkia.com.br/solucoes-b2b" />
-        <link rel="alternate" hreflang="en" href="https://www.aorkia.com/b2b-services" />
-        <link rel="alternate" hreflang="es" href="https://www.aorkia.com.es/servicios-b2b" />
-        <link rel="alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services" />
+        "canonical" href="https://www.aorkia.com.br/solucoes-b2b" />
+        "alternate" hreflang="pt-BR" href="https://www.aorkia.com.br/solucoes-b2b" />
+        "alternate" hreflang="en" href="https://www.aorkia.com/b2b-services" />
+        "alternate" hreflang="es" href="https://www.aorkia.com.es/servicios-b2b" />
+        "alternate" hreflang="x-default" href="https://www.aorkia.com/b2b-services" />
         
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="apple-touch-startup-image" href="/launch-screen.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="alternate" type="application/rss+xml" title="AORKIA Blog RSS Feed" href="/feed.xml" />
-        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        "icon" type="image/png" href="/favicon.png" />
+        "icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        "icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        "apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        "apple-touch-startup-image" href="/launch-screen.png" />
+        "manifest" href="/site.webmanifest" />
+        "alternate" type="application/rss+xml" title="AORKIA Blog RSS Feed" href="/feed.xml" />
+        "sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         
         <meta property="og:title" content="Soluções B2B | AORKIA" />
         <meta property="og:description" content="Soluções B2B que Transformam Negócios: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível." />
@@ -60,10 +60,11 @@ export default function Home() {
         <meta property="og:type" content="website" />
         
         {/* Preconnect para recursos externos */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        "preconnect" href="https://fonts.googleapis.com" />
+        "preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/style.css" />
         
         {/* Structured Data */}
         <script
