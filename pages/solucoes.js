@@ -15,18 +15,25 @@ export default function Solucoes() {
   const [messages, setMessages] = useState([
     {
       type: 'ai',
-      content: 'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata.'
+      content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:'
     }
   ]);
   
   // Referência para o container de mensagens para scroll automático
   const messagesEndRef = useRef(null);
   const chatMessagesRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   // Prevenir rolagem automática quando a página carrega
   useEffect(() => {
     // Desabilitar rolagem automática na carga inicial
     window.history.scrollRestoration = 'manual';
+    
+    // Manter a posição do scroll quando a página carrega
+    if (chatContainerRef.current) {
+      const container = chatContainerRef.current;
+      container.scrollTop = 0;
+    }
     
     return () => {
       window.history.scrollRestoration = 'auto';
@@ -47,9 +54,10 @@ export default function Solucoes() {
   }, []);
 
   // Efeito para rolar para o final das mensagens quando novas mensagens são adicionadas
+  // Modificado para não rolar a página inteira, apenas o container de chat
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (messagesEndRef.current && chatMessagesRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [messages]);
 
@@ -69,7 +77,7 @@ export default function Solucoes() {
           setMessages(prev => [...prev, 
             { 
               type: 'ai', 
-              content: 'Ótimo, agora me ajude a entender qual o seu papel na organização. Selecione a opção que mais representa seu perfil:' 
+              content: 'Entendido. Agora, nos ajude a compreender melhor o seu papel na organização:' 
             }
           ]);
           setCurrentStep(1);
@@ -249,7 +257,7 @@ export default function Solucoes() {
     try {
       setMessages([{
         type: 'ai',
-        content: 'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata.'
+        content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:'
       }]);
       setCurrentStep(0);
       setSelectedArea(null);
@@ -288,792 +296,551 @@ export default function Solucoes() {
       <Head>
         <title>Soluções AORKIA | Interface Inteligente de Diagnóstico</title>
         <meta name="description" content="Explore nossas soluções estratégicas através da Interface Inteligente de Diagnóstico AORKIA ou navegue tradicionalmente por nosso portfólio." />
-        <style>{`
-          /* Estilos específicos para a Interface Inteligente */
-          .chat-interface {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            height: calc(100vh - 200px);
-            min-height: 500px;
-          }
-          
-          .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-          }
-          
-          .chat-header {
-            background-color: #0076FF;
-            color: white;
-            padding: 10px 16px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            z-index: 10;
-          }
-          
-          .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            background-color: #f5f5f5;
-          }
-          
-          .message {
-            padding: 10px 14px;
-            border-radius: 16px;
-            max-width: 85%;
-            word-break: break-word;
-            position: relative;
-            margin-bottom: 2px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-          }
-          
-          .message-ai {
-            background-color: white;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-          }
-          
-          .message-user {
-            background-color: #dcf8c6;
-            color: #303030;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-          }
-          
-          .chat-input {
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-top: 1px solid #e0e0e0;
-            background-color: #fff;
-            position: relative;
-            z-index: 10;
-          }
-          
-          .chat-input input {
-            flex: 1;
-            padding: 10px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 24px;
-            outline: none;
-            background-color: #f5f5f5;
-          }
-          
-          .chat-input button {
-            background-color: #0076FF;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-          }
-          
-          .typing-indicator {
-            display: flex;
-            align-items: center;
-            padding: 8px 16px;
-            background-color: white;
-            border-radius: 16px;
-            align-self: flex-start;
-            margin-top: 4px;
-            border-bottom-left-radius: 4px;
-          }
-          
-          .typing-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #666;
-            border-radius: 50%;
-            margin: 0 2px;
-            animation: typing-animation 1.4s infinite ease-in-out both;
-          }
-          
-          .typing-dot:nth-child(1) {
-            animation-delay: -0.32s;
-          }
-          
-          .typing-dot:nth-child(2) {
-            animation-delay: -0.16s;
-          }
-          
-          @keyframes typing-animation {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-          }
-          
-          .view-mode-70-30 {
-            display: grid;
-            grid-template-columns: 70% 30%;
-            height: 100%;
-          }
-          
-          .view-mode-30-70 {
-            display: grid;
-            grid-template-columns: 30% 70%;
-            height: 100%;
-          }
-          
-          .option-button {
-            text-align: left;
-            padding: 12px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 16px;
-            background-color: white;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 15px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-          }
-          
-          .option-button:hover {
-            background-color: #f5f5f5;
-            border-color: #0076FF;
-          }
-          
-          .option-button:active {
-            transform: scale(0.98);
-          }
-          
-          /* Estilos específicos para mobile */
-          @media (max-width: 768px) {
-            .view-mode-70-30,
-            .view-mode-30-70 {
-              grid-template-columns: 1fr;
-              grid-template-rows: auto 1fr;
-            }
-            
-            .chat-interface {
-              height: calc(100vh - 150px);
-              border-radius: 0;
-              margin: 0;
-              max-width: 100%;
-            }
-            
-            .message {
-              max-width: 90%;
-              font-size: 15px;
-              padding: 8px 12px;
-            }
-            
-            .chat-messages {
-              padding: 12px;
-              gap: 6px;
-            }
-            
-            .chat-header {
-              padding: 8px 12px;
-            }
-            
-            .option-button {
-              padding: 10px 14px;
-              font-size: 14px;
-            }
-            
-            .content-area {
-              padding: 12px;
-              max-height: 300px;
-              overflow-y: auto;
-            }
-            
-            .chat-input {
-              padding: 6px 10px;
-            }
-            
-            .chat-input input {
-              padding: 8px 12px;
-            }
-            
-            .chat-input button {
-              width: 36px;
-              height: 36px;
-            }
-          }
-        `}</style>
       </Head>
 
-      <main>
-        {/* Seção Hero com Interface Inteligente */}
-        <section className="relative py-8 md:py-16 overflow-hidden min-h-screen bg-gray-900">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-800"></div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            {interfaceMode === 'intelligent' ? (
-              <div className="py-4 md:py-8">
-                <h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8 text-white text-center">
-                  Interface Inteligente de Soluções AORKIA
-                </h1>
-                
-                <div className="chat-interface">
-                  <div className={`${viewMode === '70-30' ? 'view-mode-70-30' : 'view-mode-30-70'}`}>
-                    {/* Área de Chat */}
-                    <div className="chat-container">
-                      <div className="chat-header">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                            <i className="ri-robot-line text-white"></i>
-                          </div>
-                          <span>Assistente AORKIA</span>
-                        </div>
-                        <button 
-                          onClick={handleReset}
-                          className="text-white hover:text-gray-200 transition-colors"
-                          aria-label="Reiniciar conversa"
-                        >
-                          <i className="ri-refresh-line"></i>
-                        </button>
-                      </div>
-                      
-                      <div className="chat-messages" id="chat-messages" ref={chatMessagesRef}>
-                        {messages.map((msg, index) => (
-                          <div key={index} className={`message message-${msg.type}`}>
-                            {msg.content}
-                          </div>
-                        ))}
-                        
-                        {showTyping && (
-                          <div className="typing-indicator">
-                            <div className="typing-dot"></div>
-                            <div className="typing-dot"></div>
-                            <div className="typing-dot"></div>
-                          </div>
-                        )}
-                        
-                        {currentStep === 0 && !selectedArea && (
-                          <div className="flex flex-col gap-2 mt-2">
-                            <p className="text-gray-700 text-sm mb-2">Selecione abaixo a frente que mais representa seu foco atual:</p>
-                            <button 
-                              onClick={() => handleAreaSelection('Backup SaaS Estratégico')}
-                              className="option-button"
-                            >
-                              Backup SaaS Estratégico
-                            </button>
-                            <button 
-                              onClick={() => handleAreaSelection('Infraestrutura Estratégica')}
-                              className="option-button"
-                            >
-                              Infraestrutura Estratégica
-                            </button>
-                            <button 
-                              onClick={() => handleAreaSelection('Segurança Cloud')}
-                              className="option-button"
-                            >
-                              Segurança Cloud
-                            </button>
-                            <button 
-                              onClick={() => handleAreaSelection('Receita B2B')}
-                              className="option-button"
-                            >
-                              Receita B2B
-                            </button>
-                          </div>
-                        )}
-                        
-                        {currentStep === 1 && selectedArea && !selectedProfile && (
-                          <div className="flex flex-col gap-2 mt-2">
-                            <p className="text-gray-700 text-sm mb-2">Selecione a opção que mais representa seu perfil:</p>
-                            <button 
-                              onClick={() => handleProfileSelection('Liderança Executiva / Estratégica')}
-                              className="option-button"
-                            >
-                              Liderança Executiva / Estratégica
-                            </button>
-                            <button 
-                              onClick={() => handleProfileSelection('Gestão Técnica / Operacional')}
-                              className="option-button"
-                            >
-                              Gestão Técnica / Operacional
-                            </button>
-                            <button 
-                              onClick={() => handleProfileSelection('Especialista Técnico')}
-                              className="option-button"
-                            >
-                              Especialista Técnico
-                            </button>
-                            <button 
-                              onClick={() => handleProfileSelection('Outro')}
-                              className="option-button"
-                            >
-                              Outro
-                            </button>
-                          </div>
-                        )}
-                        
-                        {currentStep === 2 && selectedArea && selectedProfile && (
-                          <div className="mt-2">
-                            <div className="bg-white border border-primary rounded-lg p-3 mb-2">
-                              <h3 className="text-base font-bold text-primary mb-2">Próximos Passos:</h3>
-                              <div className="flex flex-col sm:flex-row gap-2">
-                                <a 
-                                  href="#formulario-cta" 
-                                  className="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-all text-sm"
-                                >
-                                  <i className="ri-file-text-line"></i>
-                                  <span>Blueprint Técnico</span>
-                                </a>
-                                <a 
-                                  href="#formulario-cta" 
-                                  className="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-all text-sm"
-                                >
-                                  <i className="ri-calendar-line"></i>
-                                  <span>Agendar conversa</span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Referência para rolar para o final das mensagens */}
-                        <div ref={messagesEndRef} />
-                      </div>
-                      
-                      <div className="chat-input">
-                        <form onSubmit={handleSendMessage} className="flex-1 flex">
-                          <input 
-                            type="text" 
-                            value={userMessage}
-                            onChange={(e) => setUserMessage(e.target.value)}
-                            placeholder="Digite sua mensagem..."
-                            className="flex-1"
-                          />
-                          <button type="submit" aria-label="Enviar mensagem">
-                            <i className="ri-send-plane-fill"></i>
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                    
-                    {/* Área de Conteúdo Recomendado */}
-                    <div className="bg-gray-50 overflow-y-auto content-area">
-                      {viewMode === '70-30' ? (
-                        <div className="p-4">
-                          <h3 className="text-lg font-bold mb-3">Conteúdo Recomendado</h3>
-                          <div className="bg-white p-3 rounded-lg shadow-sm mb-3">
-                            <h4 className="font-bold text-primary text-sm">Whitepaper</h4>
-                            <p className="text-sm text-gray-700">Estratégias de Proteção de Dados para Ambientes SaaS</p>
-                          </div>
-                          <div className="bg-white p-3 rounded-lg shadow-sm">
-                            <h4 className="font-bold text-primary text-sm">Case Study</h4>
-                            <p className="text-sm text-gray-700">Como a Empresa X reduziu custos de backup em 60%</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="p-4">
-                          <h3 className="text-lg font-bold mb-3">Diagnóstico Personalizado</h3>
-                          
-                          {selectedArea && selectedProfile && (
-                            <div className="space-y-3">
-                              <div className="bg-white p-3 rounded-lg shadow-sm">
-                                <h4 className="font-bold text-primary mb-1 text-sm">Sua Situação Atual</h4>
-                                <p className="text-sm text-gray-700">
-                                  Com base no seu perfil de {selectedProfile} e foco em {selectedArea}, identificamos pontos críticos que exigem atenção imediata.
-                                </p>
-                              </div>
-                              
-                              <div className="bg-white p-3 rounded-lg shadow-sm">
-                                <h4 className="font-bold text-primary mb-1 text-sm">Oportunidades de Melhoria</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-700">
-                                  <li>Implementação de arquitetura resiliente</li>
-                                  <li>Otimização de processos operacionais</li>
-                                  <li>Automação de tarefas repetitivas</li>
-                                  <li>Visibilidade e controle centralizado</li>
-                                </ul>
-                              </div>
-                              
-                              <div className="bg-white p-3 rounded-lg shadow-sm">
-                                <h4 className="font-bold text-primary mb-1 text-sm">Recursos Exclusivos</h4>
-                                <div className="grid grid-cols-1 gap-1">
-                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
-                                    <i className="ri-file-text-line"></i>
-                                    <span>Whitepaper Exclusivo</span>
-                                  </a>
-                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
-                                    <i className="ri-video-line"></i>
-                                    <span>Webinar On-Demand</span>
-                                  </a>
-                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
-                                    <i className="ri-presentation-line"></i>
-                                    <span>Apresentação Técnica</span>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Botão para alternar para navegação tradicional */}
-                <div className="text-center mt-4">
-                  <button 
-                    onClick={toggleInterfaceMode}
-                    className="bg-white text-primary hover:bg-gray-100 px-4 py-2 rounded-lg font-medium transition-all inline-flex items-center text-sm"
-                    aria-label="Alternar para navegação tradicional"
-                  >
-                    <i className="ri-layout-grid-line mr-2"></i>
-                    <span>Prefiro Navegação Tradicional</span>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="py-8">
-                <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white text-center">
-                  Soluções AORKIA
-                </h1>
-                
-                <div className="bg-primary/10 backdrop-blur-sm p-4 rounded-lg mb-8 border border-primary/30">
-                  <div className="flex flex-col md:flex-row items-center gap-4 text-white">
-                    <div className="text-3xl">
-                      <i className="ri-robot-line"></i>
-                    </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-xl font-bold mb-1">Experimente nossa Interface Inteligente</h3>
-                      <p>Obtenha um diagnóstico personalizado baseado no seu perfil e necessidades específicas.</p>
-                    </div>
-                    <button 
-                      onClick={toggleInterfaceMode}
-                      className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg transition-all"
-                    >
-                      Começar agora
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Backup SaaS Estratégico */}
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
-                  <div className="p-5">
-                    <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">Backup SaaS Estratégico</h2>
-                    
-                    <p className="text-base md:text-lg text-gray-700 mb-4 text-center">
-                      Proteja seus dados críticos na nuvem com a solução líder global em backup SaaS.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-cloud-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Microsoft 365</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Backup completo para Exchange Online, SharePoint, OneDrive e Teams.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-google-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Google Workspace</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Proteção para Gmail, Drive, Contatos, Calendário e muito mais.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-database-2-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Salesforce</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Backup e recuperação granular para seus dados de CRM críticos.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <a 
-                        href="#formulario-cta" 
-                        className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg inline-flex items-center transition-all text-sm"
-                      >
-                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-1"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Infraestrutura Estratégica */}
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
-                  <div className="p-5">
-                    <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">Infraestrutura Estratégica</h2>
-                    
-                    <p className="text-base md:text-lg text-gray-700 mb-4 text-center">
-                      Transforme sua infraestrutura em um ativo estratégico que impulsiona inovação e crescimento.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-server-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Alta Disponibilidade</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Arquiteturas resilientes que garantem continuidade de negócios mesmo em cenários críticos.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-speed-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Otimização de Performance</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Análise e ajuste fino de sistemas para máxima eficiência e velocidade de resposta.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-scales-3-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Escalabilidade</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Infraestrutura que cresce com seu negócio, sem interrupções ou retrabalho.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <a 
-                        href="#formulario-cta" 
-                        className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg inline-flex items-center transition-all text-sm"
-                      >
-                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-1"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Segurança Cloud */}
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
-                  <div className="p-5">
-                    <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">Segurança Cloud</h2>
-                    
-                    <p className="text-base md:text-lg text-gray-700 mb-4 text-center">
-                      Proteja seus ativos digitais com nossa abordagem multicamada de segurança para ambientes cloud.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-eye-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Monitoramento 24/7</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Vigilância contínua de seus ambientes cloud com detecção de anomalias baseada em IA.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-shield-flash-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Resposta a Ameaças</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Contenção e remediação rápida de ameaças para minimizar impacto e tempo de inatividade.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-file-list-3-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Conformidade Regulatória</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Garantia de conformidade com LGPD, ISO 27001, PCI DSS e outras regulamentações relevantes.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <a 
-                        href="#formulario-cta" 
-                        className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg inline-flex items-center transition-all text-sm"
-                      >
-                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-1"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Receita B2B */}
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
-                  <div className="p-5">
-                    <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">Receita B2B</h2>
-                    
-                    <p className="text-base md:text-lg text-gray-700 mb-4 text-center">
-                      Transforme seu processo de vendas B2B com nossa metodologia de engenharia de receita previsível.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-customer-service-2-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Vendas Consultiva</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Metodologia que transforma seu time de vendas em consultores estratégicos para seus clientes.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-settings-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Automação de Processos</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Ferramentas e workflows que eliminam tarefas manuais e aumentam a produtividade da equipe comercial.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="text-2xl text-primary mb-2 text-center">
-                          <i className="ri-line-chart-line"></i>
-                        </div>
-                        <h3 className="text-base font-bold mb-2 text-center">Análise Preditiva</h3>
-                        <p className="text-gray-700 text-center text-sm">
-                          Modelos analíticos que preveem comportamento de compra e identificam oportunidades de upsell e cross-sell.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <a 
-                        href="#formulario-cta" 
-                        className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg inline-flex items-center transition-all text-sm"
-                      >
-                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-1"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+      <main className="bg-black text-white min-h-screen">
+        {/* Hero Section - Estilo Jam3 */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                Interface Inteligente de <span className="text-primary">Soluções AORKIA</span>
+              </h1>
+              <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
+                Um mecanismo de diagnóstico estratégico que identifica com precisão os pontos críticos de sua operação e recomenda soluções personalizadas.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Seção CTA */}
-        <section id="formulario-cta" className="py-12 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg overflow-hidden">
-              {/* Lado esquerdo - Imagem */}
-              <div className="w-full md:w-1/2 relative h-64 md:h-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30 z-10"></div>
-                <Image 
-                  src="/cta-image.jpg" 
-                  alt="Equipe AORKIA" 
-                  width={800} 
-                  height={600} 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center z-20">
-                  <div className="text-white text-center p-6">
-                    <h3 className="text-xl md:text-2xl font-bold mb-2">Transforme seu negócio</h3>
-                    <p className="text-base md:text-lg">Converse com nossos especialistas</p>
+        {/* Interface Inteligente - Redesenhada no estilo ChatGPT/Jam3 */}
+        <section className="py-10 md:py-16 bg-gray-900">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className={`chat-interface-container ${interfaceMode === 'intelligent' ? 'block' : 'hidden'}`}>
+              <div className={`chat-interface ${viewMode === '70-30' ? 'mode-70-30' : 'mode-30-70'}`} ref={chatContainerRef}>
+                <div className="chat-layout">
+                  {/* Área do Chat - Lado Esquerdo */}
+                  <div className="chat-area">
+                    <div className="chat-header">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-3">
+                            <i className="ri-robot-line text-white"></i>
+                          </div>
+                          <h3 className="font-medium">Interface Inteligente AORKIA</h3>
+                        </div>
+                        <button 
+                          onClick={handleReset}
+                          className="text-sm px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
+                        >
+                          Reiniciar
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="chat-messages" ref={chatMessagesRef}>
+                      {messages.map((msg, index) => (
+                        <div 
+                          key={index} 
+                          className={`message ${msg.type === 'ai' ? 'ai-message' : 'user-message'}`}
+                        >
+                          <div className="message-content">
+                            {msg.content}
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {showTyping && (
+                        <div className="message ai-message">
+                          <div className="message-content typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {currentStep === 0 && !selectedArea && (
+                        <div className="options-container">
+                          <button 
+                            onClick={() => handleAreaSelection('Backup SaaS Estratégico')}
+                            className="option-button"
+                          >
+                            Backup SaaS Estratégico
+                          </button>
+                          <button 
+                            onClick={() => handleAreaSelection('Infraestrutura Estratégica')}
+                            className="option-button"
+                          >
+                            Infraestrutura Estratégica
+                          </button>
+                          <button 
+                            onClick={() => handleAreaSelection('Segurança Cloud')}
+                            className="option-button"
+                          >
+                            Segurança Cloud
+                          </button>
+                          <button 
+                            onClick={() => handleAreaSelection('Receita B2B')}
+                            className="option-button"
+                          >
+                            Receita B2B
+                          </button>
+                        </div>
+                      )}
+                      
+                      {currentStep === 1 && !selectedProfile && (
+                        <div className="options-container">
+                          <button 
+                            onClick={() => handleProfileSelection('Liderança Executiva / Estratégica')}
+                            className="option-button"
+                          >
+                            Liderança Executiva / Estratégica
+                          </button>
+                          <button 
+                            onClick={() => handleProfileSelection('Gestão Técnica / Operacional')}
+                            className="option-button"
+                          >
+                            Gestão Técnica / Operacional
+                          </button>
+                          <button 
+                            onClick={() => handleProfileSelection('Especialista Técnico')}
+                            className="option-button"
+                          >
+                            Especialista Técnico
+                          </button>
+                          <button 
+                            onClick={() => handleProfileSelection('Outro')}
+                            className="option-button"
+                          >
+                            Outro
+                          </button>
+                        </div>
+                      )}
+                      
+                      <div ref={messagesEndRef} />
+                    </div>
+                    
+                    <div className="chat-input">
+                      <form onSubmit={handleSendMessage} className="flex items-center">
+                        <input
+                          type="text"
+                          value={userMessage}
+                          onChange={(e) => setUserMessage(e.target.value)}
+                          placeholder="Escreva aqui..."
+                          className="flex-grow px-4 py-2 rounded-l-lg border-0 focus:ring-2 focus:ring-primary"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-r-lg"
+                        >
+                          <i className="ri-send-plane-fill"></i>
+                        </button>
+                      </form>
+                      <div className="text-xs text-gray-400 mt-2 text-center">
+                        Evite compartilhar informações confidenciais/sensíveis.
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Área Complementar - Lado Direito */}
+                  <div className="complementary-area">
+                    {viewMode === '70-30' ? (
+                      <div className="complementary-content">
+                        <h3 className="text-xl font-bold mb-4">AORKIA Insights</h3>
+                        <div className="status-panel">
+                          <div className="status-item">
+                            <div className="status-icon">
+                              <i className="ri-shield-check-line"></i>
+                            </div>
+                            <div className="status-text">
+                              <h4>Diagnóstico Estratégico</h4>
+                              <p>Identificamos pontos críticos com precisão</p>
+                            </div>
+                          </div>
+                          <div className="status-item">
+                            <div className="status-icon">
+                              <i className="ri-rocket-line"></i>
+                            </div>
+                            <div className="status-text">
+                              <h4>Soluções Personalizadas</h4>
+                              <p>Recomendações baseadas no seu perfil</p>
+                            </div>
+                          </div>
+                          <div className="status-item">
+                            <div className="status-icon">
+                              <i className="ri-line-chart-line"></i>
+                            </div>
+                            <div className="status-text">
+                              <h4>Resultados Mensuráveis</h4>
+                              <p>Impacto direto nos seus indicadores</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="recommended-content">
+                        <h3 className="text-xl font-bold mb-4">Conteúdo Recomendado</h3>
+                        {selectedArea && selectedProfile && (
+                          <div className="recommendation-panel">
+                            <div className="recommendation-header">
+                              <h4 className="text-lg font-semibold">{selectedArea}</h4>
+                              <p className="text-sm text-gray-400">{selectedProfile}</p>
+                            </div>
+                            
+                            <div className="recommendation-actions">
+                              <a 
+                                href="#blueprint"
+                                className="action-button primary"
+                              >
+                                <i className="ri-file-text-line mr-2"></i>
+                                Blueprint Técnico Exclusivo
+                              </a>
+                              <a 
+                                href="#agendar"
+                                className="action-button secondary"
+                              >
+                                <i className="ri-calendar-line mr-2"></i>
+                                Agendar Conversa Estratégica
+                              </a>
+                            </div>
+                            
+                            <div className="related-resources">
+                              <h5 className="text-md font-medium mb-2">Recursos Relacionados</h5>
+                              <ul className="resource-list">
+                                <li>
+                                  <a href="#case-study">
+                                    <i className="ri-article-line mr-2"></i>
+                                    Case Study: Transformação Digital
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#whitepaper">
+                                    <i className="ri-file-paper-line mr-2"></i>
+                                    Whitepaper: Estratégias de {selectedArea}
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#webinar">
+                                    <i className="ri-video-line mr-2"></i>
+                                    Webinar: Tendências em {selectedArea}
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-              
-              {/* Lado direito - Formulário */}
-              <div className="w-full md:w-1/2 p-5 md:p-6">
-                <h3 className="text-xl font-bold mb-4">Solicite uma avaliação gratuita</h3>
-                <form className="space-y-3">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                      <input 
-                        type="text" 
-                        id="nome" 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="cargo" className="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
-                      <input 
-                        type="text" 
-                        id="cargo" 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email corporativo</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-1">WhatsApp / Telefone</label>
-                      <input 
-                        type="tel" 
-                        id="telefone" 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="assunto" className="block text-sm font-medium text-gray-700 mb-1">Assunto de Interesse</label>
-                    <select 
-                      id="assunto" 
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                      required
-                    >
-                      <option value="">Selecione uma opção</option>
-                      <option value="backup-saas">Backup SaaS Estratégico</option>
-                      <option value="infraestrutura">Infraestrutura Estratégica</option>
-                      <option value="seguranca-cloud">Segurança Cloud</option>
-                      <option value="receita-b2b">Receita B2B</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <button 
-                      type="submit" 
-                      className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 px-4 rounded-lg transition-colors"
-                    >
-                      Solicitar Contato
-                    </button>
-                  </div>
-                </form>
-              </div>
+            </div>
+            
+            <div className={`traditional-interface ${interfaceMode === 'traditional' ? 'block' : 'hidden'}`}>
+              {/* Conteúdo da interface tradicional */}
+            </div>
+            
+            <div className="interface-toggle mt-6 text-center">
+              <button 
+                onClick={toggleInterfaceMode}
+                className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-white transition-colors"
+              >
+                {interfaceMode === 'intelligent' 
+                  ? 'Alternar para Navegação Tradicional' 
+                  : 'Voltar para Interface Inteligente'}
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section - Estilo Jam3 */}
+        <section className="py-16 bg-black">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Pronto para transformar seu negócio?
+              </h2>
+              <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">
+                Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
+              </p>
+              <a 
+                href="#solicitar-avaliacao"
+                className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors"
+              >
+                Solicitar Avaliação Gratuita
+              </a>
             </div>
           </div>
         </section>
       </main>
+
+      <style jsx>{`
+        /* Estilos para a Interface Inteligente no estilo ChatGPT/Jam3 */
+        .chat-interface-container {
+          width: 100%;
+        }
+        
+        .chat-interface {
+          background-color: #121212;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+          height: 600px;
+          max-height: 80vh;
+          margin: 0 auto;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-layout {
+          display: flex;
+          height: 100%;
+        }
+        
+        .mode-70-30 .chat-area {
+          width: 70%;
+        }
+        
+        .mode-70-30 .complementary-area {
+          width: 30%;
+        }
+        
+        .mode-30-70 .chat-area {
+          width: 30%;
+        }
+        
+        .mode-30-70 .complementary-area {
+          width: 70%;
+        }
+        
+        .chat-area {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          border-right: 1px solid rgba(255, 255, 255, 0.1);
+          transition: width 0.5s ease;
+        }
+        
+        .chat-header {
+          padding: 16px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background-color: #1a1a1a;
+        }
+        
+        .chat-messages {
+          flex-grow: 1;
+          overflow-y: auto;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        .message {
+          max-width: 85%;
+          padding: 12px 16px;
+          border-radius: 12px;
+          animation: fadeIn 0.3s ease;
+        }
+        
+        .ai-message {
+          align-self: flex-start;
+          background-color: #2a2a2a;
+          border-bottom-left-radius: 4px;
+        }
+        
+        .user-message {
+          align-self: flex-end;
+          background-color: #0076FF;
+          border-bottom-right-radius: 4px;
+        }
+        
+        .message-content {
+          line-height: 1.5;
+        }
+        
+        .typing-indicator {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        
+        .typing-indicator span {
+          width: 8px;
+          height: 8px;
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 50%;
+          display: inline-block;
+          animation: typing 1.4s infinite ease-in-out both;
+        }
+        
+        .typing-indicator span:nth-child(1) {
+          animation-delay: -0.32s;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+          animation-delay: -0.16s;
+        }
+        
+        .options-container {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
+        
+        .option-button {
+          background-color: #2a2a2a;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 8px;
+          padding: 10px 16px;
+          text-align: left;
+          transition: all 0.2s ease;
+        }
+        
+        .option-button:hover {
+          background-color: #333;
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .chat-input {
+          padding: 16px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          background-color: #1a1a1a;
+        }
+        
+        .complementary-area {
+          padding: 20px;
+          background-color: #1a1a1a;
+          overflow-y: auto;
+          transition: width 0.5s ease;
+        }
+        
+        .status-panel {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 16px;
+        }
+        
+        .status-item {
+          display: flex;
+          gap: 12px;
+          padding: 12px;
+          background-color: #2a2a2a;
+          border-radius: 8px;
+        }
+        
+        .status-icon {
+          font-size: 24px;
+          color: #0076FF;
+        }
+        
+        .recommendation-panel {
+          background-color: #2a2a2a;
+          border-radius: 8px;
+          padding: 16px;
+          margin-top: 16px;
+        }
+        
+        .recommendation-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 16px;
+          margin-bottom: 16px;
+        }
+        
+        .action-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 12px;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+        
+        .action-button.primary {
+          background-color: #0076FF;
+          color: white;
+        }
+        
+        .action-button.primary:hover {
+          background-color: #0065d9;
+        }
+        
+        .action-button.secondary {
+          background-color: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .action-button.secondary:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .related-resources {
+          margin-top: 20px;
+        }
+        
+        .resource-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        
+        .resource-list li a {
+          display: flex;
+          align-items: center;
+          color: #0076FF;
+          font-size: 14px;
+          padding: 6px 0;
+        }
+        
+        .resource-list li a:hover {
+          text-decoration: underline;
+        }
+        
+        @keyframes typing {
+          0%, 80%, 100% { transform: scale(0.6); }
+          40% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+          .chat-layout {
+            flex-direction: column;
+          }
+          
+          .mode-70-30 .chat-area,
+          .mode-30-70 .chat-area,
+          .mode-70-30 .complementary-area,
+          .mode-30-70 .complementary-area {
+            width: 100%;
+          }
+          
+          .chat-area {
+            height: 70%;
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+          
+          .complementary-area {
+            height: 30%;
+          }
+          
+          .chat-interface {
+            height: 80vh;
+          }
+        }
+      `}</style>
     </>
   );
 }
