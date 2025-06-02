@@ -3,552 +3,861 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Dados dos diagnósticos (simplificado, idealmente viria de uma API ou arquivo separado)
-const diagnostics = {
-  'backup-saas': {
-    'c-level': {
-      title: 'Diagnóstico Estratégico: Backup SaaS para C-Level',
-      content: [
-        'Sua visão estratégica exige resiliência absoluta. A perda de dados SaaS não é uma opção.',
-        'A Keepit, via AORKIA, garante conformidade (LGPD, GDPR) e continuidade operacional inabalável.',
-        'Mitigue riscos financeiros e reputacionais com backup imutável e recuperação instantânea.',
-        'Foco no core business: deixe a proteção de dados SaaS conosco.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-manager': {
-      title: 'Diagnóstico Técnico: Backup SaaS para Gestor de TI',
-      content: [
-        'Simplifique a gestão de backups SaaS com uma solução centralizada e automatizada.',
-        'Recuperação granular e rápida minimiza downtime e impacto nas operações.',
-        'Segurança de ponta com criptografia e armazenamento imutável.',
-        'Libere sua equipe de tarefas manuais e foque em projetos estratégicos.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-specialist': {
-      title: 'Diagnóstico Operacional: Backup SaaS para Especialista de TI',
-      content: [
-        'Implementação rápida e integração transparente com Microsoft 365, Google Workspace, Salesforce, etc.',
-        'Console intuitiva para gerenciamento simplificado e monitoramento proativo.',
-        'APIs robustas para automação e integração com suas ferramentas existentes.',
-        'Suporte técnico especializado AORKIA para garantir performance máxima.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-  },
-  'infraestrutura': {
-    'c-level': {
-      title: 'Diagnóstico Estratégico: Infraestrutura para C-Level',
-      content: [
-        'Sua infraestrutura atual suporta a velocidade e a escala que seu negócio exige?',
-        'A AORKIA desenha ambientes resilientes e escaláveis que garantem disponibilidade e performance.',
-        'Otimize custos operacionais (OpEx) com soluções eficientes e gerenciamento proativo.',
-        'Infraestrutura como pilar estratégico para inovação e crescimento sustentável.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-manager': {
-      title: 'Diagnóstico Técnico: Infraestrutura para Gestor de TI',
-      content: [
-        'Gerencie ambientes híbridos e multicloud com visibilidade e controle centralizados.',
-        'Garanta alta disponibilidade e recuperação de desastres (DR) eficaz.',
-        'Modernize sistemas legados e integre novas tecnologias sem disrupção.',
-        'Monitore performance e segurança 24/7 com ferramentas avançadas.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-specialist': {
-      title: 'Diagnóstico Operacional: Infraestrutura para Especialista de TI',
-      content: [
-        'Automatize provisionamento, configuração e gerenciamento de infraestrutura (IaC).',
-        'Implemente redes seguras e otimizadas para performance e baixa latência.',
-        'Gerencie containers e orquestração (Kubernetes) com eficiência.',
-        'Otimize bancos de dados e armazenamento para máxima performance.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-  },
-  'seguranca-cloud': {
-    'c-level': {
-      title: 'Diagnóstico Estratégico: Segurança Cloud para C-Level',
-      content: [
-        'A expansão para a nuvem aumentou sua superfície de ataque. Seus ativos estão protegidos?',
-        'A AORKIA implementa CSPM/CNAPP para visibilidade total e conformidade contínua.',
-        'Reduza o risco de violações de dados e multas regulatórias (LGPD, GDPR).',
-        'Segurança como habilitadora de negócios, permitindo inovação segura na nuvem.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-manager': {
-      title: 'Diagnóstico Técnico: Segurança Cloud para Gestor de TI',
-      content: [
-        'Obtenha visibilidade unificada da postura de segurança em ambientes multicloud.',
-        'Automatize a detecção e remediação de configurações incorretas e vulnerabilidades.',
-        'Garanta conformidade com padrões de mercado (CIS, NIST) e regulamentações.',
-        'Integre segurança ao ciclo de vida de desenvolvimento (DevSecOps).',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-specialist': {
-      title: 'Diagnóstico Operacional: Segurança Cloud para Especialista de TI',
-      content: [
-        'Implemente controles de segurança granulares (IAM, redes, dados).',
-        'Configure e gerencie ferramentas CSPM e CNAPP de forma eficaz.',
-        'Responda a incidentes de segurança na nuvem com rapidez e precisão.',
-        'Monitore atividades suspeitas e investigue ameaças em tempo real.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-  },
-  'receita-b2b': {
-    'c-level': {
-      title: 'Diagnóstico Estratégico: Receita B2B para C-Level',
-      content: [
-        'Seus processos comerciais estão fragmentados e impedem o crescimento escalável?',
-        'A AORKIA integra Marketing, Vendas e CS para criar uma máquina de receita previsível.',
-        'Obtenha visibilidade completa do funil e tome decisões baseadas em dados.',
-        'Alinhe tecnologia e processos para maximizar a eficiência e acelerar o crescimento.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-manager': {
-      title: 'Diagnóstico Técnico: Receita B2B para Gestor de TI',
-      content: [
-        'Integre CRM, automação de marketing e outras ferramentas do GTM stack.',
-        'Garanta a qualidade e a governança dos dados de clientes e prospects.',
-        'Implemente dashboards e relatórios para monitoramento de KPIs de receita.',
-        'Forneça a infraestrutura tecnológica para suportar operações de receita escaláveis.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-    'ti-specialist': {
-      title: 'Diagnóstico Operacional: Receita B2B para Especialista de TI',
-      content: [
-        'Configure e personalize plataformas de CRM e automação de marketing.',
-        'Desenvolva integrações customizadas entre sistemas de receita.',
-        'Gerencie a segurança e o acesso aos dados comerciais sensíveis.',
-        'Automatize fluxos de trabalho para otimizar processos de vendas e marketing.',
-      ],
-      blueprintLink: '#',
-      scheduleLink: '#formulario-cta',
-    },
-  },
-};
-
 export default function Solucoes() {
-  const [messages, setMessages] = useState([]);
-  const [step, setStep] = useState(0);
+  const [interfaceMode, setInterfaceMode] = useState('intelligent'); // 'intelligent' ou 'traditional'
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
   const [selectedArea, setSelectedArea] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
-  const [isTyping, setIsTyping] = useState(false);
-  const [showTraditionalNav, setShowTraditionalNav] = useState(false);
-  const [diagnosticResult, setDiagnosticResult] = useState(null);
-  const chatEndRef = useRef(null);
+  const [showTyping, setShowTyping] = useState(false);
+  const [viewMode, setViewMode] = useState('70-30'); // '70-30' ou '30-70'
+  const [userMessage, setUserMessage] = useState('');
+  const [messages, setMessages] = useState([
+    {
+      type: 'ai',
+      content: 'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata.'
+    }
+  ]);
+  
+  // Referência para o container de mensagens para scroll automático
+  const messagesEndRef = useRef(null);
+  const chatMessagesRef = useRef(null);
 
-  const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, isTyping]);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      setScrollProgress(scrollPercent);
+    };
 
-  useEffect(() => {
-    // Mensagem inicial da IA
-    addAiMessage(
-      'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata. Selecione abaixo a frente que mais representa o seu foco atual:',
-      0
-    );
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const addMessage = (text, sender) => {
-    setMessages((prev) => [...prev, { text, sender }]);
+  // Efeito para rolar para o final das mensagens quando novas mensagens são adicionadas
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
+  // Função para lidar com a seleção de área crítica
+  const handleAreaSelection = (area) => {
+    try {
+      setSelectedArea(area);
+      setShowTyping(true);
+      
+      // Adiciona a mensagem do usuário imediatamente
+      setMessages(prev => [...prev, { type: 'user', content: area }]);
+      
+      // Simula o tempo de digitação da IA
+      setTimeout(() => {
+        try {
+          setShowTyping(false);
+          setMessages(prev => [...prev, 
+            { 
+              type: 'ai', 
+              content: 'Ótimo, agora me ajude a entender qual o seu papel na organização. Selecione a opção que mais representa seu perfil:' 
+            }
+          ]);
+          setCurrentStep(1);
+        } catch (error) {
+          console.error("Erro ao processar resposta da IA:", error);
+          handleError();
+        }
+      }, 1500);
+    } catch (error) {
+      console.error("Erro ao selecionar área:", error);
+      handleError();
+    }
   };
 
-  const addAiMessage = (text, delay = 1000) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      addMessage(text, 'ai');
-      // Avança para a próxima etapa se necessário (ex: após seleção de área)
-      if (step === 0 && text.includes('Qual o seu papel')) {
-        setStep(1);
-      }
-    }, delay);
+  // Função para lidar com a seleção de perfil
+  const handleProfileSelection = (profile) => {
+    try {
+      setSelectedProfile(profile);
+      setShowTyping(true);
+      
+      // Adiciona a mensagem do usuário imediatamente
+      setMessages(prev => [...prev, { type: 'user', content: profile }]);
+      
+      // Simula o tempo de digitação da IA
+      setTimeout(() => {
+        try {
+          setShowTyping(false);
+          
+          // Determina o diagnóstico com base na área e perfil
+          let diagnosis = getDiagnosis(selectedArea, profile);
+          
+          setMessages(prev => [...prev, 
+            { 
+              type: 'ai', 
+              content: diagnosis.message
+            }
+          ]);
+          setCurrentStep(2);
+          
+          // Muda para o modo 30-70 após o diagnóstico
+          setTimeout(() => {
+            setViewMode('30-70');
+          }, 1000);
+        } catch (error) {
+          console.error("Erro ao processar diagnóstico:", error);
+          handleError();
+        }
+      }, 2000);
+    } catch (error) {
+      console.error("Erro ao selecionar perfil:", error);
+      handleError();
+    }
   };
 
-  const handleAreaSelection = (area, areaText) => {
-    if (step !== 0) return; // Evita cliques múltiplos ou fora de hora
-    setSelectedArea(area);
-    addMessage(`Meu foco atual é: ${areaText}`, 'user');
-    addAiMessage(
-      'Ótimo, agora me ajude a entender qual o seu papel na organização. Selecione a opção que mais representa seu perfil:',
-      1000
-    );
+  // Função para obter diagnóstico personalizado
+  const getDiagnosis = (area, profile) => {
+    try {
+      const diagnoses = {
+        'Backup SaaS': {
+          'Executivo C-Level': {
+            message: 'Diagnóstico Estratégico: Sua posição de liderança exige garantia de continuidade de negócios. Identificamos que sua estratégia de Backup SaaS atual apresenta vulnerabilidades críticas que podem comprometer decisões executivas e gerar riscos regulatórios significativos. Recomendamos uma avaliação imediata da sua postura de resiliência de dados.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Gestor de TI': {
+            message: 'Diagnóstico Técnico-Gerencial: Como responsável pela infraestrutura tecnológica, sua atual abordagem de Backup SaaS apresenta lacunas operacionais que comprometem SLAs e aumentam o risco de perda de dados críticos. Identificamos oportunidades para otimizar processos, reduzir overhead operacional e implementar automações que eliminariam pontos cegos na proteção de dados.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Especialista Técnico': {
+            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura atual de Backup SaaS apresenta deficiências arquiteturais que comprometem a integridade e disponibilidade dos dados. Identificamos oportunidades para implementar soluções de proteção de dados de última geração que eliminariam vulnerabilidades técnicas e otimizariam processos de recuperação.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          }
+        },
+        'Infraestrutura': {
+          'Executivo C-Level': {
+            message: 'Diagnóstico Estratégico: Sua infraestrutura atual está limitando a capacidade de inovação e crescimento do negócio. Como líder, você enfrenta desafios de escalabilidade que impactam diretamente resultados financeiros e vantagem competitiva. Identificamos oportunidades para transformar sua infraestrutura em um ativo estratégico que impulsiona inovação.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Gestor de TI': {
+            message: 'Diagnóstico Técnico-Gerencial: Como gestor, você enfrenta o desafio de equilibrar manutenção da infraestrutura existente com a necessidade de modernização. Sua arquitetura atual apresenta ineficiências que aumentam custos operacionais e limitam a agilidade do negócio. Identificamos oportunidades para otimizar recursos e implementar automações que reduziriam significativamente o overhead operacional.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Especialista Técnico': {
+            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura atual apresenta gargalos técnicos que comprometem performance e escalabilidade. Identificamos oportunidades para implementar arquiteturas modernas que eliminariam pontos únicos de falha e otimizariam a utilização de recursos, permitindo maior flexibilidade e resiliência operacional.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          }
+        },
+        'Segurança Cloud': {
+          'Executivo C-Level': {
+            message: 'Diagnóstico Estratégico: Sua postura de segurança cloud atual expõe a organização a riscos significativos de compliance e reputação. Como líder, você enfrenta o desafio de proteger ativos digitais críticos em um cenário de ameaças cada vez mais sofisticadas. Identificamos vulnerabilidades que poderiam ser exploradas para comprometer dados sensíveis e propriedade intelectual.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Gestor de TI': {
+            message: 'Diagnóstico Técnico-Gerencial: Como gestor responsável pela segurança, você enfrenta o desafio de manter visibilidade e controle em ambientes cloud distribuídos. Sua abordagem atual apresenta lacunas que dificultam a detecção e resposta a ameaças em tempo hábil. Identificamos oportunidades para implementar controles de segurança adaptativos que fortaleceriam significativamente sua postura de proteção.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Especialista Técnico': {
+            message: 'Diagnóstico Técnico-Especializado: Sua arquitetura de segurança cloud atual apresenta vulnerabilidades técnicas que poderiam ser exploradas por atacantes. Identificamos oportunidades para implementar controles de segurança avançados que forneceriam proteção em profundidade e visibilidade granular sobre atividades suspeitas, fortalecendo significativamente sua postura de segurança.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          }
+        },
+        'Receita B2B': {
+          'Executivo C-Level': {
+            message: 'Diagnóstico Estratégico: Sua abordagem atual de geração de receita B2B apresenta ineficiências que limitam o crescimento e previsibilidade financeira. Como líder, você enfrenta o desafio de escalar operações comerciais de forma sustentável. Identificamos oportunidades para implementar uma metodologia de engenharia de receita que transformaria seu processo de vendas em um motor de crescimento previsível.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Gestor de TI': {
+            message: 'Diagnóstico Técnico-Gerencial: Como gestor de tecnologia, você tem a oportunidade de transformar a infraestrutura tecnológica em um habilitador estratégico para o crescimento de receita B2B. Sua stack tecnológica atual não está otimizada para suportar processos comerciais escaláveis. Identificamos oportunidades para implementar soluções que aumentariam significativamente a eficiência e eficácia da equipe comercial.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          },
+          'Especialista Técnico': {
+            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura técnica atual não está otimizada para suportar processos comerciais B2B escaláveis. Identificamos oportunidades para implementar automações e integrações que eliminariam silos de dados e forneceriam insights acionáveis para a equipe comercial, aumentando significativamente a eficiência e taxa de conversão.',
+            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+          }
+        }
+      };
+
+      return diagnoses[area]?.[profile] || {
+        message: 'Baseado no seu perfil e área de interesse, recomendamos uma análise personalizada com nossos especialistas.',
+        recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+      };
+    } catch (error) {
+      console.error("Erro ao obter diagnóstico:", error);
+      return {
+        message: 'Ocorreu um erro ao processar seu diagnóstico. Por favor, tente novamente ou entre em contato com nossos especialistas.',
+        recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
+      };
+    }
   };
 
-  const handleProfileSelection = (profile, profileText) => {
-    if (step !== 1 || !selectedArea) return; // Evita cliques múltiplos ou fora de hora
-    setSelectedProfile(profile);
-    addMessage(`Meu perfil é: ${profileText}`, 'user');
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      const result = diagnostics[selectedArea]?.[profile];
-      if (result) {
-        setDiagnosticResult(result);
-        addMessage(
-          `Entendido. Com base nas suas respostas, preparei um diagnóstico preliminar direcionado:\n\n**${result.title}**\n\n${result.content.map(item => `- ${item}`).join('\n')}`,
-          'ai'
-        );
-        setStep(2); // Etapa de diagnóstico
-      } else {
-        addMessage(
-          'Desculpe, não consegui gerar um diagnóstico para essa combinação. Por favor, reinicie a conversa ou explore nossa navegação tradicional.',
-          'ai'
-        );
-        setStep(0); // Reinicia em caso de erro
-      }
-    }, 1500);
+  // Função para enviar mensagem do usuário
+  const handleSendMessage = (e) => {
+    try {
+      e.preventDefault();
+      if (!userMessage.trim()) return;
+
+      setMessages(prev => [...prev, { type: 'user', content: userMessage }]);
+      setUserMessage('');
+      setShowTyping(true);
+
+      // Simula resposta da IA
+      setTimeout(() => {
+        try {
+          setShowTyping(false);
+          setMessages(prev => [...prev, { 
+            type: 'ai', 
+            content: 'Obrigado pelo seu comentário. Nossos especialistas estão disponíveis para uma conversa mais detalhada sobre suas necessidades específicas.' 
+          }]);
+        } catch (error) {
+          console.error("Erro ao processar resposta da IA:", error);
+          handleError();
+        }
+      }, 1500);
+    } catch (error) {
+      console.error("Erro ao enviar mensagem:", error);
+      handleError();
+    }
   };
 
+  // Função para reiniciar a conversa
   const handleReset = () => {
-    setMessages([]);
-    setStep(0);
-    setSelectedArea(null);
-    setSelectedProfile(null);
-    setDiagnosticResult(null);
-    setIsTyping(false);
-    // Adiciona a mensagem inicial novamente
-    addAiMessage(
-      'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata. Selecione abaixo a frente que mais representa o seu foco atual:',
-      500 // Delay menor no reset
-    );
+    try {
+      setMessages([{
+        type: 'ai',
+        content: 'Bem-vindo à AORKIA. Sou sua assistente estratégica para diagnóstico preliminar. Vamos, juntos, identificar com precisão qual área da sua operação exige evolução imediata.'
+      }]);
+      setCurrentStep(0);
+      setSelectedArea(null);
+      setSelectedProfile(null);
+      setViewMode('70-30');
+    } catch (error) {
+      console.error("Erro ao reiniciar conversa:", error);
+      handleError();
+    }
   };
 
-  const toggleTraditionalNav = () => {
-    setShowTraditionalNav(!showTraditionalNav);
+  // Função para alternar entre modos de interface
+  const toggleInterfaceMode = () => {
+    try {
+      setInterfaceMode(interfaceMode === 'intelligent' ? 'traditional' : 'intelligent');
+    } catch (error) {
+      console.error("Erro ao alternar modo de interface:", error);
+      handleError();
+    }
   };
 
-  // Opções para seleção
-  const areaOptions = [
-    { id: 'backup-saas', text: 'Backup SaaS Estratégico' },
-    { id: 'infraestrutura', text: 'Infraestrutura Estratégica' },
-    { id: 'seguranca-cloud', text: 'Segurança Cloud' },
-    { id: 'receita-b2b', text: 'Receita B2B' },
-  ];
-
-  const profileOptions = [
-    { id: 'c-level', text: 'Executivo C-Level' },
-    { id: 'ti-manager', text: 'Gestor de TI' },
-    { id: 'ti-specialist', text: 'Especialista de TI' },
-  ];
+  // Função para lidar com erros
+  const handleError = () => {
+    try {
+      setMessages(prev => [...prev, { 
+        type: 'ai', 
+        content: 'Desculpe, ocorreu um erro. Por favor, tente reiniciar a conversa ou entre em contato com nosso suporte.' 
+      }]);
+    } catch (error) {
+      console.error("Erro ao exibir mensagem de erro:", error);
+    }
+  };
 
   return (
     <>
       <Head>
-        <title>Soluções AORKIA | Interface Inteligente e Navegação Tradicional</title>
-        <meta name="description" content="Explore as soluções AORKIA através da nossa Interface Inteligente ou navegação tradicional. Backup SaaS, Infraestrutura, Segurança Cloud e Receita B2B." />
-        {/* Outras meta tags relevantes podem ser adicionadas aqui */}
+        <title>Soluções AORKIA | Interface Inteligente de Diagnóstico</title>
+        <meta name="description" content="Explore nossas soluções estratégicas através da Interface Inteligente de Diagnóstico AORKIA ou navegue tradicionalmente por nosso portfólio." />
       </Head>
 
-      {/* Header (Assumindo que é global via _app.js) */}
-      {/* <Header /> */}
-
       <main>
-        {/* Seção da Interface Inteligente */}
-        <section className="relative min-h-screen flex flex-col md:flex-row items-stretch tera-style overflow-hidden">
-          {/* Vídeo de Fundo */}
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+        {/* Seção Hero com Interface Inteligente */}
+        <section className="relative py-16 md:py-24 overflow-hidden min-h-screen">
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
 
-          {/* Container Principal */}
-          <div className={`relative z-20 flex flex-col md:flex-row w-full transition-all duration-500 ease-in-out ${showTraditionalNav ? 'md:h-auto' : 'md:h-screen'}`}>
-            
-            {/* Coluna do Chat (Interface Inteligente) */}
-            <div className={`w-full ${showTraditionalNav ? 'md:w-[30%]' : 'md:w-[70%]'} p-4 md:p-8 flex flex-col tera-chat transition-all duration-500 ease-in-out`}>
-              <div className="flex-grow overflow-y-auto pr-2 space-y-4 mb-4" style={{ maxHeight: 'calc(100vh - 150px)' }}>
-                {messages.map((msg, index) => (
-                  <div key={index} className={`chat-message ${msg.sender === 'user' ? 'chat-message-user' : 'chat-message-ai'}`}>
-                    {msg.text.split('\n').map((line, i) => (
-                      <p key={i} className={line.startsWith('**') ? 'font-bold' : ''}>{line.replace(/\*\*/g, '')}</p>
-                    ))}
-                  </div>
-                ))}
-                {isTyping && (
-                  <div className="typing-indicator">
-                    <span>Digitando</span>
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
-                  </div>
-                )}
-                <div ref={chatEndRef} />
-              </div>
-
-              {/* Opções de Resposta */}
-              <div className="mt-auto pt-4 border-t border-gray-700/50">
-                {step === 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {areaOptions.map((option) => (
-                      <button
-                        key={option.id}
-                        onClick={() => handleAreaSelection(option.id, option.text)}
-                        className="chat-button bg-primary hover:bg-primary/90 text-white"
-                      >
-                        ➤ {option.text}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {step === 1 && (
-                  <div className="flex flex-wrap gap-2">
-                    {profileOptions.map((option) => (
-                      <button
-                        key={option.id}
-                        onClick={() => handleProfileSelection(option.id, option.text)}
-                        className="chat-button bg-primary hover:bg-primary/90 text-white"
-                      >
-                        ➤ {option.text}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {/* Botão Reset sempre visível após o início */}
-                {step >= 0 && (
-                   <div className="relative mt-4">
-                     {/* Placeholder para input futuro, se necessário */}
-                     {/* <input type="text" className="chat-input" placeholder="Digite sua mensagem..." /> */}
-                     <button onClick={handleReset} className="reset-button" title="Reiniciar conversa">
-                       <i className="ri-refresh-line"></i>
-                     </button>
-                     {/* <button id="sendButton" className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full hover:bg-primary/90">
-                       <i className="ri-send-plane-fill"></i>
-                     </button> */}
-                   </div>
-                )}
-              </div>
-            </div>
-
-            {/* Coluna de Conteúdo Recomendado / Navegação Tradicional */}
-            <div className={`w-full ${showTraditionalNav ? 'md:w-[70%]' : 'md:w-[30%]'} p-4 md:p-8 overflow-y-auto tera-content transition-all duration-500 ease-in-out`} style={{ maxHeight: '100vh' }}>
-              {step === 2 && diagnosticResult && !showTraditionalNav && (
-                <div className="text-white">
-                  <h3 className="text-2xl font-bold mb-4 tera-tag">Diagnóstico Preliminar</h3>
-                  <h4 className="text-xl font-semibold mb-3 tera-title">{diagnosticResult.title}</h4>
-                  <div className="space-y-2 mb-6 tera-subtitle">
-                    {diagnosticResult.content.map((item, index) => (
-                      <p key={index}><i className="ri-check-double-line text-primary mr-2"></i>{item}</p>
-                    ))}
-                  </div>
-                  <h4 className="text-lg font-semibold mb-3">Próximos Passos Recomendados:</h4>
-                  <div className="flex flex-col gap-3">
-                    <Link href={diagnosticResult.blueprintLink} className="tera-button flex items-center justify-center gap-2">
-                      <i className="ri-download-cloud-2-line"></i> Acesse o Blueprint Técnico Exclusivo
-                    </Link>
-                    <Link href={diagnosticResult.scheduleLink} className="tera-button flex items-center justify-center gap-2">
-                      <i className="ri-calendar-event-line"></i> Agende uma conversa estratégica
-                    </Link>
-                  </div>
-                   {/* Card azul convidando para navegação tradicional */}
-                   <div className="text-card-blue-border mt-8">
-                     <h4 className="font-bold mb-2 text-lg">Explore Mais Detalhes</h4>
-                     <p className="text-sm mb-3">Prefere uma visão completa? Acesse nossa navegação tradicional para explorar todas as soluções em profundidade.</p>
-                     <button onClick={toggleTraditionalNav} className="tera-button text-sm py-2 px-4">
-                       Ver Navegação Tradicional
-                     </button>
-                   </div>
-                </div>
-              )}
-
-              {/* Conteúdo da Navegação Tradicional (inicialmente oculto ou mostrado se showTraditionalNav for true) */}
-              <div className={`traditional-section ${showTraditionalNav ? 'visible' : ''} text-white`}>
-                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Nossas Soluções Estratégicas</h2>
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
+            {interfaceMode === 'intelligent' ? (
+              <div className="py-8">
+                <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white text-center">
+                  Interface Inteligente de Soluções AORKIA
+                </h1>
                 
-                {/* Bloco Backup SaaS */}
-                <div id="backup-saas" className="product-block mb-16">
-                  <h3 className="product-title-disruptive">Backup SaaS Estratégico</h3>
-                  <p className="product-intro">Garanta a continuidade do seu negócio protegendo dados críticos em Microsoft 365, Google Workspace, Salesforce e mais, contra exclusão acidental, ransomware e falhas.</p>
-                  <h4 className="use-case-title">Casos de Uso Essenciais:</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div className="use-case-item">
-                      <p><strong>Recuperação Rápida:</strong> Restaure e-mails, arquivos ou contas inteiras em minutos, não dias.</p>
+                <div className="interface-border">
+                  <div className={`bg-white rounded-lg overflow-hidden ${viewMode === '70-30' ? 'view-mode-70-30' : 'view-mode-30-70'}`}>
+                    {/* Área de Chat */}
+                    <div className="chat-container bg-white">
+                      <div className="chat-header bg-primary">
+                        <div className="flex justify-between items-center">
+                          <span>Assistente Estratégico AORKIA</span>
+                          <button 
+                            onClick={handleReset}
+                            className="text-white hover:text-gray-200 transition-colors"
+                            aria-label="Reiniciar conversa"
+                          >
+                            <i className="ri-refresh-line"></i>
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="chat-messages" id="chat-messages" ref={chatMessagesRef}>
+                        {messages.map((msg, index) => (
+                          <div key={index} className={`message message-${msg.type}`}>
+                            {msg.content}
+                          </div>
+                        ))}
+                        
+                        {showTyping && (
+                          <div className="typing-indicator">
+                            <div className="typing-dot"></div>
+                            <div className="typing-dot"></div>
+                            <div className="typing-dot"></div>
+                          </div>
+                        )}
+                        
+                        {currentStep === 0 && !selectedArea && (
+                          <div className="flex flex-col gap-2 mt-4">
+                            <p className="text-gray-700">Selecione abaixo a frente que mais representa seu foco atual:</p>
+                            <button 
+                              onClick={() => handleAreaSelection('Backup SaaS')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Backup SaaS Estratégico
+                            </button>
+                            <button 
+                              onClick={() => handleAreaSelection('Infraestrutura')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Infraestrutura Estratégica
+                            </button>
+                            <button 
+                              onClick={() => handleAreaSelection('Segurança Cloud')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Segurança Cloud
+                            </button>
+                            <button 
+                              onClick={() => handleAreaSelection('Receita B2B')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Receita B2B
+                            </button>
+                          </div>
+                        )}
+                        
+                        {currentStep === 1 && selectedArea && !selectedProfile && (
+                          <div className="flex flex-col gap-2 mt-4">
+                            <p className="text-gray-700">Selecione a opção que mais representa seu perfil:</p>
+                            <button 
+                              onClick={() => handleProfileSelection('Executivo C-Level')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Executivo C-Level
+                            </button>
+                            <button 
+                              onClick={() => handleProfileSelection('Gestor de TI')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Gestor de TI
+                            </button>
+                            <button 
+                              onClick={() => handleProfileSelection('Especialista Técnico')}
+                              className="text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              ➤ Especialista Técnico
+                            </button>
+                          </div>
+                        )}
+                        
+                        {currentStep === 2 && selectedArea && selectedProfile && (
+                          <div className="mt-4">
+                            <div className="bg-white border border-primary rounded-lg p-4 mb-4">
+                              <h3 className="text-lg font-bold text-primary mb-2">Próximos Passos Recomendados:</h3>
+                              <div className="flex flex-col sm:flex-row gap-3">
+                                <a 
+                                  href="#formulario-cta" 
+                                  className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all"
+                                >
+                                  <i className="ri-file-text-line"></i>
+                                  <span>Blueprint Técnico Exclusivo</span>
+                                </a>
+                                <a 
+                                  href="#formulario-cta" 
+                                  className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all"
+                                >
+                                  <i className="ri-calendar-line"></i>
+                                  <span>Agende uma conversa</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Referência para rolar para o final das mensagens */}
+                        <div ref={messagesEndRef} />
+                      </div>
+                      
+                      <div className="chat-input">
+                        <button 
+                          onClick={handleReset}
+                          className="reset-button"
+                          aria-label="Reiniciar conversa"
+                        >
+                          <i className="ri-refresh-line"></i>
+                        </button>
+                        <form onSubmit={handleSendMessage} className="flex-1 flex">
+                          <input 
+                            type="text" 
+                            value={userMessage}
+                            onChange={(e) => setUserMessage(e.target.value)}
+                            placeholder="Digite sua mensagem..."
+                            className="flex-1"
+                          />
+                          <button type="submit" aria-label="Enviar mensagem">
+                            <i className="ri-send-plane-fill"></i>
+                          </button>
+                        </form>
+                      </div>
                     </div>
-                    <div className="use-case-item">
-                      <p><strong>Conformidade Garantida:</strong> Atenda requisitos de retenção e LGPD/GDPR com armazenamento seguro e imutável.</p>
-                    </div>
-                    <div className="use-case-item">
-                      <p><strong>Proteção Contra Ransomware:</strong> Isole seus backups de ataques e garanta a recuperação sem pagar resgate.</p>
-                    </div>
-                  </div>
-                  <div className="highlight-section">
-                    <h4 className="highlight-title">Destaque: Keepit - Líder Global em Backup SaaS</h4>
-                    <p className="highlight-text mb-4">Parceria AORKIA + Keepit: A plataforma nº 1 em proteção de dados SaaS, confiada por mais de 15.000 empresas em 74 países. Tecnologia dinamarquesa com data centers independentes e segurança de nível militar.</p>
-                    <p className="highlight-text font-semibold mb-2">Plataformas Suportadas:</p>
-                    <div className="flex flex-wrap justify-center items-center gap-4 saas-logos">
-                      {/* Adicionar logos como Image components */}
-                      <Image src="/logo-m365.png" alt="Microsoft 365" width={100} height={30} className="h-8 w-auto" loading="lazy" />
-                      <Image src="/logo-google-workspace.png" alt="Google Workspace" width={120} height={30} className="h-8 w-auto" loading="lazy" />
-                      <Image src="/logo-salesforce.png" alt="Salesforce" width={80} height={30} className="h-8 w-auto" loading="lazy" />
-                      <Image src="/logo-dynamics-365.png" alt="Dynamics 365" width={100} height={30} className="h-8 w-auto" loading="lazy" />
-                      {/* Adicionar mais logos conforme necessário */}
-                    </div>
-                  </div>
-                  <Link href="#formulario-cta" className="product-cta-button">
-                    Solicitar Diagnóstico de Backup SaaS <i className="ri-arrow-right-line"></i>
-                  </Link>
-                </div>
-
-                {/* Bloco Infraestrutura Estratégica */}
-                <div id="infraestrutura" className="product-block mb-16">
-                   <h3 className="product-title-disruptive">Infraestrutura Estratégica</h3>
-                   <p className="product-intro">Transforme sua infraestrutura de TI de um centro de custo para um motor de inovação e eficiência, com soluções resilientes, escaláveis e seguras.</p>
-                   <h4 className="use-case-title">Casos de Uso Essenciais:</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                     <div className="use-case-item">
-                       <p><strong>Modernização Cloud:</strong> Migre e otimize cargas de trabalho em ambientes multicloud (AWS, Azure, GCP) com segurança.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Alta Disponibilidade:</strong> Desenhe arquiteturas que garantam operação contínua dos seus sistemas críticos.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Otimização de Custos:</strong> Reduza gastos com infraestrutura através de dimensionamento correto e automação.</p>
-                     </div>
-                   </div>
-                   <div className="highlight-section">
-                     <h4 className="highlight-title">Destaque: Abordagem Híbrida Inteligente</h4>
-                     <p className="highlight-text">Combinamos o melhor dos mundos on-premise e cloud, criando soluções híbridas personalizadas que maximizam performance, segurança e controle de custos. Foco em automação (IaC), monitoramento proativo e gestão simplificada.</p>
-                   </div>
-                   <Link href="#formulario-cta" className="product-cta-button">
-                     Solicitar Diagnóstico de Infraestrutura <i className="ri-arrow-right-line"></i>
-                   </Link>
-                 </div>
-
-                {/* Bloco Segurança Cloud */}
-                 <div id="seguranca-cloud" className="product-block mb-16">
-                   <h3 className="product-title-disruptive">Segurança Cloud</h3>
-                   <p className="product-intro">Navegue pela complexidade da segurança em nuvem com confiança. Implementamos CSPM e CNAPP para visibilidade total, conformidade e proteção proativa.</p>
-                   <h4 className="use-case-title">Casos de Uso Essenciais:</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                     <div className="use-case-item">
-                       <p><strong>Gestão de Postura (CSPM):</strong> Identifique e corrija configurações incorretas e riscos em tempo real.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Proteção de Aplicações (CNAPP):</strong> Garanta segurança desde o código até a execução em produção.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Conformidade Contínua:</strong> Automatize auditorias e garanta aderência a LGPD, GDPR, DORA, etc.</p>
-                     </div>
-                   </div>
-                   <div className="highlight-section">
-                     <h4 className="highlight-title">Destaque: Segurança Integrada ao Negócio</h4>
-                     <p className="highlight-text">Nossa abordagem vai além da tecnologia. Integramos segurança aos seus processos de negócio e desenvolvimento (DevSecOps), transformando-a em um habilitador de inovação e confiança digital.</p>
-                   </div>
-                   <Link href="#formulario-cta" className="product-cta-button">
-                     Solicitar Diagnóstico de Segurança Cloud <i className="ri-arrow-right-line"></i>
-                   </Link>
-                 </div>
-
-                {/* Bloco Receita B2B */}
-                 <div id="receita-b2b" className="product-block mb-16">
-                   <h3 className="product-title-disruptive">Receita B2B</h3>
-                   <p className="product-intro">Unifique suas operações de Marketing, Vendas e Customer Success. Crie uma máquina de receita previsível e escalável com processos otimizados e tecnologia integrada.</p>
-                   <h4 className="use-case-title">Casos de Uso Essenciais:</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                     <div className="use-case-item">
-                       <p><strong>Automação Inteligente:</strong> Otimize funis de vendas e marketing com automação e lead scoring.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Visibilidade 360º:</strong> Integre dados de CRM e outras fontes para uma visão completa do cliente.</p>
-                     </div>
-                     <div className="use-case-item">
-                       <p><strong>Performance Digital:</strong> Otimize sua presença online para gerar leads qualificados e conversões.</p>
-                     </div>
-                   </div>
-                   <div className="highlight-section">
-                     <h4 className="highlight-title">Destaque: Engenharia de Receita</h4>
-                     <p className="highlight-text">Aplicamos princípios de engenharia para mapear, otimizar e automatizar seus processos de receita. Foco em dados, integração de sistemas (CRM, Marketing Automation) e alinhamento estratégico para crescimento sustentável.</p>
-                   </div>
-                   <Link href="#formulario-cta" className="product-cta-button">
-                     Solicitar Diagnóstico de Receita B2B <i className="ri-arrow-right-line"></i>
-                   </Link>
-                 </div>
-
-                {/* Seção CTA com Formulário (Reutilizada) */}
-                <section id="formulario-cta" className="cta-form-section">
-                  <div className="container mx-auto max-w-4xl px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
-                    <p className="text-lg md:text-xl text-gray-300 mb-10">Descubra como nossas soluções podem impulsionar sua empresa.</p>
                     
-                    <form className="space-y-4 max-w-lg mx-auto text-left">
-                      <div>
-                        <label htmlFor="name-solucoes" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
-                        <input type="text" id="name-solucoes" name="name" className="form-input" required />
-                      </div>
-                      <div>
-                        <label htmlFor="cargo-solucoes" className="block text-sm font-medium text-gray-300 mb-1">Cargo</label>
-                        <input type="text" id="cargo-solucoes" name="cargo" className="form-input" required />
-                      </div>
-                      <div>
-                        <label htmlFor="email-solucoes" className="block text-sm font-medium text-gray-300 mb-1">Email Corporativo</label>
-                        <input type="email" id="email-solucoes" name="email" className="form-input" required />
-                      </div>
-                      <div>
-                        <label htmlFor="phone-solucoes" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
-                        <input type="tel" id="phone-solucoes" name="phone" className="form-input" required />
-                      </div>
-                      <div>
-                        <label htmlFor="interest-solucoes" className="block text-sm font-medium text-gray-300 mb-1">Assunto de Interesse</label>
-                        <select id="interest-solucoes" name="interest" className="form-select" required>
-                          <option value="" disabled selected>Selecione uma opção</option>
-                          <option value="backup">Backup SaaS Estratégico</option>
-                          <option value="infra">Infraestrutura Estratégica</option>
-                          <option value="security">Segurança Cloud</option>
-                          <option value="revenue">Receita B2B</option>
-                        </select>
-                      </div>
-                      <div className="pt-2">
-                        <button type="submit" className="form-button">Solicitar Contato</button>
-                      </div>
-                    </form>
-                    <p className="text-sm text-gray-400 mt-8">Seus dados estão seguros conosco. Consulte nossa Política de Privacidade.</p>
+                    {/* Área de Conteúdo Recomendado */}
+                    <div className="bg-gray-50 p-4 overflow-y-auto">
+                      {viewMode === '70-30' ? (
+                        <div>
+                          <h3 className="text-lg font-bold mb-4">Conteúdo Recomendado</h3>
+                          <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
+                            <h4 className="font-bold text-primary">Whitepaper</h4>
+                            <p className="text-sm text-gray-700">Estratégias de Proteção de Dados para Ambientes SaaS</p>
+                          </div>
+                          <div className="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 className="font-bold text-primary">Case Study</h4>
+                            <p className="text-sm text-gray-700">Como a Empresa X reduziu custos de backup em 60%</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <h3 className="text-lg font-bold mb-4">Diagnóstico Personalizado</h3>
+                          
+                          {selectedArea && selectedProfile && (
+                            <div className="space-y-4">
+                              <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 className="font-bold text-primary mb-2">Sua Situação Atual</h4>
+                                <p className="text-sm text-gray-700">
+                                  Com base no seu perfil de {selectedProfile} e foco em {selectedArea}, identificamos pontos críticos que exigem atenção imediata.
+                                </p>
+                              </div>
+                              
+                              <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 className="font-bold text-primary mb-2">Oportunidades de Melhoria</h4>
+                                <ul className="list-disc list-inside text-sm text-gray-700">
+                                  <li>Implementação de arquitetura resiliente</li>
+                                  <li>Otimização de processos operacionais</li>
+                                  <li>Automação de tarefas repetitivas</li>
+                                  <li>Visibilidade e controle centralizado</li>
+                                </ul>
+                              </div>
+                              
+                              <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 className="font-bold text-primary mb-2">Recursos Exclusivos</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
+                                    <i className="ri-file-text-line"></i>
+                                    <span>Whitepaper Exclusivo</span>
+                                  </a>
+                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
+                                    <i className="ri-video-line"></i>
+                                    <span>Webinar On-Demand</span>
+                                  </a>
+                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
+                                    <i className="ri-presentation-line"></i>
+                                    <span>Apresentação Técnica</span>
+                                  </a>
+                                  <a href="#" className="text-sm text-primary hover:underline flex items-center gap-1">
+                                    <i className="ri-calculator-line"></i>
+                                    <span>Calculadora de ROI</span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </section>
+                </div>
+                
+                {/* Botão para alternar para navegação tradicional */}
+                <button 
+                  onClick={toggleInterfaceMode}
+                  className="traditional-nav-button bg-primary"
+                  aria-label="Alternar para navegação tradicional"
+                >
+                  <i className="ri-layout-grid-line mr-2"></i>
+                  <span>Prefiro Navegação Tradicional</span>
+                </button>
               </div>
+            ) : (
+              <div className="py-8">
+                <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white text-center">
+                  Soluções AORKIA
+                </h1>
+                
+                <div className="bg-primary/10 backdrop-blur-sm p-4 rounded-lg mb-12 border border-primary/30">
+                  <div className="flex flex-col md:flex-row items-center gap-4 text-white">
+                    <div className="text-3xl">
+                      <i className="ri-robot-line"></i>
+                    </div>
+                    <div className="flex-1 text-center md:text-left">
+                      <h3 className="text-xl font-bold mb-1">Experimente nossa Interface Inteligente</h3>
+                      <p>Obtenha um diagnóstico personalizado baseado no seu perfil e necessidades específicas.</p>
+                    </div>
+                    <button 
+                      onClick={toggleInterfaceMode}
+                      className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg transition-all"
+                    >
+                      Começar agora
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Backup SaaS Estratégico */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+                  <div className="p-8">
+                    <h2 className="text-3xl font-bold mb-6 text-center">Backup SaaS Estratégico</h2>
+                    
+                    <p className="text-lg text-gray-700 mb-8 text-center">
+                      Proteja seus dados críticos na nuvem com a solução líder global em backup SaaS.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-cloud-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Microsoft 365</h3>
+                        <p className="text-gray-700 text-center">
+                          Backup completo para Exchange Online, SharePoint, OneDrive e Teams.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-google-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Google Workspace</h3>
+                        <p className="text-gray-700 text-center">
+                          Proteção para Gmail, Drive, Contatos, Calendário e muito mais.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-database-2-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Salesforce</h3>
+                        <p className="text-gray-700 text-center">
+                          Backup e recuperação granular para seus dados de CRM críticos.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                      <h3 className="text-xl font-bold mb-4 text-center">Por que escolher a Keepit?</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex items-start">
+                          <div className="text-primary mr-2">
+                            <i className="ri-check-line text-xl"></i>
+                          </div>
+                          <p className="text-gray-700">
+                            <span className="font-medium">Líder global</span> com mais de 15.000 clientes em 74 países
+                          </p>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="text-primary mr-2">
+                            <i className="ri-check-line text-xl"></i>
+                          </div>
+                          <p className="text-gray-700">
+                            <span className="font-medium">Infraestrutura independente</span> com data centers próprios
+                          </p>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="text-primary mr-2">
+                            <i className="ri-check-line text-xl"></i>
+                          </div>
+                          <p className="text-gray-700">
+                            <span className="font-medium">Recuperação instantânea</span> com pesquisa avançada
+                          </p>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="text-primary mr-2">
+                            <i className="ri-check-line text-xl"></i>
+                          </div>
+                          <p className="text-gray-700">
+                            <span className="font-medium">Criptografia de ponta a ponta</span> e conformidade com GDPR/LGPD
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <a 
+                        href="#formulario-cta" 
+                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg inline-flex items-center transition-all"
+                      >
+                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-2"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Infraestrutura Estratégica */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+                  <div className="p-8">
+                    <h2 className="text-3xl font-bold mb-6 text-center">Infraestrutura Estratégica</h2>
+                    
+                    <p className="text-lg text-gray-700 mb-8 text-center">
+                      Transforme sua infraestrutura em um ativo estratégico que impulsiona inovação e crescimento.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-server-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Alta Disponibilidade</h3>
+                        <p className="text-gray-700 text-center">
+                          Arquiteturas resilientes que garantem continuidade de negócios mesmo em cenários críticos.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-speed-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Otimização de Performance</h3>
+                        <p className="text-gray-700 text-center">
+                          Análise e ajuste fino de sistemas para máxima eficiência e velocidade de resposta.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-scales-3-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Escalabilidade</h3>
+                        <p className="text-gray-700 text-center">
+                          Infraestrutura que cresce com seu negócio, sem interrupções ou retrabalho.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <a 
+                        href="#formulario-cta" 
+                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg inline-flex items-center transition-all"
+                      >
+                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-2"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Segurança Cloud */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+                  <div className="p-8">
+                    <h2 className="text-3xl font-bold mb-6 text-center">Segurança Cloud</h2>
+                    
+                    <p className="text-lg text-gray-700 mb-8 text-center">
+                      Proteja seus ativos digitais com nossa abordagem multicamada de segurança para ambientes cloud.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-eye-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Monitoramento 24/7</h3>
+                        <p className="text-gray-700 text-center">
+                          Vigilância contínua de seus ambientes cloud com detecção de anomalias baseada em IA.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-shield-flash-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Resposta a Ameaças</h3>
+                        <p className="text-gray-700 text-center">
+                          Contenção e remediação rápida de ameaças para minimizar impacto e tempo de inatividade.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-file-list-3-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Conformidade Regulatória</h3>
+                        <p className="text-gray-700 text-center">
+                          Garantia de conformidade com LGPD, ISO 27001, PCI DSS e outras regulamentações relevantes.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <a 
+                        href="#formulario-cta" 
+                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg inline-flex items-center transition-all"
+                      >
+                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-2"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Receita B2B */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+                  <div className="p-8">
+                    <h2 className="text-3xl font-bold mb-6 text-center">Receita B2B</h2>
+                    
+                    <p className="text-lg text-gray-700 mb-8 text-center">
+                      Transforme seu processo de vendas B2B com nossa metodologia de engenharia de receita previsível.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-customer-service-2-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Vendas Consultiva</h3>
+                        <p className="text-gray-700 text-center">
+                          Metodologia que transforma seu time de vendas em consultores estratégicos para seus clientes.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-settings-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Automação de Processos</h3>
+                        <p className="text-gray-700 text-center">
+                          Ferramentas e workflows que eliminam tarefas manuais e aumentam a produtividade da equipe comercial.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="text-4xl text-primary mb-4">
+                          <i className="ri-line-chart-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-center">Análise Preditiva</h3>
+                        <p className="text-gray-700 text-center">
+                          Modelos analíticos que preveem comportamento de compra e identificam oportunidades de upsell e cross-sell.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <a 
+                        href="#formulario-cta" 
+                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg inline-flex items-center transition-all"
+                      >
+                        Solicitar Avaliação Gratuita <i className="ri-arrow-right-line ml-2"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Seção CTA */}
+        <section id="formulario-cta" className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
+              </p>
+            </div>
+            
+            <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                    <input 
+                      type="text" 
+                      id="nome" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="cargo" className="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+                    <input 
+                      type="text" 
+                      id="cargo" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
+                      required 
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email corporativo</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-1">WhatsApp / Telefone</label>
+                    <input 
+                      type="tel" 
+                      id="telefone" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
+                      required 
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="assunto" className="block text-sm font-medium text-gray-700 mb-1">Assunto de Interesse</label>
+                  <select 
+                    id="assunto" 
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
+                    required
+                  >
+                    <option value="">Selecione uma opção</option>
+                    <option value="backup-saas">Backup SaaS Estratégico</option>
+                    <option value="infraestrutura">Infraestrutura Estratégica</option>
+                    <option value="seguranca-cloud">Segurança Cloud</option>
+                    <option value="receita-b2b">Receita B2B</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <button 
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+                  >
+                    Solicitar Contato
+                  </button>
+                </div>
+              </form>
+              
+              <p className="text-gray-600 text-sm text-center mt-6">
+                Descubra como nossas soluções podem impulsionar sua empresa.
+              </p>
             </div>
           </div>
-
-          {/* Botão Flutuante para Navegação Tradicional */}
-          <button 
-            onClick={toggleTraditionalNav} 
-            className="traditional-nav-button"
-            title={showTraditionalNav ? "Voltar para Interface Inteligente" : "Explorar Navegação Tradicional"}
-          >
-            {showTraditionalNav ? <i className="ri-robot-line"></i> : <i className="ri-list-unordered"></i>}
-            <span>{showTraditionalNav ? "Interface Inteligente" : "Navegação Tradicional"}</span>
-          </button>
-
         </section>
       </main>
-
-      {/* Footer (Assumindo que é global via _app.js) */}
-      {/* <Footer /> */}
     </>
   );
 }
-
