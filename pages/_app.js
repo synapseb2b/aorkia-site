@@ -63,31 +63,31 @@ function MyApp({ Component, pageProps }) {
 
       {/* Header Global */}
       <header className="fixed w-full z-50 bg-gray-900 shadow-md">
-        <div className="container mx-auto max-w-7xl px-4 flex justify-between items-center">
-          <Link href="/" className="py-4">
+        <div className="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3">
+          <Link href="/" className="py-2">
             <Image 
               src="/logo_aorkia_white.png" 
               alt="AORKIA" 
-              width={120} 
-              height={30} 
-              className="h-8 w-auto" 
+              width={150} 
+              height={38} 
+              className="h-10 w-auto" 
               priority
             />
           </Link>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-white hover:text-primary transition-colors">
+            <Link href="/" className="text-white hover:text-primary transition-colors text-lg font-medium">
               Home
             </Link>
-            <Link href="/solucoes" className="text-white hover:text-primary transition-colors">
+            <Link href="/solucoes" className="text-white hover:text-primary transition-colors text-lg font-medium">
               Soluções
             </Link>
-            <Link href="/sobre" className="text-white hover:text-primary transition-colors">
+            <Link href="/sobre" className="text-white hover:text-primary transition-colors text-lg font-medium">
               Sobre
             </Link>
-            <Link href="/contato" className="text-white hover:text-primary transition-colors">
+            <Link href="/contato" className="text-white hover:text-primary transition-colors text-lg font-medium">
               Contato
             </Link>
-            <Link href="/contato" className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+            <Link href="/contato" className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg transition-all text-lg font-medium">
               Começar agora
             </Link>
           </nav>
@@ -110,9 +110,9 @@ function MyApp({ Component, pageProps }) {
                 <Image 
                   src="/logo_aorkia_white.png" 
                   alt="AORKIA" 
-                  width={120} 
-                  height={30} 
-                  className="h-8 w-auto" 
+                  width={150} 
+                  height={38} 
+                  className="h-10 w-auto" 
                 />
               </Link>
               <button 
@@ -154,7 +154,7 @@ function MyApp({ Component, pageProps }) {
               </Link>
               <Link 
                 href="/contato" 
-                className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all text-center mt-4"
+                className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all text-center mt-4 text-xl"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Começar agora
@@ -165,7 +165,7 @@ function MyApp({ Component, pageProps }) {
       )}
 
       {/* Espaçador para compensar o header fixo */}
-      <div className="h-16"></div>
+      <div className="h-20"></div>
 
       {/* Conteúdo da Página */}
       <Component {...pageProps} />
@@ -178,9 +178,9 @@ function MyApp({ Component, pageProps }) {
               <Image 
                 src="/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                width={140} 
-                height={35} 
-                className="inline-block md:mx-0 mx-auto" 
+                width={180} 
+                height={45} 
+                className="inline-block md:mx-0 mx-auto h-12 w-auto" 
               />
               <p className="mt-4 text-sm max-w-md md:mx-0 mx-auto">
                 Soluções estratégicas para empresas que buscam excelência e inovação no mercado B2B.
