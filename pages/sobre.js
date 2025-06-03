@@ -1,48 +1,35 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Sobre() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef(null);
   
-  // Efeito para iniciar o vídeo de fundo quando a página carregar
   useEffect(() => {
     setIsLoaded(true);
     
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error("Erro ao reproduzir vídeo:", error);
-      });
-    }
+    // Prevenir rolagem automática ao carregar a página
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    
+    return () => {
+      window.history.scrollRestoration = 'auto';
+    };
   }, []);
 
   return (
     <div className={`relative ${isLoaded ? 'animate-fadeIn' : ''}`}>
       <Head>
         <title>Sobre - AORKIA</title>
-        <meta name="description" content="Conheça a AORKIA, empresa especializada em soluções estratégicas de tecnologia que transformam desafios complexos em crescimento sustentável." />
+        <meta name="description" content="Conheça a AORKIA, empresa especializada em soluções estratégicas de tecnologia que transformam desafios em oportunidades." />
       </Head>
 
       {/* Hero Section */}
-      <section className="hero">
-        {/* Vídeo de Fundo */}
-        <video 
-          ref={videoRef}
-          className="hero__video"
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        >
-          <source src="/video_hero.mp4" type="video/mp4" />
-        </video>
-        <div className="hero__overlay"></div>
+      <section className="hero" style={{ height: '70vh' }}>
+        <div className="hero__overlay" style={{ backgroundColor: '#0076FF' }}></div>
         
         <div className="hero__content">
-          <h1 className="hero__title">
-            Sobre a <span style={{ color: '#0076FF' }}>AORKIA</span>
-          </h1>
+          <h1 className="hero__title">Sobre a AORKIA</h1>
           <p className="hero__subtitle">
             Transformamos desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia.
           </p>
@@ -53,104 +40,59 @@ export default function Sobre() {
       <section className="whats-in-works">
         <div className="whats-in-works__content">
           <h2 className="whats-in-works__title">Nossa História</h2>
+          <p className="whats-in-works__description" style={{ marginBottom: '1.5rem' }}>
+            Fundada em 2018, a AORKIA nasceu da visão de um grupo de especialistas em tecnologia que identificaram a necessidade de uma abordagem mais estratégica e personalizada para os desafios tecnológicos das empresas brasileiras.
+          </p>
+          <p className="whats-in-works__description" style={{ marginBottom: '1.5rem' }}>
+            Desde o início, nossa missão tem sido clara: transformar desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia.
+          </p>
           <p className="whats-in-works__description">
-            Fundada em 2015, a AORKIA nasceu da visão de transformar a maneira como as empresas abordam seus desafios tecnológicos. Identificamos uma lacuna no mercado: a falta de uma abordagem verdadeiramente estratégica para a implementação de soluções tecnológicas.
-          </p>
-          <p className="whats-in-works__description" style={{ marginTop: '1rem' }}>
-            Nossa jornada começou com um pequeno time de especialistas apaixonados por tecnologia e estratégia de negócios. Ao longo dos anos, expandimos nossa equipe e portfólio de soluções, sempre mantendo nosso compromisso com a excelência e a inovação.
-          </p>
-          <p className="whats-in-works__description" style={{ marginTop: '1rem' }}>
-            Hoje, somos reconhecidos como líderes em soluções estratégicas de tecnologia, ajudando empresas de todos os portes a transformar desafios complexos em oportunidades de crescimento sustentável.
+            Ao longo dos anos, desenvolvemos uma metodologia única de Engenharia Estratégica Aplicada, que combina diagnóstico preciso, curadoria estratégica e implementação especializada para entregar resultados mensuráveis aos nossos clientes.
           </p>
         </div>
       </section>
 
-      {/* Metodologia */}
-      <section className="product-blocks">
-        <div className="product-block">
-          <img 
-            src="/images/metodologia.png" 
-            alt="Metodologia AORKIA" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Metodologia AORKIA</h2>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#0076FF' }}>Engenharia Estratégica Aplicada</h3>
-            <p className="product-block__description">
-              Conheça os pilares que transformam desafios complexos em crescimento sustentável e performance superior.
-            </p>
-            <div style={{ marginTop: '2rem', borderLeft: '4px solid #0076FF', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Diagnóstico Preciso e Curadoria Estratégica</h4>
-              <p>Entendimento profundo. Soluções sob medida.</p>
+      {/* Nossos Valores */}
+      <section className="product-block" style={{ backgroundColor: '#0076FF', color: 'white' }}>
+        <div className="product-block__content">
+          <h2 className="product-block__title">Nossos Valores</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Excelência</h3>
+              <p>Buscamos a excelência em tudo o que fazemos, desde o primeiro contato até a entrega final e suporte contínuo.</p>
             </div>
-            <p className="product-block__description">
-              Cada projeto inicia com um diagnóstico minucioso, alinhado aos seus desafios e objetivos, para orientar escolhas tecnológicas sob medida.
-            </p>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Inovação</h3>
+              <p>Estamos constantemente explorando novas tecnologias e abordagens para oferecer as melhores soluções aos nossos clientes.</p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Integridade</h3>
+              <p>Agimos com transparência e ética em todas as nossas relações, construindo confiança e parcerias duradouras.</p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Impacto</h3>
+              <p>Medimos nosso sucesso pelo impacto positivo que geramos nos negócios de nossos clientes e na sociedade.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Missão e Valores */}
+      {/* Visão e Missão */}
       <section className="whats-in-works">
         <div className="whats-in-works__content">
-          <h2 className="whats-in-works__title">Missão e Valores</h2>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
-            <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0076FF' }}>Nossa Missão</h3>
-              <p>
-                Transformar desafios tecnológicos complexos em vantagens competitivas sustentáveis, capacitando organizações a alcançarem seu máximo potencial através de soluções estratégicas e inovadoras.
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+            <div>
+              <h2 className="whats-in-works__title">Nossa Visão</h2>
+              <p className="whats-in-works__description">
+                Ser reconhecida como a principal referência em soluções estratégicas de tecnologia no Brasil, transformando a maneira como as empresas abordam seus desafios tecnológicos.
               </p>
             </div>
-            
-            <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0076FF' }}>Nossa Visão</h3>
-              <p>
-                Ser reconhecida globalmente como a parceira preferencial para transformação digital estratégica, definindo novos padrões de excelência e inovação no setor de tecnologia.
+            <div>
+              <h2 className="whats-in-works__title">Nossa Missão</h2>
+              <p className="whats-in-works__description">
+                Transformar desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia, gerando valor mensurável para nossos clientes.
               </p>
             </div>
-          </div>
-          
-          <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem', marginTop: '2rem' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#0076FF' }}>Nossos Valores</h3>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-              <div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Excelência</h4>
-                <p>Buscamos a excelência em tudo o que fazemos, superando expectativas e estabelecendo novos padrões de qualidade.</p>
-              </div>
-              
-              <div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Inovação</h4>
-                <p>Abraçamos a mudança e promovemos a inovação contínua, explorando novas ideias e tecnologias para criar soluções disruptivas.</p>
-              </div>
-              
-              <div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Integridade</h4>
-                <p>Agimos com transparência, honestidade e ética em todas as nossas interações, construindo relacionamentos baseados na confiança.</p>
-              </div>
-              
-              <div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Impacto</h4>
-                <p>Focamos em gerar impacto positivo e mensurável para nossos clientes, parceiros e para a sociedade como um todo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ padding: '4rem 0', paddingLeft: '80px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ backgroundColor: '#0076FF', padding: '3rem', borderRadius: '0.5rem', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>Pronto para transformar seu negócio?</h2>
-            <p style={{ fontSize: '1.25rem', marginBottom: '2rem' }}>Descubra como nossas soluções estratégicas podem impulsionar sua empresa.</p>
-            <Link href="/contato">
-              <a style={{ display: 'inline-block', backgroundColor: 'white', color: '#0076FF', fontWeight: '600', padding: '1rem 2rem', borderRadius: '2rem', transition: 'background-color 0.3s ease' }}>
-                Entre em contato
-              </a>
-            </Link>
           </div>
         </div>
       </section>
