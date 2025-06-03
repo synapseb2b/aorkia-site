@@ -1,230 +1,209 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [activeProductIndex, setActiveProductIndex] = useState(null);
-  const videoRef = useRef(null);
-  
-  // Produtos
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeProduct, setActiveProduct] = useState(null);
+  const productsRef = useRef(null);
+
+  // Efeito para monitorar o progresso de rolagem
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      setScrollProgress(scrollPercent);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Produtos com suas respectivas imagens
   const products = [
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
-      description: 'Proteja seus dados críticos com nossa solução de backup especializada para ambientes SaaS, garantindo continuidade de negócios e conformidade regulatória.',
+      description: 'Proteção completa para seus dados críticos na nuvem com a plataforma líder global Keepit.',
       image: '/images/keepit.png'
     },
     {
       id: 'finops',
       title: 'Plataformas de FinOps com IA',
-      description: 'Otimize seus investimentos em nuvem com nossa plataforma de FinOps potencializada por inteligência artificial, reduzindo custos e maximizando o valor de seus recursos.',
+      description: 'Otimize seus investimentos em nuvem com nossa plataforma de gerenciamento financeiro inteligente.',
       image: '/images/finops.png'
     },
     {
       id: 'edge',
       title: 'Plataformas Edge AI',
-      description: 'Leve o poder da inteligência artificial para a borda da sua rede, permitindo processamento em tempo real e tomada de decisões mais rápida e eficiente.',
+      description: 'Processamento de dados e inteligência artificial na borda para decisões em tempo real.',
       image: '/images/edge.png'
     },
     {
       id: 'dspm',
       title: 'Data Security Posture Management (DSPM)',
-      description: 'Proteja seus dados sensíveis com nossa solução de gerenciamento de postura de segurança de dados, identificando riscos e vulnerabilidades em tempo real.',
+      description: 'Visibilidade e controle completos sobre seus dados sensíveis em ambientes multi-cloud.',
       image: '/images/dspm.png'
     },
     {
       id: 'bas',
       title: 'Breach and Attack Simulation (BAS)',
-      description: 'Teste continuamente suas defesas de segurança com simulações realistas de ataques, identificando vulnerabilidades antes que sejam exploradas por ameaças reais.',
+      description: 'Validação contínua de segurança para identificar vulnerabilidades antes que sejam exploradas.',
       image: '/images/bas.png'
     },
     {
       id: 'digital',
       title: 'Otimização de Presença Digital',
-      description: 'Transforme sua presença online com nossas soluções estratégicas de marketing digital, aumentando visibilidade, engajamento e conversões.',
+      description: 'Transforme sua presença online com estratégias digitais orientadas por dados e resultados.',
       image: '/images/digital.png'
     }
   ];
-  
-  // Efeito para iniciar o vídeo de fundo quando a página carregar
-  useEffect(() => {
-    setIsLoaded(true);
-    
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error("Erro ao reproduzir vídeo:", error);
-      });
-    }
-  }, []);
 
   return (
-    <div className={`relative ${isLoaded ? 'animate-fadeIn' : ''}`}>
+    <>
       <Head>
-        <title>AORKIA - Soluções Estratégicas em Tecnologia</title>
-        <meta name="description" content="Transformamos desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia." />
+        <title>AORKIA | Soluções B2B que Transformam Negócios</title>
+        <meta name="description" content="Soluções B2B que Transformam Negócios: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível." />
+        <meta name="theme-color" content="#0076FF" />
       </Head>
 
-      {/* Hero Section */}
-      <section className="hero">
-        {/* Vídeo de Fundo */}
-        <video 
-          ref={videoRef}
-          className="hero__video"
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        >
-          <source src="/video_hero.mp4" type="video/mp4" />
-        </video>
-        <div className="hero__overlay"></div>
-        
-        <div className="hero__content">
-          <h1 className="hero__title">
-            Soluções estratégicas que <span style={{ color: '#0076FF' }}>transformam</span> desafios em oportunidades
-          </h1>
-          <p className="hero__subtitle">
-            Combinamos expertise tecnológica e visão estratégica para impulsionar o crescimento sustentável do seu negócio
-          </p>
-        </div>
-      </section>
+      <main className="bg-black text-white">
+        {/* Seção Hero - Estilo Jam3 */}
+        <section className="relative h-screen overflow-hidden hero flex items-center">
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+            <source src="/video_hero.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
 
-      {/* Soluções Selecionadas */}
-      <section className="whats-in-works">
-        <div className="whats-in-works__content">
-          <h2 className="whats-in-works__title">Soluções Selecionadas</h2>
-          <p className="whats-in-works__description">
-            Conheça nossas soluções estratégicas que transformam desafios complexos em crescimento sustentável e performance superior.
-          </p>
-        </div>
-      </section>
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
+                Soluções B2B que <br className="hidden md:block" />
+                <span className="text-primary">Transformam</span> Negócios
+              </h1>
 
-      {/* Produtos */}
-      <section className="product-blocks">
-        {products.map((product, index) => (
-          <div 
-            key={product.id}
-            className="product-block"
-            onMouseEnter={() => setActiveProductIndex(index)}
-            onMouseLeave={() => setActiveProductIndex(null)}
-          >
-            <img 
-              src={product.image} 
-              alt={product.title} 
-              className="product-block__bg"
-              style={{ opacity: activeProductIndex === index ? 1 : 0 }}
-            />
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mb-12">
+                Potencialize sua empresa com nossas soluções: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível.
+              </p>
+            </div>
+          </div>
+
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
+            <a href="#solucoes" className="text-white text-4xl">
+              <i className="ri-arrow-down-line"></i>
+            </a>
+          </div>
+        </section>
+
+        {/* Seção Soluções Selecionadas - Estilo Jam3 */}
+        <section id="solucoes" className="py-24 md:py-32 relative overflow-hidden">
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
+            <div className="text-left mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                Soluções <span className="text-primary">Selecionadas</span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl">
+                Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
+                resultados previsíveis, eficiência operacional e expansão sustentável.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Produtos - Estilo Jam3 (um abaixo do outro, ocupando 100% da largura) */}
+        <section ref={productsRef} className="relative">
+          {products.map((product, index) => (
             <div 
-              className="product-block__overlay"
-              style={{ opacity: activeProductIndex === index ? 1 : 0 }}
-            ></div>
-            <div 
-              className="product-block__content"
-              style={{ color: activeProductIndex === index ? 'white' : 'black' }}
+              key={product.id}
+              className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
+              onMouseEnter={() => setActiveProduct(product.id)}
+              onMouseLeave={() => setActiveProduct(null)}
             >
-              <h2 className="product-block__title">{product.title}</h2>
-              <p className="product-block__description">{product.description}</p>
-              <Link href="/solucoes">
-                <a style={{ 
-                  display: 'inline-block', 
-                  marginTop: '2rem',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: activeProductIndex === index ? 'white' : '#0076FF',
-                  color: activeProductIndex === index ? '#0076FF' : 'white',
-                  borderRadius: '2rem',
-                  fontWeight: '600',
-                  transition: 'background-color 0.3s ease, color 0.3s ease'
-                }}>
-                  Saiba mais
-                </a>
-              </Link>
+              {/* Background Image (aparece apenas no hover) */}
+              <div 
+                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                  activeProduct === product.id ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ backgroundImage: `url(${product.image})` }}
+              >
+                <div className="absolute inset-0 bg-black/60"></div>
+              </div>
+              
+              {/* Background Color (aparece quando não está em hover) */}
+              <div 
+                className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+                  activeProduct === product.id ? 'opacity-0' : 'opacity-100'
+                }`}
+              ></div>
+              
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                  activeProduct === product.id ? 'text-white' : 'text-black'
+                }`}>
+                  {product.title}
+                </h3>
+                <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
+                  activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  {product.description}
+                </p>
+                <div className="mt-8">
+                  <Link 
+                    href="/solucoes" 
+                    className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
+                      activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
+                    }`}
+                  >
+                    <span>Saiba mais</span>
+                    <i className="ri-arrow-right-line ml-2"></i>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* Seção "O que estamos preparando" - Estilo Jam3 */}
+        <section className="py-24 md:py-32 bg-black">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="text-left mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                O que estamos <span className="text-primary">preparando?</span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl">
+                Uma nova geração de soluções que combinam inteligência artificial, automação avançada e segurança de ponta para transformar a maneira como as empresas operam e crescem no mercado B2B.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary transition-colors">
+                <div className="text-primary text-5xl mb-6">
+                  <i className="ri-ai-generate"></i>
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Plataforma de IA Generativa para B2B</h3>
+                <p className="text-gray-300 text-lg">
+                  Uma solução revolucionária que utiliza IA generativa para automatizar processos complexos de negócios, criar conteúdo personalizado e otimizar operações em tempo real.
+                </p>
+              </div>
+              
+              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary transition-colors">
+                <div className="text-primary text-5xl mb-6">
+                  <i className="ri-shield-keyhole-line"></i>
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Segurança Autônoma Adaptativa</h3>
+                <p className="text-gray-300 text-lg">
+                  Um sistema de segurança que aprende e se adapta continuamente às novas ameaças, utilizando IA para prever, detectar e responder a ataques em tempo real.
+                </p>
+              </div>
             </div>
           </div>
-        ))}
-      </section>
-
-      {/* O que estamos preparando */}
-      <section className="whats-in-works">
-        <div className="whats-in-works__content">
-          <h2 className="whats-in-works__title">O que estamos preparando?</h2>
-          <p className="whats-in-works__description">
-            Uma nova geração de soluções estratégicas que combinam inteligência artificial, análise avançada de dados e automação para transformar a maneira como as empresas abordam seus desafios tecnológicos.
-          </p>
-          <div style={{ marginTop: '2rem' }}>
-            <Link href="/contato">
-              <a style={{ 
-                display: 'inline-block', 
-                padding: '0.75rem 1.5rem',
-                backgroundColor: '#0076FF',
-                color: 'white',
-                borderRadius: '2rem',
-                fontWeight: '600',
-                transition: 'background-color 0.3s ease'
-              }}>
-                Fale conosco
-              </a>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Metodologia */}
-      <section className="product-blocks">
-        <div 
-          className="product-block"
-          style={{ backgroundColor: '#0076FF', color: 'white' }}
-        >
-          <div className="product-block__content">
-            <h2 className="product-block__title">Metodologia AORKIA</h2>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>Engenharia Estratégica Aplicada</h3>
-            <p className="product-block__description">
-              Conheça os pilares que transformam desafios complexos em crescimento sustentável e performance superior.
-            </p>
-            <div style={{ marginTop: '2rem', borderLeft: '4px solid white', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Diagnóstico Preciso e Curadoria Estratégica</h4>
-              <p>Entendimento profundo. Soluções sob medida.</p>
-            </div>
-            <p className="product-block__description">
-              Cada projeto inicia com um diagnóstico minucioso, alinhado aos seus desafios e objetivos, para orientar escolhas tecnológicas sob medida.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer__content">
-          <img 
-            src="/images/logo_aorkia_white.png" 
-            alt="AORKIA" 
-            className="footer__logo"
-          />
-          <nav className="footer__nav">
-            <Link href="/"><a className="footer__link">Home</a></Link>
-            <Link href="/solucoes"><a className="footer__link">Soluções</a></Link>
-            <Link href="/sobre"><a className="footer__link">Sobre</a></Link>
-            <Link href="/contato"><a className="footer__link">Contato</a></Link>
-          </nav>
-        </div>
-        <div className="footer__bottom">
-          <p className="footer__copyright">© {new Date().getFullYear()} AORKIA. Todos os direitos reservados.</p>
-          <div className="footer__social">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M6 9H2V21H6V9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </section>
+      </main>
+    </>
   );
 }
