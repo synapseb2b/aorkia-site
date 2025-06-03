@@ -1,436 +1,193 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Sobre() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Efeito para monitorar o progresso de rolagem
+  const [isLoaded, setIsLoaded] = useState(false);
+  const videoRef = useRef(null);
+  
+  // Efeito para iniciar o vídeo de fundo quando a página carregar
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Efeito para simular preloader
-  useEffect(() => {
-    // Simular tempo de carregamento
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    setIsLoaded(true);
+    
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Erro ao reproduzir vídeo:", error);
+      });
+    }
   }, []);
 
   return (
-    <>
+    <div className={`relative ${isLoaded ? 'animate-fadeIn' : ''}`}>
       <Head>
-        <title>Sobre a AORKIA | Soluções Estratégicas B2B</title>
-        <meta name="description" content="Conheça a AORKIA, empresa especializada em soluções estratégicas para o mercado B2B, com foco em Backup SaaS, Infraestrutura, Segurança Cloud e Receita B2B." />
+        <title>Sobre - AORKIA</title>
+        <meta name="description" content="Conheça a AORKIA, empresa especializada em soluções estratégicas de tecnologia que transformam desafios complexos em crescimento sustentável." />
       </Head>
 
-      {/* Preloader - Estilo Jam3 */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-          <div className="preloader-content">
-            <div className="logo-container mb-8">
-              <Image 
-                src="/logo_aorkia_white.png" 
-                alt="AORKIA" 
-                width={280} 
-                height={70} 
-                className="h-20 w-auto" 
-              />
+      {/* Hero Section */}
+      <section className="hero">
+        {/* Vídeo de Fundo */}
+        <video 
+          ref={videoRef}
+          className="hero__video"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="/video_hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero__overlay"></div>
+        
+        <div className="hero__content">
+          <h1 className="hero__title">
+            Sobre a <span style={{ color: '#0076FF' }}>AORKIA</span>
+          </h1>
+          <p className="hero__subtitle">
+            Transformamos desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia.
+          </p>
+        </div>
+      </section>
+
+      {/* Nossa História */}
+      <section className="whats-in-works">
+        <div className="whats-in-works__content">
+          <h2 className="whats-in-works__title">Nossa História</h2>
+          <p className="whats-in-works__description">
+            Fundada em 2015, a AORKIA nasceu da visão de transformar a maneira como as empresas abordam seus desafios tecnológicos. Identificamos uma lacuna no mercado: a falta de uma abordagem verdadeiramente estratégica para a implementação de soluções tecnológicas.
+          </p>
+          <p className="whats-in-works__description" style={{ marginTop: '1rem' }}>
+            Nossa jornada começou com um pequeno time de especialistas apaixonados por tecnologia e estratégia de negócios. Ao longo dos anos, expandimos nossa equipe e portfólio de soluções, sempre mantendo nosso compromisso com a excelência e a inovação.
+          </p>
+          <p className="whats-in-works__description" style={{ marginTop: '1rem' }}>
+            Hoje, somos reconhecidos como líderes em soluções estratégicas de tecnologia, ajudando empresas de todos os portes a transformar desafios complexos em oportunidades de crescimento sustentável.
+          </p>
+        </div>
+      </section>
+
+      {/* Metodologia */}
+      <section className="product-blocks">
+        <div className="product-block">
+          <img 
+            src="/images/metodologia.png" 
+            alt="Metodologia AORKIA" 
+            className="product-block__bg"
+          />
+          <div className="product-block__overlay"></div>
+          <div className="product-block__content">
+            <h2 className="product-block__title">Metodologia AORKIA</h2>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#0076FF' }}>Engenharia Estratégica Aplicada</h3>
+            <p className="product-block__description">
+              Conheça os pilares que transformam desafios complexos em crescimento sustentável e performance superior.
+            </p>
+            <div style={{ marginTop: '2rem', borderLeft: '4px solid #0076FF', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Diagnóstico Preciso e Curadoria Estratégica</h4>
+              <p>Entendimento profundo. Soluções sob medida.</p>
             </div>
-            <div className="loading-bar">
-              <div className="loading-progress"></div>
-            </div>
+            <p className="product-block__description">
+              Cada projeto inicia com um diagnóstico minucioso, alinhado aos seus desafios e objetivos, para orientar escolhas tecnológicas sob medida.
+            </p>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Indicador de progresso de rolagem */}
-      <div 
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-40 origin-left" 
-        style={{ transform: `scaleX(${scrollProgress})` }}
-        aria-hidden="true"
-      ></div>
-
-      <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
-        <section className="relative h-screen overflow-hidden hero flex items-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video_hero.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo.
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
-
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="text-center">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight">
-                Sobre a <span className="text-primary">AORKIA</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-                Transformando ambientes críticos em sistemas coordenados, resilientes e escaláveis.
+      {/* Missão e Valores */}
+      <section className="whats-in-works">
+        <div className="whats-in-works__content">
+          <h2 className="whats-in-works__title">Missão e Valores</h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
+            <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem' }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0076FF' }}>Nossa Missão</h3>
+              <p>
+                Transformar desafios tecnológicos complexos em vantagens competitivas sustentáveis, capacitando organizações a alcançarem seu máximo potencial através de soluções estratégicas e inovadoras.
+              </p>
+            </div>
+            
+            <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem' }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0076FF' }}>Nossa Visão</h3>
+              <p>
+                Ser reconhecida globalmente como a parceira preferencial para transformação digital estratégica, definindo novos padrões de excelência e inovação no setor de tecnologia.
               </p>
             </div>
           </div>
+          
+          <div style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem', marginTop: '2rem' }}>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#0076FF' }}>Nossos Valores</h3>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+              <div>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Excelência</h4>
+                <p>Buscamos a excelência em tudo o que fazemos, superando expectativas e estabelecendo novos padrões de qualidade.</p>
+              </div>
+              
+              <div>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Inovação</h4>
+                <p>Abraçamos a mudança e promovemos a inovação contínua, explorando novas ideias e tecnologias para criar soluções disruptivas.</p>
+              </div>
+              
+              <div>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Integridade</h4>
+                <p>Agimos com transparência, honestidade e ética em todas as nossas interações, construindo relacionamentos baseados na confiança.</p>
+              </div>
+              
+              <div>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Impacto</h4>
+                <p>Focamos em gerar impacto positivo e mensurável para nossos clientes, parceiros e para a sociedade como um todo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
-            <a href="#historia" className="text-white text-4xl">
-              <i className="ri-arrow-down-line"></i>
+      {/* CTA */}
+      <section style={{ padding: '4rem 0', paddingLeft: '80px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ backgroundColor: '#0076FF', padding: '3rem', borderRadius: '0.5rem', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>Pronto para transformar seu negócio?</h2>
+            <p style={{ fontSize: '1.25rem', marginBottom: '2rem' }}>Descubra como nossas soluções estratégicas podem impulsionar sua empresa.</p>
+            <Link href="/contato">
+              <a style={{ display: 'inline-block', backgroundColor: 'white', color: '#0076FF', fontWeight: '600', padding: '1rem 2rem', borderRadius: '2rem', transition: 'background-color 0.3s ease' }}>
+                Entre em contato
+              </a>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer__content">
+          <img 
+            src="/images/logo_aorkia_white.png" 
+            alt="AORKIA" 
+            className="footer__logo"
+          />
+          <nav className="footer__nav">
+            <Link href="/"><a className="footer__link">Home</a></Link>
+            <Link href="/solucoes"><a className="footer__link">Soluções</a></Link>
+            <Link href="/sobre"><a className="footer__link">Sobre</a></Link>
+            <Link href="/contato"><a className="footer__link">Contato</a></Link>
+          </nav>
+        </div>
+        <div className="footer__bottom">
+          <p className="footer__copyright">© {new Date().getFullYear()} AORKIA. Todos os direitos reservados.</p>
+          <div className="footer__social">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6 9H2V21H6V9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </a>
           </div>
-        </section>
-
-        {/* Seção Nossa História - Estilo Jam3 */}
-        <section id="historia" className="py-24 md:py-32 bg-gray-900">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">Nossa História</h2>
-                <p className="text-xl text-gray-300 mb-6">
-                  A AORKIA nasceu da visão de um grupo de especialistas em tecnologia que identificaram uma lacuna crítica no mercado: a falta de soluções verdadeiramente estratégicas para ambientes críticos de TI.
-                </p>
-                <p className="text-xl text-gray-300 mb-6">
-                  Fundada em 2018, nossa empresa rapidamente se estabeleceu como referência em soluções de alta complexidade para o mercado B2B, combinando expertise técnica com visão estratégica de negócios.
-                </p>
-                <p className="text-xl text-gray-300">
-                  Hoje, a AORKIA é reconhecida por sua abordagem única que transforma ambientes críticos em sistemas coordenados, resilientes e escaláveis, permitindo que nossos clientes se concentrem em seu core business enquanto nós garantimos a excelência operacional de sua infraestrutura tecnológica.
-                </p>
-              </div>
-              <div className="bg-black p-8 rounded-lg border border-gray-800">
-                <div className="space-y-8">
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2018</h3>
-                      <p className="text-gray-300 text-lg">Fundação da AORKIA com foco em soluções de infraestrutura estratégica.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2020</h3>
-                      <p className="text-gray-300 text-lg">Expansão para soluções de Backup SaaS e parceria estratégica com a Keepit.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2022</h3>
-                      <p className="text-gray-300 text-lg">Lançamento das soluções de Segurança Cloud e Receita B2B.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2025</h3>
-                      <p className="text-gray-300 text-lg">Consolidação como referência em soluções estratégicas para o mercado B2B.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Nossos Valores - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-black text-white">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-              Nossos <span className="text-primary">Valores</span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="border border-gray-800 p-8 rounded-lg hover:border-primary transition-colors transform hover:translate-y-[-10px] transition-transform duration-300">
-                <div className="text-5xl text-primary mb-8">
-                  <i className="ri-award-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Excelência</h3>
-                <p className="text-gray-300 text-lg">
-                  Buscamos a excelência em tudo o que fazemos, desde o primeiro contato até o suporte contínuo.
-                </p>
-              </div>
-              
-              <div className="border border-gray-800 p-8 rounded-lg hover:border-primary transition-colors transform hover:translate-y-[-10px] transition-transform duration-300">
-                <div className="text-5xl text-primary mb-8">
-                  <i className="ri-lightbulb-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Inovação</h3>
-                <p className="text-gray-300 text-lg">
-                  Estamos constantemente explorando novas tecnologias e abordagens para oferecer soluções de ponta.
-                </p>
-              </div>
-              
-              <div className="border border-gray-800 p-8 rounded-lg hover:border-primary transition-colors transform hover:translate-y-[-10px] transition-transform duration-300">
-                <div className="text-5xl text-primary mb-8">
-                  <i className="ri-team-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Colaboração</h3>
-                <p className="text-gray-300 text-lg">
-                  Trabalhamos em estreita parceria com nossos clientes, construindo relacionamentos de longo prazo.
-                </p>
-              </div>
-              
-              <div className="border border-gray-800 p-8 rounded-lg hover:border-primary transition-colors transform hover:translate-y-[-10px] transition-transform duration-300">
-                <div className="text-5xl text-primary mb-8">
-                  <i className="ri-shield-check-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Integridade</h3>
-                <p className="text-gray-300 text-lg">
-                  Agimos com transparência e ética em todas as nossas interações e decisões de negócio.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Parceiros Estratégicos - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-gray-900">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-              Parceiros <span className="text-primary">Estratégicos</span>
-            </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="bg-black p-8 rounded-lg border border-gray-800 flex items-center justify-center h-40 hover:border-primary transition-colors">
-                <p className="text-2xl font-bold text-white">Keepit</p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800 flex items-center justify-center h-40 hover:border-primary transition-colors">
-                <p className="text-2xl font-bold text-white">Microsoft</p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800 flex items-center justify-center h-40 hover:border-primary transition-colors">
-                <p className="text-2xl font-bold text-white">AWS</p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800 flex items-center justify-center h-40 hover:border-primary transition-colors">
-                <p className="text-2xl font-bold text-white">Google Cloud</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Nosso Impacto - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-black">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-              Nosso <span className="text-primary">Impacto</span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-6">100+</div>
-                <p className="text-2xl text-white">Clientes atendidos</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-6">500+</div>
-                <p className="text-2xl text-white">Projetos entregues</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-6">99.9%</div>
-                <p className="text-2xl text-white">Taxa de satisfação</p>
-              </div>
-            </div>
-            
-            <div className="bg-gray-900 p-12 rounded-lg border border-gray-800">
-              <h3 className="text-3xl font-bold mb-8 text-center">Setores Atendidos</h3>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="bg-black p-6 rounded-lg text-center border border-gray-800 hover:border-primary transition-colors">
-                  <div className="text-4xl text-primary mb-4">
-                    <i className="ri-bank-line"></i>
-                  </div>
-                  <p className="text-xl font-medium text-white">Financeiro</p>
-                </div>
-                
-                <div className="bg-black p-6 rounded-lg text-center border border-gray-800 hover:border-primary transition-colors">
-                  <div className="text-4xl text-primary mb-4">
-                    <i className="ri-heart-pulse-line"></i>
-                  </div>
-                  <p className="text-xl font-medium text-white">Saúde</p>
-                </div>
-                
-                <div className="bg-black p-6 rounded-lg text-center border border-gray-800 hover:border-primary transition-colors">
-                  <div className="text-4xl text-primary mb-4">
-                    <i className="ri-government-line"></i>
-                  </div>
-                  <p className="text-xl font-medium text-white">Governo</p>
-                </div>
-                
-                <div className="bg-black p-6 rounded-lg text-center border border-gray-800 hover:border-primary transition-colors">
-                  <div className="text-4xl text-primary mb-4">
-                    <i className="ri-store-2-line"></i>
-                  </div>
-                  <p className="text-xl font-medium text-white">Varejo</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção CTA - Estilo Jam3 */}
-        <section id="formulario-cta" className="py-24 md:py-32 bg-black relative">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Lado esquerdo - Conteúdo */}
-              <div className="flex flex-col justify-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                  Vamos <span className="text-primary">transformar</span> seu negócio?
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Descubra como nossas soluções estratégicas podem impulsionar sua empresa. Preencha o formulário e um de nossos especialistas entrará em contato.
-                </p>
-                <div className="bg-gray-900 p-6 rounded-lg">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
-                      <i className="ri-shield-check-line text-2xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Avaliação Gratuita</h3>
-                      <p className="text-gray-400">Diagnóstico preliminar sem compromisso</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
-                      <i className="ri-time-line text-2xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Resposta Rápida</h3>
-                      <p className="text-gray-400">Retorno em até 24 horas úteis</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Lado direito - Formulário */}
-              <div className="bg-gray-900 p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6">Solicite uma avaliação gratuita</h3>
-                <form className="space-y-6">
-                  <div>
-                    <label htmlFor="nome" className="block text-sm font-medium text-gray-300 mb-1">Nome completo</label>
-                    <input 
-                      type="text" 
-                      id="nome" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">E-mail corporativo</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="telefone" className="block text-sm font-medium text-gray-300 mb-1">Telefone</label>
-                    <input 
-                      type="tel" 
-                      id="telefone" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-300 mb-1">Empresa</label>
-                    <input 
-                      type="text" 
-                      id="empresa" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="interesse" className="block text-sm font-medium text-gray-300 mb-1">Principal interesse</label>
-                    <select 
-                      id="interesse" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required
-                    >
-                      <option value="">Selecione uma opção</option>
-                      <option value="backup">Backup SaaS Estratégico</option>
-                      <option value="infraestrutura">Infraestrutura Estratégica</option>
-                      <option value="seguranca">Segurança Cloud</option>
-                      <option value="receita">Receita B2B</option>
-                    </select>
-                  </div>
-                  
-                  <button 
-                    type="submit" 
-                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg text-lg font-medium transition-all"
-                  >
-                    Solicitar Avaliação Gratuita
-                  </button>
-                  
-                  <p className="text-xs text-gray-400 text-center">
-                    Ao enviar este formulário, você concorda com nossa <Link href="/privacy" className="text-primary hover:underline">Política de Privacidade</Link>.
-                  </p>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <style jsx>{`
-        /* Estilos para o preloader */
-        .preloader-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .loading-bar {
-          width: 200px;
-          height: 4px;
-          background-color: rgba(255, 255, 255, 0.2);
-          border-radius: 2px;
-          overflow: hidden;
-        }
-        
-        .loading-progress {
-          height: 100%;
-          width: 100%;
-          background-color: #0076FF;
-          animation: loading 2s ease-in-out;
-          transform-origin: left;
-        }
-        
-        @keyframes loading {
-          0% { transform: scaleX(0); }
-          100% { transform: scaleX(1); }
-        }
-      `}</style>
-    </>
+        </div>
+      </footer>
+    </div>
   );
 }
