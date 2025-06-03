@@ -197,7 +197,9 @@ export default function MyApp({ Component, pageProps }) {
       </div>
 
       {/* Conteúdo Principal */}
-      <Component {...pageProps} />
+      <main className="main-content">
+        <Component {...pageProps} />
+      </main>
 
       {/* Cookie Banner */}
       <div className={`cookie-banner ${showCookieBanner ? 'active' : ''}`}>
