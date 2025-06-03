@@ -1,846 +1,711 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Solucoes() {
-  const [interfaceMode, setInterfaceMode] = useState('intelligent'); // 'intelligent' ou 'traditional'
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLogoIndex, setActiveLogoIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showTraditionalNav, setShowTraditionalNav] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedArea, setSelectedArea] = useState(null);
-  const [selectedProfile, setSelectedProfile] = useState(null);
-  const [showTyping, setShowTyping] = useState(false);
-  const [viewMode, setViewMode] = useState('70-30'); // '70-30' ou '30-70'
-  const [userMessage, setUserMessage] = useState('');
+  const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState([
     {
-      type: 'ai',
-      content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:'
+      id: 1,
+      type: 'bot',
+      content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa seu foco prioritário neste momento:'
     }
   ]);
+  const [isTyping, setIsTyping] = useState(false);
+  const chatRef = useRef(null);
+  const videoRef = useRef(null);
+  const logos = ['/images/logo_aorkia_white.png', '/images/logo_aorkia_color.png'];
   
-  // Referência para o container de mensagens para scroll automático
-  const messagesEndRef = useRef(null);
-  const chatMessagesRef = useRef(null);
-  const chatContainerRef = useRef(null);
+  const options = [
+    ['Backup SaaS Estratégico', 'Infraestrutura Estratégica', 'Segurança Cloud', 'Receita B2B'],
+    ['CTO / CIO / Diretor de TI', 'CISO / Diretor de Segurança', 'CEO / Diretor Executivo', 'Outro'],
+    ['Menos de 50 funcionários', '50-200 funcionários', '201-1000 funcionários', 'Mais de 1000 funcionários']
+  ];
 
-  // Prevenir rolagem automática quando a página carrega
+  // Efeito para alternar logos
   useEffect(() => {
-    // Desabilitar rolagem automática na carga inicial
-    window.history.scrollRestoration = 'manual';
-    
-    // Manter a posição do scroll quando a página carrega
-    if (chatContainerRef.current) {
-      const container = chatContainerRef.current;
-      container.scrollTop = 0;
+    const interval = setInterval(() => {
+      setActiveLogoIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Efeito para controlar o preloader
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Efeito para iniciar o vídeo de fundo
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Erro ao reproduzir vídeo:", error);
+      });
     }
-    
-    return () => {
-      window.history.scrollRestoration = 'auto';
-    };
   }, []);
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para scroll automático do chat
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Efeito para rolar para o final das mensagens quando novas mensagens são adicionadas
-  // Modificado para não rolar a página inteira, apenas o container de chat
-  useEffect(() => {
-    if (messagesEndRef.current && chatMessagesRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Função para lidar com a seleção de área crítica
-  const handleAreaSelection = (area) => {
-    try {
-      setSelectedArea(area);
-      setShowTyping(true);
-      
-      // Adiciona a mensagem do usuário imediatamente
-      setMessages(prev => [...prev, { type: 'user', content: area }]);
-      
-      // Simula o tempo de digitação da IA
-      setTimeout(() => {
-        try {
-          setShowTyping(false);
-          setMessages(prev => [...prev, 
-            { 
-              type: 'ai', 
-              content: 'Entendido. Agora, nos ajude a compreender melhor o seu papel na organização:' 
-            }
-          ]);
-          setCurrentStep(1);
-        } catch (error) {
-          console.error("Erro ao processar resposta da IA:", error);
-          handleError();
-        }
-      }, 1500);
-    } catch (error) {
-      console.error("Erro ao selecionar área:", error);
-      handleError();
-    }
+  // Função para simular digitação do bot
+  const simulateTyping = (callback) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      if (callback) callback();
+    }, 1500);
   };
 
-  // Função para lidar com a seleção de perfil
-  const handleProfileSelection = (profile) => {
-    try {
-      setSelectedProfile(profile);
-      setShowTyping(true);
+  // Função para processar a seleção do usuário
+  const handleOptionSelect = (option) => {
+    // Adiciona a mensagem do usuário
+    const newUserMessage = {
+      id: messages.length + 1,
+      type: 'user',
+      content: option
+    };
+    
+    setMessages(prev => [...prev, newUserMessage]);
+    
+    // Simula digitação do bot
+    simulateTyping(() => {
+      // Determina a próxima mensagem do bot com base no passo atual
+      let botResponse;
       
-      // Adiciona a mensagem do usuário imediatamente
-      setMessages(prev => [...prev, { type: 'user', content: profile }]);
+      if (currentStep === 0) {
+        botResponse = {
+          id: messages.length + 2,
+          type: 'bot',
+          content: 'Excelente escolha. Para personalizar ainda mais nossa análise, qual é o seu perfil profissional?'
+        };
+        setCurrentStep(1);
+      } else if (currentStep === 1) {
+        botResponse = {
+          id: messages.length + 2,
+          type: 'bot',
+          content: 'Obrigado. Qual o tamanho da sua empresa?'
+        };
+        setCurrentStep(2);
+      } else if (currentStep === 2) {
+        botResponse = {
+          id: messages.length + 2,
+          type: 'bot',
+          content: 'Perfeito! Com base nas suas respostas, preparamos recomendações personalizadas para sua empresa. Você pode visualizá-las na seção AORKIA Insights ao lado ou continuar a conversa para um diagnóstico mais detalhado.'
+        };
+        setCurrentStep(3);
+      }
       
-      // Simula o tempo de digitação da IA
-      setTimeout(() => {
-        try {
-          setShowTyping(false);
-          
-          // Determina o diagnóstico com base na área e perfil
-          let diagnosis = getDiagnosis(selectedArea, profile);
-          
-          setMessages(prev => [...prev, 
-            { 
-              type: 'ai', 
-              content: diagnosis.message
-            }
-          ]);
-          setCurrentStep(2);
-          
-          // Muda para o modo 30-70 após o diagnóstico
-          setTimeout(() => {
-            setViewMode('30-70');
-          }, 1000);
-        } catch (error) {
-          console.error("Erro ao processar diagnóstico:", error);
-          handleError();
-        }
-      }, 2000);
-    } catch (error) {
-      console.error("Erro ao selecionar perfil:", error);
-      handleError();
-    }
-  };
-
-  // Função para obter diagnóstico personalizado
-  const getDiagnosis = (area, profile) => {
-    try {
-      const diagnoses = {
-        'Backup SaaS Estratégico': {
-          'Liderança Executiva / Estratégica': {
-            message: 'Diagnóstico Estratégico: Sua posição de liderança exige garantia de continuidade de negócios. Identificamos que sua estratégia de Backup SaaS atual apresenta vulnerabilidades críticas que podem comprometer decisões executivas e gerar riscos regulatórios significativos. Recomendamos uma avaliação imediata da sua postura de resiliência de dados.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Gestão Técnica / Operacional': {
-            message: 'Diagnóstico Técnico-Gerencial: Como responsável pela infraestrutura tecnológica, sua atual abordagem de Backup SaaS apresenta lacunas operacionais que comprometem SLAs e aumentam o risco de perda de dados críticos. Identificamos oportunidades para otimizar processos, reduzir overhead operacional e implementar automações que eliminariam pontos cegos na proteção de dados.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Especialista Técnico': {
-            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura atual de Backup SaaS apresenta deficiências arquiteturais que comprometem a integridade e disponibilidade dos dados. Identificamos oportunidades para implementar soluções de proteção de dados de última geração que eliminariam vulnerabilidades técnicas e otimizariam processos de recuperação.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Outro': {
-            message: 'Baseado no seu perfil e interesse em Backup SaaS Estratégico, recomendamos uma análise personalizada com nossos especialistas para identificar as melhores soluções para o seu contexto específico.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          }
-        },
-        'Infraestrutura Estratégica': {
-          'Liderança Executiva / Estratégica': {
-            message: 'Diagnóstico Estratégico: Sua infraestrutura atual está limitando a capacidade de inovação e crescimento do negócio. Como líder, você enfrenta desafios de escalabilidade que impactam diretamente resultados financeiros e vantagem competitiva. Identificamos oportunidades para transformar sua infraestrutura em um ativo estratégico que impulsiona inovação.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Gestão Técnica / Operacional': {
-            message: 'Diagnóstico Técnico-Gerencial: Como gestor, você enfrenta o desafio de equilibrar manutenção da infraestrutura existente com a necessidade de modernização. Sua arquitetura atual apresenta ineficiências que aumentam custos operacionais e limitam a agilidade do negócio. Identificamos oportunidades para otimizar recursos e implementar automações que reduziriam significativamente o overhead operacional.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Especialista Técnico': {
-            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura atual apresenta gargalos técnicos que comprometem performance e escalabilidade. Identificamos oportunidades para implementar arquiteturas modernas que eliminariam pontos únicos de falha e otimizariam a utilização de recursos, permitindo maior flexibilidade e resiliência operacional.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Outro': {
-            message: 'Baseado no seu perfil e interesse em Infraestrutura Estratégica, recomendamos uma análise personalizada com nossos especialistas para identificar as melhores soluções para o seu contexto específico.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          }
-        },
-        'Segurança Cloud': {
-          'Liderança Executiva / Estratégica': {
-            message: 'Diagnóstico Estratégico: Sua postura de segurança cloud atual expõe a organização a riscos significativos de compliance e reputação. Como líder, você enfrenta o desafio de proteger ativos digitais críticos em um cenário de ameaças cada vez mais sofisticadas. Identificamos vulnerabilidades que poderiam ser exploradas para comprometer dados sensíveis e propriedade intelectual.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Gestão Técnica / Operacional': {
-            message: 'Diagnóstico Técnico-Gerencial: Como gestor responsável pela segurança, você enfrenta o desafio de manter visibilidade e controle em ambientes cloud distribuídos. Sua abordagem atual apresenta lacunas que dificultam a detecção e resposta a ameaças em tempo hábil. Identificamos oportunidades para implementar controles de segurança adaptativos que fortaleceriam significativamente sua postura de proteção.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Especialista Técnico': {
-            message: 'Diagnóstico Técnico-Especializado: Sua arquitetura de segurança cloud atual apresenta vulnerabilidades técnicas que poderiam ser exploradas por atacantes. Identificamos oportunidades para implementar controles de segurança avançados que forneceriam proteção em profundidade e visibilidade granular sobre atividades suspeitas, fortalecendo significativamente sua postura de segurança.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Outro': {
-            message: 'Baseado no seu perfil e interesse em Segurança Cloud, recomendamos uma análise personalizada com nossos especialistas para identificar as melhores soluções para o seu contexto específico.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          }
-        },
-        'Receita B2B': {
-          'Liderança Executiva / Estratégica': {
-            message: 'Diagnóstico Estratégico: Sua abordagem atual de geração de receita B2B apresenta ineficiências que limitam o crescimento e previsibilidade financeira. Como líder, você enfrenta o desafio de escalar operações comerciais de forma sustentável. Identificamos oportunidades para implementar uma metodologia de engenharia de receita que transformaria seu processo de vendas em um motor de crescimento previsível.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Gestão Técnica / Operacional': {
-            message: 'Diagnóstico Técnico-Gerencial: Como gestor de tecnologia, você tem a oportunidade de transformar a infraestrutura tecnológica em um habilitador estratégico para o crescimento de receita B2B. Sua stack tecnológica atual não está otimizada para suportar processos comerciais escaláveis. Identificamos oportunidades para implementar soluções que aumentariam significativamente a eficiência e eficácia da equipe comercial.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Especialista Técnico': {
-            message: 'Diagnóstico Técnico-Especializado: Sua infraestrutura técnica atual não está otimizada para suportar processos comerciais B2B escaláveis. Identificamos oportunidades para implementar automações e integrações que eliminariam silos de dados e forneceriam insights acionáveis para a equipe comercial, aumentando significativamente a eficiência e taxa de conversão.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          },
-          'Outro': {
-            message: 'Baseado no seu perfil e interesse em Receita B2B, recomendamos uma análise personalizada com nossos especialistas para identificar as melhores soluções para o seu contexto específico.',
-            recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-          }
-        }
-      };
-
-      return diagnoses[area]?.[profile] || {
-        message: 'Baseado no seu perfil e área de interesse, recomendamos uma análise personalizada com nossos especialistas.',
-        recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-      };
-    } catch (error) {
-      console.error("Erro ao obter diagnóstico:", error);
-      return {
-        message: 'Ocorreu um erro ao processar seu diagnóstico. Por favor, tente novamente ou entre em contato com nossos especialistas.',
-        recommendations: ['Blueprint Técnico Exclusivo', 'Conversa Estratégica']
-      };
-    }
+      if (botResponse) {
+        setMessages(prev => [...prev, botResponse]);
+      }
+    });
   };
 
   // Função para enviar mensagem do usuário
   const handleSendMessage = (e) => {
-    try {
-      e.preventDefault();
-      if (!userMessage.trim()) return;
-
-      setMessages(prev => [...prev, { type: 'user', content: userMessage }]);
-      setUserMessage('');
-      setShowTyping(true);
-
-      // Simula resposta da IA
-      setTimeout(() => {
-        try {
-          setShowTyping(false);
-          setMessages(prev => [...prev, { 
-            type: 'ai', 
-            content: 'Obrigado pelo seu comentário. Nossos especialistas estão disponíveis para uma conversa mais detalhada sobre suas necessidades específicas.' 
-          }]);
-        } catch (error) {
-          console.error("Erro ao processar resposta da IA:", error);
-          handleError();
-        }
-      }, 1500);
-    } catch (error) {
-      console.error("Erro ao enviar mensagem:", error);
-      handleError();
-    }
+    e.preventDefault();
+    
+    if (!userInput.trim()) return;
+    
+    // Adiciona a mensagem do usuário
+    const newUserMessage = {
+      id: messages.length + 1,
+      type: 'user',
+      content: userInput
+    };
+    
+    setMessages(prev => [...prev, newUserMessage]);
+    setUserInput('');
+    
+    // Simula digitação do bot
+    simulateTyping(() => {
+      // Resposta personalizada para o passo 3 (após todas as seleções)
+      if (currentStep === 3) {
+        const botResponse = {
+          id: messages.length + 2,
+          type: 'bot',
+          content: 'Obrigado por compartilhar mais detalhes. Baseado em sua situação específica, recomendamos agendar uma avaliação gratuita com um de nossos especialistas para uma análise mais aprofundada. Você pode agendar diretamente pelo botão "Solicitar Avaliação Gratuita" abaixo.'
+        };
+        setMessages(prev => [...prev, botResponse]);
+      }
+    });
   };
 
-  // Função para reiniciar a conversa
+  // Função para reiniciar o chat
   const handleReset = () => {
-    try {
-      setMessages([{
-        type: 'ai',
-        content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:'
-      }]);
-      setCurrentStep(0);
-      setSelectedArea(null);
-      setSelectedProfile(null);
-      setViewMode('70-30');
-    } catch (error) {
-      console.error("Erro ao reiniciar conversa:", error);
-      handleError();
-    }
-  };
-
-  // Função para alternar entre modos de interface
-  const toggleInterfaceMode = () => {
-    try {
-      setInterfaceMode(interfaceMode === 'intelligent' ? 'traditional' : 'intelligent');
-    } catch (error) {
-      console.error("Erro ao alternar modo de interface:", error);
-      handleError();
-    }
-  };
-
-  // Função para lidar com erros
-  const handleError = () => {
-    try {
-      setMessages(prev => [...prev, { 
-        type: 'ai', 
-        content: 'Desculpe, ocorreu um erro. Por favor, tente reiniciar a conversa ou entre em contato com nosso suporte.' 
-      }]);
-    } catch (error) {
-      console.error("Erro ao exibir mensagem de erro:", error);
-    }
+    setMessages([
+      {
+        id: 1,
+        type: 'bot',
+        content: 'Bem-vindo à AORKIA. Vamos identificar, com precisão, a área crítica da sua operação que precisa evoluir. Selecione abaixo a frente que mais representa seu foco prioritário neste momento:'
+      }
+    ]);
+    setCurrentStep(0);
   };
 
   return (
-    <>
+    <div className={`relative ${isLoading ? 'overflow-hidden h-screen' : ''}`}>
       <Head>
-        <title>Soluções AORKIA | Interface Inteligente de Diagnóstico</title>
-        <meta name="description" content="Explore nossas soluções estratégicas através da Interface Inteligente de Diagnóstico AORKIA ou navegue tradicionalmente por nosso portfólio." />
+        <title>Soluções - AORKIA</title>
+        <meta name="description" content="Conheça nossas soluções estratégicas em tecnologia que transformam desafios complexos em crescimento sustentável." />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-black text-white min-h-screen">
-        {/* Hero Section - Estilo Jam3 */}
-        <section className="relative py-16 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Interface Inteligente de <span className="text-primary">Soluções AORKIA</span>
-              </h1>
-              <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
-                Um mecanismo de diagnóstico estratégico que identifica com precisão os pontos críticos de sua operação e recomenda soluções personalizadas.
-              </p>
+      {/* Preloader */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <div className="w-24 h-24 relative mb-8">
+              <Image 
+                src="/images/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                layout="fill" 
+                objectFit="contain"
+                className="animate-pulse" 
+              />
+            </div>
+            <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-blue-500 transition-all duration-2000 ease-out"
+                style={{ width: `${Math.min(100, (Date.now() % 2500) / 25)}%` }}
+              ></div>
             </div>
           </div>
-        </section>
+        </div>
+      )}
 
-        {/* Interface Inteligente - Redesenhada no estilo ChatGPT/Jam3 */}
-        <section className="py-10 md:py-16 bg-gray-900">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className={`chat-interface-container ${interfaceMode === 'intelligent' ? 'block' : 'hidden'}`}>
-              <div className={`chat-interface ${viewMode === '70-30' ? 'mode-70-30' : 'mode-30-70'}`} ref={chatContainerRef}>
-                <div className="chat-layout">
-                  {/* Área do Chat - Lado Esquerdo */}
-                  <div className="chat-area">
-                    <div className="chat-header">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-3">
-                            <i className="ri-robot-line text-white"></i>
-                          </div>
-                          <h3 className="font-medium">Interface Inteligente AORKIA</h3>
-                        </div>
-                        <button 
-                          onClick={handleReset}
-                          className="text-sm px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
+      {/* Menu Lateral Fixo (estilo Jam3) */}
+      <div className="fixed top-0 left-0 h-full w-16 z-40 flex flex-col justify-between items-center py-8 border-r border-gray-800">
+        {/* Logo Vertical com Transição */}
+        <div className="relative w-8 h-32">
+          {logos.map((logo, index) => (
+            <div 
+              key={index}
+              className="absolute inset-0 transition-opacity duration-1000 flex items-center justify-center"
+              style={{ 
+                opacity: activeLogoIndex === index ? 1 : 0,
+                transform: 'rotate(-90deg)',
+                transformOrigin: 'center'
+              }}
+            >
+              <Image 
+                src={logo} 
+                alt="AORKIA" 
+                width={120} 
+                height={30}
+                className="object-contain" 
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Menu Sanduíche */}
+        <button 
+          className="w-8 h-8 flex flex-col justify-center items-center space-y-1.5 group"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        </button>
+
+        {/* "SEE OUR WORK" no canto inferior */}
+        <div className="transform -rotate-90 whitespace-nowrap text-white text-xs tracking-widest uppercase">
+          <Link href="/">
+            <a className="hover:text-blue-500 transition-colors duration-300">Voltar para Home</a>
+          </Link>
+        </div>
+      </div>
+
+      {/* Menu Fullscreen */}
+      <div 
+        className={`fixed inset-0 bg-black bg-opacity-95 z-30 transition-opacity duration-500 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="container mx-auto h-full flex items-center justify-center">
+          <nav className="flex flex-col items-center space-y-8">
+            {['Home', 'Soluções', 'Sobre', 'Contato'].map((item, index) => (
+              <Link 
+                key={item} 
+                href={item === 'Home' ? '/' : `/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+              >
+                <a 
+                  className={`text-4xl md:text-6xl font-bold text-white hover:text-blue-500 transition-all duration-300 transform ${
+                    isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  {item}
+                </a>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Conteúdo Principal */}
+      <main className="min-h-screen bg-black text-white pt-16 pb-24">
+        {/* Vídeo de Fundo */}
+        <div className="fixed inset-0 z-0">
+          <video 
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+          >
+            <source src="/video_hero.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/90"></div>
+        </div>
+
+        {/* Conteúdo */}
+        <div className="relative z-10 container mx-auto px-4 md:px-16 pt-8">
+          {!showTraditionalNav ? (
+            <>
+              {/* Interface Inteligente */}
+              <div className="flex justify-center mb-8">
+                <h1 className="text-2xl md:text-4xl font-bold">Interface Inteligente AORKIA</h1>
+              </div>
+              
+              <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+                {/* Chat (70% em desktop, 100% em mobile) */}
+                <div className="w-full lg:w-7/10 bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+                  <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 6C13.93 6 15.5 7.57 15.5 9.5C15.5 11.43 13.93 13 12 13C10.07 13 8.5 11.43 8.5 9.5C8.5 7.57 10.07 6 12 6ZM12 20C9.97 20 8.1 19.33 6.66 18.12C6.25 17.8 6 17.3 6 16.75C6 14.58 7.72 12.75 10 12.75H14C16.28 12.75 18 14.58 18 16.75C18 17.3 17.75 17.8 17.34 18.12C15.9 19.33 14.03 20 12 20Z" fill="#0076FF"/>
+                        </svg>
+                      </div>
+                      <span className="font-medium">Interface Inteligente AORKIA</span>
+                    </div>
+                    <button 
+                      onClick={handleReset}
+                      className="text-white hover:text-gray-200 transition-colors"
+                    >
+                      <span className="text-sm">Reiniciar</span>
+                    </button>
+                  </div>
+                  
+                  {/* Área de Chat */}
+                  <div 
+                    ref={chatRef}
+                    className="h-96 md:h-[500px] overflow-y-auto p-4 space-y-4"
+                  >
+                    {messages.map((message) => (
+                      <div 
+                        key={message.id} 
+                        className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div 
+                          className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                            message.type === 'user' 
+                              ? 'bg-blue-600 text-white rounded-tr-none' 
+                              : 'bg-gray-800 text-white rounded-tl-none'
+                          }`}
                         >
-                          Reiniciar
-                        </button>
+                          {message.content}
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {/* Indicador de digitação */}
+                    {isTyping && (
+                      <div className="flex justify-start">
+                        <div className="bg-gray-800 text-white rounded-2xl rounded-tl-none px-4 py-3">
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Opções de Resposta */}
+                  {currentStep < 3 && (
+                    <div className="p-4 border-t border-gray-800">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {options[currentStep].map((option, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleOptionSelect(option)}
+                            className="bg-gray-800 hover:bg-gray-700 text-white rounded-lg px-4 py-3 text-left transition-colors"
+                          >
+                            {option}
+                          </button>
+                        ))}
                       </div>
                     </div>
-                    
-                    <div className="chat-messages" ref={chatMessagesRef}>
-                      {messages.map((msg, index) => (
-                        <div 
-                          key={index} 
-                          className={`message ${msg.type === 'ai' ? 'ai-message' : 'user-message'}`}
-                        >
-                          <div className="message-content">
-                            {msg.content}
-                          </div>
-                        </div>
-                      ))}
-                      
-                      {showTyping && (
-                        <div className="message ai-message">
-                          <div className="message-content typing-indicator">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {currentStep === 0 && !selectedArea && (
-                        <div className="options-container">
-                          <button 
-                            onClick={() => handleAreaSelection('Backup SaaS Estratégico')}
-                            className="option-button"
-                          >
-                            Backup SaaS Estratégico
-                          </button>
-                          <button 
-                            onClick={() => handleAreaSelection('Infraestrutura Estratégica')}
-                            className="option-button"
-                          >
-                            Infraestrutura Estratégica
-                          </button>
-                          <button 
-                            onClick={() => handleAreaSelection('Segurança Cloud')}
-                            className="option-button"
-                          >
-                            Segurança Cloud
-                          </button>
-                          <button 
-                            onClick={() => handleAreaSelection('Receita B2B')}
-                            className="option-button"
-                          >
-                            Receita B2B
-                          </button>
-                        </div>
-                      )}
-                      
-                      {currentStep === 1 && !selectedProfile && (
-                        <div className="options-container">
-                          <button 
-                            onClick={() => handleProfileSelection('Liderança Executiva / Estratégica')}
-                            className="option-button"
-                          >
-                            Liderança Executiva / Estratégica
-                          </button>
-                          <button 
-                            onClick={() => handleProfileSelection('Gestão Técnica / Operacional')}
-                            className="option-button"
-                          >
-                            Gestão Técnica / Operacional
-                          </button>
-                          <button 
-                            onClick={() => handleProfileSelection('Especialista Técnico')}
-                            className="option-button"
-                          >
-                            Especialista Técnico
-                          </button>
-                          <button 
-                            onClick={() => handleProfileSelection('Outro')}
-                            className="option-button"
-                          >
-                            Outro
-                          </button>
-                        </div>
-                      )}
-                      
-                      <div ref={messagesEndRef} />
+                  )}
+                  
+                  {/* Input de Mensagem */}
+                  <div className="p-4 border-t border-gray-800">
+                    <form onSubmit={handleSendMessage} className="flex items-center">
+                      <input
+                        type="text"
+                        value={userInput}
+                        onChange={(e) => setUserInput(e.target.value)}
+                        placeholder="Escreva aqui..."
+                        className="flex-1 bg-gray-800 text-white rounded-l-full px-4 py-2 focus:outline-none"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-full p-2 transition-colors"
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
+                        </svg>
+                      </button>
+                    </form>
+                    <div className="mt-2 text-xs text-gray-500 text-center">
+                      Evite compartilhar informações confidenciais/sensíveis.
                     </div>
+                  </div>
+                </div>
+                
+                {/* Área de Insights (30% em desktop, 100% em mobile) */}
+                <div className="w-full lg:w-3/10 space-y-4">
+                  <div className="bg-gray-900 rounded-xl p-6 shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">AORKIA Insights</h2>
                     
-                    <div className="chat-input">
-                      <form onSubmit={handleSendMessage} className="flex items-center">
-                        <input
-                          type="text"
-                          value={userMessage}
-                          onChange={(e) => setUserMessage(e.target.value)}
-                          placeholder="Escreva aqui..."
-                          className="flex-grow px-4 py-2 rounded-l-lg border-0 focus:ring-2 focus:ring-primary"
-                        />
-                        <button
-                          type="submit"
-                          className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-r-lg"
-                        >
-                          <i className="ri-send-plane-fill"></i>
-                        </button>
-                      </form>
-                      <div className="text-xs text-gray-400 mt-2 text-center">
-                        Evite compartilhar informações confidenciais/sensíveis.
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-blue-500 pl-4 py-2">
+                        <div className="flex items-start mb-2">
+                          <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"></path>
+                          </svg>
+                          <span className="font-medium">Diagnóstico Estratégico</span>
+                        </div>
+                        <p className="text-sm text-gray-300">Identificamos pontos críticos com precisão</p>
+                      </div>
+                      
+                      <div className="border-l-4 border-green-500 pl-4 py-2">
+                        <div className="flex items-start mb-2">
+                          <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          <span className="font-medium">Soluções Personalizadas</span>
+                        </div>
+                        <p className="text-sm text-gray-300">Recomendações baseadas no seu perfil</p>
+                      </div>
+                      
+                      <div className="border-l-4 border-purple-500 pl-4 py-2">
+                        <div className="flex items-start mb-2">
+                          <svg className="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                          </svg>
+                          <span className="font-medium">Resultados Mensuráveis</span>
+                        </div>
+                        <p className="text-sm text-gray-300">Impacto direto nos seus indicadores</p>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Área Complementar - Lado Direito */}
-                  <div className="complementary-area">
-                    {viewMode === '70-30' ? (
-                      <div className="complementary-content">
-                        <h3 className="text-xl font-bold mb-4">AORKIA Insights</h3>
-                        <div className="status-panel">
-                          <div className="status-item">
-                            <div className="status-icon">
-                              <i className="ri-shield-check-line"></i>
-                            </div>
-                            <div className="status-text">
-                              <h4>Diagnóstico Estratégico</h4>
-                              <p>Identificamos pontos críticos com precisão</p>
-                            </div>
-                          </div>
-                          <div className="status-item">
-                            <div className="status-icon">
-                              <i className="ri-rocket-line"></i>
-                            </div>
-                            <div className="status-text">
-                              <h4>Soluções Personalizadas</h4>
-                              <p>Recomendações baseadas no seu perfil</p>
-                            </div>
-                          </div>
-                          <div className="status-item">
-                            <div className="status-icon">
-                              <i className="ri-line-chart-line"></i>
-                            </div>
-                            <div className="status-text">
-                              <h4>Resultados Mensuráveis</h4>
-                              <p>Impacto direto nos seus indicadores</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="recommended-content">
-                        <h3 className="text-xl font-bold mb-4">Conteúdo Recomendado</h3>
-                        {selectedArea && selectedProfile && (
-                          <div className="recommendation-panel">
-                            <div className="recommendation-header">
-                              <h4 className="text-lg font-semibold">{selectedArea}</h4>
-                              <p className="text-sm text-gray-400">{selectedProfile}</p>
-                            </div>
-                            
-                            <div className="recommendation-actions">
-                              <a 
-                                href="#blueprint"
-                                className="action-button primary"
-                              >
-                                <i className="ri-file-text-line mr-2"></i>
-                                Blueprint Técnico Exclusivo
-                              </a>
-                              <a 
-                                href="#agendar"
-                                className="action-button secondary"
-                              >
-                                <i className="ri-calendar-line mr-2"></i>
-                                Agendar Conversa Estratégica
-                              </a>
-                            </div>
-                            
-                            <div className="related-resources">
-                              <h5 className="text-md font-medium mb-2">Recursos Relacionados</h5>
-                              <ul className="resource-list">
-                                <li>
-                                  <a href="#case-study">
-                                    <i className="ri-article-line mr-2"></i>
-                                    Case Study: Transformação Digital
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#whitepaper">
-                                    <i className="ri-file-paper-line mr-2"></i>
-                                    Whitepaper: Estratégias de {selectedArea}
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#webinar">
-                                    <i className="ri-video-line mr-2"></i>
-                                    Webinar: Tendências em {selectedArea}
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
+                  <div className="bg-blue-600 rounded-xl p-6 text-center shadow-lg">
+                    <h3 className="text-lg font-bold mb-2">Pronto para transformar seu negócio?</h3>
+                    <p className="text-sm mb-4">Agende uma avaliação gratuita com nossos especialistas</p>
+                    <Link href="/contato">
+                      <a className="inline-block bg-white text-blue-600 font-medium rounded-full px-6 py-2 hover:bg-gray-100 transition-colors">
+                        Solicitar Avaliação Gratuita
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className={`traditional-interface ${interfaceMode === 'traditional' ? 'block' : 'hidden'}`}>
-              {/* Conteúdo da interface tradicional */}
-            </div>
-            
-            <div className="interface-toggle mt-6 text-center">
-              <button 
-                onClick={toggleInterfaceMode}
-                className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-white transition-colors"
-              >
-                {interfaceMode === 'intelligent' 
-                  ? 'Alternar para Navegação Tradicional' 
-                  : 'Voltar para Interface Inteligente'}
-              </button>
-            </div>
-          </div>
-        </section>
+              
+              {/* Botão para alternar para Navegação Tradicional */}
+              <div className="flex justify-center mt-12">
+                <button
+                  onClick={() => setShowTraditionalNav(true)}
+                  className="bg-transparent border border-white text-white rounded-full px-6 py-2 hover:bg-white hover:text-black transition-colors"
+                >
+                  Alternar para Navegação Tradicional
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Navegação Tradicional */}
+              <div className="flex justify-between items-center mb-12">
+                <h1 className="text-3xl md:text-5xl font-bold">Nossas Soluções</h1>
+                <button
+                  onClick={() => setShowTraditionalNav(false)}
+                  className="bg-blue-600 text-white rounded-full px-6 py-2 hover:bg-blue-700 transition-colors"
+                >
+                  Voltar para Interface Inteligente
+                </button>
+              </div>
+              
+              {/* Grid de Soluções */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                {/* Backup SaaS Estratégico */}
+                <div id="backup" className="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                  <div className="p-8">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">Backup SaaS Estratégico</h2>
+                    <p className="text-gray-300 mb-6">
+                      A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir proteção completa e contínua dos seus dados na nuvem.
+                    </p>
+                    <div className="border-l-4 border-blue-500 pl-4 py-2 mb-6">
+                      <p className="italic text-gray-300">
+                        Proteção automatizada, recuperação instantânea, segurança absoluta.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Backup contínuo e automatizado</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Recuperação instantânea e granular</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Criptografia de ponta a ponta</span>
+                      </li>
+                    </ul>
+                    <p className="text-gray-300 mb-6">
+                      A AORKIA + Keepit protege seus dados críticos em Microsoft 365, Google Workspace, Salesforce e muito mais.
+                    </p>
+                    <Link href="/contato">
+                      <a className="inline-block bg-blue-600 text-white font-medium rounded-full px-6 py-2 hover:bg-blue-700 transition-colors">
+                        Solicitar Demonstração
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Infraestrutura Estratégica */}
+                <div id="infraestrutura" className="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                  <div className="p-8">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">Infraestrutura Estratégica</h2>
+                    <p className="text-gray-300 mb-6">
+                      Transformamos sua infraestrutura em um ativo estratégico que impulsiona inovação e crescimento sustentável.
+                    </p>
+                    <div className="border-l-4 border-green-500 pl-4 py-2 mb-6">
+                      <p className="italic text-gray-300">
+                        Arquitetura resiliente, performance otimizada, escalabilidade garantida.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Arquitetura de alta disponibilidade</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Otimização de performance</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Escalabilidade sob demanda</span>
+                      </li>
+                    </ul>
+                    <p className="text-gray-300 mb-6">
+                      Soluções de infraestrutura que equilibram performance, segurança e custo-benefício para seu negócio.
+                    </p>
+                    <Link href="/contato">
+                      <a className="inline-block bg-green-600 text-white font-medium rounded-full px-6 py-2 hover:bg-green-700 transition-colors">
+                        Solicitar Avaliação
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Segurança Cloud */}
+                <div id="seguranca" className="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                  <div className="p-8">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">Segurança Cloud</h2>
+                    <p className="text-gray-300 mb-6">
+                      Proteja seus ambientes cloud com soluções avançadas de segurança que garantem visibilidade, controle e conformidade.
+                    </p>
+                    <div className="border-l-4 border-purple-500 pl-4 py-2 mb-6">
+                      <p className="italic text-gray-300">
+                        Proteção contínua, detecção avançada, resposta automatizada.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Cloud Security Posture Management</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Proteção contra ameaças avançadas</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Gestão de identidades e acessos</span>
+                      </li>
+                    </ul>
+                    <p className="text-gray-300 mb-6">
+                      Soluções integradas para proteger seus dados e aplicações em ambientes multi-cloud e híbridos.
+                    </p>
+                    <Link href="/contato">
+                      <a className="inline-block bg-purple-600 text-white font-medium rounded-full px-6 py-2 hover:bg-purple-700 transition-colors">
+                        Solicitar Consultoria
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Receita B2B */}
+                <div id="receita" className="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                  <div className="p-8">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">Receita B2B</h2>
+                    <p className="text-gray-300 mb-6">
+                      Estratégias e soluções para impulsionar seu crescimento comercial e maximizar resultados no mercado B2B.
+                    </p>
+                    <div className="border-l-4 border-yellow-500 pl-4 py-2 mb-6">
+                      <p className="italic text-gray-300">
+                        Aquisição estratégica, conversão otimizada, retenção ampliada.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Estratégias de aquisição de clientes</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Otimização de funil de vendas</span>
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Programas de fidelização e expansão</span>
+                      </li>
+                    </ul>
+                    <p className="text-gray-300 mb-6">
+                      Abordagem data-driven para identificar oportunidades, otimizar processos e aumentar sua receita B2B.
+                    </p>
+                    <Link href="/contato">
+                      <a className="inline-block bg-yellow-600 text-white font-medium rounded-full px-6 py-2 hover:bg-yellow-700 transition-colors">
+                        Solicitar Estratégia
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              
+              {/* CTA */}
+              <div className="bg-blue-600 rounded-xl p-8 text-center shadow-lg">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">Pronto para transformar seu negócio?</h2>
+                <p className="text-xl mb-6">Descubra como nossas soluções estratégicas podem impulsionar sua empresa.</p>
+                <Link href="/contato">
+                  <a className="inline-block bg-white text-blue-600 font-medium rounded-full px-8 py-3 hover:bg-gray-100 transition-colors">
+                    Solicitar Avaliação Gratuita
+                  </a>
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
+      </main>
 
-        {/* CTA Section - Estilo Jam3 */}
-        <section className="py-16 bg-black">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Pronto para transformar seu negócio?
-              </h2>
-              <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">
-                Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
-              </p>
-              <a 
-                href="#solicitar-avaliacao"
-                className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors"
-              >
-                Solicitar Avaliação Gratuita
+      {/* Footer */}
+      <footer className="bg-black text-white py-16 relative z-10">
+        <div className="container mx-auto px-4 md:px-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+            <div className="mb-8 md:mb-0">
+              <Image 
+                src="/images/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                width={180} 
+                height={45}
+                className="object-contain" 
+              />
+            </div>
+            <nav className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+              {['Home', 'Soluções', 'Sobre', 'Contato'].map((item) => (
+                <Link 
+                  key={item} 
+                  href={item === 'Home' ? '/' : `/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                >
+                  <a className="text-lg hover:text-blue-500 transition-colors">{item}</a>
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+            <p className="text-gray-400 mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} AORKIA. Todos os direitos reservados.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">LinkedIn</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
+                </svg>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">Twitter</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
               </a>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </footer>
 
-      <style jsx>{`
-        /* Estilos para a Interface Inteligente no estilo ChatGPT/Jam3 */
-        .chat-interface-container {
-          width: 100%;
-        }
-        
-        .chat-interface {
-          background-color: #121212;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-          height: 600px;
-          max-height: 80vh;
-          margin: 0 auto;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .chat-layout {
-          display: flex;
-          height: 100%;
-        }
-        
-        .mode-70-30 .chat-area {
-          width: 70%;
-        }
-        
-        .mode-70-30 .complementary-area {
-          width: 30%;
-        }
-        
-        .mode-30-70 .chat-area {
-          width: 30%;
-        }
-        
-        .mode-30-70 .complementary-area {
-          width: 70%;
-        }
-        
-        .chat-area {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          border-right: 1px solid rgba(255, 255, 255, 0.1);
-          transition: width 0.5s ease;
-        }
-        
-        .chat-header {
-          padding: 16px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          background-color: #1a1a1a;
-        }
-        
-        .chat-messages {
-          flex-grow: 1;
-          overflow-y: auto;
-          padding: 16px;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-        
-        .message {
-          max-width: 85%;
-          padding: 12px 16px;
-          border-radius: 12px;
-          animation: fadeIn 0.3s ease;
-        }
-        
-        .ai-message {
-          align-self: flex-start;
-          background-color: #2a2a2a;
-          border-bottom-left-radius: 4px;
-        }
-        
-        .user-message {
-          align-self: flex-end;
-          background-color: #0076FF;
-          border-bottom-right-radius: 4px;
-        }
-        
-        .message-content {
-          line-height: 1.5;
-        }
-        
-        .typing-indicator {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-        
-        .typing-indicator span {
-          width: 8px;
-          height: 8px;
-          background-color: rgba(255, 255, 255, 0.6);
-          border-radius: 50%;
-          display: inline-block;
-          animation: typing 1.4s infinite ease-in-out both;
-        }
-        
-        .typing-indicator span:nth-child(1) {
-          animation-delay: -0.32s;
-        }
-        
-        .typing-indicator span:nth-child(2) {
-          animation-delay: -0.16s;
-        }
-        
-        .options-container {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          margin-top: 8px;
-          margin-bottom: 8px;
-        }
-        
-        .option-button {
-          background-color: #2a2a2a;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 8px;
-          padding: 10px 16px;
-          text-align: left;
-          transition: all 0.2s ease;
-        }
-        
-        .option-button:hover {
-          background-color: #333;
-          border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .chat-input {
-          padding: 16px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          background-color: #1a1a1a;
-        }
-        
-        .complementary-area {
-          padding: 20px;
-          background-color: #1a1a1a;
-          overflow-y: auto;
-          transition: width 0.5s ease;
-        }
-        
-        .status-panel {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          margin-top: 16px;
-        }
-        
-        .status-item {
-          display: flex;
-          gap: 12px;
-          padding: 12px;
-          background-color: #2a2a2a;
-          border-radius: 8px;
-        }
-        
-        .status-icon {
-          font-size: 24px;
-          color: #0076FF;
-        }
-        
-        .recommendation-panel {
-          background-color: #2a2a2a;
-          border-radius: 8px;
-          padding: 16px;
-          margin-top: 16px;
-        }
-        
-        .recommendation-actions {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          margin-top: 16px;
-          margin-bottom: 16px;
-        }
-        
-        .action-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px;
-          border-radius: 8px;
-          font-weight: 500;
-          transition: all 0.2s ease;
-        }
-        
-        .action-button.primary {
-          background-color: #0076FF;
-          color: white;
-        }
-        
-        .action-button.primary:hover {
-          background-color: #0065d9;
-        }
-        
-        .action-button.secondary {
-          background-color: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .action-button.secondary:hover {
-          background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .related-resources {
-          margin-top: 20px;
-        }
-        
-        .resource-list {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        
-        .resource-list li a {
-          display: flex;
-          align-items: center;
-          color: #0076FF;
-          font-size: 14px;
-          padding: 6px 0;
-        }
-        
-        .resource-list li a:hover {
-          text-decoration: underline;
-        }
-        
-        @keyframes typing {
-          0%, 80%, 100% { transform: scale(0.6); }
-          40% { transform: scale(1); }
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Estilos responsivos */
-        @media (max-width: 768px) {
-          .chat-layout {
-            flex-direction: column;
-          }
-          
-          .mode-70-30 .chat-area,
-          .mode-30-70 .chat-area,
-          .mode-70-30 .complementary-area,
-          .mode-30-70 .complementary-area {
-            width: 100%;
-          }
-          
-          .chat-area {
-            height: 70%;
-            border-right: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          }
-          
-          .complementary-area {
-            height: 30%;
-          }
-          
-          .chat-interface {
-            height: 80vh;
-          }
-        }
-      `}</style>
-    </>
+      {/* Cookie Banner */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-sm mb-4 md:mb-0 md:mr-8">
+          Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa <Link href="/politica-privacidade"><a className="underline">Política de Privacidade</a></Link>.
+        </p>
+        <div className="flex space-x-4">
+          <button className="px-4 py-2 bg-transparent border border-white text-white text-sm rounded hover:bg-white hover:text-gray-900 transition-colors">
+            Configurações
+          </button>
+          <button className="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
+            Aceitar todos
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
