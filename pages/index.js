@@ -4,7 +4,48 @@ import Link from 'next/link';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeProductIndex, setActiveProductIndex] = useState(null);
   const videoRef = useRef(null);
+  
+  // Produtos
+  const products = [
+    {
+      id: 'backup',
+      title: 'Backup SaaS Estratégico',
+      description: 'Proteja seus dados críticos com nossa solução de backup especializada para ambientes SaaS, garantindo continuidade de negócios e conformidade regulatória.',
+      image: '/images/keepit.png'
+    },
+    {
+      id: 'finops',
+      title: 'Plataformas de FinOps com IA',
+      description: 'Otimize seus investimentos em nuvem com nossa plataforma de FinOps potencializada por inteligência artificial, reduzindo custos e maximizando o valor de seus recursos.',
+      image: '/images/finops.png'
+    },
+    {
+      id: 'edge',
+      title: 'Plataformas Edge AI',
+      description: 'Leve o poder da inteligência artificial para a borda da sua rede, permitindo processamento em tempo real e tomada de decisões mais rápida e eficiente.',
+      image: '/images/edge.png'
+    },
+    {
+      id: 'dspm',
+      title: 'Data Security Posture Management (DSPM)',
+      description: 'Proteja seus dados sensíveis com nossa solução de gerenciamento de postura de segurança de dados, identificando riscos e vulnerabilidades em tempo real.',
+      image: '/images/dspm.png'
+    },
+    {
+      id: 'bas',
+      title: 'Breach and Attack Simulation (BAS)',
+      description: 'Teste continuamente suas defesas de segurança com simulações realistas de ataques, identificando vulnerabilidades antes que sejam exploradas por ameaças reais.',
+      image: '/images/bas.png'
+    },
+    {
+      id: 'digital',
+      title: 'Otimização de Presença Digital',
+      description: 'Transforme sua presença online com nossas soluções estratégicas de marketing digital, aumentando visibilidade, engajamento e conversões.',
+      image: '/images/digital.png'
+    }
+  ];
   
   // Efeito para iniciar o vídeo de fundo quando a página carregar
   useEffect(() => {
@@ -41,161 +82,113 @@ export default function Home() {
         
         <div className="hero__content">
           <h1 className="hero__title">
-            Transformamos desafios em oportunidades tecnológicas
+            Soluções estratégicas que <span style={{ color: '#0076FF' }}>transformam</span> desafios em oportunidades
           </h1>
           <p className="hero__subtitle">
-            Soluções estratégicas que impulsionam seu negócio com tecnologias inovadoras e resultados mensuráveis.
+            Combinamos expertise tecnológica e visão estratégica para impulsionar o crescimento sustentável do seu negócio
           </p>
-          <Link href="/solucoes">
-            <a className="hero__cta">Conheça nossas soluções</a>
-          </Link>
         </div>
-        
-        <a href="#selected-projects" className="hero__scroll">
-          <span className="hero__scroll-text">Explore</span>
-          <svg className="hero__scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M7 13l5 5 5-5M7 7l5 5 5-5" />
-          </svg>
-        </a>
       </section>
 
-      {/* Selected Projects Section */}
-      <section id="selected-projects" className="selected-projects">
-        <div className="selected-projects__header">
-          <h2 className="selected-projects__title">Soluções Selecionadas</h2>
-          <p className="selected-projects__description">
+      {/* Soluções Selecionadas */}
+      <section className="whats-in-works">
+        <div className="whats-in-works__content">
+          <h2 className="whats-in-works__title">Soluções Selecionadas</h2>
+          <p className="whats-in-works__description">
             Conheça nossas soluções estratégicas que transformam desafios complexos em crescimento sustentável e performance superior.
           </p>
         </div>
       </section>
 
-      {/* Product Blocks */}
+      {/* Produtos */}
       <section className="product-blocks">
-        {/* Backup SaaS Estratégico */}
-        <div className="product-block">
-          <img 
-            src="/images/keepit.png" 
-            alt="Backup SaaS Estratégico" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Backup SaaS Estratégico</h2>
-            <p className="product-block__description">
-              Proteja seus dados críticos na nuvem com nossa solução de backup SaaS estratégico, garantindo continuidade de negócios e conformidade regulatória.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
-            </Link>
+        {products.map((product, index) => (
+          <div 
+            key={product.id}
+            className="product-block"
+            onMouseEnter={() => setActiveProductIndex(index)}
+            onMouseLeave={() => setActiveProductIndex(null)}
+          >
+            <img 
+              src={product.image} 
+              alt={product.title} 
+              className="product-block__bg"
+              style={{ opacity: activeProductIndex === index ? 1 : 0 }}
+            />
+            <div 
+              className="product-block__overlay"
+              style={{ opacity: activeProductIndex === index ? 1 : 0 }}
+            ></div>
+            <div 
+              className="product-block__content"
+              style={{ color: activeProductIndex === index ? 'white' : 'black' }}
+            >
+              <h2 className="product-block__title">{product.title}</h2>
+              <p className="product-block__description">{product.description}</p>
+              <Link href="/solucoes">
+                <a style={{ 
+                  display: 'inline-block', 
+                  marginTop: '2rem',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: activeProductIndex === index ? 'white' : '#0076FF',
+                  color: activeProductIndex === index ? '#0076FF' : 'white',
+                  borderRadius: '2rem',
+                  fontWeight: '600',
+                  transition: 'background-color 0.3s ease, color 0.3s ease'
+                }}>
+                  Saiba mais
+                </a>
+              </Link>
+            </div>
           </div>
-        </div>
+        ))}
+      </section>
 
-        {/* Plataformas de FinOps com IA */}
-        <div className="product-block">
-          <img 
-            src="/images/finops.png" 
-            alt="Plataformas de FinOps com IA" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Plataformas de FinOps com IA</h2>
-            <p className="product-block__description">
-              Otimize seus investimentos em nuvem com nossa plataforma de FinOps potencializada por IA, reduzindo custos e maximizando o valor de seus recursos tecnológicos.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
-            </Link>
-          </div>
-        </div>
-
-        {/* Plataformas Edge AI */}
-        <div className="product-block">
-          <img 
-            src="/images/edge.png" 
-            alt="Plataformas Edge AI" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Plataformas Edge AI</h2>
-            <p className="product-block__description">
-              Processe dados em tempo real na borda da rede com nossas soluções de Edge AI, permitindo tomadas de decisão mais rápidas e reduzindo a latência.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
-            </Link>
-          </div>
-        </div>
-
-        {/* Data Security Posture Management (DSPM) */}
-        <div className="product-block">
-          <img 
-            src="/images/dspm.png" 
-            alt="Data Security Posture Management" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Data Security Posture Management</h2>
-            <p className="product-block__description">
-              Gerencie proativamente a postura de segurança de seus dados com nossa solução DSPM, identificando e mitigando riscos antes que se tornem ameaças.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
-            </Link>
-          </div>
-        </div>
-
-        {/* Breach and Attack Simulation (BAS) */}
-        <div className="product-block">
-          <img 
-            src="/images/bas.png" 
-            alt="Breach and Attack Simulation" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Breach and Attack Simulation</h2>
-            <p className="product-block__description">
-              Teste continuamente suas defesas de segurança com simulações realistas de ataques, identificando vulnerabilidades e fortalecendo sua postura de segurança.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
-            </Link>
-          </div>
-        </div>
-
-        {/* Otimização de Presença Digital */}
-        <div className="product-block">
-          <img 
-            src="/images/digital.png" 
-            alt="Otimização de Presença Digital" 
-            className="product-block__bg"
-          />
-          <div className="product-block__overlay"></div>
-          <div className="product-block__content">
-            <h2 className="product-block__title">Otimização de Presença Digital</h2>
-            <p className="product-block__description">
-              Amplie seu alcance e engajamento digital com nossas soluções de otimização de presença online, aumentando conversões e fortalecendo sua marca.
-            </p>
-            <Link href="/solucoes">
-              <a className="product-block__link">Saiba mais</a>
+      {/* O que estamos preparando */}
+      <section className="whats-in-works">
+        <div className="whats-in-works__content">
+          <h2 className="whats-in-works__title">O que estamos preparando?</h2>
+          <p className="whats-in-works__description">
+            Uma nova geração de soluções estratégicas que combinam inteligência artificial, análise avançada de dados e automação para transformar a maneira como as empresas abordam seus desafios tecnológicos.
+          </p>
+          <div style={{ marginTop: '2rem' }}>
+            <Link href="/contato">
+              <a style={{ 
+                display: 'inline-block', 
+                padding: '0.75rem 1.5rem',
+                backgroundColor: '#0076FF',
+                color: 'white',
+                borderRadius: '2rem',
+                fontWeight: '600',
+                transition: 'background-color 0.3s ease'
+              }}>
+                Fale conosco
+              </a>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* What's in the Works Section */}
-      <section className="whats-in-works">
-        <div className="whats-in-works__content">
-          <h2 className="whats-in-works__title">O que estamos preparando?</h2>
-          <p className="whats-in-works__description">
-            Uma nova geração de soluções de segurança cibernética com inteligência artificial avançada, projetada para proteger empresas contra as ameaças mais sofisticadas do mercado.
-          </p>
-          <Link href="/contato">
-            <a className="whats-in-works__link">Fale conosco para saber mais</a>
-          </Link>
+      {/* Metodologia */}
+      <section className="product-blocks">
+        <div 
+          className="product-block"
+          style={{ backgroundColor: '#0076FF', color: 'white' }}
+        >
+          <div className="product-block__content">
+            <h2 className="product-block__title">Metodologia AORKIA</h2>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>Engenharia Estratégica Aplicada</h3>
+            <p className="product-block__description">
+              Conheça os pilares que transformam desafios complexos em crescimento sustentável e performance superior.
+            </p>
+            <div style={{ marginTop: '2rem', borderLeft: '4px solid white', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Diagnóstico Preciso e Curadoria Estratégica</h4>
+              <p>Entendimento profundo. Soluções sob medida.</p>
+            </div>
+            <p className="product-block__description">
+              Cada projeto inicia com um diagnóstico minucioso, alinhado aos seus desafios e objetivos, para orientar escolhas tecnológicas sob medida.
+            </p>
+          </div>
         </div>
       </section>
 
