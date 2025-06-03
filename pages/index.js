@@ -1,436 +1,380 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLogoIndex, setActiveLogoIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [hoverProduct, setHoverProduct] = useState(null);
+  const videoRef = useRef(null);
+  const logos = ['/images/logo_aorkia_white.png', '/images/logo_aorkia_color.png'];
+  
+  // Produtos com suas respectivas imagens de fundo
+  const products = [
+    {
+      id: 'backup',
+      title: 'Backup SaaS Estratégico',
+      description: 'Proteção completa e contínua para seus dados críticos na nuvem',
+      image: '/images/keepit.png'
+    },
+    {
+      id: 'finops',
+      title: 'Plataformas de FinOps com IA',
+      description: 'Otimização de custos e governança financeira para ambientes cloud',
+      image: '/images/finops.png'
+    },
+    {
+      id: 'edge',
+      title: 'Plataformas Edge AI',
+      description: 'Inteligência artificial na borda para decisões em tempo real',
+      image: '/images/edge.png'
+    },
+    {
+      id: 'dspm',
+      title: 'Data Security Posture Management',
+      description: 'Visibilidade e proteção contínua para seus dados mais valiosos',
+      image: '/images/dspm.png'
+    },
+    {
+      id: 'bas',
+      title: 'Breach and Attack Simulation',
+      description: 'Validação contínua de segurança contra ameaças reais',
+      image: '/images/bas.png'
+    },
+    {
+      id: 'digital',
+      title: 'Otimização de Presença Digital',
+      description: 'Estratégias para maximizar seu impacto no ambiente digital',
+      image: '/images/digital.png'
+    }
+  ];
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para alternar logos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveLogoIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Efeito para controlar o preloader
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Efeito para monitorar o scroll
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
+      setScrollPosition(window.scrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Efeito para simular preloader
+  // Efeito para iniciar o vídeo de fundo
   useEffect(() => {
-    // Simular tempo de carregamento
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Erro ao reproduzir vídeo:", error);
+      });
+    }
   }, []);
 
   return (
-    <>
+    <div className={`relative ${isLoading ? 'overflow-hidden h-screen' : ''}`}>
       <Head>
-        <title>AORKIA | Soluções B2B que Transformam Negócios</title>
-        <meta name="description" content="Soluções B2B que Transformam Negócios: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível." />
-        <meta name="theme-color" content="#0076FF" />
-        
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "AORKIA",
-              "url": "https://www.aorkia.com.br",
-              "logo": "https://www.aorkia.com.br/images/logo.png",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+55-31-98801-9006",
-                "contactType": "customer service",
-                "availableLanguage": ["Portuguese", "English"]
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Av. Getúlio Vargas, 671 - Sala 500",
-                "addressLocality": "Belo Horizonte",
-                "addressRegion": "MG",
-                "postalCode": "30112-021",
-                "addressCountry": "BR"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/company/aorkia",
-                "https://www.instagram.com/aorkia"
-              ]
-            })
-          }}
-        />
+        <title>AORKIA - Soluções Estratégicas em Tecnologia</title>
+        <meta name="description" content="Transformamos desafios complexos em crescimento sustentável e performance superior através de soluções estratégicas em tecnologia." />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Preloader - Estilo Jam3 */}
+      {/* Preloader */}
       {isLoading && (
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-          <div className="preloader-content">
-            <div className="logo-container mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-24 h-24 relative mb-8">
               <Image 
-                src="/logo_aorkia_white.png" 
+                src="/images/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                width={280} 
-                height={70} 
-                className="h-20 w-auto" 
+                layout="fill" 
+                objectFit="contain"
+                className="animate-pulse" 
               />
             </div>
-            <div className="loading-bar">
-              <div className="loading-progress"></div>
+            <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-blue-500 transition-all duration-2000 ease-out"
+                style={{ width: `${Math.min(100, (Date.now() % 2500) / 25)}%` }}
+              ></div>
             </div>
           </div>
         </div>
       )}
 
-      <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
-        <section className="relative h-screen overflow-hidden hero flex items-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video_hero.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo.
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
+      {/* Menu Lateral Fixo (estilo Jam3) */}
+      <div className="fixed top-0 left-0 h-full w-16 z-40 flex flex-col justify-between items-center py-8 border-r border-gray-800">
+        {/* Logo Vertical com Transição */}
+        <div className="relative w-8 h-32">
+          {logos.map((logo, index) => (
+            <div 
+              key={index}
+              className="absolute inset-0 transition-opacity duration-1000 flex items-center justify-center"
+              style={{ 
+                opacity: activeLogoIndex === index ? 1 : 0,
+                transform: 'rotate(-90deg)',
+                transformOrigin: 'center'
+              }}
+            >
+              <Image 
+                src={logo} 
+                alt="AORKIA" 
+                width={120} 
+                height={30}
+                className="object-contain" 
+              />
+            </div>
+          ))}
+        </div>
 
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center text-center">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
-                Soluções B2B que <br className="hidden md:block" />
-                <span className="text-primary">Transformam</span> Negócios
-              </h1>
+        {/* Menu Sanduíche */}
+        <button 
+          className="w-8 h-8 flex flex-col justify-center items-center space-y-1.5 group"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        </button>
 
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
-                Potencialize sua empresa com nossas soluções: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível.
-              </p>
+        {/* "SEE OUR WORK" no canto inferior */}
+        <div className="transform -rotate-90 whitespace-nowrap text-white text-xs tracking-widest uppercase">
+          <Link href="/solucoes">
+            <a className="hover:text-blue-500 transition-colors duration-300">Ver nosso trabalho</a>
+          </Link>
+        </div>
+      </div>
 
-              <div className="flex flex-col sm:flex-row gap-6">
+      {/* Menu Fullscreen */}
+      <div 
+        className={`fixed inset-0 bg-black bg-opacity-95 z-30 transition-opacity duration-500 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="container mx-auto h-full flex items-center justify-center">
+          <nav className="flex flex-col items-center space-y-8">
+            {['Home', 'Soluções', 'Sobre', 'Contato'].map((item, index) => (
+              <Link 
+                key={item} 
+                href={item === 'Home' ? '/' : `/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+              >
                 <a 
-                  href="#formulario-cta"
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all"
+                  className={`text-4xl md:text-6xl font-bold text-white hover:text-blue-500 transition-all duration-300 transform ${
+                    isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  Fale com um Estrategista
+                  {item}
                 </a>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
 
-                <Link 
-                  href="/solucoes" 
-                  className="border border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-medium transition-all"
-                >
-                  Explore Nossas Soluções
+      {/* Hero Section com Vídeo de Fundo */}
+      <section className="relative h-screen w-full overflow-hidden">
+        {/* Vídeo de Fundo */}
+        <div className="absolute inset-0 bg-black">
+          <video 
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+          >
+            <source src="/video_hero.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
+        </div>
+
+        {/* Conteúdo Hero */}
+        <div className="relative h-full container mx-auto px-4 md:px-16 flex flex-col justify-center">
+          <div className="max-w-4xl ml-0 md:ml-16">
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+              Transformamos <span className="text-blue-500">tecnologia</span> em vantagem competitiva
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl opacity-0 animate-fadeIn" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+              Soluções estratégicas que impulsionam inovação e crescimento sustentável para sua empresa.
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fadeIn" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
+          <span className="text-white text-sm uppercase tracking-widest mb-2">Scroll</span>
+          <div className="w-0.5 h-8 bg-white/50 relative overflow-hidden">
+            <span className="absolute top-0 left-0 w-full h-1/3 bg-white animate-scrollDown"></span>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção Selected Projects (similar à Jam3) */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-16">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-6 md:mb-0">
+              Soluções<br />Selecionadas
+            </h2>
+            <div className="max-w-md">
+              <p className="text-lg text-gray-600">
+                Uma seleção de <span className="font-medium">Tecnologia Estratégica</span>, <span className="font-medium">Segurança</span> e <span className="font-medium">Transformação Digital</span> para impulsionar seu negócio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Grid de Produtos com Efeito Hover */}
+      <section className="bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {products.map((product) => (
+            <div 
+              key={product.id}
+              className="relative h-screen md:h-[70vh] overflow-hidden cursor-pointer group"
+              onMouseEnter={() => setHoverProduct(product.id)}
+              onMouseLeave={() => setHoverProduct(null)}
+            >
+              {/* Fundo com imagem (visível apenas no hover) */}
+              <div 
+                className="absolute inset-0 transition-opacity duration-700 ease-in-out z-0"
+                style={{ 
+                  opacity: hoverProduct === product.id ? 1 : 0,
+                  backgroundImage: `url(${product.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              >
+                <div className="absolute inset-0 bg-black/50"></div>
+              </div>
+
+              {/* Conteúdo do produto */}
+              <div className={`relative z-10 h-full flex flex-col justify-center px-8 md:px-16 transition-colors duration-700 ${
+                hoverProduct === product.id ? 'text-white' : 'text-black'
+              }`}>
+                <h3 className="text-3xl md:text-5xl font-bold mb-4">{product.title}</h3>
+                <p className="text-lg md:text-xl max-w-md">{product.description}</p>
+                <div className="mt-8">
+                  <Link href={`/solucoes#${product.id}`}>
+                    <a className={`inline-flex items-center text-lg ${
+                      hoverProduct === product.id ? 'text-blue-400' : 'text-blue-600'
+                    }`}>
+                      <span className="mr-2">Saiba mais</span>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Seção "What's in the works?" (similar à Jam3) */}
+      <section className="py-24 bg-white border-t border-gray-200">
+        <div className="container mx-auto px-4 md:px-16">
+          <div className="mb-8">
+            <span className="text-sm uppercase tracking-widest text-gray-500">O que estamos preparando?</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <h2 className="text-4xl md:text-6xl font-bold text-black leading-tight">
+              <span className="text-blue-500">Soluções avançadas</span> que transformam desafios em oportunidades.
+            </h2>
+            <div className="flex flex-col justify-between">
+              <p className="text-xl text-gray-600 mb-8">
+                Uma nova geração de ferramentas de <span className="text-black">segurança preditiva</span> para proteger seus ativos mais valiosos.
+              </p>
+              <div>
+                <p className="text-lg mb-4">Pronto para transformar seu negócio?</p>
+                <Link href="/contato">
+                  <a className="inline-block text-lg font-medium border-b-2 border-blue-500 pb-1 hover:text-blue-500 transition-colors">
+                    Fale conosco
+                  </a>
                 </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
-            <a href="#solucoes" className="text-white text-4xl">
-              <i className="ri-arrow-down-line"></i>
-            </a>
-          </div>
-        </section>
-
-        {/* Seção de Soluções B2B - Estilo Jam3 */}
-        <section id="solucoes" className="py-24 md:py-32 relative overflow-hidden">
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                Soluções <span className="text-primary">Especializadas</span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
-                resultados previsíveis, eficiência operacional e expansão sustentável.
-              </p>
+      {/* Footer */}
+      <footer className="bg-black text-white py-16">
+        <div className="container mx-auto px-4 md:px-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+            <div className="mb-8 md:mb-0">
+              <Image 
+                src="/images/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                width={180} 
+                height={45}
+                className="object-contain" 
+              />
             </div>
-
-            {/* Cards de Soluções - Grid Colorido Estilo Jam3 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Backup SaaS Estratégico */}
-              <div className="solution-card bg-blue-900 rounded-lg p-8 transform transition-all hover:scale-[1.02] hover:shadow-xl">
-                <div className="solution-icon mb-6">
-                  <i className="ri-shield-check-line text-5xl text-primary"></i>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Backup SaaS Estratégico</h3>
-                <p className="text-gray-300 text-lg mb-6">
-                  A AORKIA ativa a <span className="text-primary font-medium">Keepit</span> — líder global em backup SaaS — para garantir proteção completa dos seus dados na nuvem.
-                </p>
-                <div className="mt-auto">
-                  <Link 
-                    href="/solucoes" 
-                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-lg transition-colors"
-                  >
-                    <span>Saiba mais</span>
-                    <i className="ri-arrow-right-line ml-2"></i>
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Infraestrutura Estratégica */}
-              <div className="solution-card bg-purple-900 rounded-lg p-8 transform transition-all hover:scale-[1.02] hover:shadow-xl">
-                <div className="solution-icon mb-6">
-                  <i className="ri-server-line text-5xl text-primary"></i>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Infraestrutura Estratégica</h3>
-                <p className="text-gray-300 text-lg mb-6">
-                  Transformamos sua infraestrutura em um ativo estratégico que impulsiona inovação e crescimento sustentável.
-                </p>
-                <div className="mt-auto">
-                  <Link 
-                    href="/solucoes" 
-                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-lg transition-colors"
-                  >
-                    <span>Saiba mais</span>
-                    <i className="ri-arrow-right-line ml-2"></i>
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Segurança Cloud */}
-              <div className="solution-card bg-green-900 rounded-lg p-8 transform transition-all hover:scale-[1.02] hover:shadow-xl">
-                <div className="solution-icon mb-6">
-                  <i className="ri-lock-line text-5xl text-primary"></i>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Segurança Cloud</h3>
-                <p className="text-gray-300 text-lg mb-6">
-                  Proteja seus ativos digitais com nossa abordagem multicamada de segurança para ambientes cloud.
-                </p>
-                <div className="mt-auto">
-                  <Link 
-                    href="/solucoes" 
-                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-lg transition-colors"
-                  >
-                    <span>Saiba mais</span>
-                    <i className="ri-arrow-right-line ml-2"></i>
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Receita B2B */}
-              <div className="solution-card bg-red-900 rounded-lg p-8 transform transition-all hover:scale-[1.02] hover:shadow-xl">
-                <div className="solution-icon mb-6">
-                  <i className="ri-line-chart-line text-5xl text-primary"></i>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Receita B2B</h3>
-                <p className="text-gray-300 text-lg mb-6">
-                  Transforme seu processo de vendas B2B com nossa metodologia de engenharia de receita previsível.
-                </p>
-                <div className="mt-auto">
-                  <Link 
-                    href="/solucoes" 
-                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-lg transition-colors"
-                  >
-                    <span>Saiba mais</span>
-                    <i className="ri-arrow-right-line ml-2"></i>
-                  </Link>
-                </div>
-              </div>
+            <nav className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+              {['Home', 'Soluções', 'Sobre', 'Contato'].map((item) => (
+                <Link 
+                  key={item} 
+                  href={item === 'Home' ? '/' : `/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                >
+                  <a className="text-lg hover:text-blue-500 transition-colors">{item}</a>
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+            <p className="text-gray-400 mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} AORKIA. Todos os direitos reservados.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">LinkedIn</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
+                </svg>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">Twitter</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </footer>
 
-        {/* Seção Metodologia AORKIA - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-gray-900">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                Metodologia <span className="text-primary">AORKIA</span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Engenharia Estratégica Aplicada: Conheça os pilares que transformam desafios complexos em crescimento sustentável e performance superior.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="methodology-card bg-black p-8 rounded-lg border border-gray-800 transform transition-all hover:border-primary">
-                <div className="text-primary text-5xl mb-6">
-                  <i className="ri-search-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Diagnóstico Preciso</h3>
-                <p className="text-gray-300 text-lg">
-                  Cada projeto inicia com um diagnóstico minucioso, alinhado aos seus desafios e objetivos, para orientar escolhas tecnológicas sob medida.
-                </p>
-              </div>
-              
-              <div className="methodology-card bg-black p-8 rounded-lg border border-gray-800 transform transition-all hover:border-primary">
-                <div className="text-primary text-5xl mb-6">
-                  <i className="ri-tools-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Curadoria Estratégica</h3>
-                <p className="text-gray-300 text-lg">
-                  Entendimento profundo. Soluções sob medida. Selecionamos e integramos tecnologias que realmente agregam valor ao seu negócio.
-                </p>
-              </div>
-              
-              <div className="methodology-card bg-black p-8 rounded-lg border border-gray-800 transform transition-all hover:border-primary">
-                <div className="text-primary text-5xl mb-6">
-                  <i className="ri-line-chart-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Resultados Mensuráveis</h3>
-                <p className="text-gray-300 text-lg">
-                  Implementamos soluções com métricas claras de sucesso, garantindo retorno sobre investimento e impacto positivo nos resultados.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Nova Seção CTA com foto e formulário - Estilo Jam3 */}
-        <section id="formulario-cta" className="py-24 md:py-32 bg-black relative">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Lado esquerdo - Conteúdo */}
-              <div className="flex flex-col justify-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                  Vamos <span className="text-primary">transformar</span> seu negócio?
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Descubra como nossas soluções estratégicas podem impulsionar sua empresa. Preencha o formulário e um de nossos especialistas entrará em contato.
-                </p>
-                <div className="bg-gray-900 p-6 rounded-lg">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
-                      <i className="ri-shield-check-line text-2xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Avaliação Gratuita</h3>
-                      <p className="text-gray-400">Diagnóstico preliminar sem compromisso</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
-                      <i className="ri-time-line text-2xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Resposta Rápida</h3>
-                      <p className="text-gray-400">Retorno em até 24 horas úteis</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Lado direito - Formulário */}
-              <div className="bg-gray-900 p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6">Solicite uma avaliação gratuita</h3>
-                <form className="space-y-6">
-                  <div>
-                    <label htmlFor="nome" className="block text-sm font-medium text-gray-300 mb-1">Nome completo</label>
-                    <input 
-                      type="text" 
-                      id="nome" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">E-mail corporativo</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="telefone" className="block text-sm font-medium text-gray-300 mb-1">Telefone</label>
-                    <input 
-                      type="tel" 
-                      id="telefone" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-300 mb-1">Empresa</label>
-                    <input 
-                      type="text" 
-                      id="empresa" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required 
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="interesse" className="block text-sm font-medium text-gray-300 mb-1">Principal interesse</label>
-                    <select 
-                      id="interesse" 
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-white" 
-                      required
-                    >
-                      <option value="">Selecione uma opção</option>
-                      <option value="backup">Backup SaaS Estratégico</option>
-                      <option value="infraestrutura">Infraestrutura Estratégica</option>
-                      <option value="seguranca">Segurança Cloud</option>
-                      <option value="receita">Receita B2B</option>
-                    </select>
-                  </div>
-                  
-                  <button 
-                    type="submit" 
-                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg text-lg font-medium transition-all"
-                  >
-                    Solicitar Avaliação Gratuita
-                  </button>
-                  
-                  <p className="text-xs text-gray-400 text-center">
-                    Ao enviar este formulário, você concorda com nossa <Link href="/privacy" className="text-primary hover:underline">Política de Privacidade</Link>.
-                  </p>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <style jsx>{`
-        /* Estilos para o preloader */
-        .preloader-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .loading-bar {
-          width: 200px;
-          height: 4px;
-          background-color: rgba(255, 255, 255, 0.2);
-          border-radius: 2px;
-          overflow: hidden;
-        }
-        
-        .loading-progress {
-          height: 100%;
-          width: 100%;
-          background-color: #0076FF;
-          animation: loading 2s ease-in-out;
-          transform-origin: left;
-        }
-        
-        @keyframes loading {
-          0% { transform: scaleX(0); }
-          100% { transform: scaleX(1); }
-        }
-        
-        /* Estilos para cards de solução */
-        .solution-card {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          transition: all 0.3s ease;
-        }
-        
-        /* Estilos para cards de metodologia */
-        .methodology-card {
-          transition: all 0.3s ease;
-        }
-      `}</style>
-    </>
+      {/* Cookie Banner */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-sm mb-4 md:mb-0 md:mr-8">
+          Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa <Link href="/politica-privacidade"><a className="underline">Política de Privacidade</a></Link>.
+        </p>
+        <div className="flex space-x-4">
+          <button className="px-4 py-2 bg-transparent border border-white text-white text-sm rounded hover:bg-white hover:text-gray-900 transition-colors">
+            Configurações
+          </button>
+          <button className="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
+            Aceitar todos
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
