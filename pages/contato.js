@@ -1,34 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Contato() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [formStatus, setFormStatus] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
-    telefone: '',
     empresa: '',
-    assunto: '',
+    telefone: '',
     mensagem: ''
   });
-
-  // Efeito para controlar o progresso de rolagem
+  const [formStatus, setFormStatus] = useState(null);
+  const videoRef = useRef(null);
+  
+  // Efeito para iniciar o vídeo de fundo quando a página carregar
   useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      const progress = (currentScroll / totalScroll) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    setIsLoaded(true);
+    
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Erro ao reproduzir vídeo:", error);
+      });
+    }
   }, []);
 
-  const handleInputChange = (e) => {
+  // Função para lidar com mudanças no formulário
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -36,470 +34,261 @@ export default function Contato() {
     }));
   };
 
+  // Função para enviar o formulário
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulação de envio do formulário
-    setFormStatus('loading');
     
-    // Simulação de resposta do servidor após 1.5 segundos
+    // Simulação de envio de formulário
+    setFormStatus('sending');
+    
     setTimeout(() => {
       setFormStatus('success');
       // Limpar formulário após envio bem-sucedido
       setFormData({
         nome: '',
         email: '',
-        telefone: '',
         empresa: '',
-        assunto: '',
+        telefone: '',
         mensagem: ''
       });
-    }, 1500);
+    }, 2000);
   };
 
   return (
-    <>
+    <div className={`relative ${isLoaded ? 'animate-fadeIn' : ''}`}>
       <Head>
-        <title>Contato AORKIA | Fale com nossa equipe de especialistas</title>
-        <meta name="description" content="Entre em contato com a AORKIA para descobrir como nossas soluções estratégicas podem impulsionar sua empresa. Agende uma conversa com nossos especialistas." />
+        <title>Contato - AORKIA</title>
+        <meta name="description" content="Entre em contato com a AORKIA para descobrir como nossas soluções estratégicas podem transformar os desafios do seu negócio em oportunidades." />
       </Head>
 
-      {/* Indicador de progresso de rolagem */}
-      <div 
-        className="scroll-indicator" 
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
-      ></div>
+      {/* Hero Section */}
+      <section className="hero">
+        {/* Vídeo de Fundo */}
+        <video 
+          ref={videoRef}
+          className="hero__video"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="/video_hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero__overlay"></div>
+        
+        <div className="hero__content">
+          <h1 className="hero__title">
+            Entre em <span style={{ color: '#0076FF' }}>Contato</span>
+          </h1>
+          <p className="hero__subtitle">
+            Estamos prontos para transformar os desafios do seu negócio em oportunidades de crescimento sustentável.
+          </p>
+        </div>
+      </section>
 
-      <main>
-        {/* Hero Section */}
-        <section className="relative bg-black text-white overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40 z-10"></div>
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src="/video_hero.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo.
-            </video>
-          </div>
-          
-          <div className="container mx-auto max-w-7xl px-4 py-24 md:py-32 relative z-20">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Vamos <span className="text-primary">transformar</span> seu negócio juntos
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                Entre em contato com nossa equipe de especialistas e descubra como podemos impulsionar sua empresa.
+      {/* Formulário de Contato */}
+      <section className="whats-in-works">
+        <div className="whats-in-works__content">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <h2 className="whats-in-works__title">Fale Conosco</h2>
+              <p className="whats-in-works__description">
+                Preencha o formulário abaixo e nossa equipe entrará em contato para entender melhor suas necessidades e apresentar as soluções mais adequadas para o seu negócio.
               </p>
-              <a href="#formulario" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium inline-flex items-center transition-all">
-                Fale conosco agora <i className="ri-arrow-right-line ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Informações de Contato */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex flex-col md:flex-row gap-12">
-              <div className="md:w-1/2">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Informações de Contato</h2>
+              
+              <div style={{ marginTop: '2rem' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>Informações de Contato</h3>
                 
-                <div className="space-y-8">
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <i className="ri-map-pin-line text-xl text-primary"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">Endereço</h3>
-                      <p className="text-gray-700">
-                        Av. Getúlio Vargas, 671 — Sala 500<br />
-                        Belo Horizonte - MG<br />
-                        Brasil
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <i className="ri-phone-line text-xl text-primary"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">Telefone</h3>
-                      <p className="text-gray-700">
-                        +55 31 98801-9006
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <i className="ri-mail-line text-xl text-primary"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">Email</h3>
-                      <p className="text-gray-700">
-                        contato@aorkia.com
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <i className="ri-time-line text-xl text-primary"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">Horário de Atendimento</h3>
-                      <p className="text-gray-700">
-                        Segunda a Sexta: 9h às 18h<br />
-                        Sábado e Domingo: Fechado
-                      </p>
-                    </div>
-                  </div>
+                <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '1rem', color: '#0076FF' }}>
+                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7294C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77383 17.3147 6.72534 15.2662 5.19 12.85C3.49998 10.2412 2.44824 7.27097 2.12 4.18C2.09501 3.90347 2.12788 3.62476 2.2165 3.36162C2.30513 3.09849 2.44757 2.85669 2.63477 2.65162C2.82196 2.44655 3.04981 2.28271 3.30379 2.17052C3.55778 2.05833 3.83234 2.00026 4.11 2H7.11C7.59531 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04208 3.23945 9.11 3.72C9.23662 4.68007 9.47145 5.62273 9.81 6.53C9.94455 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.36 8.64L8.09 9.91C9.51356 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9752 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0554 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>+55 11 4321-1234</span>
                 </div>
                 
-                <div className="mt-12">
-                  <h3 className="text-xl font-bold mb-4 text-gray-900">Siga-nos</h3>
-                  <div className="flex gap-4">
-                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-primary/10 rounded-full flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
-                      <i className="ri-linkedin-fill text-xl"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-primary/10 rounded-full flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
-                      <i className="ri-twitter-fill text-xl"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-primary/10 rounded-full flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
-                      <i className="ri-instagram-fill text-xl"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-primary/10 rounded-full flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
-                      <i className="ri-facebook-fill text-xl"></i>
-                    </a>
-                  </div>
+                <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '1rem', color: '#0076FF' }}>
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>contato@aorkia.com</span>
                 </div>
-              </div>
-              
-              <div id="formulario" className="md:w-1/2">
-                <div className="bg-gray-50 p-8 rounded-2xl shadow-sm">
-                  <h2 className="text-2xl font-bold mb-6 text-gray-900">Envie sua mensagem</h2>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">Nome completo *</label>
-                      <input 
-                        type="text" 
-                        id="nome" 
-                        name="nome" 
-                        value={formData.nome}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email corporativo *</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-1">Telefone / WhatsApp *</label>
-                      <input 
-                        type="tel" 
-                        id="telefone" 
-                        name="telefone" 
-                        value={formData.telefone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
-                      <input 
-                        type="text" 
-                        id="empresa" 
-                        name="empresa" 
-                        value={formData.empresa}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="assunto" className="block text-sm font-medium text-gray-700 mb-1">Assunto de interesse *</label>
-                      <select 
-                        id="assunto" 
-                        name="assunto" 
-                        value={formData.assunto}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required
-                      >
-                        <option value="">Selecione uma opção</option>
-                        <option value="backup-saas">Backup SaaS Estratégico</option>
-                        <option value="infraestrutura">Infraestrutura Estratégica</option>
-                        <option value="seguranca-cloud">Segurança Cloud</option>
-                        <option value="receita-b2b">Receita B2B</option>
-                        <option value="outro">Outro assunto</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-1">Mensagem *</label>
-                      <textarea 
-                        id="mensagem" 
-                        name="mensagem" 
-                        rows="4" 
-                        value={formData.mensagem}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" 
-                        required
-                      ></textarea>
-                    </div>
-                    
-                    <div className="pt-2">
-                      <button 
-                        type="submit" 
-                        className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
-                        disabled={formStatus === 'loading'}
-                      >
-                        {formStatus === 'loading' ? (
-                          <>
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Enviando...
-                          </>
-                        ) : 'Enviar mensagem'}
-                      </button>
-                      
-                      {formStatus === 'success' && (
-                        <div className="mt-4 p-4 bg-green-50 text-green-800 rounded-lg">
-                          <p className="flex items-center">
-                            <i className="ri-check-line mr-2"></i>
-                            Mensagem enviada com sucesso! Entraremos em contato em breve.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </form>
+                
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '1rem', color: '#0076FF' }}>
+                    <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>São Paulo, SP - Brasil</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Por que escolher a AORKIA */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-gray-900">Por que escolher a AORKIA?</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <i className="ri-customer-service-2-line text-3xl text-primary"></i>
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Atendimento Personalizado</h3>
-                <p className="text-gray-700">
-                  Cada cliente é único. Nossa abordagem consultiva garante que entendamos profundamente seus desafios específicos para oferecer soluções sob medida.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <i className="ri-shield-check-line text-3xl text-primary"></i>
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Expertise Comprovada</h3>
-                <p className="text-gray-700">
-                  Nossa equipe é formada por especialistas certificados com vasta experiência em implementações complexas e casos de sucesso em diversos segmentos.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <i className="ri-line-chart-line text-3xl text-primary"></i>
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Resultados Mensuráveis</h3>
-                <p className="text-gray-700">
-                  Focamos em entregar valor mensurável para seu negócio, com KPIs claros e acompanhamento contínuo dos resultados das soluções implementadas.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Depoimentos */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-900">Nossos Clientes Dizem</h2>
-            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-              Veja o que nossos clientes têm a dizer sobre nossa parceria e os resultados alcançados.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-8 rounded-xl relative">
-                <div className="absolute -top-4 left-8 text-5xl text-primary opacity-20">"</div>
-                <div className="relative z-10">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-400 flex">
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mb-8">
-                    "A implementação do Backup SaaS pela AORKIA foi impecável. Além da excelência técnica, o que mais me impressionou foi o entendimento profundo do nosso negócio e necessidades específicas."
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                      <Image 
-                        src="/testimonial-1.jpg" 
-                        alt="Cliente" 
-                        width={48} 
-                        height={48} 
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900">Ricardo Almeida</p>
-                      <p className="text-sm text-gray-600">Diretor de TI, Empresa de Saúde</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-8 rounded-xl relative">
-                <div className="absolute -top-4 left-8 text-5xl text-primary opacity-20">"</div>
-                <div className="relative z-10">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-400 flex">
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mb-8">
-                    "A AORKIA transformou nossa infraestrutura de TI em um verdadeiro diferencial competitivo. A equipe é extremamente competente e sempre disponível para nos apoiar."
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                      <Image 
-                        src="/testimonial-2.jpg" 
-                        alt="Cliente" 
-                        width={48} 
-                        height={48} 
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900">Camila Rodrigues</p>
-                      <p className="text-sm text-gray-600">CIO, Empresa de Varejo</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-8 rounded-xl relative">
-                <div className="absolute -top-4 left-8 text-5xl text-primary opacity-20">"</div>
-                <div className="relative z-10">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-400 flex">
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mb-8">
-                    "A solução de segurança cloud implementada pela AORKIA nos deu visibilidade e controle que nunca tivemos antes. Agora dormimos tranquilos sabendo que nossos dados estão protegidos."
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                      <Image 
-                        src="/testimonial-3.jpg" 
-                        alt="Cliente" 
-                        width={48} 
-                        height={48} 
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900">Eduardo Martins</p>
-                      <p className="text-sm text-gray-600">CISO, Instituição Financeira</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Mapa de Localização */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-900">Nossa Localização</h2>
-            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-              Estamos estrategicamente localizados em Belo Horizonte, com atendimento em todo o Brasil.
-            </p>
-            
-            <div className="rounded-2xl overflow-hidden shadow-lg h-96">
-              {/* Aqui seria inserido um mapa interativo */}
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-600">
-                  <i className="ri-map-pin-line text-4xl block mb-2"></i>
-                  Mapa de localização da AORKIA
-                </p>
               </div>
             </div>
             
-            <div className="mt-8 text-center">
-              <a 
-                href="https://maps.google.com/?q=Av.+Getúlio+Vargas,+671,+Belo+Horizonte" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-              >
-                Ver no Google Maps <i className="ri-external-link-line ml-2"></i>
-              </a>
+            <div>
+              <form onSubmit={handleSubmit} style={{ backgroundColor: 'rgba(18, 18, 18, 0.7)', padding: '2rem', borderRadius: '0.5rem' }}>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="nome" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Nome completo *</label>
+                  <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    value={formData.nome}
+                    onChange={handleChange}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '0.25rem',
+                      color: 'white'
+                    }}
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>E-mail corporativo *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '0.25rem',
+                      color: 'white'
+                    }}
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="empresa" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Empresa *</label>
+                  <input
+                    type="text"
+                    id="empresa"
+                    name="empresa"
+                    value={formData.empresa}
+                    onChange={handleChange}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '0.25rem',
+                      color: 'white'
+                    }}
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="telefone" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Telefone</label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    name="telefone"
+                    value={formData.telefone}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '0.25rem',
+                      color: 'white'
+                    }}
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="mensagem" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Mensagem *</label>
+                  <textarea
+                    id="mensagem"
+                    name="mensagem"
+                    value={formData.mensagem}
+                    onChange={handleChange}
+                    required
+                    rows="4"
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '0.25rem',
+                      color: 'white',
+                      resize: 'vertical'
+                    }}
+                  ></textarea>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={formStatus === 'sending'}
+                  style={{
+                    display: 'inline-block',
+                    backgroundColor: '#0076FF',
+                    color: 'white',
+                    fontWeight: '600',
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '2rem',
+                    border: 'none',
+                    cursor: formStatus === 'sending' ? 'not-allowed' : 'pointer',
+                    transition: 'background-color 0.3s ease',
+                    opacity: formStatus === 'sending' ? 0.7 : 1
+                  }}
+                >
+                  {formStatus === 'sending' ? 'Enviando...' : 'Enviar mensagem'}
+                </button>
+                
+                {formStatus === 'success' && (
+                  <div style={{ marginTop: '1rem', color: '#4ADE80' }}>
+                    Mensagem enviada com sucesso! Entraremos em contato em breve.
+                  </div>
+                )}
+              </form>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
-          <div className="container mx-auto max-w-7xl px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
-            <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-              Descubra como nossas soluções estratégicas podem impulsionar sua empresa para o próximo nível.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/solucoes" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium inline-flex items-center transition-all">
-                Explorar Soluções <i className="ri-arrow-right-line ml-2"></i>
-              </Link>
-              <a href="#formulario" className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-medium inline-flex items-center transition-all">
-                Fale Conosco <i className="ri-customer-service-2-line ml-2"></i>
-              </a>
-            </div>
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer__content">
+          <img 
+            src="/images/logo_aorkia_white.png" 
+            alt="AORKIA" 
+            className="footer__logo"
+          />
+          <nav className="footer__nav">
+            <Link href="/"><a className="footer__link">Home</a></Link>
+            <Link href="/solucoes"><a className="footer__link">Soluções</a></Link>
+            <Link href="/sobre"><a className="footer__link">Sobre</a></Link>
+            <Link href="/contato"><a className="footer__link">Contato</a></Link>
+          </nav>
+        </div>
+        <div className="footer__bottom">
+          <p className="footer__copyright">© {new Date().getFullYear()} AORKIA. Todos os direitos reservados.</p>
+          <div className="footer__social">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6 9H2V21H6V9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer__social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
-        </section>
-      </main>
-
-      {/* Footer (Assumindo que é global via _app.js) */}
-      {/* <Footer /> */}
-    </>
+        </div>
+      </footer>
+    </div>
   );
 }
