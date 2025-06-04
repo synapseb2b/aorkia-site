@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [activeProduct, setActiveProduct] = useState(null);
   const productsRef = useRef(null);
 
@@ -22,41 +20,44 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Função para scroll suave
+  const handleScrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(sectionId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Produtos com suas respectivas imagens
   const products = [
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
       description: 'Proteção completa para seus dados críticos na nuvem com a plataforma líder global Keepit.',
-      image: '/images/keepit.png'
+      image: '/images/backup.png'
     },
     {
-      id: 'finops',
-      title: 'Plataformas de FinOps com IA',
-      description: 'Otimize seus investimentos em nuvem com nossa plataforma de gerenciamento financeiro inteligente.',
-      image: '/images/finops.png'
-    },
-    {
-      id: 'edge',
-      title: 'Plataformas Edge AI',
+      id: 'bordas',
+      title: 'Operações de Bordas Inteligentes',
       description: 'Processamento de dados e inteligência artificial na borda para decisões em tempo real.',
-      image: '/images/edge.png'
+      image: '/images/bordas.png'
     },
     {
       id: 'dspm',
-      title: 'Data Security Posture Management (DSPM)',
+      title: 'Segurança para Operações Críticas',
       description: 'Visibilidade e controle completos sobre seus dados sensíveis em ambientes multi-cloud.',
       image: '/images/dspm.png'
     },
     {
-      id: 'bas',
-      title: 'Breach and Attack Simulation (BAS)',
-      description: 'Validação contínua de segurança para identificar vulnerabilidades antes que sejam exploradas.',
-      image: '/images/bas.png'
+      id: 'receitas',
+      title: 'Plataforma de Inteligência de Receita com IA',
+      description: 'Otimize seus investimentos em nuvem com nossa plataforma de gerenciamento financeiro inteligente.',
+      image: '/images/receitas.png'
     },
     {
       id: 'digital',
-      title: 'Otimização de Presença Digital',
+      title: 'Estratégia de Presença Digital AORKIA',
       description: 'Transforme sua presença online com estratégias digitais orientadas por dados e resultados.',
       image: '/images/digital.png'
     }
@@ -66,7 +67,7 @@ export default function Home() {
     <>
       <Head>
         <title>AORKIA | Soluções B2B que Transformam Negócios</title>
-        <meta name="description" content="Soluções B2B que Transformam Negócios: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível." />
+        <meta name="description" content="Potencializamos o futuro do seu negócio: ativamos soluções de ponta que protegem seus dados, otimizam operações e impulsionam crescimento rentável e sustentável." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -81,34 +82,36 @@ export default function Home() {
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
-                Soluções B2B que <br className="hidden md:block" />
-                <span className="text-primary">Transformam</span> Negócios
-              </h1>
-
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mb-12">
-                Potencialize sua empresa com nossas soluções: Backup SaaS, Infraestrutura Resiliente e Engenharia de Receita Previsível.
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
+                Boas-vindas à AORKIA. Conectamos sua empresa ao futuro com soluções estratégicas e inovadoras.
               </p>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
+                Potencializamos o futuro do seu negócio: ativamos soluções de ponta que <span className="text-primary">protegem</span> seus dados, <span className="text-primary">otimizam</span> operações e <span className="text-primary">impulsionam</span> crescimento rentável e sustentável.
+              </h1>
             </div>
           </div>
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a href="#solucoes" className="text-white text-4xl">
+            <a 
+              href="#solucoes" 
+              onClick={(e) => handleScrollToSection(e, '#solucoes')}
+              className="text-white text-4xl"
+            >
               <i className="ri-arrow-down-line"></i>
             </a>
           </div>
         </section>
 
-        {/* Seção Soluções Selecionadas - Estilo Jam3 */}
+        {/* Seção Soluções Especializadas - Estilo Jam3 */}
         <section id="solucoes" className="py-24 md:py-32 relative overflow-hidden">
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-left mb-16">
+              <p className="text-lg text-primary mb-2">AORKIA</p>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                Soluções <span className="text-primary">Selecionadas</span>
+                Soluções Especializadas
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl">
-                Na AORKIA, cada escolha tecnológica é fundamentada naquilo que mais importa:
-                resultados previsíveis, eficiência operacional e expansão sustentável.
+                Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.
               </p>
             </div>
           </div>
