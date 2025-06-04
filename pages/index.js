@@ -7,6 +7,7 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeProduct, setActiveProduct] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const productsRef = useRef(null);
   const workSectionRef = useRef(null);
 
@@ -22,6 +23,32 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Função para lidar com o envio do formulário
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    // Aqui seria a integração com o Formspree
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    fetch("https://formspree.io/f/mkgrleqq", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        setFormSubmitted(true);
+      } else {
+        // Tratar erro
+        console.error("Erro ao enviar formulário");
+      }
+    }).catch(error => {
+      console.error("Erro ao enviar formulário:", error);
+    });
+  };
 
   // Produtos com suas respectivas imagens
   const products = [
@@ -230,21 +257,23 @@ export default function Home() {
         {/* Seção Formulário - Estilo Jam3 */}
         <section className="py-24 md:py-32 bg-black">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              <div>
+            <div className="grid grid-cols-1 gap-16">
+              <div className="text-center mb-8">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
                 <p className="text-xl text-gray-300 mb-8">
                   Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
                 </p>
               </div>
               
-              <div className="bg-gray-900 p-8 rounded-lg">
-                <form className="space-y-6">
+              <div className="bg-gray-900 p-8 rounded-lg max-w-2xl mx-auto w-full">
+                <form className="space-y-6" onSubmit={handleFormSubmit}>
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
                     <input 
                       type="text" 
-                      id="name" 
+                      id="name"
+                      name="name"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -253,7 +282,9 @@ export default function Home() {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
                     <input 
                       type="email" 
-                      id="email" 
+                      id="email"
+                      name="email"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -262,7 +293,9 @@ export default function Home() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
                     <input 
                       type="tel" 
-                      id="phone" 
+                      id="phone"
+                      name="phone"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -276,6 +309,8 @@ export default function Home() {
                             type="radio" 
                             id={option.replace(/\s+/g, '-').toLowerCase()} 
                             name="focus" 
+                            value={option}
+                            required
                             className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
                           />
                           <label htmlFor={option.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
@@ -294,17 +329,11 @@ export default function Home() {
                   </button>
                 </form>
                 
-                <p className="mt-6 text-sm text-gray-400 text-center">
-                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
-                </p>
-                
-                <div className="mt-8 pt-6 border-t border-gray-800 text-center">
-                  <p className="text-gray-400">
-                    Av. Getúlio Vargas, 671 — Sala 500, BH - MG<br />
-                    +55 31 98801-9006<br />
-                    contato@aorkia.com
+                {formSubmitted && (
+                  <p className="mt-6 text-sm text-gray-400 text-center">
+                    Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
                   </p>
-                </div>
+                )}
               </div>
             </div>
           </div>
