@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeProduct, setActiveProduct] = useState(null);
   const productsRef = useRef(null);
+  const workSectionRef = useRef(null);
 
   // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
@@ -20,54 +23,63 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função para scroll suave
-  const handleScrollToSection = (e, sectionId) => {
-    e.preventDefault();
-    const targetElement = document.querySelector(sectionId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   // Produtos com suas respectivas imagens
   const products = [
     {
+      id: 'solucoes',
+      title: 'Soluções Especializadas',
+      supportText: 'AORKIA',
+      description: 'Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.',
+      image: '/images/solucoesespecializadas.png',
+      link: '/solucoes'
+    },
+    {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
-      description: 'Proteção completa para seus dados críticos na nuvem com a plataforma líder global Keepit.',
-      image: '/images/backup.png'
+      supportText: 'Imutável. Independente. Inteligente.',
+      description: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Para garantir proteção de dados independente, completa e sempre recuperável, a AORKIA ativa a Keepit – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.',
+      image: '/images/backup.png',
+      link: '/solucoes'
     },
     {
       id: 'bordas',
       title: 'Operações de Bordas Inteligentes',
-      description: 'Processamento de dados e inteligência artificial na borda para decisões em tempo real.',
-      image: '/images/bordas.png'
+      supportText: 'Inteligência na Borda. Decisões Imediatas.',
+      description: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. A AORKIA ativa Plataformas Edge AI, garantindo inteligência, segurança e conformidade para suas operações na borda.',
+      image: '/images/bordas.png',
+      link: '/solucoes'
     },
     {
       id: 'dspm',
       title: 'Segurança para Operações Críticas',
-      description: 'Visibilidade e controle completos sobre seus dados sensíveis em ambientes multi-cloud.',
-      image: '/images/dspm.png'
+      supportText: 'Visão Total. Controle Ativo.',
+      description: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. A AORKIA ativa Plataformas Data Security Posture Management (DSPM), que potencializam a descoberta, classificação, monitoramento e proteção contínuos dos seus dados sensíveis em ambientes multicloud e híbridos.',
+      image: '/images/dspm.png',
+      link: '/solucoes'
     },
     {
       id: 'receitas',
-      title: 'Plataforma de Inteligência de Receita com IA',
-      description: 'Otimize seus investimentos em nuvem com nossa plataforma de gerenciamento financeiro inteligente.',
-      image: '/images/receitas.png'
+      title: 'Plataformas de Inteligência de Receita com IA',
+      supportText: 'Receita Previsível. Crescimento Acelerado.',
+      description: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? A AORKIA ativa Plataformas de Inteligência de Receita com IA, transformando seus dados de vendas e CRM em insights preditivos e automação inteligente.',
+      image: '/images/receitas.png',
+      link: '/solucoes'
     },
     {
       id: 'digital',
       title: 'Estratégia de Presença Digital AORKIA',
-      description: 'Transforme sua presença online com estratégias digitais orientadas por dados e resultados.',
-      image: '/images/digital.png'
+      supportText: 'Receita Previsível. Crescimento Acelerado.',
+      description: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
+      image: '/images/digital.png',
+      link: '/solucoes'
     }
   ];
 
   return (
     <>
       <Head>
-        <title>AORKIA | Soluções B2B que Transformam Negócios</title>
-        <meta name="description" content="Potencializamos o futuro do seu negócio: ativamos soluções de ponta que protegem seus dados, otimizam operações e impulsionam crescimento rentável e sustentável." />
+        <title>AORKIA | Tecnologia de Ponta. Visão de Futuro.</title>
+        <meta name="description" content="Tecnologia de Ponta. Visão de Futuro." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -83,42 +95,27 @@ export default function Home() {
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Boas-vindas à AORKIA. Conectamos sua empresa ao futuro com soluções estratégicas e inovadoras.
+                Boas-vindas à AORKIA.
               </p>
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
-                Potencializamos o futuro do seu negócio: ativamos soluções de ponta que <span className="text-primary">protegem</span> seus dados, <span className="text-primary">otimizam</span> operações e <span className="text-primary">impulsionam</span> crescimento rentável e sustentável.
+                Tecnologia de Ponta. <br className="hidden md:block" />
+                Visão de Futuro.
               </h1>
             </div>
           </div>
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a 
-              href="#solucoes" 
-              onClick={(e) => handleScrollToSection(e, '#solucoes')}
-              className="text-white text-4xl"
-            >
+            <a href="#work" className="text-white text-4xl" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+            }}>
               <i className="ri-arrow-down-line"></i>
             </a>
           </div>
         </section>
 
-        {/* Seção Soluções Especializadas - Estilo Jam3 */}
-        <section id="solucoes" className="py-24 md:py-32 relative overflow-hidden">
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
-            <div className="text-left mb-16">
-              <p className="text-lg text-primary mb-2">AORKIA</p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                Soluções Especializadas
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl">
-                Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Produtos - Estilo Jam3 (um abaixo do outro, ocupando 100% da largura) */}
-        <section ref={productsRef} className="relative">
+        {/* Seção Produtos - Estilo Jam3 */}
+        <section id="work" ref={workSectionRef} className="relative">
           {products.map((product, index) => (
             <div 
               key={product.id}
@@ -145,63 +142,169 @@ export default function Home() {
               
               {/* Content */}
               <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
-                  activeProduct === product.id ? 'text-white' : 'text-black'
-                }`}>
-                  {product.title}
-                </h3>
-                <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
-                  activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  {product.description}
-                </p>
-                <div className="mt-8">
-                  <Link 
-                    href="/solucoes" 
-                    className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
-                      activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
-                    }`}
-                  >
-                    <span>Saiba mais</span>
-                    <i className="ri-arrow-right-line ml-2"></i>
-                  </Link>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <p className={`text-lg mb-2 transition-colors duration-500 ${
+                      activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {product.supportText}
+                    </p>
+                    <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                      activeProduct === product.id ? 'text-white' : 'text-black'
+                    }`}>
+                      {product.title}
+                    </h3>
+                  </div>
+                  <div>
+                    <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
+                      activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {product.description}
+                    </p>
+                    <div className="mt-8">
+                      <Link 
+                        href={product.link} 
+                        className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
+                          activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
+                        }`}
+                      >
+                        <span>Saiba mais</span>
+                        <i className="ri-arrow-right-line ml-2"></i>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </section>
 
-        {/* Seção "O que estamos preparando" - Estilo Jam3 */}
+        {/* Seção Pré-Footer - Estilo Jam3 */}
+        <section className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
+          onMouseEnter={() => setActiveProduct('futuro')}
+          onMouseLeave={() => setActiveProduct(null)}
+        >
+          {/* Background Image (aparece apenas no hover) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/images/futuro.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+          
+          {/* Background Color (aparece quando não está em hover) */}
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeProduct === 'futuro' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+          
+          {/* Content */}
+          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <p className={`text-lg mb-2 transition-colors duration-500 ${
+                  activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  AORKIA
+                </p>
+                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                  activeProduct === 'futuro' ? 'text-white' : 'text-black'
+                }`}>
+                  O Futuro do Seu Negócio, Ativado.
+                </h3>
+              </div>
+              <div>
+                <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
+                  activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Ativamos as melhores soluções globais para a sua realidade específica. Convertemos potencial tecnológico em vantagem competitiva e crescimento sustentável para sua empresa.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seção Formulário - Estilo Jam3 */}
         <section className="py-24 md:py-32 bg-black">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="text-left mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                O que estamos <span className="text-primary">preparando?</span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl">
-                Uma nova geração de soluções que combinam inteligência artificial, automação avançada e segurança de ponta para transformar a maneira como as empresas operam e crescem no mercado B2B.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary transition-colors">
-                <div className="text-primary text-5xl mb-6">
-                  <i className="ri-ai-generate"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Plataforma de IA Generativa para B2B</h3>
-                <p className="text-gray-300 text-lg">
-                  Uma solução revolucionária que utiliza IA generativa para automatizar processos complexos de negócios, criar conteúdo personalizado e otimizar operações em tempo real.
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
                 </p>
               </div>
               
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary transition-colors">
-                <div className="text-primary text-5xl mb-6">
-                  <i className="ri-shield-keyhole-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Segurança Autônoma Adaptativa</h3>
-                <p className="text-gray-300 text-lg">
-                  Um sistema de segurança que aprende e se adapta continuamente às novas ameaças, utilizando IA para prever, detectar e responder a ataques em tempo real.
+              <div className="bg-gray-900 p-8 rounded-lg">
+                <form className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:</label>
+                    <div className="space-y-3">
+                      {['Backup SaaS Estratégico', 'Operações de Bordas Inteligentes', 'Segurança para Operações Críticas', 'Plataforma de Inteligência de Receita com IA', 'Estratégia de Presença Digital AORKIA'].map((option) => (
+                        <div key={option} className="flex items-center">
+                          <input 
+                            type="radio" 
+                            id={option.replace(/\s+/g, '-').toLowerCase()} 
+                            name="focus" 
+                            className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
+                          />
+                          <label htmlFor={option.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
+                            {option}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Solicitar Contato
+                  </button>
+                </form>
+                
+                <p className="mt-6 text-sm text-gray-400 text-center">
+                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
                 </p>
+                
+                <div className="mt-8 pt-6 border-t border-gray-800 text-center">
+                  <p className="text-gray-400">
+                    Av. Getúlio Vargas, 671 — Sala 500, BH - MG<br />
+                    +55 31 98801-9006<br />
+                    contato@aorkia.com
+                  </p>
+                </div>
               </div>
             </div>
           </div>
