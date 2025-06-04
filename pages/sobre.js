@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Sobre() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
+  
   // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +17,15 @@ export default function Sobre() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Função para scroll suave
+  const handleScrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(sectionId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
@@ -48,7 +55,11 @@ export default function Sobre() {
           </div>
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a href="#historia" className="text-white text-4xl">
+            <a 
+              href="#historia" 
+              onClick={(e) => handleScrollToSection(e, '#historia')}
+              className="text-white text-4xl"
+            >
               <i className="ri-arrow-down-line"></i>
             </a>
           </div>
@@ -263,13 +274,13 @@ export default function Sobre() {
                 Pronto para transformar seu negócio?
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                Entre em contato hoje mesmo e descubra como nossas soluções estratégicas podem impulsionar sua empresa.
+                Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
               </p>
               <Link 
                 href="/contato" 
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all inline-block"
               >
-                Solicitar Avaliação Gratuita
+                Entre em contato
               </Link>
             </div>
           </div>
