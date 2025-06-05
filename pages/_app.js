@@ -319,7 +319,7 @@ function MyApp({ Component, pageProps }) {
               <div className="logo-container h-20 relative inline-block">
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
                   <img 
-                    src="/images/logo_aorkia_white.png" 
+                    src="public/images/logo_aorkia_white.png" 
                     alt="AORKIA" 
                     className="h-20 w-auto" 
                   />
