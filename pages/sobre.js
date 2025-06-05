@@ -32,8 +32,8 @@ export default function Sobre() {
   return (
     <>
       <Head>
-        <title>Sobre a AORKIA | Soluções Estratégicas B2B</title>
-        <meta name="description" content="Conheça a AORKIA, empresa especializada em ativação de soluções estratégicas para o mercado B2B, com foco em Backup SaaS, Operações de Bordas Inteligentes, Segurança e Inteligência de Receita." />
+        <title>Sobre a AORKIA</title>
+        <meta name="description" content="Sobre a AORKIA" />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -45,40 +45,27 @@ export default function Sobre() {
             Seu navegador não suporta vídeo.
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'hero' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight transition-colors duration-500 ${
-                activeSection === 'hero' ? 'text-white' : 'text-black'
-              }`}>
-                Sobre a <span className="text-primary">AORKIA</span>
-              </h1>
-              <p className={`text-xl md:text-2xl max-w-3xl mb-12 transition-colors duration-500 ${
-                activeSection === 'hero' ? 'text-gray-300' : 'text-gray-700'
-              }`}>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
                 Ativando soluções de ponta para transformar seus ambientes críticos em sistemas coordenados, resilientes e escaláveis.
               </p>
-              
-              {/* Botão para rolar para a história */}
-              <button 
-                onClick={(e) => scrollToSection(e, 'historia')}
-                className={`text-lg font-medium px-8 py-3 border transition-all duration-500 ${
-                  activeSection === 'hero' 
-                  ? 'text-white border-white hover:bg-white hover:text-black' 
-                  : 'text-black border-black hover:bg-black hover:text-white'
-                }`}
-                onMouseEnter={() => setActiveSection('hero')}
-                onMouseLeave={() => setActiveSection(null)}
-              >
-                Conheça nossa história
-              </button>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
+                Sobre a <br className="hidden md:block" />
+                AORKIA
+              </h1>
             </div>
+          </div>
+
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
+            <a 
+              href="#work" 
+              onClick={scrollToWork}
+              className="text-white text-4xl"
+            >
+              <i className="ri-arrow-down-line"></i>
+            </a>
           </div>
         </section>
 
