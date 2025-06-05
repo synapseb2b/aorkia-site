@@ -13,21 +13,6 @@ function MyApp({ Component, pageProps }) {
   const [logoToggle, setLogoToggle] = useState(false);
   const logoIntervalRef = useRef(null);
   const [emailCopied, setEmailCopied] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Efeito para detectar se é dispositivo móvel
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
 
   // Efeito para carregar scripts externos como RemixIcon
   useEffect(() => {
@@ -54,28 +39,14 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
-  // Efeito para simular carregamento da página
+  // Efeito para simular carregamento da página - extremamente rápido, sem barra de progresso
   useEffect(() => {
-    let interval;
     if (isLoading) {
-      interval = setInterval(() => {
-        setLoadingProgress(prev => {
-          const newProgress = prev + Math.random() * 10;
-          if (newProgress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-              setIsLoading(false);
-            }, 500);
-            return 100;
-          }
-          return newProgress;
-        });
-      }, 200);
+      // Carregamento extremamente rápido, apenas 500ms
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
     }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
   }, [isLoading]);
 
   // Efeito para alternar entre logos (branca e colorida)
@@ -102,7 +73,7 @@ function MyApp({ Component, pageProps }) {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [mobileMenuOpen]);
+  }, []);
 
   // Função para aceitar cookies
   const acceptCookies = () => {
@@ -164,22 +135,19 @@ function MyApp({ Component, pageProps }) {
         }} />
       </Head>
 
-      {/* Preloader - Estilo Jam3 */}
+      {/* Preloader - Estilo Jam3 - Apenas logo com iluminação */}
       {isLoading && (
         <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
           <div className="preloader-content text-center">
-            <div className="logo-container mb-8 flex justify-center">
+            <div className="logo-container relative">
               <img 
                 src="/images/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-20 w-auto" 
+                className="h-32 w-auto z-10 relative animate-fade-in" 
               />
-            </div>
-            <div className="loading-bar w-64 h-1 bg-gray-800 rounded-full overflow-hidden mx-auto">
-              <div 
-                className="loading-progress h-full bg-primary rounded-full transition-all duration-300 ease-out"
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
             </div>
           </div>
         </div>
@@ -198,7 +166,7 @@ function MyApp({ Component, pageProps }) {
             </div>
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
               <img 
-                src="/images/logo_aorkia_color.png" 
+                src="/images/logo_aorkia.png" 
                 alt="AORKIA" 
                 className="h-16 w-auto" 
               />
@@ -237,7 +205,7 @@ function MyApp({ Component, pageProps }) {
               </div>
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                 <img 
-                  src="/images/logo_aorkia_color.png" 
+                  src="/images/logo_aorkia.png" 
                   alt="AORKIA" 
                   className="h-8 w-auto" 
                 />
@@ -274,7 +242,7 @@ function MyApp({ Component, pageProps }) {
                   </div>
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                     <img 
-                      src="/images/logo_aorkia_color.png" 
+                      src="/images/logo_aorkia.png" 
                       alt="AORKIA" 
                       className="h-14 w-auto" 
                     />
@@ -289,9 +257,7 @@ function MyApp({ Component, pageProps }) {
                 <i className="ri-close-line"></i>
               </button>
             </div>
-            
-            {/* Menu items - Desktop: horizontal, Mobile: vertical */}
-            <div className={`flex ${isMobile ? 'flex-col space-y-6' : 'flex-row space-x-8'} justify-center mt-12`}>
+            <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8 justify-center mt-12 items-center">
               <Link 
                 href="/" 
                 className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
@@ -321,7 +287,6 @@ function MyApp({ Component, pageProps }) {
                 Contato
               </Link>
             </div>
-            
             <div className="mt-auto">
               <Link 
                 href="/contato" 
@@ -336,9 +301,11 @@ function MyApp({ Component, pageProps }) {
       )}
 
       {/* Botão Home flutuante */}
-      <Link href="/" className="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-40 transition-all">
-        <i className="ri-home-line text-xl"></i>
-      </Link>
+      <div className="fixed bottom-8 right-8 z-40">
+        <Link href="/" className="bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
+          <i className="ri-home-4-line text-xl"></i>
+        </Link>
+      </div>
 
       {/* Espaçador para compensar o header fixo no mobile e sidebar no desktop */}
       <div className="h-16 md:h-0 md:ml-24"></div>
@@ -349,7 +316,7 @@ function MyApp({ Component, pageProps }) {
       </div>
 
       {/* Footer Global - Estilo Jam3 */}
-      <footer className="bg-black text-white border-t border-gray-800 py-16 md:ml-24">
+      <footer className="bg-primary/10 text-white py-16 md:ml-24 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="md:text-left text-center">
@@ -363,7 +330,7 @@ function MyApp({ Component, pageProps }) {
                 </div>
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                   <img 
-                    src="/images/logo_aorkia_color.png" 
+                    src="/images/logo_aorkia.png" 
                     alt="AORKIA" 
                     className="h-20 w-auto" 
                   />
@@ -397,19 +364,19 @@ function MyApp({ Component, pageProps }) {
                 © 2025 AORKIA. Todos os direitos reservados.<br />
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Política de Privacidade</Link> | <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Termos de Uso</Link>
               </p>
-              <div className="mt-2 flex items-center justify-center md:justify-end">
-                <p className="text-sm text-primary font-medium">
+              <div className="mt-2 text-sm text-gray-400 flex items-center justify-end">
+                <span className="inline-flex items-center">
                   Site Desenvolvido por AORKIA - Estratégia de Presença Digital
-                </p>
-                <button 
-                  onClick={copyEmailToClipboard} 
-                  className="ml-2 text-gray-400 hover:text-white transition-colors"
-                  title="Copiar email para área de transferência"
-                >
-                  <i className="ri-mail-line"></i>
-                </button>
+                  <button 
+                    onClick={copyEmailToClipboard} 
+                    className="ml-2 text-primary hover:text-white transition-colors"
+                    title="Copiar e-mail"
+                  >
+                    <i className="ri-mail-line"></i>
+                  </button>
+                </span>
                 {emailCopied && (
-                  <span className="ml-2 text-xs text-green-500 animate-fade-in-out">
+                  <span className="ml-2 text-xs text-green-400 animate-pulse">
                     E-mail copiado para área de transferência
                   </span>
                 )}
