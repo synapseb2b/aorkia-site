@@ -162,7 +162,7 @@ function MyApp({ Component, pageProps }) {
             </div>
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
               <img 
-                src="/logo_aorkia.png" 
+                src="/logo_aorkia_color.png" 
                 alt="AORKIA" 
                 className="h-16 w-auto" 
               />
@@ -201,7 +201,7 @@ function MyApp({ Component, pageProps }) {
               </div>
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                 <img 
-                  src="/logo_aorkia.png" 
+                  src="/logo_aorkia_color.png" 
                   alt="AORKIA" 
                   className="h-8 w-auto" 
                 />
@@ -238,7 +238,7 @@ function MyApp({ Component, pageProps }) {
                   </div>
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                     <img 
-                      src="/logo_aorkia.png" 
+                      src="/logo_aorkia_color.png" 
                       alt="AORKIA" 
                       className="h-14 w-auto" 
                     />
@@ -326,7 +326,7 @@ function MyApp({ Component, pageProps }) {
                 </div>
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                   <img 
-                    src="/images/logo_aorkia.png" 
+                    src="/logo_aorkia_color.png" 
                     alt="AORKIA" 
                     className="h-20 w-auto" 
                   />
