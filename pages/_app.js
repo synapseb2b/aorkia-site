@@ -137,7 +137,7 @@ function MyApp({ Component, pageProps }) {
           <div className="preloader-content text-center">
             <div className="logo-container relative">
               <img 
-                src="/images/logo_aorkia_white.png" 
+                src="/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-32 w-auto z-10 relative animate-fade-in" 
               />
@@ -155,14 +155,14 @@ function MyApp({ Component, pageProps }) {
           <div className="logo-container h-16 relative">
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
               <img 
-                src="/images/logo_aorkia_white.png" 
+                src="/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-16 w-auto" 
               />
             </div>
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
               <img 
-                src="/images/logo_aorkia.png" 
+                src="/logo_aorkia.png" 
                 alt="AORKIA" 
                 className="h-16 w-auto" 
               />
@@ -194,14 +194,14 @@ function MyApp({ Component, pageProps }) {
             <div className="logo-container h-8 relative">
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
                 <img 
-                  src="/images/logo_aorkia_white.png" 
+                  src="/logo_aorkia_white.png" 
                   alt="AORKIA" 
                   className="h-8 w-auto" 
                 />
               </div>
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                 <img 
-                  src="/images/logo_aorkia.png" 
+                  src="/logo_aorkia.png" 
                   alt="AORKIA" 
                   className="h-8 w-auto" 
                 />
@@ -231,14 +231,14 @@ function MyApp({ Component, pageProps }) {
                 <div className="logo-container h-14 relative">
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
                     <img 
-                      src="/images/logo_aorkia_white.png" 
+                      src="/logo_aorkia_white.png" 
                       alt="AORKIA" 
                       className="h-14 w-auto" 
                     />
                   </div>
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
                     <img 
-                      src="/images/logo_aorkia.png" 
+                      src="/logo_aorkia.png" 
                       alt="AORKIA" 
                       className="h-14 w-auto" 
                     />
@@ -319,7 +319,7 @@ function MyApp({ Component, pageProps }) {
               <div className="logo-container h-20 relative inline-block">
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
                   <img 
-                    src="public/images/logo_aorkia_white.png" 
+                    src="/logo_aorkia_white.png" 
                     alt="AORKIA" 
                     className="h-20 w-auto" 
                   />
