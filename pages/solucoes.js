@@ -224,16 +224,13 @@ export default function Solucoes() {
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
+        {/* Seção Hero - Estilo Jam3 com vídeo igual à Home */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'hero' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/images/solucoesespecializadas.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+            <source src="/video_hero.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
           
           <div 
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
@@ -478,12 +475,14 @@ export default function Solucoes() {
               </div>
               
               <div className="bg-gray-900 p-8 rounded-lg">
-                <form className="space-y-6">
+                <form className="space-y-6" action="https://formspree.io/f/mkgrleqq" method="POST">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
                     <input 
                       type="text" 
-                      id="name" 
+                      id="name"
+                      name="name"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -492,7 +491,9 @@ export default function Solucoes() {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
                     <input 
                       type="email" 
-                      id="email" 
+                      id="email"
+                      name="email"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -501,7 +502,9 @@ export default function Solucoes() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
                     <input 
                       type="tel" 
-                      id="phone" 
+                      id="phone"
+                      name="phone"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -514,7 +517,8 @@ export default function Solucoes() {
                           <input 
                             type="radio" 
                             id={solution.id} 
-                            name="focus" 
+                            name="focus"
+                            value={solution.title}
                             className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
                           />
                           <label htmlFor={solution.id} className="ml-3 text-gray-300">
@@ -532,6 +536,10 @@ export default function Solucoes() {
                     Solicitar Contato
                   </button>
                 </form>
+                
+                <p className="mt-6 text-sm text-gray-400 text-center">
+                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
+                </p>
               </div>
             </div>
           </div>
