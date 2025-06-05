@@ -7,57 +7,29 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeProduct, setActiveProduct] = useState(null);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const productsRef = useRef(null);
   const workSectionRef = useRef(null);
 
-  // Efeito para monitorar o progresso de rolagem e ativar produtos no scroll
+  // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
-      
-      // Ativar produtos automaticamente no scroll
-      const productElements = document.querySelectorAll('.product-section');
-      productElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.7 && rect.bottom > 0;
-        if (isVisible) {
-          setActiveProduct(element.id);
-        }
-      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função para lidar com o envio do formulário
-  const handleFormSubmit = (e) => {
+  // Função para rolagem suave ao clicar em "Ver nosso trabalho"
+  const scrollToWork = (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    // Aqui seria a integração com o Formspree
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    fetch("https://formspree.io/f/mkgrleqq", {
-      method: "POST",
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        setFormSubmitted(true);
-      } else {
-        // Tratar erro
-        console.error("Erro ao enviar formulário");
-      }
-    }).catch(error => {
-      console.error("Erro ao enviar formulário:", error);
-    });
+    const workSection = document.getElementById('work');
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   // Produtos com suas respectivas imagens
@@ -75,7 +47,7 @@ export default function Home() {
       title: 'Backup SaaS Estratégico',
       supportText: 'Imutável. Independente. Inteligente.',
       description: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Para garantir proteção de dados independente, completa e sempre recuperável, a AORKIA ativa a Keepit – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.',
-      image: '/images/backup.png',
+      image: '/images/backup.jpeg',
       link: '/solucoes'
     },
     {
@@ -91,7 +63,7 @@ export default function Home() {
       title: 'Segurança para Operações Críticas',
       supportText: 'Visão Total. Controle Ativo.',
       description: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. A AORKIA ativa Plataformas Data Security Posture Management (DSPM), que potencializam a descoberta, classificação, monitoramento e proteção contínuos dos seus dados sensíveis em ambientes multicloud e híbridos.',
-      image: '/images/dspm.png',
+      image: '/images/dspm.jpeg',
       link: '/solucoes'
     },
     {
@@ -99,7 +71,7 @@ export default function Home() {
       title: 'Plataformas de Inteligência de Receita com IA',
       supportText: 'Receita Previsível. Crescimento Acelerado.',
       description: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? A AORKIA ativa Plataformas de Inteligência de Receita com IA, transformando seus dados de vendas e CRM em insights preditivos e automação inteligente.',
-      image: '/images/receitas.png',
+      image: '/images/receitas.jpeg',
       link: '/solucoes'
     },
     {
@@ -107,7 +79,7 @@ export default function Home() {
       title: 'Estratégia de Presença Digital AORKIA',
       supportText: 'Receita Previsível. Crescimento Acelerado.',
       description: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
-      image: '/images/digital.png',
+      image: '/images/digital.jpeg',
       link: '/solucoes'
     }
   ];
@@ -122,7 +94,7 @@ export default function Home() {
 
       <main className="bg-black text-white">
         {/* Seção Hero - Estilo Jam3 */}
-        <section className="relative h-screen overflow-hidden hero flex items-center">
+        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
@@ -130,22 +102,31 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left mt-0 md:mt-0">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
                 Boas-vindas à AORKIA.
               </p>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
                 Tecnologia de Ponta. <br className="hidden md:block" />
                 Visão de Futuro.
               </h1>
+              
+              {/* Botão "Ver nosso trabalho" com rolagem suave */}
+              <button 
+                onClick={scrollToWork}
+                className="text-white bg-transparent border border-white hover:bg-white hover:text-black transition-colors duration-300 py-3 px-6 text-lg font-medium"
+              >
+                Ver nosso trabalho
+              </button>
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center">
-            <a href="#work" className="text-white text-4xl animate-bounce" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
-            }}>
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
+            <a 
+              href="#work" 
+              onClick={scrollToWork}
+              className="text-white text-4xl"
+            >
               <i className="ri-arrow-down-line"></i>
             </a>
           </div>
@@ -156,19 +137,18 @@ export default function Home() {
           {products.map((product, index) => (
             <div 
               key={product.id}
-              id={product.id}
-              className="relative w-full h-screen md:h-[80vh] overflow-hidden group product-section"
+              className="relative w-full h-screen md:h-[80vh] overflow-hidden group border-t border-b border-gray-800"
               onMouseEnter={() => setActiveProduct(product.id)}
               onMouseLeave={() => setActiveProduct(null)}
             >
-              {/* Background Image (aparece no hover e no scroll) */}
+              {/* Background Image (aparece apenas no hover) */}
               <div 
                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
                   activeProduct === product.id ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ backgroundImage: `url(${product.image})` }}
               >
-                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="absolute inset-0 bg-black/60"></div>
               </div>
               
               {/* Background Color (aparece quando não está em hover) */}
@@ -177,10 +157,6 @@ export default function Home() {
                   activeProduct === product.id ? 'opacity-0' : 'opacity-100'
                 }`}
               ></div>
-              
-              {/* Linhas minimalistas superior e inferior */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
               
               {/* Content */}
               <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
@@ -196,6 +172,15 @@ export default function Home() {
                     }`}>
                       {product.title}
                     </h3>
+                    {product.id === 'backup' && (
+                      <div className="mt-4 mb-6">
+                        <img 
+                          src="/images/keepit_logo_aorkia.svg" 
+                          alt="Keepit" 
+                          className="h-12 w-auto"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
@@ -222,18 +207,18 @@ export default function Home() {
         </section>
 
         {/* Seção Pré-Footer - Estilo Jam3 */}
-        <section id="futuro" className="relative w-full h-screen md:h-[80vh] overflow-hidden group product-section"
+        <section className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
           onMouseEnter={() => setActiveProduct('futuro')}
           onMouseLeave={() => setActiveProduct(null)}
         >
-          {/* Background Image (aparece no hover e no scroll) */}
+          {/* Background Image (aparece apenas no hover) */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ backgroundImage: `url(/images/futuro.png)` }}
           >
-            <div className="absolute inset-0 bg-black/30"></div>
+            <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
           {/* Background Color (aparece quando não está em hover) */}
@@ -242,10 +227,6 @@ export default function Home() {
               activeProduct === 'futuro' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
-          
-          {/* Linhas minimalistas superior e inferior */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
           
           {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
@@ -276,23 +257,21 @@ export default function Home() {
         {/* Seção Formulário - Estilo Jam3 */}
         <section className="py-24 md:py-32 bg-black">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="grid grid-cols-1 gap-16">
-              <div className="text-center mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
                 <p className="text-xl text-gray-300 mb-8">
                   Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
                 </p>
               </div>
               
-              <div className="bg-gray-900 p-8 rounded-lg max-w-2xl mx-auto w-full">
-                <form className="space-y-6" onSubmit={handleFormSubmit}>
+              <div className="bg-gray-900 p-8 rounded-lg">
+                <form className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
                     <input 
                       type="text" 
-                      id="name"
-                      name="name"
-                      required
+                      id="name" 
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -301,9 +280,7 @@ export default function Home() {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
                     <input 
                       type="email" 
-                      id="email"
-                      name="email"
-                      required
+                      id="email" 
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -312,9 +289,7 @@ export default function Home() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
                     <input 
                       type="tel" 
-                      id="phone"
-                      name="phone"
-                      required
+                      id="phone" 
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -328,8 +303,6 @@ export default function Home() {
                             type="radio" 
                             id={option.replace(/\s+/g, '-').toLowerCase()} 
                             name="focus" 
-                            value={option}
-                            required
                             className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
                           />
                           <label htmlFor={option.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
@@ -348,11 +321,17 @@ export default function Home() {
                   </button>
                 </form>
                 
-                {formSubmitted && (
-                  <p className="mt-6 text-sm text-gray-400 text-center">
-                    Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
+                <p className="mt-6 text-sm text-gray-400 text-center">
+                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
+                </p>
+                
+                <div className="mt-8 pt-6 border-t border-gray-800 text-center">
+                  <p className="text-gray-400">
+                    Av. Getúlio Vargas, 671 — Sala 500, BH - MG<br />
+                    +55 31 98801-9006<br />
+                    contato@aorkia.com
                   </p>
-                )}
+                </div>
               </div>
             </div>
           </div>
