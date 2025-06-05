@@ -58,21 +58,7 @@ export default function Contato() {
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
-        <section className="relative h-[70vh] overflow-hidden hero flex items-center">
-          <div className="absolute inset-0 bg-gradient-to-r from-black to-gray-900"></div>
-
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="text-left">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight">
-                Entre em <span className="text-primary">Contato</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl">
-                Estamos prontos para ajudar sua empresa a alcançar o próximo nível com nossas soluções estratégicas.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Hero removido conforme solicitado */}
 
         {/* Seção Formulário de Contato - Estilo Jam3 */}
         <section className="py-24 md:py-32 bg-gray-900">
@@ -256,63 +242,7 @@ export default function Contato() {
           </div>
         </section>
 
-        {/* Seção Mapa - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-black">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-left">
-              Nossa <span className="text-primary">Localização</span>
-            </h2>
-            
-            <div className="bg-gray-900 p-4 rounded-lg border border-gray-800 h-[400px] flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl text-primary mb-6">
-                  <i className="ri-map-pin-2-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Av. Getúlio Vargas, 671 — Sala 500</h3>
-                <p className="text-gray-300 text-lg">Belo Horizonte - MG</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção FAQ - Estilo Jam3 */}
-        <section className="py-24 md:py-32 bg-gray-900">
-          <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-left">
-              Perguntas <span className="text-primary">Frequentes</span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-black p-8 rounded-lg border border-gray-800">
-                <h3 className="text-2xl font-bold mb-4">Como funciona o processo de contratação?</h3>
-                <p className="text-gray-300 text-lg">
-                  Após o contato inicial, realizamos uma avaliação detalhada das suas necessidades, apresentamos uma proposta personalizada e, após aprovação, iniciamos a implementação da solução escolhida.
-                </p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800">
-                <h3 className="text-2xl font-bold mb-4">Quanto tempo leva para implementar uma solução?</h3>
-                <p className="text-gray-300 text-lg">
-                  O tempo de implementação varia de acordo com a complexidade da solução e o tamanho da sua empresa, mas geralmente leva de 2 a 8 semanas para estar completamente operacional.
-                </p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800">
-                <h3 className="text-2xl font-bold mb-4">Vocês oferecem suporte contínuo?</h3>
-                <p className="text-gray-300 text-lg">
-                  Sim, oferecemos diferentes níveis de suporte contínuo, desde monitoramento básico até gerenciamento completo, dependendo das necessidades da sua empresa.
-                </p>
-              </div>
-              
-              <div className="bg-black p-8 rounded-lg border border-gray-800">
-                <h3 className="text-2xl font-bold mb-4">Como garantir a segurança dos meus dados?</h3>
-                <p className="text-gray-300 text-lg">
-                  Todas as nossas soluções seguem os mais rigorosos padrões de segurança e conformidade, incluindo criptografia de ponta a ponta, autenticação multifator e backups regulares.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Seções de Mapa e FAQ removidas conforme solicitado */}
       </main>
     </>
   );
