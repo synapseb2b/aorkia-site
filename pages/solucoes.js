@@ -224,7 +224,7 @@ export default function Solucoes() {
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 com vídeo igual à Home */}
+        {/* Seção Hero - Estilo Jam3 */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/video_hero.mp4" type="video/mp4" />
