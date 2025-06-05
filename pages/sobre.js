@@ -64,7 +64,7 @@ export default function Sobre() {
                   A AORKIA nasceu da visão de um grupo de especialistas em tecnologia que identificaram uma lacuna crítica no mercado: a falta de soluções verdadeiramente estratégicas para ambientes críticos de TI.
                 </p>
                 <p className="text-xl text-gray-300 mb-6">
-                  Fundada em 2018, nossa empresa rapidamente se estabeleceu como referência em soluções de alta complexidade para o mercado B2B, combinando expertise técnica com visão estratégica de negócios.
+                  Nossa empresa se estabeleceu como referência em soluções de alta complexidade para o mercado B2B, combinando expertise técnica com visão estratégica de negócios.
                 </p>
                 <p className="text-xl text-gray-300">
                   Hoje, a AORKIA é reconhecida por sua abordagem única que transforma ambientes críticos em sistemas coordenados, resilientes e escaláveis, permitindo que nossos clientes se concentrem em seu core business enquanto nós garantimos a excelência operacional de sua infraestrutura tecnológica.
@@ -74,41 +74,21 @@ export default function Sobre() {
                 <div className="space-y-8">
                   <div className="flex items-start">
                     <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
+                      <i className="ri-shield-check-line text-2xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3">2018</h3>
-                      <p className="text-gray-300 text-lg">Fundação da AORKIA com foco em soluções de infraestrutura estratégica.</p>
+                      <h3 className="text-2xl font-bold mb-3">Missão</h3>
+                      <p className="text-gray-300 text-lg">Ativar tecnologias globais de ponta para impulsionar diferenciação estratégica, inovação acelerada e crescimento rentável para empresas B2B.</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
                     <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
+                      <i className="ri-eye-line text-2xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3">2020</h3>
-                      <p className="text-gray-300 text-lg">Expansão para soluções de Backup SaaS e parceria estratégica com a Keepit.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2022</h3>
-                      <p className="text-gray-300 text-lg">Lançamento das soluções de Segurança Cloud e Receita B2B.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary rounded-full p-3 text-white mr-6">
-                      <i className="ri-check-line text-2xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3">2025</h3>
-                      <p className="text-gray-300 text-lg">Consolidação como referência em soluções estratégicas para o mercado B2B.</p>
+                      <h3 className="text-2xl font-bold mb-3">Visão</h3>
+                      <p className="text-gray-300 text-lg">Ser reconhecida como a principal ativadora de tecnologias estratégicas para empresas B2B no Brasil, transformando o potencial tecnológico em vantagem competitiva real.</p>
                     </div>
                   </div>
                 </div>
