@@ -318,22 +318,7 @@ export default function Solucoes() {
       </Head>
 
       <main className="min-h-screen bg-black text-white">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-background">
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src="/video_hero.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div className="hero-content text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">Soluções AORKIA</h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Tecnologia global de ponta, ativada com estratégia e foco em resultados para sua empresa.
-            </p>
-          </div>
-        </section>
-
+        
         {/* Seleção de Interface */}
         <section className="py-16 bg-black">
           <div className="container mx-auto max-w-7xl px-4">
