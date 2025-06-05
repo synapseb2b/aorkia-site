@@ -39,15 +39,11 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
-  // Efeito para simular carregamento da página - extremamente rápido, sem barra de progresso
+  // Preloader removido conforme solicitado
   useEffect(() => {
-    if (isLoading) {
-      // Carregamento extremamente rápido, apenas 500ms
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }
-  }, [isLoading]);
+    // Definindo isLoading como false imediatamente
+    setIsLoading(false);
+  }, []);
 
   // Efeito para alternar entre logos (branca e colorida)
   useEffect(() => {
