@@ -11,13 +11,23 @@ export default function Home() {
   const productsRef = useRef(null);
   const workSectionRef = useRef(null);
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para monitorar o progresso de rolagem e ativar produtos no scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
+      
+      // Ativar produtos automaticamente no scroll
+      const productElements = document.querySelectorAll('.product-section');
+      productElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.7 && rect.bottom > 0;
+        if (isVisible) {
+          setActiveProduct(element.id);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -120,7 +130,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left mt-0 md:mt-0">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
                 Boas-vindas à AORKIA.
               </p>
@@ -131,8 +141,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a href="#work" className="text-white text-4xl" onClick={(e) => {
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center">
+            <a href="#work" className="text-white text-4xl animate-bounce" onClick={(e) => {
               e.preventDefault();
               document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
             }}>
@@ -146,18 +156,19 @@ export default function Home() {
           {products.map((product, index) => (
             <div 
               key={product.id}
-              className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
+              id={product.id}
+              className="relative w-full h-screen md:h-[80vh] overflow-hidden group product-section"
               onMouseEnter={() => setActiveProduct(product.id)}
               onMouseLeave={() => setActiveProduct(null)}
             >
-              {/* Background Image (aparece apenas no hover) */}
+              {/* Background Image (aparece no hover e no scroll) */}
               <div 
                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
                   activeProduct === product.id ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ backgroundImage: `url(${product.image})` }}
               >
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
               </div>
               
               {/* Background Color (aparece quando não está em hover) */}
@@ -166,6 +177,10 @@ export default function Home() {
                   activeProduct === product.id ? 'opacity-0' : 'opacity-100'
                 }`}
               ></div>
+              
+              {/* Linhas minimalistas superior e inferior */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
               
               {/* Content */}
               <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
@@ -207,18 +222,18 @@ export default function Home() {
         </section>
 
         {/* Seção Pré-Footer - Estilo Jam3 */}
-        <section className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
+        <section id="futuro" className="relative w-full h-screen md:h-[80vh] overflow-hidden group product-section"
           onMouseEnter={() => setActiveProduct('futuro')}
           onMouseLeave={() => setActiveProduct(null)}
         >
-          {/* Background Image (aparece apenas no hover) */}
+          {/* Background Image (aparece no hover e no scroll) */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ backgroundImage: `url(/images/futuro.png)` }}
           >
-            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="absolute inset-0 bg-black/30"></div>
           </div>
           
           {/* Background Color (aparece quando não está em hover) */}
@@ -227,6 +242,10 @@ export default function Home() {
               activeProduct === 'futuro' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
+          
+          {/* Linhas minimalistas superior e inferior */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-300 opacity-50"></div>
           
           {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
