@@ -110,43 +110,34 @@ export default function Solucoes() {
   };
 
   // Função para lidar com a seleção de perfil
-  const handleProfileSelection = (profile) => {
-    try {
-      setSelectedProfile(profile);
-      setShowTyping(true);
-      setMessages(prev => [...prev, { type: 'user', content: profile }]);
-      
-      setTimeout(() => {
-        try {
-          setShowTyping(false);
-          let diagnosis = getDiagnosis(selectedArea, profile);
-          
-          setMessages(prev => [...prev, 
-            { 
-              type: 'ai', 
-              content: diagnosis.message // Mensagem dinâmica baseada na seleção
-            },
-            {
-              type: 'ai',
-              content: 'Para o próximo passo, o que seria mais valioso para você?' // Pergunta após diagnóstico
-            }
-          ]);
-          setCurrentStep(2);
-          
-          // Muda para o modo 30-70 após o diagnóstico
-          setTimeout(() => {
-            setViewMode('30-70');
-          }, 1000);
-        } catch (error) {
-          console.error("Erro ao processar diagnóstico:", error);
-          handleError();
-        }
-      }, 2000);
-    } catch (error) {
-      console.error("Erro ao selecionar perfil:", error);
-      handleError();
-    }
-  };
+const handleProfileSelection = (profile) => {
+  try {
+    setSelectedProfile(profile);
+    setShowTyping(true);
+    setMessages(prev => [...prev, { type: 'user', content: profile }]);
+    
+    setTimeout(() => {
+      try {
+        setShowTyping(false);
+
+        setMessages(prev => [...prev, 
+          { type: 'ai', content: 'Obrigado pela interação! Aproveite a Análise Personalizada que preparamos para você! ->' },
+          { type: 'ai', content: '- Fim do Chat -' }
+        ]);
+
+        setChatCompleted(true);
+        setViewMode('30-70'); // Aumenta o espaço da Análise Personalizada
+
+      } catch (error) {
+        console.error("Erro ao processar diagnóstico:", error);
+        handleError();
+      }
+    }, 1500); // Mantive o delay de 1500ms que simula a digitação
+  } catch (error) {
+    console.error("Erro ao selecionar perfil:", error);
+    handleError();
+  }
+};
 
   // Função para lidar com a seleção da ação final
   const handleActionSelection = (action) => {
@@ -319,55 +310,68 @@ export default function Solucoes() {
 
       <main className="min-h-screen bg-black text-white">
         
-        {/* Seleção de Interface */}
-        <section className="py-16 bg-black">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex flex-col md:flex-row justify-center gap-8 mb-12">
-              <button 
-                className={`px-8 py-4 text-lg font-medium rounded-lg transition-all ${interfaceMode === 'intelligent' ? 'bg-primary text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
-                onClick={() => setInterfaceMode('intelligent')}
-              >
-                Interface Inteligente
-              </button>
-              <button 
-                className={`px-8 py-4 text-lg font-medium rounded-lg transition-all ${interfaceMode === 'traditional' ? 'bg-primary text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
-                onClick={() => setInterfaceMode('traditional')}
-              >
-                Navegação Tradicional
-              </button>
-            </div>
+       {/* Seleção de Interface */}
+<section className="py-16 bg-black">
+  <div className="flex justify-end mb-12">
+    <button 
+      className={`px-8 py-4 text-lg font-medium rounded-lg transition-all ${interfaceMode === 'traditional' ? 'bg-primary text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+      onClick={() => setInterfaceMode('traditional')}
+    >
+      Navegação Tradicional
+    </button>
+  </div>
 
-            {/* Interface Inteligente */}
-            {interfaceMode === 'intelligent' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                {/* Coluna da Esquerda (Chat) */}
-                <div className={`${viewMode === '70-30' ? 'lg:col-span-8' : 'lg:col-span-4'} transition-all duration-500`}>
-                  <div className="ai-interface" ref={chatContainerRef}>
-                    <div className="ai-header">
-                      <h3 className="ai-title">Interface Inteligente AORKIA</h3>
-                    </div>
-                    <div className="ai-conversation" ref={chatMessagesRef}>
-                      {messages.map((msg, index) => (
-                        <div key={index} className={`ai-message ${msg.type === 'user' ? 'user' : 'ai'}`}>
-                          <div className="ai-message-content">
-                            {msg.content}
-                          </div>
-                        </div>
-                      ))}
-                      {showTyping && (
-                        <div className="ai-message ai">
-                          <div className="ai-message-content">
-                            <div className="flex space-x-2">
-                              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      <div ref={messagesEndRef} />
-                    </div>
-                    
+  {/* Interface Inteligente */}
+  {interfaceMode === 'intelligent' && (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[calc(100vh-100px)]">
+
+      {/* Coluna da Esquerda - Chat Interface */}
+      <div className="flex flex-col h-full">
+        <div className="ai-interface" ref={chatContainerRef}>
+          <div className="ai-header">
+            <h3 className="ai-title">Interface Inteligente AORKIA</h3>
+          </div>
+          <div className="ai-conversation" ref={chatMessagesRef}>
+            {messages.map((msg, index) => (
+              <div key={index} className={`ai-message ${msg.type === 'user' ? 'user' : 'ai'}`}>
+                <div className="ai-message-content">
+                  {msg.content}
+                </div>
+              </div>
+            ))}
+            {showTyping && (
+              <div className="ai-message ai">
+                <div className="ai-message-content">
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+        </div>
+      </div>
+
+      {/* Coluna da Direita - Análise Personalizada */}
+      <div className="flex flex-col h-full">
+        {/* Aqui virá o conteúdo da Análise Personalizada */}
+      </div>
+
+    </div>
+  )}
+</section>
+
+    {/* Coluna da Direita - Análise Personalizada */}
+    <div className="flex flex-col h-full">
+      {/* Aqui virá o conteúdo da Análise Personalizada */}
+    </div>
+
+  </div>
+)}
+                   
                     {/* Opções de Seleção - Passo 0: Seleção de Área */}
                     {currentStep === 0 && !showTyping && (
                       <div className="p-4 bg-gray-900">
@@ -456,38 +460,11 @@ export default function Solucoes() {
                     )}
                     
                     {/* Input de Mensagem e Botões */}
-                    <div className="ai-input">
-                      {chatCompleted ? (
-                        <div className="w-full flex justify-center">
-                          <button 
-                            className="ai-restart-button"
-                            onClick={restartChat}
-                          >
-                            Iniciar nova conversa
-                          </button>
-                        </div>
-                      ) : (
-                        <>
-                          <button 
-                            className="ai-restart-button"
-                            onClick={restartChat}
-                          >
-                            Reiniciar
-                          </button>
-                          <form onSubmit={handleUserMessageSubmit} className="flex-1 flex">
-                            <input 
-                              type="text" 
-                              className="ai-input-field"
-                              placeholder="Digite sua mensagem..."
-                              value={userMessage}
-                              onChange={(e) => setUserMessage(e.target.value)}
-                              disabled={showTyping || currentStep < 3}
-                            />
-                            <button 
-                              type="submit" 
-                              className="ai-send-button"
-                              disabled={showTyping || !userMessage.trim() || currentStep < 3}
-                            >
+                    <div className="ai-input flex justify-center">
+                      <button className="ai-restart-button" onClick={restartChat}>
+                        Reiniciar Conversa
+                      </button>
+                    </div>
                               Enviar
                             </button>
                           </form>
@@ -537,11 +514,6 @@ export default function Solucoes() {
                       </div>
                       
                       {/* Convite para navegação tradicional */}
-                      <div className="mt-8 pt-4 border-t border-gray-800 text-center">
-                        <p className="text-gray-400 mb-3">Prefere explorar todas as nossas soluções?</p>
-                        <button 
-                          onClick={() => setInterfaceMode('traditional')} 
-                          className="text-white bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors"
                         >
                           Navegar Tradicionalmente
                         </button>
