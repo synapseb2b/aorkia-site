@@ -110,14 +110,6 @@ export default function Home() {
                 Tecnologia de Ponta. <br className="hidden md:block" />
                 Visão de Futuro.
               </h1>
-              
-              {/* Botão "Ver nosso trabalho" com rolagem suave */}
-              <button 
-                onClick={scrollToWork}
-                className="text-white bg-transparent border border-white hover:bg-white hover:text-black transition-colors duration-300 py-3 px-6 text-lg font-medium"
-              >
-                Ver nosso trabalho
-              </button>
             </div>
           </div>
 
@@ -266,12 +258,14 @@ export default function Home() {
               </div>
               
               <div className="bg-gray-900 p-8 rounded-lg">
-                <form className="space-y-6">
+                <form className="space-y-6" action="https://formspree.io/f/mkgrleqq" method="POST">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
                     <input 
                       type="text" 
-                      id="name" 
+                      id="name"
+                      name="name"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -280,7 +274,9 @@ export default function Home() {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
                     <input 
                       type="email" 
-                      id="email" 
+                      id="email"
+                      name="email"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -289,7 +285,9 @@ export default function Home() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
                     <input 
                       type="tel" 
-                      id="phone" 
+                      id="phone"
+                      name="phone"
+                      required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -302,7 +300,8 @@ export default function Home() {
                           <input 
                             type="radio" 
                             id={option.replace(/\s+/g, '-').toLowerCase()} 
-                            name="focus" 
+                            name="focus"
+                            value={option}
                             className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
                           />
                           <label htmlFor={option.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
