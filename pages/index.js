@@ -326,8 +326,6 @@ export default function Home() {
                 
                 <div className="mt-8 pt-6 border-t border-gray-800 text-center">
                   <p className="text-gray-400">
-                    Av. Getúlio Vargas, 671 — Sala 500, BH - MG<br />
-                    +55 31 98801-9006<br />
                     contato@aorkia.com
                   </p>
                 </div>
