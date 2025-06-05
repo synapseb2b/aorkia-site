@@ -167,7 +167,7 @@ export default function Home() {
                     {product.id === 'backup' && (
                       <div className="mt-4 mb-6">
                         <img 
-                          src="/images/keepit_logo_aorkia.svg" 
+                          src="/keepit_logo_aorkia.svg" 
                           alt="Keepit" 
                           className="h-12 w-auto"
                         />
