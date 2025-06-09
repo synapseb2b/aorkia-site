@@ -30,7 +30,7 @@ export default function Solucoes() {
     }
   };
 
-  // Soluções com suas respectivas imagens e conteúdos
+  // Soluções com suas respectivas imagens e conteúdos (corrigidos para /image/)
   const solutions = [
     {
       id: 'backup',
@@ -66,8 +66,8 @@ export default function Solucoes() {
       howContent: 'A AORKIA não é apenas uma fornecedora de tecnologia; somos seus parceiros estratégicos na proteção de dados. Nosso modelo de "ativação" garante que você extraia o máximo valor da melhor solução de backup SaaS do mercado, de forma rápida, personalizada e sem complexidade para sua equipe.',
       howQuote: 'Com a AORKIA, você não apenas adquire uma solução líder global como a Keepit; você ativa uma estratégia completa e robusta de proteção para seus dados SaaS. Nossa expertise assegura uma implementação ágil e customizada às suas políticas, configuração otimizada para suas necessidades de conformidade e retenção de dados, e suporte especializado contínuo. Capacitamos sua equipe para gerenciar os backups com facilidade e confiança, transformando a segurança de dados em um pilar fundamental para o crescimento e a resiliência do seu negócio.',
       ctaText: 'Proteja o Coração Digital do Seu Negócio Agora Mesmo. Descubra como o Backup SaaS Estratégico ativado pela AORKIA pode blindar seus dados críticos na nuvem.',
-      image: '/images/backup.jpeg',
-      logo: '/images/keepit_logo_aorkia.svg'
+      image: '/image/backup.png',
+      logo: '/image/keepit_logo_aorkia.svg'
     },
     {
       id: 'bordas',
@@ -103,7 +103,7 @@ export default function Solucoes() {
       howContent: 'A AORKIA é sua parceira estratégica para destravar o potencial da IA na borda. Nós simplificamos a complexidade para que você possa focar nos resultados de negócio, enquanto cuidamos da "ativação" da tecnologia com expertise.',
       howQuote: 'Desbloqueie o poder da IA distribuída com a AORKIA. Nós ativamos e ajudamos você a gerenciar modelos e aplicações de IA na borda em múltiplos locais, eliminando processos manuais com provisionamento automatizado e soluções otimizadas por nossa curadoria. Garanta a segurança de suas implementações com uma arquitetura robusta, protegendo seus dados e propriedade intelectual. Monitore a saúde dos dispositivos e gerencie toda a sua infraestrutura de borda de forma centralizada, reduzindo custos com suporte flexível a hardware e conectividade.',
       ctaText: 'Pronto para Ativar a Inteligência em suas Operações de Borda? Descubra como a AORKIA pode ativar a Inteligência Artificial na borda da sua empresa.',
-      image: '/images/bordas.png'
+      image: '/image/bordas.png'
     },
     {
       id: 'dspm',
@@ -139,7 +139,7 @@ export default function Solucoes() {
       howContent: 'A AORKIA é sua parceira para transformar a complexidade da segurança de dados em clareza e controle. Nosso modelo de "ativação" foca em implementar rapidamente a melhor tecnologia DSPM, adaptada à sua realidade, para proteger seus ativos mais valiosos.',
       howQuote: 'Com a AORKIA, você ativa uma solução DSPM líder que se integra à sua estratégia de segurança na nuvem. Nossa expertise garante a descoberta contínua de todos os seus dados sensíveis, a análise contextualizada dos riscos de exposição e a automação da remediação. Ajudamos sua equipe a tomar medidas contra as ameaças mais perigosas sem adicionar complexidade, garantindo que seus dados estejam protegidos e em conformidade, onde quer que estejam.',
       ctaText: 'Assuma o Controle da Segurança dos Seus Dados Críticos Hoje Mesmo. Descubra como a AORKIA pode ativar uma postura de segurança de dados proativa e resiliente na sua empresa.',
-      image: '/images/dspm.jpeg'
+      image: '/image/dspm.png'
     },
     {
       id: 'receitas',
@@ -175,7 +175,7 @@ export default function Solucoes() {
       howContent: 'A AORKIA é sua parceira na "ativação" de uma cultura orientada a dados e resultados. Nós não apenas implementamos a tecnologia; garantimos que ela se traduza em crescimento real e previsível para o seu negócio.',
       howQuote: 'Com a AORKIA, você ativa o poder da Inteligência de Receita com IA, indo além da simples integração de CRM. Nossa expertise assegura a unificação de todos os seus sinais de receita (e-mails, conversas, dados de uso, etc.) em um único modelo robusto. Ajudamos a configurar cadências de receita, automatizar fluxos de trabalho e controlar os modelos de IA para que suas equipes tenham os insights e as ações recomendadas mais relevantes. Capacitamos sua equipe com treinamento especializado, garantindo adoção e resultados rápidos.',
       ctaText: 'Pronto para Transformar Dados em Crescimento Previsível? Descubra como a AORKIA pode ativar a Inteligência de Receita com IA na sua empresa.',
-      image: '/images/receitas.jpeg'
+      image: '/image/receitas.png'
     },
     {
       id: 'digital',
@@ -211,7 +211,7 @@ export default function Solucoes() {
       howContent: 'A AORKIA é sua parceira na "ativação" de uma presença digital estratégica. Nosso modelo vai além da implementação técnica, garantindo que sua presença digital se traduza em resultados de negócio concretos.',
       howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital completa e orientada a resultados. Nossa abordagem integra design estratégico, desenvolvimento tecnológico de alta performance, conteúdo de autoridade e análise de dados em um ecossistema digital coeso. Implementamos rapidamente, com foco na experiência do usuário B2B e na geração de demanda qualificada. Capacitamos sua equipe para gerenciar e otimizar continuamente sua presença digital, transformando-a em um verdadeiro ativo estratégico para o crescimento do seu negócio.',
       ctaText: 'Pronto para Transformar Sua Presença Digital em Vantagem Competitiva? Descubra como a AORKIA pode ativar uma Estratégia de Presença Digital que impulsione resultados concretos para sua empresa.',
-      image: '/images/digital.jpeg'
+      image: '/image/digital.png'
     }
   ];
 
@@ -227,7 +227,7 @@ export default function Solucoes() {
         {/* Seção Hero - Estilo Jam3 */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video_hero.mp4" type="video/mp4" />
+            <source src="/image/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
@@ -318,10 +318,13 @@ export default function Solucoes() {
                       </h3>
                       {solution.logo && (
                         <div className="mt-4 mb-8">
-                          <img 
+                          <Image 
                             src={solution.logo} 
                             alt="Logo" 
                             className="h-12 w-auto"
+                            width={160}
+                            height={48}
+                            priority
                           />
                         </div>
                       )}
