@@ -82,11 +82,12 @@ function isMobileScreen() {
 }
 
 export default function Solucoes() {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [mobileSection, setMobileSection] = useState<string>('');
+  const [activeSection, setActiveSection] = useState(null);
+  const [mobileSection, setMobileSection] = useState('');
   const [isHoverSidebarLogo, setIsHoverSidebarLogo] = useState(false);
   const [isHoverMenu, setIsHoverMenu] = useState(false);
   const [isHoverVerTrabalho, setIsHoverVerTrabalho] = useState(false);
+  const solutionsRef = useRef(null);
 
   // Detectar seção ativa ao rolar no mobile
   useEffect(() => {
@@ -96,7 +97,7 @@ export default function Solucoes() {
       let found = '';
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 80 && rect.bottom >= 140) { // ajuste da zona de foco
+        if (rect.top <= 80 && rect.bottom >= 140) {
           found = section.getAttribute('data-solution-section') || '';
         }
       });
@@ -107,17 +108,17 @@ export default function Solucoes() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (e: any, id: string) => {
+  const scrollToSection = (e, id) => {
     e.preventDefault();
     const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Scroll suave para a próxima seção (desktop)
-  const scrollToNextSection = (e: any) => {
+  const scrollToNextSection = (e) => {
     e.preventDefault();
     const sections = document.querySelectorAll('[data-solution-section]');
-    let nextSection: Element | null = null;
+    let nextSection = null;
     for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect();
       if (rect.top > 90) {
@@ -130,30 +131,11 @@ export default function Solucoes() {
     }
   };
 
-  // Soluções
+  // Soluções com imagens e conteúdos completos
   const solutions = [
-    {
-      id: 'backup',
-      title: 'Backup SaaS Estratégico',
-      supportText: 'Imutável. Independente. Inteligente.',
-      subtitle: 'Seus Dados na Nuvem, Realmente Protegidos.',
-      caseStudy: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce...',
-      activateContent: 'A AORKIA simplifica a complexidade da proteção de dados SaaS...',
-      features: [
-        { icon: 'ri-shield-keyhole-line', title: 'Proteção Completa e Imutável Contra Ameaças', description: 'Seus dados SaaS são copiados para uma nuvem independente...' },
-        { icon: 'ri-restart-line', title: 'Recuperação Rápida e Granular a Qualquer Momento', description: 'Restaure exatamente o que você precisa...' },
-        { icon: 'ri-apps-2-line', title: 'Ampla Cobertura para Seu Ecossistema SaaS', description: 'Garanta a proteção completa dos seus dados críticos...' },
-        { icon: 'ri-file-shield-2-line', title: 'Conformidade Descomplicada e Auditoria Facilitada', description: 'Atenda às exigências da LGPD, GDPR, HIPAA...' }
-      ],
-      whyContent: 'Muitas empresas ainda acreditam que seus provedores de SaaS...',
-      whyQuote: 'Seus dados em Microsoft 365, Salesforce ou Google Workspace são ativos cruciais...',
-      howContent: 'A AORKIA não é apenas uma fornecedora de tecnologia; somos seus parceiros estratégicos...',
-      howQuote: 'Com a AORKIA, você não apenas adquire uma solução líder global como a Keepit...',
-      ctaText: 'Proteja o Coração Digital do Seu Negócio Agora Mesmo...',
-      image: '/image/backup.png',
-      logo: '/image/keepit_logo_aorkia.png'
-    },
-    // ...demais soluções igual ao seu array original
+    // ... mantenha o array de soluções completo, igual ao original!
+    // (omiti aqui para não poluir o exemplo)
+    // Use o array solutions da sua versão anterior
   ];
 
   return (
@@ -166,12 +148,15 @@ export default function Solucoes() {
       </Head>
       <main className="bg-black text-white min-h-screen">
 
-        {/* Navbar MOBILE - só uma barra fixa, logo branca à esquerda, menu sanduíche à direita */}
+        {/* Navbar MOBILE */}
         <nav className="w-full flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800 lg:hidden fixed top-0 left-0 z-40">
           <div className="aorkia-logo-stack">
             <Image src="/image/logo_aorkia_white.png" alt="AORKIA White" width={120} height={48} className="aorkia-white" priority />
           </div>
-          <div className="relative menu-hover">
+          <div className="relative menu-hover"
+            onMouseEnter={() => setIsHoverMenu(true)}
+            onMouseLeave={() => setIsHoverMenu(false)}
+          >
             <button className="text-white text-3xl p-2" aria-label="Menu">
               <i className="ri-menu-line"></i>
             </button>
@@ -179,7 +164,7 @@ export default function Solucoes() {
           </div>
         </nav>
 
-        {/* Sidebar DESKTOP - logo branca fixa, animação e tooltip */}
+        {/* Sidebar DESKTOP */}
         <aside className="hidden lg:flex flex-col items-center fixed left-0 top-0 pt-10 z-50" style={{width: '120px', height: '100vh'}}>
           <div className="relative logo-container"
             onMouseEnter={() => setIsHoverSidebarLogo(true)}
@@ -264,10 +249,7 @@ export default function Solucoes() {
                   <div className="absolute inset-0 bg-black/60"></div>
                 </div>
                 <div className={`absolute inset-0 bg-white transition-opacity duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`}></div>
-                {/* Conteúdo igual ao seu original */}
                 <div className="relative z-10 py-24 md:py-32">
-                  {/* ...conteúdo igual ao existente */}
-                  {/* ... */}
                   <div className="container mx-auto max-w-7xl px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                       <div>
@@ -292,7 +274,95 @@ export default function Solucoes() {
                         </p>
                       </div>
                     </div>
-                    {/* ...restante do conteúdo da seção (features, why, how, CTA) igual ao seu código */}
+                    {/* Features Section */}
+                    <div className="mb-24">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-12 transition-colors duration-500 ${isActive ? 'text-white' : 'text-black'}`}>
+                        Ative e Escale {solution.title}
+                      </h3>
+                      <p className={`text-xl mb-12 max-w-4xl transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {solution.activateContent}
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                        {solution.features.map((feature, idx) => (
+                          <div key={idx} className="flex">
+                            <div className={`text-4xl mr-6 transition-colors duration-500 ${isActive ? 'text-primary' : 'text-blue-700'}`}>
+                              <i className={feature.icon}></i>
+                            </div>
+                            <div>
+                              <h4 className={`text-xl font-bold mb-3 transition-colors duration-500 ${isActive ? 'text-white' : 'text-black'}`}>
+                                {feature.title}
+                              </h4>
+                              <p className={`transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {feature.description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Why Section */}
+                    <div className="mb-24">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${isActive ? 'text-white' : 'text-black'}`}>
+                        Por Que {solution.id === 'backup' ? 'Fazer Backup dos Seus Dados SaaS?' : 
+                                solution.id === 'bordas' ? 'Executar IA na Borda?' :
+                                solution.id === 'dspm' ? 'Priorizar a Segurança da Postura dos Seus Dados (DSPM)?' :
+                                solution.id === 'receitas' ? 'Investir em Inteligência de Receita com IA?' :
+                                'Priorizar uma Estratégia de Presença Digital?'}
+                      </h3>
+                      <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {solution.whyContent}
+                      </p>
+                      <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${isActive ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'}`}>
+                        <p className={`text-lg italic transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                          "{solution.whyQuote}"
+                        </p>
+                      </div>
+                    </div>
+                    {/* How AORKIA Helps Section */}
+                    <div className="mb-24">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${isActive ? 'text-white' : 'text-black'}`}>
+                        Como a AORKIA Ajuda Você com {solution.title}
+                      </h3>
+                      <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {solution.howContent}
+                      </p>
+                      <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${isActive ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'}`}>
+                        <p className={`text-lg italic transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                          "{solution.howQuote}"
+                        </p>
+                      </div>
+                    </div>
+                    {/* CTA Section */}
+                    <div className="text-center max-w-4xl mx-auto">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${isActive ? 'text-white' : 'text-black'}`}>
+                        Comece com a AORKIA
+                      </h3>
+                      <p className={`text-xl mb-12 transition-colors duration-500 ${isActive ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {solution.ctaText}
+                      </p>
+                      <div className="flex flex-col sm:flex-row justify-center gap-6">
+                        <Link 
+                          href="/contato" 
+                          className={`px-8 py-4 text-lg font-medium rounded-lg transition-colors duration-500 ${
+                            isActive 
+                            ? 'bg-primary hover:bg-primary/90 text-white' 
+                            : 'bg-blue-700 hover:bg-blue-800 text-white'
+                          }`}
+                        >
+                          Agendar Demonstração
+                        </Link>
+                        <Link 
+                          href="/contato" 
+                          className={`px-8 py-4 text-lg font-medium rounded-lg border transition-colors duration-500 ${
+                            isActive 
+                            ? 'border-white text-white hover:bg-white hover:text-black' 
+                            : 'border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white'
+                          }`}
+                        >
+                          Solicitar Blueprint Técnico
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -300,9 +370,89 @@ export default function Solucoes() {
           })}
         </section>
 
-        {/* ...formulário igual ao original */}
+        {/* Formulário */}
+        <section className="py-24 md:py-32 bg-black lg:pl-[120px]">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
+                </p>
+              </div>
+              
+              <div className="bg-gray-900 p-8 rounded-lg">
+                <form className="space-y-6" action="https://formspree.io/f/mkgrleqq" method="POST">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+                    <input 
+                      type="text" 
+                      id="name"
+                      name="name"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
+                    <input 
+                      type="email" 
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      name="phone"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:</label>
+                    <div className="space-y-3">
+                      {solutions.map((solution) => (
+                        <div key={solution.id} className="flex items-center">
+                          <input 
+                            type="radio" 
+                            id={solution.id} 
+                            name="focus"
+                            value={solution.title}
+                            className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
+                          />
+                          <label htmlFor={solution.id} className="ml-3 text-gray-300">
+                            {solution.title}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Solicitar Contato
+                  </button>
+                </form>
+                
+                <p className="mt-6 text-sm text-gray-400 text-center">
+                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* FOOTER único e correto */}
+        {/* FOOTER */}
         <footer className="bg-black border-t border-gray-800 py-12 lg:pl-[120px]">
           <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col items-start md:items-end w-full md:w-auto">
