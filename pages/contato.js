@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Contato() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -70,6 +71,18 @@ export default function Contato() {
                   Preencha o formulário ao lado e um de nossos especialistas entrará em contato para discutir como podemos ajudar sua empresa.
                 </p>
                 
+                {/* Logo institucional ilustrativa */}
+                <div className="mb-12">
+                  <Image
+                    src="/image/logo_aorkia_color.png"
+                    alt="AORKIA Logo"
+                    width={180}
+                    height={60}
+                    className="mb-4"
+                    priority
+                  />
+                </div>
+
                 <div className="space-y-6 mt-12">
                   <div className="flex items-start">
                     <div className="text-primary text-2xl mt-1 mr-4">
@@ -189,19 +202,33 @@ export default function Contato() {
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-3">Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:</label>
                       <div className="space-y-3">
-                        {['Backup SaaS Estratégico', 'Operações de Bordas Inteligentes', 'Segurança para Operações Críticas', 'Plataforma de Inteligência de Receita com IA', 'Estratégia de Presença Digital AORKIA'].map((option) => (
-                          <div key={option} className="flex items-center">
+                        {[
+                          { label: 'Backup SaaS Estratégico', img: '/image/backup.png' },
+                          { label: 'Operações de Bordas Inteligentes', img: '/image/bordas.png' },
+                          { label: 'Segurança para Operações Críticas', img: '/image/dspm.png' },
+                          { label: 'Plataforma de Inteligência de Receita com IA', img: '/image/receitas.png' },
+                          { label: 'Estratégia de Presença Digital AORKIA', img: '/image/digital.png' }
+                        ].map((option) => (
+                          <div key={option.label} className="flex items-center">
                             <input 
                               type="radio" 
-                              id={option.replace(/\s+/g, '-').toLowerCase()} 
+                              id={option.label.replace(/\s+/g, '-').toLowerCase()} 
                               name="solucao"
-                              value={option}
-                              checked={formData.solucao === option}
+                              value={option.label}
+                              checked={formData.solucao === option.label}
                               onChange={handleInputChange}
                               className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
                             />
-                            <label htmlFor={option.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
-                              {option}
+                            {/* Adiciona uma miniatura ilustrando a solução */}
+                            <Image
+                              src={option.img}
+                              alt={option.label}
+                              width={32}
+                              height={32}
+                              className="ml-3 rounded"
+                            />
+                            <label htmlFor={option.label.replace(/\s+/g, '-').toLowerCase()} className="ml-3 text-gray-300">
+                              {option.label}
                             </label>
                           </div>
                         ))}
