@@ -41,7 +41,6 @@ function MyApp({ Component, pageProps }) {
 
   // Preloader removido conforme solicitado
   useEffect(() => {
-    // Definindo isLoading como false imediatamente
     setIsLoading(false);
   }, []);
 
@@ -65,11 +64,10 @@ function MyApp({ Component, pageProps }) {
     } else {
       document.body.style.overflow = 'auto';
     }
-    
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, [mobileMenuOpen]);
 
   // Função para aceitar cookies
   const acceptCookies = () => {
@@ -136,10 +134,13 @@ function MyApp({ Component, pageProps }) {
         <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
           <div className="preloader-content text-center">
             <div className="logo-container relative">
-              <img 
-                src="/logo_aorkia_white.png" 
+              <Image 
+                src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-32 w-auto z-10 relative animate-fade-in" 
+                width={300}
+                height={128}
+                priority
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
@@ -154,17 +155,23 @@ function MyApp({ Component, pageProps }) {
         <div className="flex flex-col items-center pt-8">
           <div className="logo-container h-16 relative">
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
-              <img 
-                src="/logo_aorkia_white.png" 
+              <Image 
+                src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-16 w-auto" 
+                className="h-16 w-auto"
+                width={160}
+                height={64}
+                priority
               />
             </div>
             <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
-              <img 
-                src="/logo_aorkia_color.png" 
+              <Image 
+                src="/image/logo_aorkia_color.png" 
                 alt="AORKIA" 
-                className="h-16 w-auto" 
+                className="h-16 w-auto"
+                width={160}
+                height={64}
+                priority
               />
             </div>
           </div>
@@ -193,17 +200,23 @@ function MyApp({ Component, pageProps }) {
           <Link href="/" className="py-2">
             <div className="logo-container h-8 relative">
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
-                <img 
-                  src="/logo_aorkia_white.png" 
+                <Image 
+                  src="/image/logo_aorkia_white.png" 
                   alt="AORKIA" 
-                  className="h-8 w-auto" 
+                  className="h-8 w-auto"
+                  width={80}
+                  height={32}
+                  priority
                 />
               </div>
               <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
-                <img 
-                  src="/logo_aorkia_color.png" 
+                <Image 
+                  src="/image/logo_aorkia_color.png" 
                   alt="AORKIA" 
-                  className="h-8 w-auto" 
+                  className="h-8 w-auto"
+                  width={80}
+                  height={32}
+                  priority
                 />
               </div>
             </div>
@@ -230,17 +243,23 @@ function MyApp({ Component, pageProps }) {
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                 <div className="logo-container h-14 relative">
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
-                    <img 
-                      src="/logo_aorkia_white.png" 
+                    <Image 
+                      src="/image/logo_aorkia_white.png" 
                       alt="AORKIA" 
-                      className="h-14 w-auto" 
+                      className="h-14 w-auto"
+                      width={140}
+                      height={56}
+                      priority
                     />
                   </div>
                   <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
-                    <img 
-                      src="/logo_aorkia_color.png" 
+                    <Image 
+                      src="/image/logo_aorkia_color.png" 
                       alt="AORKIA" 
-                      className="h-14 w-auto" 
+                      className="h-14 w-auto"
+                      width={140}
+                      height={56}
+                      priority
                     />
                   </div>
                 </div>
@@ -318,17 +337,23 @@ function MyApp({ Component, pageProps }) {
             <div className="md:text-left text-center">
               <div className="logo-container h-20 relative inline-block">
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
-                  <img 
-                    src="/logo_aorkia_white.png" 
+                  <Image 
+                    src="/image/logo_aorkia_white.png" 
                     alt="AORKIA" 
-                    className="h-20 w-auto" 
+                    className="h-20 w-auto"
+                    width={200}
+                    height={80}
+                    priority
                   />
                 </div>
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-0' : 'opacity-100'}`}>
-                  <img 
-                    src="/logo_aorkia_color.png" 
+                  <Image 
+                    src="/image/logo_aorkia_color.png" 
                     alt="AORKIA" 
-                    className="h-20 w-auto" 
+                    className="h-20 w-auto"
+                    width={200}
+                    height={80}
+                    priority
                   />
                 </div>
               </div>
