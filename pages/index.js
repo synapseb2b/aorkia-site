@@ -32,14 +32,14 @@ export default function Home() {
     }
   };
 
-  // Produtos com suas respectivas imagens
+  // Produtos com suas respectivas imagens (corrigido para /image/)
   const products = [
     {
       id: 'solucoes',
       title: 'Soluções Especializadas',
       supportText: 'AORKIA',
       description: 'Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.',
-      image: '/images/solucoesespecializadas.png',
+      image: '/image/solucoesespecializadas.png',
       link: '/solucoes'
     },
     {
@@ -47,7 +47,7 @@ export default function Home() {
       title: 'Backup SaaS Estratégico',
       supportText: 'Imutável. Independente. Inteligente.',
       description: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Para garantir proteção de dados independente, completa e sempre recuperável, a AORKIA ativa a Keepit – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.',
-      image: '/images/backup.jpeg',
+      image: '/image/backup.png',
       link: '/solucoes'
     },
     {
@@ -55,7 +55,7 @@ export default function Home() {
       title: 'Operações de Bordas Inteligentes',
       supportText: 'Inteligência na Borda. Decisões Imediatas.',
       description: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. A AORKIA ativa Plataformas Edge AI, garantindo inteligência, segurança e conformidade para suas operações na borda.',
-      image: '/images/bordas.png',
+      image: '/image/bordas.png',
       link: '/solucoes'
     },
     {
@@ -63,7 +63,7 @@ export default function Home() {
       title: 'Segurança para Operações Críticas',
       supportText: 'Visão Total. Controle Ativo.',
       description: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. A AORKIA ativa Plataformas Data Security Posture Management (DSPM), que potencializam a descoberta, classificação, monitoramento e proteção contínuos dos seus dados sensíveis em ambientes multicloud e híbridos.',
-      image: '/images/dspm.jpeg',
+      image: '/image/dspm.png',
       link: '/solucoes'
     },
     {
@@ -71,7 +71,7 @@ export default function Home() {
       title: 'Plataformas de Inteligência de Receita com IA',
       supportText: 'Receita Previsível. Crescimento Acelerado.',
       description: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? A AORKIA ativa Plataformas de Inteligência de Receita com IA, transformando seus dados de vendas e CRM em insights preditivos e automação inteligente.',
-      image: '/images/receitas.jpeg',
+      image: '/image/receitas.png',
       link: '/solucoes'
     },
     {
@@ -79,7 +79,7 @@ export default function Home() {
       title: 'Estratégia de Presença Digital AORKIA',
       supportText: 'Receita Previsível. Crescimento Acelerado.',
       description: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
-      image: '/images/digital.jpeg',
+      image: '/image/digital.png',
       link: '/solucoes'
     }
   ];
@@ -96,7 +96,7 @@ export default function Home() {
         {/* Seção Hero - Estilo Jam3 */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video_hero.mp4" type="video/mp4" />
+            <source src="/image/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
@@ -166,10 +166,13 @@ export default function Home() {
                     </h3>
                     {product.id === 'backup' && (
                       <div className="mt-4 mb-6">
-                        <img 
-                          src="/keepit_logo_aorkia.svg" 
+                        <Image 
+                          src="/image/keepit_logo_aorkia.svg" 
                           alt="Keepit" 
                           className="h-12 w-auto"
+                          width={160}
+                          height={48}
+                          priority
                         />
                       </div>
                     )}
@@ -208,7 +211,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/futuro.png)` }}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
