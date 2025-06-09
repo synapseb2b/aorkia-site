@@ -1,18 +1,31 @@
 {
   "headers": [
     {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        { 
+          "key": "Cache-Control", 
+          "value": "public, max-age=86400" 
+        }
       ]
     },
     {
       "source": "/(.*).mp4",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        { 
+          "key": "Cache-Control", 
+          "value": "public, max-age=86400" 
+        }
       ]
     }
   ]
 }
-
-
