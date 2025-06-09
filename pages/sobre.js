@@ -29,6 +29,15 @@ export default function Sobre() {
     }
   };
 
+  // Corrige o scroll do hero para a seção de trabalho
+  const scrollToWork = (e) => {
+    e.preventDefault();
+    const section = document.getElementById('historia');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
       <Head>
@@ -41,7 +50,7 @@ export default function Sobre() {
         {/* Seção Hero - Estilo Jam3 */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video_hero.mp4" type="video/mp4" />
+            <source src="/image/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
@@ -60,7 +69,7 @@ export default function Sobre() {
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
             <a 
-              href="#work" 
+              href="#historia" 
               onClick={scrollToWork}
               className="text-white text-4xl"
             >
@@ -81,7 +90,7 @@ export default function Sobre() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'historia' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/futuro.png)` }}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
@@ -130,7 +139,7 @@ export default function Sobre() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'valores' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/digital.jpeg)` }}
+            style={{ backgroundImage: `url(/image/digital.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
@@ -255,7 +264,7 @@ export default function Sobre() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'parceiros' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/bordas.png)` }}
+            style={{ backgroundImage: `url(/image/bordas.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
