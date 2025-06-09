@@ -34,6 +34,11 @@ body {
   height: 80px;
   width: auto;
   margin-bottom: 32px;
+  /* Ajuste do caminho para a logo, se for usada via CSS background-image */
+  background-image: url('/image/logo_aorkia_white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .preloader-bar-container {
@@ -71,11 +76,19 @@ body {
   z-index: -1;
 }
 
-.hero-background video {
+/* Ajuste para vídeo hero usar o novo caminho: */
+.hero-background video,
+.hero-section video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
+/* Se usar background-image na hero-section, ajuste exemplo:
+.hero-section {
+  background-image: url('/image/futuro.png');
+}
+*/
 
 .hero-content {
   text-align: center;
@@ -119,6 +132,32 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
+}
+
+/* Ajuste para usar imagens em /image/ */
+.product-section.with-image.backup {
+  background-image: url('/image/backup.png');
+}
+.product-section.with-image.bordas {
+  background-image: url('/image/bordas.png');
+}
+.product-section.with-image.dspm {
+  background-image: url('/image/dspm.png');
+}
+.product-section.with-image.receitas {
+  background-image: url('/image/receitas.png');
+}
+.product-section.with-image.digital {
+  background-image: url('/image/digital.png');
+}
+.product-section.with-image.futuro {
+  background-image: url('/image/futuro.png');
+}
+.product-section.with-image.solucoesespecializadas {
+  background-image: url('/image/solucoesespecializadas.png');
+}
+.product-section.with-image.ponta {
+  background-image: url('/image/ponta.png');
 }
 
 .product-section.with-image::before {
