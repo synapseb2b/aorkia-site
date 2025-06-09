@@ -3,143 +3,129 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Logo animation (desktop): alterna entre duas logos brancas
+// Animação para logo rotativa e pequenas animações de hover
 const logoAnimationStyles = `
-@keyframes alternateLogo {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+@keyframes rotateLogoAorkia {
+  0% { opacity: 1; }
+  40% { opacity: 1; }
+  50% { opacity: 0; }
+  90% { opacity: 0; }
+  100% { opacity: 1; }
 }
-@keyframes alternateLogo2 {
-  0%, 49% { opacity: 0; }
-  50%, 100% { opacity: 1; }
-}
-.sidebar-logo-stack {
+.aorkia-logo-stack {
   position: relative;
   width: 120px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
-.sidebar-logo-stack img.logo1 {
+.aorkia-logo-stack img.aorkia-white {
   position: absolute;
   left: 0;
   top: 0;
   width: 120px;
   height: 48px;
   object-fit: contain;
-  animation: alternateLogo 3s linear infinite;
-  transition: opacity .4s;
+  opacity: 1;
+  animation: rotateLogoAorkia 7s linear infinite;
+  transition: opacity .5s;
 }
-.sidebar-logo-stack img.logo2 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 120px;
-  height: 48px;
-  object-fit: contain;
-  animation: alternateLogo2 3s linear infinite;
-  transition: opacity .4s;
+.sidebar-logo-hover {
+  transition: transform 0.4s, box-shadow 0.4s;
 }
-.sidebar-logo-stack .sidebar-logo-tooltip {
-  opacity: 0;
-  transition: opacity .2s;
+.sidebar-logo-hover:hover {
+  transform: scale(1.08) rotate(-6deg);
+  box-shadow: 0 4px 24px 0 rgba(0,118,255,0.2);
+}
+.menu-sanduiche-hover {
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.menu-sanduiche-hover:hover {
+  transform: scale(1.13) rotate(-7deg);
+  box-shadow: 0 4px 24px 0 rgba(0,118,255,0.15);
+}
+.ver-trabalho-hover {
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.ver-trabalho-hover:hover {
+  transform: translateY(-4px) scale(1.05) rotate(-2deg);
+  background: #0076ff;
+  color: #fff !important;
+  box-shadow: 0 6px 18px 0 rgba(0,118,255,0.12);
+}
+.menu-tooltip, .logo-tooltip, .ver-trabalho-tooltip {
   position: absolute;
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
-  white-space: nowrap;
-  background: #222;
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 6px;
   margin-left: 10px;
-  font-size: 1rem;
-  z-index: 100;
-  pointer-events: none;
-}
-.sidebar-logo-stack:hover .sidebar-logo-tooltip {
-  opacity: 1;
-}
-.menu-btn {
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-radius: 50%;
-}
-.menu-btn:hover {
-  background: #222;
-  transform: scale(1.07) rotate(-10deg);
-  box-shadow: 0 2px 12px 0 #2227;
-}
-.menu-btn .menu-tooltip {
-  opacity: 0;
-  position: absolute;
-  left: 50%;
-  top: 110%;
-  transform: translateX(-50%);
-  background: #222;
+  background: rgba(0,0,0,0.9);
   color: #fff;
+  font-size: 0.92rem;
+  padding: 2px 10px;
   border-radius: 6px;
-  font-size: 1rem;
-  padding: 4px 12px;
-  white-space: nowrap;
   pointer-events: none;
-  transition: opacity .18s;
+  opacity: 0;
+  transition: opacity .3s;
   z-index: 100;
+  white-space: nowrap;
 }
-.menu-btn:hover .menu-tooltip {
+.menu-sanduiche-hover:hover + .menu-tooltip,
+.sidebar-logo-hover:hover + .logo-tooltip,
+.ver-trabalho-hover:hover + .ver-trabalho-tooltip {
   opacity: 1;
-}
-.hero-btn-cta {
-  transition: box-shadow 0.2s, background 0.2s, color 0.2s, transform 0.2s;
-}
-.hero-btn-cta:hover {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 4px 24px 0 #fff6;
-  transform: scale(1.06);
-}
-.hero-btn-cta:active {
-  background: #e6e6e6;
-  color: #111;
 }
 `;
 
+// Utilitário para detectar mobile
+const isMobile = () => typeof window !== "undefined" && window.innerWidth < 1024;
+
 export default function Solucoes() {
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
+  const [mobileSection, setMobileSection] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showMobileMenuTooltip, setShowMobileMenuTooltip] = useState(false);
+  const [showSidebarLogoTooltip, setShowSidebarLogoTooltip] = useState(false);
+  const [showVerTrabalhoTooltip, setShowVerTrabalhoTooltip] = useState(false);
   const solutionsRef = useRef(null);
-  const [sidebarLogoHover, setSidebarLogoHover] = useState(false);
-  const [menuHover, setMenuHover] = useState(false);
+
+  // Mobile: Detectar seção ativa via scroll
+  useEffect(() => {
+    if (!isMobile()) return;
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('[id^="backup"], [id^="bordas"], [id^="dspm"], [id^="receitas"], [id^="digital"]');
+      let found = '';
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          found = section.id;
+        }
+      });
+      setMobileSection(found);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Desktop: efeito hover
+  useEffect(() => {
+    if (isMobile()) return;
+    // Ativar transição de fundo ao passar mouse (hover)
+    // já está implementado via setActiveSection nos eventos onMouseEnter/Leave
+  }, []);
+
+  // Mobile: transição automática de fundo ao rolar (não só ao clicar)
+  // já está implementado acima com mobileSection
 
   useEffect(() => {
-    // HERO video reload fix
     const video = document.getElementById('hero-video');
     if (video && video.paused) {
       video.load();
       video.play().catch(() => {});
     }
-  }, []);
-
-  // Scroll-based background activation for sections
-  useEffect(() => {
-    function onScroll() {
-      const sections = Array.from(document.querySelectorAll('.solution-section'));
-      const scrollY = window.scrollY;
-      let current = null;
-      for (let sec of sections) {
-        const rect = sec.getBoundingClientRect();
-        const top = rect.top + window.scrollY;
-        const bottom = top + rect.height;
-        if (scrollY + window.innerHeight / 2 >= top && scrollY + window.innerHeight / 2 < bottom) {
-          current = sec.id;
-          break;
-        }
-      }
-      setActiveSection(current);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToSection = (e, id) => {
@@ -150,9 +136,27 @@ export default function Solucoes() {
     }
   };
 
-  // Soluções (use os seus dados completos aqui!)
+  // Função para rolar para próxima seção (desktop) ao clicar "Ver nosso trabalho"
+  const scrollToNextSection = (e) => {
+    e.preventDefault();
+    const sections = document.querySelectorAll('[id^="solutions"] > div');
+    let found = false;
+    for (let i = 0; i < sections.length; i++) {
+      const rect = sections[i].getBoundingClientRect();
+      if (rect.top > 40) {
+        sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        found = true;
+        break;
+      }
+    }
+    if (!found && sections.length) {
+      // Scroll para último se necessário
+      sections[sections.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Soluções com imagens e conteúdos completos (AJUSTE: todas images para /image/*.png ou .jpeg)
   const solutions = [
-    // ... (use seu array solutions completo com as imagens em /image/...)
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
@@ -161,10 +165,26 @@ export default function Solucoes() {
       caseStudy: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Com o Backup SaaS Estratégico ativado pela AORKIA, você recupera desde um único e-mail até ambientes inteiros rapidamente, garantindo a continuidade do seu negócio e a tranquilidade da sua equipe.',
       activateContent: 'A AORKIA simplifica a complexidade da proteção de dados SaaS, ativando a plataforma líder da Keepit para oferecer máxima segurança, controle e tranquilidade para sua empresa:',
       features: [
-        { icon: 'ri-shield-keyhole-line', title: 'Proteção Completa e Imutável Contra Ameaças', description: 'Seus dados SaaS são copiados para uma nuvem independente e segura, com backups 100% imutáveis que protegem contra ransomware, exclusões acidentais e corrupção.' },
-        { icon: 'ri-restart-line', title: 'Recuperação Rápida e Granular a Qualquer Momento', description: 'Restaure exatamente o que você precisa – um arquivo, um e-mail, um registro específico ou contas inteiras – em minutos, diretamente para o local original ou para download.' },
-        { icon: 'ri-apps-2-line', title: 'Ampla Cobertura para Seu Ecossistema SaaS', description: 'Garanta a proteção completa dos seus dados críticos em Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Azure AD, entre outras plataformas essenciais.' },
-        { icon: 'ri-file-shield-2-line', title: 'Conformidade Descomplicada e Auditoria Facilitada', description: 'Atenda às exigências da LGPD, GDPR, HIPAA e outras regulamentações com políticas de retenção flexíveis, trilhas de auditoria detalhadas e data centers seguros.' }
+        {
+          icon: 'ri-shield-keyhole-line',
+          title: 'Proteção Completa e Imutável Contra Ameaças',
+          description: 'Seus dados SaaS são copiados para uma nuvem independente e segura, com backups 100% imutáveis que protegem contra ransomware, exclusões acidentais e corrupção.'
+        },
+        {
+          icon: 'ri-restart-line',
+          title: 'Recuperação Rápida e Granular a Qualquer Momento',
+          description: 'Restaure exatamente o que você precisa – um arquivo, um e-mail, um registro específico ou contas inteiras – em minutos, diretamente para o local original ou para download.'
+        },
+        {
+          icon: 'ri-apps-2-line',
+          title: 'Ampla Cobertura para Seu Ecossistema SaaS',
+          description: 'Garanta a proteção completa dos seus dados críticos em Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Azure AD, entre outras plataformas essenciais.'
+        },
+        {
+          icon: 'ri-file-shield-2-line',
+          title: 'Conformidade Descomplicada e Auditoria Facilitada',
+          description: 'Atenda às exigências da LGPD, GDPR, HIPAA e outras regulamentações com políticas de retenção flexíveis, trilhas de auditoria detalhadas e data centers seguros.'
+        }
       ],
       whyContent: 'Muitas empresas ainda acreditam que seus provedores de SaaS (como Microsoft ou Google) são totalmente responsáveis pelo backup de todos os seus dados. No entanto, o modelo de responsabilidade é compartilhada: eles garantem a infraestrutura; você protege seus dados contra perdas acidentais, erros humanos, ameaças internas e ataques de ransomware.',
       whyQuote: 'Seus dados em Microsoft 365, Salesforce ou Google Workspace são ativos cruciais, mas a proteção nativa dessas plataformas não cobre todos os cenários de perda de dados. Erros humanos, exclusões (acidentais ou maliciosas) e, principalmente, ataques de ransomware podem levar à perda irreparável de informações vitais. Um backup SaaS dedicado, independente e imutável, como o ativado pela AORKIA, é essencial para garantir a verdadeira continuidade dos negócios, a conformidade regulatória e a sua total tranquilidade operacional.',
@@ -174,8 +194,156 @@ export default function Solucoes() {
       image: '/image/backup.png',
       logo: '/image/keepit_logo_aorkia.png'
     },
-    // ... demais soluções (igual ao seu array solutions)
+    // ... demais soluções (igual ao código original)
+    {
+      id: 'bordas',
+      title: 'Operações de Bordas Inteligentes',
+      supportText: 'Inteligência na Borda. Decisões Imediatas.',
+      subtitle: 'Inteligência Artificial Onde Sua Empresa Mais Precisa.',
+      caseStudy: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. Com as Operações de Bordas Inteligentes, a AORKIA ativa a IA onde seus dados são gerados, transformando desafios complexos em agilidade e resultados imediatos para o seu negócio.',
+      activateContent: 'A AORKIA simplifica a complexidade de levar IA à borda, ativando plataformas líderes para que você escale suas operações com confiança e inteligência:',
+      features: [
+        {
+          icon: 'ri-global-line',
+          title: 'Escale Suas Operações de IA na Borda com Facilidade',
+          description: 'Implemente e gerencie centralmente aplicações de IA em centenas ou milhares de locais geograficamente distribuídos, com provisionamento automatizado e orquestração simplificada.'
+        },
+        {
+          icon: 'ri-dashboard-3-line',
+          title: 'Gestão Unificada e Inteligente de Dispositivos e Aplicações',
+          description: 'Controle todo o ciclo de vida de seus dispositivos e aplicações de borda a partir de uma única interface, simplificando a gestão, otimizando custos e garantindo a saúde da sua infraestrutura.'
+        },
+        {
+          icon: 'ri-shield-check-line',
+          title: 'Segurança Robusta de Ponta a Ponta na Borda',
+          description: 'Proteja seus dados, modelos de IA e dispositivos na borda com uma arquitetura de segurança abrangente, desde o hardware até a nuvem, garantindo a integridade e confidencialidade de suas operações críticas.'
+        },
+        {
+          icon: 'ri-puzzle-line',
+          title: 'Flexibilidade Tecnológica com Curadoria Especializada',
+          description: 'Tenha liberdade para escolher e ativar as melhores plataformas de software e modelos de IA em uma ampla gama de hardwares de borda, com a curadoria e expertise da AORKIA para atender sua necessidade específica.'
+        }
+      ],
+      whyContent: 'Levar a Inteligência Artificial para mais perto da origem dos dados não é apenas uma tendência, é uma necessidade estratégica para muitas indústrias. A IA na borda permite respostas mais rápidas, operações mais eficientes e insights valiosos gerados instantaneamente.',
+      whyQuote: 'A IA na Borda está se tornando essencial em todas as indústrias, permitindo que as organizações automatizem a tomada de decisões locais em tempo real e reduzam a dependência da infraestrutura em nuvem. Isso melhora a eficiência operacional e os custos, ao mesmo tempo que possibilita análises orientadas por IA, insights preditivos e uma melhor experiência do cliente. Para muitos casos de uso, a IA se moverá para mais perto dos dados, impulsionada pela necessidade de tomada de decisão em tempo real e eficiência operacional. Segundo o Gartner, até 2029, pelo menos 60% das implementações de computação de borda usarão IA composta (tanto IA preditiva quanto IA generativa [GenAI]), em comparação com menos de 5% em 2023.',
+      howContent: 'A AORKIA é sua parceira estratégica para destravar o potencial da IA na borda. Nós simplificamos a complexidade para que você possa focar nos resultados de negócio, enquanto cuidamos da "ativação" da tecnologia com expertise.',
+      howQuote: 'Desbloqueie o poder da IA distribuída com a AORKIA. Nós ativamos e ajudamos você a gerenciar modelos e aplicações de IA na borda em múltiplos locais, eliminando processos manuais com provisionamento automatizado e soluções otimizadas por nossa curadoria. Garanta a segurança de suas implementações com uma arquitetura robusta, protegendo seus dados e propriedade intelectual. Monitore a saúde dos dispositivos e gerencie toda a sua infraestrutura de borda de forma centralizada, reduzindo custos com suporte flexível a hardware e conectividade.',
+      ctaText: 'Pronto para Ativar a Inteligência em suas Operações de Borda? Descubra como a AORKIA pode ativar a Inteligência Artificial na borda da sua empresa.',
+      image: '/image/bordas.png'
+    },
+    {
+      id: 'dspm',
+      title: 'Segurança para Operações Críticas',
+      supportText: 'Visão Total. Controle Ativo.',
+      subtitle: 'Visibilidade e Controle Total dos Seus Dados, Onde Estiverem.',
+      caseStudy: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. Com a Segurança para Operações Críticas da AORKIA, você descobre, classifica e protege seus dados sensíveis de forma proativa e contínua.',
+      activateContent: 'A AORKIA simplifica a complexa tarefa de proteger seus dados em ambientes híbridos e multinuvem, ativando Plataformas de Gestão da Postura de Segurança de Dados (DSPM) que oferecem:',
+      features: [
+        {
+          icon: 'ri-search-eye-line',
+          title: 'Descoberta e Classificação Abrangente de Dados',
+          description: 'Identifique e classifique automaticamente dados sensíveis, incluindo "shadow data", em todos os seus repositórios na nuvem (IaaS, PaaS, SaaS) e sistemas on-premise.'
+        },
+        {
+          icon: 'ri-bar-chart-grouped-line',
+          title: 'Priorização Inteligente de Riscos de Exposição',
+          description: 'Entenda o contexto de risco de cada dado sensível – quem acessa, como é usado, quais permissões existem – para focar seus esforços de correção onde realmente importa.'
+        },
+        {
+          icon: 'ri-shield-check-line',
+          title: 'Remediação Orientada e Conformidade Contínua',
+          description: 'Receba recomendações claras ou automatize a correção de exposições de dados, garantindo a conformidade com LGPD, GDPR, HIPAA e outras normas de forma simplificada e auditável.'
+        },
+        {
+          icon: 'ri-cloud-line',
+          title: 'Segurança de Dados Integrada à Sua Nuvem',
+          description: 'Unifique a segurança dos seus dados com a segurança da sua infraestrutura na nuvem, obtendo uma visão contextualizada para proteger suas aplicações nativas da nuvem de ponta a ponta.'
+        }
+      ],
+      whyContent: 'Em um cenário de inovação acelerada na nuvem, o volume e a complexidade dos dados crescem exponencialmente. Isso dificulta a proteção eficaz, expondo sua empresa a riscos. Plataformas DSPM são essenciais para superar esses desafios.',
+      whyQuote: 'Os dados alimentam a inovação na nuvem, mas o volume e a complexidade dos ambientes híbridos e multinuvem dificultam a segurança desses dados. As soluções isoladas geram muitos alertas, deixando as equipes sem saber onde direcionar os esforços. Seja uma violação de informações de clientes, registros financeiros ou propriedade intelectual, o acesso não autorizado aos dados pode ter graves consequências regulatórias e para a reputação. É crucial unificar a visibilidade da segurança para proteger contra ataques cibernéticos em qualquer ambiente.',
+      howContent: 'A AORKIA é sua parceira para transformar a complexidade da segurança de dados em clareza e controle. Nosso modelo de "ativação" foca em implementar rapidamente a melhor tecnologia DSPM, adaptada à sua realidade, para proteger seus ativos mais valiosos.',
+      howQuote: 'Com a AORKIA, você ativa uma solução DSPM líder que se integra à sua estratégia de segurança na nuvem. Nossa expertise garante a descoberta contínua de todos os seus dados sensíveis, a análise contextualizada dos riscos de exposição e a automação da remediação. Ajudamos sua equipe a tomar medidas contra as ameaças mais perigosas sem adicionar complexidade, garantindo que seus dados estejam protegidos e em conformidade, onde quer que estejam.',
+      ctaText: 'Assuma o Controle da Segurança dos Seus Dados Críticos Hoje Mesmo. Descubra como a AORKIA pode ativar uma postura de segurança de dados proativa e resiliente na sua empresa.',
+      image: '/image/dspm.png'
+    },
+    {
+      id: 'receitas',
+      title: 'Plataforma de Inteligência de Receita com IA',
+      supportText: 'Receita Previsível. Crescimento Acelerado.',
+      subtitle: 'Transforme Dados em Decisões e Receita Previsível.',
+      caseStudy: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? Com a Plataforma de Inteligência de Receita com IA ativada pela AORKIA, você obtém clareza e controle sobre todo o ciclo de receita.',
+      activateContent: 'A AORKIA simplifica a complexidade da gestão de receita, ativando plataformas líderes que utilizam IA para unificar dados, processos e equipes, impulsionando a performance e a previsibilidade:',
+      features: [
+        {
+          icon: 'ri-flow-chart',
+          title: 'Orquestração Completa do Ciclo de Receita',
+          description: 'Unifique todos os sinais de receita – CRM, e-mails, chamadas, dados de uso – em um único modelo de dados para gerenciar cadências e fluxos de trabalho de ponta a ponta.'
+        },
+        {
+          icon: 'ri-line-chart-line',
+          title: 'Previsibilidade e Análise Preditiva de Vendas',
+          description: 'Aumente a precisão das suas previsões de receita, identifique negócios em risco ou com potencial de upsell, e compreenda o que realmente impulsiona seus resultados com IA.'
+        },
+        {
+          icon: 'ri-team-line',
+          title: 'Colaboração e Alinhamento entre Equipes (RevOps)',
+          description: 'Capacite suas equipes de marketing, vendas e sucesso do cliente com insights compartilhados e automação de processos para uma "máquina de receita" eficiente e escalável.'
+        },
+        {
+          icon: 'ri-user-settings-line',
+          title: 'Capacitação Inteligente para Vendedores',
+          description: 'Forneça aos seus vendedores insights acionáveis em tempo real, automação de tarefas administrativas e as melhores próximas ações recomendadas por IA para cada oportunidade.'
+        }
+      ],
+      whyContent: 'No cenário B2B atual, gerar receita de forma previsível e eficiente exige mais do que intuição. É preciso transformar o vasto volume de dados de clientes e interações em inteligência acionável. A Inteligência de Receita com IA é a chave para isso.',
+      whyQuote: 'A Inteligência Artificial aplicada à receita não é apenas uma ferramenta de análise; é um multiplicador de força para suas equipes de vendas, marketing e sucesso do cliente. Ela permite guiar vendedores com insights contextuais em tempo real, automatizar ações críticas e manter os negócios em movimento, adaptando-se não apenas a mudanças no CRM, mas a alterações estratégicas do seu mercado. Com o "Revenue Context" adequado, a IA capacita as empresas a realmente conduzir o crescimento da receita em escala.',
+      howContent: 'A AORKIA é sua parceira na "ativação" de uma cultura orientada a dados e resultados. Nós não apenas implementamos a tecnologia; garantimos que ela se traduza em crescimento real e previsível para o seu negócio.',
+      howQuote: 'Com a AORKIA, você ativa o poder da Inteligência de Receita com IA, indo além da simples integração de CRM. Nossa expertise assegura a unificação de todos os seus sinais de receita (e-mails, conversas, dados de uso, etc.) em um único modelo robusto. Ajudamos a configurar cadências de receita, automatizar fluxos de trabalho e controlar os modelos de IA para que suas equipes tenham os insights e as ações recomendadas mais relevantes. Capacitamos sua equipe com treinamento especializado, garantindo adoção e resultados rápidos.',
+      ctaText: 'Pronto para Transformar Dados em Crescimento Previsível? Descubra como a AORKIA pode ativar a Inteligência de Receita com IA na sua empresa.',
+      image: '/image/receitas.png'
+    },
+    {
+      id: 'digital',
+      title: 'Estratégia de Presença Digital AORKIA',
+      supportText: 'Receita Previsível. Crescimento Acelerado.',
+      subtitle: 'Transforme Sua Presença Digital em Ativo Estratégico.',
+      caseStudy: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
+      activateContent: 'A AORKIA simplifica a complexidade da transformação digital, ativando uma estratégia completa que unifica design, tecnologia e conteúdo para impulsionar resultados mensuráveis:',
+      features: [
+        {
+          icon: 'ri-layout-4-line',
+          title: 'Design Estratégico e Experiência do Usuário',
+          description: 'Criamos experiências digitais que combinam estética sofisticada com funcionalidade intuitiva, refletindo a identidade da sua marca e otimizando a jornada do cliente B2B.'
+        },
+        {
+          icon: 'ri-code-box-line',
+          title: 'Desenvolvimento Tecnológico de Alta Performance',
+          description: 'Implementamos soluções digitais robustas, escaláveis e seguras, utilizando as melhores tecnologias para garantir velocidade, confiabilidade e experiência excepcional.'
+        },
+        {
+          icon: 'ri-file-text-line',
+          title: 'Conteúdo Estratégico e Geração de Demanda',
+          description: 'Desenvolvemos conteúdo de autoridade que posiciona sua empresa como líder de pensamento, atraindo leads qualificados e nutrindoos ao longo de todo o ciclo de compra B2B.'
+        },
+        {
+          icon: 'ri-line-chart-line',
+          title: 'Análise de Dados e Otimização Contínua',
+          description: 'Implementamos métricas claras e processos de otimização contínua, transformando dados em insights acionáveis para melhorar constantemente sua presença digital.'
+        }
+      ],
+      whyContent: 'No ambiente B2B atual, uma presença digital estratégica é essencial para construir autoridade, gerar demanda qualificada e acelerar ciclos de vendas. Não se trata apenas de estar online, mas de criar um ecossistema digital que impulsione resultados de negócio.',
+      whyQuote: 'A transformação digital B2B vai muito além de um site bonito ou presença em redes sociais. Trata-se de criar um ecossistema digital coeso que funcione como uma extensão da sua estratégia de negócios. Empresas B2B com presença digital estratégica geram 3,5x mais leads e encurtam seus ciclos de vendas em até 70%. No entanto, muitas organizações ainda tratam seus ativos digitais como custos operacionais, não como investimentos estratégicos com ROI mensurável. A AORKIA transforma sua presença digital em um motor de crescimento, não apenas um centro de custos.',
+      howContent: 'A AORKIA é sua parceira na "ativação" de uma presença digital estratégica. Nosso modelo vai além da implementação técnica, garantindo que sua presença digital se traduza em resultados de negócio concretos.',
+      howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital completa e orientada a resultados. Nossa abordagem integra design estratégico, desenvolvimento tecnológico de alta performance, conteúdo de autoridade e análise de dados em um ecossistema digital coeso. Implementamos rapidamente, com foco na experiência do usuário B2B e na geração de demanda qualificada. Capacitamos sua equipe para gerenciar e otimizar continuamente sua presença digital, transformando-a em um verdadeiro ativo estratégico para o crescimento do seu negócio.',
+      ctaText: 'Pronto para Transformar Sua Presença Digital em Vantagem Competitiva? Descubra como a AORKIA pode ativar uma Estratégia de Presença Digital que impulsione resultados concretos para sua empresa.',
+      image: '/image/digital.png'
+    }
   ];
+
+  // Navbar Mobile: só uma barra fixa com logo e sanduíche, logo no extremo oposto ao menu
+  // Sidebar Desktop: logo fixa, hover na logo (anima + tooltip), sanduíche (anima + tooltip)
+  // Footer: só o segundo, incluir logo, endereço do instagram corrigido
 
   return (
     <>
@@ -187,9 +355,9 @@ export default function Solucoes() {
       </Head>
       <main className="bg-black text-white min-h-screen">
 
-        {/* Navbar mobile: logo branca no extremo esquerdo, sanduíche extremo direito */}
-        <nav className="w-full flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800 lg:hidden">
-          <div className="aorkia-logo-stack" style={{minWidth:120}}>
+        {/* Navbar mobile apenas logo branca, fixa */}
+        <nav className="w-full flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800 lg:hidden fixed top-0 left-0 z-40">
+          <div className="aorkia-logo-stack">
             <Image
               src="/image/logo_aorkia_white.png"
               alt="AORKIA White"
@@ -199,51 +367,51 @@ export default function Solucoes() {
               priority
             />
           </div>
-          <button
-            className="menu-btn relative text-white text-3xl p-2"
-            style={{outline: 'none', border: 'none', background: 'none'}}
-            aria-label="Menu"
-            onMouseEnter={() => setMenuHover(true)}
-            onMouseLeave={() => setMenuHover(false)}
-          >
-            <i className="ri-menu-line"></i>
-            <span className="menu-tooltip">{menuHover && 'Menu'}</span>
-          </button>
+          <div className="relative">
+            <button
+              className="text-white text-3xl p-2 menu-sanduiche-hover"
+              aria-label="Menu"
+              onMouseEnter={()=>setShowMobileMenuTooltip(true)}
+              onMouseLeave={()=>setShowMobileMenuTooltip(false)}
+              onClick={()=>setIsMenuOpen(!isMenuOpen)}
+            >
+              <i className="ri-menu-line"></i>
+            </button>
+            {showMobileMenuTooltip && <span className="menu-tooltip">Menu</span>}
+          </div>
         </nav>
 
-        {/* Sidebar desktop: duas logos brancas alternando, animação, tooltip "Home" */}
-        <aside className="hidden lg:flex flex-col items-center fixed left-0 top-0 pt-10 z-50"
-          style={{width: '120px', height: '100vh'}}
-        >
-          <div
-            className="sidebar-logo-stack mb-8"
-            tabIndex={0}
-            onMouseEnter={() => setSidebarLogoHover(true)}
-            onMouseLeave={() => setSidebarLogoHover(false)}
-            onFocus={() => setSidebarLogoHover(true)}
-            onBlur={() => setSidebarLogoHover(false)}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            role="button"
-            aria-label="Home"
-          >
-            <Image
-              src="/image/logo_aorkia_white.png"
-              alt="AORKIA White 1"
-              width={120}
-              height={48}
-              className="logo1"
-              priority
-            />
-            <Image
-              src="/image/logo_aorkia_white.png"
-              alt="AORKIA White 2"
-              width={120}
-              height={48}
-              className="logo2"
-              priority
-              style={{opacity:0.7, filter:'brightness(1.4)'}}
-            />
-            <span className="sidebar-logo-tooltip">{sidebarLogoHover && 'Home'}</span>
+        {/* Sidebar desktop apenas logo branca, fixa, com animação e tooltip */}
+        <aside className="hidden lg:flex flex-col items-center fixed left-0 top-0 pt-10 z-50" style={{width: '120px', height: '100vh'}}>
+          <div className="relative mb-8">
+            <div
+              className="aorkia-logo-stack sidebar-logo-hover"
+              tabIndex={0}
+              onMouseEnter={()=>setShowSidebarLogoTooltip(true)}
+              onMouseLeave={()=>setShowSidebarLogoTooltip(false)}
+            >
+              <Image
+                src="/image/logo_aorkia_white.png"
+                alt="AORKIA White"
+                width={120}
+                height={48}
+                className="aorkia-white"
+                priority
+              />
+            </div>
+            {showSidebarLogoTooltip && <span className="logo-tooltip">Home</span>}
+          </div>
+          <div className="relative mt-4">
+            <button
+              className="text-white text-3xl p-2 menu-sanduiche-hover"
+              aria-label="Menu"
+              onMouseEnter={()=>setShowMobileMenuTooltip(true)}
+              onMouseLeave={()=>setShowMobileMenuTooltip(false)}
+              onClick={()=>setIsMenuOpen(!isMenuOpen)}
+            >
+              <i className="ri-menu-line"></i>
+            </button>
+            {showMobileMenuTooltip && <span className="menu-tooltip">Menu</span>}
           </div>
         </aside>
 
@@ -271,68 +439,81 @@ export default function Solucoes() {
               <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
                 Explore como a AORKIA ativa tecnologia de ponta para transformar seus desafios complexos em crescimento rentável e sustentável.
               </p>
+              <button 
+                onClick={(e) => scrollToSection(e, 'solutions')}
+                className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500"
+              >
+                Explorar soluções
+              </button>
               <button
-                className="hero-btn-cta text-lg font-medium px-8 py-3 border text-white border-white"
-                onClick={e => {
-                  scrollToSection(e, 'solutions');
-                  e.currentTarget.blur();
-                }}
-                onMouseEnter={e => { e.currentTarget.classList.add('animate-pulse'); }}
-                onMouseLeave={e => { e.currentTarget.classList.remove('animate-pulse'); }}
+                className="mt-6 px-8 py-3 text-lg font-medium border border-primary text-primary bg-transparent ver-trabalho-hover relative"
+                onMouseEnter={()=>setShowVerTrabalhoTooltip(true)}
+                onMouseLeave={()=>setShowVerTrabalhoTooltip(false)}
+                onClick={scrollToNextSection}
+                style={{minWidth:180}}
               >
                 Ver nosso trabalho
+                {showVerTrabalhoTooltip && <span className="ver-trabalho-tooltip">Rolar para próxima seção</span>}
               </button>
             </div>
           </div>
         </section>
 
-        {/* Seção de Soluções */}
-        <section id="solutions" ref={solutionsRef} className="relative lg:pl-[120px]">
-          {solutions.map((solution, index) => (
-            <div
+        {/* Seção de Soluções - conteúdo completo */}
+        <section id="solutions" ref={solutionsRef} className="relative lg:pl-[120px] mt-20">
+          {solutions.map((solution, index) => {
+            // Mobile: fundo da seção troca conforme rolagem (mobileSection) e não no hover
+            // Desktop: fundo da seção troca no hover (activeSection)
+            const isActive = isMobile()
+              ? mobileSection === solution.id
+              : activeSection === solution.id;
+            return (
+            <div 
               key={solution.id}
               id={solution.id}
-              className={`solution-section relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800`}
+              className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+              onMouseEnter={!isMobile() ? () => setActiveSection(solution.id) : undefined}
+              onMouseLeave={!isMobile() ? () => setActiveSection(null) : undefined}
             >
-              {/* Background transition by scroll */}
-              <div
+              {/* Background Image (aparece em transição scroll no mobile, hover no desktop) */}
+              <div 
                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-                  activeSection === solution.id ? 'opacity-100' : 'opacity-0'
+                  isActive ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ backgroundImage: `url(${solution.image})` }}
               >
                 <div className="absolute inset-0 bg-black/60"></div>
               </div>
-              {/* Background branco quando inativa */}
-              <div
+              {/* Background Color (aparece quando não está ativo) */}
+              <div 
                 className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-                  activeSection === solution.id ? 'opacity-0' : 'opacity-100'
+                  isActive ? 'opacity-0' : 'opacity-100'
                 }`}
               ></div>
-              {/* Conteúdo */}
+              {/* Content */}
               <div className="relative z-10 py-24 md:py-32">
                 <div className="container mx-auto max-w-7xl px-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                     <div>
                       <p className={`text-lg mb-2 transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                        isActive ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         {solution.supportText}
                       </p>
                       <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-white' : 'text-black'
+                        isActive ? 'text-white' : 'text-black'
                       }`}>
                         {solution.title}
                       </h2>
                       <h3 className={`text-2xl md:text-3xl font-medium mb-8 transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                        isActive ? 'text-primary' : 'text-blue-700'
                       }`}>
                         {solution.subtitle}
                       </h3>
                       {solution.logo && (
                         <div className="mt-4 mb-8">
-                          <Image
-                            src={solution.logo}
+                          <Image 
+                            src={solution.logo} 
                             alt="Logo"
                             className="h-12 w-auto"
                             width={160}
@@ -344,20 +525,21 @@ export default function Solucoes() {
                     </div>
                     <div>
                       <p className={`text-xl leading-relaxed transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                        isActive ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         {solution.caseStudy}
                       </p>
                     </div>
                   </div>
+                  {/* Features Section */}
                   <div className="mb-24">
                     <h3 className={`text-2xl md:text-3xl font-bold mb-12 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
+                      isActive ? 'text-white' : 'text-black'
                     }`}>
                       Ative e Escale {solution.title}
                     </h3>
                     <p className={`text-xl mb-12 max-w-4xl transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      isActive ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {solution.activateContent}
                     </p>
@@ -365,18 +547,18 @@ export default function Solucoes() {
                       {solution.features.map((feature, idx) => (
                         <div key={idx} className="flex">
                           <div className={`text-4xl mr-6 transition-colors duration-500 ${
-                            activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                            isActive ? 'text-primary' : 'text-blue-700'
                           }`}>
                             <i className={feature.icon}></i>
                           </div>
                           <div>
                             <h4 className={`text-xl font-bold mb-3 transition-colors duration-500 ${
-                              activeSection === solution.id ? 'text-white' : 'text-black'
+                              isActive ? 'text-white' : 'text-black'
                             }`}>
                               {feature.title}
                             </h4>
                             <p className={`transition-colors duration-500 ${
-                              activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                              isActive ? 'text-gray-300' : 'text-gray-700'
                             }`}>
                               {feature.description}
                             </p>
@@ -388,7 +570,7 @@ export default function Solucoes() {
                   {/* Why Section */}
                   <div className="mb-24">
                     <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
+                      isActive ? 'text-white' : 'text-black'
                     }`}>
                       Por Que {solution.id === 'backup' ? 'Fazer Backup dos Seus Dados SaaS?' : 
                               solution.id === 'bordas' ? 'Executar IA na Borda?' :
@@ -397,37 +579,37 @@ export default function Solucoes() {
                               'Priorizar uma Estratégia de Presença Digital?'}
                     </h3>
                     <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      isActive ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {solution.whyContent}
                     </p>
                     <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${
-                      activeSection === solution.id ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
+                      isActive ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
                     }`}>
                       <p className={`text-lg italic transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                        isActive ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         "{solution.whyQuote}"
                       </p>
                     </div>
                   </div>
-                  {/* How Section */}
+                  {/* How AORKIA Helps Section */}
                   <div className="mb-24">
                     <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
+                      isActive ? 'text-white' : 'text-black'
                     }`}>
                       Como a AORKIA Ajuda Você com {solution.title}
                     </h3>
                     <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      isActive ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {solution.howContent}
                     </p>
                     <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${
-                      activeSection === solution.id ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
+                      isActive ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
                     }`}>
                       <p className={`text-lg italic transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                        isActive ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         "{solution.howQuote}"
                       </p>
@@ -436,12 +618,12 @@ export default function Solucoes() {
                   {/* CTA Section */}
                   <div className="text-center max-w-4xl mx-auto">
                     <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
+                      isActive ? 'text-white' : 'text-black'
                     }`}>
                       Comece com a AORKIA
                     </h3>
                     <p className={`text-xl mb-12 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      isActive ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {solution.ctaText}
                     </p>
@@ -449,7 +631,7 @@ export default function Solucoes() {
                       <Link 
                         href="/contato" 
                         className={`px-8 py-4 text-lg font-medium rounded-lg transition-colors duration-500 ${
-                          activeSection === solution.id 
+                          isActive 
                           ? 'bg-primary hover:bg-primary/90 text-white' 
                           : 'bg-blue-700 hover:bg-blue-800 text-white'
                         }`}
@@ -459,7 +641,7 @@ export default function Solucoes() {
                       <Link 
                         href="/contato" 
                         className={`px-8 py-4 text-lg font-medium rounded-lg border transition-colors duration-500 ${
-                          activeSection === solution.id 
+                          isActive 
                           ? 'border-white text-white hover:bg-white hover:text-black' 
                           : 'border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white'
                         }`}
@@ -471,7 +653,7 @@ export default function Solucoes() {
                 </div>
               </div>
             </div>
-          ))}
+          )})}
         </section>
 
         {/* Seção Formulário */}
@@ -550,47 +732,29 @@ export default function Solucoes() {
           </div>
         </section>
 
-        {/* Footer ÚNICO, completo, logo canto superior direito, instagram corrigido */}
-        <footer className="bg-[#0e1622] border-t border-gray-800 pt-12 pb-6 lg:pl-[120px]">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start md:items-center">
-            <div className="flex-1 flex flex-col items-center md:items-start">
-              <div className="mb-6 text-center md:text-left text-lg text-gray-300 max-w-xl">
-                AORKIA: Ativamos tecnologia global de ponta, impulsionando diferenciação estratégica, inovação acelerada e crescimento rentável para empresas B2B.
-              </div>
-              <div className="mt-4 flex gap-4">
-                <a href="https://www.linkedin.com/company/aorkia/" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-primary">
-                  <i className="ri-linkedin-box-fill"></i>
-                </a>
-                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-primary">
-                  <i className="ri-instagram-line"></i>
-                </a>
-              </div>
+        {/* FOOTER final correto (apenas um, com logo e instagram correto) */}
+        <footer className="bg-black border-t border-gray-800 py-12 lg:pl-[120px]">
+          <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div className="flex flex-col items-start md:items-end w-full md:w-auto">
+              <Image
+                src="/image/logo_aorkia_white.png"
+                alt="AORKIA"
+                width={120}
+                height={48}
+                className="aorkia-white mb-2"
+                priority
+              />
             </div>
-            <div className="flex-1 mt-8 md:mt-0 flex flex-col items-center md:items-end justify-end">
-              <div className="w-full flex flex-row justify-end">
-                <Image
-                  src="/image/logo_aorkia_white.png"
-                  alt="AORKIA"
-                  width={120}
-                  height={48}
-                  className="aorkia-white mb-2"
-                  priority
-                />
+            <div className="flex flex-col items-center md:items-end w-full md:w-auto">
+              <div className="text-right text-lg text-gray-400 mb-3 max-w-xl">
+                AORKIA: Ativamos tecnologia global de ponta, impulsionando diferenciação estratégica, inovação acelerada e crescimento rentável para empresas B2B
               </div>
-              <div className="text-md text-gray-400 text-right mt-2">
+              <div className="text-right text-gray-400 text-sm">
                 Av. Getúlio Vargas, 671 — Sala 500<br />
                 Belo Horizonte - MG<br />
                 +55 31 98801-9006<br />
-                contato@aorkia.com
-              </div>
-              <Link href="/contato" className="mt-3 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors text-center w-fit block">
-                Entre em contato
-              </Link>
-              <div className="text-xs text-gray-500 mt-4">
-                © {new Date().getFullYear()} AORKIA. Todos os direitos reservados.<br />
-                <Link href="/privacidade" className="underline hover:text-primary">Política de Privacidade</Link> | <Link href="/termos" className="underline hover:text-primary">Termos de Uso</Link>
-                <br />
-                Site Desenvolvido por AORKIA – Estratégia de Presença Digital
+                contato@aorkia.com<br />
+                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">@aorkia.tech</a>
               </div>
             </div>
           </div>
