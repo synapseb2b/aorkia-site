@@ -3,15 +3,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Ajustar caminhos das imagens e vídeos
-// Corrigir logo em NAVBAR/footer e caminho SVG
-// Corrigir vídeo Hero
-
 export default function Solucoes() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
   const solutionsRef = useRef(null);
 
+  // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -24,6 +21,7 @@ export default function Solucoes() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Função para rolagem suave ao clicar em links internos
   const scrollToSection = (e, id) => {
     e.preventDefault();
     const section = document.getElementById(id);
@@ -32,15 +30,7 @@ export default function Solucoes() {
     }
   };
 
-  // Caminho correto para o logo (PNG) para NAVBAR e Footer
-  const aorkiaLogoColor = '/image/logo_aorkia_color.png';
-  const aorkiaLogoWhite = '/image/logo_aorkia_white.png';
-
-  // Caminho correto para o logo Keepit (SVG trocado por PNG por limitação Next.js em public/image)
-  // Se o SVG está em public/image/keepit_logo_aorkia.svg, o caminho é '/image/keepit_logo_aorkia.svg'
-  // Se houver problemas de build/deploy, troque para PNG (keepit_logo_aorkia.png)
-  const keepitLogoAorkia = '/image/keepit_logo_aorkia.svg'; // caso não funcione, use .png
-
+  // Soluções com suas respectivas imagens e conteúdos (corrigidos para /image/)
   const solutions = [
     {
       id: 'backup',
@@ -77,7 +67,7 @@ export default function Solucoes() {
       howQuote: 'Com a AORKIA, você não apenas adquire uma solução líder global como a Keepit; você ativa uma estratégia completa e robusta de proteção para seus dados SaaS. Nossa expertise assegura uma implementação ágil e customizada às suas políticas, configuração otimizada para suas necessidades de conformidade e retenção de dados, e suporte especializado contínuo. Capacitamos sua equipe para gerenciar os backups com facilidade e confiança, transformando a segurança de dados em um pilar fundamental para o crescimento e a resiliência do seu negócio.',
       ctaText: 'Proteja o Coração Digital do Seu Negócio Agora Mesmo. Descubra como o Backup SaaS Estratégico ativado pela AORKIA pode blindar seus dados críticos na nuvem.',
       image: '/image/backup.png',
-      logo: keepitLogoAorkia // Corrigido caminho SVG
+      logo: '/image/keepit_logo_aorkia.svg'
     },
     {
       id: 'bordas',
@@ -234,32 +224,9 @@ export default function Solucoes() {
       </Head>
 
       <main className="bg-black text-white">
-
-        {/* EXEMPLO DE AJUSTE PARA NAVBAR e FOOTER */}
-        {/* Exemplo Navbar: */}
-        {/* <nav className="w-full py-4 flex items-center justify-between bg-black">
-          <Link href="/">
-            <Image
-              src={aorkiaLogoWhite}
-              alt="AORKIA Logo"
-              height={40}
-              width={140}
-              priority
-            />
-          </Link>
-          ...
-        </nav> */}
-
-        {/* Seção Hero */}
+        {/* Seção Hero - Estilo Jam3 */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            // REMOVE poster ou srcSet caso tenha
-            className="absolute inset-0 w-full h-full object-cover"
-          >
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/image/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
@@ -285,6 +252,7 @@ export default function Solucoes() {
                 Explore como a AORKIA ativa tecnologia de ponta para transformar seus desafios complexos em crescimento rentável e sustentável.
               </p>
               
+              {/* Botão para rolar para as soluções */}
               <button 
                 onClick={(e) => scrollToSection(e, 'solutions')}
                 className={`text-lg font-medium px-8 py-3 border transition-all duration-500 ${
@@ -301,7 +269,7 @@ export default function Solucoes() {
           </div>
         </section>
 
-        {/* Seção de Soluções */}
+        {/* Seção de Soluções - Estilo Jam3 */}
         <section id="solutions" ref={solutionsRef} className="relative">
           {solutions.map((solution, index) => (
             <div 
@@ -321,12 +289,14 @@ export default function Solucoes() {
                 <div className="absolute inset-0 bg-black/60"></div>
               </div>
               
+              {/* Background Color (aparece quando não está em hover) */}
               <div 
                 className={`absolute inset-0 bg-white transition-opacity duration-500 ${
                   activeSection === solution.id ? 'opacity-0' : 'opacity-100'
                 }`}
               ></div>
               
+              {/* Content */}
               <div className="relative z-10 py-24 md:py-32">
                 <div className="container mx-auto max-w-7xl px-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
@@ -350,7 +320,8 @@ export default function Solucoes() {
                         <div className="mt-4 mb-8">
                           <Image 
                             src={solution.logo} 
-                            alt="Logo"
+                            alt="Logo" 
+                            className="h-12 w-auto"
                             width={160}
                             height={48}
                             priority
@@ -366,30 +337,216 @@ export default function Solucoes() {
                       </p>
                     </div>
                   </div>
-                  {/* ... resto igual ... */}
-                  {/* Não alterado */}
-                  {/* ... */}
+
+                  {/* Features Section */}
+                  <div className="mb-24">
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-12 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      Ative e Escale {solution.title}
+                    </h3>
+                    <p className={`text-xl mb-12 max-w-4xl transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {solution.activateContent}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                      {solution.features.map((feature, idx) => (
+                        <div key={idx} className="flex">
+                          <div className={`text-4xl mr-6 transition-colors duration-500 ${
+                            activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                          }`}>
+                            <i className={feature.icon}></i>
+                          </div>
+                          <div>
+                            <h4 className={`text-xl font-bold mb-3 transition-colors duration-500 ${
+                              activeSection === solution.id ? 'text-white' : 'text-black'
+                            }`}>
+                              {feature.title}
+                            </h4>
+                            <p className={`transition-colors duration-500 ${
+                              activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                            }`}>
+                              {feature.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Why Section */}
+                  <div className="mb-24">
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      Por Que {solution.id === 'backup' ? 'Fazer Backup dos Seus Dados SaaS?' : 
+                              solution.id === 'bordas' ? 'Executar IA na Borda?' :
+                              solution.id === 'dspm' ? 'Priorizar a Segurança da Postura dos Seus Dados (DSPM)?' :
+                              solution.id === 'receitas' ? 'Investir em Inteligência de Receita com IA?' :
+                              'Priorizar uma Estratégia de Presença Digital?'}
+                    </h3>
+                    <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {solution.whyContent}
+                    </p>
+                    <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${
+                      activeSection === solution.id ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
+                    }`}>
+                      <p className={`text-lg italic transition-colors duration-500 ${
+                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      }`}>
+                        "{solution.whyQuote}"
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* How AORKIA Helps Section */}
+                  <div className="mb-24">
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      Como a AORKIA Ajuda Você com {solution.title}
+                    </h3>
+                    <p className={`text-xl mb-8 max-w-4xl transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {solution.howContent}
+                    </p>
+                    <div className={`p-8 border-l-4 max-w-4xl transition-all duration-500 ${
+                      activeSection === solution.id ? 'border-primary bg-black/30' : 'border-blue-700 bg-gray-100'
+                    }`}>
+                      <p className={`text-lg italic transition-colors duration-500 ${
+                        activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                      }`}>
+                        "{solution.howQuote}"
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* CTA Section */}
+                  <div className="text-center max-w-4xl mx-auto">
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      Comece com a AORKIA
+                    </h3>
+                    <p className={`text-xl mb-12 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {solution.ctaText}
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-6">
+                      <Link 
+                        href="/contato" 
+                        className={`px-8 py-4 text-lg font-medium rounded-lg transition-colors duration-500 ${
+                          activeSection === solution.id 
+                          ? 'bg-primary hover:bg-primary/90 text-white' 
+                          : 'bg-blue-700 hover:bg-blue-800 text-white'
+                        }`}
+                      >
+                        Agendar Demonstração
+                      </Link>
+                      <Link 
+                        href="/contato" 
+                        className={`px-8 py-4 text-lg font-medium rounded-lg border transition-colors duration-500 ${
+                          activeSection === solution.id 
+                          ? 'border-white text-white hover:bg-white hover:text-black' 
+                          : 'border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white'
+                        }`}
+                      >
+                        Solicitar Blueprint Técnico
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </section>
 
-        {/* Exemplo de FOOTER corrigido */}
-        {/* 
-        <footer className="bg-black py-10 flex flex-col items-center">
-          <Image
-            src={aorkiaLogoWhite}
-            alt="AORKIA Logo"
-            width={140}
-            height={40}
-            priority
-          />
-          <p className="text-gray-400 mt-2 text-sm">© 2025 AORKIA. Todos os direitos reservados.</p>
-        </footer>
-        */}
-
-        {/* ... resto igual ... */}
+        {/* Seção Formulário - Estilo Jam3 */}
+        <section className="py-24 md:py-32 bg-black">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu negócio?</h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
+                </p>
+              </div>
+              
+              <div className="bg-gray-900 p-8 rounded-lg">
+                <form className="space-y-6" action="https://formspree.io/f/mkgrleqq" method="POST">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+                    <input 
+                      type="text" 
+                      id="name"
+                      name="name"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email corporativo</label>
+                    <input 
+                      type="email" 
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">WhatsApp / Telefone</label>
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      name="phone"
+                      required
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">Selecione abaixo a frente que mais representa o seu foco prioritário neste momento:</label>
+                    <div className="space-y-3">
+                      {solutions.map((solution) => (
+                        <div key={solution.id} className="flex items-center">
+                          <input 
+                            type="radio" 
+                            id={solution.id} 
+                            name="focus"
+                            value={solution.title}
+                            className="h-5 w-5 text-primary focus:ring-primary border-gray-600"
+                          />
+                          <label htmlFor={solution.id} className="ml-3 text-gray-300">
+                            {solution.title}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Solicitar Contato
+                  </button>
+                </form>
+                
+                <p className="mt-6 text-sm text-gray-400 text-center">
+                  Sua mensagem foi enviada. Um de nossos especialistas em ativação de soluções responderá em breve.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
