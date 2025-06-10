@@ -485,8 +485,6 @@ function MyApp({ Component, pageProps }) {
                 </button>
               </div>
             </div>
-          </div>
-          </div>
 
       {/* Banner de Cookies */}
       {showCookieBanner && !cookieConsent && (
@@ -524,4 +522,3 @@ function MyApp({ Component, pageProps }) {
 }}
 
 export default MyApp;
-
