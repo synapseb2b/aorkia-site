@@ -1,286 +1,526 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import '../styles/style.css';
 
-export default function Home() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+function MyApp({ Component, pageProps }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState(false);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeProduct, setActiveProduct] = useState(null);
-  const productsRef = useRef(null);
-  const workSectionRef = useRef(null);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [logoToggle, setLogoToggle] = useState(false);
+  const logoIntervalRef = useRef(null);
+  const [emailCopied, setEmailCopied] = useState(false);
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para carregar scripts externos como RemixIcon
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
+    const remixiconLink = document.createElement('link');
+    remixiconLink.href = 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css';
+    remixiconLink.rel = 'stylesheet';
+    document.head.appendChild(remixiconLink);
 
-      // Detectar qual seção está visível e ativar transição
-      const sections = document.querySelectorAll('[data-product-id]');
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
-        if (isVisible) {
-          const productId = section.getAttribute('data-product-id');
-          setActiveProduct(productId);
-        }
-      });
+    // Verificar se o usuário já deu consentimento para cookies
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) {
+      setCookieConsent(true);
+    } else {
+      // Mostrar banner de cookies após um pequeno delay
+      setTimeout(() => {
+        setShowCookieBanner(true);
+      }, 1500);
+    }
+
+    return () => {
+      if (document.head.contains(remixiconLink)) {
+        document.head.removeChild(remixiconLink);
+      }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função para rolagem suave ao clicar em "Ver nosso trabalho"
-  const scrollToWork = (e) => {
+  // Preloader removido conforme solicitado
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  // Efeito para alternar entre logos (branca e colorida)
+  useEffect(() => {
+    logoIntervalRef.current = setInterval(() => {
+      setLogoToggle(prev => !prev);
+    }, 3000);
+
+    return () => {
+      if (logoIntervalRef.current) {
+        clearInterval(logoIntervalRef.current);
+      }
+    };
+  }, []);
+
+  // Efeito para prevenir rolagem quando menu mobile está aberto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [mobileMenuOpen]);
+
+  // Função para aceitar cookies
+  const acceptCookies = () => {
+    localStorage.setItem('cookieConsent', 'true');
+    setCookieConsent(true);
+    setShowCookieBanner(false);
+  };
+
+  // Função para recusar cookies
+  const declineCookies = () => {
+    localStorage.setItem('cookieConsent', 'false');
+    setCookieConsent(false);
+    setShowCookieBanner(false);
+  };
+
+  // Função para rolar para a próxima seção
+  const scrollToNextSection = (e) => {
     e.preventDefault();
-    const workSection = document.getElementById('work');
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const nextSection = document.getElementById('work');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  // Função para ativar produto no hover/touch
-  const handleProductInteraction = (productId) => {
-    setActiveProduct(productId);
+  // Função para copiar email para área de transferência
+  const copyEmailToClipboard = () => {
+    navigator.clipboard.writeText('contato@aorkia.com').then(() => {
+      setEmailCopied(true);
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 3000);
+    });
   };
-
-  // Função para desativar produto (apenas no desktop)
-  const handleProductLeave = () => {
-    // No mobile, mantém ativo; no desktop, desativa
-    if (window.innerWidth >= 768) {
-      setActiveProduct(null);
-    }
-  };
-
-  // Produtos com suas respectivas imagens (corrigido para /image/)
-  const products = [
-    {
-      id: 'solucoes',
-      title: 'Soluções Especializadas',
-      supportText: 'AORKIA',
-      description: 'Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.',
-      image: '/image/solucoesespecializadas.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'backup',
-      title: 'Backup SaaS Estratégico',
-      supportText: 'Imutável. Independente. Inteligente.',
-      description: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Para garantir proteção de dados independente, completa e sempre recuperável, a AORKIA ativa a Keepit – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.',
-      image: '/image/backup.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'bordas',
-      title: 'Operações de Bordas Inteligentes',
-      supportText: 'Inteligência na Borda. Decisões Imediatas.',
-      description: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. A AORKIA ativa Plataformas Edge AI, garantindo inteligência, segurança e conformidade para suas operações na borda.',
-      image: '/image/bordas.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'dspm',
-      title: 'Segurança para Operações Críticas',
-      supportText: 'Visão Total. Controle Ativo.',
-      description: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. A AORKIA ativa Plataformas Data Security Posture Management (DSPM), que potencializam a descoberta, classificação, monitoramento e proteção contínuos dos seus dados sensíveis em ambientes multicloud e híbridos.',
-      image: '/image/dspm.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'receitas',
-      title: 'Plataformas de Inteligência de Receita com IA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      description: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? A AORKIA ativa Plataformas de Inteligência de Receita com IA, transformando seus dados de vendas e CRM em insights preditivos e automação inteligente.',
-      image: '/image/receitas.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'digital',
-      title: 'Estratégia de Presença Digital AORKIA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      description: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
-      image: '/image/digital.png',
-      link: '/solucoes'
-    }
-  ];
+  // Função para forçar o formulário Google
+  useEffect(() => {
+  const form = document.querySelector("form");
+  if (form && form.action.includes("formspree")) {
+    form.action = "https://script.google.com/macros/s/AKfycbyvmpYg121WTnYrBaxDJuLk296DTfRIG_uoCuFqrLQ6/dev";
+    console.log("⚠️ Formspree sobrescrito pelo script da AORKIA.");
+  }
+}, []);
 
   return (
     <>
       <Head>
-        <title>AORKIA | Tecnologia de Ponta. Visão de Futuro.</title>
-        <meta name="description" content="Tecnologia de Ponta. Visão de Futuro." />
-        <meta name="theme-color" content="#0076FF" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="icon" href="/favicon.ico" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    primary: "#0076FF",
+                    secondary: "#4A90E2",
+                    success: "#0076FF",
+                    'dark-blue-1': "#002C4C",
+                    'dark-blue-2': "#0D3A64",
+                    'light-blue': "#2196F3",
+                  }
+                },
+              },
+            };
+          `
+        }} />
       </Head>
 
-      <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
-        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/video_hero.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo.
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
-
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Boas-vindas à AORKIA.
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Tecnologia de Ponta. <br className="hidden md:block" />
-                Visão de Futuro.
-              </h1>
+      {/* Preloader - Estilo Jam3 - Apenas logo com iluminação */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
+          <div className="preloader-content text-center">
+            <div className="logo-container relative">
+              <Image 
+                src="/image/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                className="h-32 w-auto z-10 relative animate-fade-in" 
+                width={300}
+                height={128}
+                priority
+              />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
             </div>
           </div>
+        </div>
+      )}
 
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a 
-              href="#work" 
-              onClick={scrollToWork}
-              className="text-white text-4xl"
-            >
-              <i className="ri-arrow-down-line"></i>
-            </a>
+      {/* Desktop Navbar */}
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 hidden md:block">
+        <div className="container mx-auto max-w-7xl px-4 h-full flex justify-center items-center">
+          <div className="flex items-center space-x-12">
+            <Link href="/" className="py-2">
+              <div className="logo-container h-12 relative">
+                <Image 
+                  src="/image/logo_aorkia_white.png" 
+                  alt="AORKIA" 
+                  className="h-20 w-auto"
+                  width={160}
+                  height={64}
+                  priority
+                />
+              </div>
+            </Link>
+            <nav className="flex space-x-8">
+              <Link href="/" className="text-white hover:text-primary transition-colors text-lg font-medium">
+                Home
+              </Link>
+              <Link href="/solucoes" className="text-white hover:text-primary transition-colors text-lg font-medium">
+                Soluções
+              </Link>
+              <Link href="/sobre" className="text-white hover:text-primary transition-colors text-lg font-medium">
+                Sobre
+              </Link>
+              <Link href="/contato" className="text-white hover:text-primary transition-colors text-lg font-medium">
+                Contato
+              </Link>
+            </nav>
           </div>
-        </section>
+        </div>
+      </header>
 
-        {/* Seção Produtos - Estilo Jam3 */}
-        <section id="work" ref={workSectionRef} className="relative">
-          {products.map((product, index) => (
-            <div 
-              key={product.id}
-              data-product-id={product.id}
-              className="relative w-full h-screen md:h-[80vh] overflow-hidden group border-t border-b border-gray-800"
-              onMouseEnter={() => handleProductInteraction(product.id)}
-              onMouseLeave={handleProductLeave}
-              onTouchStart={() => handleProductInteraction(product.id)}
-              onClick={() => handleProductInteraction(product.id)}
-            >
-              {/* Background Image (aparece apenas no hover/ativo) */}
-              <div 
-                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-                  activeProduct === product.id ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{ backgroundImage: `url(${product.image})` }}
-              >
-                <div className="absolute inset-0 bg-black/60"></div>
-              </div>
-              
-              {/* Background Color (aparece quando não está em hover/ativo) */}
-              <div 
-                className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-                  activeProduct === product.id ? 'opacity-0' : 'opacity-100'
-                }`}
-              ></div>
-              
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <p className={`text-lg mb-2 transition-colors duration-500 ${
-                      activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {product.supportText}
-                    </p>
-                    <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
-                      activeProduct === product.id ? 'text-white' : 'text-black'
-                    }`}>
-                      {product.title}
-                    </h3>
-                    {product.id === 'backup' && (
-                      <div className="mt-4 mb-6">
-                        <Image 
-                          src="/image/keepit_logo_aorkia.png" 
-                          alt="Keepit" 
-                          className="h-12 w-auto"
-                          width={160}
-                          height={48}
-                          priority
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
-                      activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {product.description}
-                    </p>
-                    <div className="mt-8">
-                      <Link 
-                        href={product.link} 
-                        className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
-                          activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
-                        }`}
-                      >
-                        <span>Saiba mais</span>
-                        <i className="ri-arrow-right-line ml-2"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      {/* Mobile Navbar */}
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 md:hidden">
+        <div className="flex justify-between items-center h-full px-4">
+          <Link href="/" className="py-2">
+            <div className="logo-container h-10 relative">
+              <Image 
+                src="/image/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                className="h-10 w-auto"
+                width={100}
+                height={40}
+                priority
+              />
             </div>
-          ))}
-        </section>
-
-        {/* Seção Pré-Footer - Estilo Jam3 */}
-        <section 
-          className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
-          data-product-id="futuro"
-          onMouseEnter={() => handleProductInteraction('futuro')}
-          onMouseLeave={handleProductLeave}
-          onTouchStart={() => handleProductInteraction('futuro')}
-          onClick={() => handleProductInteraction('futuro')}
-        >
-          {/* Background Image (aparece apenas no hover/ativo) */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/futuro.png)` }}
+          </Link>
+          <button 
+            className="text-white text-2xl p-2"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Abrir menu"
           >
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
-          
-          {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeProduct === 'futuro' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-          
-          {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <p className={`text-lg mb-2 transition-colors duration-500 ${
-                  activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  AORKIA
-                </p>
-                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
-                  activeProduct === 'futuro' ? 'text-white' : 'text-black'
-                }`}>
-                  O Futuro do Seu Negócio, Ativado.
-                </h3>
-              </div>
-              <div>
-                <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
-                  activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Ativamos as melhores soluções globais para a sua realidade específica. Convertemos potencial tecnológico em vantagem competitiva e crescimento sustentável para sua empresa.
-                </p>
-              </div>
+            <div className="w-6 flex flex-col gap-1">
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      {/* Menu Mobile Fullscreen */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 bg-black z-[60] flex flex-col">
+          <div className="container mx-auto px-4 py-8 h-full flex flex-col">
+            <div className="flex justify-between items-center mb-8">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                <div className="logo-container h-14 relative">
+                  <Image 
+                    src="/image/logo_aorkia_white.png" 
+                    alt="AORKIA" 
+                    className="h-14 w-auto"
+                    width={140}
+                    height={56}
+                    priority
+                  />
+                </div>
+              </Link>
+              <button 
+                className="text-white text-3xl"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Fechar menu"
+              >
+                <i className="ri-close-line"></i>
+              </button>
+            </div>
+            <div className="flex flex-col space-y-6 justify-center mt-12 items-center">
+              <Link 
+                href="/" 
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/solucoes" 
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Soluções
+              </Link>
+              <Link 
+                href="/sobre" 
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sobre
+              </Link>
+              <Link 
+                href="/contato" 
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contato
+              </Link>
+            </div>
+            <div className="mt-auto">
+              <Link 
+                href="/contato" 
+                className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg transition-all text-center mt-8 text-2xl font-bold"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Começar agora
+              </Link>
             </div>
           </div>
-        </section>
- </main>
+        </div>
+      )}
+
+      {/* Botões flutuantes */}
+      <div className="fixed bottom-8 right-8 z-40 flex flex-col gap-4">
+        {/* Botão WhatsApp */}
+        <a 
+          href="https://wa.me/5531988019006" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all"
+          title="Fale conosco no WhatsApp"
+        >
+          <i className="ri-whatsapp-line text-xl"></i>
+        </a>
+        
+        {/* Botão Home */}
+        <Link href="/" className="bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
+          <i className="ri-home-4-line text-xl"></i>
+        </Link>
+      </div>
+
+      {/* Espaçador para compensar o header fixo */}
+      <div className="h-20 md:h-20"></div>
+
+      {/* Conteúdo da Página */}
+      <div>
+        <Component {...pageProps} />
+      </div>
+
+{/* Footer Global - Baseado na seção "Fale Conosco" */}
+<footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
+  <div className="container mx-auto max-w-7xl px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div>
+        <div className="mb-8">
+          <Image
+            src="/image/logo_aorkia_white.png"
+            alt="AORKIA Logo"
+            width={180}
+            height={60}
+            className="mb-4"
+            priority
+          />
+        </div>
+        
+        <div className="space-y-6">
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-map-pin-2-line"></i>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Endereço</h3>
+              <p className="text-gray-300">
+                Av. Getúlio Vargas, 671 — Sala 500<br />
+                Belo Horizonte - MG
+              </p>
+            </div>
+          </div>
+          
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-phone-line"></i>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Telefone</h3>
+              <p className="text-gray-300">+55 31 98801-9006</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-mail-line"></i>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">E-mail</h3>
+              <p className="text-gray-300">contato@aorkia.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex space-x-6">
+          <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+            <i className="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+            <i className="ri-instagram-line"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
+        <form 
+          className="space-y-4" 
+          action="https://script.google.com/macros/s/AKfycbyvmpYg121WTnYrBaxDJuLk296DTfRIG_uoCuFqrLQ6/dev" 
+          method="POST"
+        >
+          <div>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome completo"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="tel"
+              name="telefone"
+              placeholder="Telefone"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
+            <div className="space-y-2">
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="backup" className="mr-2 text-primary" />
+                <span className="text-gray-300">Backup SaaS Estratégico</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="bordas" className="mr-2 text-primary" />
+                <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="dspm" className="mr-2 text-primary" />
+                <span className="text-gray-300">Segurança DSPM</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="receitas" className="mr-2 text-primary" />
+                <span className="text-gray-300">Inteligência de Receita</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="digital" className="mr-2 text-primary" />
+                <span className="text-gray-300">Estratégia de Presença Digital</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <textarea
+              name="mensagem"
+              placeholder="Mensagem"
+              rows="4"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors resize-none"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-medium"
+          >
+            Enviar mensagem
+          </button>
+          <p className="text-sm text-gray-400 mt-2">
+            Este formulário é processado com segurança pela plataforma Google Apps Script. Ao enviar, suas informações são armazenadas diretamente em nosso sistema interno da AORKIA.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    {/* Rodapé com direitos autorais */}
+    <div className="bg-gray-900 border-t border-gray-700 py-4">
+      <div className="container mx-auto max-w-7xl px-4">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-sm text-gray-400">
+          <div className="flex flex-wrap items-center justify-center gap-1 text-center">
+            <span>© 2025 AORKIA. Todos os direitos reservados.</span>
+            <span className="hidden md:inline">|</span>
+            <Link href="/privacy" className="hover:text-white transition-colors">
+              Política de Privacidade
+            </Link>
+            <span>|</span>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Termos de Uso
+            </Link>
+            <span>|</span>
+            <span>Site Desenvolvido por AORKIA - Estratégia de Presença Digital.</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={copyEmailToClipboard}
+              className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer"
+              title="Clique para copiar o e-mail"
+            >
+              <i className="ri-mail-line"></i>
+              <span>contato@aorkia.com</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+      {/* Banner de Cookies */}
+      {showCookieBanner && !cookieConsent && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-50">
+          <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-300">
+              Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de cookies.
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={declineCookies}
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Recusar
+              </button>
+              <button
+                onClick={acceptCookies}
+                className="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm rounded transition-colors"
+              >
+                Aceitar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Notificação de email copiado */}
+      {emailCopied && (
+        <div className="fixed top-24 right-8 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          E-mail copiado para a área de transferência!
+        </div>
+      )}
     </>
   );
 }
+
+export default MyApp;
