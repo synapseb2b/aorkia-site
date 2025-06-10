@@ -1,55 +1,572 @@
-/* Base styles */
-body {
-  font-family: Arial, sans-serif;
+/* Estilos globais para o site AORKIA no estilo Jam3 */
+
+/* Reset e estilos base */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Custom animations */
-@keyframes pulse-fast {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.6;
-  }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-.animate-pulse-fast {
-  animation: pulse-fast 1.5s infinite ease-in-out;
+/* Preloader estilizado */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.preloader-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: 32px;
+  /* Ajuste do caminho para a logo, se for usada via CSS background-image */
+  background-image: url('/image/logo_aorkia_white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-in-out;
+.preloader-bar-container {
+  width: 256px;
+  height: 4px;
+  background-color: #222;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-/* Utility classes for responsive images */
-.image-full-width {
+.preloader-bar {
+  height: 100%;
+  background-color: #0076FF;
+  border-radius: 4px;
+  transition: width 0.3s ease-out;
+}
+
+/* Estilos para a seção Hero */
+.hero-section {
+  position: relative;
+  height: 100vh;
   width: 100%;
-  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.image-cover {
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/* Ajuste para vídeo hero usar o novo caminho: */
+.hero-background video,
+.hero-section video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Ensure images within links are not styled with borders */
-a img {
-  border: none;
+/* Se usar background-image na hero-section, ajuste exemplo:
+.hero-section {
+  background-image: url('/image/futuro.png');
+}
+*/
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  z-index: 1;
 }
 
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
 
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para seções de produtos */
+.product-section {
+  padding: 120px 0;
+  position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.product-section.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.product-section.dark {
+  background-color: #000;
+  color: #fff;
+}
+
+.product-section.with-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+/* Ajuste para usar imagens em /image/ */
+.product-section.with-image.backup {
+  background-image: url('/image/backup.png');
+}
+.product-section.with-image.bordas {
+  background-image: url('/image/bordas.png');
+}
+.product-section.with-image.dspm {
+  background-image: url('/image/dspm.png');
+}
+.product-section.with-image.receitas {
+  background-image: url('/image/receitas.png');
+}
+.product-section.with-image.digital {
+  background-image: url('/image/digital.png');
+}
+.product-section.with-image.futuro {
+  background-image: url('/image/futuro.png');
+}
+.product-section.with-image.solucoesespecializadas {
+  background-image: url('/image/solucoesespecializadas.png');
+}
+.product-section.with-image.ponta {
+  background-image: url('/image/ponta.png');
+}
+
+.product-section.with-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.product-section.with-image .container {
+  position: relative;
+  z-index: 2;
+}
+
+.product-content {
+  max-width: 600px;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.product-description {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para a seção de contato */
+.contact-section {
+  padding: 120px 0;
+  background-color: #000;
+}
+
+.contact-form {
+  background-color: #111;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0076FF;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background-color: #0076FF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-submit:hover {
+  background-color: #0065d9;
+}
+
+.form-success {
+  padding: 12px;
+  background-color: rgba(0, 118, 255, 0.1);
+  border: 1px solid #0076FF;
+  border-radius: 4px;
+  color: #0076FF;
+  text-align: center;
+  margin-top: 16px;
+  display: none;
+}
+
+.form-success.visible {
+  display: block;
+}
+
+/* Estilos para a Interface Inteligente */
+.ai-interface {
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ai-header {
+  background-color: #111;
+  padding: 16px;
+  border-bottom: 1px solid #222;
+}
+
+.ai-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.ai-conversation {
+  padding: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.ai-message {
+  margin-bottom: 24px;
+}
+
+.ai-message-content {
+  background-color: #222;
+  padding: 16px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.ai-message.user .ai-message-content {
+  background-color: #0076FF;
+  margin-left: auto;
+}
+
+.ai-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.ai-option {
+  background-color: #222;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ai-option:hover {
+  background-color: #333;
+}
+
+.ai-input {
+  display: flex;
+  padding: 16px;
+  background-color: #111;
+  border-top: 1px solid #222;
+}
+
+.ai-input-field {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  margin-right: 8px;
+}
+
+.ai-input-field:focus {
+  outline: none;
+  border-color: #0076FF;
+}
+
+.ai-send-button {
+  padding: 12px 24px;
+  background-color: #0076FF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ai-send-button:hover {
+  background-color: #0065d9;
+}
+
+.ai-restart-button {
+  padding: 12px 24px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 8px;
+}
+
+.ai-restart-button:hover {
+  background-color: #444;
+}
+
+.ai-result-panel {
+  background-color: #111;
+  padding: 24px;
+  border-radius: 8px;
+  margin-top: 24px;
+  border-left: 4px solid #0076FF;
+}
+
+.ai-result-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0076FF;
+}
+
+.ai-result-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Estilos para a seção Sobre */
+.about-section {
+  padding: 120px 0;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.about-content {
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.value-item {
+  background-color: #111;
+  padding: 24px;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.value-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.value-icon {
+  font-size: 2rem;
+  color: #0076FF;
+  margin-bottom: 16px;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.value-description {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.partner-item {
+  background-color: #111;
+  padding: 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.partner-item:hover {
+  transform: scale(1.05);
+}
+
+.partner-logo {
+  max-width: 100%;
+  max-height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+/* Estilos para o formulário de contato na página principal */
+.contact-form-section {
+  padding: 80px 0;
+  background-color: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form-container {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #000 0%, #111 100%);
+  z-index: 0;
+}
+
+/* Animações e transições */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .product-title {
+    font-size: 2rem;
+  }
+  
+  .about-title {
+    font-size: 2rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Estilos específicos para o menu mobile */
+@media (max-width: 768px) {
+  .mobile-menu-items {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  
+  .mobile-menu-items > a {
+    margin-bottom: 24px;
+  }
+}
