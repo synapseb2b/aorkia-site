@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // <--- ISSO FAZ TUDO FUNCIONAR NO VERCEL
 
   async headers() {
     return [
