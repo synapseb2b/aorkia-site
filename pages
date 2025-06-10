@@ -1,0 +1,3 @@
+    git add pages/README.md
+    git commit -m "Cria a pasta pages"
+    git push
