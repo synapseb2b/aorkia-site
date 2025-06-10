@@ -101,6 +101,14 @@ function MyApp({ Component, pageProps }) {
       }, 3000);
     });
   };
+  // Função para forçar o formulário Google
+  useEffect(() => {
+  const form = document.querySelector("form");
+  if (form && form.action.includes("formspree")) {
+    form.action = "https://script.google.com/macros/s/AKfycbyXVnm65_jRLny939UAFYBDPAqhxAR2WfBp3c1LAW3m3WY9P9hQyc4yYR9PRyG29Rj-ZQ/exec";
+    console.log("⚠️ Formspree sobrescrito pelo script da AORKIA.");
+  }
+}, []);
 
   return (
     <>
