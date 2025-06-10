@@ -483,10 +483,9 @@ function MyApp({ Component, pageProps }) {
                   <i className="ri-mail-line"></i>
                   <span>contato@aorkia.com</span>
                 </button>
-              </div>
-            </div>
+               </div>
 
-      {/* Banner de Cookies */}
+      {/* Banner de Cookies */}}
       {showCookieBanner && !cookieConsent && (
         <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-50">
           <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
