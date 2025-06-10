@@ -74,7 +74,7 @@ export default function Contato() {
                 {/* Logo institucional ilustrativa */}
                 <div className="mb-16">
                   <Image
-                    src="/public/image/logo_aorkia_white.png"
+                    src="/image/logo_aorkia_white.png"
                     alt="AORKIA Logo"
                     width={180}
                     height={60}
