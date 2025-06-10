@@ -158,9 +158,9 @@ function MyApp({ Component, pageProps }) {
               <Image 
                 src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-12 w-auto"
-                width={120}
-                height={48}
+                className="h-20 w-auto"
+                width={160}
+                height={64}
                 priority
               />
             </div>
@@ -294,140 +294,160 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - Baseado na seção "Fale Conosco" */}
-      <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
-        <div className="container mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <div className="mb-8">
-                <Image
-                  src="/image/logo_aorkia_white.png"
-                  alt="AORKIA Logo"
-                  width={180}
-                  height={60}
-                  className="mb-4"
-                  priority
-                />
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-map-pin-2-line"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Endereço</h3>
-                    <p className="text-gray-300">
-                      Av. Getúlio Vargas, 671 — Sala 500<br />
-                      Belo Horizonte - MG
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-phone-line"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Telefone</h3>
-                    <p className="text-gray-300">+55 31 98801-9006</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-mail-line"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">E-mail</h3>
-                    <p className="text-gray-300">contato@aorkia.com</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex space-x-6">
-                <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
-                  <i className="ri-linkedin-fill"></i>
-                </a>
-                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
-                  <i className="ri-instagram-line"></i>
-                </a>
-              </div>
+{/* Footer Global - Baseado na seção "Fale Conosco" */}
+<footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
+  <div className="container mx-auto max-w-7xl px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div>
+        <div className="mb-8">
+          <Image
+            src="/image/logo_aorkia_white.png"
+            alt="AORKIA Logo"
+            width={180}
+            height={60}
+            className="mb-4"
+            priority
+          />
+        </div>
+        
+        <div className="space-y-6">
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-map-pin-2-line"></i>
             </div>
-            
             <div>
-              <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
-              <form className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    name="nome"
-                    placeholder="Nome completo"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="E-mail"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="telefone"
-                    placeholder="Telefone"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input type="checkbox" name="produtos" value="backup" className="mr-2 text-primary" />
-                      <span className="text-gray-300">Backup SaaS Estratégico</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" name="produtos" value="bordas" className="mr-2 text-primary" />
-                      <span className="text-gray-300">Operações de Bordas Inteligentes</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" name="produtos" value="dspm" className="mr-2 text-primary" />
-                      <span className="text-gray-300">Segurança DSPM</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" name="produtos" value="receitas" className="mr-2 text-primary" />
-                      <span className="text-gray-300">Inteligência de Receita</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <textarea
-                    name="mensagem"
-                    placeholder="Mensagem"
-                    rows="4"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors resize-none"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-medium"
-                >
-                  Enviar mensagem
-                </button>
-              </form>
+              <h3 className="text-xl font-semibold mb-2">Endereço</h3>
+              <p className="text-gray-300">
+                Av. Getúlio Vargas, 671 — Sala 500<br />
+                Belo Horizonte - MG
+              </p>
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            <p>© 2025 AORKIA. Todos os direitos reservados. | <Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidade</Link> | <Link href="/terms" className="hover:text-white transition-colors">Termos de Uso</Link> | Site Desenvolvido por AORKIA - Estratégia de Presença Digital.</p>
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-phone-line"></i>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Telefone</h3>
+              <p className="text-gray-300">+55 31 98801-9006</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start">
+            <div className="text-primary text-2xl mt-1 mr-4">
+              <i className="ri-mail-line"></i>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">E-mail</h3>
+              <p className="text-gray-300">contato@aorkia.com</p>
+            </div>
           </div>
         </div>
-      </footer>
+
+        <div className="mt-8 flex space-x-6">
+          <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+            <i className="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+            <i className="ri-instagram-line"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
+        <form className="space-y-4" action="https://formspree.io/f/mkgrleqq" method="POST">
+          <div>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome completo"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="tel"
+              name="telefone"
+              placeholder="Telefone"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
+            <div className="space-y-2">
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="backup" className="mr-2 text-primary" />
+                <span className="text-gray-300">Backup SaaS Estratégico</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="bordas" className="mr-2 text-primary" />
+                <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="dspm" className="mr-2 text-primary" />
+                <span className="text-gray-300">Segurança DSPM</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="receitas" className="mr-2 text-primary" />
+                <span className="text-gray-300">Inteligência de Receita</span>
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" name="produtos" value="digital" className="mr-2 text-primary" />
+                <span className="text-gray-300">Estratégia de Presença Digital</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <textarea
+              name="mensagem"
+              placeholder="Mensagem"
+              rows="4"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors resize-none"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-medium"
+          >
+            Enviar mensagem
+          </button>
+          <p className="text-sm text-gray-400 mt-2">
+            Este formulário é protegido pelo <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" className="underline text-primary">Formspree</a>. Ao enviar, seus dados serão tratados com segurança.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 flex flex-col items-center gap-2 md:flex-row md:justify-center md:gap-4">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText('contato@aorkia.com');
+          }}
+          className="px-3 py-1 text-xs bg-gray-800 border border-gray-600 rounded hover:bg-gray-700 transition-colors"
+        >
+          Copiar e-mail
+        </button>
+        <span>contato@aorkia.com</span>
+      </div>
+      <p className="text-center">
+        | © 2025 AORKIA. Todos os direitos reservados. | <Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidade</Link> | <Link href="/terms" className="hover:text-white transition-colors">Termos de Uso</Link> | Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
+      </p>
+    </div>
+  </div>
+</footer>
 
       {/* Banner de Cookies */}
       {showCookieBanner && !cookieConsent && (
