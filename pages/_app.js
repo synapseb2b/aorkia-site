@@ -357,7 +357,11 @@ function MyApp({ Component, pageProps }) {
       
       <div>
         <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
-        <form className="space-y-4" action="https://formspree.io/f/mkgrleqq" method="POST">
+        <form 
+          className="space-y-4" 
+          action="https://script.google.com/macros/s/AKfycbyXVnm65_jRLny939UAFYBDPAqhxAR2WfBp3c1LAW3m3WY9P9hQyc4yYR9PRyG29Rj-ZQ/exec" 
+          method="POST"
+        >
           <div>
             <input
               type="text"
@@ -424,30 +428,11 @@ function MyApp({ Component, pageProps }) {
             Enviar mensagem
           </button>
           <p className="text-sm text-gray-400 mt-2">
-            Este formulário é protegido pelo <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" className="underline text-primary">Formspree</a>. Ao enviar, seus dados serão tratados com segurança.
+            Este formulário é processado com segurança pela plataforma Google Apps Script. Ao enviar, suas informações são armazenadas diretamente em nosso sistema interno da AORKIA.
           </p>
         </form>
       </div>
     </div>
-
-    <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 flex flex-col items-center gap-2 md:flex-row md:justify-center md:gap-4">
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText('contato@aorkia.com');
-          }}
-          className="px-3 py-1 text-xs bg-gray-800 border border-gray-600 rounded hover:bg-gray-700 transition-colors"
-        >
-          Copiar e-mail
-        </button>
-        <span>contato@aorkia.com</span>
-      </div>
-      <p className="text-center">
-        | © 2025 AORKIA. Todos os direitos reservados. | <Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidade</Link> | <Link href="/terms" className="hover:text-white transition-colors">Termos de Uso</Link> | Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
-      </p>
-    </div>
-  </div>
-</footer>
 
       {/* Banner de Cookies */}
       {showCookieBanner && !cookieConsent && (
