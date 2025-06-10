@@ -337,12 +337,14 @@ function MyApp({ Component, pageProps }) {
             <div className="md:text-left text-center">
               <div className="logo-container h-20 relative inline-block">
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${logoToggle ? 'opacity-100' : 'opacity-0'}`}>
-                  <Image 
-                    src="/image/logo_aorkia_white.png" 
-                    alt="AORKIA" 
-                    className="h-20 w-auto"
-                    width={200}
-                    height={80}
+                  {/* Logo institucional ilustrativa */}
+                <div className="mb-12">
+                  <Image
+                    src="/image/logo_aorkia.png"
+                    alt="AORKIA Logo"
+                    width={180}
+                    height={60}
+                    className="mb-4"
                     priority
                   />
                 </div>
