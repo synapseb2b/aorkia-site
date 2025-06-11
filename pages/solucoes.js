@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Solucoes() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('backup');
+  const [backgroundImage, setBackgroundImage] = useState(false);
 
   // Efeito para monitorar o progresso de rolagem e detectar seções visíveis
   useEffect(() => {
@@ -14,6 +15,13 @@ export default function Solucoes() {
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
+
+      // Ativar imagem de fundo após rolar um pouco
+      if (scrollTop > 100) {
+        setBackgroundImage(true);
+      } else {
+        setBackgroundImage(false);
+      }
 
       // Detectar qual seção está visível
       const sections = document.querySelectorAll('[data-solution-id]');
@@ -35,193 +43,264 @@ export default function Solucoes() {
   // Função para rolagem suave ao clicar em links internos
   const scrollToSection = (e, id) => {
     e.preventDefault();
+    setBackgroundImage(true); // Ativar fundo ao clicar
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Soluções com suas respectivas imagens e conteúdos (sem Consultoria Estratégica)
+  // Soluções com os novos textos do PDF
   const solutions = [
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
-      supportText: 'Imutável. Independente. Inteligente.',
-      subtitle: 'Seus Dados na Nuvem, Realmente Protegidos.',
-      caseStudy: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Com o Backup SaaS Estratégico ativado pela AORKIA, você recupera desde um único e-mail até ambientes inteiros rapidamente, garantindo a continuidade do seu negócio e a tranquilidade da sua equipe.',
-      activateContent: 'A AORKIA simplifica a complexidade da proteção de dados SaaS, ativando a plataforma líder da Keepit para oferecer máxima segurança, controle e tranquilidade para sua empresa:',
+      supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
+      subtitle: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade total com LGPD e GDPR.',
+      whyTitle: 'Por que preciso de Backup SaaS Estratégico?',
+      whyContent: 'O modelo de responsabilidade em nuvem é compartilhado: os provedores garantem a infraestrutura, mas você é quem responde pela proteção dos dados. Sem um backup dedicado, erros acidentais, ataques cibernéticos ou falhas internas podem causar perdas irreversíveis — e multas regulatórias.',
+      whatTitle: 'O que o Backup SaaS Estratégico da AORKIA oferece?',
       features: [
         {
           icon: 'ri-shield-keyhole-line',
-          title: 'Proteção Completa e Imutável Contra Ameaças',
-          description: 'Seus dados SaaS são copiados para uma nuvem independente e segura, com backups 100% imutáveis que protegem contra ransomware, exclusões acidentais e corrupção.'
+          title: 'Backups 100% Imutáveis',
+          description: 'Proteção real contra ransomware, exclusões acidentais e corrupção de dados.'
         },
         {
           icon: 'ri-restart-line',
-          title: 'Recuperação Rápida e Granular a Qualquer Momento',
-          description: 'Restaure exatamente o que você precisa – um arquivo, um e-mail, um registro específico ou contas inteiras – em minutos, diretamente para o local original ou para download.'
+          title: 'Recuperação Rápida e Granular',
+          description: 'De um único e-mail até ambientes inteiros, restaurados em minutos.'
         },
         {
           icon: 'ri-apps-2-line',
-          title: 'Ampla Cobertura para Seu Ecossistema SaaS',
-          description: 'Garanta a proteção completa dos seus dados críticos em Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Azure AD, entre outras plataformas essenciais.'
+          title: 'Cobertura Total do Ecossistema SaaS',
+          description: 'Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Azure AD e mais.'
         },
         {
           icon: 'ri-file-shield-2-line',
-          title: 'Conformidade Descomplicada e Auditoria Facilitada',
-          description: 'Atenda às exigências da LGPD, GDPR, HIPAA e outras regulamentações com políticas de retenção flexíveis, trilhas de auditoria detalhadas e data centers seguros.'
+          title: 'Conformidade e Auditoria Descomplicadas',
+          description: 'Alinhado às exigências da LGPD, GDPR, HIPAA — com trilhas de auditoria e retenção customizada.'
         }
       ],
-      whyContent: 'Muitas empresas ainda acreditam que seus provedores de SaaS (como Microsoft ou Google) são totalmente responsáveis pelo backup de todos os seus dados. No entanto, o modelo de responsabilidade é compartilhada: eles garantem a infraestrutura; você protege seus dados contra perdas acidentais, erros humanos, ameaças internas e ataques de ransomware.',
-      whyQuote: 'Seus dados em Microsoft 365, Salesforce ou Google Workspace são ativos cruciais, mas a proteção nativa dessas plataformas não cobre todos os cenários de perda de dados. Erros humanos, exclusões (acidentais ou maliciosas) e, principalmente, ataques de ransomware podem levar à perda irreparável de informações vitais. Um backup SaaS dedicado, independente e imutável, como o ativado pela AORKIA, é essencial para garantir a verdadeira continuidade dos negócios, a conformidade regulatória e a sua total tranquilidade operacional.',
-      howContent: 'A AORKIA não é apenas uma fornecedora de tecnologia; somos seus parceiros estratégicos na proteção de dados. Nosso modelo de "ativação" garante que você extraia o máximo valor da melhor solução de backup SaaS do mercado, de forma rápida, personalizada e sem complexidade para sua equipe.',
-      howQuote: 'Com a AORKIA, você não apenas adquire uma solução líder global como a Keepit; você ativa uma estratégia completa e robusta de proteção para seus dados SaaS. Nossa expertise assegura uma implementação ágil e customizada às suas políticas, configuração otimizada para suas necessidades de conformidade e retenção de dados, e suporte especializado contínuo. Capacitamos sua equipe para gerenciar os backups com facilidade e confiança, transformando a segurança de dados em um pilar fundamental para o crescimento e a resiliência do seu negócio.',
-      ctaText: 'Proteja o Coração Digital do Seu Negócio Agora Mesmo. Descubra como o Backup SaaS Estratégico ativado pela AORKIA pode blindar seus dados críticos na nuvem.',
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Ativação guiada com especialistas AORKIA',
+        'Configuração personalizada para seu ambiente e compliance',
+        'Treinamento da equipe + suporte contínuo',
+        'Sem complexidade técnica, sem ruído operacional'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'A AORKIA não vende software. Ativamos uma estratégia robusta de proteção de dados SaaS com base na Keepit — a plataforma utilizada por marcas como Porsche e Oxford University. Transformamos complexidade técnica em resiliência real, mensurável e confiável.',
+      risksTitle: 'O que você pode perder sem isso?',
+      risks: [
+        'E-mails e arquivos críticos apagados permanentemente',
+        'Falta de evidência para auditorias regulatórias',
+        'Operações paralisadas por erros humanos ou ransomware',
+        'Multas por descumprimento da LGPD / GDPR'
+      ],
+      ctaTitle: 'Proteja o Coração Digital do Seu Negócio',
+      ctaText: 'Blindar seus dados críticos é uma decisão estratégica, não técnica. Fale agora com um especialista da AORKIA e ative sua resiliência SaaS.',
       image: '/image/backup.png',
       logo: '/image/keepit_logo_aorkia.png'
     },
     {
       id: 'bordas',
       title: 'Operações de Bordas Inteligentes',
-      supportText: 'Inteligência na Borda. Decisões Imediatas.',
-      subtitle: 'Inteligência Artificial Onde Sua Empresa Mais Precisa.',
-      caseStudy: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. Com as Operações de Bordas Inteligentes, a AORKIA ativa a IA onde seus dados são gerados, transformando desafios complexos em agilidade e resultados imediatos para o seu negócio.',
-      activateContent: 'A AORKIA simplifica a complexidade de levar IA à borda, ativando plataformas líderes para que você escale suas operações com confiança e inteligência:',
+      supportText: 'Decisão Imediata. Eficiência Local. IA no Ponto Crítico.',
+      subtitle: 'A AORKIA ativa Plataformas Edge AI que processam dados onde eles nascem — na fábrica, no varejo, em equipamentos remotos — para decisões autônomas, respostas em tempo real e independência da nuvem.',
+      whyTitle: 'Por que mover a IA para a borda?',
+      whyContent: 'Levar a Inteligência Artificial até o ponto onde os dados são gerados não é mais tendência — é necessidade estratégica. Reduz latência, aumenta eficiência, habilita decisões locais instantâneas e libera sua operação da dependência total da nuvem. Segundo o Gartner, até 2029, 60% das implementações de edge computing usarão IA composta, ante menos de 5% em 2023.',
+      whatTitle: 'O que a AORKIA ativa em suas Operações de Borda?',
       features: [
         {
+          icon: 'ri-cpu-line',
+          title: 'IA Ativa Onde os Dados Nascem',
+          description: 'Decisões automatizadas em tempo real, com latência mínima e impacto máximo.'
+        },
+        {
           icon: 'ri-global-line',
-          title: 'Escale Suas Operações de IA na Borda com Facilidade',
-          description: 'Implemente e gerencie centralmente aplicações de IA em centenas ou milhares de locais geograficamente distribuídos, com provisionamento automatizado e orquestração simplificada.'
+          title: 'Escalabilidade Distribuída com Controle Central',
+          description: 'Implante e gerencie IA em centenas ou milhares de sites com orquestração inteligente.'
         },
         {
           icon: 'ri-dashboard-3-line',
-          title: 'Gestão Unificada e Inteligente de Dispositivos e Aplicações',
-          description: 'Controle todo o ciclo de vida de seus dispositivos e aplicações de borda a partir de uma única interface, simplificando a gestão, otimizando custos e garantindo a saúde da sua infraestrutura.'
+          title: 'Gestão Unificada de Dispositivos e Aplicações',
+          description: 'Ciclo de vida completo sob controle em uma única interface — menos custos, mais eficiência.'
         },
         {
           icon: 'ri-shield-check-line',
-          title: 'Segurança Robusta de Ponta a Ponta na Borda',
-          description: 'Proteja seus dados, modelos de IA e dispositivos na borda com uma arquitetura de segurança abrangente, desde o hardware até a nuvem, garantindo a integridade e confidencialidade de suas operações críticas.'
-        },
-        {
-          icon: 'ri-puzzle-line',
-          title: 'Flexibilidade Tecnológica com Curadoria Especializada',
-          description: 'Tenha liberdade para escolher e ativar as melhores plataformas de software e modelos de IA em uma ampla gama de hardwares de borda, com a curadoria e expertise da AORKIA para atender sua necessidade específica.'
+          title: 'Segurança de Ponta a Ponta',
+          description: 'Proteção desde o hardware até a nuvem. Criptografia, isolamento e integridade garantida.'
         }
       ],
-      whyContent: 'Levar a Inteligência Artificial para mais perto da origem dos dados não é apenas uma tendência, é uma necessidade estratégica para muitas indústrias. A IA na borda permite respostas mais rápidas, operações mais eficientes e insights valiosos gerados instantaneamente.',
-      whyQuote: 'A IA na Borda está se tornando essencial em todas as indústrias, permitindo que as organizações automatizem a tomada de decisões locais em tempo real e reduzam a dependência da infraestrutura em nuvem. Isso melhora a eficiência operacional e os custos, ao mesmo tempo que possibilita análises orientadas por IA, insights preditivos e uma melhor experiência do cliente. Para muitos casos de uso, a IA se moverá para mais perto dos dados, impulsionada pela necessidade de tomada de decisão em tempo real e eficiência operacional. Segundo o Gartner, até 2029, pelo menos 60% das implementações de computação de borda usarão IA composta (tanto IA preditiva quanto IA generativa [GenAI]), em comparação com menos de 5% em 2023.',
-      howContent: 'A AORKIA é sua parceira estratégica para destravar o potencial da IA na borda. Nós simplificamos a complexidade para que você possa focar nos resultados de negócio, enquanto cuidamos da "ativação" da tecnologia com expertise.',
-      howQuote: 'Desbloqueie o poder da IA distribuída com a AORKIA. Nós ativamos e ajudamos você a gerenciar modelos e aplicações de IA na borda em múltiplos locais, eliminando processos manuais com provisionamento automatizado e soluções otimizadas por nossa curadoria. Garanta a segurança de suas implementações com uma arquitetura robusta, protegendo seus dados e propriedade intelectual. Monitore a saúde dos dispositivos e gerencie toda a sua infraestrutura de borda de forma centralizada, reduzindo custos com suporte flexível a hardware e conectividade.',
-      ctaText: 'Pronto para Ativar a Inteligência em suas Operações de Borda? Descubra como a AORKIA pode ativar a Inteligência Artificial na borda da sua empresa.',
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Mapeamento dos casos de uso críticos',
+        'Escolha e integração das melhores plataformas Edge AI',
+        'Automação do provisionamento e orquestração centralizada',
+        'Treinamento, suporte e gestão contínua com visibilidade total'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'Você não precisa entender de infraestrutura distribuída, containers ou gerenciamento de dispositivos. A AORKIA entrega IA funcional na borda — pronta, segura e dimensionada para seu negócio. Ativamos, monitoramos e escalamos junto com você.',
+      risksTitle: 'O que você perde sem isso?',
+      risks: [
+        'Operações paralisadas por latência ou falta de conectividade',
+        'Falta de resposta imediata em situações críticas',
+        'Custo alto com nuvem centralizada e suporte ineficiente',
+        'Perda de competitividade em eficiência, personalização e predição'
+      ],
+      ctaTitle: 'Desbloqueie a IA onde ela mais importa',
+      ctaText: 'Está pronto para ativar inteligência real na borda do seu negócio? Fale com um especialista da AORKIA e descubra como colocar IA para decidir e agir no ponto certo.',
       image: '/image/bordas.png'
     },
     {
       id: 'dspm',
       title: 'Segurança para Operações Críticas',
-      supportText: 'Visão Total. Controle Ativo.',
-      subtitle: 'Visibilidade e Controle Total dos Seus Dados, Onde Estiverem.',
-      caseStudy: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. Com a Segurança para Operações Críticas da AORKIA, você descobre, classifica e protege seus dados sensíveis de forma proativa e contínua.',
-      activateContent: 'A AORKIA simplifica a complexa tarefa de proteger seus dados em ambientes híbridos e multinuvem, ativando Plataformas de Gestão da Postura de Segurança de Dados (DSPM) que oferecem:',
+      supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
+      subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
+      whyTitle: 'Por que você precisa de DSPM agora?',
+      whyContent: 'A explosão de dados em ambientes multinuvem criou um novo tipo de risco: dados invisíveis, permissões excessivas e alertas sem contexto. Sem DSPM, sua empresa não sabe o que está exposto — até que seja tarde demais.',
+      whatTitle: 'O que a AORKIA entrega com Segurança para Operações Críticas?',
       features: [
         {
           icon: 'ri-search-eye-line',
-          title: 'Descoberta e Classificação Abrangente de Dados',
-          description: 'Identifique e classifique automaticamente dados sensíveis, incluindo "shadow data", em todos os seus repositórios na nuvem (IaaS, PaaS, SaaS) e sistemas on-premise.'
+          title: 'Descoberta e Classificação Inteligente de Dados Sensíveis',
+          description: 'Mapeamento automático de todos os dados confidenciais — até os invisíveis ("shadow data") — em SaaS, IaaS, PaaS e ambientes híbridos.'
         },
         {
           icon: 'ri-bar-chart-grouped-line',
-          title: 'Priorização Inteligente de Riscos de Exposição',
-          description: 'Entenda o contexto de risco de cada dado sensível – quem acessa, como é usado, quais permissões existem – para focar seus esforços de correção onde realmente importa.'
+          title: 'Priorização Real de Riscos com Contexto',
+          description: 'Entenda quem acessa, como os dados são usados e onde estão vulneráveis — para agir no que realmente importa.'
         },
         {
           icon: 'ri-shield-check-line',
-          title: 'Remediação Orientada e Conformidade Contínua',
-          description: 'Receba recomendações claras ou automatize a correção de exposições de dados, garantindo a conformidade com LGPD, GDPR, HIPAA e outras normas de forma simplificada e auditável.'
+          title: 'Correção Automatizada e Conformidade Simples',
+          description: 'Remediação guiada ou automatizada. Conformidade com LGPD, GDPR, HIPAA com trilhas de auditoria completas.'
         },
         {
           icon: 'ri-cloud-line',
-          title: 'Segurança de Dados Integrada à Sua Nuvem',
-          description: 'Unifique a segurança dos seus dados com a segurança da sua infraestrutura na nuvem, obtendo uma visão contextualizada para proteger suas aplicações nativas da nuvem de ponta a ponta.'
+          title: 'Segurança Integrada à Sua Infraestrutura Cloud',
+          description: 'Proteja aplicações nativas da nuvem com uma visão unificada de dados, permissões e riscos em tempo real.'
         }
       ],
-      whyContent: 'Em um cenário de inovação acelerada na nuvem, o volume e a complexidade dos dados crescem exponencialmente. Isso dificulta a proteção eficaz, expondo sua empresa a riscos. Plataformas DSPM são essenciais para superar esses desafios.',
-      whyQuote: 'Os dados alimentam a inovação na nuvem, mas o volume e a complexidade dos ambientes híbridos e multinuvem dificultam a segurança desses dados. As soluções isoladas geram muitos alertas, deixando as equipes sem saber onde direcionar os esforços. Seja uma violação de informações de clientes, registros financeiros ou propriedade intelectual, o acesso não autorizado aos dados pode ter graves consequências regulatórias e para a reputação. É crucial unificar a visibilidade da segurança para proteger contra ataques cibernéticos em qualquer ambiente.',
-      howContent: 'A AORKIA é sua parceira para transformar a complexidade da segurança de dados em clareza e controle. Nosso modelo de "ativação" foca em implementar rapidamente a melhor tecnologia DSPM, adaptada à sua realidade, para proteger seus ativos mais valiosos.',
-      howQuote: 'Com a AORKIA, você ativa uma solução DSPM líder que se integra à sua estratégia de segurança na nuvem. Nossa expertise garante a descoberta contínua de todos os seus dados sensíveis, a análise contextualizada dos riscos de exposição e a automação da remediação. Ajudamos sua equipe a tomar medidas contra as ameaças mais perigosas sem adicionar complexidade, garantindo que seus dados estejam protegidos e em conformidade, onde quer que estejam.',
-      ctaText: 'Assuma o Controle da Segurança dos Seus Dados Críticos Hoje Mesmo. Descubra como a AORKIA pode ativar uma postura de segurança de dados proativa e resiliente na sua empresa.',
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Mapeamento completo de riscos e dados sensíveis',
+        'Integração com sua estratégia de segurança e compliance',
+        'Automação da remediação com visibilidade contínua',
+        'Capacitação da equipe + suporte estratégico AORKIA'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'Enquanto outras soluções apenas geram alertas, a AORKIA transforma dados em ação concreta. Ativamos as melhores plataformas DSPM do mercado e orquestramos sua proteção de dados com inteligência, contexto e precisão contínua.',
+      risksTitle: 'O que está em risco sem isso?',
+      risks: [
+        'Informações de clientes expostas sem rastreamento',
+        'Violações com impacto regulatório (LGPD, GDPR)',
+        'Perda de propriedade intelectual e reputação',
+        'Equipes paralisadas por alertas sem ação'
+      ],
+      ctaTitle: 'Assuma o Controle Real dos Seus Dados',
+      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Fale com um especialista AORKIA e ative uma postura de segurança proativa, contínua e auditável.',
       image: '/image/dspm.png'
     },
     {
       id: 'receitas',
       title: 'Plataforma de Inteligência de Receita com IA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      subtitle: 'Transforme Dados em Decisões e Receita Previsível.',
-      caseStudy: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? Com a Plataforma de Inteligência de Receita com IA ativada pela AORKIA, você obtém clareza e controle sobre todo o ciclo de receita.',
-      activateContent: 'A AORKIA simplifica a complexidade da gestão de receita, ativando plataformas líderes que utilizam IA para unificar dados, processos e equipes, impulsionando a performance e a previsibilidade:',
+      supportText: 'Crescimento Real. Previsibilidade Mensurável. Decisões Guiadas por Dados.',
+      subtitle: 'Sua equipe está atolada em tarefas manuais, seus vendedores perdem o timing, e suas previsões mudam toda semana? A AORKIA ativa Plataformas de Inteligência de Receita com IA que transformam dados fragmentados em decisões precisas, pipeline saudável e crescimento previsível.',
+      whyTitle: 'Por que sua operação precisa de Inteligência de Receita com IA?',
+      whyContent: 'Em mercados B2B complexos, intuição não é mais suficiente. Sem visibilidade real sobre o ciclo de receita, você perde oportunidades, fecha menos do que poderia e não consegue repetir o que funciona. A IA aplicada à receita conecta dados, processos e equipes — permitindo decisões rápidas, previsões confiáveis e execução coordenada.',
+      whatTitle: 'O que a AORKIA entrega com Inteligência de Receita?',
       features: [
         {
           icon: 'ri-flow-chart',
-          title: 'Orquestração Completa do Ciclo de Receita',
-          description: 'Unifique todos os sinais de receita – CRM, e-mails, chamadas, dados de uso – em um único modelo de dados para gerenciar cadências e fluxos de trabalho de ponta a ponta.'
+          title: 'Ciclo de Receita Unificado e Visível',
+          description: 'CRM, e-mails, reuniões e dados de uso em um modelo único — para gestão de pipeline em tempo real.'
         },
         {
           icon: 'ri-line-chart-line',
-          title: 'Previsibilidade e Análise Preditiva de Vendas',
-          description: 'Aumente a precisão das suas previsões de receita, identifique negócios em risco ou com potencial de upsell, e compreenda o que realmente impulsiona seus resultados com IA.'
+          title: 'Previsibilidade com IA Preditiva',
+          description: 'Saiba o que vai fechar, o que está em risco e onde estão suas melhores oportunidades.'
         },
         {
           icon: 'ri-team-line',
-          title: 'Colaboração e Alinhamento entre Equipes (RevOps)',
-          description: 'Capacite suas equipes de marketing, vendas e sucesso do cliente com insights compartilhados e automação de processos para uma "máquina de receita" eficiente e escalável.'
+          title: 'Alinhamento Total entre Marketing, Vendas e Customer Success (RevOps)',
+          description: 'Processos integrados, playbooks automatizados e insights compartilhados entre áreas.'
         },
         {
           icon: 'ri-user-settings-line',
-          title: 'Capacitação Inteligente para Vendedores',
-          description: 'Forneça aos seus vendedores insights acionáveis em tempo real, automação de tarefas administrativas e as melhores próximas ações recomendadas por IA para cada oportunidade.'
+          title: 'Capacitação Inteligente dos Vendedores',
+          description: 'Próximas ações recomendadas, alertas inteligentes, automação de tarefas — para foco total no fechamento.'
         }
       ],
-      whyContent: 'No cenário B2B atual, gerar receita de forma previsível e eficiente exige mais do que intuição. É preciso transformar o vasto volume de dados de clientes e interações em inteligência acionável. A Inteligência de Receita com IA é a chave para isso.',
-      whyQuote: 'A Inteligência Artificial aplicada à receita não é apenas uma ferramenta de análise; é um multiplicador de força para suas equipes de vendas, marketing e sucesso do cliente. Ela permite que você identifique padrões, preveja comportamentos e otimize cada etapa do funil de vendas, garantindo que seus esforços se traduzam em resultados tangíveis e crescimento sustentável. Com a IA, você não apenas reage ao mercado, mas o molda ativamente, transformando dados em seu maior ativo estratégico.',
-      howContent: 'A AORKIA é sua parceira estratégica para ativar uma Plataforma de Inteligência de Receita com IA que realmente funciona para o seu negócio. Nós vamos além da implementação, garantindo que a tecnologia se integre perfeitamente aos seus processos e impulsione seus resultados.',
-      howQuote: 'Com a AORKIA, você ativa uma Plataforma de Inteligência de Receita com IA que unifica seus dados de vendas, marketing e sucesso do cliente, fornecendo uma visão 360º do seu pipeline. Nossa expertise garante a implementação de modelos preditivos que aumentam a precisão das suas previsões, identificam oportunidades de upsell e cross-sell, e alertam sobre riscos. Capacitamos suas equipes com insights acionáveis em tempo real, automação de tarefas repetitivas e orquestração inteligente de cadências, liberando seus vendedores para focar no que realmente importa: construir relacionamentos e fechar negócios. Transforme sua operação de receita em uma máquina previsível e de alto desempenho.',
-      ctaText: 'Transforme Sua Receita em Crescimento Previsível. Descubra como a AORKIA pode ativar uma Plataforma de Inteligência de Receita com IA que impulsiona seus resultados.',
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Mapeamento do ciclo de receita e gaps operacionais',
+        'Integração de dados e implantação da plataforma IA mais aderente ao seu stack',
+        'Implementação de modelos preditivos com personalização por ICP e segmento',
+        'Treinamento das equipes + governança e suporte contínuo'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'A maioria das empresas compra software e continua vendendo no escuro. Com a AORKIA, você ativa uma operação de receita inteligente, onde cada etapa é visível, previsível e escalável. Não apenas dashboards — mas direção real para o crescimento.',
+      risksTitle: 'O que você perde sem isso?',
+      risks: [
+        'Pipeline com vazamentos invisíveis',
+        'Previsões inconsistentes e pressão no fim do mês',
+        'Time de vendas reagindo, não liderando',
+        'Oportunidades de upsell perdidas por falta de insight'
+      ],
+      ctaTitle: 'Transforme Dados em Receita Previsível',
+      ctaText: 'Sua operação de receita pode ser uma máquina previsível de alto desempenho. Fale com a AORKIA e ative sua plataforma de inteligência com IA agora.',
       image: '/image/receitas.png'
     },
     {
       id: 'digital',
       title: 'Estratégia de Presença Digital',
-      supportText: 'Visibilidade. Engajamento. Conversão.',
-      subtitle: 'Sua Marca no Centro das Atenções Digitais.',
-      caseStudy: 'Sua empresa tem um site, redes sociais, mas não consegue atrair clientes qualificados ou gerar leads? Você investe em marketing digital, mas não vê retorno claro? Com a Estratégia de Presença Digital ativada pela AORKIA, sua marca se torna um ímã para o público certo, transformando visitantes em clientes fiéis e impulsionando seu crescimento online.',
-      activateContent: 'A AORKIA simplifica a complexidade do marketing digital, ativando estratégias e ferramentas que garantem uma presença digital robusta e resultados mensuráveis:',
+      supportText: 'Posicionamento Estratégico. Leads Qualificados. ROI Mensurável.',
+      subtitle: 'Ter um site e postar nas redes não é mais suficiente. Se sua empresa investe em marketing digital e não atrai leads qualificados ou vê retorno real, a AORKIA ativa uma Estratégia de Presença Digital centrada em performance, autoridade e geração de receita.',
+      whyTitle: 'Por que sua empresa precisa de uma Estratégia Digital de verdade?',
+      whyContent: 'Em um mar de conteúdos e anúncios, estar presente não significa ser encontrado — e muito menos escolhido. A presença digital precisa ser estratégica, mensurável e conectada diretamente à geração de demanda qualificada.',
+      whatTitle: 'O que a AORKIA entrega na sua Estratégia de Presença Digital?',
       features: [
         {
-          icon: 'ri-seo-line',
-          title: 'Otimização para Motores de Busca (SEO) e Conteúdo Estratégico',
-          description: 'Posicione sua marca no topo das buscas do Google com conteúdo relevante e otimizado, atraindo tráfego orgânico qualificado e construindo autoridade no seu nicho.'
+          icon: 'ri-search-line',
+          title: 'SEO e Conteúdo com Foco em Conversão',
+          description: 'Posicione sua empresa no topo das buscas com conteúdo pensado para atrair, educar e converter.'
         },
         {
           icon: 'ri-advertisement-line',
-          title: 'Campanhas de Mídia Paga (Tráfego Pago) de Alta Performance',
-          description: 'Alcance seu público-alvo com precisão no Google Ads, Meta Ads e LinkedIn Ads, otimizando seu investimento para gerar leads, vendas e reconhecimento de marca.'
+          title: 'Mídia Paga com Segmentação Cirúrgica',
+          description: 'Campanhas otimizadas no Google, Meta e LinkedIn com foco real em CAC, LTV e geração de oportunidades concretas.'
         },
         {
-          icon: 'ri-mail-send-line',
-          title: 'Automação de Marketing e Nutrição de Leads',
-          description: 'Crie jornadas personalizadas para seus leads, automatize o envio de e-mails e mensagens, e os conduza de forma eficiente pelo funil de vendas até a conversão.'
+          icon: 'ri-robot-line',
+          title: 'Automação e Nutrição Inteligente de Leads',
+          description: 'Jornadas personalizadas que educam, qualificam e conduzem o lead até o momento certo da venda.'
         },
         {
-          icon: 'ri-bar-chart-box-line',
-          title: 'Análise de Dados e Otimização Contínua',
-          description: 'Monitore o desempenho de suas campanhas em tempo real, identifique oportunidades de melhoria e otimize suas estratégias com base em dados para maximizar o ROI.'
+          icon: 'ri-bar-chart-line',
+          title: 'Métricas Reais e Otimização Contínua',
+          description: 'Relatórios estratégicos com foco em ROI, CAC e pipeline — não em métricas de vaidade.'
         }
       ],
-      whyContent: 'No mundo digital de hoje, ter uma presença online não é mais um diferencial, é uma necessidade. Mas não basta estar presente; é preciso ter uma estratégia clara para se destacar, atrair e converter.',
-      whyQuote: 'No cenário digital atual, a presença online é a espinha dorsal de qualquer estratégia de crescimento. No entanto, muitas empresas se perdem na complexidade das ferramentas e canais, investindo sem um retorno claro. Uma Estratégia de Presença Digital eficaz vai além de ter um site ou redes sociais; ela integra SEO, mídia paga, conteúdo e automação de marketing em um ecossistema coeso que atrai, engaja e converte. É a diferença entre ser apenas mais uma empresa online e ser a referência no seu setor, gerando leads qualificados e impulsionando vendas de forma consistente.',
-      howContent: 'A AORKIA é sua parceira estratégica para construir e otimizar sua presença digital. Nosso modelo de "ativação" garante que sua marca não apenas seja vista, mas que gere resultados reais, com estratégias personalizadas e foco em ROI.',
-      howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital que posiciona sua marca como líder no seu mercado. Nossa expertise em SEO garante que você seja encontrado por quem realmente importa, enquanto nossas campanhas de mídia paga geram leads qualificados e vendas. Implementamos automação de marketing para nutrir seus leads e transformá-los em clientes fiéis, e fornecemos análises detalhadas para otimização contínua. Deixe a AORKIA ativar o poder do digital para o seu negócio, transformando sua presença online em um motor de crescimento sustentável.',
-      ctaText: 'Ative o Potencial Digital da Sua Marca. Descubra como a AORKIA pode construir uma Estratégia de Presença Digital que gera resultados reais para sua empresa.',
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Diagnóstico do seu funil e posicionamento digital atual',
+        'Ativação integrada de SEO, mídia paga e automação com metas claras',
+        'Criação e publicação de conteúdos estratégicos orientados por dados',
+        'Monitoramento, otimização e realinhamento contínuo com foco em resultado'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'Outras empresas vendem tráfego. A AORKIA entrega tração. Ativamos uma estratégia que transforma sua presença digital em uma máquina previsível de leads qualificados e crescimento mensurável. Sem promessas vagas. Sem desperdício de verba.',
+      risksTitle: 'O que você perde sem isso?',
+      risks: [
+        'Visibilidade sem conversão real',
+        'Leads desqualificados ocupando seu time comercial',
+        'Investimento sem retorno, baseado em vaidade e volume',
+        'Ausência de autoridade digital frente à concorrência'
+      ],
+      ctaTitle: 'Posicione sua marca como referência no digital',
+      ctaText: 'A presença digital certa atrai, qualifica e acelera. Fale com a AORKIA e ative uma estratégia feita para gerar resultado real — não apenas likes.',
       image: '/image/digital.png'
     }
   ];
@@ -229,177 +308,192 @@ export default function Solucoes() {
   return (
     <>
       <Head>
-        <title>Soluções | AORKIA</title>
-        <meta name="description" content="Descubra as soluções estratégicas da AORKIA para impulsionar a transformação digital e o crescimento do seu negócio." />
+        <title>Soluções AORKIA - Ativamos Tecnologia para Resultados Reais</title>
+        <meta name="description" content="Descubra as soluções AORKIA: Backup SaaS, Edge AI, DSPM, Inteligência de Receita e Presença Digital. Ativamos tecnologia para resultados mensuráveis." />
+        <meta name="keywords" content="backup saas, edge ai, dspm, inteligência receita, presença digital, aorkia" />
+        <link rel="canonical" href="https://aorkia.com/solucoes" />
       </Head>
 
-      <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 com vídeo */}
-        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/video_hero.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo.
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
-
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Nossas Soluções
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
-                Ative o Potencial da Sua <span className="text-primary">Empresa</span>
-              </h1>
-              <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
-                Descubra como a AORKIA pode impulsionar a transformação digital e o crescimento do seu negócio com soluções estratégicas e inovadoras.
-              </p>
-            </div>
-          </div>
-
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a 
-              href="#solucoes-list" 
-              onClick={(e) => scrollToSection(e, 'solucoes-list')}
-              className="text-white text-4xl"
-            >
-              <i className="ri-arrow-down-line"></i>
-            </a>
-          </div>
-        </section>
-
-        {/* Seção de Soluções */}
-        <section id="solucoes-list" className="py-24 bg-black relative">
-          {/* Imagem de fundo para mobile */}
-          <div className="md:hidden fixed inset-0 z-0 opacity-20">
-            {solutions.map((solution) => (
-              <div
-                key={solution.id}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  activeSection === solution.id ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <Image
-                  src={solution.image}
-                  alt={solution.title}
-                  fill
-                  className="object-cover"
-                  priority={solution.id === 'backup'}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
-            <h2 className="text-5xl font-bold text-center mb-16 text-white">
-              Nossas <span className="text-primary">Soluções</span>
-            </h2>
-
-            {/* Conteúdo das Soluções */}
-            <div className="space-y-24">
-              {solutions.map((solution, index) => (
-                <div 
-                  key={solution.id} 
-                  id={solution.id} 
-                  data-solution-id={solution.id}
-                  className="p-8 rounded-lg bg-black/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none"
+      {/* Background com transição */}
+      <div className={`min-h-screen transition-all duration-1000 ${backgroundImage ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-black' : 'bg-white'}`}>
+        
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 px-4">
+          <div className="container mx-auto max-w-7xl text-center">
+            <h1 className={`text-5xl md:text-7xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+              Soluções AORKIA
+            </h1>
+            <p className={`text-xl md:text-2xl mb-12 max-w-4xl mx-auto transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
+              Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
+            </p>
+            
+            {/* Navigation Menu */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              {solutions.map((solution) => (
+                <button
+                  key={solution.id}
+                  onClick={(e) => scrollToSection(e, solution.id)}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                    activeSection === solution.id
+                      ? 'bg-primary text-white shadow-lg'
+                      : backgroundImage 
+                        ? 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 >
-                  <div className="flex flex-col md:flex-row items-center gap-12">
-                    <div className="md:w-1/2 hidden md:block">
-                      <Image 
-                        src={solution.image} 
-                        alt={solution.title} 
-                        width={600} 
-                        height={400} 
-                        className="rounded-lg shadow-lg"
-                      />
-                    </div>
-                    <div className="md:w-1/2">
-                      <h3 className="text-primary text-2xl font-semibold mb-2">
-                        {solution.supportText}
-                      </h3>
-                      <h2 className="text-4xl font-bold mb-6 text-white">
-                        {solution.title}
-                      </h2>
-                      <p className="text-gray-300 text-lg mb-6">
-                        {solution.subtitle}
-                      </p>
-                      <p className="text-gray-400 mb-8">
-                        {solution.caseStudy}
-                      </p>
-                      <Link 
-                        href="/contato" 
-                        className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors"
-                      >
-                        Fale com um especialista
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Seção "Como Ativamos" */}
-                  <div className="mt-16">
-                    <h3 className="text-3xl font-bold mb-8 text-white">Como Ativamos</h3>
-                    <p className="text-gray-300 text-lg mb-8">
-                      {solution.activateContent}
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {solution.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-start space-x-4">
-                          <div className="text-primary text-3xl flex-shrink-0">
-                            <i className={feature.icon}></i>
-                          </div>
-                          <div>
-                            <h4 className="text-xl font-semibold mb-2 text-white">
-                              {feature.title}
-                            </h4>
-                            <p className="text-gray-400">
-                              {feature.description}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Seção "Por Que" */}
-                  <div className="mt-16">
-                    <h3 className="text-3xl font-bold mb-8 text-white">Por Que</h3>
-                    <p className="text-gray-300 text-lg mb-6">
-                      {solution.whyContent}
-                    </p>
-                    <blockquote className="border-l-4 border-primary pl-6 italic text-gray-300 text-lg">
-                      {solution.whyQuote}
-                    </blockquote>
-                  </div>
-
-                  {/* Seção "Como" */}
-                  <div className="mt-16">
-                    <h3 className="text-3xl font-bold mb-8 text-white">Como</h3>
-                    <p className="text-gray-300 text-lg mb-6">
-                      {solution.howContent}
-                    </p>
-                    <blockquote className="border-l-4 border-primary pl-6 italic text-gray-300 text-lg">
-                      {solution.howQuote}
-                    </blockquote>
-                  </div>
-
-                  {/* CTA Final */}
-                  <div className="mt-16 text-center">
-                    <p className="text-xl font-semibold mb-6 text-white">
-                      {solution.ctaText}
-                    </p>
-                    <Link 
-                      href="/contato" 
-                      className="inline-block bg-primary hover:bg-primary/90 text-white px-12 py-4 rounded-lg text-xl font-medium transition-colors"
-                    >
-                      Fale com um especialista
-                    </Link>
-                  </div>
-                </div>
+                  {solution.title}
+                </button>
               ))}
             </div>
           </div>
         </section>
-      </main>
+
+        {/* Solutions Sections */}
+        {solutions.map((solution, index) => (
+          <section
+            key={solution.id}
+            id={solution.id}
+            data-solution-id={solution.id}
+            className={`py-20 px-4 ${index % 2 === 0 ? (backgroundImage ? 'bg-black/20' : 'bg-gray-50') : ''}`}
+          >
+            <div className="container mx-auto max-w-7xl">
+              
+              {/* Hero da Solução */}
+              <div className="text-center mb-16">
+                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  {solution.title}
+                </h2>
+                <p className={`text-xl md:text-2xl font-semibold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-primary' : 'text-primary'}`}>
+                  {solution.supportText}
+                </p>
+                <p className={`text-lg md:text-xl max-w-5xl mx-auto leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {solution.subtitle}
+                </p>
+              </div>
+
+              {/* Por que preciso? */}
+              <div className="mb-16">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  ❓ {solution.whyTitle}
+                </h3>
+                <p className={`text-lg leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {solution.whyContent}
+                </p>
+              </div>
+
+              {/* O que oferece */}
+              <div className="mb-16">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  🔐 {solution.whatTitle}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {solution.features.map((feature, idx) => (
+                    <div key={idx} className={`p-6 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-white/10 border border-white/20' : 'bg-white border border-gray-200 shadow-lg'}`}>
+                      <div className="flex items-start space-x-4">
+                        <div className="text-primary text-2xl mt-1">
+                          <i className={feature.icon}></i>
+                        </div>
+                        <div>
+                          <h4 className={`text-lg font-semibold mb-2 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                            ✅ {feature.title}
+                          </h4>
+                          <p className={`transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Como funciona */}
+              <div className="mb-16">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  ⚙️ {solution.howTitle}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {solution.howSteps.map((step, idx) => (
+                    <div key={idx} className={`p-6 rounded-lg text-center transition-all duration-300 ${backgroundImage ? 'bg-white/10 border border-white/20' : 'bg-white border border-gray-200 shadow-lg'}`}>
+                      <div className="text-primary text-3xl font-bold mb-4">
+                        {idx + 1}
+                      </div>
+                      <p className={`font-medium transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                        {step}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Diferencial AORKIA */}
+              <div className="mb-16">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  ✅ {solution.differentialTitle}
+                </h3>
+                <div className={`p-8 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-primary/20 border border-primary/30' : 'bg-primary/5 border border-primary/20'}`}>
+                  <p className={`text-lg leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-800'}`}>
+                    {solution.differentialContent}
+                  </p>
+                </div>
+              </div>
+
+              {/* Riscos */}
+              <div className="mb-16">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  ⚠️ {solution.risksTitle}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {solution.risks.map((risk, idx) => (
+                    <div key={idx} className={`flex items-center space-x-3 p-4 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-red-900/20 border border-red-500/30' : 'bg-red-50 border border-red-200'}`}>
+                      <div className="text-red-500 text-xl">●</div>
+                      <p className={`transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {risk}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="text-center">
+                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
+                  🚀 {solution.ctaTitle}
+                </h3>
+                <p className={`text-lg mb-8 max-w-3xl mx-auto transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {solution.ctaText}
+                </p>
+                <Link 
+                  href="/contato" 
+                  className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Fale com um Especialista
+                </Link>
+              </div>
+
+            </div>
+          </section>
+        ))}
+
+        {/* CTA Final */}
+        <section className={`py-20 px-4 transition-all duration-1000 ${backgroundImage ? 'bg-black/40' : 'bg-gray-900'}`}>
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Pronto para Ativar Resultados Reais?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Transforme desafios complexos em crescimento sustentável com as soluções AORKIA.
+            </p>
+            <Link 
+              href="/contato" 
+              className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Começar Agora
+            </Link>
+          </div>
+        </section>
+
+      </div>
     </>
   );
 }
