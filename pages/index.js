@@ -61,7 +61,7 @@ export default function Home() {
   const products = [
     {
       id: 'solucoes',
-      title: 'AORKIA',
+      title: 'AORKIA TECHNOLOGIES',
       supportText: 'Soluções B2B para proteger dados críticos, destravar eficiência e escalar receita com previsibilidade.',
       description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável — sem ruído, sem promessas vazias.',
       image: '/image/solucoesespecializadas.png',
@@ -101,7 +101,7 @@ export default function Home() {
     },
     {
    id: 'digital',
-   title: 'Estratégia de Presença Digital AORKIA',
+   title: 'Estratégia de Presença Digital',
    supportText: 'Autoridade Real. Geração de Demanda com Direção.',
    description: 'Sua presença digital está gerando oportunidades concretas ou apenas visitas sem impacto? A AORKIA ativa uma Estratégia de Presença Digital orientada a performance no mercado B2B — transformando seu site, canais e conteúdo em um ecossistema que posiciona sua marca como referência, atrai leads qualificados e acelera sua receita.',
    image: '/image/digital.png',
