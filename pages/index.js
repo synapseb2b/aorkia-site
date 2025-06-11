@@ -61,9 +61,9 @@ export default function Home() {
   const products = [
     {
       id: 'solucoes',
-      title: 'Soluções Especializadas',
-      supportText: 'AORKIA',
-      description: 'Nossas soluções são desenhadas para proteger seus ativos digitais, otimizar sua performance operacional e acelerar sua jornada rumo ao crescimento estratégico e rentável.',
+      title: 'AORKIA',
+      supportText: 'Soluções B2B para proteger dados críticos, destravar eficiência e escalar receita com previsibilidade.',
+      description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável — sem ruído, sem promessas vazias.',
       image: '/image/solucoesespecializadas.png',
       link: '/solucoes'
     },
