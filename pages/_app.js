@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
   const [logoToggle, setLogoToggle] = useState(false);
   const logoIntervalRef = useRef(null);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   // Efeito para carregar scripts externos como RemixIcon
   useEffect(() => {
@@ -101,14 +102,33 @@ function MyApp({ Component, pageProps }) {
       }, 3000);
     });
   };
-  // Função para forçar o formulário Google
-  useEffect(() => {
-  const form = document.querySelector("form");
-  if (form && form.action.includes("formspree")) {
-    form.action = "https://script.google.com/macros/s/AKfycbyvmpYg121WTnYrBaxDJuLk296DTfRIG_uoCuFqrLQ6/dev";
-    console.log("⚠️ Formspree sobrescrito pelo script da AORKIA.");
-  }
-}, []);
+
+  // Função para lidar com o envio do formulário
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyXVnm65_jRLny939UAFYBDPAqhxAR2WfBp3c1LAW3m3WY9P9hQyc4yYR9PRyG29Rj-ZQ/exec', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+        form.reset();
+        setTimeout(() => {
+          setFormSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Erro no envio');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      alert('Erro ao enviar mensagem. Tente novamente.');
+    }
+  };
 
   return (
     <>
@@ -160,35 +180,37 @@ function MyApp({ Component, pageProps }) {
 
       {/* Desktop Navbar */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 hidden md:block">
-        <div className="container mx-auto max-w-7xl px-4 h-full flex justify-center items-center">
-          <div className="flex items-center space-x-12">
-            <Link href="/" className="py-2">
-              <div className="logo-container h-12 relative">
-                <Image 
-                  src="/image/logo_aorkia_white.png" 
-                  alt="AORKIA" 
-                  className="h-20 w-auto"
-                  width={160}
-                  height={64}
-                  priority
-                />
-              </div>
+        <div className="container mx-auto max-w-7xl px-4 h-full flex items-center">
+          <Link href="/" className="py-2 mr-auto">
+            <div className="logo-container h-12 relative">
+              <Image 
+                src="/image/logo_aorkia_white.png" 
+                alt="AORKIA" 
+                className="h-12 w-auto"
+                width={120}
+                height={48}
+                priority
+              />
+            </div>
+          </Link>
+          <nav className="flex space-x-8 ml-auto">
+            <Link href="/" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+              Home
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
             </Link>
-            <nav className="flex space-x-8">
-              <Link href="/" className="text-white hover:text-primary transition-colors text-lg font-medium">
-                Home
-              </Link>
-              <Link href="/solucoes" className="text-white hover:text-primary transition-colors text-lg font-medium">
-                Soluções
-              </Link>
-              <Link href="/sobre" className="text-white hover:text-primary transition-colors text-lg font-medium">
-                Sobre
-              </Link>
-              <Link href="/contato" className="text-white hover:text-primary transition-colors text-lg font-medium">
-                Contato
-              </Link>
-            </nav>
-          </div>
+            <Link href="/solucoes" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+              Soluções
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+            </Link>
+            <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+              Sobre
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+            </Link>
+            <Link href="/contato" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+              Contato
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+            </Link>
+          </nav>
         </div>
       </header>
 
@@ -196,13 +218,13 @@ function MyApp({ Component, pageProps }) {
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
-            <div className="logo-container h-10 relative">
+            <div className="logo-container h-12 relative">
               <Image 
                 src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-10 w-auto"
-                width={100}
-                height={40}
+                className="h-12 w-auto"
+                width={120}
+                height={48}
                 priority
               />
             </div>
@@ -379,99 +401,133 @@ function MyApp({ Component, pageProps }) {
             
             <div>
               <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
-              <form 
-                className="space-y-4" 
-                action="https://script.google.com/macros/s/AKfycbyvmpYg121WTnYrBaxDJuLk296DTfRIG_uoCuFqrLQ6/dev" 
-                method="POST"
-              >
-                <div>
-                  <input
-                    type="text"
-                    name="nome"
-                    placeholder="Nome completo"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    required
-                  />
+              {formSubmitted ? (
+                <div className="bg-green-600 text-white p-6 rounded-lg text-center">
+                  <i className="ri-check-line text-3xl mb-2"></i>
+                  <h3 className="text-xl font-bold mb-2">Mensagem Enviada!</h3>
+                  <p>Obrigado pelo seu contato. A AORKIA retornará em breve.</p>
                 </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="E-mail"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="telefone"
-                    placeholder="Telefone"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
-                  <div className="space-y-2">
-                    <label className="inline-flex items-center">
-                      <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="form-checkbox text-primary rounded" />
-                      <span className="ml-2 text-gray-300">Backup SaaS Estratégico</span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="form-checkbox text-primary rounded" />
-                      <span className="ml-2 text-gray-300">Operações de Bordas Inteligentes</span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="form-checkbox text-primary rounded" />
-                      <span className="ml-2 text-gray-300">Segurança para Operações Críticas (DSPM)</span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="form-checkbox text-primary rounded" />
-                      <span className="ml-2 text-gray-300">Plataforma de Inteligência de Receita com IA</span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="form-checkbox text-primary rounded" />
-                      <span className="ml-2 text-gray-300">Estratégia de Presença Digital</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <textarea
-                    name="mensagem"
-                    placeholder="Sua mensagem"
-                    rows="4"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-all"
+              ) : (
+                <form 
+                  className="space-y-4" 
+                  onSubmit={handleFormSubmit}
                 >
-                  Enviar Mensagem
-                </button>
-              </form>
+                  <div>
+                    <input
+                      type="text"
+                      name="nome"
+                      placeholder="Nome completo"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="E-mail"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      name="telefone"
+                      placeholder="Telefone"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
+                    <div className="space-y-2">
+                      <label className="flex items-start">
+                        <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="form-checkbox text-primary rounded mt-1 mr-3" />
+                        <span className="text-gray-300">Backup SaaS Estratégico</span>
+                      </label>
+                      <label className="flex items-start">
+                        <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="form-checkbox text-primary rounded mt-1 mr-3" />
+                        <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+                      </label>
+                      <label className="flex items-start">
+                        <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="form-checkbox text-primary rounded mt-1 mr-3" />
+                        <span className="text-gray-300">Segurança para Operações Críticas (DSPM)</span>
+                      </label>
+                      <label className="flex items-start">
+                        <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="form-checkbox text-primary rounded mt-1 mr-3" />
+                        <span className="text-gray-300">Plataforma de Inteligência de Receita com IA</span>
+                      </label>
+                      <label className="flex items-start">
+                        <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="form-checkbox text-primary rounded mt-1 mr-3" />
+                        <span className="text-gray-300">Estratégia de Presença Digital</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <textarea
+                      name="mensagem"
+                      placeholder="Sua mensagem"
+                      rows="4"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-all"
+                  >
+                    Enviar Mensagem
+                  </button>
+                </form>
+              )}
             </div>
           </div>
           
-          <div className="text-center mt-16 text-gray-400 text-sm">
-            <p className="flex items-center justify-center">
-              <span className="mr-2"> © 2025 AORKIA. Todos os direitos reservados. |</span>
-              <Link href="/privacy" className="hover:text-primary transition-colors mr-2">Política de Privacidade</Link>
-              <span className="mr-2">|</span>
-              <Link href="/terms" className="hover:text-primary transition-colors mr-2">Termos de Uso</Link>
-              <span className="mr-2">|</span>
-              <span>Site Desenvolvido por AORKIA - Estratégia de Presença Digital.</span>
-              <span className="ml-2 flex items-center">
-                <i 
-                  className="ri-mail-line text-lg cursor-pointer hover:text-primary transition-colors"
-                  onClick={copyEmailToClipboard}
-                  title="Copiar e-mail para a área de transferência"
-                ></i>
-                <span className="ml-1">contato@aorkia.com</span>
+          {/* Footer responsivo reorganizado */}
+          <div className="mt-16 pt-8 border-t border-gray-700">
+            {/* Primeira linha - Copyright e links */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left space-y-4 lg:space-y-0">
+              <div className="text-gray-400 text-sm">
+                © 2025 AORKIA. Todos os direitos reservados.
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-end space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
+                <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
+                  Política de Privacidade
+                </Link>
+                <span className="hidden sm:inline text-gray-600">|</span>
+                <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
+                  Termos de Uso
+                </Link>
+              </div>
+            </div>
+            
+            {/* Segunda linha - Desenvolvido por */}
+            <div className="mt-4 text-center lg:text-left">
+              <div className="text-gray-400 text-sm">
+                Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
+              </div>
+            </div>
+            
+            {/* Terceira linha - Email com ícone */}
+            <div className="mt-4 flex items-center justify-center lg:justify-start space-x-2">
+              <i 
+                className="ri-mail-line text-lg text-gray-400 cursor-pointer hover:text-primary transition-colors"
+                onClick={copyEmailToClipboard}
+                title="Copiar e-mail para a área de transferência"
+              ></i>
+              <span 
+                className="text-gray-400 text-sm cursor-pointer hover:text-primary transition-colors"
+                onClick={copyEmailToClipboard}
+                title="Copiar e-mail para a área de transferência"
+              >
+                contato@aorkia.com
               </span>
-            </p>
+            </div>
+            
+            {/* Mensagem de confirmação de cópia */}
             {emailCopied && (
-              <p className="text-green-500 mt-2 text-xs">E-mail copiado para a área de transferência!</p>
+              <div className="mt-2 text-center lg:text-left">
+                <p className="text-green-500 text-xs">E-mail copiado para a área de transferência!</p>
+              </div>
             )}
           </div>
         </div>
@@ -505,5 +561,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
 
