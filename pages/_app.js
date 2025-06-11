@@ -261,14 +261,14 @@ function MyApp({ Component, pageProps }) {
             </div>
           </Link>
           <button 
-            className="text-color text-2xl p-2 z-[70]"
+            <span className="w-full h-0.5 bg-white block"></span>
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
           >
             <div className="w-6 flex flex-col gap-1">
-              <span className="w-full h-0.5 bg-color block"></span>
-              <span className="w-full h-0.5 bg-color block"></span>
-              <span className="w-full h-0.5 bg-color block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
             </div>
           </button>
         </div>
@@ -302,28 +302,28 @@ function MyApp({ Component, pageProps }) {
             <div className="flex flex-col space-y-6 justify-center mt-12 items-center">
               <Link 
                 href="/" 
-                className="text-color text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 href="/solucoes" 
-                className="text-color text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Soluções
               </Link>
               <Link 
                 href="/sobre" 
-                className="text-color text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Sobre
               </Link>
               <Link 
                 href="/contato" 
-                className="text-color text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contato
@@ -349,14 +349,14 @@ function MyApp({ Component, pageProps }) {
           href="https://wa.me/553139586192" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-green-500 hover:bg-green-600 text-color w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all"
+          className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all"
           title="Fale conosco no WhatsApp"
         >
           <i className="ri-whatsapp-line text-xl"></i>
         </a>
         
         {/* Botão Home */}
-        <Link href="/" className="bg-primary hover:bg-primary/90 text-color w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
+        <Link href="/" className="bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
           <i className="ri-home-4-line text-xl"></i>
         </Link>
       </div>
@@ -370,7 +370,7 @@ function MyApp({ Component, pageProps }) {
       </div>
 
       {/* Footer Global - REORGANIZADO PARA MOBILE COM FORMULÁRIO PRIMEIRO E SEÇÃO DE COPYRIGHT ADICIONADA */}
-      <footer className="bg-gray-900 text-color py-16 border-t border-primary/20">
+      <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {/* No mobile, formulário aparece primeiro */}
@@ -394,7 +394,7 @@ function MyApp({ Component, pageProps }) {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">Endereço</h3>
                     <p 
-                      className="text-gray-300 cursor-pointer hover:text-color transition-colors"
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
                       onClick={copyAddressToClipboard}
                       title="Clique para copiar"
                     >
@@ -412,7 +412,7 @@ function MyApp({ Component, pageProps }) {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">Telefone</h3>
                     <p 
-                      className="text-gray-300 cursor-pointer hover:text-color transition-colors"
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
                       onClick={copyPhoneToClipboard}
                       title="Clique para copiar"
                     >
@@ -429,7 +429,7 @@ function MyApp({ Component, pageProps }) {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">E-mail</h3>
                     <p 
-                      className="text-gray-300 cursor-pointer hover:text-color transition-colors"
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
                       onClick={copyEmailToClipboard}
                       title="Clique para copiar"
                     >
@@ -458,13 +458,13 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-green-600 text-6xl mb-6">
                     <i className="ri-check-circle-line"></i>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-color">Mensagem Enviada com Sucesso!</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Mensagem Enviada com Sucesso!</h3>
                   <p className="text-gray-300 mb-8">
                     Obrigado pelo seu interesse na AORKIA. Nossa equipe entrará em contato em breve para discutir como podemos ativar as melhores soluções para sua empresa.
                   </p>
                   <button 
                     onClick={() => setFormSubmitted(false)}
-                    className="bg-primary text-color px-8 py-3 rounded hover:bg-primary/90 transition-colors"
+                    className="bg-primary text-white px-8 py-3 rounded hover:bg-primary/90 transition-colors"
                   >
                     Enviar Nova Mensagem
                   </button>
@@ -551,7 +551,7 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="bg-primary text-color px-12 py-4 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors"
+                      className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors"
                     >
                       Enviar Mensagem
                     </button>
@@ -619,13 +619,13 @@ function MyApp({ Component, pageProps }) {
             <div className="flex gap-4">
               <button 
                 onClick={declineCookies}
-                className="px-4 py-2 text-gray-300 hover:text-color transition-colors"
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
               >
                 Recusar
               </button>
               <button 
                 onClick={acceptCookies}
-                className="px-6 py-2 bg-primary text-color rounded hover:bg-primary/90 transition-colors"
+                className="px-6 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors"
               >
                 Aceitar
               </button>
