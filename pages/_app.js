@@ -191,7 +191,7 @@ function MyApp({ Component, pageProps }) {
           <div className="preloader-content text-center">
             <div className="logo-container relative">
               <Image 
-                src="/image/logo_aorkia_color.png" 
+                src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-32 w-auto z-10 relative animate-fade-in" 
                 width={300}
@@ -213,7 +213,7 @@ function MyApp({ Component, pageProps }) {
           <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-12 relative">
               <Image 
-                src="/image/logo_aorkia_color.png" 
+                src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-12 w-auto"
                 width={120}
@@ -251,7 +251,7 @@ function MyApp({ Component, pageProps }) {
           <Link href="/" className="py-2">
             <div className="logo-container h-12 relative">
               <Image 
-                src="/image/logo_aorkia_color.png" 
+                src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
                 className="h-12 w-auto"
                 width={120}
@@ -282,7 +282,7 @@ function MyApp({ Component, pageProps }) {
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                 <div className="logo-container h-14 relative">
                   <Image 
-                    src="/image/logo_aorkia_color.png" 
+                    src="/image/logo_aorkia_white.png" 
                     alt="AORKIA" 
                     className="h-14 w-auto"
                     width={140}
@@ -377,7 +377,7 @@ function MyApp({ Component, pageProps }) {
             <div className="order-2 md:order-1">
               <div className="mb-8">
                 <Image
-                  src="/image/logo_aorkia_color.png"
+                  src="/image/logo_aorkia_white.png"
                   alt="AORKIA Logo"
                   width={180}
                   height={60}
