@@ -78,7 +78,7 @@ export default function Contato() {
     
               {/* Botão para rolar para Contato */}
               <button 
-                onClick={(e) => scrollToSection(e, 'solutions')}
+                onClick={(e) => scrollToSection(e, 'Fale Conosco')}
                 className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500"
               >
                 Contato
