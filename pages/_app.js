@@ -318,7 +318,7 @@ function MyApp({ Component, pageProps }) {
       <div className="fixed bottom-8 right-8 z-40 flex flex-col gap-4">
         {/* Botão WhatsApp */}
         <a 
-          href="https://wa.me/5531988019006" 
+          href="https://wa.me/553139586192" 
           target="_blank" 
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all"
@@ -377,7 +377,7 @@ function MyApp({ Component, pageProps }) {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Telefone</h3>
-                    <p className="text-gray-300">+55 31 98801-9006</p>
+                    <p className="text-gray-300">+55 31 3958-6192</p>
                   </div>
                 </div>
                 
