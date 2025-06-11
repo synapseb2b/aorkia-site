@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
   async headers() {
     return [
       {
-        source: "/(.*)", // Aplica para todas as rotas
+        source: "/(.*)",
         headers: [
           {
             key: "Strict-Transport-Security",
@@ -17,4 +21,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-// Commit for redeploy test
