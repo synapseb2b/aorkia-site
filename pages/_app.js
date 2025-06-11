@@ -178,10 +178,11 @@ function MyApp({ Component, pageProps }) {
         </div>
       )}
 
-      {/* Desktop Navbar */}
+      {/* Desktop Navbar - CORRIGIDA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 hidden md:block">
-        <div className="container mx-auto max-w-7xl px-4 h-full flex items-center">
-          <Link href="/" className="py-2 mr-auto">
+        <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
+          {/* Logo à esquerda */}
+          <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-12 relative">
               <Image 
                 src="/image/logo_aorkia_white.png" 
@@ -193,28 +194,30 @@ function MyApp({ Component, pageProps }) {
               />
             </div>
           </Link>
-          <nav className="flex space-x-8 ml-auto">
-            <Link href="/" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+          
+          {/* Menu à direita */}
+          <nav className="flex items-center space-x-2">
+            <Link href="/" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Home
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/solucoes" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+            <Link href="/solucoes" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Soluções
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+            <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Sobre
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/contato" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-4 py-2 rounded-lg hover:bg-primary/10">
+            <Link href="/contato" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Contato
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
           </nav>
         </div>
       </header>
 
-      {/* Mobile Navbar */}
+      {/* Mobile Navbar - CORRIGIDA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
@@ -230,7 +233,7 @@ function MyApp({ Component, pageProps }) {
             </div>
           </Link>
           <button 
-            className="text-white text-2xl p-2"
+            className="text-white text-2xl p-2 z-[70]"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
           >
@@ -338,7 +341,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - Baseado na seção "Fale Conosco" */}
+      {/* Footer Global - COMPLETAMENTE REORGANIZADO PARA MOBILE */}
       <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -439,27 +442,27 @@ function MyApp({ Component, pageProps }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
-                    <div className="space-y-2">
-                      <label className="flex items-start">
-                        <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="form-checkbox text-primary rounded mt-1 mr-3" />
-                        <span className="text-gray-300">Backup SaaS Estratégico</span>
+                    <label className="block text-sm font-medium mb-3">Produtos de interesse (selecione um ou mais):</label>
+                    <div className="grid grid-cols-1 gap-3">
+                      <label className="flex items-start cursor-pointer">
+                        <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
+                        <span className="text-gray-300 text-sm">Backup SaaS Estratégico</span>
                       </label>
-                      <label className="flex items-start">
-                        <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="form-checkbox text-primary rounded mt-1 mr-3" />
-                        <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+                      <label className="flex items-start cursor-pointer">
+                        <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
+                        <span className="text-gray-300 text-sm">Operações de Bordas Inteligentes</span>
                       </label>
-                      <label className="flex items-start">
-                        <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="form-checkbox text-primary rounded mt-1 mr-3" />
-                        <span className="text-gray-300">Segurança para Operações Críticas (DSPM)</span>
+                      <label className="flex items-start cursor-pointer">
+                        <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
+                        <span className="text-gray-300 text-sm">Segurança para Operações Críticas (DSPM)</span>
                       </label>
-                      <label className="flex items-start">
-                        <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="form-checkbox text-primary rounded mt-1 mr-3" />
-                        <span className="text-gray-300">Plataforma de Inteligência de Receita com IA</span>
+                      <label className="flex items-start cursor-pointer">
+                        <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
+                        <span className="text-gray-300 text-sm">Plataforma de Inteligência de Receita com IA</span>
                       </label>
-                      <label className="flex items-start">
-                        <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="form-checkbox text-primary rounded mt-1 mr-3" />
-                        <span className="text-gray-300">Estratégia de Presença Digital</span>
+                      <label className="flex items-start cursor-pointer">
+                        <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
+                        <span className="text-gray-300 text-sm">Estratégia de Presença Digital</span>
                       </label>
                     </div>
                   </div>
@@ -482,45 +485,80 @@ function MyApp({ Component, pageProps }) {
             </div>
           </div>
           
-          {/* Footer responsivo reorganizado */}
+          {/* Footer responsivo - COMPLETAMENTE REORGANIZADO */}
           <div className="mt-16 pt-8 border-t border-gray-700">
-            {/* Primeira linha - Copyright e links */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left space-y-4 lg:space-y-0">
-              <div className="text-gray-400 text-sm">
+            {/* Mobile: Layout em coluna única */}
+            <div className="block md:hidden space-y-4 text-center">
+              <div className="text-gray-400 text-xs">
                 © 2025 AORKIA. Todos os direitos reservados.
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-end space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
+              <div className="flex flex-col space-y-2 text-xs">
                 <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
                   Política de Privacidade
                 </Link>
-                <span className="hidden sm:inline text-gray-600">|</span>
                 <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
                   Termos de Uso
                 </Link>
               </div>
-            </div>
-            
-            {/* Segunda linha - Desenvolvido por */}
-            <div className="mt-4 text-center lg:text-left">
-              <div className="text-gray-400 text-sm">
-                Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
+              <div className="text-gray-400 text-xs">
+                Site Desenvolvido por AORKIA
+              </div>
+              <div className="text-gray-400 text-xs">
+                Estratégia de Presença Digital
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <i 
+                  className="ri-mail-line text-sm text-gray-400 cursor-pointer hover:text-primary transition-colors"
+                  onClick={copyEmailToClipboard}
+                  title="Copiar e-mail"
+                ></i>
+                <span 
+                  className="text-gray-400 text-xs cursor-pointer hover:text-primary transition-colors"
+                  onClick={copyEmailToClipboard}
+                  title="Copiar e-mail"
+                >
+                  contato@aorkia.com
+                </span>
               </div>
             </div>
             
-            {/* Terceira linha - Email com ícone */}
-            <div className="mt-4 flex items-center justify-center lg:justify-start space-x-2">
-              <i 
-                className="ri-mail-line text-lg text-gray-400 cursor-pointer hover:text-primary transition-colors"
-                onClick={copyEmailToClipboard}
-                title="Copiar e-mail para a área de transferência"
-              ></i>
-              <span 
-                className="text-gray-400 text-sm cursor-pointer hover:text-primary transition-colors"
-                onClick={copyEmailToClipboard}
-                title="Copiar e-mail para a área de transferência"
-              >
-                contato@aorkia.com
-              </span>
+            {/* Desktop: Layout original */}
+            <div className="hidden md:block">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left space-y-4 lg:space-y-0">
+                <div className="text-gray-400 text-sm">
+                  © 2025 AORKIA. Todos os direitos reservados.
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-end space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
+                  <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
+                    Política de Privacidade
+                  </Link>
+                  <span className="hidden sm:inline text-gray-600">|</span>
+                  <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
+                    Termos de Uso
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="mt-4 text-center lg:text-left">
+                <div className="text-gray-400 text-sm">
+                  Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
+                </div>
+              </div>
+              
+              <div className="mt-4 flex items-center justify-center lg:justify-start space-x-2">
+                <i 
+                  className="ri-mail-line text-lg text-gray-400 cursor-pointer hover:text-primary transition-colors"
+                  onClick={copyEmailToClipboard}
+                  title="Copiar e-mail para a área de transferência"
+                ></i>
+                <span 
+                  className="text-gray-400 text-sm cursor-pointer hover:text-primary transition-colors"
+                  onClick={copyEmailToClipboard}
+                  title="Copiar e-mail para a área de transferência"
+                >
+                  contato@aorkia.com
+                </span>
+              </div>
             </div>
             
             {/* Mensagem de confirmação de cópia */}
