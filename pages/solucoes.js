@@ -234,9 +234,6 @@ export default function Solucoes() {
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Conheça nossas soluções.
-              </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
                 Nossas Soluções <br className="hidden md:block" />
                 Estratégicas
