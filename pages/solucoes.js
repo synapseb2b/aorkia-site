@@ -183,8 +183,7 @@ export default function Solucoes() {
       supportText: 'Visibilidade. Engajamento. Conversão.',
       subtitle: 'Sua Marca no Centro das Atenções Digitais.',
       caseStudy: 'Sua empresa tem um site, redes sociais, mas não consegue atrair clientes qualificados ou gerar leads? Você investe em marketing digital, mas não vê retorno claro? Com a Estratégia de Presença Digital ativada pela AORKIA, sua marca se torna um ímã para o público certo, transformando visitantes em clientes fiéis e impulsionando seu crescimento online.',
-      activateContent: 'A AORKIA simplifica a complexidade do marketing digital, ativando estratégias e ferramentas que garantem uma presença digital robusta e resultados mensuráveis:
-',
+      activateContent: 'A AORKIA simplifica a complexidade do marketing digital, ativando estratégias e ferramentas que garantem uma presença digital robusta e resultados mensuráveis:',
       features: [
         {
           icon: 'ri-seo-line',
@@ -220,8 +219,7 @@ export default function Solucoes() {
       supportText: 'Visão. Estratégia. Execução.',
       subtitle: 'Desbloqueie o Potencial Máximo da Sua Empresa.',
       caseStudy: 'Sua empresa enfrenta desafios complexos que exigem uma nova perspectiva? Você precisa de um plano claro para escalar, inovar ou otimizar operações, mas não sabe por onde começar? Com a Consultoria Estratégica da AORKIA, você terá acesso a expertise de ponta para transformar desafios em oportunidades e alcançar seus objetivos de negócio com confiança.',
-      activateContent: 'A AORKIA simplifica a complexidade da tomada de decisão estratégica, ativando insights e planos de ação que impulsionam o crescimento e a eficiência:
-',
+      activateContent: 'A AORKIA simplifica a complexidade da tomada de decisão estratégica, ativando insights e planos de ação que impulsionam o crescimento e a eficiência:',
       features: [
         {
           icon: 'ri-lightbulb-line',
@@ -308,9 +306,7 @@ export default function Solucoes() {
                   key={solution.id}
                   href={`#${solution.id}`}
                   onClick={(e) => scrollToSection(e, solution.id)}
-                  onMouseEnter={() => handleSectionInteraction(solution.id)}
-                  onMouseLeave={handleSectionLeave}
-                  className={`text-lg font-medium py-2 px-4 rounded-lg transition-all duration-300 ${activeSection === solution.id ? 'bg-primary text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800'}`}
+                  className="text-lg font-medium py-2 px-4 rounded-lg transition-all duration-300 text-gray-400 hover:text-white hover:bg-gray-800"
                 >
                   {solution.title}
                 </a>
@@ -323,9 +319,7 @@ export default function Solucoes() {
                 <div 
                   key={solution.id} 
                   id={solution.id} 
-                  data-solution-id={solution.id}
-                  className="mb-24 last:mb-0 p-8 rounded-lg transition-all duration-500 ease-in-out transform"
-                  style={activeSection === solution.id ? { backgroundColor: 'rgba(0, 118, 255, 0.1)' } : {}}
+                  className="mb-24 last:mb-0 p-8 rounded-lg"
                 >
                   <div className="flex flex-col md:flex-row items-center gap-12">
                     <div className="md:w-1/2">
@@ -359,5 +353,72 @@ export default function Solucoes() {
                     </div>
                   </div>
 
-                  {/* Seção 
+                  {/* Seção "Como Ativamos" */}
+                  <div className="mt-16">
+                    <h3 className="text-3xl font-bold mb-8 text-white">Como Ativamos</h3>
+                    <p className="text-gray-300 text-lg mb-8">
+                      {solution.activateContent}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {solution.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-start space-x-4">
+                          <div className="text-primary text-3xl flex-shrink-0">
+                            <i className={feature.icon}></i>
+                          </div>
+                          <div>
+                            <h4 className="text-xl font-semibold mb-2 text-white">
+                              {feature.title}
+                            </h4>
+                            <p className="text-gray-400">
+                              {feature.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Seção "Por Que" */}
+                  <div className="mt-16">
+                    <h3 className="text-3xl font-bold mb-8 text-white">Por Que</h3>
+                    <p className="text-gray-300 text-lg mb-6">
+                      {solution.whyContent}
+                    </p>
+                    <blockquote className="border-l-4 border-primary pl-6 italic text-gray-300 text-lg">
+                      {solution.whyQuote}
+                    </blockquote>
+                  </div>
+
+                  {/* Seção "Como" */}
+                  <div className="mt-16">
+                    <h3 className="text-3xl font-bold mb-8 text-white">Como</h3>
+                    <p className="text-gray-300 text-lg mb-6">
+                      {solution.howContent}
+                    </p>
+                    <blockquote className="border-l-4 border-primary pl-6 italic text-gray-300 text-lg">
+                      {solution.howQuote}
+                    </blockquote>
+                  </div>
+
+                  {/* CTA Final */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl font-semibold mb-6 text-white">
+                      {solution.ctaText}
+                    </p>
+                    <Link 
+                      href="/contato" 
+                      className="inline-block bg-primary hover:bg-primary/90 text-white px-12 py-4 rounded-lg text-xl font-medium transition-colors"
+                    >
+                      Fale com um especialista
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
 
