@@ -5,16 +5,27 @@ import Link from 'next/link';
 
 export default function Solucoes() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState(null);
-  const solutionsRef = useRef(null);
+  const [activeSection, setActiveSection] = useState('backup');
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para monitorar o progresso de rolagem e detectar seções visíveis
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
+
+      // Detectar qual seção está visível
+      const sections = document.querySelectorAll('[data-solution-id]');
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        
+        if (isVisible) {
+          const solutionId = section.getAttribute('data-solution-id');
+          setActiveSection(solutionId);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -30,7 +41,7 @@ export default function Solucoes() {
     }
   };
 
-  // Soluções com suas respectivas imagens e conteúdos
+  // Soluções com suas respectivas imagens e conteúdos (sem Consultoria Estratégica)
   const solutions = [
     {
       id: 'backup',
@@ -212,43 +223,7 @@ export default function Solucoes() {
       howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital que posiciona sua marca como líder no seu mercado. Nossa expertise em SEO garante que você seja encontrado por quem realmente importa, enquanto nossas campanhas de mídia paga geram leads qualificados e vendas. Implementamos automação de marketing para nutrir seus leads e transformá-los em clientes fiéis, e fornecemos análises detalhadas para otimização contínua. Deixe a AORKIA ativar o poder do digital para o seu negócio, transformando sua presença online em um motor de crescimento sustentável.',
       ctaText: 'Ative o Potencial Digital da Sua Marca. Descubra como a AORKIA pode construir uma Estratégia de Presença Digital que gera resultados reais para sua empresa.',
       image: '/image/digital.png'
-    },
-    {
-      id: 'consultoria',
-      title: 'Consultoria Estratégica',
-      supportText: 'Visão. Estratégia. Execução.',
-      subtitle: 'Desbloqueie o Potencial Máximo da Sua Empresa.',
-      caseStudy: 'Sua empresa enfrenta desafios complexos que exigem uma nova perspectiva? Você precisa de um plano claro para escalar, inovar ou otimizar operações, mas não sabe por onde começar? Com a Consultoria Estratégica da AORKIA, você terá acesso a expertise de ponta para transformar desafios em oportunidades e alcançar seus objetivos de negócio com confiança.',
-      activateContent: 'A AORKIA simplifica a complexidade da tomada de decisão estratégica, ativando insights e planos de ação que impulsionam o crescimento e a eficiência:',
-      features: [
-        {
-          icon: 'ri-lightbulb-line',
-          title: 'Diagnóstico e Análise Aprofundada',
-          description: 'Identificamos os pontos críticos e as oportunidades ocultas em seus processos, tecnologia e mercado, fornecendo uma visão clara para a tomada de decisão.'
-        },
-        {
-          icon: 'ri-rocket-line',
-          title: 'Desenvolvimento de Estratégias Customizadas',
-          description: 'Criamos planos de ação detalhados e personalizados para seus objetivos, seja para expansão, otimização de custos, inovação ou transformação digital.'
-        },
-        {
-          icon: 'ri-hand-coin-line',
-          title: 'Otimização de Processos e Eficiência Operacional',
-          description: 'Redesenhe seus fluxos de trabalho, implemente as melhores práticas e utilize a tecnologia para maximizar a produtividade e reduzir desperdícios.'
-        },
-        {
-          icon: 'ri-bar-chart-box-line',
-          title: 'Gestão de Projetos e Acompanhamento de Resultados',
-          description: 'Garantimos a execução eficaz das estratégias, monitorando o progresso e ajustando o curso para assegurar que seus objetivos sejam alcançados com sucesso.'
-        }
-      ],
-      whyContent: 'Em um mercado em constante mudança, a capacidade de se adaptar e inovar é crucial. A Consultoria Estratégica oferece a visão externa e a expertise necessária para navegar por esses desafios e capitalizar novas oportunidades.',
-      whyQuote: 'No ambiente de negócios dinâmico de hoje, a complexidade e a velocidade das mudanças exigem mais do que apenas experiência interna. A Consultoria Estratégica da AORKIA oferece uma visão externa imparcial e expertise especializada para identificar desafios, desvendar oportunidades e traçar um caminho claro para o sucesso. Seja para otimizar operações, inovar em produtos, expandir para novos mercados ou navegar por transformações digitais, ter um parceiro estratégico que compreende o cenário e sabe como ativar o potencial da sua empresa é fundamental para garantir um crescimento sustentável e uma vantagem competitiva duradoura.',
-      howContent: 'A AORKIA é sua parceira estratégica para transformar desafios em resultados. Nosso modelo de "ativação" garante que você não apenas receba um plano, mas que ele seja implementado com sucesso, gerando valor real para sua empresa.',
-      howQuote: 'Com a AORKIA, você ativa uma Consultoria Estratégica que vai além do diagnóstico. Nossa equipe de especialistas trabalha lado a lado com você para desenvolver e implementar soluções personalizadas, desde a otimização de processos e a adoção de novas tecnologias até a redefinição de modelos de negócio. Fornecemos insights acionáveis, metodologias comprovadas e acompanhamento contínuo para garantir que suas estratégias se traduzam em resultados tangíveis, como aumento de eficiência, redução de custos e crescimento de receita. Deixe a AORKIA ser o catalisador para o próximo nível de sucesso da sua empresa.',
-      ctaText: 'Desbloqueie o Futuro da Sua Empresa. Descubra como a Consultoria Estratégica da AORKIA pode impulsionar seu crescimento e inovação.',
-      image: '/image/consultoria.png'
-    },
+    }
   ];
 
   return (
@@ -293,36 +268,43 @@ export default function Solucoes() {
         </section>
 
         {/* Seção de Soluções */}
-        <section id="solucoes-list" className="py-24 bg-black">
-          <div className="container mx-auto max-w-7xl px-4">
+        <section id="solucoes-list" className="py-24 bg-black relative">
+          {/* Imagem de fundo para mobile */}
+          <div className="md:hidden fixed inset-0 z-0 opacity-20">
+            {solutions.map((solution) => (
+              <div
+                key={solution.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  activeSection === solution.id ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <Image
+                  src={solution.image}
+                  alt={solution.title}
+                  fill
+                  className="object-cover"
+                  priority={solution.id === 'backup'}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <h2 className="text-5xl font-bold text-center mb-16 text-white">
               Nossas <span className="text-primary">Soluções</span>
             </h2>
 
-            {/* Navegação lateral para desktop */}
-            <div className="hidden md:flex flex-col w-64 fixed left-0 top-1/2 -translate-y-1/2 p-4 space-y-4">
-              {solutions.map((solution) => (
-                <a
-                  key={solution.id}
-                  href={`#${solution.id}`}
-                  onClick={(e) => scrollToSection(e, solution.id)}
-                  className="text-lg font-medium py-2 px-4 rounded-lg transition-all duration-300 text-gray-400 hover:text-white hover:bg-gray-800"
-                >
-                  {solution.title}
-                </a>
-              ))}
-            </div>
-
             {/* Conteúdo das Soluções */}
-            <div className="md:ml-64">
+            <div className="space-y-24">
               {solutions.map((solution, index) => (
                 <div 
                   key={solution.id} 
                   id={solution.id} 
-                  className="mb-24 last:mb-0 p-8 rounded-lg"
+                  data-solution-id={solution.id}
+                  className="p-8 rounded-lg bg-black/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none"
                 >
                   <div className="flex flex-col md:flex-row items-center gap-12">
-                    <div className="md:w-1/2">
+                    <div className="md:w-1/2 hidden md:block">
                       <Image 
                         src={solution.image} 
                         alt={solution.title} 
