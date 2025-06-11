@@ -225,19 +225,19 @@ function MyApp({ Component, pageProps }) {
           
           {/* Menu à direita */}
           <nav className="flex items-center space-x-2">
-            <Link href="/" className="text-color hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Home
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/solucoes" className="text-color hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/solucoes" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Soluções
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/sobre" className="text-color hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Sobre
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/contato" className="text-color hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/contato" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Contato
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
@@ -292,7 +292,7 @@ function MyApp({ Component, pageProps }) {
                 </div>
               </Link>
               <button 
-                className="text-color text-3xl"
+                className="text-white text-3xl"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Fechar menu"
               >
@@ -332,7 +332,7 @@ function MyApp({ Component, pageProps }) {
             <div className="mt-auto">
               <Link 
                 href="/contato" 
-                className="inline-block bg-primary hover:bg-primary/90 text-color px-6 py-4 rounded-lg transition-all text-center mt-8 text-2xl font-bold"
+                className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg transition-all text-center mt-8 text-2xl font-bold"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Começar agora
@@ -441,10 +441,10 @@ function MyApp({ Component, pageProps }) {
               </div>
 
               <div className="mt-8 flex space-x-6">
-                <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-color transition-colors">
+                <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
                   <i className="ri-linkedin-fill"></i>
                 </a>
-                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-color transition-colors">
+                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
                   <i className="ri-instagram-line"></i>
                 </a>
               </div>
@@ -481,7 +481,7 @@ function MyApp({ Component, pageProps }) {
                         id="nome"
                         name="nome"
                         required
-                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-color"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                         placeholder="Seu nome completo"
                       />
                     </div>
@@ -495,7 +495,7 @@ function MyApp({ Component, pageProps }) {
                         id="email"
                         name="email"
                         required
-                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-color"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                         placeholder="seu.email@empresa.com"
                       />
                     </div>
@@ -510,7 +510,7 @@ function MyApp({ Component, pageProps }) {
                         type="tel"
                         id="telefone"
                         name="telefone"
-                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-color"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                         placeholder="(11) 99999-9999"
                       />
                     </div>
@@ -522,7 +522,7 @@ function MyApp({ Component, pageProps }) {
                       <select
                         id="solucao"
                         name="solucao"
-                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-color"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                       >
                         <option value="">Selecione uma solução</option>
                         <option value="backup">Backup SaaS Estratégico</option>
@@ -543,7 +543,7 @@ function MyApp({ Component, pageProps }) {
                       name="mensagem"
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-color"
+                      className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                       placeholder="Conte-nos sobre seus desafios e como podemos ajudar sua empresa..."
                     ></textarea>
                   </div>
@@ -551,7 +551,7 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors"
+                      className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-medium hover:bg-primary/90 transition-white"
                     >
                       Enviar Mensagem
                     </button>
