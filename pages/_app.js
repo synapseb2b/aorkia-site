@@ -455,7 +455,7 @@ function MyApp({ Component, pageProps }) {
           
           <div className="text-center mt-16 text-gray-400 text-sm">
             <p className="flex items-center justify-center">
-              <span className="mr-2">| © 2025 AORKIA. Todos os direitos reservados. |</span>
+              <span className="mr-2"> © 2025 AORKIA. Todos os direitos reservados. |</span>
               <Link href="/privacy" className="hover:text-primary transition-colors mr-2">Política de Privacidade</Link>
               <span className="mr-2">|</span>
               <Link href="/terms" className="hover:text-primary transition-colors mr-2">Termos de Uso</Link>
