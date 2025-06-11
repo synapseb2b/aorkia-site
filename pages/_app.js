@@ -194,14 +194,14 @@ function MyApp({ Component, pageProps }) {
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-x-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
             </div>
           </div>
         </div>
       )}
 
       {/* Desktop Navbar - CORRIGIDA */}
-      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 hidden md:block">
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
           {/* Logo à esquerda */}
           <Link href="/" className="flex-shrink-0">
@@ -240,7 +240,7 @@ function MyApp({ Component, pageProps }) {
       </header>
 
       {/* Mobile Navbar - CORRIGIDA */}
-      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-50 md:hidden">
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
             <div className="logo-container h-12 relative">
@@ -270,7 +270,7 @@ function MyApp({ Component, pageProps }) {
 
       {/* Menu Mobile Fullscreen */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black z-[60] flex flex-col">
+        <div className="fixed inset-0 bg-black z-[65] flex flex-col">
           <div className="container mx-auto px-4 py-8 h-full flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
@@ -336,8 +336,8 @@ function MyApp({ Component, pageProps }) {
         </div>
       )}
 
-      {/* Botões flutuantes */}
-      <div className="fixed bottom-8 right-8 z-40 flex flex-col gap-4">
+      {/* Botões flutuantes - Z-INDEX CORRIGIDO */}
+      <div className="fixed bottom-8 right-8 z-[50] flex flex-col gap-4">
         {/* Botão WhatsApp */}
         <a 
           href="https://wa.me/553139586192" 
@@ -363,7 +363,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - REORGANIZADO PARA MOBILE COM FORMULÁRIO PRIMEIRO */}
+      {/* Footer Global - REORGANIZADO PARA MOBILE COM FORMULÁRIO PRIMEIRO E SEÇÃO DE COPYRIGHT ADICIONADA */}
       <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -524,7 +524,6 @@ function MyApp({ Component, pageProps }) {
                         <option value="dspm">Segurança para Operações Críticas</option>
                         <option value="receitas">Inteligência de Receita com IA</option>
                         <option value="digital">Estratégia de Presença Digital</option>
-                        <option value="consultoria">Consultoria Estratégica</option>
                       </select>
                     </div>
                   </div>
@@ -555,12 +554,58 @@ function MyApp({ Component, pageProps }) {
               )}
             </div>
           </div>
+
+          {/* SEÇÃO DE COPYRIGHT ADICIONADA */}
+          <div className="mt-16 pt-8 border-t border-gray-700">
+            {/* Mobile: Layout em coluna única */}
+            <div className="block md:hidden space-y-4 text-center">
+              <div className="text-gray-400 text-xs">
+                © 2025 AORKIA. Todos os direitos reservados.
+              </div>
+              <div className="flex flex-col space-y-2 text-xs">
+                <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
+                  Política de Privacidade
+                </Link>
+                <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
+                  Termos de Uso
+                </Link>
+              </div>
+              <div className="text-gray-400 text-xs">
+                Site Desenvolvido por AORKIA - Estratégia de Presença Digital
+              </div>
+              <div className="text-gray-400 text-xs">
+                contato@aorkia.com
+              </div>
+            </div>
+            
+            {/* Desktop: Layout original */}
+            <div className="hidden md:block">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left space-y-4 lg:space-y-0">
+                <div className="text-gray-400 text-sm">
+                  © 2025 AORKIA. Todos os direitos reservados.
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-end space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
+                  <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
+                    Política de Privacidade
+                  </Link>
+                  <span className="hidden sm:inline text-gray-600">|</span>
+                  <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
+                    Termos de Uso
+                  </Link>
+                  <span className="hidden sm:inline text-gray-600">|</span>
+                  <span className="text-gray-400">Site Desenvolvido por AORKIA - Estratégia de Presença Digital</span>
+                  <span className="hidden sm:inline text-gray-600">|</span>
+                  <span className="text-gray-400">contato@aorkia.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
 
       {/* Banner de Cookies */}
       {showCookieBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-50">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-[55]">
           <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-300 text-sm">
               Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa política de cookies.
