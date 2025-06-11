@@ -7,13 +7,25 @@ export default function Sobre() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
 
-  // Efeito para monitorar o progresso de rolagem
+  // Efeito para monitorar o progresso de rolagem e detectar seções visíveis
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
+
+      // Detectar qual seção está visível e ativar transição
+      const sections = document.querySelectorAll('[data-section-id]');
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        
+        if (isVisible) {
+          const sectionId = section.getAttribute('data-section-id');
+          setActiveSection(sectionId);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -26,6 +38,19 @@ export default function Sobre() {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Função para ativar seção no hover/touch
+  const handleSectionInteraction = (sectionId) => {
+    setActiveSection(sectionId);
+  };
+
+  // Função para desativar seção (apenas no desktop)
+  const handleSectionLeave = () => {
+    // No mobile, mantém ativo; no desktop, desativa
+    if (window.innerWidth >= 768) {
+      setActiveSection(null);
     }
   };
 
@@ -48,6 +73,9 @@ export default function Sobre() {
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
+                Conheça a AORKIA.
+              </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
                 Sobre a <span className="text-primary">AORKIA</span>
               </h1>
@@ -64,26 +92,39 @@ export default function Sobre() {
               </button>
             </div>
           </div>
+
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
+            <a 
+              href="#historia" 
+              onClick={(e) => scrollToSection(e, 'historia')}
+              className="text-white text-4xl"
+            >
+              <i className="ri-arrow-down-line"></i>
+            </a>
+          </div>
         </section>
 
-        {/* Seção Nossa História - Estilo Jam3 */}
+        {/* Seção Nossa História - Estilo Jam3 com transições */}
         <section 
           id="historia" 
+          data-section-id="historia"
           className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
-          onMouseEnter={() => setActiveSection('historia')}
-          onMouseLeave={() => setActiveSection(null)}
+          onMouseEnter={() => handleSectionInteraction('historia')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('historia')}
+          onClick={() => handleSectionInteraction('historia')}
         >
-          {/* Background Image (aparece apenas no hover) */}
+          {/* Background Image (aparece apenas no hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'historia' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/futuro.png)` }}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
-          {/* Background Color (aparece quando não está em hover) */}
+          {/* Background Color (aparece quando não está em hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'historia' ? 'opacity-0' : 'opacity-100'
@@ -115,24 +156,27 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Nossos Valores - Estilo Jam3 */}
+        {/* Seção Nossos Valores - Estilo Jam3 com transições */}
         <section 
           id="valores" 
+          data-section-id="valores"
           className="relative w-full min-h-screen overflow-hidden group border-b border-gray-800"
-          onMouseEnter={() => setActiveSection('valores')}
-          onMouseLeave={() => setActiveSection(null)}
+          onMouseEnter={() => handleSectionInteraction('valores')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('valores')}
+          onClick={() => handleSectionInteraction('valores')}
         >
-          {/* Background Image (aparece apenas no hover) */}
+          {/* Background Image (aparece apenas no hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'valores' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/digital.jpeg)` }}
+            style={{ backgroundImage: `url(/image/light_pont.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
-          {/* Background Color (aparece quando não está em hover) */}
+          {/* Background Color (aparece quando não está em hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'valores' ? 'opacity-0' : 'opacity-100'
@@ -240,24 +284,27 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Parceiros Estratégicos - Estilo Jam3 */}
+        {/* Seção Parceiros Estratégicos - Estilo Jam3 com transições */}
         <section 
           id="parceiros" 
+          data-section-id="parceiros"
           className="relative w-full overflow-hidden group border-b border-gray-800 py-24"
-          onMouseEnter={() => setActiveSection('parceiros')}
-          onMouseLeave={() => setActiveSection(null)}
+          onMouseEnter={() => handleSectionInteraction('parceiros')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('parceiros')}
+          onClick={() => handleSectionInteraction('parceiros')}
         >
-          {/* Background Image (aparece apenas no hover) */}
+          {/* Background Image (aparece apenas no hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'parceiros' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/images/bordas.png)` }}
+            style={{ backgroundImage: `url(/image/ponta.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
-          {/* Background Color (aparece quando não está em hover) */}
+          {/* Background Color (aparece quando não está em hover/ativo) */}
           <div 
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'parceiros' ? 'opacity-0' : 'opacity-100'
@@ -305,7 +352,7 @@ export default function Sobre() {
                   <p className={`text-2xl font-bold transition-colors duration-500 ${
                     activeSection === 'parceiros' ? 'text-white' : 'text-black'
                   }`}>
-                    Google Cloud
+                    Google
                   </p>
                 </div>
                 
@@ -317,7 +364,7 @@ export default function Sobre() {
                   <p className={`text-2xl font-bold transition-colors duration-500 ${
                     activeSection === 'parceiros' ? 'text-white' : 'text-black'
                   }`}>
-                    Tenable
+                    AWS
                   </p>
                 </div>
                 
@@ -329,15 +376,29 @@ export default function Sobre() {
                   <p className={`text-2xl font-bold transition-colors duration-500 ${
                     activeSection === 'parceiros' ? 'text-white' : 'text-black'
                   }`}>
-                    NVIDIA
+                    Salesforce
                   </p>
                 </div>
               </div>
+              
+              <div className="mt-16 text-center">
+                <Link 
+                  href="/contato" 
+                  className={`inline-flex items-center text-lg font-medium px-8 py-3 border transition-all duration-500 ${
+                    activeSection === 'parceiros' 
+                    ? 'text-white border-white hover:bg-white hover:text-black' 
+                    : 'text-black border-black hover:bg-black hover:text-white'
+                  }`}
+                >
+                  <span>Fale Conosco</span>
+                  <i className="ri-arrow-right-line ml-2"></i>
+                </Link>
+              </div>
             </div>
           </div>
-    
         </section>
       </main>
     </>
   );
 }
+
