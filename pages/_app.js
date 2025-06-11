@@ -413,6 +413,97 @@ function MyApp({ Component, pageProps }) {
                 <div>
                   <label className="block text-sm font-medium mb-2">Produtos de interesse (selecione um ou mais):</label>
                   <div className="space-y-2">
-    
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                    <label className="inline-flex items-center">
+                      <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="form-checkbox text-primary rounded" />
+                      <span className="ml-2 text-gray-300">Backup SaaS Estratégico</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="form-checkbox text-primary rounded" />
+                      <span className="ml-2 text-gray-300">Operações de Bordas Inteligentes</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="form-checkbox text-primary rounded" />
+                      <span className="ml-2 text-gray-300">Segurança para Operações Críticas (DSPM)</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="form-checkbox text-primary rounded" />
+                      <span className="ml-2 text-gray-300">Plataforma de Inteligência de Receita com IA</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="form-checkbox text-primary rounded" />
+                      <span className="ml-2 text-gray-300">Estratégia de Presença Digital</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <textarea
+                    name="mensagem"
+                    placeholder="Sua mensagem"
+                    rows="4"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-all"
+                >
+                  Enviar Mensagem
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div className="text-center mt-16 text-gray-400 text-sm">
+            <p className="flex items-center justify-center">
+              <span className="mr-2">| © 2025 AORKIA. Todos os direitos reservados. |</span>
+              <Link href="/privacy" className="hover:text-primary transition-colors mr-2">Política de Privacidade</Link>
+              <span className="mr-2">|</span>
+              <Link href="/terms" className="hover:text-primary transition-colors mr-2">Termos de Uso</Link>
+              <span className="mr-2">|</span>
+              <span>Site Desenvolvido por AORKIA - Estratégia de Presença Digital.</span>
+              <span className="ml-2 flex items-center">
+                <i 
+                  className="ri-mail-line text-lg cursor-pointer hover:text-primary transition-colors"
+                  onClick={copyEmailToClipboard}
+                  title="Copiar e-mail para a área de transferência"
+                ></i>
+                <span className="ml-1">contato@aorkia.com</span>
+              </span>
+            </p>
+            {emailCopied && (
+              <p className="text-green-500 mt-2 text-xs">E-mail copiado para a área de transferência!</p>
+            )}
+          </div>
+        </div>
+      </footer>
+
+      {/* Banner de Cookies */}
+      {showCookieBanner && !cookieConsent && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 flex flex-col md:flex-row items-center justify-between z-50">
+          <p className="text-sm mb-4 md:mb-0">
+            Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com o uso de cookies. Para mais informações, consulte nossa 
+            <Link href="/privacy" className="text-primary hover:underline ml-1">Política de Privacidade</Link>.
+          </p>
+          <div className="flex space-x-4">
+            <button 
+              onClick={acceptCookies} 
+              className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all"
+            >
+              Aceitar
+            </button>
+            <button 
+              onClick={declineCookies} 
+              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-all"
+            >
+              Recusar
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default MyApp;
+
 
