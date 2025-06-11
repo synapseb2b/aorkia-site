@@ -70,50 +70,50 @@ export default function Home() {
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
-      supportText: 'Imutável. Independente. Inteligente.',
-      description: 'Perder dados críticos de Plataformas SaaS como Microsoft 365, Google Workspace e Salesforce por um simples erro humano ou um ataque de ransomware pode paralisar sua operação e gerar custos enormes. Para garantir proteção de dados independente, completa e sempre recuperável, a AORKIA ativa a Keepit – Líder Global com mais de 15.000 clientes em 74 países, incluindo Porsche e Oxford University.',
+      supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
+      description: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
       image: '/image/backup.png',
       link: '/solucoes'
+      },
+     {
+     id: 'bordas',
+     title: 'Operações de Bordas Inteligentes',
+     supportText: 'Decisão em Milissegundos. Performance no Ponto Crítico.',
+     description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
+     image: '/image/bordas.png',
+     link: '/solucoes'
     },
     {
-      id: 'bordas',
-      title: 'Operações de Bordas Inteligentes',
-      supportText: 'Inteligência na Borda. Decisões Imediatas.',
-      description: 'Otimize a produção em tempo real na sua fábrica, preveja falhas em equipamentos remotos antes que paralisem suas operações, ou ofereça experiências personalizadas e instantâneas no seu varejo. A AORKIA ativa Plataformas Edge AI, garantindo inteligência, segurança e conformidade para suas operações na borda.',
-      image: '/image/bordas.png',
-      link: '/solucoes'
+    id: 'dspm',
+    title: 'Segurança para Operações Críticas',
+    supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
+    description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
+    image: '/image/dspm.png',
+    link: '/solucoes'
     },
     {
-      id: 'dspm',
-      title: 'Segurança para Operações Críticas',
-      supportText: 'Visão Total. Controle Ativo.',
-      description: 'Sua empresa armazena dados de clientes ou propriedade intelectual em múltiplas nuvens e tem dificuldade em saber quem realmente tem acesso a quê? Uma configuração incorreta pode expor dados críticos, gerando riscos regulatórios e de reputação. A AORKIA ativa Plataformas Data Security Posture Management (DSPM), que potencializam a descoberta, classificação, monitoramento e proteção contínuos dos seus dados sensíveis em ambientes multicloud e híbridos.',
-      image: '/image/dspm.png',
-      link: '/solucoes'
+    id: 'receitas',
+    title: 'Plataformas de Inteligência de Receita com IA',
+    supportText: 'Previsão Precisa. Pipeline Sem Vazamentos.',
+    description: 'Sua equipe de vendas está ocupada demais para vender? A AORKIA ativa Plataformas de Inteligência de Receita com IA que automatizam tarefas manuais, preveem resultados com precisão e identificam gargalos invisíveis no seu pipeline. Transforme dados de CRM em crescimento real, com decisões guiadas por inteligência preditiva.',
+    image: '/image/receitas.png',
+    link: '/solucoes'
     },
     {
-      id: 'receitas',
-      title: 'Plataformas de Inteligência de Receita com IA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      description: 'Sua equipe de vendas perde tempo com tarefas manuais em vez de focar em fechar negócios? Suas previsões de receita são imprecisas e o pipeline parece ter "vazamentos" que você não consegue identificar? A AORKIA ativa Plataformas de Inteligência de Receita com IA, transformando seus dados de vendas e CRM em insights preditivos e automação inteligente.',
-      image: '/image/receitas.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'digital',
-      title: 'Estratégia de Presença Digital AORKIA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      description: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? A AORKIA ativa sua Estratégia de Presença Digital, elevando sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
-      image: '/image/digital.png',
-      link: '/solucoes'
-    }
+   id: 'digital',
+   title: 'Estratégia de Presença Digital AORKIA',
+   supportText: 'Autoridade Real. Geração de Demanda com Direção.',
+   description: 'Sua presença digital está gerando oportunidades concretas ou apenas visitas sem impacto? A AORKIA ativa uma Estratégia de Presença Digital orientada a performance no mercado B2B — transformando seu site, canais e conteúdo em um ecossistema que posiciona sua marca como referência, atrai leads qualificados e acelera sua receita.',
+   image: '/image/digital.png',
+   link: '/solucoes'
+   }
   ];
 
   return (
     <>
       <Head>
-        <title>AORKIA | Tecnologia de Ponta. Visão de Futuro.</title>
-        <meta name="description" content="Tecnologia de Ponta. Visão de Futuro." />
+        <title>AORKIA | Soluções B2B que blindam dados, aceleram receita e transformam Tecnologia de Ponta em vantagem real.</title>
+        <meta name="description" content="Soluções B2B que blindam dados, aceleram receita e transformam Tecnologia de Ponta em vantagem real." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -132,8 +132,8 @@ export default function Home() {
                 Boas-vindas à AORKIA.
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Tecnologia de Ponta. <br className="hidden md:block" />
-                Visão de Futuro.
+                Soluções B2B que blindam dados, aceleram receita  <br className="hidden md:block" />
+                e transformam Tecnologia de Ponta em vantagem real
               </h1>
             </div>
           </div>
@@ -267,14 +267,14 @@ export default function Home() {
                 <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-white' : 'text-black'
                 }`}>
-                  O Futuro do Seu Negócio, Ativado.
+                  Tecnologia de Ponta. Vantagem Competitiva. Ativado.
                 </h3>
               </div>
               <div>
                 <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Ativamos as melhores soluções globais para a sua realidade específica. Convertemos potencial tecnológico em vantagem competitiva e crescimento sustentável para sua empresa.
+                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertendo tecnologia de ponta em resultados concretos: proteção de dados, eficiência operacional e crescimento previsível.
                 </p>
               </div>
             </div>
