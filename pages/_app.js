@@ -261,9 +261,9 @@ function MyApp({ Component, pageProps }) {
             </div>
           </Link>
           <button 
-            <span className="w-full h-0.5 bg-white block"></span>
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
+            className="text-white"
           >
             <div className="w-6 flex flex-col gap-1">
               <span className="w-full h-0.5 bg-white block"></span>
@@ -441,10 +441,10 @@ function MyApp({ Component, pageProps }) {
               </div>
 
               <div className="mt-8 flex space-x-6">
-                <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+                <a href="https://linkedin.com/company/aorkia" target="_blank" rel="noopener noreferrer" className="text-2xl text-white hover:text-primary transition-colors">
                   <i className="ri-linkedin-fill"></i>
                 </a>
-                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-white transition-colors">
+                <a href="https://instagram.com/aorkia.tech" target="_blank" rel="noopener noreferrer" className="text-2xl text-white hover:text-primary transition-colors">
                   <i className="ri-instagram-line"></i>
                 </a>
               </div>
@@ -516,21 +516,56 @@ function MyApp({ Component, pageProps }) {
                     </div>
                     
                     <div>
-                      <label htmlFor="solucao" className="block text-sm font-medium text-gray-300 mb-2">
-                        Solução de Interesse
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Soluções de Interesse (selecione uma ou mais)
                       </label>
-                      <select
-                        id="solucao"
-                        name="solucao"
-                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
-                      >
-                        <option value="">Selecione uma solução</option>
-                        <option value="backup">Backup SaaS Estratégico</option>
-                        <option value="bordas">Operações de Bordas Inteligentes</option>
-                        <option value="dspm">Segurança para Operações Críticas</option>
-                        <option value="receitas">Inteligência de Receita com IA</option>
-                        <option value="digital">Estratégia de Presença Digital</option>
-                      </select>
+                      <div className="space-y-3">
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="solucoes"
+                            value="backup"
+                            className="w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                          />
+                          <span className="text-white">Backup SaaS Estratégico</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="solucoes"
+                            value="bordas"
+                            className="w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                          />
+                          <span className="text-white">Operações de Bordas Inteligentes</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="solucoes"
+                            value="dspm"
+                            className="w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                          />
+                          <span className="text-white">Segurança para Operações Críticas</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="solucoes"
+                            value="receitas"
+                            className="w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                          />
+                          <span className="text-white">Inteligência de Receita com IA</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="solucoes"
+                            value="digital"
+                            className="w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                          />
+                          <span className="text-white">Estratégia de Presença Digital</span>
+                        </label>
+                      </div>
                     </div>
                   </div>
 
