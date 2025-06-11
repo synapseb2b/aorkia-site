@@ -75,6 +75,14 @@ export default function Contato() {
               <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
                 Descubra como nossas soluções estratégicas podem impulsionar sua empresa.
               </p>
+    
+              {/* Botão para rolar para Contato */}
+              <button 
+                onClick={(e) => scrollToSection(e, 'solutions')}
+                className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500"
+              >
+                Contato
+              </button>
             </div>
           </div>
         </section>
