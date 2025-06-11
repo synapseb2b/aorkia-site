@@ -13,6 +13,8 @@ function MyApp({ Component, pageProps }) {
   const [logoToggle, setLogoToggle] = useState(false);
   const logoIntervalRef = useRef(null);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
+  const [addressCopied, setAddressCopied] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   // Efeito para carregar scripts externos como RemixIcon
@@ -99,6 +101,26 @@ function MyApp({ Component, pageProps }) {
       setEmailCopied(true);
       setTimeout(() => {
         setEmailCopied(false);
+      }, 3000);
+    });
+  };
+
+  // Função para copiar telefone para área de transferência
+  const copyPhoneToClipboard = () => {
+    navigator.clipboard.writeText('+55 31 3958-6192').then(() => {
+      setPhoneCopied(true);
+      setTimeout(() => {
+        setPhoneCopied(false);
+      }, 3000);
+    });
+  };
+
+  // Função para copiar endereço para área de transferência
+  const copyAddressToClipboard = () => {
+    navigator.clipboard.writeText('Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG').then(() => {
+      setAddressCopied(true);
+      setTimeout(() => {
+        setAddressCopied(false);
       }, 3000);
     });
   };
@@ -341,11 +363,12 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - COMPLETAMENTE REORGANIZADO PARA MOBILE */}
+      {/* Footer Global - REORGANIZADO PARA MOBILE COM FORMULÁRIO PRIMEIRO */}
       <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
+            {/* No mobile, formulário aparece primeiro */}
+            <div className="order-2 md:order-1">
               <div className="mb-8">
                 <Image
                   src="/image/logo_aorkia_white.png"
@@ -362,11 +385,16 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-primary text-2xl mt-1 mr-4">
                     <i className="ri-map-pin-2-line"></i>
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">Endereço</h3>
-                    <p className="text-gray-300">
+                    <p 
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
+                      onClick={copyAddressToClipboard}
+                      title="Clique para copiar"
+                    >
                       Av. Getúlio Vargas, 671 — Sala 500<br />
                       Belo Horizonte - MG
+                      {addressCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
                     </p>
                   </div>
                 </div>
@@ -375,9 +403,16 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-primary text-2xl mt-1 mr-4">
                     <i className="ri-phone-line"></i>
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">Telefone</h3>
-                    <p className="text-gray-300">+55 31 3958-6192</p>
+                    <p 
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
+                      onClick={copyPhoneToClipboard}
+                      title="Clique para copiar"
+                    >
+                      +55 31 3958-6192
+                      {phoneCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
+                    </p>
                   </div>
                 </div>
                 
@@ -385,9 +420,16 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-primary text-2xl mt-1 mr-4">
                     <i className="ri-mail-line"></i>
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">E-mail</h3>
-                    <p className="text-gray-300">contato@aorkia.com</p>
+                    <p 
+                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
+                      onClick={copyEmailToClipboard}
+                      title="Clique para copiar"
+                    >
+                      contato@aorkia.com
+                      {emailCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -402,195 +444,141 @@ function MyApp({ Component, pageProps }) {
               </div>
             </div>
             
-            <div>
+            {/* No mobile, formulário aparece primeiro */}
+            <div className="order-1 md:order-2">
               <h2 className="text-2xl font-bold mb-6">Fale Conosco</h2>
               {formSubmitted ? (
-                <div className="bg-green-600 text-white p-6 rounded-lg text-center">
-                  <i className="ri-check-line text-3xl mb-2"></i>
-                  <h3 className="text-xl font-bold mb-2">Mensagem Enviada!</h3>
-                  <p>Obrigado pelo seu contato. A AORKIA retornará em breve.</p>
+                <div className="text-center py-12">
+                  <div className="text-green-600 text-6xl mb-6">
+                    <i className="ri-check-circle-line"></i>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Mensagem Enviada com Sucesso!</h3>
+                  <p className="text-gray-300 mb-8">
+                    Obrigado pelo seu interesse na AORKIA. Nossa equipe entrará em contato em breve para discutir como podemos ativar as melhores soluções para sua empresa.
+                  </p>
+                  <button 
+                    onClick={() => setFormSubmitted(false)}
+                    className="bg-primary text-white px-8 py-3 rounded hover:bg-primary/90 transition-colors"
+                  >
+                    Enviar Nova Mensagem
+                  </button>
                 </div>
               ) : (
-                <form 
-                  className="space-y-4" 
-                  onSubmit={handleFormSubmit}
-                >
-                  <div>
-                    <input
-                      type="text"
-                      name="nome"
-                      placeholder="Nome completo"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="E-mail"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      name="telefone"
-                      placeholder="Telefone"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-3">Produtos de interesse (selecione um ou mais):</label>
-                    <div className="grid grid-cols-1 gap-3">
-                      <label className="flex items-start cursor-pointer">
-                        <input type="checkbox" name="interesses" value="Backup SaaS Estratégico" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
-                        <span className="text-gray-300 text-sm">Backup SaaS Estratégico</span>
+                <form onSubmit={handleFormSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="nome" className="block text-sm font-medium text-gray-300 mb-2">
+                        Nome Completo *
                       </label>
-                      <label className="flex items-start cursor-pointer">
-                        <input type="checkbox" name="interesses" value="Operações de Bordas Inteligentes" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
-                        <span className="text-gray-300 text-sm">Operações de Bordas Inteligentes</span>
+                      <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        required
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
+                        placeholder="Seu nome completo"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                        E-mail Corporativo *
                       </label>
-                      <label className="flex items-start cursor-pointer">
-                        <input type="checkbox" name="interesses" value="Segurança para Operações Críticas (DSPM)" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
-                        <span className="text-gray-300 text-sm">Segurança para Operações Críticas (DSPM)</span>
-                      </label>
-                      <label className="flex items-start cursor-pointer">
-                        <input type="checkbox" name="interesses" value="Plataforma de Inteligência de Receita com IA" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
-                        <span className="text-gray-300 text-sm">Plataforma de Inteligência de Receita com IA</span>
-                      </label>
-                      <label className="flex items-start cursor-pointer">
-                        <input type="checkbox" name="interesses" value="Estratégia de Presença Digital" className="mt-1 mr-3 h-4 w-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2" />
-                        <span className="text-gray-300 text-sm">Estratégia de Presença Digital</span>
-                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
+                        placeholder="seu.email@empresa.com"
+                      />
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="telefone" className="block text-sm font-medium text-gray-300 mb-2">
+                        Telefone
+                      </label>
+                      <input
+                        type="tel"
+                        id="telefone"
+                        name="telefone"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
+                        placeholder="(11) 99999-9999"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="solucao" className="block text-sm font-medium text-gray-300 mb-2">
+                        Solução de Interesse
+                      </label>
+                      <select
+                        id="solucao"
+                        name="solucao"
+                        className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
+                      >
+                        <option value="">Selecione uma solução</option>
+                        <option value="backup">Backup SaaS Estratégico</option>
+                        <option value="bordas">Operações de Bordas Inteligentes</option>
+                        <option value="dspm">Segurança para Operações Críticas</option>
+                        <option value="receitas">Inteligência de Receita com IA</option>
+                        <option value="digital">Estratégia de Presença Digital</option>
+                        <option value="consultoria">Consultoria Estratégica</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div>
+                    <label htmlFor="mensagem" className="block text-sm font-medium text-gray-300 mb-2">
+                      Mensagem *
+                    </label>
                     <textarea
+                      id="mensagem"
                       name="mensagem"
-                      placeholder="Sua mensagem"
-                      rows="4"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                      required
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
+                      placeholder="Conte-nos sobre seus desafios e como podemos ajudar sua empresa..."
                     ></textarea>
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-all"
-                  >
-                    Enviar Mensagem
-                  </button>
+
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors"
+                    >
+                      Enviar Mensagem
+                    </button>
+                  </div>
                 </form>
               )}
             </div>
-          </div>
-          
-          {/* Footer responsivo - COMPLETAMENTE REORGANIZADO */}
-          <div className="mt-16 pt-8 border-t border-gray-700">
-            {/* Mobile: Layout em coluna única */}
-            <div className="block md:hidden space-y-4 text-center">
-              <div className="text-gray-400 text-xs">
-                © 2025 AORKIA. Todos os direitos reservados.
-              </div>
-              <div className="flex flex-col space-y-2 text-xs">
-                <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
-                  Política de Privacidade
-                </Link>
-                <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
-                  Termos de Uso
-                </Link>
-              </div>
-              <div className="text-gray-400 text-xs">
-                Site Desenvolvido por AORKIA
-              </div>
-              <div className="text-gray-400 text-xs">
-                Estratégia de Presença Digital
-              </div>
-              <div className="flex items-center justify-center space-x-2">
-                <i 
-                  className="ri-mail-line text-sm text-gray-400 cursor-pointer hover:text-primary transition-colors"
-                  onClick={copyEmailToClipboard}
-                  title="Copiar e-mail"
-                ></i>
-                <span 
-                  className="text-gray-400 text-xs cursor-pointer hover:text-primary transition-colors"
-                  onClick={copyEmailToClipboard}
-                  title="Copiar e-mail"
-                >
-                  contato@aorkia.com
-                </span>
-              </div>
-            </div>
-            
-            {/* Desktop: Layout original */}
-            <div className="hidden md:block">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left space-y-4 lg:space-y-0">
-                <div className="text-gray-400 text-sm">
-                  © 2025 AORKIA. Todos os direitos reservados.
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-end space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
-                  <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">
-                    Política de Privacidade
-                  </Link>
-                  <span className="hidden sm:inline text-gray-600">|</span>
-                  <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
-                    Termos de Uso
-                  </Link>
-                </div>
-              </div>
-              
-              <div className="mt-4 text-center lg:text-left">
-                <div className="text-gray-400 text-sm">
-                  Site Desenvolvido por AORKIA - Estratégia de Presença Digital.
-                </div>
-              </div>
-              
-              <div className="mt-4 flex items-center justify-center lg:justify-start space-x-2">
-                <i 
-                  className="ri-mail-line text-lg text-gray-400 cursor-pointer hover:text-primary transition-colors"
-                  onClick={copyEmailToClipboard}
-                  title="Copiar e-mail para a área de transferência"
-                ></i>
-                <span 
-                  className="text-gray-400 text-sm cursor-pointer hover:text-primary transition-colors"
-                  onClick={copyEmailToClipboard}
-                  title="Copiar e-mail para a área de transferência"
-                >
-                  contato@aorkia.com
-                </span>
-              </div>
-            </div>
-            
-            {/* Mensagem de confirmação de cópia */}
-            {emailCopied && (
-              <div className="mt-2 text-center lg:text-left">
-                <p className="text-green-500 text-xs">E-mail copiado para a área de transferência!</p>
-              </div>
-            )}
           </div>
         </div>
       </footer>
 
       {/* Banner de Cookies */}
-      {showCookieBanner && !cookieConsent && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 flex flex-col md:flex-row items-center justify-between z-50">
-          <p className="text-sm mb-4 md:mb-0">
-            Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com o uso de cookies. Para mais informações, consulte nossa 
-            <Link href="/privacy" className="text-primary hover:underline ml-1">Política de Privacidade</Link>.
-          </p>
-          <div className="flex space-x-4">
-            <button 
-              onClick={acceptCookies} 
-              className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all"
-            >
-              Aceitar
-            </button>
-            <button 
-              onClick={declineCookies} 
-              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-all"
-            >
-              Recusar
-            </button>
+      {showCookieBanner && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-50">
+          <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-300 text-sm">
+              Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa política de cookies.
+            </p>
+            <div className="flex gap-4">
+              <button 
+                onClick={declineCookies}
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+              >
+                Recusar
+              </button>
+              <button 
+                onClick={acceptCookies}
+                className="px-6 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+              >
+                Aceitar
+              </button>
+            </div>
           </div>
         </div>
       )}
