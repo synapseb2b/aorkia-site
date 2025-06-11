@@ -8,25 +8,13 @@ export default function Solucoes() {
   const [activeSection, setActiveSection] = useState(null);
   const solutionsRef = useRef(null);
 
-  // Efeito para monitorar o progresso de rolagem e detectar seções visíveis
+  // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = scrollTop / docHeight;
       setScrollProgress(scrollPercent);
-
-      // Detectar qual seção está visível e ativar transição
-      const sections = document.querySelectorAll('[data-solution-id]');
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
-        if (isVisible) {
-          const solutionId = section.getAttribute('data-solution-id');
-          setActiveSection(solutionId);
-        }
-      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -39,19 +27,6 @@ export default function Solucoes() {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  // Função para ativar seção no hover/touch
-  const handleSectionInteraction = (solutionId) => {
-    setActiveSection(solutionId);
-  };
-
-  // Função para desativar seção (apenas no desktop)
-  const handleSectionLeave = () => {
-    // No mobile, mantém ativo; no desktop, desativa
-    if (window.innerWidth >= 768) {
-      setActiveSection(null);
     }
   };
 
@@ -196,60 +171,97 @@ export default function Solucoes() {
         }
       ],
       whyContent: 'No cenário B2B atual, gerar receita de forma previsível e eficiente exige mais do que intuição. É preciso transformar o vasto volume de dados de clientes e interações em inteligência acionável. A Inteligência de Receita com IA é a chave para isso.',
-      whyQuote: 'A Inteligência Artificial aplicada à receita não é apenas uma ferramenta de análise; é um multiplicador de força para suas equipes de vendas, marketing e sucesso do cliente. Ela automatiza tarefas repetitivas, identifica padrões ocultos nos dados de clientes e oferece insights preditivos que transformam a tomada de decisão. Com a IA, você pode prever com maior precisão quais leads se tornarão clientes, identificar oportunidades de upsell e cross-sell, e otimizar cada etapa do funil de vendas. O resultado é uma operação de receita mais eficiente, previsível e escalável.',
-      howContent: 'A AORKIA é sua parceira estratégica para transformar dados em receita previsível. Nosso modelo de "ativação" garante que você implemente rapidamente as melhores plataformas de Inteligência de Receita com IA, adaptadas à sua realidade e integradas aos seus processos existentes.',
-      howQuote: 'Com a AORKIA, você ativa uma plataforma de Inteligência de Receita com IA que se integra perfeitamente ao seu CRM e ferramentas existentes. Nossa expertise garante a unificação de todos os seus dados de receita, a implementação de modelos preditivos personalizados para seu negócio e a automação de processos que liberam sua equipe para focar no que realmente importa: fechar negócios. Capacitamos suas equipes com insights acionáveis e ferramentas inteligentes que transformam cada interação com clientes em oportunidades de crescimento.',
-      ctaText: 'Transforme Seus Dados em Receita Previsível Hoje Mesmo. Descubra como a AORKIA pode ativar a Inteligência de Receita com IA na sua empresa.',
+      whyQuote: 'A Inteligência Artificial aplicada à receita não é apenas uma ferramenta de análise; é um multiplicador de força para suas equipes de vendas, marketing e sucesso do cliente. Ela permite que você identifique padrões, preveja comportamentos e otimize cada etapa do funil de vendas, garantindo que seus esforços se traduzam em resultados tangíveis e crescimento sustentável. Com a IA, você não apenas reage ao mercado, mas o molda ativamente, transformando dados em seu maior ativo estratégico.',
+      howContent: 'A AORKIA é sua parceira estratégica para ativar uma Plataforma de Inteligência de Receita com IA que realmente funciona para o seu negócio. Nós vamos além da implementação, garantindo que a tecnologia se integre perfeitamente aos seus processos e impulsione seus resultados.',
+      howQuote: 'Com a AORKIA, você ativa uma Plataforma de Inteligência de Receita com IA que unifica seus dados de vendas, marketing e sucesso do cliente, fornecendo uma visão 360º do seu pipeline. Nossa expertise garante a implementação de modelos preditivos que aumentam a precisão das suas previsões, identificam oportunidades de upsell e cross-sell, e alertam sobre riscos. Capacitamos suas equipes com insights acionáveis em tempo real, automação de tarefas repetitivas e orquestração inteligente de cadências, liberando seus vendedores para focar no que realmente importa: construir relacionamentos e fechar negócios. Transforme sua operação de receita em uma máquina previsível e de alto desempenho.',
+      ctaText: 'Transforme Sua Receita em Crescimento Previsível. Descubra como a AORKIA pode ativar uma Plataforma de Inteligência de Receita com IA que impulsiona seus resultados.',
       image: '/image/receitas.png'
     },
     {
       id: 'digital',
-      title: 'Estratégia de Presença Digital AORKIA',
-      supportText: 'Receita Previsível. Crescimento Acelerado.',
-      subtitle: 'Sua Presença Digital Como Ativo Estratégico de Crescimento.',
-      caseStudy: 'Sua empresa compreende que uma presença digital eficaz vai muito além de um site visualmente atraente – é um ecossistema completo e um ativo estratégico fundamental para o crescimento sustentável no mercado B2B? Com a Estratégia de Presença Digital AORKIA, você eleva sua autoridade no mercado, a conexão com clientes e os resultados comerciais concretos.',
-      activateContent: 'A AORKIA ativa sua Estratégia de Presença Digital com uma abordagem integrada que transforma sua presença online em um motor de crescimento e diferenciação competitiva:',
+      title: 'Estratégia de Presença Digital',
+      supportText: 'Visibilidade. Engajamento. Conversão.',
+      subtitle: 'Sua Marca no Centro das Atenções Digitais.',
+      caseStudy: 'Sua empresa tem um site, redes sociais, mas não consegue atrair clientes qualificados ou gerar leads? Você investe em marketing digital, mas não vê retorno claro? Com a Estratégia de Presença Digital ativada pela AORKIA, sua marca se torna um ímã para o público certo, transformando visitantes em clientes fiéis e impulsionando seu crescimento online.',
+      activateContent: 'A AORKIA simplifica a complexidade do marketing digital, ativando estratégias e ferramentas que garantem uma presença digital robusta e resultados mensuráveis:
+',
       features: [
         {
-          icon: 'ri-global-line',
-          title: 'Ecossistema Digital Estratégico e Integrado',
-          description: 'Desenvolvemos uma presença digital coesa que conecta site, conteúdo, SEO, automação de marketing e análise de dados para maximizar o impacto e a conversão.'
+          icon: 'ri-seo-line',
+          title: 'Otimização para Motores de Busca (SEO) e Conteúdo Estratégico',
+          description: 'Posicione sua marca no topo das buscas do Google com conteúdo relevante e otimizado, atraindo tráfego orgânico qualificado e construindo autoridade no seu nicho.'
         },
         {
-          icon: 'ri-trophy-line',
-          title: 'Posicionamento de Autoridade e Thought Leadership',
-          description: 'Construímos sua reputação como líder de pensamento no seu setor através de conteúdo estratégico, SEO técnico avançado e uma narrativa digital que ressoa com seu público-alvo.'
+          icon: 'ri-advertisement-line',
+          title: 'Campanhas de Mídia Paga (Tráfego Pago) de Alta Performance',
+          description: 'Alcance seu público-alvo com precisão no Google Ads, Meta Ads e LinkedIn Ads, otimizando seu investimento para gerar leads, vendas e reconhecimento de marca.'
+        },
+        {
+          icon: 'ri-mail-send-line',
+          title: 'Automação de Marketing e Nutrição de Leads',
+          description: 'Crie jornadas personalizadas para seus leads, automatize o envio de e-mails e mensagens, e os conduza de forma eficiente pelo funil de vendas até a conversão.'
+        },
+        {
+          icon: 'ri-bar-chart-box-line',
+          title: 'Análise de Dados e Otimização Contínua',
+          description: 'Monitore o desempenho de suas campanhas em tempo real, identifique oportunidades de melhoria e otimize suas estratégias com base em dados para maximizar o ROI.'
+        }
+      ],
+      whyContent: 'No mundo digital de hoje, ter uma presença online não é mais um diferencial, é uma necessidade. Mas não basta estar presente; é preciso ter uma estratégia clara para se destacar, atrair e converter.',
+      whyQuote: 'No cenário digital atual, a presença online é a espinha dorsal de qualquer estratégia de crescimento. No entanto, muitas empresas se perdem na complexidade das ferramentas e canais, investindo sem um retorno claro. Uma Estratégia de Presença Digital eficaz vai além de ter um site ou redes sociais; ela integra SEO, mídia paga, conteúdo e automação de marketing em um ecossistema coeso que atrai, engaja e converte. É a diferença entre ser apenas mais uma empresa online e ser a referência no seu setor, gerando leads qualificados e impulsionando vendas de forma consistente.',
+      howContent: 'A AORKIA é sua parceira estratégica para construir e otimizar sua presença digital. Nosso modelo de "ativação" garante que sua marca não apenas seja vista, mas que gere resultados reais, com estratégias personalizadas e foco em ROI.',
+      howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital que posiciona sua marca como líder no seu mercado. Nossa expertise em SEO garante que você seja encontrado por quem realmente importa, enquanto nossas campanhas de mídia paga geram leads qualificados e vendas. Implementamos automação de marketing para nutrir seus leads e transformá-los em clientes fiéis, e fornecemos análises detalhadas para otimização contínua. Deixe a AORKIA ativar o poder do digital para o seu negócio, transformando sua presença online em um motor de crescimento sustentável.',
+      ctaText: 'Ative o Potencial Digital da Sua Marca. Descubra como a AORKIA pode construir uma Estratégia de Presença Digital que gera resultados reais para sua empresa.',
+      image: '/image/digital.png'
+    },
+    {
+      id: 'consultoria',
+      title: 'Consultoria Estratégica',
+      supportText: 'Visão. Estratégia. Execução.',
+      subtitle: 'Desbloqueie o Potencial Máximo da Sua Empresa.',
+      caseStudy: 'Sua empresa enfrenta desafios complexos que exigem uma nova perspectiva? Você precisa de um plano claro para escalar, inovar ou otimizar operações, mas não sabe por onde começar? Com a Consultoria Estratégica da AORKIA, você terá acesso a expertise de ponta para transformar desafios em oportunidades e alcançar seus objetivos de negócio com confiança.',
+      activateContent: 'A AORKIA simplifica a complexidade da tomada de decisão estratégica, ativando insights e planos de ação que impulsionam o crescimento e a eficiência:
+',
+      features: [
+        {
+          icon: 'ri-lightbulb-line',
+          title: 'Diagnóstico e Análise Aprofundada',
+          description: 'Identificamos os pontos críticos e as oportunidades ocultas em seus processos, tecnologia e mercado, fornecendo uma visão clara para a tomada de decisão.'
         },
         {
           icon: 'ri-rocket-line',
-          title: 'Geração de Demanda e Conversão Otimizada',
-          description: 'Implementamos estratégias de geração de leads qualificados, automação de marketing e otimização de conversão que transformam visitantes em oportunidades comerciais reais.'
+          title: 'Desenvolvimento de Estratégias Customizadas',
+          description: 'Criamos planos de ação detalhados e personalizados para seus objetivos, seja para expansão, otimização de custos, inovação ou transformação digital.'
         },
         {
-          icon: 'ri-bar-chart-line',
-          title: 'Análise de Performance e Otimização Contínua',
-          description: 'Monitoramos e otimizamos continuamente sua presença digital com métricas avançadas, testes A/B e insights de comportamento para maximizar o ROI do seu investimento digital.'
+          icon: 'ri-hand-coin-line',
+          title: 'Otimização de Processos e Eficiência Operacional',
+          description: 'Redesenhe seus fluxos de trabalho, implemente as melhores práticas e utilize a tecnologia para maximizar a produtividade e reduzir desperdícios.'
+        },
+        {
+          icon: 'ri-bar-chart-box-line',
+          title: 'Gestão de Projetos e Acompanhamento de Resultados',
+          description: 'Garantimos a execução eficaz das estratégias, monitorando o progresso e ajustando o curso para assegurar que seus objetivos sejam alcançados com sucesso.'
         }
       ],
-      whyContent: 'No mercado B2B atual, sua presença digital é frequentemente o primeiro ponto de contato com potenciais clientes. Uma estratégia digital bem executada não apenas gera leads, mas estabelece credibilidade, demonstra expertise e acelera o ciclo de vendas.',
-      whyQuote: 'A presença digital no B2B vai muito além de ter um site bonito. É sobre criar um ecossistema que trabalha 24/7 para sua empresa, gerando leads qualificados, educando prospects, demonstrando autoridade no mercado e acelerando decisões de compra. Empresas com estratégias digitais bem executadas têm ciclos de vendas mais curtos, leads de maior qualidade e maior taxa de conversão. Sua presença digital é um ativo que se valoriza com o tempo e se torna uma vantagem competitiva sustentável.',
-      howContent: 'A AORKIA não apenas cria uma presença digital; ativamos uma estratégia completa que se alinha aos seus objetivos de negócio e se integra aos seus processos de vendas e marketing existentes.',
-      howQuote: 'Com a AORKIA, você ativa uma Estratégia de Presença Digital que vai além do básico. Desenvolvemos um ecossistema digital personalizado que reflete sua expertise, atrai seu público ideal e converte visitantes em clientes. Nossa abordagem integra design estratégico, conteúdo otimizado para SEO, automação de marketing e análise de dados para criar uma máquina de geração de demanda que trabalha continuamente para o crescimento do seu negócio.',
-      ctaText: 'Transforme Sua Presença Digital em um Motor de Crescimento. Descubra como a AORKIA pode ativar uma estratégia digital que gera resultados reais para sua empresa.',
-      image: '/image/digital.png'
-    }
+      whyContent: 'Em um mercado em constante mudança, a capacidade de se adaptar e inovar é crucial. A Consultoria Estratégica oferece a visão externa e a expertise necessária para navegar por esses desafios e capitalizar novas oportunidades.',
+      whyQuote: 'No ambiente de negócios dinâmico de hoje, a complexidade e a velocidade das mudanças exigem mais do que apenas experiência interna. A Consultoria Estratégica da AORKIA oferece uma visão externa imparcial e expertise especializada para identificar desafios, desvendar oportunidades e traçar um caminho claro para o sucesso. Seja para otimizar operações, inovar em produtos, expandir para novos mercados ou navegar por transformações digitais, ter um parceiro estratégico que compreende o cenário e sabe como ativar o potencial da sua empresa é fundamental para garantir um crescimento sustentável e uma vantagem competitiva duradoura.',
+      howContent: 'A AORKIA é sua parceira estratégica para transformar desafios em resultados. Nosso modelo de "ativação" garante que você não apenas receba um plano, mas que ele seja implementado com sucesso, gerando valor real para sua empresa.',
+      howQuote: 'Com a AORKIA, você ativa uma Consultoria Estratégica que vai além do diagnóstico. Nossa equipe de especialistas trabalha lado a lado com você para desenvolver e implementar soluções personalizadas, desde a otimização de processos e a adoção de novas tecnologias até a redefinição de modelos de negócio. Fornecemos insights acionáveis, metodologias comprovadas e acompanhamento contínuo para garantir que suas estratégias se traduzam em resultados tangíveis, como aumento de eficiência, redução de custos e crescimento de receita. Deixe a AORKIA ser o catalisador para o próximo nível de sucesso da sua empresa.',
+      ctaText: 'Desbloqueie o Futuro da Sua Empresa. Descubra como a Consultoria Estratégica da AORKIA pode impulsionar seu crescimento e inovação.',
+      image: '/image/consultoria.png'
+    },
   ];
 
   return (
     <>
       <Head>
-        <title>Soluções AORKIA | Backup SaaS, IA na Borda, Segurança e Inteligência de Receita</title>
-        <meta name="description" content="Descubra as soluções estratégicas da AORKIA: Backup SaaS Estratégico, Operações de Bordas Inteligentes, Segurança para Operações Críticas e Plataforma de Inteligência de Receita com IA." />
-        <meta name="theme-color" content="#0076FF" />
+        <title>Soluções | AORKIA</title>
+        <meta name="description" content="Descubra as soluções estratégicas da AORKIA para impulsionar a transformação digital e o crescimento do seu negócio." />
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
+        {/* Seção Hero - Estilo Jam3 com vídeo */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/image/video_hero.mp4" type="video/mp4" />
@@ -260,19 +272,21 @@ export default function Solucoes() {
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Soluções AORKIA.
+                Nossas Soluções
               </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Tecnologia de Ponta. <br className="hidden md:block" />
-                Resultados Reais.
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
+                Ative o Potencial da Sua <span className="text-primary">Empresa</span>
               </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
+                Descubra como a AORKIA pode impulsionar a transformação digital e o crescimento do seu negócio com soluções estratégicas e inovadoras.
+              </p>
             </div>
           </div>
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
             <a 
-              href="#solutions" 
-              onClick={(e) => scrollToSection(e, 'solutions')}
+              href="#solucoes-list" 
+              onClick={(e) => scrollToSection(e, 'solucoes-list')}
               className="text-white text-4xl"
             >
               <i className="ri-arrow-down-line"></i>
@@ -280,87 +294,70 @@ export default function Solucoes() {
           </div>
         </section>
 
-        {/* Seção Soluções - Estilo Jam3 com transições */}
-        <section id="solutions" ref={solutionsRef} className="relative">
-          {solutions.map((solution, index) => (
-            <div 
-              key={solution.id}
-              data-solution-id={solution.id}
-              className="relative w-full h-screen md:h-[80vh] overflow-hidden group border-t border-b border-gray-800"
-              onMouseEnter={() => handleSectionInteraction(solution.id)}
-              onMouseLeave={handleSectionLeave}
-              onTouchStart={() => handleSectionInteraction(solution.id)}
-              onClick={() => handleSectionInteraction(solution.id)}
-            >
-              {/* Background Image (aparece apenas no hover/ativo) */}
-              <div 
-                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-                  activeSection === solution.id ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{ backgroundImage: `url(${solution.image})` }}
-              >
-                <div className="absolute inset-0 bg-black/60"></div>
-              </div>
-              
-              {/* Background Color (aparece quando não está em hover/ativo) */}
-              <div 
-                className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-                  activeSection === solution.id ? 'opacity-0' : 'opacity-100'
-                }`}
-              ></div>
-              
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <p className={`text-lg mb-2 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {solution.supportText}
-                    </p>
-                    <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
-                    }`}>
-                      {solution.title}
-                    </h3>
-                    {solution.id === 'backup' && (
-                      <div className="mt-4 mb-6">
-                        <Image 
-                          src="/image/keepit_logo_aorkia.png" 
-                          alt="Keepit" 
-                          className="h-12 w-auto"
-                          width={160}
-                          height={48}
-                          priority
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {solution.caseStudy}
-                    </p>
-                    <div className="mt-8">
+        {/* Seção de Soluções */}
+        <section id="solucoes-list" className="py-24 bg-black">
+          <div className="container mx-auto max-w-7xl px-4">
+            <h2 className="text-5xl font-bold text-center mb-16 text-white">
+              Nossas <span className="text-primary">Soluções</span>
+            </h2>
+
+            {/* Navegação lateral para desktop */}
+            <div className="hidden md:flex flex-col w-64 fixed left-0 top-1/2 -translate-y-1/2 p-4 space-y-4">
+              {solutions.map((solution) => (
+                <a
+                  key={solution.id}
+                  href={`#${solution.id}`}
+                  onClick={(e) => scrollToSection(e, solution.id)}
+                  onMouseEnter={() => handleSectionInteraction(solution.id)}
+                  onMouseLeave={handleSectionLeave}
+                  className={`text-lg font-medium py-2 px-4 rounded-lg transition-all duration-300 ${activeSection === solution.id ? 'bg-primary text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800'}`}
+                >
+                  {solution.title}
+                </a>
+              ))}
+            </div>
+
+            {/* Conteúdo das Soluções */}
+            <div className="md:ml-64">
+              {solutions.map((solution, index) => (
+                <div 
+                  key={solution.id} 
+                  id={solution.id} 
+                  data-solution-id={solution.id}
+                  className="mb-24 last:mb-0 p-8 rounded-lg transition-all duration-500 ease-in-out transform"
+                  style={activeSection === solution.id ? { backgroundColor: 'rgba(0, 118, 255, 0.1)' } : {}}
+                >
+                  <div className="flex flex-col md:flex-row items-center gap-12">
+                    <div className="md:w-1/2">
+                      <Image 
+                        src={solution.image} 
+                        alt={solution.title} 
+                        width={600} 
+                        height={400} 
+                        className="rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div className="md:w-1/2">
+                      <h3 className="text-primary text-2xl font-semibold mb-2">
+                        {solution.supportText}
+                      </h3>
+                      <h2 className="text-4xl font-bold mb-6 text-white">
+                        {solution.title}
+                      </h2>
+                      <p className="text-gray-300 text-lg mb-6">
+                        {solution.subtitle}
+                      </p>
+                      <p className="text-gray-400 mb-8">
+                        {solution.caseStudy}
+                      </p>
                       <Link 
                         href="/contato" 
-                        className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
-                          activeSection === solution.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
-                        }`}
+                        className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors"
                       >
-                        <span>Saiba mais</span>
-                        <i className="ri-arrow-right-line ml-2"></i>
+                        Fale com um especialista
                       </Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </section>
-      </main>
-    </>
-  );
-}
+
+                  {/* Seção 
 
