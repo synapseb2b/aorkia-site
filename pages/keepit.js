@@ -125,42 +125,87 @@ export default function Keepit() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                  Por que preciso da Keepit com AORKIA?
+                  Proteja o Coração Digital da Sua Empresa com a Keepit
                 </h2>
                 <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                  A responsabilidade sobre os dados é sua, não do provedor SaaS. Sem um backup isolado e imutável, qualquer exclusão acidental, falha interna ou ransomware pode causar perdas irreversíveis, interrupções operacionais e sanções regulatórias.
+                  Mesmo com Microsoft 365, Google Workspace ou Salesforce, seus dados estão expostos.
+                </p>
+                <p className="text-lg text-gray-700 mb-8">
+                  Essas plataformas não oferecem proteção completa contra exclusões acidentais, ataques de ransomware ou erros humanos. E dizem isso abertamente:
                 </p>
                 
                 <div className="space-y-6">
-                  <div className="flex items-start">
-                    <div className="text-red-600 text-2xl mt-1 mr-4">
-                      <i className="ri-error-warning-line"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">Modelo de Responsabilidade Compartilhada</h3>
-                      <p className="text-gray-700">Microsoft, Google e Salesforce protegem a infraestrutura, mas você é responsável pelos seus dados.</p>
+                  <div className="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                    <div className="flex items-start">
+                      <div className="text-red-600 text-2xl mt-1 mr-4">
+                        <i className="ri-microsoft-line"></i>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2 text-red-800">Microsoft</h3>
+                        <p className="text-gray-700 mb-3">
+                          "Microsoft doesn't guarantee complete and fast recovery of deleted or corrupted files. It's up to you to follow recoverability best practices to ensure uninterrupted access to your data."
+                        </p>
+                        <a 
+                          href="https://www.keepit.com/services/backup-microsoft-365/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-red-600 hover:text-red-800 font-medium inline-flex items-center"
+                        >
+                          Saiba mais <i className="ri-external-link-line ml-1"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex items-start">
-                    <div className="text-red-600 text-2xl mt-1 mr-4">
-                      <i className="ri-delete-bin-line"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">Exclusões Acidentais</h3>
-                      <p className="text-gray-700">Erros humanos acontecem. Sem backup independente, a recuperação pode ser impossível.</p>
+                  <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <div className="flex items-start">
+                      <div className="text-blue-600 text-2xl mt-1 mr-4">
+                        <i className="ri-google-line"></i>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2 text-blue-800">Google</h3>
+                        <p className="text-gray-700 mb-3">
+                          "Data protection is a shared responsibility."
+                        </p>
+                        <a 
+                          href="https://www.keepit.com/services/backup-google-workspace/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                        >
+                          Saiba mais <i className="ri-external-link-line ml-1"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex items-start">
-                    <div className="text-red-600 text-2xl mt-1 mr-4">
-                      <i className="ri-virus-line"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">Ataques de Ransomware</h3>
-                      <p className="text-gray-700">Criminosos visam dados SaaS. Backup imutável é sua única garantia de recuperação.</p>
+                  <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
+                    <div className="flex items-start">
+                      <div className="text-orange-600 text-2xl mt-1 mr-4">
+                        <i className="ri-cloud-line"></i>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2 text-orange-800">Salesforce</h3>
+                        <p className="text-gray-700 mb-3">
+                          "Salesforce isn't responsible for your lost data. They say 'keep a regular backup of your data and to do a manual point-in-time backup before you proceed with any major data project.'"
+                        </p>
+                        <a 
+                          href="https://www.keepit.com/services/backup-salesforce/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-orange-600 hover:text-orange-800 font-medium inline-flex items-center"
+                        >
+                          Saiba mais <i className="ri-external-link-line ml-1"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
+                </div>
+                
+                <div className="mt-8 p-6 bg-green-50 rounded-lg border-l-4 border-green-500">
+                  <p className="text-lg text-gray-700">
+                    <strong className="text-green-800">Com a AORKIA ativando a Keepit</strong>, você assume o controle real: backup imutável, isolamento total e recuperação granular, com compliance assegurada (LGPD, GDPR, HIPAA, ISO 27001).
+                  </p>
                 </div>
               </div>
               
@@ -181,187 +226,58 @@ export default function Keepit() {
         <section 
           id="features" 
           data-section="features"
-          className="py-20 md:py-32 bg-black"
-        >
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                O que você ativa com Keepit
-              </h2>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto">
-                Proteção completa, recuperação granular e conformidade automatizada para todo seu ecossistema SaaS
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary/50 transition-all">
-                <div className="text-primary text-4xl mb-6">
-                  <i className="ri-shield-keyhole-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Backup Imutável com Air Gap</h3>
-                <p className="text-gray-300 text-lg">
-                  Dados isolados em nuvem independente — não podem ser corrompidos ou apagados. Proteção real contra ransomware e falhas internas.
-                </p>
-              </div>
-
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary/50 transition-all">
-                <div className="text-primary text-4xl mb-6">
-                  <i className="ri-restart-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Restauração Granular e Instantânea</h3>
-                <p className="text-gray-300 text-lg">
-                  Recupere um item, uma conta ou toda a estrutura — em minutos e com total controle. Sem perda de produtividade.
-                </p>
-              </div>
-
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary/50 transition-all">
-                <div className="text-primary text-4xl mb-6">
-                  <i className="ri-apps-2-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Cobertura Completa do seu Ecossistema SaaS</h3>
-                <p className="text-gray-300 text-lg">
-                  Proteção nativa para Microsoft 365, Google Workspace, Salesforce, Dynamics, Azure AD e muito mais.
-                </p>
-              </div>
-
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-primary/50 transition-all">
-                <div className="text-primary text-4xl mb-6">
-                  <i className="ri-file-shield-2-line"></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Compliance Automatizado e Retenção Ilimitada</h3>
-                <p className="text-gray-300 text-lg">
-                  Políticas configuráveis, trilhas de auditoria completas e certificações como ISO 27001, ISAE 3402 e DORA.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Calculadora ROI */}
-        <section 
-          id="roi-calculator" 
-          data-section="roi-calculator"
           className="py-20 md:py-32 bg-gradient-to-br from-green-900 to-green-800"
         >
           <div className="container mx-auto max-w-6xl px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
-                Calculadora ROI Keepit
+                O que você ativa com Keepit
               </h2>
               <p className="text-xl md:text-2xl text-green-100 max-w-4xl mx-auto">
-                Calcule o retorno sobre investimento para sua organização com a plataforma de proteção de dados SaaS da Keepit
+                Proteção completa, recuperação granular e conformidade automatizada para todo seu ecossistema SaaS
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Formulário da Calculadora */}
-              <div className="bg-green-800/50 p-8 rounded-lg border border-green-600/30">
-                <h3 className="text-2xl font-bold mb-8 text-white">Sua Organização</h3>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-green-100 text-lg font-medium mb-3">
-                      Moeda
-                    </label>
-                    <select 
-                      className="w-full px-4 py-3 bg-green-700 border border-green-600 rounded-lg focus:border-green-400 focus:outline-none text-white"
-                      defaultValue="BRL"
-                    >
-                      <option value="USD">USD</option>
-                      <option value="EUR">EUR</option>
-                      <option value="BRL">BRL</option>
-                      <option value="GBP">GBP</option>
-                      <option value="CAD">CAD</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-green-100 text-lg font-medium mb-3">
-                      Número de usuários Keepit
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="1000"
-                      defaultValue="1000"
-                      className="w-full px-4 py-3 bg-green-700 border border-green-600 rounded-lg focus:border-green-400 focus:outline-none text-white placeholder-green-300"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-green-100 text-lg font-medium mb-3">
-                      Usuários SaaS que saem anualmente (%)
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="10"
-                      defaultValue="10"
-                      className="w-full px-4 py-3 bg-green-700 border border-green-600 rounded-lg focus:border-green-400 focus:outline-none text-white placeholder-green-300"
-                    />
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-green-800/50 p-8 rounded-lg border border-green-600/30 hover:border-green-400/50 transition-all">
+                <div className="text-green-400 text-4xl mb-6">
+                  <i className="ri-shield-keyhole-line"></i>
                 </div>
+                <h3 className="text-2xl font-bold mb-4 text-white">Backup Imutável com Air Gap</h3>
+                <p className="text-green-100 text-lg">
+                  Dados isolados em nuvem independente — não podem ser corrompidos ou apagados. Proteção real contra ransomware e falhas internas.
+                </p>
               </div>
 
-              {/* Resultados */}
-              <div className="bg-white p-8 rounded-lg shadow-2xl">
-                <h3 className="text-2xl font-bold mb-8 text-green-800">Resumo do Primeiro Ano</h3>
-                
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                    <div>
-                      <span className="text-gray-600 text-lg">Retorno sobre Investimento (ROI)</span>
-                      <div className="flex items-center mt-1">
-                        <i className="ri-information-line text-gray-400 mr-1"></i>
-                      </div>
-                    </div>
-                    <span className="text-3xl font-bold text-green-600">163%</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                    <div>
-                      <span className="text-gray-600 text-lg">Benefícios de valor presente (PV)</span>
-                      <div className="flex items-center mt-1">
-                        <i className="ri-information-line text-gray-400 mr-1"></i>
-                      </div>
-                    </div>
-                    <span className="text-3xl font-bold text-green-600">R$ 2.353.445</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                    <div>
-                      <span className="text-gray-600 text-lg">Valor presente líquido (NPV)</span>
-                      <div className="flex items-center mt-1">
-                        <i className="ri-information-line text-gray-400 mr-1"></i>
-                      </div>
-                    </div>
-                    <span className="text-3xl font-bold text-green-600">R$ 1.456.955</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-4">
-                    <div>
-                      <span className="text-gray-600 text-lg">Payback da taxa de serviço</span>
-                      <div className="flex items-center mt-1">
-                        <i className="ri-information-line text-gray-400 mr-1"></i>
-                      </div>
-                    </div>
-                    <span className="text-3xl font-bold text-green-600">5 meses</span>
-                  </div>
+              <div className="bg-green-800/50 p-8 rounded-lg border border-green-600/30 hover:border-green-400/50 transition-all">
+                <div className="text-green-400 text-4xl mb-6">
+                  <i className="ri-restart-line"></i>
                 </div>
-                
-                <div className="mt-8">
-                  <Link 
-                    href="/contato" 
-                    className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg transition-all text-lg font-semibold text-center block"
-                  >
-                    Criar seu relatório ROI
-                  </Link>
-                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white">Restauração Granular e Instantânea</h3>
+                <p className="text-green-100 text-lg">
+                  Recupere um item, uma conta ou toda a estrutura — em minutos e com total controle. Sem perda de produtividade.
+                </p>
               </div>
-            </div>
-            
-            <div className="mt-12 text-center">
-              <p className="text-green-200 text-sm max-w-4xl mx-auto">
-                <strong>Disclaimer:</strong> O modelo financeiro subjacente para esta calculadora ROI foi comissionado pela Keepit e entregue pela Forrester Consulting com base em sua metodologia Total Economic Impact™. A AORKIA criou esta ferramenta e a Forrester não verificou sua precisão ou certificou seus resultados.
-              </p>
+
+              <div className="bg-green-800/50 p-8 rounded-lg border border-green-600/30 hover:border-green-400/50 transition-all">
+                <div className="text-green-400 text-4xl mb-6">
+                  <i className="ri-apps-2-line"></i>
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white">Cobertura Completa do seu Ecossistema SaaS</h3>
+                <p className="text-green-100 text-lg">
+                  Proteção nativa para Microsoft 365, Google Workspace, Salesforce, Dynamics, Azure AD e muito mais.
+                </p>
+              </div>
+
+              <div className="bg-green-800/50 p-8 rounded-lg border border-green-600/30 hover:border-green-400/50 transition-all">
+                <div className="text-green-400 text-4xl mb-6">
+                  <i className="ri-file-shield-2-line"></i>
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white">Compliance Automatizado e Retenção Ilimitada</h3>
+                <p className="text-green-100 text-lg">
+                  Políticas configuráveis, trilhas de auditoria completas e certificações como ISO 27001, ISAE 3402 e DORA.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -532,22 +448,19 @@ export default function Keepit() {
         <section 
           id="differential" 
           data-section="differential"
-          className="py-20 md:py-32 bg-gray-900"
+          className="py-20 md:py-32 bg-gray-900 relative overflow-hidden"
+          style={{ 
+            backgroundImage: `url(/image/solucoesespecializadas.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}
         >
-          <div className="container mx-auto max-w-6xl px-4">
+          <div className="absolute inset-0 bg-black/70"></div>
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="relative">
-                <Image 
-                  src="/image/solucoesespecializadas.png" 
-                  alt="Diferencial AORKIA" 
-                  className="w-full h-auto rounded-lg"
-                  width={600}
-                  height={400}
-                />
-              </div>
-              
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              <div className="order-2 lg:order-1">
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
                   O diferencial AORKIA
                 </h2>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
@@ -560,7 +473,7 @@ export default function Keepit() {
                       <i className="ri-check-line"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Expertise Certificada</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-white">Expertise Certificada</h3>
                       <p className="text-gray-300">Parceiros oficiais Keepit com certificações avançadas e experiência comprovada</p>
                     </div>
                   </div>
@@ -570,7 +483,7 @@ export default function Keepit() {
                       <i className="ri-check-line"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Suporte Estratégico</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-white">Suporte Estratégico</h3>
                       <p className="text-gray-300">Não apenas implementamos, mas orientamos sua estratégia de proteção de dados</p>
                     </div>
                   </div>
@@ -580,11 +493,15 @@ export default function Keepit() {
                       <i className="ri-check-line"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Resultados Mensuráveis</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-white">Resultados Mensuráveis</h3>
                       <p className="text-gray-300">Métricas claras de proteção, conformidade e tempo de recuperação</p>
                     </div>
                   </div>
                 </div>
+              </div>
+              
+              <div className="order-1 lg:order-2">
+                {/* Espaço para a imagem de fundo */}
               </div>
             </div>
           </div>
