@@ -146,10 +146,10 @@ export default function Sobre() {
                   A AORKIA nasce de uma convicção – forjada em mais de duas décadas de experiência imersiva no epicentro da tecnologia B2B – de que empresas ambiciosas merecem uma abordagem mais ágil e eficaz. Após testemunhar os desafios recorrentes de implementações lentas, custos imprevisíveis e o potencial de tecnologias globais muitas vezes não realizado plenamente, surgiu a visão de um novo tipo de parceiro. Um parceiro que não apenas oferece tecnologia, mas que a ativa com foco estratégico, transformando as melhores soluções do mundo em resultados de negócio reais e rentáveis para seus clientes.
                 </p>
                 <p>
-                  Fundada em 2025, a AORKIA é a materialização dessa visão. Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em Backup SaaS Estratégico, Operações de Bordas Inteligentes, Segurança para Operações Críticas e Plataforma de Inteligência de Receita com IA. Nosso compromisso é com a implementação rápida, a redução de riscos associados à adoção tecnológica e a geração de valor imediato.
+                  Fundada em 2025, a AORKIA é a materialização dessa visão. Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em Backup SaaS Estratégico, Operações de Bordas Inteligentes e Segurança para Operações Críticas. Nosso compromisso é com a implementação rápida, a redução de riscos associados à adoção tecnológica e a geração de valor imediato.
                 </p>
                 <p>
-                  Iniciamos nossa trajetória sobre uma base sólida de expertise de mercado, com o objetivo de construir uma equipe de Heads altamente capacitados, dedicados a cada pilar de solução. Olhamos para o futuro com a ambição de expandir nossa capacidade de transformar desafios complexos em diferenciação e crescimento sustentável para empresas que, como nós, acreditam no poder da tecnologia ativada com inteligência e propósito.
+                  Iniciamos nossa trajetória sobre uma base sólida de expertise de mercado, com o objetivo de construir uma equipe de Heads altamente capacitados, dedicados a cada pilar de solução. Olhamos para o futuro com a ambição de expandir nossa capacidade de transformar desafios complexos em diferenciação operacional e valor estratégico para empresas que, como nós, acreditam no poder da tecnologia ativada com inteligência e propósito.
                 </p>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function Sobre() {
                   <p className={`transition-colors duration-500 ${
                     activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Selecionamos e trazemos até você apenas soluções líderes, comprovadamente robustas e rentáveis.
+                    Selecionamos e trazemos até você apenas soluções líderes e comprovadamente robustas.
                   </p>
                 </div>
                 
@@ -254,7 +254,7 @@ export default function Sobre() {
                   <p className={`transition-colors duration-500 ${
                     activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Construímos parcerias para transformar seu investimento em tecnologia em crescimento rentável e vantagem competitiva duradoura.
+                    Construímos parcerias para transformar seu investimento em tecnologia em vantagem competitiva duradoura.
                   </p>
                 </div>
                 
