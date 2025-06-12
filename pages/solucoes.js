@@ -713,8 +713,6 @@ export default function Solucoes() {
                 <i className="ri-arrow-up-line text-xl"></i>
                 <span>Voltar ao Topo</span>
               </button>
-            </div>
-
         </section>
       ))}
 
