@@ -4,53 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Solucoes() {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('backup');
-  const [backgroundImage, setBackgroundImage] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselRef = useRef(null);
 
-  // Efeito para monitorar o progresso de rolagem e detectar seções visíveis
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
-
-      // Ativar imagem de fundo após rolar um pouco
-      if (scrollTop > 100) {
-        setBackgroundImage(true);
-      } else {
-        setBackgroundImage(false);
-      }
-
-      // Detectar qual seção está visível
-      const sections = document.querySelectorAll('[data-solution-id]');
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
-        if (isVisible) {
-          const solutionId = section.getAttribute('data-solution-id');
-          setActiveSection(solutionId);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Função para rolagem suave ao clicar em links internos
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
-    setBackgroundImage(true); // Ativar fundo ao clicar
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  // Soluções com os novos textos do PDF
+  // Soluções com os novos textos do PDF e cores AORKIA
   const solutions = [
     {
       id: 'backup',
@@ -305,6 +263,58 @@ export default function Solucoes() {
     }
   ];
 
+  // Função para navegar no carrossel
+  const navigateCarousel = (direction) => {
+    const newSlide = direction === 'next' 
+      ? (currentSlide + 1) % solutions.length 
+      : currentSlide === 0 ? solutions.length - 1 : currentSlide - 1;
+    
+    setCurrentSlide(newSlide);
+    setActiveSection(solutions[newSlide].id);
+    
+    // Scroll para a seção correspondente
+    const section = document.getElementById(solutions[newSlide].id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Função para ir para uma solução específica
+  const goToSolution = (index) => {
+    setCurrentSlide(index);
+    setActiveSection(solutions[index].id);
+    
+    const section = document.getElementById(solutions[index].id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Função para voltar ao topo
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Detectar seção ativa no scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('[data-solution-id]');
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        
+        if (isVisible) {
+          const solutionId = section.getAttribute('data-solution-id');
+          setActiveSection(solutionId);
+          setCurrentSlide(index);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
@@ -314,186 +324,324 @@ export default function Solucoes() {
         <link rel="canonical" href="https://aorkia.com/solucoes" />
       </Head>
 
-      {/* Background com transição */}
-      <div className={`min-h-screen transition-all duration-1000 ${backgroundImage ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-black' : 'bg-white'}`}>
-        
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4">
-          <div className="container mx-auto max-w-7xl text-center">
-            <h1 className={`text-5xl md:text-7xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-              Soluções AORKIA
-            </h1>
-            <p className={`text-xl md:text-2xl mb-12 max-w-4xl mx-auto transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
-              Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
-            </p>
-            
-            {/* Navigation Menu */}
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
-              {solutions.map((solution) => (
-                <button
-                  key={solution.id}
-                  onClick={(e) => scrollToSection(e, solution.id)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                    activeSection === solution.id
-                      ? 'bg-primary text-white shadow-lg'
-                      : backgroundImage 
-                        ? 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {solution.title}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Solutions Sections */}
-        {solutions.map((solution, index) => (
-          <section
-            key={solution.id}
-            id={solution.id}
-            data-solution-id={solution.id}
-            className={`py-20 px-4 ${index % 2 === 0 ? (backgroundImage ? 'bg-black/20' : 'bg-gray-50') : ''}`}
+      {/* Hero Section com Vídeo */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Vídeo de Fundo */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="w-full h-full object-cover opacity-30"
           >
-            <div className="container mx-auto max-w-7xl">
+            <source src="/video/hero-background.mp4" type="video/mp4" />
+            {/* Fallback para navegadores que não suportam vídeo */}
+            <div className="w-full h-full bg-gradient-to-br from-dark-blue-1 to-dark-blue-2"></div>
+          </video>
+        </div>
+
+        {/* Overlay escuro */}
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+
+        {/* Conteúdo da Hero */}
+        <div className="relative z-20 container mx-auto max-w-7xl px-4 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Soluções AORKIA
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
+            Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
+          </p>
+          
+          {/* Carrossel Horizontal Elegante */}
+          <div className="max-w-6xl mx-auto">
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-semibold text-white mb-8">Escolha sua Solução</h3>
               
-              {/* Hero da Solução */}
-              <div className="text-center mb-16">
-                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  {solution.title}
-                </h2>
-                <p className={`text-xl md:text-2xl font-semibold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-primary' : 'text-primary'}`}>
-                  {solution.supportText}
-                </p>
-                <p className={`text-lg md:text-xl max-w-5xl mx-auto leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {solution.subtitle}
-                </p>
-              </div>
+              {/* Navegação do Carrossel */}
+              <div className="flex items-center justify-center space-x-4">
+                {/* Botão Anterior */}
+                <button
+                  onClick={() => navigateCarousel('prev')}
+                  className="p-3 rounded-full bg-primary/20 hover:bg-primary/40 text-white transition-all duration-300 border border-primary/30"
+                  aria-label="Solução anterior"
+                >
+                  <i className="ri-arrow-left-line text-xl"></i>
+                </button>
 
-              {/* Por que preciso? */}
-              <div className="mb-16">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  ❓ {solution.whyTitle}
-                </h3>
-                <p className={`text-lg leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {solution.whyContent}
-                </p>
-              </div>
-
-              {/* O que oferece */}
-              <div className="mb-16">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  🔐 {solution.whatTitle}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {solution.features.map((feature, idx) => (
-                    <div key={idx} className={`p-6 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-white/10 border border-white/20' : 'bg-white border border-gray-200 shadow-lg'}`}>
-                      <div className="flex items-start space-x-4">
-                        <div className="text-primary text-2xl mt-1">
-                          <i className={feature.icon}></i>
-                        </div>
-                        <div>
-                          <h4 className={`text-lg font-semibold mb-2 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                            ✅ {feature.title}
+                {/* Cards das Soluções */}
+                <div className="flex-1 overflow-hidden">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {solutions.map((solution, index) => (
+                      <div
+                        key={solution.id}
+                        className="w-full flex-shrink-0 px-4"
+                      >
+                        <div 
+                          className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                            index === currentSlide 
+                              ? 'bg-primary/20 border-2 border-primary scale-105' 
+                              : 'bg-white/5 border border-white/20 hover:bg-white/10'
+                          }`}
+                          onClick={() => goToSolution(index)}
+                        >
+                          <h4 className="text-xl font-semibold text-white mb-2">
+                            {solution.title}
                           </h4>
-                          <p className={`transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
-                            {feature.description}
+                          <p className="text-primary text-sm font-medium mb-3">
+                            {solution.supportText}
+                          </p>
+                          <p className="text-gray-300 text-sm line-clamp-3">
+                            {solution.subtitle}
                           </p>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Como funciona */}
-              <div className="mb-16">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  ⚙️ {solution.howTitle}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {solution.howSteps.map((step, idx) => (
-                    <div key={idx} className={`p-6 rounded-lg text-center transition-all duration-300 ${backgroundImage ? 'bg-white/10 border border-white/20' : 'bg-white border border-gray-200 shadow-lg'}`}>
-                      <div className="text-primary text-3xl font-bold mb-4">
-                        {idx + 1}
-                      </div>
-                      <p className={`font-medium transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                        {step}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Diferencial AORKIA */}
-              <div className="mb-16">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  ✅ {solution.differentialTitle}
-                </h3>
-                <div className={`p-8 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-primary/20 border border-primary/30' : 'bg-primary/5 border border-primary/20'}`}>
-                  <p className={`text-lg leading-relaxed transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-800'}`}>
-                    {solution.differentialContent}
-                  </p>
-                </div>
-              </div>
-
-              {/* Riscos */}
-              <div className="mb-16">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  ⚠️ {solution.risksTitle}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {solution.risks.map((risk, idx) => (
-                    <div key={idx} className={`flex items-center space-x-3 p-4 rounded-lg transition-all duration-300 ${backgroundImage ? 'bg-red-900/20 border border-red-500/30' : 'bg-red-50 border border-red-200'}`}>
-                      <div className="text-red-500 text-xl">●</div>
-                      <p className={`transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-700'}`}>
-                        {risk}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="text-center">
-                <h3 className={`text-2xl md:text-3xl font-bold mb-6 transition-colors duration-1000 ${backgroundImage ? 'text-white' : 'text-gray-900'}`}>
-                  🚀 {solution.ctaTitle}
-                </h3>
-                <p className={`text-lg mb-8 max-w-3xl mx-auto transition-colors duration-1000 ${backgroundImage ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {solution.ctaText}
-                </p>
-                <Link 
-                  href="/contato" 
-                  className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                {/* Botão Próximo */}
+                <button
+                  onClick={() => navigateCarousel('next')}
+                  className="p-3 rounded-full bg-primary/20 hover:bg-primary/40 text-white transition-all duration-300 border border-primary/30"
+                  aria-label="Próxima solução"
                 >
-                  Fale com um Especialista
-                </Link>
+                  <i className="ri-arrow-right-line text-xl"></i>
+                </button>
               </div>
 
-            </div>
-          </section>
-        ))}
+              {/* Indicadores */}
+              <div className="flex justify-center space-x-2 mt-6">
+                {solutions.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSolution(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'bg-primary scale-125' 
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                    aria-label={`Ir para solução ${index + 1}`}
+                  />
+                ))}
+              </div>
 
-        {/* CTA Final */}
-        <section className={`py-20 px-4 transition-all duration-1000 ${backgroundImage ? 'bg-black/40' : 'bg-gray-900'}`}>
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Pronto para Ativar Resultados Reais?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Transforme desafios complexos em crescimento sustentável com as soluções AORKIA.
-            </p>
-            <Link 
-              href="/contato" 
-              className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Começar Agora
-            </Link>
+              {/* Botão Ver Solução */}
+              <button
+                onClick={() => goToSolution(currentSlide)}
+                className="mt-8 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Ver Esta Solução
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="animate-bounce">
+            <i className="ri-arrow-down-line text-white text-2xl"></i>
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Sections */}
+      {solutions.map((solution, index) => (
+        <section
+          key={solution.id}
+          id={solution.id}
+          data-solution-id={solution.id}
+          className="relative min-h-screen py-20 px-4"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 44, 76, 0.9), rgba(13, 58, 100, 0.9)), url(${solution.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}
+        >
+          <div className="container mx-auto max-w-7xl">
+            
+            {/* Hero da Solução */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                {solution.title}
+              </h2>
+              <p className="text-xl md:text-2xl font-semibold text-primary mb-6">
+                {solution.supportText}
+              </p>
+              <p className="text-lg md:text-xl max-w-5xl mx-auto leading-relaxed text-gray-200">
+                {solution.subtitle}
+              </p>
+            </div>
+
+            {/* Por que preciso? */}
+            <div className="mb-16">
+              <div className="flex items-center mb-6">
+                <div className="text-primary text-3xl mr-4">
+                  <i className="ri-question-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.whyTitle}
+                </h3>
+              </div>
+              <p className="text-lg leading-relaxed text-gray-200 max-w-4xl">
+                {solution.whyContent}
+              </p>
+            </div>
+
+            {/* O que oferece */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="text-primary text-3xl mr-4">
+                  <i className="ri-shield-check-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.whatTitle}
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {solution.features.map((feature, idx) => (
+                  <div key={idx} className="p-6 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                    <div className="flex items-start space-x-4">
+                      <div className="text-primary text-2xl mt-1">
+                        <i className={feature.icon}></i>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">
+                          {feature.title}
+                        </h4>
+                        <p className="text-gray-200">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Como funciona */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="text-primary text-3xl mr-4">
+                  <i className="ri-settings-3-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.howTitle}
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {solution.howSteps.map((step, idx) => (
+                  <div key={idx} className="p-6 rounded-lg text-center bg-white/10 backdrop-blur-sm border border-white/20">
+                    <div className="text-primary text-3xl font-bold mb-4">
+                      {idx + 1}
+                    </div>
+                    <p className="font-medium text-white">
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Diferencial AORKIA */}
+            <div className="mb-16">
+              <div className="flex items-center mb-6">
+                <div className="text-primary text-3xl mr-4">
+                  <i className="ri-star-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.differentialTitle}
+                </h3>
+              </div>
+              <div className="p-8 rounded-lg bg-primary/20 backdrop-blur-sm border border-primary/30">
+                <p className="text-lg leading-relaxed text-white">
+                  {solution.differentialContent}
+                </p>
+              </div>
+            </div>
+
+            {/* Riscos */}
+            <div className="mb-16">
+              <div className="flex items-center mb-6">
+                <div className="text-red-400 text-3xl mr-4">
+                  <i className="ri-alert-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.risksTitle}
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {solution.risks.map((risk, idx) => (
+                  <div key={idx} className="flex items-center space-x-3 p-4 rounded-lg bg-red-900/20 border border-red-500/30">
+                    <div className="text-red-400 text-xl">
+                      <i className="ri-close-circle-line"></i>
+                    </div>
+                    <p className="text-gray-200">
+                      {risk}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <div className="text-primary text-3xl mr-4">
+                  <i className="ri-rocket-line"></i>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {solution.ctaTitle}
+                </h3>
+              </div>
+              <p className="text-lg mb-8 max-w-3xl mx-auto text-gray-200">
+                {solution.ctaText}
+              </p>
+              <Link 
+                href="/contato" 
+                className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Fale com um Especialista
+              </Link>
+            </div>
+
+            {/* Botão Voltar ao Topo */}
+            <div className="text-center">
+              <button
+                onClick={scrollToTop}
+                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 border border-white/20"
+              >
+                <i className="ri-arrow-up-line text-xl"></i>
+                <span>Voltar ao Topo</span>
+              </button>
+            </div>
+
           </div>
         </section>
+      ))}
 
-      </div>
+      {/* CTA Final */}
+      <section className="py-20 px-4 bg-dark-blue-1">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Pronto para Ativar Resultados Reais?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Transforme desafios complexos em crescimento sustentável com as soluções AORKIA.
+          </p>
+          <Link 
+            href="/contato" 
+            className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Começar Agora
+          </Link>
+        </div>
+      </section>
+
     </>
   );
 }
