@@ -157,13 +157,14 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+        {/* Favicon configurado corretamente */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
+        <link rel="manifest" href="/image/site.webmanifest" />
+        <link rel="icon" href="/image/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/image/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/image/android-chrome-512x512.png" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -177,6 +178,37 @@ function MyApp({ Component, pageProps }) {
                     'dark-blue-1': "#002C4C",
                     'dark-blue-2': "#0D3A64",
                     'light-blue': "#2196F3",
+                  },
+                  animation: {
+                    'gradient-x': 'gradient-x 3s ease infinite',
+                    'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                    'float': 'float 3s ease-in-out infinite',
+                  },
+                  keyframes: {
+                    'gradient-x': {
+                      '0%, 100%': {
+                        'background-size': '200% 200%',
+                        'background-position': 'left center'
+                      },
+                      '50%': {
+                        'background-size': '200% 200%',
+                        'background-position': 'right center'
+                      },
+                    },
+                    'pulse-glow': {
+                      '0%': {
+                        'box-shadow': '0 0 5px #0076FF, 0 0 10px #0076FF, 0 0 15px #0076FF',
+                        'transform': 'scale(1)'
+                      },
+                      '100%': {
+                        'box-shadow': '0 0 10px #0076FF, 0 0 20px #0076FF, 0 0 30px #0076FF',
+                        'transform': 'scale(1.02)'
+                      },
+                    },
+                    'float': {
+                      '0%, 100%': { 'transform': 'translateY(0px)' },
+                      '50%': { 'transform': 'translateY(-5px)' },
+                    },
                   }
                 },
               },
@@ -209,15 +241,15 @@ function MyApp({ Component, pageProps }) {
       {/* Desktop Navbar - CORRIGIDA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
-          {/* Logo à esquerda */}
+          {/* Logo à esquerda - AUMENTADA */}
           <Link href="/" className="flex-shrink-0">
-            <div className="logo-container h-12 relative">
+            <div className="logo-container h-16 relative">
               <Image 
                 src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-12 w-auto"
-                width={120}
-                height={48}
+                className="h-16 w-auto"
+                width={160}
+                height={64}
                 priority
               />
             </div>
@@ -233,15 +265,15 @@ function MyApp({ Component, pageProps }) {
               Soluções
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/keepit" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20 flex items-center">
+            {/* Logo Keepit sem texto - COM EFEITOS DE HOVER */}
+            <Link href="/keepit" className="text-white hover:text-green-400 transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-green-400/5 border border-transparent hover:border-green-400/20 flex items-center">
               <Image 
                 src="/image/keepit_logo_aorkia.png" 
                 alt="Keepit" 
-                className="h-6 w-auto mr-2"
+                className="h-6 w-auto"
                 width={80}
                 height={24}
               />
-              <span className="text-green-400">Keepit</span>
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-6"></span>
             </Link>
             <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
@@ -260,13 +292,13 @@ function MyApp({ Component, pageProps }) {
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
-            <div className="logo-container h-12 relative">
+            <div className="logo-container h-16 relative">
               <Image 
                 src="/image/logo_aorkia_white.png" 
                 alt="AORKIA" 
-                className="h-12 w-auto"
-                width={120}
-                height={48}
+                className="h-16 w-auto"
+                width={160}
+                height={64}
                 priority
               />
             </div>
@@ -325,6 +357,7 @@ function MyApp({ Component, pageProps }) {
               >
                 Soluções
               </Link>
+              {/* Logo Keepit sem texto no mobile */}
               <Link 
                 href="/keepit" 
                 className="text-white text-3xl md:text-5xl font-bold hover:text-green-400 transition-colors flex items-center justify-center"
@@ -333,11 +366,10 @@ function MyApp({ Component, pageProps }) {
                 <Image 
                   src="/image/keepit_logo_aorkia.png" 
                   alt="Keepit" 
-                  className="h-8 md:h-12 w-auto mr-4"
+                  className="h-8 md:h-12 w-auto"
                   width={120}
                   height={48}
                 />
-                <span className="text-green-400">Keepit</span>
               </Link>
               <Link 
                 href="/sobre" 
@@ -394,212 +426,202 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - REORGANIZADO PARA MOBILE COM FORMULÁRIO PRIMEIRO E SEÇÃO DE COPYRIGHT ADICIONADA */}
+      {/* Footer Global - FORMULÁRIO ATUALIZADO SEM AS DUAS SOLUÇÕES */}
       <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* No mobile, formulário aparece primeiro */}
-            <div className="order-2 md:order-1">
-              <div className="mb-8">
-                <Image
-                  src="/image/logo_aorkia_white.png"
-                  alt="AORKIA Logo"
-                  width={180}
-                  height={60}
-                  className="mb-4"
-                  priority
-                />
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-map-pin-2-line"></i>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Endereço</h3>
-                    <p 
-                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
-                      onClick={copyAddressToClipboard}
-                      title="Clique para copiar"
-                    >
-                      Av. Getúlio Vargas, 671 — Sala 500<br />
-                      Belo Horizonte - MG
-                      {addressCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Formulário de Contato - Primeira coluna no mobile */}
+            <div className="order-1 lg:order-2">
+              <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">Nome</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                  />
                 </div>
-
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-mail-line"></i>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">E-mail</h3>
-                    <p 
-                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
-                      onClick={copyEmailToClipboard}
-                      title="Clique para copiar"
-                    >
-                      contato@aorkia.com
-                      {emailCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
-                    </p>
-                  </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">E-mail</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                  />
                 </div>
-
-                <div className="flex items-start">
-                  <div className="text-primary text-2xl mt-1 mr-4">
-                    <i className="ri-phone-line"></i>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Telefone</h3>
-                    <p 
-                      className="text-gray-300 cursor-pointer hover:text-white transition-colors"
-                      onClick={copyPhoneToClipboard}
-                      title="Clique para copiar"
-                    >
-                      +55 31 3958-6192
-                      {phoneCopied && <span className="text-green-400 ml-2">✓ Copiado!</span>}
-                    </p>
-                  </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2">Empresa</label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    name="company" 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                  />
                 </div>
-              </div>
-            </div>
-
-            {/* Formulário de contato */}
-            <div className="order-1 md:order-2">
-              <h3 className="text-2xl font-bold mb-6">Fale Conosco</h3>
-              
-              {formSubmitted ? (
-                <div className="bg-green-600 text-white p-6 rounded-lg text-center">
-                  <i className="ri-check-line text-3xl mb-4 block"></i>
-                  <h4 className="text-xl font-semibold mb-2">Mensagem enviada com sucesso!</h4>
-                  <p>Entraremos em contato em breve.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      name="nome"
-                      placeholder="Seu nome"
-                      required
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Seu e-mail"
-                      required
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      name="telefone"
-                      placeholder="Seu telefone"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="empresa"
-                      placeholder="Sua empresa"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white"
-                    />
-                  </div>
-                  
-                  {/* Soluções de Interesse */}
-                  <div>
-                    <label className="block text-white text-lg font-medium mb-3">
-                      Soluções de Interesse (marque uma ou mais):
+                
+                {/* SOLUÇÕES DE INTERESSE - REMOVIDAS AS DUAS ESPECIFICADAS */}
+                <div>
+                  <label className="block text-sm font-medium mb-3">Soluções de interesse</label>
+                  <div className="space-y-3">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="solucoes"
+                        value="Backup SaaS Estratégico"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                      />
+                      <span className="text-gray-300">Backup SaaS Estratégico</span>
                     </label>
-                    <div className="space-y-2">
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="solucoes"
-                          value="Backup SaaS Estratégico (Keepit)"
-                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
-                        />
-                        <span className="text-gray-300">Backup SaaS Estratégico (Keepit)</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="solucoes"
-                          value="Operações de Bordas Inteligentes"
-                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
-                        />
-                        <span className="text-gray-300">Operações de Bordas Inteligentes</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="solucoes"
-                          value="Segurança para Operações Críticas (DSPM)"
-                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
-                        />
-                        <span className="text-gray-300">Segurança para Operações Críticas (DSPM)</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="solucoes"
-                          value="Plataformas de Inteligência de Receita com IA"
-                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
-                        />
-                        <span className="text-gray-300">Plataformas de Inteligência de Receita com IA</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="solucoes"
-                          value="Estratégia de Presença Digital"
-                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
-                        />
-                        <span className="text-gray-300">Estratégia de Presença Digital</span>
-                      </label>
-                    </div>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="solucoes"
+                        value="Operações de Bordas Inteligentes"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                      />
+                      <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="solucoes"
+                        value="Segurança para Operações Críticas"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                      />
+                      <span className="text-gray-300">Segurança para Operações Críticas</span>
+                    </label>
                   </div>
-                  
-                  <div>
-                    <textarea
-                      name="mensagem"
-                      placeholder="Sua mensagem"
-                      rows="4"
-                      required
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white resize-none"
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
-                  >
-                    Enviar Mensagem
-                  </button>
-                </form>
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">Mensagem</label>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="4" 
+                    required 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
+                >
+                  Enviar Mensagem
+                </button>
+              </form>
+              
+              {formSubmitted && (
+                <div className="mt-4 p-4 bg-green-600/20 border border-green-600/30 rounded-lg">
+                  <p className="text-green-400 font-medium">Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
+                </div>
               )}
             </div>
-          </div>
 
-          {/* Seção de Copyright */}
-          <div className="border-t border-gray-800 mt-16 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-gray-400 text-sm">
-                © 2025 AORKIA. Todos os direitos reservados. Desenvolvido por AORKIA.
+            {/* Informações de Contato - Segunda coluna no mobile */}
+            <div className="order-2 lg:order-1">
+              <div className="mb-12">
+                <Image 
+                  src="/image/logo_aorkia_white.png" 
+                  alt="AORKIA" 
+                  className="h-16 w-auto mb-6"
+                  width={160}
+                  height={64}
+                />
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável.
+                </p>
               </div>
-              <div className="flex space-x-6 text-sm">
-                <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
-                  Política de Privacidade
+
+              <div className="space-y-8">
+                <div>
+                  <h4 className="text-xl font-semibold mb-4 text-primary">Contato</h4>
+                  <div className="space-y-3">
+                    <div 
+                      className="flex items-center cursor-pointer hover:text-primary transition-colors group"
+                      onClick={copyEmailToClipboard}
+                    >
+                      <i className="ri-mail-line text-xl mr-3 text-primary"></i>
+                      <span>contato@aorkia.com</span>
+                      {emailCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
+                    </div>
+                    <div 
+                      className="flex items-center cursor-pointer hover:text-primary transition-colors group"
+                      onClick={copyPhoneToClipboard}
+                    >
+                      <i className="ri-phone-line text-xl mr-3 text-primary"></i>
+                      <span>+55 31 3958-6192</span>
+                      {phoneCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
+                    </div>
+                    <div 
+                      className="flex items-start cursor-pointer hover:text-primary transition-colors group"
+                      onClick={copyAddressToClipboard}
+                    >
+                      <i className="ri-map-pin-line text-xl mr-3 text-primary mt-1"></i>
+                      <span>Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
+                      {addressCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                    <Link href="/solucoes" className="hover:text-primary transition-colors">Soluções</Link>
+                    <Link href="/keepit" className="hover:text-primary transition-colors">Keepit</Link>
+                    <Link href="/sobre" className="hover:text-primary transition-colors">Sobre</Link>
+                    <Link href="/contato" className="hover:text-primary transition-colors">Contato</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Seção de Copyright - ATUALIZADA COM ANIMAÇÃO CRIATIVA */}
+        <div className="border-t border-gray-800 mt-16 pt-8">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-center md:text-left">
+                <p className="text-gray-400 mb-3">
+                  © 2025 AORKIA. Todos os direitos reservados.
+                </p>
+                {/* LINK ANIMADO CRIATIVO */}
+                <Link 
+                  href="https://aorkia.com/presencadigital/"
+                  className="group relative inline-block"
+                >
+                  <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
+                    <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
+                      <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
+                        ✨ Desenvolvido por AORKIA Estratégia de Presença Digital
+                      </span>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-glow pointer-events-none"></div>
                 </Link>
-                <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
-                  Termos de Uso
-                </Link>
+              </div>
+              <div className="flex space-x-6 mt-4 md:mt-0">
+                <a 
+                  href="https://wa.me/553139586192" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  <i className="ri-whatsapp-line text-xl"></i>
+                </a>
+                <a 
+                  href="mailto:contato@aorkia.com"
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  <i className="ri-mail-line text-xl"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -609,28 +631,22 @@ function MyApp({ Component, pageProps }) {
       {/* Banner de Cookies */}
       {showCookieBanner && (
         <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-[70]">
-          <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="text-white text-sm md:text-base">
-              <p>
-                Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa{' '}
-                <Link href="/privacy" className="text-primary hover:underline">
-                  Política de Privacidade
-                </Link>
-                .
-              </p>
-            </div>
-            <div className="flex space-x-4">
-              <button
-                onClick={declineCookies}
-                className="px-4 py-2 text-gray-300 hover:text-white transition-colors text-sm"
-              >
-                Recusar
-              </button>
-              <button
+          <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-white text-sm">
+              Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de cookies.
+            </p>
+            <div className="flex gap-3">
+              <button 
                 onClick={acceptCookies}
-                className="px-6 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all text-sm font-semibold"
+                className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all text-sm font-medium"
               >
                 Aceitar
+              </button>
+              <button 
+                onClick={declineCookies}
+                className="border border-gray-600 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition-all text-sm font-medium"
+              >
+                Recusar
               </button>
             </div>
           </div>
