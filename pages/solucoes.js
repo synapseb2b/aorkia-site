@@ -355,7 +355,7 @@ export default function Solucoes() {
         </video>
 
         {/* Overlay escuro */}
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
 
         {/* Conteúdo da Hero */}
         <div className="relative z-20 container mx-auto max-w-7xl px-4 text-center">
@@ -367,19 +367,19 @@ export default function Solucoes() {
           </p>
           
           {/* Seletor Horizontal de Soluções */}
-          <div className="w-full max-w-6xl mx-auto mt-8">
+          <div className="w-full max-w-5xl mx-auto mt-8">
             <div className="relative overflow-hidden rounded-xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedSolutionIndex * (100 / 1.5)}%)` }}
+                style={{ transform: `translateX(-${selectedSolutionIndex * 70}%)` }}
               >
                 {solutions.map((solution, index) => (
                   <div
                     key={solution.id}
-                    className={`flex-shrink-0 w-full md:w-2/3 px-2 md:px-4 cursor-pointer transition-all duration-300 ${
+                    className={`flex-shrink-0 w-full md:w-3/4 px-2 md:px-3 cursor-pointer transition-all duration-300 ${
                       index === selectedSolutionIndex 
                         ? 'opacity-100 scale-100' 
-                        : 'opacity-40 scale-95 hidden md:block'
+                        : 'opacity-30 scale-90'
                     }`}
                     onClick={() => {
                       setSelectedSolutionIndex(index);
@@ -391,7 +391,7 @@ export default function Solucoes() {
                   >
                     <div className={`p-4 md:p-6 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm ${
                       index === selectedSolutionIndex
-                        ? 'bg-primary/10 border-primary shadow-lg shadow-primary/20'
+                        ? 'bg-primary/15 border-primary shadow-lg shadow-primary/25'
                         : 'bg-white/5 border-white/20 hover:border-white/40'
                     }`}>
                       <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-2">
