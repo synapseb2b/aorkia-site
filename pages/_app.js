@@ -354,10 +354,10 @@ function MyApp({ Component, pageProps }) {
                 Contato
               </Link>
             </div>
-            <div className="mt-auto">
+            <div className="mt-auto flex justify-center">
               <Link 
                 href="/contato" 
-                className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg transition-all text-center mt-8 text-2xl font-bold"
+                className="bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg transition-all text-center mt-8 text-2xl font-bold"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Começar agora
@@ -512,6 +512,61 @@ function MyApp({ Component, pageProps }) {
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white"
                     />
                   </div>
+                  
+                  {/* Soluções de Interesse */}
+                  <div>
+                    <label className="block text-white text-lg font-medium mb-3">
+                      Soluções de Interesse (marque uma ou mais):
+                    </label>
+                    <div className="space-y-2">
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="solucoes"
+                          value="Backup SaaS Estratégico (Keepit)"
+                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-gray-300">Backup SaaS Estratégico (Keepit)</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="solucoes"
+                          value="Operações de Bordas Inteligentes"
+                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-gray-300">Operações de Bordas Inteligentes</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="solucoes"
+                          value="Segurança para Operações Críticas (DSPM)"
+                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-gray-300">Segurança para Operações Críticas (DSPM)</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="solucoes"
+                          value="Plataformas de Inteligência de Receita com IA"
+                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-gray-300">Plataformas de Inteligência de Receita com IA</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="solucoes"
+                          value="Estratégia de Presença Digital"
+                          className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-gray-300">Estratégia de Presença Digital</span>
+                      </label>
+                    </div>
+                  </div>
+                  
                   <div>
                     <textarea
                       name="mensagem"
@@ -536,7 +591,7 @@ function MyApp({ Component, pageProps }) {
           <div className="border-t border-gray-800 mt-16 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-gray-400 text-sm">
-                © 2024 AORKIA. Todos os direitos reservados.
+                © 2025 AORKIA. Todos os direitos reservados. Desenvolvido por AORKIA.
               </div>
               <div className="flex space-x-6 text-sm">
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
