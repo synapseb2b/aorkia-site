@@ -163,106 +163,6 @@ export default function Solucoes() {
       ctaTitle: 'Assuma o Controle Real dos Seus Dados',
       ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Fale com um especialista AORKIA e ative uma postura de segurança proativa, contínua e auditável.',
       image: '/image/dspm.png'
-    },
-    {
-      id: 'receitas',
-      title: 'Plataforma de Inteligência de Receita com IA',
-      supportText: 'Crescimento Real. Previsibilidade Mensurável. Decisões Guiadas por Dados.',
-      subtitle: 'Sua equipe está atolada em tarefas manuais, seus vendedores perdem o timing, e suas previsões mudam toda semana? A AORKIA ativa Plataformas de Inteligência de Receita com IA que transformam dados fragmentados em decisões precisas, pipeline saudável e crescimento previsível.',
-      whyTitle: 'Por que sua operação precisa de Inteligência de Receita com IA?',
-      whyContent: 'Em mercados B2B complexos, intuição não é mais suficiente. Sem visibilidade real sobre o ciclo de receita, você perde oportunidades, fecha menos do que poderia e não consegue repetir o que funciona. A IA aplicada à receita conecta dados, processos e equipes — permitindo decisões rápidas, previsões confiáveis e execução coordenada.',
-      whatTitle: 'O que a AORKIA entrega com Inteligência de Receita?',
-      features: [
-        {
-          icon: 'ri-flow-chart',
-          title: 'Ciclo de Receita Unificado e Visível',
-          description: 'CRM, e-mails, reuniões e dados de uso em um modelo único — para gestão de pipeline em tempo real.'
-        },
-        {
-          icon: 'ri-line-chart-line',
-          title: 'Previsibilidade com IA Preditiva',
-          description: 'Saiba o que vai fechar, o que está em risco e onde estão suas melhores oportunidades.'
-        },
-        {
-          icon: 'ri-team-line',
-          title: 'Alinhamento Total entre Marketing, Vendas e Customer Success (RevOps)',
-          description: 'Processos integrados, playbooks automatizados e insights compartilhados entre áreas.'
-        },
-        {
-          icon: 'ri-user-settings-line',
-          title: 'Capacitação Inteligente dos Vendedores',
-          description: 'Próximas ações recomendadas, alertas inteligentes, automação de tarefas — para foco total no fechamento.'
-        }
-      ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
-      howSteps: [
-        'Mapeamento do ciclo de receita e gaps operacionais',
-        'Integração de dados e implantação da plataforma IA mais aderente ao seu stack',
-        'Implementação de modelos preditivos com personalização por ICP e segmento',
-        'Treinamento das equipes + governança e suporte contínuo'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
-      differentialContent: 'A maioria das empresas compra software e continua vendendo no escuro. Com a AORKIA, você ativa uma operação de receita inteligente, onde cada etapa é visível, previsível e escalável. Não apenas dashboards — mas direção real para o crescimento.',
-      risksTitle: 'O que você perde sem isso?',
-      risks: [
-        'Pipeline com vazamentos invisíveis',
-        'Previsões inconsistentes e pressão no fim do mês',
-        'Time de vendas reagindo, não liderando',
-        'Oportunidades de upsell perdidas por falta de insight'
-      ],
-      ctaTitle: 'Transforme Dados em Receita Previsível',
-      ctaText: 'Sua operação de receita pode ser uma máquina previsível de alto desempenho. Fale com a AORKIA e ative sua plataforma de inteligência com IA agora.',
-      image: '/image/receitas.png'
-    },
-    {
-      id: 'digital',
-      title: 'Estratégia de Presença Digital',
-      supportText: 'Posicionamento Estratégico. Leads Qualificados. ROI Mensurável.',
-      subtitle: 'Ter um site e postar nas redes não é mais suficiente. Se sua empresa investe em marketing digital e não atrai leads qualificados ou vê retorno real, a AORKIA ativa uma Estratégia de Presença Digital centrada em performance, autoridade e geração de receita.',
-      whyTitle: 'Por que sua empresa precisa de uma Estratégia Digital de verdade?',
-      whyContent: 'Em um mar de conteúdos e anúncios, estar presente não significa ser encontrado — e muito menos escolhido. A presença digital precisa ser estratégica, mensurável e conectada diretamente à geração de demanda qualificada.',
-      whatTitle: 'O que a AORKIA entrega na sua Estratégia de Presença Digital?',
-      features: [
-        {
-          icon: 'ri-search-line',
-          title: 'SEO e Conteúdo com Foco em Conversão',
-          description: 'Posicione sua empresa no topo das buscas com conteúdo pensado para atrair, educar e converter.'
-        },
-        {
-          icon: 'ri-advertisement-line',
-          title: 'Mídia Paga com Segmentação Cirúrgica',
-          description: 'Campanhas otimizadas no Google, Meta e LinkedIn com foco real em CAC, LTV e geração de oportunidades concretas.'
-        },
-        {
-          icon: 'ri-robot-line',
-          title: 'Automação e Nutrição Inteligente de Leads',
-          description: 'Jornadas personalizadas que educam, qualificam e conduzem o lead até o momento certo da venda.'
-        },
-        {
-          icon: 'ri-bar-chart-line',
-          title: 'Métricas Reais e Otimização Contínua',
-          description: 'Relatórios estratégicos com foco em ROI, CAC e pipeline — não em métricas de vaidade.'
-        }
-      ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
-      howSteps: [
-        'Diagnóstico do seu funil e posicionamento digital atual',
-        'Ativação integrada de SEO, mídia paga e automação com metas claras',
-        'Criação e publicação de conteúdos estratégicos orientados por dados',
-        'Monitoramento, otimização e realinhamento contínuo com foco em resultado'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
-      differentialContent: 'Outras empresas vendem tráfego. A AORKIA entrega tração. Ativamos uma estratégia que transforma sua presença digital em uma máquina previsível de leads qualificados e crescimento mensurável. Sem promessas vagas. Sem desperdício de verba.',
-      risksTitle: 'O que você perde sem isso?',
-      risks: [
-        'Visibilidade sem conversão real',
-        'Leads desqualificados ocupando seu time comercial',
-        'Investimento sem retorno, baseado em vaidade e volume',
-        'Ausência de autoridade digital frente à concorrência'
-      ],
-      ctaTitle: 'Posicione sua marca como referência no digital',
-      ctaText: 'A presença digital certa atrai, qualifica e acelera. Fale com a AORKIA e ative uma estratégia feita para gerar resultado real — não apenas visitas.',
-      image: '/image/digital.png'
     }
   ];
 
@@ -340,7 +240,7 @@ export default function Solucoes() {
             Soluções AORKIA
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
-            Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
+            Ativamos tecnologia de ponta para transformar desafios críticos em resultados mensuráveis e operações mais seguras.
           </p>
           
           {/* Seletor Horizontal de Soluções */}
@@ -709,7 +609,7 @@ export default function Solucoes() {
             Pronto para Ativar Resultados Reais?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Transforme desafios complexos em crescimento sustentável com as soluções AORKIA.
+            Transforme desafios críticos em vantagem competitiva com as soluções AORKIA.
           </p>
           <Link 
             href="/contato" 
