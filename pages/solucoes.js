@@ -715,7 +715,6 @@ export default function Solucoes() {
               </button>
             </div>
 
-            </div>
         </section>
       ))}
 
