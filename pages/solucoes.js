@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 export default function Solucoes() {
   const [activeSection, setActiveSection] = useState('backup');
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const carouselRef = useRef(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Soluções com os novos textos do PDF e cores AORKIA
   const solutions = [
@@ -263,50 +262,28 @@ export default function Solucoes() {
     }
   ];
 
-  // Função para navegar no carrossel
-  const navigateCarousel = (direction) => {
-    const newSlide = direction === 'next' 
-      ? (currentSlide + 1) % solutions.length 
-      : currentSlide === 0 ? solutions.length - 1 : currentSlide - 1;
-    
-    setCurrentSlide(newSlide);
-    setActiveSection(solutions[newSlide].id);
-    
-    // Scroll para a seção correspondente
-    const section = document.getElementById(solutions[newSlide].id);
+  // Função para rolagem suave ao clicar em links internos
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(id);
+      setIsDropdownOpen(false); // Fecha o dropdown após a seleção
     }
   };
 
-  // Função para ir para uma solução específica
-  const goToSolution = (index) => {
-    setCurrentSlide(index);
-    setActiveSection(solutions[index].id);
-    
-    const section = document.getElementById(solutions[index].id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  // Função para voltar ao topo
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Detectar seção ativa no scroll
+  // Detectar qual seção está visível para atualizar o estado do dropdown
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('[data-solution-id]');
-      sections.forEach((section, index) => {
+      sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
         
         if (isVisible) {
           const solutionId = section.getAttribute('data-solution-id');
           setActiveSection(solutionId);
-          setCurrentSlide(index);
         }
       });
     };
@@ -314,6 +291,13 @@ export default function Solucoes() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Função para voltar ao topo
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const currentSolution = solutions.find(sol => sol.id === activeSection);
 
   return (
     <>
@@ -353,90 +337,44 @@ export default function Solucoes() {
             Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
           </p>
           
-          {/* Carrossel Horizontal Elegante */}
-          <div className="max-w-6xl mx-auto">
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-semibold text-white mb-8">Escolha sua Solução</h3>
-              
-              {/* Navegação do Carrossel */}
-              <div className="flex items-center justify-center space-x-4">
-                {/* Botão Anterior */}
-                <button
-                  onClick={() => navigateCarousel('prev')}
-                  className="p-3 rounded-full bg-primary/20 hover:bg-primary/40 text-white transition-all duration-300 border border-primary/30"
-                  aria-label="Solução anterior"
-                >
-                  <i className="ri-arrow-left-line text-xl"></i>
-                </button>
-
-                {/* Cards das Soluções */}
-                <div className="flex-1 overflow-hidden">
-                  <div 
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                  >
-                    {solutions.map((solution, index) => (
-                      <div
-                        key={solution.id}
-                        className="w-full flex-shrink-0 px-4"
-                      >
-                        <div 
-                          className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-                            index === currentSlide 
-                              ? 'bg-primary/20 border-2 border-primary scale-105' 
-                              : 'bg-white/5 border border-white/20 hover:bg-white/10'
-                          }`}
-                          onClick={() => goToSolution(index)}
-                        >
-                          <h4 className="text-xl font-semibold text-white mb-2">
-                            {solution.title}
-                          </h4>
-                          <p className="text-primary text-sm font-medium mb-3">
-                            {solution.supportText}
-                          </p>
-                          <p className="text-gray-300 text-sm line-clamp-3">
-                            {solution.subtitle}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Botão Próximo */}
-                <button
-                  onClick={() => navigateCarousel('next')}
-                  className="p-3 rounded-full bg-primary/20 hover:bg-primary/40 text-white transition-all duration-300 border border-primary/30"
-                  aria-label="Próxima solução"
-                >
-                  <i className="ri-arrow-right-line text-xl"></i>
-                </button>
-              </div>
-
-              {/* Indicadores */}
-              <div className="flex justify-center space-x-2 mt-6">
-                {solutions.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSolution(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentSlide 
-                        ? 'bg-primary scale-125' 
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
-                    aria-label={`Ir para solução ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Botão Ver Solução */}
+          {/* Seletor de Soluções Minimalista */}
+          <div className="relative inline-block text-left">
+            <div>
               <button
-                onClick={() => goToSolution(currentSlide)}
-                className="mt-8 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                type="button"
+                className="inline-flex justify-center w-full rounded-md border border-gray-700 shadow-sm px-4 py-2 bg-dark-blue-2 text-lg font-medium text-white hover:bg-dark-blue-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-primary transition-all duration-300"
+                id="options-menu"
+                aria-haspopup="true"
+                aria-expanded="true"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
-                Ver Esta Solução
+                {currentSolution ? currentSolution.title : 'Selecione uma Solução'}
+                <i className="ri-arrow-down-s-line -mr-1 ml-2 h-5 w-5"></i>
               </button>
             </div>
+
+            {isDropdownOpen && (
+              <div 
+                className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-dark-blue-2 ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
+                <div className="py-1" role="none">
+                  {solutions.map((solution) => (
+                    <a
+                      key={solution.id}
+                      href={`#${solution.id}`}
+                      onClick={(e) => scrollToSection(e, solution.id)}
+                      className="block px-4 py-2 text-md text-gray-200 hover:bg-dark-blue-1 hover:text-white"
+                      role="menuitem"
+                    >
+                      {solution.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -645,4 +583,5 @@ export default function Solucoes() {
     </>
   );
 }
+
 
