@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Solucoes() {
   const [activeSection, setActiveSection] = useState('backup');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0);
 
   // Soluções com os novos textos do PDF e cores AORKIA
   const solutions = [
@@ -257,23 +258,62 @@ export default function Solucoes() {
         'Ausência de autoridade digital frente à concorrência'
       ],
       ctaTitle: 'Posicione sua marca como referência no digital',
-      ctaText: 'A presença digital certa atrai, qualifica e acelera. Fale com a AORKIA e ative uma estratégia feita para gerar resultado real — não apenas likes.',
+      ctaText: 'A presença digital certa atrai, qualifica e acelera. Fale com a AORKIA e ative uma estratégia feita para gerar resultado real — não apenas visitas.',
       image: '/image/digital.png'
+    },
+    {
+      id: 'vendas',
+      title: 'Aceleração de Vendas B2B',
+      supportText: 'Ciclo Mais Curto. Fechamento Mais Assertivo. Crescimento Sustentável.',
+      subtitle: 'Seus vendedores estão perdendo tempo com prospects desqualificados? Seu ciclo de vendas é longo demais e imprevisível? A AORKIA ativa metodologias e ferramentas que aceleram vendas B2B complexas, reduzem o ciclo e aumentam a taxa de conversão.',
+      whyTitle: 'Por que acelerar vendas B2B é crítico agora?',
+      whyContent: 'No ambiente B2B atual, o comprador está mais informado, o processo decisório é mais complexo e a concorrência é mais acirrada. Sem uma metodologia estruturada e ferramentas adequadas, você perde oportunidades para quem vende melhor, não necessariamente quem tem o melhor produto.',
+      whatTitle: 'O que a AORKIA ativa na sua Aceleração de Vendas B2B?',
+      features: [
+        {
+          icon: 'ri-target-line',
+          title: 'Qualificação Inteligente de Prospects',
+          description: 'Identifique e priorize leads com maior potencial de conversão usando scoring preditivo e análise comportamental.'
+        },
+        {
+          icon: 'ri-presentation-line',
+          title: 'Metodologia de Vendas Estruturada',
+          description: 'Implemente frameworks comprovados como SPIN, Challenger Sale ou MEDDIC adaptados ao seu mercado.'
+        },
+        {
+          icon: 'ri-tools-line',
+          title: 'Stack de Vendas Otimizado',
+          description: 'CRM inteligente, automação de follow-up, análise de conversas e ferramentas de enablement integradas.'
+        },
+        {
+          icon: 'ri-graduation-cap-line',
+          title: 'Capacitação Contínua da Equipe',
+          description: 'Treinamentos práticos, coaching individual e desenvolvimento de habilidades específicas para vendas complexas.'
+        }
+      ],
+      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howSteps: [
+        'Diagnóstico do processo atual e identificação de gargalos',
+        'Implementação de metodologia e ferramentas adequadas ao seu contexto',
+        'Treinamento intensivo da equipe com foco em resultados práticos',
+        'Acompanhamento, coaching e otimização contínua do processo'
+      ],
+      differentialTitle: 'O diferencial AORKIA',
+      differentialContent: 'Não vendemos cursos ou software isolados. A AORKIA ativa um sistema completo de aceleração de vendas B2B, combinando metodologia, tecnologia e desenvolvimento humano. Resultado: vendedores mais eficazes, ciclos mais curtos e crescimento previsível.',
+      risksTitle: 'O que você perde sem isso?',
+      risks: [
+        'Ciclos de venda longos e imprevisíveis',
+        'Taxa de conversão baixa e inconsistente',
+        'Vendedores desmotivados e com baixa performance',
+        'Perda de oportunidades para concorrentes mais estruturados'
+      ],
+      ctaTitle: 'Acelere suas vendas B2B agora',
+      ctaText: 'Transforme sua equipe de vendas em uma máquina de crescimento previsível. Fale com a AORKIA e ative sua aceleração de vendas B2B.',
+      image: '/image/vendas.png'
     }
   ];
 
-  // Função para rolagem suave ao clicar em links internos
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setActiveSection(id);
-      setIsDropdownOpen(false); // Fecha o dropdown após a seleção
-    }
-  };
-
-  // Detectar qual seção está visível para atualizar o estado do dropdown
+  // Função para detectar seção ativa baseada no scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('[data-solution-id]');
@@ -297,8 +337,6 @@ export default function Solucoes() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const currentSolution = solutions.find(sol => sol.id === activeSection);
-
   return (
     <>
       <Head>
@@ -311,19 +349,10 @@ export default function Solucoes() {
       {/* Hero Section com Vídeo */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Vídeo de Fundo */}
-        <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="w-full h-full object-cover opacity-30"
-          >
-            <source src="/video/hero-background.mp4" type="video/mp4" />
-            {/* Fallback para navegadores que não suportam vídeo */}
-            <div className="w-full h-full bg-gradient-to-br from-dark-blue-1 to-dark-blue-2"></div>
-          </video>
-        </div>
+        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+          <source src="/image/video_hero.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeo.
+        </video>
 
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
@@ -337,44 +366,89 @@ export default function Solucoes() {
             Ativamos tecnologia de ponta para transformar desafios complexos em resultados mensuráveis e crescimento sustentável.
           </p>
           
-          {/* Seletor de Soluções Minimalista */}
-          <div className="relative inline-block text-left">
-            <div>
-              <button
-                type="button"
-                className="inline-flex justify-center w-full rounded-md border border-gray-700 shadow-sm px-4 py-2 bg-dark-blue-2 text-lg font-medium text-white hover:bg-dark-blue-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-primary transition-all duration-300"
-                id="options-menu"
-                aria-haspopup="true"
-                aria-expanded="true"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          {/* Seletor Horizontal de Soluções */}
+          <div className="w-full max-w-6xl mx-auto mt-8">
+            <div className="relative overflow-hidden rounded-xl">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${selectedSolutionIndex * (100 / 1.5)}%)` }}
               >
-                {currentSolution ? currentSolution.title : 'Selecione uma Solução'}
-                <i className="ri-arrow-down-s-line -mr-1 ml-2 h-5 w-5"></i>
+                {solutions.map((solution, index) => (
+                  <div
+                    key={solution.id}
+                    className={`flex-shrink-0 w-full md:w-2/3 px-2 md:px-4 cursor-pointer transition-all duration-300 ${
+                      index === selectedSolutionIndex 
+                        ? 'opacity-100 scale-100' 
+                        : 'opacity-40 scale-95 hidden md:block'
+                    }`}
+                    onClick={() => {
+                      setSelectedSolutionIndex(index);
+                      const element = document.getElementById(solution.id);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    <div className={`p-4 md:p-6 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm ${
+                      index === selectedSolutionIndex
+                        ? 'bg-primary/10 border-primary shadow-lg shadow-primary/20'
+                        : 'bg-white/5 border-white/20 hover:border-white/40'
+                    }`}>
+                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-2">
+                        {solution.title}
+                      </h3>
+                      <p className="text-gray-300 text-sm md:text-base">
+                        {solution.supportText}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Indicadores de navegação */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {solutions.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedSolutionIndex(index)}
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                    index === selectedSolutionIndex
+                      ? 'bg-primary scale-125'
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            {/* Botões de navegação lateral - apenas desktop */}
+            <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 z-30">
+              <button
+                onClick={() => setSelectedSolutionIndex(Math.max(0, selectedSolutionIndex - 1))}
+                disabled={selectedSolutionIndex === 0}
+                className={`p-2 rounded-full transition-all duration-300 ${
+                  selectedSolutionIndex === 0
+                    ? 'opacity-30 cursor-not-allowed'
+                    : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm'
+                }`}
+              >
+                <i className="ri-arrow-left-line text-xl"></i>
               </button>
             </div>
-
-            {isDropdownOpen && (
-              <div 
-                className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-dark-blue-2 ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="options-menu"
+            
+            <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 z-30">
+              <button
+                onClick={() => setSelectedSolutionIndex(Math.min(solutions.length - 1, selectedSolutionIndex + 1))}
+                disabled={selectedSolutionIndex === solutions.length - 1}
+                className={`p-2 rounded-full transition-all duration-300 ${
+                  selectedSolutionIndex === solutions.length - 1
+                    ? 'opacity-30 cursor-not-allowed'
+                    : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm'
+                }`}
               >
-                <div className="py-1" role="none">
-                  {solutions.map((solution) => (
-                    <a
-                      key={solution.id}
-                      href={`#${solution.id}`}
-                      onClick={(e) => scrollToSection(e, solution.id)}
-                      className="block px-4 py-2 text-md text-gray-200 hover:bg-dark-blue-1 hover:text-white"
-                      role="menuitem"
-                    >
-                      {solution.title}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+                <i className="ri-arrow-right-line text-xl"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -392,25 +466,44 @@ export default function Solucoes() {
           key={solution.id}
           id={solution.id}
           data-solution-id={solution.id}
-          className="relative min-h-screen py-20 px-4"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 44, 76, 0.9), rgba(13, 58, 100, 0.9)), url(${solution.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
         >
-          <div className="container mx-auto max-w-7xl">
-            
-            {/* Hero da Solução */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                {solution.title}
-              </h2>
-              <p className="text-xl md:text-2xl font-semibold text-primary mb-6">
-                {solution.supportText}
-              </p>
-              <p className="text-lg md:text-xl max-w-5xl mx-auto leading-relaxed text-gray-200">
+          {/* Background Image (aparece apenas quando ativo) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === solution.id ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(${solution.image})` }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+          
+          {/* Background Color (aparece quando não está ativo) */}
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === solution.id ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+          
+          {/* Content */}
+          <div className="relative z-10 min-h-screen py-20 px-4">
+            <div className="container mx-auto max-w-7xl">
+              
+              {/* Hero da Solução */}
+              <div className="text-center mb-16">
+                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.title}
+                </h2>
+                <p className={`text-xl md:text-2xl font-semibold mb-6 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  {solution.supportText}
+                </p>
+                <p className={`text-lg md:text-xl max-w-5xl mx-auto leading-relaxed transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                }`}>
                 {solution.subtitle}
               </p>
             </div>
@@ -418,14 +511,20 @@ export default function Solucoes() {
             {/* Por que preciso? */}
             <div className="mb-16">
               <div className="flex items-center mb-6">
-                <div className="text-primary text-3xl mr-4">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
                   <i className="ri-question-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.whyTitle}
                 </h3>
               </div>
-              <p className="text-lg leading-relaxed text-gray-200 max-w-4xl">
+              <p className={`text-lg leading-relaxed max-w-4xl transition-colors duration-500 ${
+                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+              }`}>
                 {solution.whyContent}
               </p>
             </div>
@@ -433,25 +532,39 @@ export default function Solucoes() {
             {/* O que oferece */}
             <div className="mb-16">
               <div className="flex items-center mb-8">
-                <div className="text-primary text-3xl mr-4">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
                   <i className="ri-shield-check-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.whatTitle}
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {solution.features.map((feature, idx) => (
-                  <div key={idx} className="p-6 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                  <div key={idx} className={`p-6 rounded-lg border transition-all duration-500 ${
+                    activeSection === solution.id 
+                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
+                      : 'bg-gray-50 border-gray-200'
+                  }`}>
                     <div className="flex items-start space-x-4">
-                      <div className="text-primary text-2xl mt-1">
+                      <div className={`text-2xl mt-1 transition-colors duration-500 ${
+                        activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                      }`}>
                         <i className={feature.icon}></i>
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-2">
+                        <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
+                          activeSection === solution.id ? 'text-white' : 'text-black'
+                        }`}>
                           {feature.title}
                         </h4>
-                        <p className="text-gray-200">
+                        <p className={`transition-colors duration-500 ${
+                          activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                        }`}>
                           {feature.description}
                         </p>
                       </div>
@@ -464,20 +577,32 @@ export default function Solucoes() {
             {/* Como funciona */}
             <div className="mb-16">
               <div className="flex items-center mb-8">
-                <div className="text-primary text-3xl mr-4">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
                   <i className="ri-settings-3-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.howTitle}
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {solution.howSteps.map((step, idx) => (
-                  <div key={idx} className="p-6 rounded-lg text-center bg-white/10 backdrop-blur-sm border border-white/20">
-                    <div className="text-primary text-3xl font-bold mb-4">
+                  <div key={idx} className={`p-6 rounded-lg text-center border transition-all duration-500 ${
+                    activeSection === solution.id 
+                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
+                      : 'bg-gray-50 border-gray-200'
+                  }`}>
+                    <div className={`text-3xl font-bold mb-4 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                    }`}>
                       {idx + 1}
                     </div>
-                    <p className="font-medium text-white">
+                    <p className={`font-medium transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
                       {step}
                     </p>
                   </div>
@@ -488,15 +613,25 @@ export default function Solucoes() {
             {/* Diferencial AORKIA */}
             <div className="mb-16">
               <div className="flex items-center mb-6">
-                <div className="text-primary text-3xl mr-4">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
                   <i className="ri-star-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.differentialTitle}
                 </h3>
               </div>
-              <div className="p-8 rounded-lg bg-primary/20 backdrop-blur-sm border border-primary/30">
-                <p className="text-lg leading-relaxed text-white">
+              <div className={`p-8 rounded-lg border transition-all duration-500 ${
+                activeSection === solution.id 
+                  ? 'bg-primary/20 backdrop-blur-sm border-primary/30' 
+                  : 'bg-blue-50 border-blue-200'
+              }`}>
+                <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-gray-800'
+                }`}>
                   {solution.differentialContent}
                 </p>
               </div>
@@ -508,17 +643,25 @@ export default function Solucoes() {
                 <div className="text-red-400 text-3xl mr-4">
                   <i className="ri-alert-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.risksTitle}
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {solution.risks.map((risk, idx) => (
-                  <div key={idx} className="flex items-center space-x-3 p-4 rounded-lg bg-red-900/20 border border-red-500/30">
+                  <div key={idx} className={`flex items-center space-x-3 p-4 rounded-lg border transition-all duration-500 ${
+                    activeSection === solution.id 
+                      ? 'bg-red-900/20 border-red-500/30' 
+                      : 'bg-red-50 border-red-200'
+                  }`}>
                     <div className="text-red-400 text-xl">
                       <i className="ri-close-circle-line"></i>
                     </div>
-                    <p className="text-gray-200">
+                    <p className={`transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                    }`}>
                       {risk}
                     </p>
                   </div>
@@ -529,19 +672,29 @@ export default function Solucoes() {
             {/* CTA */}
             <div className="text-center mb-16">
               <div className="flex items-center justify-center mb-6">
-                <div className="text-primary text-3xl mr-4">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
                   <i className="ri-rocket-line"></i>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
                   {solution.ctaTitle}
                 </h3>
               </div>
-              <p className="text-lg mb-8 max-w-3xl mx-auto text-gray-200">
+              <p className={`text-lg mb-8 max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+              }`}>
                 {solution.ctaText}
               </p>
               <Link 
                 href="/contato" 
-                className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                className={`inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
+                  activeSection === solution.id 
+                    ? 'bg-primary hover:bg-primary/90 text-white' 
+                    : 'bg-blue-700 hover:bg-blue-800 text-white'
+                }`}
               >
                 Fale com um Especialista
               </Link>
@@ -551,14 +704,18 @@ export default function Solucoes() {
             <div className="text-center">
               <button
                 onClick={scrollToTop}
-                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 border border-white/20"
+                className={`inline-flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 border ${
+                  activeSection === solution.id 
+                    ? 'bg-white/10 hover:bg-white/20 text-white border-white/20' 
+                    : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-300'
+                }`}
               >
                 <i className="ri-arrow-up-line text-xl"></i>
                 <span>Voltar ao Topo</span>
               </button>
             </div>
 
-          </div>
+            </div>
         </section>
       ))}
 
@@ -583,5 +740,4 @@ export default function Solucoes() {
     </>
   );
 }
-
 
