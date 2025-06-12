@@ -7,57 +7,60 @@ export default function Solucoes() {
   const [activeSection, setActiveSection] = useState('backup');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0);
+  const selectorRef = useRef(null);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
 
   // Soluções com os novos textos do PDF e cores AORKIA
   const solutions = [
     {
       id: 'backup',
-      title: 'Backup SaaS Estratégico',
-      supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
-      subtitle: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade total com LGPD e GDPR.',
-      whyTitle: 'Por que preciso de Backup SaaS Estratégico?',
-      whyContent: 'O modelo de responsabilidade em nuvem é compartilhado: os provedores garantem a infraestrutura, mas você é quem responde pela proteção dos dados. Sem um backup dedicado, erros acidentais, ataques cibernéticos ou falhas internas podem causar perdas irreversíveis — e multas regulatórias.',
-      whatTitle: 'O que o Backup SaaS Estratégico da AORKIA oferece?',
+      title: 'Keepit com AORKIA',
+      supportText: 'Backup Imutável. Isolamento Real. Recuperação Garantida.',
+      subtitle: 'Microsoft, Google e Salesforce não garantem a recuperação dos seus dados em caso de erro, exclusão ou ataque. A AORKIA ativa a Keepit — plataforma global de backup SaaS — para entregar proteção imutável, restauração granular e conformidade certificada com LGPD, GDPR e HIPAA.',
+      whyTitle: 'Por que preciso da Keepit com AORKIA?',
+      whyContent: 'A responsabilidade sobre os dados é sua, não do provedor SaaS. Sem um backup isolado e imutável, qualquer exclusão acidental, falha interna ou ransomware pode causar perdas irreversíveis, interrupções operacionais e sanções regulatórias.',
+      whatTitle: 'O que você ativa com Keepit',
       features: [
         {
           icon: 'ri-shield-keyhole-line',
-          title: 'Backups 100% Imutáveis',
-          description: 'Proteção real contra ransomware, exclusões acidentais e corrupção de dados.'
+          title: 'Backup Imutável com Air Gap',
+          description: 'Dados isolados em nuvem independente — não podem ser corrompidos ou apagados.'
         },
         {
           icon: 'ri-restart-line',
-          title: 'Recuperação Rápida e Granular',
-          description: 'De um único e-mail até ambientes inteiros, restaurados em minutos.'
+          title: 'Restauração Granular e Instantânea',
+          description: 'Recupere um item, uma conta ou toda a estrutura — em minutos e com total controle.'
         },
         {
           icon: 'ri-apps-2-line',
-          title: 'Cobertura Total do Ecossistema SaaS',
-          description: 'Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Azure AD e mais.'
+          title: 'Cobertura Completa do seu Ecossistema SaaS',
+          description: 'Proteção nativa para Microsoft 365, Google Workspace, Salesforce, Dynamics, Azure AD e muito mais.'
         },
         {
           icon: 'ri-file-shield-2-line',
-          title: 'Conformidade e Auditoria Descomplicadas',
-          description: 'Alinhado às exigências da LGPD, GDPR, HIPAA — com trilhas de auditoria e retenção customizada.'
+          title: 'Compliance Automatizado e Retenção Ilimitada',
+          description: 'Políticas configuráveis, trilhas de auditoria completas e certificações como ISO 27001, ISAE 3402 e DORA.'
         }
       ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
+      howTitle: 'Como funciona a ativação com a AORKIA',
       howSteps: [
-        'Ativação guiada com especialistas AORKIA',
-        'Configuração personalizada para seu ambiente e compliance',
-        'Treinamento da equipe + suporte contínuo',
-        'Sem complexidade técnica, sem ruído operacional'
+        'Mapeamento do ambiente e riscos operacionais',
+        'Implantação e configuração personalizada da Keepit',
+        'Automação de snapshots, auditoria e planos de recuperação',
+        'Capacitação da equipe + suporte estratégico contínuo'
       ],
       differentialTitle: 'O diferencial AORKIA',
-      differentialContent: 'A AORKIA não vende software. Ativamos uma estratégia robusta de proteção de dados SaaS com base na Keepit — a plataforma utilizada por marcas como Porsche e Oxford University. Transformamos complexidade técnica em resiliência real, mensurável e confiável.',
-      risksTitle: 'O que você pode perder sem isso?',
+      differentialContent: 'Na AORKIA, ativar Keepit é mais do que implementar uma tecnologia — é transformar proteção de dados em um pilar estratégico de continuidade, governança e vantagem competitiva.',
+      risksTitle: 'O que você pode perder sem isso',
       risks: [
-        'E-mails e arquivos críticos apagados permanentemente',
-        'Falta de evidência para auditorias regulatórias',
-        'Operações paralisadas por erros humanos ou ransomware',
-        'Multas por descumprimento da LGPD / GDPR'
+        'E-mails, arquivos e históricos valiosos perdidos para sempre',
+        'Não conformidade com LGPD, GDPR, HIPAA ou DORA',
+        'Operações paralisadas por falhas humanas ou ataques externos',
+        'Impossibilidade de auditar e comprovar a integridade dos dados'
       ],
-      ctaTitle: 'Proteja o Coração Digital do Seu Negócio',
-      ctaText: 'Blindar seus dados críticos é uma decisão estratégica, não técnica. Fale agora com um especialista da AORKIA e ative sua resiliência SaaS.',
+      ctaTitle: 'Proteja Seus Dados com Quem Ativa Resiliência de Verdade',
+      ctaText: 'Blindar seus dados SaaS não é uma opção — é uma decisão estratégica. Fale com a AORKIA e ative agora a proteção imutável com Keepit.',
       image: '/image/backup.png',
       logo: '/image/keepit_logo_aorkia.png'
     },
@@ -260,58 +263,32 @@ export default function Solucoes() {
       ctaTitle: 'Posicione sua marca como referência no digital',
       ctaText: 'A presença digital certa atrai, qualifica e acelera. Fale com a AORKIA e ative uma estratégia feita para gerar resultado real — não apenas visitas.',
       image: '/image/digital.png'
-    },
-    {
-      id: 'vendas',
-      title: 'Aceleração de Vendas B2B',
-      supportText: 'Ciclo Mais Curto. Fechamento Mais Assertivo. Crescimento Sustentável.',
-      subtitle: 'Seus vendedores estão perdendo tempo com prospects desqualificados? Seu ciclo de vendas é longo demais e imprevisível? A AORKIA ativa metodologias e ferramentas que aceleram vendas B2B complexas, reduzem o ciclo e aumentam a taxa de conversão.',
-      whyTitle: 'Por que acelerar vendas B2B é crítico agora?',
-      whyContent: 'No ambiente B2B atual, o comprador está mais informado, o processo decisório é mais complexo e a concorrência é mais acirrada. Sem uma metodologia estruturada e ferramentas adequadas, você perde oportunidades para quem vende melhor, não necessariamente quem tem o melhor produto.',
-      whatTitle: 'O que a AORKIA ativa na sua Aceleração de Vendas B2B?',
-      features: [
-        {
-          icon: 'ri-target-line',
-          title: 'Qualificação Inteligente de Prospects',
-          description: 'Identifique e priorize leads com maior potencial de conversão usando scoring preditivo e análise comportamental.'
-        },
-        {
-          icon: 'ri-presentation-line',
-          title: 'Metodologia de Vendas Estruturada',
-          description: 'Implemente frameworks comprovados como SPIN, Challenger Sale ou MEDDIC adaptados ao seu mercado.'
-        },
-        {
-          icon: 'ri-tools-line',
-          title: 'Stack de Vendas Otimizado',
-          description: 'CRM inteligente, automação de follow-up, análise de conversas e ferramentas de enablement integradas.'
-        },
-        {
-          icon: 'ri-graduation-cap-line',
-          title: 'Capacitação Contínua da Equipe',
-          description: 'Treinamentos práticos, coaching individual e desenvolvimento de habilidades específicas para vendas complexas.'
-        }
-      ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
-      howSteps: [
-        'Diagnóstico do processo atual e identificação de gargalos',
-        'Implementação de metodologia e ferramentas adequadas ao seu contexto',
-        'Treinamento intensivo da equipe com foco em resultados práticos',
-        'Acompanhamento, coaching e otimização contínua do processo'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
-      differentialContent: 'Não vendemos cursos ou software isolados. A AORKIA ativa um sistema completo de aceleração de vendas B2B, combinando metodologia, tecnologia e desenvolvimento humano. Resultado: vendedores mais eficazes, ciclos mais curtos e crescimento previsível.',
-      risksTitle: 'O que você perde sem isso?',
-      risks: [
-        'Ciclos de venda longos e imprevisíveis',
-        'Taxa de conversão baixa e inconsistente',
-        'Vendedores desmotivados e com baixa performance',
-        'Perda de oportunidades para concorrentes mais estruturados'
-      ],
-      ctaTitle: 'Acelere suas vendas B2B agora',
-      ctaText: 'Transforme sua equipe de vendas em uma máquina de crescimento previsível. Fale com a AORKIA e ative sua aceleração de vendas B2B.',
-      image: '/image/vendas.png'
     }
   ];
+
+  // Funções para controle de touch no mobile
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && selectedSolutionIndex < solutions.length - 1) {
+      setSelectedSolutionIndex(selectedSolutionIndex + 1);
+    }
+    if (isRightSwipe && selectedSolutionIndex > 0) {
+      setSelectedSolutionIndex(selectedSolutionIndex - 1);
+    }
+  };
 
   // Função para detectar seção ativa baseada no scroll
   useEffect(() => {
@@ -367,19 +344,25 @@ export default function Solucoes() {
           </p>
           
           {/* Seletor Horizontal de Soluções */}
-          <div className="w-full max-w-5xl mx-auto mt-8">
-            <div className="relative overflow-hidden rounded-xl">
+          <div className="w-full max-w-5xl mx-auto mt-8 relative">
+            <div 
+              className="relative overflow-hidden rounded-xl"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              ref={selectorRef}
+            >
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedSolutionIndex * 70}%)` }}
+                style={{ transform: `translateX(-${selectedSolutionIndex * 100}%)` }}
               >
                 {solutions.map((solution, index) => (
                   <div
                     key={solution.id}
-                    className={`flex-shrink-0 w-full md:w-3/4 px-2 md:px-3 cursor-pointer transition-all duration-300 ${
+                    className={`flex-shrink-0 w-full px-2 md:px-3 cursor-pointer transition-all duration-300 ${
                       index === selectedSolutionIndex 
                         ? 'opacity-100 scale-100' 
-                        : 'opacity-30 scale-90'
+                        : 'opacity-30 scale-95'
                     }`}
                     onClick={() => {
                       setSelectedSolutionIndex(index);
@@ -389,10 +372,10 @@ export default function Solucoes() {
                       }
                     }}
                   >
-                    <div className={`p-4 md:p-6 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm ${
+                    <div className={`p-4 md:p-6 rounded-xl border transition-all duration-300 backdrop-blur-sm ${
                       index === selectedSolutionIndex
-                        ? 'bg-primary/15 border-primary shadow-lg shadow-primary/25'
-                        : 'bg-white/5 border-white/20 hover:border-white/40'
+                        ? 'bg-primary/15 border-white/30 shadow-lg shadow-primary/25'
+                        : 'bg-white/5 border-white/10 hover:border-white/20'
                     }`}>
                       <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-2">
                         {solution.title}
@@ -422,7 +405,7 @@ export default function Solucoes() {
             </div>
             
             {/* Botões de navegação lateral - apenas desktop */}
-            <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 z-30">
+            <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 z-30" style={{ top: 'calc(50% - 30px)' }}>
               <button
                 onClick={() => setSelectedSolutionIndex(Math.max(0, selectedSolutionIndex - 1))}
                 disabled={selectedSolutionIndex === 0}
@@ -436,7 +419,7 @@ export default function Solucoes() {
               </button>
             </div>
             
-            <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 z-30">
+            <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 z-30" style={{ top: 'calc(50% - 30px)' }}>
               <button
                 onClick={() => setSelectedSolutionIndex(Math.min(solutions.length - 1, selectedSolutionIndex + 1))}
                 disabled={selectedSolutionIndex === solutions.length - 1}
