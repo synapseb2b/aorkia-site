@@ -62,8 +62,8 @@ export default function Home() {
     {
       id: 'solucoes',
       title: 'AORKIA TECHNOLOGIES',
-      supportText: 'Soluções B2B para proteger dados críticos, destravar eficiência e escalar receita com previsibilidade.',
-      description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável — sem ruído, sem promessas vazias.',
+      supportText: 'Soluções B2B para proteger dados críticos, destravar eficiência e garantir operações seguras com previsibilidade.',
+      description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e resultados mensuráveis — sem ruído, sem promessas vazias.',
       image: '/image/solucoesespecializadas.png',
       link: '/solucoes'
     },
@@ -90,23 +90,7 @@ export default function Home() {
     description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
     image: '/image/dspm.png',
     link: '/solucoes'
-    },
-    {
-    id: 'receitas',
-    title: 'Plataformas de Inteligência de Receita com IA',
-    supportText: 'Previsão Precisa. Pipeline Sem Vazamentos.',
-    description: 'Sua equipe de vendas está ocupada demais para vender? A AORKIA ativa Plataformas de Inteligência de Receita com IA que automatizam tarefas manuais, preveem resultados com precisão e identificam gargalos invisíveis no seu pipeline. Transforme dados de CRM em crescimento real, com decisões guiadas por inteligência preditiva.',
-    image: '/image/receitas.png',
-    link: '/solucoes'
-    },
-    {
-   id: 'digital',
-   title: 'Estratégia de Presença Digital',
-   supportText: 'Autoridade Real. Geração de Demanda com Direção.',
-   description: 'Sua presença digital está gerando oportunidades concretas ou apenas visitas sem impacto? A AORKIA ativa uma Estratégia de Presença Digital orientada a performance no mercado B2B — transformando seu site, canais e conteúdo em um ecossistema que posiciona sua marca como referência, atrai leads qualificados e acelera sua receita.',
-   image: '/image/digital.png',
-   link: '/solucoes'
-   }
+    }
   ];
 
   return (
@@ -132,8 +116,8 @@ export default function Home() {
                 Boas-vindas à AORKIA.
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Soluções B2B que blindam dados, aceleram receita  <br className="hidden md:block" />
-                e transformam Tecnologia de Ponta em vantagem real
+                Soluções B2B que blindam dados, reduzem riscos  <br className="hidden md:block" />
+                e transformam Tecnologia de Ponta em Vantagem Real
               </h1>
             </div>
           </div>
@@ -267,14 +251,14 @@ export default function Home() {
                 <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-white' : 'text-black'
                 }`}>
-                  Tecnologia de Ponta. Vantagem Competitiva. Ativado.
+                  Tecnologia de Ponta. Vantagem Competitiva.
                 </h3>
               </div>
               <div>
                 <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertendo tecnologia de ponta em resultados concretos: proteção de dados, eficiência operacional e crescimento previsível.
+                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertendo tecnologia de ponta em resultados concretos: proteção de dados, continuidade operacional e excelência em performance crítica.
                 </p>
               </div>
             </div>
