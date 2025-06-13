@@ -309,34 +309,36 @@ export default function PresencaDigital() {
               <i className="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
             </Link>
           </div>
+            
         </section>
-        
-{/* Footer exclusivo da página Presença Digital */}
-<footer className="bg-gray-900 text-gray-400 text-sm py-10 px-4">
-  <div className="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
-    
-    <div className="space-y-2">
-      <p className="text-white font-semibold text-lg">AORKIA</p>
-      <p>Av. Getúlio Vargas, 671 — Sala 500</p>
-      <p>Belo Horizonte - MG</p>
-    </div>
 
-    <div className="space-y-2 text-left md:text-right">
-      <p>
-        <span className="text-white">E-mail:</span> <a href="mailto:contato@aorkia.com" className="hover:text-white transition-colors">contato@aorkia.com</a>
-      </p>
-      <p>
-        <span className="text-white">WhatsApp:</span> <a href="https://wa.me/553139586192" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 31 3958-6192</a>
-      </p>
-    </div>
-  </div>
+      </main> {/* <- FECHAMENTO DO MAIN ADICIONADO AQUI */}
 
-  <div className="text-center text-xs text-gray-600 mt-6">
-    © 2025 AORKIA. Todos os direitos reservados.
-  </div>
-</footer>
+      {/* Footer exclusivo da página Presença Digital */}
+      <footer className="bg-gray-900 text-gray-400 text-sm py-10 px-4">
+        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
+          <div className="space-y-2">
+            <p className="text-white font-semibold text-lg">AORKIA</p>
+            <p>Av. Getúlio Vargas, 671 — Sala 500</p>
+            <p>Belo Horizonte - MG</p>
+          </div>
 
-      <style jsx>{`
+          <div className="space-y-2 text-left md:text-right">
+            <p>
+              <span className="text-white">E-mail:</span> <a href="mailto:contato@aorkia.com" className="hover:text-white transition-colors">contato@aorkia.com</a>
+            </p>
+            <p>
+              <span className="text-white">WhatsApp:</span> <a href="https://wa.me/553139586192" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 31 3958-6192</a>
+            </p>
+          </div>
+        </div>
+
+        <div className="text-center text-xs text-gray-600 mt-6">
+          © 2025 AORKIA. Todos os direitos reservados.
+        </div>
+      </footer>
+
+         <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(-10px); }
           to { opacity: 1; transform: translateY(0); }
@@ -348,4 +350,3 @@ export default function PresencaDigital() {
     </>
   );
 }
-
