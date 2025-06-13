@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function PresencaDigitalAorkia() {
+export default function PresencaDigital() {
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
