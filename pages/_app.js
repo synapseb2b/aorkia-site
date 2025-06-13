@@ -591,16 +591,14 @@ function MyApp({ Component, pageProps }) {
               <div className="text-center md:text-left">
                 <p className="text-gray-400 mb-3">
                   © 2025 AORKIA. Todos os direitos reservados.
-                </p>
-                {/* LINK ANIMADO CRIATIVO */}
+                </                {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
                 <Link 
                   href="https://aorkia.com/presencadigital/"
                   className="group relative inline-block"
-                >
-                  <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
+                >                <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
                     <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
                       <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
-                        ✨ Desenvolvido por Presença Digital AORKIA
+                        ✨ Desenvolvido por AORKIA Presença Digital AORKIA
                       </span>
                     </div>
                   </div>
