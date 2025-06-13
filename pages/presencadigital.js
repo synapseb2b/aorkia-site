@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function PresencaDigitalAorkia() {
+export default function PresencaDigital() {
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -287,17 +287,23 @@ export default function PresencaDigitalAorkia() {
         <section id="cta" className="py-20 px-4 bg-black">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">
-              Queremos que você <span className="text-primary">veja</span>. Não que compre.
+              Convide a <span className="text-primary">AORKIA</span> quando sua presença digital precisar refletir autoridade real.
             </h2>
             
             <div className="space-y-6 mb-12">
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                Este não é um produto. <span className="text-white font-medium">Não está à venda</span>. 
-                Esta é a forma como tratamos nossa própria presença digital — e acreditamos que ela deve ser 
-                um reflexo direto da inteligência por trás de cada operação AORKIA.
+                <span className="text-white font-medium">Não criamos sites.</span>
               </p>
-              <p className="text-lg text-gray-400">
-                Se quiser conversar sobre infraestrutura, proteção de dados ou performance crítica, estamos prontos.
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                Ativamos um núcleo estratégico formado por especialistas em engenharia de sistemas, design de interface, 
+                copywriting de conversão e performance de SEO técnico — para construir presenças digitais que consolidam vantagem competitiva.
+              </p>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                <span className="text-white font-medium">Empresas não nos procuram para ter um novo site.</span><br />
+                Nos acionam quando a percepção de valor precisa ser elevada à altura da operação.
+              </p>
+              <p className="text-lg text-primary font-medium">
+                Presença digital, para nós, é estrutura viva de posicionamento.
               </p>
             </div>
 
