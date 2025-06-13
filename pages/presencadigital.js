@@ -287,17 +287,23 @@ export default function PresencaDigital() {
         <section id="cta" className="py-20 px-4 bg-black">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">
-              Queremos que você <span className="text-primary">veja</span>. Não que compre.
+              Convide a <span className="text-primary">AORKIA</span> quando sua presença digital precisar refletir autoridade real.
             </h2>
             
             <div className="space-y-6 mb-12">
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                Este não é um produto. <span className="text-white font-medium">Não está à venda</span>. 
-                Esta é a forma como tratamos nossa própria presença digital — e acreditamos que ela deve ser 
-                um reflexo direto da inteligência por trás de cada operação AORKIA.
+                <span className="text-white font-medium">Não criamos sites.</span>
               </p>
-              <p className="text-lg text-gray-400">
-                Se quiser conversar sobre infraestrutura, proteção de dados ou performance crítica, estamos prontos.
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                Ativamos um núcleo estratégico formado por especialistas em engenharia de sistemas, design de interface, 
+                copywriting de conversão e performance de SEO técnico — para construir presenças digitais que consolidam vantagem competitiva.
+              </p>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                <span className="text-white font-medium">Empresas não nos procuram para ter um novo site.</span><br />
+                Nos acionam quando a percepção de valor precisa ser elevada à altura da operação.
+              </p>
+              <p className="text-lg text-primary font-medium">
+                Presença digital, para nós, é estrutura viva de posicionamento.
               </p>
             </div>
 
@@ -309,36 +315,30 @@ export default function PresencaDigital() {
               <i className="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
             </Link>
           </div>
-            
         </section>
 
-      </main> {/* <- FECHAMENTO DO MAIN ADICIONADO AQUI */}
-
-      {/* Footer exclusivo da página Presença Digital */}
-      <footer className="bg-gray-900 text-gray-400 text-sm py-10 px-4">
-        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
-          <div className="space-y-2">
-            <p className="text-white font-semibold text-lg">AORKIA</p>
-            <p>Av. Getúlio Vargas, 671 — Sala 500</p>
-            <p>Belo Horizonte - MG</p>
+        {/* Footer Minimalista */}
+        <footer className="py-12 px-4 border-t border-gray-800">
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-4 md:mb-0">
+                <Image 
+                  src="/image/logo_aorkia_white.png" 
+                  alt="AORKIA" 
+                  className="h-8 w-auto"
+                  width={80}
+                  height={32}
+                />
+              </div>
+              <div className="text-gray-400 text-sm">
+                © 2025 AORKIA. Padrões de execução aplicados.
+              </div>
+            </div>
           </div>
+        </footer>
+      </main>
 
-          <div className="space-y-2 text-left md:text-right">
-            <p>
-              <span className="text-white">E-mail:</span> <a href="mailto:contato@aorkia.com" className="hover:text-white transition-colors">contato@aorkia.com</a>
-            </p>
-            <p>
-              <span className="text-white">WhatsApp:</span> <a href="https://wa.me/553139586192" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 31 3958-6192</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="text-center text-xs text-gray-600 mt-6">
-          © 2025 AORKIA. Todos os direitos reservados.
-        </div>
-      </footer>
-
-         <style jsx>{`
+      <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(-10px); }
           to { opacity: 1; transform: translateY(0); }
@@ -350,3 +350,4 @@ export default function PresencaDigital() {
     </>
   );
 }
+
