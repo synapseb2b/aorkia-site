@@ -310,28 +310,7 @@ export default function PresencaDigital() {
             </Link>
           </div>
         </section>
-
-        {/* Footer Minimalista */}
-        <footer className="py-12 px-4 border-t border-gray-800">
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-4 md:mb-0">
-                <Image 
-                  src="/image/logo_aorkia_white.png" 
-                  alt="AORKIA" 
-                  className="h-8 w-auto"
-                  width={80}
-                  height={32}
-                />
-              </div>
-              <div className="text-gray-400 text-sm">
-                © 2025 AORKIA. Padrões de execução aplicados.
-              </div>
-            </div>
-          </div>
-        </footer>
-      </main>
-
+        
       <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(-10px); }
