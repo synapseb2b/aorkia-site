@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import '../styles/style.css';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
@@ -427,7 +429,9 @@ function MyApp({ Component, pageProps }) {
       </div>
 
       {/* Footer Global - FORMULÁRIO ATUALIZADO SEM AS DUAS SOLUÇÕES */}
-      <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
+      {/* Não mostrar footer na página presencadigital */}
+      {router.pathname !== '/presencadigital' && (
+        <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Formulário de Contato - Primeira coluna no mobile */}
@@ -585,47 +589,47 @@ function MyApp({ Component, pageProps }) {
         </div>
 
         {/* Seção de Copyright - ATUALIZADA COM ANIMAÇÃO CRIATIVA */}
-<div className="border-t border-gray-800 mt-16 pt-8">
-  <div className="container mx-auto max-w-7xl px-4">
-    <div className="flex flex-col md:flex-row justify-between items-center">
-      <div className="text-center md:text-left">
-        <p className="text-gray-400 mb-3">
-          © 2025 AORKIA. Todos os direitos reservados.
-        </p> {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
-        <Link 
-          href="https://aorkia.com/presencadigital/"
-          className="group relative inline-block"
-        >
-          <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
-            <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
-              <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
-                ✨ Desenvolvido por Presença Digital AORKIA
-              </span>
+        <div className="border-t border-gray-800 mt-16 pt-8">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-center md:text-left">
+                <p className="text-gray-400 mb-3">
+                  © 2025 AORKIA. Todos os direitos reservados.
+                </                {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
+                <Link 
+                  href="https://aorkia.com/presencadigital/"
+                  className="group relative inline-block"
+                >                <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
+                    <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
+                      <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
+                        ✨ Desenvolvido por AORKIA Presença Digital AORKIA
+                      </span>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-glow pointer-events-none"></div>
+                </Link>
+              </div>
+              <div className="flex space-x-6 mt-4 md:mt-0">
+                <a 
+                  href="https://wa.me/553139586192" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  <i className="ri-whatsapp-line text-xl"></i>
+                </a>
+                <a 
+                  href="mailto:contato@aorkia.com"
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  <i className="ri-mail-line text-xl"></i>
+                </a>
+              </div>
             </div>
           </div>
-          <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-glow pointer-events-none"></div>
-        </Link>
-      </div>
-      <div className="flex space-x-6 mt-4 md:mt-0">
-        <a 
-          href="https://wa.me/553139586192" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-primary transition-colors"
-        >
-          <i className="ri-whatsapp-line text-xl"></i>
-        </a>
-        <a 
-          href="mailto:contato@aorkia.com"
-          className="text-gray-400 hover:text-primary transition-colors"
-        >
-          <i className="ri-mail-line text-xl"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-</footer>
+        </div>
+      </footer>
+      )}
 
       {/* Banner de Cookies */}
       {showCookieBanner && (
@@ -656,4 +660,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
