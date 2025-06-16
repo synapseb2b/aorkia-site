@@ -345,7 +345,7 @@ export default function PresencaDigital() {
                   <div className="text-gray-400">Aumento médio em conversão</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">< 2s</div>
+                  <div className="text-4xl font-bold text-primary mb-2">&lt; 2s</div>
                   <div className="text-gray-400">Tempo de carregamento</div>
                 </div>
                 <div className="text-center">
