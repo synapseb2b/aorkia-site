@@ -539,7 +539,7 @@ export default function PresencaDigital() {
                         <div className="text-white font-medium">{example.after}</div>
                       </div>
                       <div className="text-sm text-gray-500 border-l-2 border-primary/30 pl-3">
-                        {explanation}
+                        {example.explanation}
                       </div>
                     </div>
                   </div>
