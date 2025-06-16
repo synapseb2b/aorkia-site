@@ -325,117 +325,123 @@ export default function PresencaDigital() {
               ))}
             </div>
           </div>
-        </section>
+      
+</section>
 
+<section className="py-20 bg-gradient-to-b from-black to-gray-900">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+        Transformações por Segmento
+      </h2>
+      <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+        Resultados reais de empresas que ativaram presença digital estratégica com a AORKIA
+      </p>
+    </div>
 
-        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                Transformações por Segmento
-              </h2>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Resultados reais de empresas que ativaram presença digital estratégica com a AORKIA
-              </p>
+    <div className="space-y-16">
+      {exemplosSegmentos.map((exemplo, index) => (
+        <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700">
+          <div className="text-center mb-12">
+            <div className="inline-block bg-gradient-to-r from-primary to-blue-400 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+              {exemplo.segmento}
             </div>
+            <h3 className="text-2xl font-bold text-white mb-2">{exemplo.empresa}</h3>
+            <div className="text-lg font-semibold text-primary">{exemplo.impacto}</div>
+          </div>
 
-            <div className="space-y-16">
-              {exemplosSegmentos.map((exemplo, index) => (
-                <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700">
-                  <div className="text-center mb-12">
-                    <div className="inline-block bg-gradient-to-r from-primary to-blue-400 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-                      {exemplo.segmento}
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{exemplo.empresa}</h3>
-                    <div className="text-lg font-semibold text-primary">{exemplo.impacto}</div>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* ANTES */}
+            <div className="bg-gradient-to-br from-red-900/20 to-red-800/20 p-6 rounded-2xl border border-red-500/30">
+              <div className="flex items-center mb-6">
+                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-white">ANTES</h4>
+              </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* ANTES */}
-                    <div className="bg-gradient-to-br from-red-900/20 to-red-800/20 p-6 rounded-2xl border border-red-500/30">
-                      <div className="flex items-center mb-6">
-                        <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </div>
-                        <h4 className="text-xl font-bold text-white">ANTES</h4>
-                      </div>
-                      
-                      <h5 className="text-lg font-semibold text-red-300 mb-4">
-                        {exemplo?.antes?.titulo ?? 'Título não disponível'}
-                      </h5>
-                      
-                      <div className="mb-6">
-                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Principais Problemas:</h6>
-                        <ul className="space-y-2">
-                          {Array.isArray(exemplo?.antes?.problemas) && exemplo.antes.problemas.map((problema, i) => (
-                            <li key={i} className="text-gray-400 text-sm flex items-start">
-                              <span className="text-red-400 mr-2">•</span>
-                              {problema}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+              <h5 className="text-lg font-semibold text-red-300 mb-4">
+                {exemplo?.antes?.titulo ?? 'Título não disponível'}
+              </h5>
 
-                      <div>
-                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Métricas:</h6>
-                        <div className="grid grid-cols-2 gap-3">
-                          {Object.entries(exemplo.antes.metricas).map(([key, value], i) => (
-                            <div key={i} className="bg-red-900/30 p-3 rounded-lg">
-                              <div className="text-red-300 text-lg font-bold">{value}</div>
-                              <div className="text-gray-400 text-xs">{key}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+              <div className="mb-6">
+                <h6 className="text-sm font-semibold text-gray-300 mb-3">Principais Problemas:</h6>
+                <ul className="space-y-2">
+                  {Array.isArray(exemplo?.antes?.problemas) &&
+                    exemplo.antes.problemas.map((problema, i) => (
+                      <li key={i} className="text-gray-400 text-sm flex items-start">
+                        <span className="text-red-400 mr-2">•</span>
+                        {problema}
+                      </li>
+                    ))}
+                </ul>
+              </div>
 
-                    {/* DEPOIS */}
-                    <div className="bg-gradient-to-br from-green-900/20 to-green-800/20 p-6 rounded-2xl border border-green-500/30">
-                      <div className="flex items-center mb-6">
-                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <h4 className="text-xl font-bold text-white">DEPOIS</h4>
+              {exemplo?.antes?.metricas && (
+                <div>
+                  <h6 className="text-sm font-semibold text-gray-300 mb-3">Métricas:</h6>
+                  <div className="grid grid-cols-2 gap-3">
+                    {Object.entries(exemplo.antes.metricas).map(([key, value], i) => (
+                      <div key={i} className="bg-red-900/30 p-3 rounded-lg">
+                        <div className="text-red-300 text-lg font-bold">{value}</div>
+                        <div className="text-gray-400 text-xs">{key}</div>
                       </div>
-                      
-                      <h5 className="text-lg font-semibold text-green-300 mb-4">
-                        {exemplo?.depois?.titulo ?? 'Título não disponível'}
-                      </h5>
-                      
-                      <div className="mb-6">
-                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Soluções Implementadas:</h6>
-                        <ul className="space-y-2">
-                          {exemplo.depois.solucoes.map((solucao, i) => (
-                            <li key={i} className="text-gray-300 text-sm flex items-start">
-                              <span className="text-green-400 mr-2">✓</span>
-                              {solucao}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Resultados:</h6>
-                        <div className="grid grid-cols-2 gap-3">
-                          {Object.entries(exemplo.depois.metricas).map(([key, value], i) => (
-                            <div key={i} className="bg-green-900/30 p-3 rounded-lg">
-                              <div className="text-green-300 text-lg font-bold">{value}</div>
-                              <div className="text-gray-400 text-xs">{key}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              )}
+            </div>
+
+            {/* DEPOIS */}
+            <div className="bg-gradient-to-br from-green-900/20 to-green-800/20 p-6 rounded-2xl border border-green-500/30">
+              <div className="flex items-center mb-6">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-white">DEPOIS</h4>
+              </div>
+
+              <h5 className="text-lg font-semibold text-green-300 mb-4">
+                {exemplo?.depois?.titulo ?? 'Título não disponível'}
+              </h5>
+
+              <div className="mb-6">
+                <h6 className="text-sm font-semibold text-gray-300 mb-3">Soluções Implementadas:</h6>
+                <ul className="space-y-2">
+                  {Array.isArray(exemplo?.depois?.solucoes) &&
+                    exemplo.depois.solucoes.map((solucao, i) => (
+                      <li key={i} className="text-gray-300 text-sm flex items-start">
+                        <span className="text-green-400 mr-2">✓</span>
+                        {solucao}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+
+              {exemplo?.depois?.metricas && (
+                <div>
+                  <h6 className="text-sm font-semibold text-gray-300 mb-3">Resultados:</h6>
+                  <div className="grid grid-cols-2 gap-3">
+                    {Object.entries(exemplo.depois.metricas).map(([key, value], i) => (
+                      <div key={i} className="bg-green-900/30 p-3 rounded-lg">
+                        <div className="text-green-300 text-lg font-bold">{value}</div>
+                        <div className="text-gray-400 text-xs">{key}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* Destaques Estratégicos */}
         <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
