@@ -5,93 +5,145 @@ import Image from 'next/image';
 
 export default function PresencaDigital() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState(null); // State for active section, similar to 'sobre' page
 
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
+
+      // Detect which section is visible and activate transition, similar to 'sobre' page
+      const sections = document.querySelectorAll('[data-section-id]');
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        // Check if section is mostly visible in the viewport
+        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+
+        if (isVisible) {
+          const sectionId = section.getAttribute('data-section-id');
+          setActiveSection(sectionId);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Function for smooth scrolling to internal links, similar to 'sobre' page
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Function to activate section on hover/touch (desktop), similar to 'sobre' page
+  const handleSectionInteraction = (sectionId) => {
+    setActiveSection(sectionId);
+  };
+
+  // Function to deactivate section (only on desktop), similar to 'sobre' page
+  const handleSectionLeave = () => {
+    if (window.innerWidth >= 768) {
+      setActiveSection(null);
+    }
+  };
+
+  // Data for sections
   const techStack = [
     {
       name: 'Next.js',
       description: 'Framework',
       level: 95,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-reactjs-line' // Specific icon for Next.js (using React icon as base)
     },
     {
       name: 'React',
       description: 'Frontend',
       level: 92,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-reactjs-line' // Specific icon for React
     },
     {
       name: 'TypeScript',
       description: 'Linguagem',
       level: 90,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-braces-line' // General code braces icon for TypeScript
     },
     {
       name: 'Tailwind CSS',
       description: 'Estilo',
       level: 94,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-paint-line' // Paint icon for styling
     },
     {
       name: 'GitHub',
       description: 'Repositório',
       level: 89,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-github-fill' // Specific icon for GitHub
     },
     {
       name: 'Netlify',
       description: 'Deploy',
       level: 87,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-cloud-line' // Cloud icon for deploy/hosting
     },
     {
       name: 'Cloudflare',
       description: 'CDN',
       level: 85,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-cloud-fill' // Filled cloud icon for CDN
     },
     {
       name: 'Google Analytics',
       description: 'Analytics',
       level: 93,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-bar-chart-line' // Bar chart icon for analytics
     },
     {
       name: 'Hotjar',
       description: 'UX',
       level: 93,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-user-smile-line' // Smile/user experience icon for UX
     },
     {
       name: 'Figma',
       description: 'Design',
       level: 93,
-      category: 'Expert'
+      category: 'Expert',
+      icon: 'ri-brush-line' // Brush icon for design
     }
   ];
 
   const exemplosSegmentos = [
     {
       segmento: 'Tecnologia B2B',
-      descricao: 'Imagine uma empresa de tecnologia B2B com soluções robustas, engenharia de ponta e times de produto excepcionais. Agora considere que, segundo estudos da Gartner e Forrester, mais de 70% da percepção de valor inicial é formada nos canais digitais — antes mesmo de uma reunião comercial. Se essa empresa não traduz sua sofisticação técnica em uma presença digital clara, estratégica e compatível com sua entrega, ela simplesmente não será considerada em ciclos de compra complexos. Presença digital, neste caso, não é um diferencial. É imperativo competitivo. e times de produto excepcionais. Ainda assim, o mercado não percebe com clareza essa sofisticação. A presença digital precisa traduzir esse diferencial técnico em autoridade percebida.'
+      problema: 'Empresas de tecnologia B2B com soluções robustas e times excepcionais, mas com dificuldade em traduzir essa sofisticação técnica em uma presença digital clara e estratégica, perdendo espaço em ciclos de compra complexos.',
+      solucao: 'Transformação da presença digital em um imperativo competitivo, comunicando claramente a sofisticação técnica e construindo autoridade percebida no mercado.',
+      image: '/image/tech_b2b.jpg' // Placeholder, replace with actual image path
     },
     {
       segmento: 'Serviços Técnicos com Aspiração Corporativa',
-      descricao: 'Considere uma consultoria em dados ou uma empresa de engenharia que já entrega com alto nível técnico, mas cuja presença digital ainda transmite um ar genérico ou informal. Isso cria um desalinhamento entre a entrega real e a percepção de mercado — o que compromete a conquista de contratos mais complexos. A presença digital precisa elevar a percepção ao mesmo nível da entrega, funcionando como pré-validadora da maturidade e da confiabilidade da empresa.'
+      problema: 'Consultorias ou empresas de engenharia com alto nível técnico, mas com uma presença digital genérica ou informal, criando um desalinhamento entre a entrega real e a percepção de mercado, o que compromete contratos mais complexos.',
+      solucao: 'Elevar a percepção digital ao mesmo nível da entrega, funcionando como pré-validadora da maturidade e confiabilidade da empresa, essencial para conquistar contratos corporativos.',
+      image: '/image/services_corporate.jpg' // Placeholder, replace with actual image path
     },
     {
       segmento: 'Arquitetura e Engenharia com Foco Institucional',
-      descricao: 'Pense em uma empresa de arquitetura ou engenharia especializada em projetos públicos, concorrências técnicas ou contratos institucionais. Para esse tipo de desafio, a percepção de autoridade começa antes mesmo de uma proposta ser avaliada. Estudos de comportamento digital indicam que mais de 60% da credibilidade percebida de um fornecedor técnico é formada nos primeiros segundos de interação online. Clareza técnica e sofisticação visual aqui não são estética — são pré-requisitos para competir e vencer disputas complexas. A presença digital precisa validar, desde o início, que a empresa tem estrutura, maturidade e confiabilidade para entregar o que promete.'
+      problema: 'Empresas de arquitetura ou engenharia especializadas em projetos públicos e concorrências técnicas que precisam da percepção de autoridade antes mesmo de uma proposta ser avaliada, pois a credibilidade digital é formada nos primeiros segundos.',
+      solucao: 'Garantir clareza técnica e sofisticação visual na presença digital, validando desde o início a estrutura, maturidade e confiabilidade para competir e vencer disputas complexas.',
+      image: '/image/architecture_institutional.jpg' // Placeholder, replace with actual image path
     }
   ];
 
@@ -100,66 +152,100 @@ export default function PresencaDigital() {
       numero: '01',
       titulo: 'Definição da Voz',
       descricao: 'Arquitetura da linguagem com base no ICP e nas dores do mercado real.',
-      detalhes: '→ Tom e personalidade alinhados à proposta de valor da empresa.→ Voice Guidelines claros para consistência omnichannel.→ Narrativa orientada a decisão e não a volume.'
+      detalhes: [
+        'Tom e personalidade alinhados à proposta de valor da empresa.',
+        'Voice Guidelines claros para consistência omnichannel.',
+        'Narrativa orientada a decisão e não a volume.'
+      ],
+      icon: 'ri-megaphone-line' // Icon for voice/communication
     },
     {
       numero: '02',
       titulo: 'Arquitetura da Informação',
       descricao: 'Organização do conteúdo para conversão com base em comportamento de compra.',
-      detalhes: '→ Hierarquia de conteúdo baseada em intenção.→ Estrutura para retenção, escaneabilidade e autoridade.→ Fluxos e touchpoints mapeados por tipo de visitante.'
+      detalhes: [
+        'Hierarquia de conteúdo baseada em intenção.',
+        'Estrutura para retenção, escaneabilidade e autoridade.',
+        'Fluxos e touchpoints mapeados por tipo de visitante.'
+      ],
+      icon: 'ri-building-line' // Icon for architecture/structure
     },
     {
       numero: '03',
       titulo: 'Copywriting Estratégico',
       descricao: 'Texto que traduz o diferencial em argumentos de decisão.',
-      detalhes: '→ Headlines que posicionam com clareza.→ Propostas de valor mensuráveis.→ Objection handling e CTAs pensados para o cenário B2B.'
+      detalhes: [
+        'Headlines que posicionam com clareza.',
+        'Propostas de valor mensuráveis.',
+        'Objection handling e CTAs pensados para o cenário B2B.'
+      ],
+      icon: 'ri-quill-pen-line' // Icon for writing/copywriting
     },
     {
       numero: '04',
       titulo: 'Design de Interface',
       descricao: 'Interface que transmite confiança e valor percebido.',
-      detalhes: '→ Hierarquia visual guiada por impacto e clareza.→ Microinterações, feedbacks visuais e responsividade plena.→ Coerência com a identidade e padrões visuais da empresa.'
+      detalhes: [
+        'Hierarquia visual guiada por impacto e clareza.',
+        'Microinterações, feedbacks visuais e responsividade plena.',
+        'Coerência com a identidade e padrões visuais da empresa.'
+      ],
+      icon: 'ri-palette-line' // Icon for design/palette
     },
     {
       numero: '05',
       titulo: 'Desenvolvimento Técnico',
       descricao: 'Código limpo, leve e confiável.',
-      detalhes: '→ SEO técnico e performance de carregamento real.→ Monitoramento, segurança e integridade como padrão.→ Integração com o stack real da empresa.'
+      detalhes: [
+        'SEO técnico e performance de carregamento real.',
+        'Monitoramento, segurança e integridade como padrão.',
+        'Integração com o stack real da empresa.'
+      ],
+      icon: 'ri-code-s-slash-line' // Icon for development/code
     },
     {
       numero: '06',
       titulo: 'GEO — Growth Engine Optimization',
       descricao: 'Não basta ranquear, é preciso converter. GEO é SEO com propósito comercial.',
-      detalhes: '→ Palavras-chave com intenção de compra.→ Content hubs para autoridade em segmentos estratégicos.→ Otimização contínua com foco em leads reais.'
+      detalhes: [
+        'Palavras-chave com intenção de compra.',
+        'Content hubs para autoridade em segmentos estratégicos.',
+        'Otimização contínua com foco em leads reais.'
+      ],
+      icon: 'ri-line-chart-line' // Icon for charts/growth
     }
   ];
 
   const vozCaracteristicas = [
     {
       titulo: 'Clareza Técnica sem Hermetismo',
-      descricao: 'autoridade que se comunica com quem decide.'
+      descricao: 'autoridade que se comunica com quem decide.',
+      icon: 'ri-lightbulb-line' // Lightbulb for clarity
     },
     {
       titulo: 'Confiança sem Arrogância',
-      descricao: 'presença que transmite solidez desde o primeiro scroll.'
+      descricao: 'presença que transmite solidez desde o primeiro scroll.',
+      icon: 'ri-shield-check-line' // Shield for trust
     },
     {
       titulo: 'Foco no que Importa',
-      descricao: 'mensagens que deixam claro o diferencial nos primeiros segundos.'
+      descricao: 'mensagens que deixam claro o diferencial nos primeiros segundos.',
+      icon: 'ri-focus-3-line' // Focus for importance
     },
     {
       titulo: 'Autoridade Perceptível',
-      descricao: 'posicionamento que sustenta decisões de compra complexas.'
+      descricao: 'posicionamento que sustenta decisões de compra complexas.',
+      icon: 'ri-medal-line' // Medal for authority
     }
   ];
 
   const destaques = [
-    '✔️ Presença digital que posiciona com diferenciação clara',
-    '✔️ Voz estratégica que ressoa com decisores',
-    '✔️ Performance técnica comprovável (< 2s carregamento)',
-    '✔️ SEO técnico com foco em intenção comercial',
-    '✔️ GEO aplicado à geração de autoridade e conversão, complementando o SEO técnico com foco em tração de negócios',
-    '✔️ Estrutura viva, pensada para evoluir com o negócio'
+    'Presença digital que posiciona com diferenciação clara',
+    'Voz estratégica que ressoa com decisores',
+    'Performance técnica comprovável (< 2s carregamento)',
+    'SEO técnico com foco em intenção comercial',
+    'GEO aplicado à geração de autoridade e conversão, complementando o SEO técnico com foco em tração de negócios',
+    'Estrutura viva, pensada para evoluir com o negócio'
   ];
 
   return (
@@ -181,7 +267,7 @@ export default function PresencaDigital() {
         />
       </div>
 
-      {/* Link Voltar */}
+      {/* Link Voltar - Keep the white/light theme as per global _app.js */}
       <div className="fixed top-6 left-6 z-40">
         <Link href="/" className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-all duration-300 text-gray-700 hover:text-primary">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,190 +278,398 @@ export default function PresencaDigital() {
       </div>
 
       <div className="min-h-screen bg-black text-white">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background com partículas animadas */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-            <div className="absolute inset-0 opacity-20">
-              {[...Array(50)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-primary rounded-full animate-pulse"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    animationDelay: `${Math.random() * 3}s`,
-                    animationDuration: `${2 + Math.random() * 3}s`
-                  }}
-                />
-              ))}
+        {/* Hero Section - Adapted from 'sobre' page */}
+        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+            <source src="/image/video_hero.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
+
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4 animate-fade-in">
+                Presença Digital Estratégica.
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white animate-fade-in-up">
+                Quando presença digital não é <span className="text-primary">estética</span> — é <span className="text-primary">posicionamento</span>
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300 animate-fade-in-up animation-delay-200">
+                É sobre ser percebido como você precisa ser — por quem realmente decide.
+              </p>
+
+              {/* Added to match 'sobre' page style */}
+              <button
+                onClick={(e) => scrollToSection(e, 'introducao')}
+                className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500 animate-fade-in-up animation-delay-400"
+              >
+                Saiba mais
+              </button>
             </div>
           </div>
 
-          <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-            {/* Logo AORKIA */}
-            <div className="mb-8 animate-fade-in">
-              <Image
-                src="/image/logo_aorkia_white.png"
-                alt="AORKIA"
-                width={120}
-                height={60}
-                className="mx-auto opacity-90"
-              />
-            </div>
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
+            <a
+              href="#introducao"
+              onClick={(e) => scrollToSection(e, 'introducao')}
+              className="text-white text-4xl"
+            >
+              <i className="ri-arrow-down-line"></i>
+            </a>
+          </div>
+        </section>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-primary bg-clip-text text-transparent animate-fade-in-up">
-              Presença Digital Estratégica [cite: 1]
-            </h1>
+        {/* Introdução e Problema - Adapted from 'sobre' page section style */}
+        <section
+          id="introducao"
+          data-section-id="introducao"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('introducao')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('introducao')}
+          onClick={() => handleSectionInteraction('introducao')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'introducao' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
 
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto animate-fade-in-up animation-delay-200">
-              Quando presença digital não é estética — é posicionamento [cite: 1]
-            </p>
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'introducao' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
 
-            <div className="text-lg md:text-xl text-gray-400 max-w-5xl mx-auto leading-relaxed animate-fade-in-up animation-delay-400">
-              <p className="mb-6">
-                Presença digital não é sobre ter um site bonito. É sobre ser percebido como você precisa ser — por quem realmente decide. [cite: 1]
-              </p>
-              <p>
-                Negligenciar a forma como sua empresa é apresentada digitalmente é como deixar a fachada de um prédio de alto padrão parecer uma obra inacabada — passa a mensagem errada para quem mais importa. Agora considere que, segundo estudos da Gartner e Forrester, mais de 70% da percepção de valor inicial é formada nos canais digitais — antes mesmo de uma reunião comercial. [cite: 1]
-              </p>
-              <p>
-                Uma presença digital desatualizada ou genérica comunica exatamente o oposto do que empresas sérias e qualificadas querem transmitir. Isso não é apenas uma falha estética — é um risco direto ao negócio. Em um cenário moldado por algoritmos, IAs e decisões aceleradas, a ausência de uma estrutura clara e estratégica pode minar sua credibilidade antes mesmo que uma conversa comece. [cite: 1]
-              </p>
-              <p>
-                Para a AORKIA, o site é apenas uma das interfaces da presença digital. Trabalhamos para ativar um ecossistema vivo — orientado por diferenciação clara, performance técnica e narrativa que posiciona. [cite: 1]
-              </p>
-              <p>
-                Nosso diferencial: ativamos presenças digitais com inteligência estratégica, combinando metodologia própria, stack moderno e Growth Engine Optimization (GEO) — uma evolução do SEO com foco em tração comercial. [cite: 1]
-              </p>
+          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
+            <div className="flex flex-col">
+              <h2 className={`text-3xl md:text-5xl font-bold mb-12 transition-colors duration-500 ${
+                activeSection === 'introducao' ? 'text-white' : 'text-black'
+              }`}>
+                O Cenário Atual
+              </h2>
+
+              <div className={`text-lg md:text-xl max-w-4xl space-y-8 transition-colors duration-500 ${
+                activeSection === 'introducao' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                <p>
+                  Negligenciar a forma como sua empresa é apresentada digitalmente é como deixar a fachada de um prédio de alto padrão parecer uma obra inacabada — passa a mensagem errada para quem mais importa.
+                </p>
+                <p>
+                  Estudos da Gartner e Forrester indicam que mais de 70% da percepção de valor inicial é formada nos canais digitais — antes mesmo de uma reunião comercial. Uma presença digital desatualizada ou genérica comunica exatamente o oposto do que empresas sérias e qualificadas querem transmitir.
+                </p>
+                <p>
+                  Isso não é apenas uma falha estética — é um risco direto ao negócio. Em um cenário moldado por algoritmos, IAs e decisões aceleradas, a ausência de uma estrutura clara e estratégica pode minar sua credibilidade antes mesmo que uma conversa comece.
+                </p>
+                <p>
+                  Para a AORKIA, o site é apenas uma das interfaces da presença digital. Trabalhamos para ativar um ecossistema vivo — orientado por diferenciação clara, performance técnica e narrativa que posiciona. Nosso diferencial: ativamos presenças digitais com inteligência estratégica, combinando metodologia própria, stack moderno e Growth Engine Optimization (GEO) — uma evolução do SEO com foco em tração comercial.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Metodologia AORKIA */}
-        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* Metodologia AORKIA - Section style from 'sobre' page */}
+        <section
+          id="metodologia"
+          data-section-id="metodologia"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('metodologia')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('metodologia')}
+          onClick={() => handleSectionInteraction('metodologia')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/light_pont.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                Metodologia AORKIA [cite: 1]
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-white' : 'text-black'
+              }`}>
+                Metodologia AORKIA
               </h2>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Nossa metodologia é estruturada para garantir previsibilidade, performance técnica e coerência estratégica. São seis fases integradas que transformam presença digital em vantagem real: [cite: 1]
+              <p className={`text-xl max-w-4xl mx-auto transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                Seis fases que estruturam uma presença digital como ativo estratégico de autoridade e diferenciação:
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {metodologia.map((fase, index) => (
-                <div key={index} className="group relative">
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-primary/50 transition-all duration-300 h-full">
-                    <div className="text-primary text-2xl font-bold mb-4">{fase.numero}</div>
-                    <h3 className="text-xl font-bold text-white mb-4">{fase.titulo}</h3>
-                    <p className="text-gray-300 mb-4">{fase.descricao}</p>
-                    {/* Creative solution for long text: Expandable/Collapsible details */}
-                    <details className="text-sm text-gray-400 border-l-2 border-primary/30 pl-4 cursor-pointer">
-                      <summary className="font-semibold text-primary hover:text-blue-400 transition-colors">Ver detalhes</summary>
-                      <p className="mt-2 whitespace-pre-line">
-                        {fase.detalhes.split('→ ').filter(Boolean).map((item, i) => (
-                          <span key={i} className="block mb-1">→ {item.trim()}</span>
-                        ))}
-                      </p>
-                    </details>
+                <div key={index} className={`group relative p-8 rounded-2xl border transition-all duration-500 h-full flex flex-col justify-between ${
+                  activeSection === 'metodologia'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
+                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div>
+                    <div className={`text-primary text-2xl font-bold mb-4 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'text-primary' : 'text-blue-700'
+                    }`}>{fase.numero}</div>
+                    <div className={`text-5xl mb-6 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'text-primary' : 'text-blue-700'
+                    }`}>
+                      <i className={fase.icon}></i> {/* Specific icon */}
+                    </div>
+                    <h3 className={`text-xl font-bold mb-4 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'text-white' : 'text-black'
+                    }`}>{fase.titulo}</h3>
+                    <p className={`mb-4 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{fase.descricao}</p>
                   </div>
+                  {/* Creative solution for long text: Expandable/Collapsible details */}
+                  <details className={`text-sm border-l-2 pl-4 cursor-pointer transition-colors duration-500 ${
+                    activeSection === 'metodologia' ? 'text-gray-400 border-primary/30' : 'text-gray-700 border-blue-300'
+                  }`}>
+                    <summary className={`font-semibold hover:text-blue-400 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'text-primary' : 'text-blue-700'
+                    }`}>Ver detalhes</summary>
+                    <ul className="mt-2 space-y-1">
+                      {fase.detalhes.map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="mr-2 text-primary">→</span>
+                          {item.trim()}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* A Voz da Sua Empresa */}
-        <section className="py-20 bg-gray-900">
-          <div className="max-w-6xl mx-auto px-6">
+        {/* A Voz da Sua Empresa - Section style from 'sobre' page */}
+        <section
+          id="voz"
+          data-section-id="voz"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('voz')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('voz')}
+          onClick={() => handleSectionInteraction('voz')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'voz' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/ponta.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'voz' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                A Voz da Sua Empresa — Você sabe qual é? [cite: 1]
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'voz' ? 'text-white' : 'text-black'
+              }`}>
+                A Voz da Sua Empresa — Você sabe qual é?
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Sua presença digital precisa refletir o que sua empresa realmente representa — ou corre o risco de reforçar percepções ultrapassadas. Em mercados onde a decisão começa no digital, a forma como sua marca se apresenta pode acelerar a confiança ou afastar oportunidades críticas. Está claro o que sua presença comunica hoje? — ou o que ela está pronta para se tornar. [cite: 1]
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'voz' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                Sua presença digital precisa refletir o que sua empresa realmente representa — ou corre o risco de reforçar percepções ultrapassadas.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {vozCaracteristicas.map((caracteristica, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-gradient-to-br from-primary/20 to-blue-600/20 p-6 rounded-xl border border-primary/30 hover:border-primary/60 transition-all duration-300 h-full flex flex-col justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-2">{caracteristica.titulo} [cite: 1]</h3>
-                      <p className="text-gray-300 text-sm">{caracteristica.descricao} [cite: 1]</p>
-                    </div>
+                <div key={index} className={`text-center p-6 rounded-xl border transition-all duration-500 h-full flex flex-col justify-between ${
+                  activeSection === 'voz'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
+                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div className={`text-5xl mb-6 transition-colors duration-500 ${
+                    activeSection === 'voz' ? 'text-primary' : 'text-blue-700'
+                  }`}>
+                    <i className={caracteristica.icon}></i> {/* Specific icon */}
                   </div>
+                  <h3 className={`text-lg font-bold mb-2 transition-colors duration-500 ${
+                    activeSection === 'voz' ? 'text-white' : 'text-black'
+                  }`}>{caracteristica.titulo}</h3>
+                  <p className={`text-sm transition-colors duration-500 ${
+                    activeSection === 'voz' ? 'text-gray-300' : 'text-gray-700'
+                  }`}>{caracteristica.descricao}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Stack Tecnológico */}
-        <section className="py-20 bg-black">
-          <div className="max-w-6xl mx-auto px-6">
+        {/* Stack Tecnológico - Section style from 'sobre' page */}
+        <section
+          id="stack"
+          data-section-id="stack"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('stack')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('stack')}
+          onClick={() => handleSectionInteraction('stack')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'stack' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'stack' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                Stack Tecnológico [cite: 1]
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'stack' ? 'text-white' : 'text-black'
+              }`}>
+                Stack Tecnológico
               </h2>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Performance enterprise-grade, com tecnologias modernas, auditáveis e de alta confiabilidade: [cite: 1]
+              <p className={`text-xl max-w-4xl mx-auto transition-colors duration-500 ${
+                activeSection === 'stack' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                Performance enterprise-grade, com tecnologias modernas, auditáveis e de alta confiabilidade:
               </p>
             </div>
 
-            {/* Creative solution: Grid of tech cards with icon (if available) */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
               {techStack.map((tech, index) => (
-                <div key={index} className="bg-gray-800 p-4 rounded-lg text-center border border-gray-700 hover:border-primary/50 transition-colors">
-                  {/* You can add icons here based on tech.name if you have them */}
-                  <div className="text-primary text-3xl mb-2">
-                    {/* Example placeholder icon, replace with actual icons if you have */}
-                    <i className="ri-code-s-slash-line"></i> {/* Placeholder icon */}
+                <div key={index} className={`p-4 rounded-lg text-center border transition-colors duration-500 ${
+                  activeSection === 'stack'
+                  ? 'bg-gray-800 border-gray-700 hover:border-primary/50'
+                  : 'bg-gray-100 border-gray-300 hover:border-blue-500'
+                }`}>
+                  <div className={`text-3xl mb-2 transition-colors duration-500 ${
+                    activeSection === 'stack' ? 'text-primary' : 'text-blue-700'
+                  }`}>
+                    <i className={tech.icon}></i> {/* Specific icon */}
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{tech.name}</h3>
-                  <p className="text-gray-400 text-sm">{tech.description}</p>
-                  <p className="text-primary text-xs mt-1 font-bold">{tech.category}</p>
+                  <h3 className={`text-lg font-semibold mb-1 transition-colors duration-500 ${
+                    activeSection === 'stack' ? 'text-white' : 'text-black'
+                  }`}>{tech.name}</h3>
+                  <p className={`text-gray-400 text-sm mb-1 transition-colors duration-500 ${
+                    activeSection === 'stack' ? 'text-gray-400' : 'text-gray-600'
+                  }`}>{tech.description}</p>
+                  <p className={`text-xs font-bold transition-colors duration-500 ${
+                    activeSection === 'stack' ? 'text-primary' : 'text-blue-700'
+                  }`}>{tech.category}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Transformações por Segmento */}
-        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* Transformações por Segmento - Reworked section */}
+        <section
+          id="transformacoes"
+          data-section-id="transformacoes"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('transformacoes')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('transformacoes')}
+          onClick={() => handleSectionInteraction('transformacoes')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'transformacoes' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/ponta.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'transformacoes' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                Transformações por Segmento [cite: 1]
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'transformacoes' ? 'text-white' : 'text-black'
+              }`}>
+                Transformações por Segmento
               </h2>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Veja alguns exemplos do imperativo da Transformação da Presença Digital: [cite: 1]
+              <p className={`text-xl max-w-4xl mx-auto transition-colors duration-500 ${
+                activeSection === 'transformacoes' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                Veja alguns exemplos do imperativo da Transformação da Presença Digital:
               </p>
             </div>
 
-            <div className="space-y-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {exemplosSegmentos.map((exemplo, index) => (
-                <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700">
-                  <div className="text-center mb-12">
-                    <div className="inline-block bg-gradient-to-r from-primary to-blue-400 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-                      {exemplo.segmento}
+                <div key={index} className={`p-8 rounded-2xl border transition-all duration-500 ${
+                  activeSection === 'transformacoes'
+                  ? 'bg-black/30 border-primary/30 hover:bg-black/50'
+                  : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
+                }`}>
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
+                      {exemplo.image && (
+                        <Image
+                          src={exemplo.image}
+                          alt={exemplo.segmento}
+                          width={64}
+                          height={64}
+                          objectFit="cover"
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className={`text-2xl font-bold mb-2 transition-colors duration-500 ${
+                        activeSection === 'transformacoes' ? 'text-white' : 'text-black'
+                      }`}>{exemplo.segmento}</h3>
                     </div>
                   </div>
 
-                  {/* Creative solution for long text: "Read More" with controlled height */}
-                  <div className="relative group">
-                    <p className="text-gray-300 leading-relaxed max-h-40 overflow-hidden transition-all duration-500 ease-in-out" style={{
-                      maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
-                    }}>
-                      {exemplo.descricao}
+                  <div className="mb-6">
+                    <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
+                      activeSection === 'transformacoes' ? 'text-primary' : 'text-blue-700'
+                    }`}>O Desafio:</h4>
+                    <p className={`leading-relaxed transition-colors duration-500 ${
+                      activeSection === 'transformacoes' ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {exemplo.problema}
                     </p>
-                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent flex items-end justify-center pb-2 group-hover:hidden">
-                      <button className="text-primary hover:text-blue-400 text-sm font-semibold">Ler mais...</button>
-                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
+                      activeSection === 'transformacoes' ? 'text-primary' : 'text-blue-700'
+                    }`}>Nossa Solução:</h4>
+                    <p className={`leading-relaxed transition-colors duration-500 ${
+                      activeSection === 'transformacoes' ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      {exemplo.solucao}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -383,82 +677,144 @@ export default function PresencaDigital() {
           </div>
         </section>
 
-        {/* Destaques Estratégicos */}
-        <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
-          <div className="max-w-6xl mx-auto px-6">
+        {/* Destaques Estratégicos - Section style from 'sobre' page */}
+        <section
+          id="destaques"
+          data-section-id="destaques"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('destaques')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('destaques')}
+          onClick={() => handleSectionInteraction('destaques')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'destaques' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'destaques' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-                Destaques Estratégicos [cite: 1]
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'destaques' ? 'text-white' : 'text-black'
+              }`}>
+                Destaques Estratégicos
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {destaques.map((destaque, index) => (
-                <div key={index} className="group">
-                  <div className="bg-gradient-to-br from-primary/10 to-blue-600/10 p-6 rounded-xl border border-primary/20 hover:border-primary/40 transition-all duration-300 text-center h-full flex flex-col justify-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-white font-medium">{destaque}</p>
+                <div key={index} className={`p-6 rounded-xl border transition-all duration-500 text-center h-full flex flex-col justify-center ${
+                  activeSection === 'destaques'
+                  ? 'bg-primary/10 border-primary/20 hover:border-primary/40'
+                  : 'bg-blue-100 border-blue-300 hover:border-blue-500'
+                }`}>
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
+                  <p className={`font-medium transition-colors duration-500 ${
+                    activeSection === 'destaques' ? 'text-white' : 'text-black'
+                  }`}>{destaque}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Quando nos acionam */}
-        <section className="py-20 bg-black">
-          <div className="max-w-6xl mx-auto px-6">
+        {/* Quando nos acionam - Section style from 'sobre' page */}
+        <section
+          id="acionamento"
+          data-section-id="acionamento"
+          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          onMouseEnter={() => handleSectionInteraction('acionamento')}
+          onMouseLeave={handleSectionLeave}
+          onTouchStart={() => handleSectionInteraction('acionamento')}
+          onClick={() => handleSectionInteraction('acionamento')}
+        >
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+              activeSection === 'acionamento' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/light_pont.png)` }} {/* Re-using image from 'sobre' for now */}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          <div
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+              activeSection === 'acionamento' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+              <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'acionamento' ? 'text-white' : 'text-black'
+              }`}>
                 Quando nos acionam?
               </h2>
-              <p className="text-xl text-gray-300 mb-12">
+              <p className={`text-xl mb-12 transition-colors duration-500 ${
+                activeSection === 'acionamento' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 Empresas nos convidam quando:
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="text-center">
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-medium">
-                    A percepção de valor precisa ser elevada à altura da operação.
-                  </p>
+              <div className={`text-center p-8 rounded-2xl border transition-all duration-500 ${
+                activeSection === 'acionamento'
+                ? 'bg-black/30 border-gray-700 hover:bg-black/50'
+                : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
+              }`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-line-chart-fill text-white text-3xl"></i> {/* Icon for value perception */}
                 </div>
+                <p className={`font-medium transition-colors duration-500 ${
+                  activeSection === 'acionamento' ? 'text-white' : 'text-black'
+                }`}>
+                  A percepção de valor precisa ser elevada à altura da operação.
+                </p>
               </div>
 
-              <div className="text-center">
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-medium">
-                    Autoridade técnica precisa ser percebida por decisores de verdade.
-                  </p>
+              <div className={`text-center p-8 rounded-2xl border transition-all duration-500 ${
+                activeSection === 'acionamento'
+                ? 'bg-black/30 border-gray-700 hover:bg-black/50'
+                : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
+              }`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-user-star-line text-white text-3xl"></i> {/* Icon for decision makers */}
                 </div>
+                <p className={`font-medium transition-colors duration-500 ${
+                  activeSection === 'acionamento' ? 'text-white' : 'text-black'
+                }`}>
+                  Autoridade técnica precisa ser percebida por decisores de verdade.
+                </p>
               </div>
 
-              <div className="text-center">
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-medium">
-                    O digital precisa deixar de ser vitrine e se tornar ativo estratégico.
-                  </p>
+              <div className={`text-center p-8 rounded-2xl border transition-all duration-500 ${
+                activeSection === 'acionamento'
+                ? 'bg-black/30 border-gray-700 hover:bg-black/50'
+                : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
+              }`}>
+                <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-building-line text-white text-3xl"></i> {/* Icon for strategic asset */}
                 </div>
+                <p className={`font-medium transition-colors duration-500 ${
+                  activeSection === 'acionamento' ? 'text-white' : 'text-black'
+                }`}>
+                  O digital precisa deixar de ser vitrine e se tornar ativo estratégico.
+                </p>
               </div>
             </div>
           </div>
@@ -468,11 +824,11 @@ export default function PresencaDigital() {
         <section className="py-20 bg-gradient-to-b from-black to-gray-900">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
-              Pronto para ativar uma presença digital com peso real de autoridade? [cite: 1]
+              Pronto para ativar uma presença digital com peso real de autoridade?
             </h2>
 
             <p className="text-xl text-gray-300 mb-12">
-              Vamos conversar. [cite: 1]
+              Vamos conversar.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
