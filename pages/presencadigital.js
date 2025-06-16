@@ -362,7 +362,9 @@ export default function PresencaDigital() {
                         <h4 className="text-xl font-bold text-white">ANTES</h4>
                       </div>
                       
-                      <h5 className="text-lg font-semibold text-red-300 mb-4">{exemplo.antes.titulo}</h5>
+                      <h5 className="text-lg font-semibold text-red-300 mb-4">
+                        {exemplo?.antes?.titulo ?? 'Título não disponível'}
+                      </h5>
                       
                       <div className="mb-6">
                         <h6 className="text-sm font-semibold text-gray-300 mb-3">Principais Problemas:</h6>
@@ -400,7 +402,9 @@ export default function PresencaDigital() {
                         <h4 className="text-xl font-bold text-white">DEPOIS</h4>
                       </div>
                       
-                      <h5 className="text-lg font-semibold text-green-300 mb-4">{exemplo.depois.titulo}</h5>
+                      <h5 className="text-lg font-semibold text-green-300 mb-4">
+                        {exemplo?.depois?.titulo ?? 'Título não disponível'}
+                      </h5>
                       
                       <div className="mb-6">
                         <h6 className="text-sm font-semibold text-gray-300 mb-3">Soluções Implementadas:</h6>
