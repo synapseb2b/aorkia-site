@@ -218,7 +218,7 @@ export default function Solucoes() {
     <>
       <Head>
         <title>Soluções AORKIA - Ativamos Tecnologia para Resultados Reais</title>
-        <meta name="description" content="Descubra as soluções AORKIA: Backup SaaS, Edge AI, DSPM, Inteligência de Receita e Presença Digital. Ativamos tecnologia para resultados mensuráveis." />
+        <meta name="description" content="Descubra as soluções AORKIA: Keepit com AORKIA,Operações de Bordas Inteligentes, Segurança para Operações Críticas - DSPM. Ativamos tecnologia para resultados mensuráveis." />
         <meta name="keywords" content="backup saas, edge ai, dspm, inteligência receita, presença digital, aorkia" />
         <link rel="canonical" href="https://aorkia.com/solucoes" />
       </Head>
