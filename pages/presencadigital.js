@@ -329,11 +329,12 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('introducao')}
           onClick={() => handleSectionInteraction('introducao')}
         >
+          {/* Corrected className syntax: removed extra closing brace from the template literal */}
           <div
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'introducao' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
