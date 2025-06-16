@@ -329,20 +329,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('introducao')}
           onClick={() => handleSectionInteraction('introducao')}
         >
-          {/* Corrected className syntax: removed extra closing brace from the template literal */}
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'introducao' ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'introducao' ? 'opacity-100' : 'opacity-0'}`}
             style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'introducao' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'introducao' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
@@ -383,19 +379,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('metodologia')}
           onClick={() => handleSectionInteraction('metodologia')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/light_pont.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/light_pont.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
@@ -467,19 +460,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('voz')}
           onClick={() => handleSectionInteraction('voz')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'voz' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/ponta.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'voz' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/ponta.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'voz' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'voz' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
@@ -530,19 +520,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('stack')}
           onClick={() => handleSectionInteraction('stack')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'stack' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'stack' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'stack' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'stack' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
@@ -596,19 +583,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('transformacoes')}
           onClick={() => handleSectionInteraction('transformacoes')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'transformacoes' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/ponta.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'transformacoes' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/ponta.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'transformacoes' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'transformacoes' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
@@ -688,19 +672,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('destaques')}
           onClick={() => handleSectionInteraction('destaques')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'destaques' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/futuro.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'destaques' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'destaques' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'destaques' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
@@ -743,19 +724,16 @@ export default function PresencaDigital() {
           onTouchStart={() => handleSectionInteraction('acionamento')}
           onClick={() => handleSectionInteraction('acionamento')}
         >
+          {/* Corrected className syntax: flattened template literal to a single line */}
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'acionamento' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/light_pont.png)` }} {/* Re-using image from 'sobre' for now */}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${activeSection === 'acionamento' ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(/image/light_pont.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
           <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'acionamento' ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 bg-white transition-opacity duration-500 ${activeSection === 'acionamento' ? 'opacity-0' : 'opacity-100'}`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
