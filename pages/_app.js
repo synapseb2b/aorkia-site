@@ -160,13 +160,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="format-detection" content="telephone=no" />
         {/* Favicon configurado corretamente */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
-        <link rel="manifest" href="/image/site.webmanifest" />
         <link rel="icon" href="/image/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/image/android-chrome-192x192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/image/android-chrome-512x512.png" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -595,11 +591,13 @@ function MyApp({ Component, pageProps }) {
               <div className="text-center md:text-left">
                 <p className="text-gray-400 mb-3">
                   © 2025 AORKIA. Todos os direitos reservados.
-                </                {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
+                </p>
+                {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
                 <Link 
                   href="https://aorkia.com/presencadigital/"
                   className="group relative inline-block"
-                >                <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
+                >
+                  <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
                     <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
                       <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
                         ✨ Desenvolvido por AORKIA Presença Digital AORKIA
