@@ -61,8 +61,8 @@ export default function Home() {
   const products = [
     {
       id: 'solucoes',
-      title: 'AORKIA TECHNOLOGIES',
-      supportText: 'Soluções B2B para proteger dados críticos, destravar eficiência e garantir operações seguras com previsibilidade.',
+      title: 'AORKIA',
+      supportText: 'Conceito',
       description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e resultados mensuráveis — sem ruído, sem promessas vazias.',
       image: '/image/solucoesespecializadas.png',
       link: '/solucoes'
