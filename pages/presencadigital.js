@@ -369,7 +369,7 @@ export default function PresencaDigital() {
                       <div className="mb-6">
                         <h6 className="text-sm font-semibold text-gray-300 mb-3">Principais Problemas:</h6>
                         <ul className="space-y-2">
-                          {exemplo.antes.problemas.map((problema, i) => (
+                          {Array.isArray(exemplo?.antes?.problemas) && exemplo.antes.problemas.map((problema, i) => (
                             <li key={i} className="text-gray-400 text-sm flex items-start">
                               <span className="text-red-400 mr-2">•</span>
                               {problema}
