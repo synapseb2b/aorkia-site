@@ -4,425 +4,323 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function PresencaDigital() {
-  const [activeTooltip, setActiveTooltip] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.offsetHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      setScrollProgress(scrollPercent);
-
-      // Detectar seção ativa
-      const sections = ['hero', 'metodologia', 'voz', 'tecnologia', 'portfolio', 'resultados', 'cta'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (currentSection) setActiveSection(currentSection);
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função para rolagem suave
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Dados dos cases de sucesso
-  const portfolioCases = [
+  const techStack = [
     {
-      id: 'aorkia-site',
-      title: 'Site Institucional AORKIA',
-      category: 'Identidade Corporativa',
-      description: 'Presença digital que consolida autoridade em soluções B2B críticas',
-      metrics: {
-        'Tempo de Carregamento': '< 2s',
-        'Score SEO Técnico': '98/100',
-        'Taxa de Conversão': '+340%',
-        'Autoridade de Domínio': 'DA 67'
-      },
-      highlights: [
-        'Arquitetura de informação estratégica para ICP C-Level',
-        'Copy orientado por jobs-to-be-done específicos',
-        'Performance técnica otimizada para credibilidade',
-        'Integração seamless com stack de vendas'
-      ],
-      image: '/image/solucoesespecializadas.png',
-      video: '/image/video_hero.mp4'
+      name: 'Next.js',
+      description: 'Framework',
+      level: 95,
+      category: 'Expert'
     },
     {
-      id: 'keepit-integration',
-      title: 'Integração Estratégica Keepit',
-      category: 'Partnership Branding',
-      description: 'Posicionamento de parceria global com líder em backup SaaS',
-      metrics: {
-        'Brand Awareness': '+280%',
-        'Lead Quality Score': '9.2/10',
-        'Partnership ROI': '+450%',
-        'Market Positioning': 'Top 3'
-      },
-      highlights: [
-        'Co-branding estratégico com líder global',
-        'Messaging diferenciado para mercado brasileiro',
-        'Jornada de conversão otimizada para enterprise',
-        'Credibilidade por associação técnica'
-      ],
-      image: '/image/keepit_logo_aorkia.png'
+      name: 'React',
+      description: 'Frontend',
+      level: 92,
+      category: 'Expert'
     },
     {
-      id: 'dspm-positioning',
-      title: 'Posicionamento DSPM',
-      category: 'Thought Leadership',
-      description: 'Educação de mercado em Data Security Posture Management',
-      metrics: {
-        'Share of Voice': '+520%',
-        'Qualified Leads': '+380%',
-        'Sales Cycle': '-45%',
-        'Deal Size': '+290%'
-      },
-      highlights: [
-        'Criação de categoria de mercado inexistente',
-        'Content strategy para educação técnica',
-        'SEO para termos de alta intenção comercial',
-        'Positioning como pioneer e authority'
-      ],
-      image: '/image/dspm.png'
+      name: 'TypeScript',
+      description: 'Linguagem',
+      level: 90,
+      category: 'Expert'
     },
     {
-      id: 'backup-saas',
-      title: 'Backup SaaS Estratégico',
-      category: 'Solution Marketing',
-      description: 'Comunicação técnica para decisores de infraestrutura',
-      metrics: {
-        'Technical Engagement': '+420%',
-        'Demo Requests': '+350%',
-        'Enterprise Deals': '+280%',
-        'Customer LTV': '+190%'
-      },
-      highlights: [
-        'Linguagem técnica para IT decision makers',
-        'Proof points baseados em compliance',
-        'ROI calculator integrado',
-        'Trust signals para enterprise'
-      ],
-      image: '/image/backup.png'
+      name: 'Tailwind CSS',
+      description: 'Estilo',
+      level: 94,
+      category: 'Expert'
     },
     {
-      id: 'operacoes-bordas',
-      title: 'Operações de Bordas',
-      category: 'Innovation Showcase',
-      description: 'Comunicação de soluções edge computing avançadas',
-      metrics: {
-        'Innovation Index': '94/100',
-        'Technical Authority': '+380%',
-        'Market Education': '+290%',
-        'Competitive Advantage': '+250%'
-      },
-      highlights: [
-        'Explicação simplificada de tecnologia complexa',
-        'Use cases específicos por vertical',
-        'Demonstração de expertise técnica',
-        'Diferenciação competitiva clara'
-      ],
-      image: '/image/bordas.png'
+      name: 'GitHub',
+      description: 'Repositório',
+      level: 89,
+      category: 'Expert'
+    },
+    {
+      name: 'Netlify',
+      description: 'Deploy',
+      level: 87,
+      category: 'Expert'
+    },
+    {
+      name: 'Cloudflare',
+      description: 'CDN',
+      level: 85,
+      category: 'Expert'
+    },
+    {
+      name: 'Google Analytics',
+      description: 'Analytics',
+      level: 93,
+      category: 'Expert'
+    },
+    {
+      name: 'Hotjar',
+      description: 'UX',
+      level: 93,
+      category: 'Expert'
+    },
+    {
+      name: 'Figma',
+      description: 'Design',
+      level: 93,
+      category: 'Expert'
     }
   ];
 
-  // Metodologia AORKIA
-  const metodologiaSteps = [
+  const exemplosSegmentos = [
     {
-      phase: '01',
-      title: 'Definição da Voz',
-      description: 'Arquitetura estratégica da identidade verbal',
-      details: [
-        'Análise profunda do ICP e jobs-to-be-done específicos',
-        'Mapeamento da jornada de decisão C-Level',
-        'Definição de tom, personalidade e posicionamento único',
-        'Criação de voice guidelines para consistência omnichannel'
-      ],
-      icon: 'ri-mic-line',
-      color: 'from-blue-500 to-cyan-500'
+      segmento: 'Tecnologia B2B',
+      descricao: 'Imagine uma empresa de tecnologia B2B com soluções robustas, engenharia de ponta e times de produto excepcionais. Agora considere que, segundo estudos da Gartner e Forrester, mais de 70% da percepção de valor inicial é formada nos canais digitais — antes mesmo de uma reunião comercial. Se essa empresa não traduz sua sofisticação técnica em uma presença digital clara, estratégica e compatível com sua entrega, ela simplesmente não será considerada em ciclos de compra complexos. Presença digital, neste caso, não é um diferencial. É imperativo competitivo. e times de produto excepcionais. Ainda assim, o mercado não percebe com clareza essa sofisticação. A presença digital precisa traduzir esse diferencial técnico em autoridade percebida.'
     },
     {
-      phase: '02',
-      title: 'Arquitetura de Informação',
-      description: 'Estrutura estratégica para conversão',
-      details: [
-        'Hierarquia de conteúdo baseada em intenção de compra',
-        'Fluxos de navegação otimizados para decision makers',
-        'Wireframes focados em redução de fricção',
-        'Mapeamento de touchpoints críticos'
-      ],
-      icon: 'ri-building-line',
-      color: 'from-purple-500 to-pink-500'
+      segmento: 'Serviços Técnicos com Aspiração Corporativa',
+      descricao: 'Considere uma consultoria em dados ou uma empresa de engenharia que já entrega com alto nível técnico, mas cuja presença digital ainda transmite um ar genérico ou informal. Isso cria um desalinhamento entre a entrega real e a percepção de mercado — o que compromete a conquista de contratos mais complexos. A presença digital precisa elevar a percepção ao mesmo nível da entrega, funcionando como pré-validadora da maturidade e da confiabilidade da empresa.'
     },
     {
-      phase: '03',
-      title: 'Copywriting Estratégico',
-      description: 'Mensagens que convertem decisores',
-      details: [
-        'Headlines baseadas em value proposition específica',
-        'CTAs orientados por psychological triggers',
-        'Social proof estrategicamente posicionado',
-        'Objection handling integrado ao copy'
-      ],
-      icon: 'ri-edit-line',
-      color: 'from-green-500 to-teal-500'
-    },
-    {
-      phase: '04',
-      title: 'Design de Interface',
-      description: 'Experiência visual que transmite autoridade',
-      details: [
-        'Sistema de design consistente com brand guidelines',
-        'Hierarquia visual que guia para conversão',
-        'Micro-interações que aumentam engagement',
-        'Responsividade perfeita em todos os dispositivos'
-      ],
-      icon: 'ri-palette-line',
-      color: 'from-orange-500 to-red-500'
-    },
-    {
-      phase: '05',
-      title: 'Desenvolvimento Técnico',
-      description: 'Performance e segurança enterprise-grade',
-      details: [
-        'Código otimizado para velocidade e SEO',
-        'Segurança e compliance para dados sensíveis',
-        'Integração com stack de marketing e vendas',
-        'Monitoramento e analytics avançados'
-      ],
-      icon: 'ri-code-line',
-      color: 'from-indigo-500 to-purple-500'
-    },
-    {
-      phase: '06',
-      title: 'SEO & Performance',
-      description: 'Visibilidade e autoridade digital',
-      details: [
-        'SEO técnico para termos de alta intenção',
-        'Content strategy para thought leadership',
-        'Link building com autoridades do setor',
-        'Performance optimization contínua'
-      ],
-      icon: 'ri-search-line',
-      color: 'from-cyan-500 to-blue-500'
+      segmento: 'Arquitetura e Engenharia com Foco Institucional',
+      descricao: 'Pense em uma empresa de arquitetura ou engenharia especializada em projetos públicos, concorrências técnicas ou contratos institucionais. Para esse tipo de desafio, a percepção de autoridade começa antes mesmo de uma proposta ser avaliada. Estudos de comportamento digital indicam que mais de 60% da credibilidade percebida de um fornecedor técnico é formada nos primeiros segundos de interação online. Clareza técnica e sofisticação visual aqui não são estética — são pré-requisitos para competir e vencer disputas complexas. A presença digital precisa validar, desde o início, que a empresa tem estrutura, maturidade e confiabilidade para entregar o que promete.'
     }
+  ];
+
+  const metodologia = [
+    {
+      numero: '01',
+      titulo: 'Definição da Voz',
+      descricao: 'Arquitetura da linguagem com base no ICP e nas dores do mercado real.',
+      detalhes: '→ Tom e personalidade alinhados à proposta de valor da empresa.→ Voice Guidelines claros para consistência omnichannel.→ Narrativa orientada a decisão e não a volume.'
+    },
+    {
+      numero: '02',
+      titulo: 'Arquitetura da Informação',
+      descricao: 'Organização do conteúdo para conversão com base em comportamento de compra.',
+      detalhes: '→ Hierarquia de conteúdo baseada em intenção.→ Estrutura para retenção, escaneabilidade e autoridade.→ Fluxos e touchpoints mapeados por tipo de visitante.'
+    },
+    {
+      numero: '03',
+      titulo: 'Copywriting Estratégico',
+      descricao: 'Texto que traduz o diferencial em argumentos de decisão.',
+      detalhes: '→ Headlines que posicionam com clareza.→ Propostas de valor mensuráveis.→ Objection handling e CTAs pensados para o cenário B2B.'
+    },
+    {
+      numero: '04',
+      titulo: 'Design de Interface',
+      descricao: 'Interface que transmite confiança e valor percebido.',
+      detalhes: '→ Hierarquia visual guiada por impacto e clareza.→ Microinterações, feedbacks visuais e responsividade plena.→ Coerência com a identidade e padrões visuais da empresa.'
+    },
+    {
+      numero: '05',
+      titulo: 'Desenvolvimento Técnico',
+      descricao: 'Código limpo, leve e confiável.',
+      detalhes: '→ SEO técnico e performance de carregamento real.→ Monitoramento, segurança e integridade como padrão.→ Integração com o stack real da empresa.'
+    },
+    {
+      numero: '06',
+      titulo: 'GEO — Growth Engine Optimization',
+      descricao: 'Não basta ranquear, é preciso converter. GEO é SEO com propósito comercial.',
+      detalhes: '→ Palavras-chave com intenção de compra.→ Content hubs para autoridade em segmentos estratégicos.→ Otimização contínua com foco em leads reais.'
+    }
+  ];
+
+  const vozCaracteristicas = [
+    {
+      titulo: 'Clareza Técnica sem Hermetismo',
+      descricao: 'autoridade que se comunica com quem decide.'
+    },
+    {
+      titulo: 'Confiança sem Arrogância',
+      descricao: 'presença que transmite solidez desde o primeiro scroll.'
+    },
+    {
+      titulo: 'Foco no que Importa',
+      descricao: 'mensagens que deixam claro o diferencial nos primeiros segundos.'
+    },
+    {
+      titulo: 'Autoridade Perceptível',
+      descricao: 'posicionamento que sustenta decisões de compra complexas.'
+    }
+  ];
+
+  const destaques = [
+    '✔️ Presença digital que posiciona com diferenciação clara',
+    '✔️ Voz estratégica que ressoa com decisores',
+    '✔️ Performance técnica comprovável (< 2s carregamento)',
+    '✔️ SEO técnico com foco em intenção comercial',
+    '✔️ GEO aplicado à geração de autoridade e conversão, complementando o SEO técnico com foco em tração de negócios',
+    '✔️ Estrutura viva, pensada para evoluir com o negócio'
   ];
 
   return (
     <>
       <Head>
-        <title>Presença Digital AORKIA | Expertise Estratégica em Comunicação B2B</title>
-        <meta name="description" content="Transformamos presença digital em vantagem competitiva. Metodologia proprietária para empresas que precisam de autoridade real no mercado B2B." />
-        <meta name="theme-color" content="#0076FF" />
+        <title>Presença Digital Estratégica AORKIA | Quando sua autoridade precisa ser percebida</title>
+        <meta name="description" content="A AORKIA não cria sites. Nós ativamos presença digital como um motor estratégico de posicionamento, reputação e geração de oportunidades qualificadas." />
         <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
+        <link rel="icon" href="/image/favicon.ico" />
       </Head>
 
-      <main className="bg-black text-white min-h-screen overflow-x-hidden">
-        {/* Barra de Progresso Avançada */}
-        <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
-          <div 
-            className="h-full bg-gradient-to-r from-primary via-cyan-400 to-primary transition-all duration-300"
-            style={{ width: `${scrollProgress * 100}%` }}
-          ></div>
-        </div>
+      {/* Barra de Progresso */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div 
+          className="h-full bg-gradient-to-r from-primary to-blue-400 transition-all duration-300"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
 
-        {/* Navegação Lateral */}
-        <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
-          <nav className="space-y-4">
-            {[
-              { id: 'hero', label: 'Início' },
-              { id: 'metodologia', label: 'Metodologia' },
-              { id: 'voz', label: 'Voz AORKIA' },
-              { id: 'tecnologia', label: 'Tecnologia' },
-              { id: 'portfolio', label: 'Portfolio' },
-              { id: 'resultados', label: 'Resultados' },
-              { id: 'cta', label: 'Contato' }
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`block w-3 h-3 rounded-full transition-all duration-300 ${
-                  activeSection === item.id 
-                    ? 'bg-primary scale-150' 
-                    : 'bg-gray-600 hover:bg-gray-400'
-                }`}
-                title={item.label}
-              />
-            ))}
-          </nav>
-        </div>
+      {/* Link Voltar */}
+      <div className="fixed top-6 left-6 z-40">
+        <Link href="/" className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-all duration-300 text-gray-700 hover:text-primary">
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar para o site
+        </Link>
+      </div>
 
-        {/* Link de Volta */}
-        <div className="fixed top-6 left-6 z-40">
-          <Link 
-            href="/"
-            className="flex items-center text-gray-400 hover:text-white transition-colors text-sm backdrop-blur-sm bg-black/30 px-3 py-2 rounded-lg border border-gray-700 hover:border-primary/50"
-          >
-            <i className="ri-arrow-left-line mr-2"></i>
-            Voltar para o site
-          </Link>
-        </div>
-
-        {/* Hero Section Revolucionária */}
-        <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-          {/* Background Video */}
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="absolute inset-0 w-full h-full object-cover opacity-20"
-          >
-            <source src="/image/video_hero.mp4" type="video/mp4" />
-          </video>
-          
-          {/* Overlay gradiente */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/70 to-primary/20"></div>
-          
-          {/* Partículas animadas */}
-          <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-primary rounded-full animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random() * 3}s`
-                }}
-              />
-            ))}
+      <div className="min-h-screen bg-black text-white">
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Background com partículas animadas */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+            <div className="absolute inset-0 opacity-20">
+              {[...Array(50)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-primary rounded-full animate-pulse"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 3}s`,
+                    animationDuration: `${2 + Math.random() * 3}s`
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="container mx-auto max-w-6xl text-center relative z-10">
-            <div className="mb-12">
-              <Image 
-                src="/image/logo_aorkia_white.png" 
-                alt="AORKIA" 
-                className="h-20 w-auto mx-auto mb-8 animate-fade-in"
-                width={200}
-                height={80}
-                priority
+          <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+            {/* Logo AORKIA */}
+            <div className="mb-8 animate-fade-in">
+              <Image
+                src="/image/logo_aorkia_white.png"
+                alt="AORKIA"
+                width={120}
+                height={60}
+                className="mx-auto opacity-90"
               />
             </div>
-            
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 animate-fade-in-up">
-              Presença Digital
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-primary animate-gradient-x">
-                Estratégica
-              </span>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-primary bg-clip-text text-transparent animate-fade-in-up">
+              Presença Digital Estratégica
             </h1>
             
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-12 text-gray-300 animate-fade-in-up animation-delay-200">
-              Quando autoridade real precisa ser <span className="text-white font-medium">percebida</span> e <span className="text-primary font-medium">mensurada</span>
-            </h2>
-            
-            <div className="max-w-4xl mx-auto mb-16 animate-fade-in-up animation-delay-400">
-              <p className="text-xl md:text-2xl text-gray-400 leading-relaxed mb-8">
-                Não criamos sites. <span className="text-white font-medium">Ativamos ecossistemas digitais</span> que consolidam 
-                vantagem competitiva através de metodologia proprietária, tecnologia de ponta e expertise estratégica.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">340%</div>
-                  <div className="text-gray-400">Aumento médio em conversão</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">&lt; 2s</div>
-                  <div className="text-gray-400">Tempo de carregamento</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">98/100</div>
-                  <div className="text-gray-400">Score SEO médio</div>
-                </div>
-              </div>
-            </div>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto animate-fade-in-up animation-delay-200">
+              Quando presença digital não é estética — é posicionamento
+            </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up animation-delay-600">
-              <button 
-                onClick={() => scrollToSection('metodologia')}
-                className="group bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center"
-              >
-                Explorar Metodologia
-                <i className="ri-arrow-down-line ml-2 group-hover:translate-y-1 transition-transform duration-300"></i>
-              </button>
-              <button 
-                onClick={() => scrollToSection('portfolio')}
-                className="group border border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center"
-              >
-                Ver Portfolio
-                <i className="ri-external-link-line ml-2 group-hover:scale-110 transition-transform duration-300"></i>
-              </button>
+            <div className="text-lg md:text-xl text-gray-400 max-w-5xl mx-auto leading-relaxed animate-fade-in-up animation-delay-400">
+              <p className="mb-6">
+                Presença digital não é sobre ter um site bonito. É sobre ser percebido como você precisa ser — por quem realmente decide.
+              </p>
+              <p>
+                Negligenciar a forma como sua empresa é apresentada digitalmente é como deixar a fachada de um prédio de alto padrão parecer uma obra inacabada — passa a mensagem errada para quem mais importa. Agora considere que, segundo estudos da Gartner e Forrester, mais de 70% da percepção de valor inicial é formada nos canais digitais — antes mesmo de uma reunião comercial.
+              </p>
+              <p>
+                Uma presença digital desatualizada ou genérica comunica exatamente o oposto do que empresas sérias e qualificadas querem transmitir. Isso não é apenas uma falha estética — é um risco direto ao negócio. Em um cenário moldado por algoritmos, IAs e decisões aceleradas, a ausência de uma estrutura clara e estratégica pode minar sua credibilidade antes mesmo que uma conversa comece.
+              </p>
+              <p>
+                Para a AORKIA, o site é apenas uma das interfaces da presença digital. Trabalhamos para ativar um ecossistema vivo — orientado por diferenciação clara, performance técnica e narrativa que posiciona.
+              </p>
+              <p>
+                Nosso diferencial: ativamos presenças digitais com inteligência estratégica, combinando metodologia própria, stack moderno e Growth Engine Optimization (GEO) — uma evolução do SEO com foco em tração comercial.
+              </p>
             </div>
           </div>
         </section>
 
         {/* Metodologia AORKIA */}
-        <section id="metodologia" className="py-32 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-          <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-                Metodologia <span className="text-primary">AORKIA</span>
+        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                Metodologia AORKIA
               </h2>
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Seis fases integradas que transformam presença digital em 
-                <span className="text-white font-medium"> estrutura viva de posicionamento</span>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                Nossa metodologia é estruturada para garantir previsibilidade, performance técnica e coerência estratégica. São seis fases integradas que transformam presença digital em vantagem real:
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {metodologiaSteps.map((step, index) => (
-                <div 
-                  key={step.phase}
-                  className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-primary/50 transition-all duration-500 hover:transform hover:scale-105"
-                >
-                  {/* Número da fase */}
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-r from-primary to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                    {step.phase}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {metodologia.map((fase, index) => (
+                <div key={index} className="group relative">
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-primary/50 transition-all duration-300 h-full">
+                    <div className="text-primary text-2xl font-bold mb-4">{fase.numero}</div>
+                    <h3 className="text-xl font-bold text-white mb-4">{fase.titulo}</h3>
+                    <p className="text-gray-300 mb-4">{fase.descricao}</p>
+                    <p className="text-sm text-gray-400 border-l-2 border-primary/30 pl-4">{fase.detalhes}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                  {/* Ícone */}
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${step.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <i className={`${step.icon} text-2xl text-white`}></i>
+        {/* A Voz AORKIA */}
+        <section className="py-20 bg-gray-900">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                A Voz AORKIA
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Nossa voz traduz autoridade sem exagero, clareza sem simplismo. Cada palavra tem propósito.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {vozCaracteristicas.map((caracteristica, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-gradient-to-br from-primary/20 to-blue-600/20 p-8 rounded-2xl border border-primary/30 hover:border-primary/60 transition-all duration-300">
+                    <h3 className="text-xl font-bold text-white mb-4">{caracteristica.titulo}</h3>
+                    <p className="text-gray-300">{caracteristica.descricao}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                  {/* Conteúdo */}
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-primary transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {step.description}
-                  </p>
+        {/* Stack Tecnológico */}
+        <section className="py-20 bg-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                Stack Tecnológico
+              </h2>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                A infraestrutura por trás da presença digital AORKIA é pensada para performance e governança real:
+              </p>
+            </div>
 
-                  {/* Detalhes */}
-                  <ul className="space-y-3">
-                    {step.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-gray-400">
-                        <i className="ri-check-line text-primary mr-2 mt-0.5 flex-shrink-0"></i>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Efeito hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-cyan-400/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {exemplosSegmentos.map((exemplo, index) => (
+                <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-primary/50 transition-all duration-300 h-full">
+                  <h3 className="text-xl font-bold text-white mb-4">{exemplo.segmento}</h3>
+                  <p className="text-gray-300">{exemplo.descricao}</p>
                 </div>
               ))}
             </div>
@@ -430,302 +328,101 @@ export default function PresencaDigital() {
         </section>
 
 
-        {/* Voz AORKIA - Seção Interativa */}
-        <section id="voz" className="py-32 px-4 bg-black relative overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 25% 25%, #0076FF 0%, transparent 50%), 
-                               radial-gradient(circle at 75% 75%, #4A90E2 0%, transparent 50%)`
-            }}></div>
-          </div>
-
-          <div className="container mx-auto max-w-7xl relative z-10">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-                A Voz <span className="text-primary">AORKIA</span>
+        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                Transformações por Segmento
               </h2>
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Identidade verbal que consolida autoridade e diferenciação competitiva
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Lado esquerdo - Características da voz */}
-              <div className="space-y-8">
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
-                  <h3 className="text-3xl font-bold mb-6 text-primary">Tom Estratégico</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <i className="ri-check-double-line text-primary mr-3 mt-1"></i>
-                      <div>
-                        <strong className="text-white">Técnico sem ser hermético:</strong>
-                        <span className="text-gray-300"> Linguagem que demonstra expertise sem alienar decisores</span>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <i className="ri-check-double-line text-primary mr-3 mt-1"></i>
-                      <div>
-                        <strong className="text-white">Assertivo sem ser agressivo:</strong>
-                        <span className="text-gray-300"> Confiança que inspira credibilidade imediata</span>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <i className="ri-check-double-line text-primary mr-3 mt-1"></i>
-                      <div>
-                        <strong className="text-white">Orientado por resultados:</strong>
-                        <span className="text-gray-300"> Foco em ROI e impacto mensurável</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
-                  <h3 className="text-3xl font-bold mb-6 text-primary">Personalidade</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-primary/10 rounded-lg">
-                      <div className="text-2xl font-bold text-primary mb-2">Inteligente</div>
-                      <div className="text-sm text-gray-400">Demonstra expertise técnica</div>
-                    </div>
-                    <div className="text-center p-4 bg-primary/10 rounded-lg">
-                      <div className="text-2xl font-bold text-primary mb-2">Confiável</div>
-                      <div className="text-sm text-gray-400">Inspira segurança</div>
-                    </div>
-                    <div className="text-center p-4 bg-primary/10 rounded-lg">
-                      <div className="text-2xl font-bold text-primary mb-2">Inovadora</div>
-                      <div className="text-sm text-gray-400">Pioneira em soluções</div>
-                    </div>
-                    <div className="text-center p-4 bg-primary/10 rounded-lg">
-                      <div className="text-2xl font-bold text-primary mb-2">Estratégica</div>
-                      <div className="text-sm text-gray-400">Visão de longo prazo</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lado direito - Exemplos práticos */}
-              <div className="space-y-6">
-                <h3 className="text-3xl font-bold mb-8 text-white">Exemplos Práticos</h3>
-                
-                {[
-                  {
-                    context: 'Headlines',
-                    before: '"Soluções de TI para sua empresa"',
-                    after: '"Ativamos plataformas globais líderes para operações críticas"',
-                    explanation: 'Específico, técnico e orientado por resultado'
-                  },
-                  {
-                    context: 'CTAs',
-                    before: '"Entre em contato"',
-                    after: '"Ativar proteção crítica"',
-                    explanation: 'Ação específica que gera urgência qualificada'
-                  },
-                  {
-                    context: 'Value Props',
-                    before: '"Melhor custo-benefício"',
-                    after: '"ROI mensurável em 90 dias"',
-                    explanation: 'Promessa específica e temporalmente definida'
-                  }
-                ].map((example, index) => (
-                  <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
-                    <div className="text-primary font-semibold mb-3">{example.context}</div>
-                    <div className="space-y-3">
-                      <div>
-                        <span className="text-red-400 text-sm">❌ Antes:</span>
-                        <div className="text-gray-400 italic">{example.before}</div>
-                      </div>
-                      <div>
-                        <span className="text-green-400 text-sm">✅ AORKIA:</span>
-                        <div className="text-white font-medium">{example.after}</div>
-                      </div>
-                      <div className="text-sm text-gray-500 border-l-2 border-primary/30 pl-3">
-                        {example.explanation}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tecnologia e Performance */}
-        <section id="tecnologia" className="py-32 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-          <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-                Stack <span className="text-primary">Tecnológico</span>
-              </h2>
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Performance enterprise-grade que sustenta autoridade digital
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              {/* Performance Metrics */}
-              <div className="lg:col-span-1">
-                <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full">
-                  <h3 className="text-2xl font-bold mb-8 text-primary">Métricas de Performance</h3>
-                  <div className="space-y-6">
-                    {[
-                      { metric: 'Core Web Vitals', value: '100/100', icon: 'ri-speed-line' },
-                      { metric: 'SEO Score', value: '98/100', icon: 'ri-search-line' },
-                      { metric: 'Security Score', value: 'A+', icon: 'ri-shield-check-line' },
-                      { metric: 'Accessibility', value: '100/100', icon: 'ri-eye-line' },
-                      { metric: 'Best Practices', value: '100/100', icon: 'ri-star-line' }
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
-                        <div className="flex items-center">
-                          <i className={`${item.icon} text-primary text-xl mr-3`}></i>
-                          <span className="text-gray-300">{item.metric}</span>
-                        </div>
-                        <span className="text-white font-bold">{item.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Stack Tecnológico */}
-              <div className="lg:col-span-2">
-                <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-full">
-                  <h3 className="text-2xl font-bold mb-8 text-primary">Tecnologias Utilizadas</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                    {[
-                      { name: 'Next.js', category: 'Framework', level: 'Expert' },
-                      { name: 'React', category: 'Frontend', level: 'Expert' },
-                      { name: 'TypeScript', category: 'Language', level: 'Expert' },
-                      { name: 'Tailwind CSS', category: 'Styling', level: 'Expert' },
-                      { name: 'Vercel', category: 'Deploy', level: 'Expert' },
-                      { name: 'Cloudflare', category: 'CDN', level: 'Expert' },
-                      { name: 'Google Analytics', category: 'Analytics', level: 'Expert' },
-                      { name: 'Hotjar', category: 'UX', level: 'Expert' },
-                      { name: 'Figma', category: 'Design', level: 'Expert' }
-                    ].map((tech, index) => (
-                      <div key={index} className="text-center p-4 bg-gray-900/50 rounded-lg hover:bg-primary/10 transition-colors">
-                        <div className="text-white font-semibold mb-1">{tech.name}</div>
-                        <div className="text-gray-400 text-sm mb-2">{tech.category}</div>
-                        <div className="text-primary text-xs font-medium">{tech.level}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Demonstração de Performance */}
-            <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
-              <h3 className="text-3xl font-bold mb-8 text-center text-white">
-                Performance em Tempo Real
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-400 mb-2">1.2s</div>
-                  <div className="text-gray-400">First Contentful Paint</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-400 mb-2">1.8s</div>
-                  <div className="text-gray-400">Largest Contentful Paint</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-400 mb-2">0.1s</div>
-                  <div className="text-gray-400">Cumulative Layout Shift</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-400 mb-2">50ms</div>
-                  <div className="text-gray-400">First Input Delay</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Portfolio de Cases */}
-        <section id="portfolio" className="py-32 px-4 bg-black">
-          <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-                Portfolio <span className="text-primary">Estratégico</span>
-              </h2>
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Cases que demonstram transformação mensurável em autoridade digital
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                Resultados reais de empresas que ativaram presença digital estratégica com a AORKIA
               </p>
             </div>
 
             <div className="space-y-16">
-              {portfolioCases.map((case_item, index) => (
-                <div 
-                  key={case_item.id}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                    index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                  }`}
-                >
-                  {/* Conteúdo */}
-                  <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                      {case_item.category}
+              {exemplosSegmentos.map((exemplo, index) => (
+                <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700">
+                  <div className="text-center mb-12">
+                    <div className="inline-block bg-gradient-to-r from-primary to-blue-400 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                      {exemplo.segmento}
                     </div>
-                    
-                    <h3 className="text-4xl md:text-5xl font-bold text-white">
-                      {case_item.title}
-                    </h3>
-                    
-                    <p className="text-xl text-gray-300 leading-relaxed">
-                      {case_item.description}
-                    </p>
-
-                    {/* Métricas */}
-                    <div className="grid grid-cols-2 gap-4">
-                      {Object.entries(case_item.metrics).map(([key, value]) => (
-                        <div key={key} className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-primary mb-1">{value}</div>
-                          <div className="text-gray-400 text-sm">{key}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Highlights */}
-                    <div className="space-y-3">
-                      <h4 className="text-lg font-semibold text-white">Destaques Estratégicos:</h4>
-                      {case_item.highlights.map((highlight, idx) => (
-                        <div key={idx} className="flex items-start">
-                          <i className="ri-check-line text-primary mr-3 mt-1 flex-shrink-0"></i>
-                          <span className="text-gray-300">{highlight}</span>
-                        </div>
-                      ))}
-                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{exemplo.empresa}</h3>
+                    <div className="text-lg font-semibold text-primary">{exemplo.impacto}</div>
                   </div>
 
-                  {/* Visual */}
-                  <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                    <div className="relative group">
-                      <div className="relative overflow-hidden rounded-2xl border border-gray-700 group-hover:border-primary/50 transition-all duration-500">
-                        {case_item.video ? (
-                          <video 
-                            autoPlay 
-                            muted 
-                            loop 
-                            playsInline 
-                            className="w-full h-80 object-cover"
-                          >
-                            <source src={case_item.video} type="video/mp4" />
-                          </video>
-                        ) : (
-                          <Image 
-                            src={case_item.image}
-                            alt={case_item.title}
-                            className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                            width={600}
-                            height={320}
-                          />
-                        )}
-                        
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="absolute bottom-6 left-6 right-6">
-                            <div className="text-white font-semibold mb-2">Ver detalhes do case</div>
-                            <div className="text-gray-300 text-sm">Análise completa de estratégia e resultados</div>
-                          </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* ANTES */}
+                    <div className="bg-gradient-to-br from-red-900/20 to-red-800/20 p-6 rounded-2xl border border-red-500/30">
+                      <div className="flex items-center mb-6">
+                        <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">ANTES</h4>
+                      </div>
+                      
+                      <h5 className="text-lg font-semibold text-red-300 mb-4">{exemplo.antes.titulo}</h5>
+                      
+                      <div className="mb-6">
+                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Principais Problemas:</h6>
+                        <ul className="space-y-2">
+                          {exemplo.antes.problemas.map((problema, i) => (
+                            <li key={i} className="text-gray-400 text-sm flex items-start">
+                              <span className="text-red-400 mr-2">•</span>
+                              {problema}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Métricas:</h6>
+                        <div className="grid grid-cols-2 gap-3">
+                          {Object.entries(exemplo.antes.metricas).map(([key, value], i) => (
+                            <div key={i} className="bg-red-900/30 p-3 rounded-lg">
+                              <div className="text-red-300 text-lg font-bold">{value}</div>
+                              <div className="text-gray-400 text-xs">{key}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* DEPOIS */}
+                    <div className="bg-gradient-to-br from-green-900/20 to-green-800/20 p-6 rounded-2xl border border-green-500/30">
+                      <div className="flex items-center mb-6">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">DEPOIS</h4>
+                      </div>
+                      
+                      <h5 className="text-lg font-semibold text-green-300 mb-4">{exemplo.depois.titulo}</h5>
+                      
+                      <div className="mb-6">
+                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Soluções Implementadas:</h6>
+                        <ul className="space-y-2">
+                          {exemplo.depois.solucoes.map((solucao, i) => (
+                            <li key={i} className="text-gray-300 text-sm flex items-start">
+                              <span className="text-green-400 mr-2">✓</span>
+                              {solucao}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h6 className="text-sm font-semibold text-gray-300 mb-3">Resultados:</h6>
+                        <div className="grid grid-cols-2 gap-3">
+                          {Object.entries(exemplo.depois.metricas).map(([key, value], i) => (
+                            <div key={i} className="bg-green-900/30 p-3 rounded-lg">
+                              <div className="text-green-300 text-lg font-bold">{value}</div>
+                              <div className="text-gray-400 text-xs">{key}</div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -736,274 +433,174 @@ export default function PresencaDigital() {
           </div>
         </section>
 
-
-        {/* Resultados e ROI */}
-        <section id="resultados" className="py-32 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-          <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-                Resultados <span className="text-primary">Mensuráveis</span>
+        {/* Destaques Estratégicos */}
+        <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                Destaques Estratégicos
               </h2>
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                ROI comprovado através de métricas que importam para o negócio
-              </p>
             </div>
 
-            {/* Métricas Principais */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-              {[
-                {
-                  metric: '+340%',
-                  description: 'Aumento médio em conversão',
-                  detail: 'Leads qualificados para enterprise',
-                  icon: 'ri-arrow-up-line',
-                  color: 'from-green-500 to-emerald-500'
-                },
-                {
-                  metric: '+280%',
-                  description: 'Crescimento em brand awareness',
-                  detail: 'Reconhecimento no mercado B2B',
-                  icon: 'ri-eye-line',
-                  color: 'from-blue-500 to-cyan-500'
-                },
-                {
-                  metric: '-45%',
-                  description: 'Redução no ciclo de vendas',
-                  detail: 'Aceleração do processo decisório',
-                  icon: 'ri-time-line',
-                  color: 'from-purple-500 to-pink-500'
-                },
-                {
-                  metric: '+450%',
-                  description: 'ROI em marketing digital',
-                  detail: 'Retorno sobre investimento',
-                  icon: 'ri-money-dollar-circle-line',
-                  color: 'from-orange-500 to-red-500'
-                }
-              ].map((item, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {destaques.map((destaque, index) => (
                 <div key={index} className="group">
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 text-center hover:border-primary/50 transition-all duration-500 hover:transform hover:scale-105">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <i className={`${item.icon} text-2xl text-white`}></i>
+                  <div className="bg-gradient-to-br from-primary/10 to-blue-600/10 p-6 rounded-xl border border-primary/20 hover:border-primary/40 transition-all duration-300 text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-white mb-4">{item.metric}</div>
-                    <div className="text-lg text-gray-300 mb-2">{item.description}</div>
-                    <div className="text-sm text-gray-500">{item.detail}</div>
+                    <p className="text-white font-medium">{destaque}</p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Comparativo Antes/Depois */}
-            <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 mb-16">
-              <h3 className="text-3xl font-bold mb-12 text-center text-white">
-                Transformação Típica: Antes vs. Depois AORKIA
-              </h3>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Antes */}
-                <div className="space-y-6">
-                  <h4 className="text-2xl font-bold text-red-400 mb-6">❌ Antes</h4>
-                  {[
-                    'Site genérico sem diferenciação clara',
-                    'Linguagem técnica hermética ou muito simplista',
-                    'Performance lenta (>5s carregamento)',
-                    'SEO básico, baixa visibilidade orgânica',
-                    'Conversão baixa (<2%)',
-                    'Ciclo de vendas longo (6+ meses)',
-                    'Brand awareness limitado ao networking'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <i className="ri-close-line text-red-400 mr-3 mt-1 flex-shrink-0"></i>
-                      <span className="text-gray-400">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Depois */}
-                <div className="space-y-6">
-                  <h4 className="text-2xl font-bold text-green-400 mb-6">✅ Depois AORKIA</h4>
-                  {[
-                    'Presença digital que consolida autoridade',
-                    'Voz estratégica que ressoa com C-Level',
-                    'Performance enterprise-grade (<2s)',
-                    'SEO técnico dominando termos-chave',
-                    'Conversão otimizada (8%+)',
-                    'Ciclo acelerado (3 meses)',
-                    'Reconhecimento como thought leader'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <i className="ri-check-line text-green-400 mr-3 mt-1 flex-shrink-0"></i>
-                      <span className="text-gray-300">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        {/* Quando nos acionam */}
+        <section className="py-20 bg-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+                Quando nos acionam?
+              </h2>
+              <p className="text-xl text-gray-300 mb-12">
+                Empresas nos convidam quando:
+              </p>
             </div>
 
-            {/* Testimonial */}
-            <div className="text-center">
-              <div className="bg-primary/10 backdrop-blur-sm border border-primary/30 rounded-2xl p-12 max-w-4xl mx-auto">
-                <i className="ri-double-quotes-l text-4xl text-primary mb-6"></i>
-                <blockquote className="text-2xl md:text-3xl text-white leading-relaxed mb-8 italic">
-                  "A AORKIA não apenas criou nossa presença digital — eles ativaram um ecossistema 
-                  que posiciona nossa empresa como autoridade técnica no mercado. O ROI foi 
-                  mensurável desde o primeiro mês."
-                </blockquote>
-                <div className="text-gray-300">
-                  <div className="font-semibold">CTO, Empresa Fortune 500</div>
-                  <div className="text-sm">Setor de Infraestrutura Crítica</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="text-center">
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-white font-medium">
+                    A percepção de valor precisa ser elevada à altura da operação.
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p className="text-white font-medium">
+                    Autoridade técnica precisa ser percebida por decisores de verdade.
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <p className="text-white font-medium">
+                    O digital precisa deixar de ser vitrine e se tornar ativo estratégico.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Final Estratégico */}
-        <section id="cta" className="py-32 px-4 bg-black relative overflow-hidden">
-          {/* Background effects */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-cyan-400/10"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="container mx-auto max-w-6xl text-center relative z-10">
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-              Convide a <span className="text-primary">AORKIA</span>
+        {/* CTA Final */}
+        <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+              Pronto para ativar uma presença digital com peso real de autoridade?
             </h2>
-            <h3 className="text-3xl md:text-4xl font-light mb-12 text-gray-300">
-              quando sua presença digital precisar refletir autoridade real
-            </h3>
             
-            <div className="space-y-8 mb-16 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8">
-                  <h4 className="text-2xl font-bold text-white mb-4">Não criamos sites.</h4>
-                  <p className="text-gray-300 leading-relaxed">
-                    Ativamos um núcleo estratégico formado por especialistas em engenharia de sistemas, 
-                    design de interface, copywriting de conversão e performance de SEO técnico.
-                  </p>
-                </div>
-                
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8">
-                  <h4 className="text-2xl font-bold text-white mb-4">Empresas nos acionam</h4>
-                  <p className="text-gray-300 leading-relaxed">
-                    quando a percepção de valor precisa ser elevada à altura da operação. 
-                    Quando autoridade técnica precisa ser percebida e mensurada.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="text-center">
-                <p className="text-2xl text-primary font-medium">
-                  Presença digital, para nós, é estrutura viva de posicionamento.
-                </p>
-              </div>
+            <p className="text-xl text-gray-300 mb-12">
+              Vamos conversar.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+              <a 
+                href="mailto:contato@aorkia.com" 
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                contato@aorkia.com
+              </a>
+
+              <a 
+                href="tel:+553139586192" 
+                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +55 31 3958-6192
+              </a>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-              <Link 
-                href="/solucoes"
-                className="group bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg font-semibold text-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center"
-              >
-                Explorar Soluções AORKIA
-                <i className="ri-arrow-right-line ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
-              </Link>
-              <Link 
-                href="/contato"
-                className="group border border-primary text-primary hover:bg-primary hover:text-white px-10 py-5 rounded-lg font-semibold text-xl transition-all duration-300 flex items-center"
-              >
-                Iniciar Conversa Estratégica
-                <i className="ri-chat-3-line ml-3 group-hover:scale-110 transition-transform duration-300"></i>
-              </Link>
-            </div>
-
-            {/* Informações de contato */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <i className="ri-mail-line text-3xl text-primary mb-3"></i>
-                <div className="text-white font-semibold">Email Estratégico</div>
-                <div className="text-gray-400">contato@aorkia.com</div>
-              </div>
-              <div className="text-center">
-                <i className="ri-phone-line text-3xl text-primary mb-3"></i>
-                <div className="text-white font-semibold">Linha Direta</div>
-                <div className="text-gray-400">+55 31 3958-6192</div>
-              </div>
-              <div className="text-center">
-                <i className="ri-map-pin-line text-3xl text-primary mb-3"></i>
-                <div className="text-white font-semibold">Sede Estratégica</div>
-                <div className="text-gray-400">Belo Horizonte, MG</div>
-              </div>
-            </div>
+            <Link 
+              href="/solucoes" 
+              className="inline-flex items-center text-primary hover:text-blue-400 transition-colors duration-300 font-medium"
+            >
+              Explorar outras soluções AORKIA
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </section>
 
-        {/* Footer Minimalista e Elegante */}
-        <footer className="py-16 px-4 border-t border-gray-800 bg-gray-900/50">
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-8 md:mb-0">
-                <Image 
-                  src="/image/logo_aorkia_white.png" 
-                  alt="AORKIA" 
-                  className="h-12 w-auto"
-                  width={120}
-                  height={48}
-                />
-                <div className="text-gray-400 text-sm mt-4">
-                  Presença digital estratégica para empresas que precisam de autoridade real.
-                </div>
-              </div>
-              
-              <div className="text-center md:text-right">
-                <div className="text-gray-400 text-sm mb-2">
-                  © 2025 AORKIA. Expertise estratégica aplicada.
-                </div>
-                <div className="flex items-center justify-center md:justify-end space-x-4">
-                  <Link href="/privacy" className="text-gray-500 hover:text-primary transition-colors text-sm">
-                    Privacidade
-                  </Link>
-                  <Link href="/terms" className="text-gray-500 hover:text-primary transition-colors text-sm">
-                    Termos
-                  </Link>
-                </div>
-              </div>
+        {/* Footer Minimalista */}
+        <footer className="py-8 bg-black border-t border-gray-800">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <div className="flex items-center justify-center mb-4">
+              <Image
+                src="/image/logo_aorkia_white.png"
+                alt="AORKIA"
+                width={80}
+                height={40}
+                className="opacity-70"
+              />
             </div>
+            <p className="text-gray-400 text-sm">
+              © 2025 AORKIA. Padrões de execução aplicados.
+            </p>
           </div>
         </footer>
-      </main>
+      </div>
 
-      {/* Estilos customizados */}
       <style jsx>{`
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         
         @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes gradient-x {
-          0%, 100% {
-            background-size: 200% 200%;
-            background-position: left center;
+          from { 
+            opacity: 0; 
+            transform: translateY(30px); 
           }
-          50% {
-            background-size: 200% 200%;
-            background-position: right center;
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
           }
         }
         
         .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
+          animation: fade-in 1s ease-out;
         }
         
         .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out;
+          animation: fade-in-up 1s ease-out;
         }
         
         .animation-delay-200 {
@@ -1015,38 +612,8 @@ export default function PresencaDigital() {
           animation-delay: 0.4s;
           animation-fill-mode: both;
         }
-        
-        .animation-delay-600 {
-          animation-delay: 0.6s;
-          animation-fill-mode: both;
-        }
-        
-        .animate-gradient-x {
-          animation: gradient-x 3s ease infinite;
-        }
-        
-        /* Scroll suave personalizado */
-        html {
-          scroll-behavior: smooth;
-        }
-        
-        /* Efeitos de hover personalizados */
-        .group:hover .group-hover\\:scale-105 {
-          transform: scale(1.05);
-        }
-        
-        .group:hover .group-hover\\:scale-110 {
-          transform: scale(1.1);
-        }
-        
-        .group:hover .group-hover\\:translate-x-1 {
-          transform: translateX(0.25rem);
-        }
-        
-        .group:hover .group-hover\\:translate-y-1 {
-          transform: translateY(0.25rem);
-        }
       `}</style>
     </>
   );
 }
+
