@@ -96,8 +96,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>AORKIA | Soluções B2B que blindam dados, aceleram receita e transformam Tecnologia de Ponta em vantagem real.</title>
-        <meta name="description" content="Soluções B2B que blindam dados, aceleram receita e transformam Tecnologia de Ponta em vantagem real." />
+        <title>AORKIA | Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em Backup SaaS Estratégico, Operações de Bordas Inteligentes e Segurança para Operações Críticas.</title>
+        <meta name="description" content="Descubra as soluções AORKIA: BackupSaaSEstratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Ativamos tecnologia para resultados mensuráveis" />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
