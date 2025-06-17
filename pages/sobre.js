@@ -20,7 +20,7 @@ export default function Sobre() {
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
+
         if (isVisible) {
           const sectionId = section.getAttribute('data-section-id');
           setActiveSection(sectionId);
@@ -54,6 +54,14 @@ export default function Sobre() {
     }
   };
 
+  const parceiros = [
+    { name: 'Keepit', icon: '/image/keepit_logo_aorkia.png' }, // Substitua por seu caminho de logo Keepit
+    { name: 'Microsoft', icon: '/image/microsoft_logo.png' }, // Substitua por seu caminho de logo Microsoft
+    { name: 'Google', icon: '/image/google_logo.png' },     // Substitua por seu caminho de logo Google
+    { name: 'AWS', icon: '/image/aws_logo.png' },           // Substitua por seu caminho de logo AWS
+    { name: 'Salesforce', icon: '/image/salesforce_logo.png' } // Substitua por seu caminho de logo Salesforce
+  ];
+
   return (
     <>
       <Head>
@@ -82,9 +90,9 @@ export default function Sobre() {
               <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
                 Ativando soluções de ponta para transformar seus ambientes críticos em sistemas coordenados, resilientes e escaláveis.
               </p>
-              
+
               {/* Botão para rolar para a história */}
-              <button 
+              <button
                 onClick={(e) => scrollToSection(e, 'historia')}
                 className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500"
               >
@@ -94,8 +102,8 @@ export default function Sobre() {
           </div>
 
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a 
-              href="#historia" 
+            <a
+              href="#historia"
               onClick={(e) => scrollToSection(e, 'historia')}
               className="text-white text-4xl"
             >
@@ -104,9 +112,9 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Nossa História - Estilo Jam3 com transições */}
-        <section 
-          id="historia" 
+        {/* Seção Nossa História - Estilo Jam3 com transições e textos centralizados */}
+        <section
+          id="historia"
           data-section-id="historia"
           className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
           onMouseEnter={() => handleSectionInteraction('historia')}
@@ -115,7 +123,7 @@ export default function Sobre() {
           onClick={() => handleSectionInteraction('historia')}
         >
           {/* Background Image (aparece apenas no hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'historia' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -123,22 +131,22 @@ export default function Sobre() {
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
-          
+
           {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'historia' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center text-center"> {/* Centralizado */}
               <h2 className={`text-3xl md:text-5xl font-bold mb-12 transition-colors duration-500 ${
                 activeSection === 'historia' ? 'text-white' : 'text-black'
               }`}>
                 Nossa História
               </h2>
-              
+
               <div className={`text-lg md:text-xl max-w-4xl space-y-8 transition-colors duration-500 ${
                 activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
               }`}>
@@ -156,9 +164,9 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Nossos Valores - Estilo Jam3 com transições */}
-        <section 
-          id="valores" 
+        {/* Seção Nossos Valores - Estilo Jam3 com transições e textos centralizados */}
+        <section
+          id="valores"
           data-section-id="valores"
           className="relative w-full min-h-screen overflow-hidden group border-b border-gray-800"
           onMouseEnter={() => handleSectionInteraction('valores')}
@@ -167,7 +175,7 @@ export default function Sobre() {
           onClick={() => handleSectionInteraction('valores')}
         >
           {/* Background Image (aparece apenas no hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'valores' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -175,26 +183,26 @@ export default function Sobre() {
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
-          
+
           {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'valores' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center"> {/* Centralizado */}
               <h2 className={`text-3xl md:text-5xl font-bold mb-16 transition-colors duration-500 ${
                 activeSection === 'valores' ? 'text-white' : 'text-black'
               }`}>
                 Nossos Valores
               </h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'valores' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
+                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
+                  activeSection === 'valores'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
                   : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
                 }`}>
                   <div className={`text-5xl mb-6 transition-colors duration-500 ${
@@ -213,10 +221,10 @@ export default function Sobre() {
                     Mais do que implementar, ativamos o valor real da tecnologia global para o seu negócio.
                   </p>
                 </div>
-                
-                <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'valores' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
+
+                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
+                  activeSection === 'valores'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
                   : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
                 }`}>
                   <div className={`text-5xl mb-6 transition-colors duration-500 ${
@@ -235,10 +243,10 @@ export default function Sobre() {
                     Selecionamos e trazemos até você apenas soluções líderes e comprovadamente robustas.
                   </p>
                 </div>
-                
-                <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'valores' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
+
+                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
+                  activeSection === 'valores'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
                   : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
                 }`}>
                   <div className={`text-5xl mb-6 transition-colors duration-500 ${
@@ -257,10 +265,10 @@ export default function Sobre() {
                     Construímos parcerias para transformar seu investimento em tecnologia em vantagem competitiva duradoura.
                   </p>
                 </div>
-                
-                <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'valores' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
+
+                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
+                  activeSection === 'valores'
+                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
                   : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
                 }`}>
                   <div className={`text-5xl mb-6 transition-colors duration-500 ${
@@ -284,9 +292,9 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Parceiros Estratégicos - Estilo Jam3 com transições */}
-        <section 
-          id="parceiros" 
+        {/* Seção Parceiros Estratégicos - Estilo Jam3 com transições e logos */}
+        <section
+          id="parceiros"
           data-section-id="parceiros"
           className="relative w-full overflow-hidden group border-b border-gray-800 py-24"
           onMouseEnter={() => handleSectionInteraction('parceiros')}
@@ -295,7 +303,7 @@ export default function Sobre() {
           onClick={() => handleSectionInteraction('parceiros')}
         >
           {/* Background Image (aparece apenas no hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
               activeSection === 'parceiros' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -303,90 +311,55 @@ export default function Sobre() {
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
-          
+
           {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div 
+          <div
             className={`absolute inset-0 bg-white transition-opacity duration-500 ${
               activeSection === 'parceiros' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col">
-              <h2 className={`text-3xl md:text-5xl font-bold mb-16 transition-colors duration-500 ${
+            <div className="flex flex-col items-center"> {/* Centralizado */}
+              <h2 className={`text-3xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${ /* Centralizado */
                 activeSection === 'parceiros' ? 'text-white' : 'text-black'
               }`}>
                 Parceiros Estratégicos
               </h2>
-              
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-                <div className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'parceiros' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <p className={`text-2xl font-bold transition-colors duration-500 ${
-                    activeSection === 'parceiros' ? 'text-white' : 'text-black'
+
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-8 w-full"> {/* Adicionado w-full para alinhar o grid */}
+                {parceiros.map((parceiro, index) => (
+                  <div key={index} className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
+                    activeSection === 'parceiros'
+                    ? 'border-primary/30 bg-black/30 hover:bg-black/50'
+                    : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
                   }`}>
-                    Keepit
-                  </p>
-                </div>
-                
-                <div className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'parceiros' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <p className={`text-2xl font-bold transition-colors duration-500 ${
-                    activeSection === 'parceiros' ? 'text-white' : 'text-black'
-                  }`}>
-                    Microsoft
-                  </p>
-                </div>
-                
-                <div className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'parceiros' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <p className={`text-2xl font-bold transition-colors duration-500 ${
-                    activeSection === 'parceiros' ? 'text-white' : 'text-black'
-                  }`}>
-                    Google
-                  </p>
-                </div>
-                
-                <div className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'parceiros' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <p className={`text-2xl font-bold transition-colors duration-500 ${
-                    activeSection === 'parceiros' ? 'text-white' : 'text-black'
-                  }`}>
-                    AWS
-                  </p>
-                </div>
-                
-                <div className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                  activeSection === 'parceiros' 
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50' 
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <p className={`text-2xl font-bold transition-colors duration-500 ${
-                    activeSection === 'parceiros' ? 'text-white' : 'text-black'
-                  }`}>
-                    Salesforce
-                  </p>
-                </div>
+                    {parceiro.icon ? (
+                      <Image
+                        src={parceiro.icon}
+                        alt={parceiro.name}
+                        width={100} // Ajuste conforme o tamanho ideal da logo
+                        height={50} // Ajuste conforme o tamanho ideal da logo
+                        objectFit="contain" // Garante que a logo se ajuste ao contêiner
+                        className="max-h-full max-w-full opacity-80 group-hover:opacity-100 transition-opacity"
+                      />
+                    ) : (
+                      <p className={`text-2xl font-bold transition-colors duration-500 ${
+                        activeSection === 'parceiros' ? 'text-white' : 'text-black'
+                      }`}>
+                        {parceiro.name}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
-              
+
               <div className="mt-16 text-center">
-                <Link 
-                  href="/contato" 
+                <Link
+                  href="/contato"
                   className={`inline-flex items-center text-lg font-medium px-8 py-3 border transition-all duration-500 ${
-                    activeSection === 'parceiros' 
-                    ? 'text-white border-white hover:bg-white hover:text-black' 
+                    activeSection === 'parceiros'
+                    ? 'text-white border-white hover:bg-white hover:text-black'
                     : 'text-black border-black hover:bg-black hover:text-white'
                   }`}
                 >
@@ -401,4 +374,3 @@ export default function Sobre() {
     </>
   );
 }
-
