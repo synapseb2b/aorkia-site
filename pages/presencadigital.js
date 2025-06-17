@@ -157,7 +157,7 @@ export default function PresencaDigital() {
         'Voice Guidelines claros para consistência omnichannel.',
         'Narrativa orientada a decisão e não a volume.'
       ],
-      icon: 'ri-megaphone-line' // Ícone para voz/comunicação
+      icon: 'ri-voiceprint-line' // Ícone de voz, ajustado aqui
     },
     {
       titulo: 'Arquitetura da Informação', // Numeração removida
