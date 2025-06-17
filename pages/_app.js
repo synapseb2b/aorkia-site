@@ -237,13 +237,13 @@ function MyApp({ Component, pageProps }) {
       )}
 
       {/* Desktop Navbar - CORRIGIDA */}
-      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
           {/* Logo à esquerda - AUMENTADA */}
           <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-16 relative">
               <Image
-                src="/image/logo_aorkia_color.png"
+                src="/image/logo_aorkia_white.png"
                 alt="AORKIA"
                 className="h-16 w-auto"
                 width={160}
@@ -255,18 +255,18 @@ function MyApp({ Component, pageProps }) {
 
           {/* Menu à direita */}
           <nav className="flex items-center space-x-2">
-            <Link href="/" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Home
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/solucoes" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/solucoes" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Soluções
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            {/* Logo Keepit sem texto - COM EFEITOS DE HOVER - Revertido para keepit_logo_aorkia.png */}
-            <Link href="/keepit" className="text-gray-800 hover:text-green-400 transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-green-400/5 border border-transparent hover:border-green-400/20 flex items-center">
+            {/* Logo Keepit sem texto - COM EFEITOS DE HOVER */}
+            <Link href="/keepit" className="text-white hover:text-green-400 transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-green-400/5 border border-transparent hover:border-green-400/20 flex items-center">
               <Image
-                src="/image/keepit_logo_aorkia.png" // Reverted to original .png
+                src="/image/keepit_logo_aorkia.png"
                 alt="Keepit"
                 className="h-6 w-auto"
                 width={80}
@@ -274,11 +274,16 @@ function MyApp({ Component, pageProps }) {
               />
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/sobre" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            <Link href="/sobre" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Sobre
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/contato" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+            {/* Novo link para o Blog */}
+            <Link href="/blog" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
+              Blog
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+            </Link>
+            <Link href="/contato" className="text-white hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
               Contato
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
@@ -287,12 +292,12 @@ function MyApp({ Component, pageProps }) {
       </header>
 
       {/* Mobile Navbar - CORRIGIDA */}
-      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] md:hidden">
+      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-800 bg-black z-[60] md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
             <div className="logo-container h-16 relative">
               <Image
-                src="/image/logo_aorkia_color.png"
+                src="/image/logo_aorkia_white.png"
                 alt="AORKIA"
                 className="h-16 w-auto"
                 width={160}
@@ -304,12 +309,12 @@ function MyApp({ Component, pageProps }) {
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
-            className="text-gray-800"
+            className="text-white"
           >
             <div className="w-6 flex flex-col gap-1">
-              <span className="w-full h-0.5 bg-gray-800 block"></span>
-              <span className="w-full h-0.5 bg-gray-800 block"></span>
-              <span className="w-full h-0.5 bg-gray-800 block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
+              <span className="w-full h-0.5 bg-white block"></span>
             </div>
           </button>
         </div>
@@ -317,13 +322,13 @@ function MyApp({ Component, pageProps }) {
 
       {/* Menu Mobile Fullscreen */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[65] flex flex-col">
+        <div className="fixed inset-0 bg-black z-[65] flex flex-col">
           <div className="container mx-auto px-4 py-8 h-full flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                 <div className="logo-container h-14 relative">
                   <Image
-                    src="/image/logo_aorkia_color.png"
+                    src="/image/logo_aorkia_white.png"
                     alt="AORKIA"
                     className="h-14 w-auto"
                     width={140}
@@ -333,7 +338,7 @@ function MyApp({ Component, pageProps }) {
                 </div>
               </Link>
               <button
-                className="text-gray-800 text-3xl"
+                className="text-white text-3xl"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Fechar menu"
               >
@@ -343,26 +348,26 @@ function MyApp({ Component, pageProps }) {
             <div className="flex flex-col space-y-6 justify-center mt-12 items-center">
               <Link
                 href="/"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/solucoes"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Soluções
               </Link>
-              {/* Logo Keepit sem texto no mobile - Revertido para keepit_logo_aorkia.png */}
+              {/* Logo Keepit sem texto no mobile */}
               <Link
                 href="/keepit"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-green-400 transition-colors flex items-center justify-center"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-green-400 transition-colors flex items-center justify-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Image
-                  src="/image/keepit_logo_aorkia.png" // Reverted to original .png
+                  src="/image/keepit_logo_aorkia.png"
                   alt="Keepit"
                   className="h-8 md:h-12 w-auto"
                   width={120}
@@ -371,14 +376,22 @@ function MyApp({ Component, pageProps }) {
               </Link>
               <Link
                 href="/sobre"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Sobre
               </Link>
+              {/* Novo link para o Blog no mobile */}
+              <Link
+                href="/blog"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
               <Link
                 href="/contato"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
+                className="text-white text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contato
@@ -427,7 +440,7 @@ function MyApp({ Component, pageProps }) {
       {/* Footer Global - FORMULÁRIO ATUALIZADO SEM AS DUAS SOLUÇÕES */}
       {/* Não mostrar footer na página presencadigital */}
       {router.pathname !== '/presencadigital' && (
-        <footer className="bg-white text-gray-800 py-16 border-t border-gray-200">
+        <footer className="bg-gray-900 text-white py-16 border-t border-primary/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Formulário de Contato - Primeira coluna no mobile */}
@@ -435,77 +448,77 @@ function MyApp({ Component, pageProps }) {
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800">Nome</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">Nome</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-800">E-mail</label>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">E-mail</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2 text-gray-800">Empresa</label>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2">Empresa</label>
                   <input
                     type="text"
                     id="company"
                     name="company"
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors"
                   />
                 </div>
 
                 {/* SOLUÇÕES DE INTERESSE - REMOVIDAS AS DUAS ESPECIFICADAS */}
                 <div>
-                  <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
+                  <label className="block text-sm font-medium mb-3">Soluções de interesse</label>
                   <div className="space-y-3">
                     <label className="flex items-center">
                       <input
                         type="checkbox"
                         name="solucoes"
                         value="Backup SaaS Estratégico"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
                       />
-                      <span className="text-gray-800">Backup SaaS Estratégico</span>
+                      <span className="text-gray-300">Backup SaaS Estratégico</span>
                     </label>
                     <label className="flex items-center">
                       <input
                         type="checkbox"
                         name="solucoes"
                         value="Operações de Bordas Inteligentes"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
                       />
-                      <span className="text-gray-800">Operações de Bordas Inteligentes</span>
+                      <span className="text-gray-300">Operações de Bordas Inteligentes</span>
                     </label>
                     <label className="flex items-center">
                       <input
                         type="checkbox"
                         name="solucoes"
                         value="Segurança para Operações Críticas"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+                        className="mr-3 w-4 h-4 text-primary bg-gray-800 border-gray-600 rounded focus:ring-primary focus:ring-2"
                       />
-                      <span className="text-gray-800">Segurança para Operações Críticas</span>
+                      <span className="text-gray-300">Segurança para Operações Críticas</span>
                     </label>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800">Mensagem</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">Mensagem</label>
                   <textarea
                     id="message"
                     name="message"
                     rows="4"
                     required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-gray-800"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
                   ></textarea>
                 </div>
                 <button
@@ -524,17 +537,16 @@ function MyApp({ Component, pageProps }) {
             </div>
 
             {/* Informações de Contato - Segunda coluna no mobile */}
-            {/* Added bg-gray-50 and padding/shadow for subtle contrast */}
-            <div className="order-2 lg:order-1 bg-gray-50 p-8 rounded-lg shadow-inner">
+            <div className="order-2 lg:order-1">
               <div className="mb-12">
                 <Image
-                  src="/image/logo_aorkia_color.png"
+                  src="/image/logo_aorkia_white.png"
                   alt="AORKIA"
                   className="h-16 w-auto mb-6"
                   width={160}
                   height={64}
                 />
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-gray-300 text-lg leading-relaxed">
                   Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável.
                 </p>
               </div>
@@ -548,24 +560,24 @@ function MyApp({ Component, pageProps }) {
                       onClick={copyEmailToClipboard}
                     >
                       <i className="ri-mail-line text-xl mr-3 text-primary"></i>
-                      <span className="text-gray-800">contato@aorkia.com</span>
-                      {emailCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span>contato@aorkia.com</span>
+                      {emailCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                     <div
                       className="flex items-center cursor-pointer hover:text-primary transition-colors group"
                       onClick={copyPhoneToClipboard}
                     >
                       <i className="ri-phone-line text-xl mr-3 text-primary"></i>
-                      <span className="text-gray-800">+55 31 3958-6192</span>
-                      {phoneCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span>+55 31 3958-6192</span>
+                      {phoneCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                     <div
                       className="flex items-start cursor-pointer hover:text-primary transition-colors group"
                       onClick={copyAddressToClipboard}
                     >
                       <i className="ri-map-pin-line text-xl mr-3 text-primary mt-1"></i>
-                      <span className="text-gray-800">Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
-                      {addressCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span>Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
+                      {addressCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                   </div>
                 </div>
@@ -573,11 +585,13 @@ function MyApp({ Component, pageProps }) {
                 <div>
                   <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
                   <div className="grid grid-cols-2 gap-3">
-                    <Link href="/" className="text-gray-800 hover:text-primary transition-colors">Home</Link>
-                    <Link href="/solucoes" className="text-gray-800 hover:text-primary transition-colors">Soluções</Link>
-                    <Link href="/keepit" className="text-gray-800 hover:text-primary transition-colors">Keepit</Link>
-                    <Link href="/sobre" className="text-gray-800 hover:text-primary transition-colors">Sobre</Link>
-                    <Link href="/contato" className="text-gray-800 hover:text-primary transition-colors">Contato</Link>
+                    <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                    <Link href="/solucoes" className="hover:text-primary transition-colors">Soluções</Link>
+                    <Link href="/keepit" className="hover:text-primary transition-colors">Keepit</Link>
+                    <Link href="/sobre" className="hover:text-primary transition-colors">Sobre</Link>
+                    {/* Novo link para o Blog no footer */}
+                    <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
+                    <Link href="/contato" className="hover:text-primary transition-colors">Contato</Link>
                   </div>
                 </div>
               </div>
@@ -586,11 +600,11 @@ function MyApp({ Component, pageProps }) {
         </div>
 
         {/* Seção de Copyright - ATUALIZADA COM ANIMAÇÃO CRIATIVA */}
-        <div className="border-t border-gray-200 mt-16 pt-8">
+        <div className="border-t border-gray-800 mt-16 pt-8">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-center md:text-left">
-                <p className="text-gray-600 mb-3">
+                <p className="text-gray-400 mb-3">
                   © 2025 AORKIA. Todos os direitos reservados.
                 </p>
                 {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
@@ -599,9 +613,9 @@ function MyApp({ Component, pageProps }) {
                   className="group relative inline-block"
                 >
                   <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
-                    <div className="bg-white rounded-lg px-4 py-2 group-hover:bg-gray-100 transition-all duration-300">
+                    <div className="bg-gray-900 rounded-lg px-4 py-2 group-hover:bg-gray-800 transition-all duration-300">
                       <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
-                        ✨ Desenvolvido por Presença Digital AORKIA
+                        ✨ Desenvolvido por AORKIA Presença Digital AORKIA
                       </span>
                     </div>
                   </div>
@@ -613,13 +627,13 @@ function MyApp({ Component, pageProps }) {
                   href="https://wa.me/553139586192"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary transition-colors"
+                  className="text-gray-400 hover:text-primary transition-colors"
                 >
                   <i className="ri-whatsapp-line text-xl"></i>
                 </a>
                 <a
                   href="mailto:contato@aorkia.com"
-                  className="text-gray-600 hover:text-primary transition-colors"
+                  className="text-gray-400 hover:text-primary transition-colors"
                 >
                   <i className="ri-mail-line text-xl"></i>
                 </a>
@@ -632,9 +646,9 @@ function MyApp({ Component, pageProps }) {
 
       {/* Banner de Cookies */}
       {showCookieBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-300 p-4 z-[70]">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-[70]">
           <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-800 text-sm">
+            <p className="text-white text-sm">
               Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de cookies.
             </p>
             <div className="flex gap-3">
@@ -646,7 +660,7 @@ function MyApp({ Component, pageProps }) {
               </button>
               <button
                 onClick={declineCookies}
-                className="border border-gray-400 text-gray-800 hover:bg-gray-200 px-4 py-2 rounded-lg transition-all text-sm font-medium"
+                className="border border-gray-600 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition-all text-sm font-medium"
               >
                 Recusar
               </button>
