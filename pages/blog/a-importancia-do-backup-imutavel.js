@@ -5,9 +5,8 @@ import Image from 'next/image';
 
 export default function PostBackupImutavel() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  // Não precisamos de activeSection para o corpo do post, ele será consistente
-  const [activeHero, setActiveHero] = useState(false);
-  const [activeCta, setActiveCta] = useState(false);
+  const [activeHero, setActiveHero] = useState(false); // Estado para a seção Hero
+  const [activeCta, setActiveCta] = useState(false);   // Estado para a seção CTA Final
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,14 +18,14 @@ export default function PostBackupImutavel() {
       const heroSection = document.getElementById('hero-post');
       const ctaFinalSection = document.getElementById('cta-final-post');
 
+      // Detectar ativação do Hero
       if (heroSection) {
         const rect = heroSection.getBoundingClientRect();
-        // Ativa se mais da metade da seção está visível
         setActiveHero(rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2);
       }
+      // Detectar ativação do CTA Final
       if (ctaFinalSection) {
         const rect = ctaFinalSection.getBoundingClientRect();
-        // Ativa se mais da metade da seção está visível
         setActiveCta(rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2);
       }
     };
@@ -70,7 +69,7 @@ export default function PostBackupImutavel() {
         </Link>
       </div>
 
-      <main className="min-h-screen">
+      <main className={`min-h-screen transition-colors duration-500 ${activeHero || activeCta ? 'bg-black text-white' : 'bg-white text-black'}`}>
         {/* Hero Section do Post */}
         <section id="hero-post" className="relative h-screen overflow-hidden flex items-center justify-center text-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
@@ -100,40 +99,40 @@ export default function PostBackupImutavel() {
         </section>
 
         {/* Conteúdo Principal do Post - Layout de Blog Tradicional */}
-        <section className={`py-16 md:py-24 transition-colors duration-500 
-          ${activeHero || activeCta ? 'bg-black text-white' : 'bg-white text-black'}`}
-        >
-          <div className="container mx-auto max-w-4xl px-4">
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto max-w-4xl px-4 text-gray-700"> {/* Texto padrão escuro para fundo branco */}
+
             {/* Introdução */}
-            <p className="text-lg md:text-xl leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg md:text-xl leading-relaxed mb-8">
               Você, gestor, respira aliviado pensando na segurança dos dados da sua empresa no Google Workspace? Prepare-se para uma verdade desconfortável: o que você pensa ser proteção pode, na verdade, ser uma porta aberta para riscos catastróficos.
             </p>
-            <p className="text-lg md:text-xl leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg md:text-xl leading-relaxed mb-8">
               Imagine esta cena, comum em tantas corporações: durante uma auditoria de segurança rigorosa, o diretor de TI, com confiança, detalha a estratégia de proteção de dados da empresa. "Para o Google Workspace", ele explica, "nós utilizamos o Backup and DR da própria Google. E para conformidade e retenção, temos o Google Vault." Um aceno de cabeça satisfeito percorre a sala, até que um especialista independente, com a experiência que acumulamos em monitorar o cenário de cibersegurança, interrompe. A pergunta é simples, mas seu impacto congela o ambiente: "E o que acontece quando o ransomware atinge o seu Google Workspace? Ou um erro humano apaga dados críticos de forma irrecuperável?"
             </p>
-            <p className="text-lg md:text-xl leading-relaxed mt-4 mb-12 text-gray-700">
+            <p className="text-lg md:text-xl leading-relaxed mt-4 mb-12">
               O silêncio é a resposta. A crença generalizada de que essas ferramentas nativas do Google oferecem uma proteção completa para o Google Workspace é um dos equívocos mais perigosos e custosos que sua empresa pode ter. O desconhecimento, nesse cenário, pode custar caro demais, transformando uma auditoria de rotina em um pesadelo de vulnerabilidades.
             </p>
 
-            {/* Subtítulo da Seção: O Mito da Proteção Nativa */}
+            {/* O Mito da Proteção Nativa */}
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
               O Mito da Proteção Nativa: <span className="text-primary">Desvendando a Verdade por Trás da Falsa Segurança</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg leading-relaxed mb-8">
               Muitos gestores confundem a segurança do Google Cloud com a segurança abrangente do Google Workspace. Embora o Google ofereça soluções robustas de Backup e DR para seu ambiente de Cloud, essas ferramentas não se estendem automaticamente à proteção granular e recuperação do seu Google Workspace. Ou seja, seus e-mails, documentos no Drive, calendários e outros dados vitais estão mais expostos do que você imagina.
             </p>
-            <p className="text-lg leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg leading-relaxed mb-8">
               E quando a conversa se volta para o Google Vault, a percepção de segurança é ainda mais enganosa. Muitos assinantes do Google Workspace têm acesso a essa ferramenta de retenção e eDiscovery, acreditando que ela supre a necessidade de backup. Com ele, é possível reter, armazenar, pesquisar e exportar dados do Google Workspace de alguns usuários. Parece suficiente, certo? Errado, novamente.
             </p>
-            <p className="text-lg leading-relaxed mb-12 font-bold text-primary">
-              O próprio site de suporte do Google é categórico: "O Vault não foi projetado para ser uma ferramenta de backup ou arquivamento." Isso por si só já deveria acionar um alerta máximo para qualquer gestor responsável pela segurança da informação.
-            </p>
+            {/* Citação destacada */}
+            <blockquote className="border-l-4 border-primary pl-4 py-2 my-8 italic text-lg md:text-xl font-semibold text-gray-800">
+              "O próprio site de suporte do Google é categórico: 'O Vault não foi projetado para ser uma ferramenta de backup ou arquivamento.' Isso por si só já deveria acionar um alerta máximo para qualquer gestor responsável pela segurança da informação."
+            </blockquote>
 
             <h3 className="text-2xl md:text-3xl font-bold mb-8 text-black">
               Mas vamos aos detalhes que desmascaram essa falsa sensação de segurança:
             </h3>
 
-            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12 text-gray-700">
+            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12">
               <li className="flex items-start">
                 <i className="ri-close-circle-line text-xl mr-3 text-red-500"></i>
                 <strong>Não é para Grandes Volumes de Dados:</strong> As exportações do Vault não são projetadas para backups de dados em grande escala ou em grandes volumes. Você está limitado a exportar dados para um número restrito de contas e apenas um serviço do Google por vez. Esqueça a ideia de muitas exportações paralelas ou agendamento automático para uma recuperação eficiente.
@@ -156,26 +155,27 @@ export default function PostBackupImutavel() {
               </li>
             </ul>
 
-            {/* Subtítulo da Seção: A Realidade dos Riscos */}
+            {/* A Realidade dos Riscos */}
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
               A Realidade dos Riscos: <span className="text-primary">Por Que o Backup Dedicado é Indispensável</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg leading-relaxed mb-8">
               A verdade é que a crescente ameaça do ransomware não pergunta se sua empresa será atacada, mas quando. E o ambiente SaaS, embora traga agilidade, não é imune a falhas. Pelo contrário: ele está "cheio de buracos". Falhas podem surgir de explorações de API, erros do próprio fornecedor, riscos de plataformas compartilhadas, exfiltração de dados, ciberameaças, vulnerabilidades em dispositivos de usuários finais, e até mesmo alterações maliciosas ou acidentais.
             </p>
+            {/* Destaque estatístico */}
             <p className="text-lg leading-relaxed mb-12 font-bold text-primary">
               Não é à toa que 30% das maiores preocupações das empresas com SaaS estão relacionadas à segurança e proteção contra crimes cibernéticos. Estudos mostram que 75% dos tomadores de decisão de segurança sofreram uma violação nos últimos 12 meses. Esses números são um alerta claro para qualquer gestor.
             </p>
 
-            {/* Subtítulo da Seção: O Verdadeiro ROI da Recuperação */}
+            {/* O Verdadeiro ROI da Recuperação */}
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
               O Verdadeiro ROI da Recuperação: <span className="text-primary">Protegendo Seu Investimento</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg leading-relaxed mb-8">
               É nesse cenário que o backup dedicado entra como um investimento estratégico, e não apenas um custo. A Forrester, em seu estudo "O Impacto Econômico Total da Proteção de Dados SaaS Keepit", quantificou os benefícios reais para as empresas. Para uma organização composta com receita de US$ 2 bilhões e 10.000 usuários, os resultados são impressionantes:
             </p>
 
-            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12 text-gray-700">
+            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12">
               <li className="flex items-start">
                 <i className="ri-check-line text-xl mr-3 text-primary"></i>
                 <strong>Recuperação mais rápida e precisa de ataques de ransomware:</strong> Uma redução de <strong>90% no tempo para restauração direcionada</strong>, resultando em um valor presente de <strong>US$ 819.149</strong> em três anos. Como afirmou um consultor sênior de uma organização sem fins lucrativos: "Conseguiríamos restaurar nossas operações em poucos dias com os serviços Keepit... definitivamente não levaria várias semanas."
@@ -193,18 +193,19 @@ export default function PostBackupImutavel() {
                 <strong>Impacto na produtividade do usuário SaaS:</strong> Ganhos de <strong>US$ 21.380</strong> em três anos.
               </li>
             </ul>
+            {/* Destaque de ROI final */}
             <p className="text-lg leading-relaxed mb-12 font-bold text-center text-primary">
               Somando todos esses benefícios e subtraindo os custos (principalmente as taxas de licença de software de US$ 492.000 ), o estudo aponta um ROI impressionante de <span className="text-4xl">163%</span> e um Valor Presente Líquido (NPV) de <span className="text-4xl">US$ 822K</span> em três anos.
             </p>
 
-            {/* Subtítulo da Seção: Keepit: A Escolha Inteligente para Gestores */}
+            {/* Keepit: A Escolha Inteligente para Gestores */}
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
               Keepit: <span className="text-primary">A Escolha Inteligente para Gestores</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-8 text-gray-700">
+            <p className="text-lg leading-relaxed mb-8">
               A Keepit se posiciona como a solução ideal para preencher as lacunas deixadas por ferramentas como o Google Vault. Ela oferece:
             </p>
-            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12 text-gray-700">
+            <ul className="text-lg leading-relaxed space-y-4 text-left mb-12">
               <li className="flex items-start">
                 <i className="ri-check-line text-xl mr-3 text-primary"></i>
                 Excelentes capacidades de backup, garantindo que seus dados críticos estejam sempre protegidos.
