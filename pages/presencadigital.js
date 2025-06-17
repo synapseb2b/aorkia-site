@@ -142,7 +142,7 @@ export default function PresencaDigital() {
     },
     {
       segmento: 'Arquitetura e Engenharia com Foco Institucional',
-      problema: 'Empresas de arquitetura ou engenharia especializadas em projetos públicos e concorrências técnicas que precisam da percepção de autoridade antes mesmo de uma proposta ser avaliada, pois a credibilidade digital é formada nos primeiros segundos.',
+      problema: 'Pense em uma empresa de arquitetura ou engenharia especializada em projetos públicos, concorrências técnicas ou contratos institucionais. Para esse tipo de desafio, a percepção de autoridade começa antes mesmo de uma proposta ser avaliada. Estudos de comportamento digital indicam que mais de 60% da credibilidade percebida de um fornecedor técnico é formada nos primeiros segundos de interação online. Clareza técnica e sofisticação visual aqui não são estética — são pré-requisitos para competir e vencer disputas complexas. A presença digital precisa validar, desde o início, que a empresa tem estrutura, maturidade e confiabilidade para entregar o que promete.',
       solucao: 'Garantir clareza técnica e sofisticação visual na presença digital, validando desde o início a estrutura, maturidade e confiabilidade para competir e vencer disputas complexas.',
       icon: 'ri-building-2-line' // Ícone para Arquitetura e Engenharia
     }
@@ -706,7 +706,7 @@ export default function PresencaDigital() {
           <div className="max-w-6xl mx-auto px-6 text-center">
             <div className="flex items-center justify-center mb-4">
               <Image
-                src="/image/logo_aorkia_color.png" {/* Logo colorida */}
+                src="/image/logo_aorkia_color.png" // Logo colorida
                 alt="AORKIA"
                 width={80}
                 height={40}
