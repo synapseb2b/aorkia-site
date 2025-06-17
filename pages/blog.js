@@ -13,7 +13,7 @@ export default function Blog() {
       const scrollTop = window.scrollY;
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollProgress(progress);
+      setScrollProgress(scrollPercent);
 
       // Detectar qual seção está visível e ativar transição (similar ao sobre.js)
       const sections = document.querySelectorAll('[data-section-id]');
@@ -186,7 +186,7 @@ export default function Blog() {
           <div className="container mx-auto max-w-7xl px-4 py-24 md:py-32 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
-                <div key={post.id} className={`rounded-lg overflow-hidden shadow-lg border transition-all duration-300 h-full flex flex-col items-center text-center ${ /* Centralizado */
+                <div key={post.id} className={`rounded-lg overflow-hidden shadow-lg border transition-all duration-300 h-full flex flex-col items-center text-center ${
                   activeSection === 'blog-posts'
                     ? 'bg-gray-800 border-gray-700 hover:border-primary'
                     : 'bg-gray-100 border-gray-300 hover:border-blue-500'
@@ -201,11 +201,11 @@ export default function Blog() {
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgBWfAOFjD+tMQAAAABJRU5ErkJggg=="
                   />
-                  <div className="p-6 flex flex-col flex-grow items-center text-center"> {/* Centralizado */}
-                    <span className={`text-sm mb-2 block transition-colors duration-500 ${
+                  <div className="p-6 flex flex-col flex-grow items-center text-center">
+                    <span className={`text-sm font-medium mb-2 block transition-colors duration-500 ${
                       activeSection === 'blog-posts' ? 'text-gray-400' : 'text-gray-600'
                     }`}>{post.date} &bull; {post.category}</span>
-                    <h2 className={`text-2xl font-bold mb-3 transition-colors duration-500 ${
+                    <h2 className={`text-xl md:text-2xl font-bold mb-3 transition-colors duration-500 ${
                       activeSection === 'blog-posts' ? 'text-white' : 'text-black'
                     }`}>{post.title}</h2>
                     <p className={`text-base leading-relaxed mb-4 flex-grow transition-colors duration-500 ${
