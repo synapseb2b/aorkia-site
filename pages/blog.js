@@ -63,33 +63,6 @@ export default function Blog() {
       image: 'https://placehold.co/600x400/0076FF/FFFFFF?text=Backup+Imutavel',
       link: '/blog/a-importancia-do-backup-imutavel', // Exemplo de link para o post completo
       category: 'Cibersegurança'
-    },
-    {
-      id: 'post-2',
-      title: 'Edge AI: Desbloqueando o Potencial da Inteligência na Borda',
-      date: '10 de Junho, 2025',
-      excerpt: 'A Inteligência Artificial não está mais restrita à nuvem. Descubra como a Edge AI está revolucionando operações e permitindo decisões em tempo real em diversos setores.',
-      image: 'https://placehold.co/600x400/4A90E2/FFFFFF?text=Edge+AI',
-      link: '/blog/edge-ai-potencial-na-borda',
-      category: 'Inteligência Artificial'
-    },
-    {
-      id: 'post-3',
-      title: 'DSPM: O Que É e Por Que Sua Empresa Precisa Disso Agora',
-      date: '05 de Junho, 2025',
-      excerpt: 'Com dados espalhados em múltiplas nuvens, a visibilidade e o controle são cruciais. Entenda como o Data Security Posture Management (DSPM) protege suas informações mais sensíveis.',
-      image: 'https://placehold.co/600x400/2196F3/FFFFFF?text=DSPM+Seguranca',
-      link: '/blog/dspm-seguranca-de-dados',
-      category: 'Segurança de Dados'
-    },
-    {
-      id: 'post-4',
-      title: 'Transformando Percepção em Posicionamento com Presença Digital',
-      date: '01 de Junho, 2025',
-      excerpt: 'Ter um site bonito não é suficiente. Sua presença digital precisa ser estratégica para impactar quem realmente importa e validar a autoridade da sua empresa no mercado.',
-      image: 'https://placehold.co/600x400/002C4C/FFFFFF?text=Presenca+Digital',
-      link: '/blog/presenca-digital-estrategica',
-      category: 'Marketing Digital'
     }
   ];
 
