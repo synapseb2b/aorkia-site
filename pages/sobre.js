@@ -58,7 +58,7 @@ export default function Sobre() {
     { name: 'Keepit', icon: '/image/keepit_logo_aorkia.png' }, // Substitua por seu caminho de logo Keepit
     { name: 'Microsoft', icon: '/image/microsoft_logo.png' }, // Substitua por seu caminho de logo Microsoft
     { name: 'Google', icon: '/image/google_logo.png' },     // Substitua por seu caminho de logo Google
-    { name: 'AWS', icon: '/image/aws_logo.png' },           // Substitua por seu caminho de logo AWS
+    { name: 'Tenable', icon: '/image/tenable_logo.png' },           // Substitua por seu caminho de logo Tenable
     { name: 'Salesforce', icon: '/image/salesforce_logo.png' } // Substitua por seu caminho de logo Salesforce
   ];
 
@@ -324,7 +324,7 @@ export default function Sobre() {
               <h2 className={`text-3xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${ /* Centralizado */
                 activeSection === 'parceiros' ? 'text-white' : 'text-black'
               }`}>
-                Parceiros Estratégicos
+                Parcerias Estratégicas
               </h2>
 
               <div className="grid grid-cols-2 md:grid-cols-5 gap-8 w-full"> {/* Adicionado w-full para alinhar o grid */}
