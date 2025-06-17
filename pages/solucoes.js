@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 export default function Solucoes() {
   const [activeSection, setActiveSection] = useState('backup');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0);
+  const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0); // Renamed from isDropdownOpen
   const selectorRef = useRef(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
@@ -188,21 +187,25 @@ export default function Solucoes() {
     if (isRightSwipe && selectedSolutionIndex > 0) {
       setSelectedSolutionIndex(selectedSolutionIndex - 1);
     }
+    setTouchStartX(0); // Reset touch start after swipe
+    setTouchEndX(0); // Reset touch end after swipe
   };
 
   // Função para detectar seção ativa baseada no scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('[data-solution-id]');
+      let currentActive = null;
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
+        // Adjust visibility threshold for better accuracy
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
         
         if (isVisible) {
-          const solutionId = section.getAttribute('data-solution-id');
-          setActiveSection(solutionId);
+          currentActive = section.getAttribute('data-solution-id');
         }
       });
+      setActiveSection(currentActive);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -243,96 +246,45 @@ export default function Solucoes() {
             Ativamos tecnologia de ponta para transformar desafios críticos em resultados mensuráveis e operações mais seguras.
           </p>
           
-          {/* Seletor Horizontal de Soluções */}
-          <div className="w-full max-w-5xl mx-auto mt-8 relative">
-            <div 
-              className="relative overflow-hidden rounded-xl"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              ref={selectorRef}
-            >
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedSolutionIndex * 100}%)` }}
-              >
-                {solutions.map((solution, index) => (
-                  <div
-                    key={solution.id}
-                    className={`flex-shrink-0 w-full px-2 md:px-3 cursor-pointer transition-all duration-300 ${
-                      index === selectedSolutionIndex 
-                        ? 'opacity-100 scale-100' 
-                        : 'opacity-30 scale-95'
-                    }`}
-                    onClick={() => {
-                      setSelectedSolutionIndex(index);
-                      const element = document.getElementById(solution.id);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                  >
-                    <div className={`p-4 md:p-6 rounded-xl border transition-all duration-300 backdrop-blur-sm ${
-                      index === selectedSolutionIndex
-                        ? 'bg-primary/15 border-white/30 shadow-lg shadow-primary/25'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}>
-                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-2">
-                        {solution.title}
-                      </h3>
-                      <p className="text-gray-300 text-sm md:text-base">
-                        {solution.supportText}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Indicadores de navegação */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {solutions.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedSolutionIndex(index)}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                    index === selectedSolutionIndex
-                      ? 'bg-primary scale-125'
-                      : 'bg-white/30 hover:bg-white/50'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            {/* Botões de navegação lateral - apenas desktop */}
-            <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 z-30" style={{ top: 'calc(50% - 30px)' }}>
+          {/* Novo Seletor de Soluções em Cards */}
+          <div className="w-full max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {solutions.map((solution, index) => (
               <button
-                onClick={() => setSelectedSolutionIndex(Math.max(0, selectedSolutionIndex - 1))}
-                disabled={selectedSolutionIndex === 0}
-                className={`p-2 rounded-full transition-all duration-300 ${
-                  selectedSolutionIndex === 0
-                    ? 'opacity-30 cursor-not-allowed'
-                    : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm'
-                }`}
+                key={solution.id}
+                onClick={() => {
+                  setSelectedSolutionIndex(index);
+                  const element = document.getElementById(solution.id);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                // Estilo dos cards para seletor, inspirado em keepit.js cards
+                className={`flex flex-col items-center justify-center p-6 rounded-lg border transition-all duration-300 h-full text-center
+                  ${index === selectedSolutionIndex
+                    ? 'bg-primary/20 border-primary/50 shadow-lg' // Ativo: background primary sutil, borda primary, sombra
+                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20' // Inativo: background mais discreto, hover effect
+                  }
+                `}
               >
-                <i className="ri-arrow-left-line text-xl"></i>
+                <div className={`text-3xl mb-3 ${
+                  index === selectedSolutionIndex ? 'text-primary' : 'text-white/70'
+                }`}>
+                  <i className={solution.features[0].icon}></i> {/* Usando o ícone da primeira feature como representação */}
+                </div>
+                <h3 className={`text-xl font-bold mb-1 ${
+                  index === selectedSolutionIndex ? 'text-white' : 'text-gray-300'
+                }`}>
+                  {solution.title}
+                </h3>
+                <p className={`text-sm ${
+                  index === selectedSolutionIndex ? 'text-gray-200' : 'text-gray-400'
+                }`}>
+                  {solution.supportText}
+                </p>
               </button>
-            </div>
-            
-            <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 z-30" style={{ top: 'calc(50% - 30px)' }}>
-              <button
-                onClick={() => setSelectedSolutionIndex(Math.min(solutions.length - 1, selectedSolutionIndex + 1))}
-                disabled={selectedSolutionIndex === solutions.length - 1}
-                className={`p-2 rounded-full transition-all duration-300 ${
-                  selectedSolutionIndex === solutions.length - 1
-                    ? 'opacity-30 cursor-not-allowed'
-                    : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm'
-                }`}
-              >
-                <i className="ri-arrow-right-line text-xl"></i>
-              </button>
-            </div>
+            ))}
           </div>
+
         </div>
 
         {/* Scroll Indicator */}
@@ -349,27 +301,29 @@ export default function Solucoes() {
           key={solution.id}
           id={solution.id}
           data-solution-id={solution.id}
-          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
+          className={`relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800
+            ${activeSection === solution.id ? 'bg-black text-white' : 'bg-white text-black'} 
+            transition-colors duration-500`} // Adicionado transição de cores para a seção
         >
-          {/* Background Image (aparece apenas quando ativo) */}
+          {/* Background Image (aparece apenas quando ativo e em telas maiores) */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === solution.id ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 hidden md:block
+              ${activeSection === solution.id ? 'opacity-100' : 'opacity-0'}
+            `}
             style={{ backgroundImage: `url(${solution.image})` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
-          {/* Background Color (aparece quando não está ativo) */}
+          {/* Background Color (aparece quando não está ativo ou em telas menores) */}
           <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === solution.id ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-500 md:hidden
+              ${activeSection === solution.id ? 'opacity-0' : 'opacity-100'}
+              ${activeSection === solution.id ? 'bg-black' : 'bg-white'} `} // Fundo preto para seção ativa em mobile
           ></div>
-          
+
           {/* Content */}
-          <div className="relative z-10 min-h-screen py-20 px-4">
+          <div className="relative z-10 min-h-screen py-20 px-4 flex flex-col justify-center">
             <div className="container mx-auto max-w-7xl">
               
               {/* Hero da Solução */}
@@ -393,7 +347,7 @@ export default function Solucoes() {
 
             {/* Por que preciso? */}
             <div className="mb-16">
-              <div className="flex items-center mb-6">
+              <div className="flex items-center justify-center mb-6"> {/* Centralizado */}
                 <div className={`text-3xl mr-4 transition-colors duration-500 ${
                   activeSection === solution.id ? 'text-primary' : 'text-blue-700'
                 }`}>
@@ -405,7 +359,7 @@ export default function Solucoes() {
                   {solution.whyTitle}
                 </h3>
               </div>
-              <p className={`text-lg leading-relaxed max-w-4xl transition-colors duration-500 ${
+              <p className={`text-lg leading-relaxed max-w-4xl mx-auto text-center transition-colors duration-500 ${ // Centralizado
                 activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
               }`}>
                 {solution.whyContent}
@@ -414,7 +368,7 @@ export default function Solucoes() {
 
             {/* O que oferece */}
             <div className="mb-16">
-              <div className="flex items-center mb-8">
+              <div className="flex items-center justify-center mb-8"> {/* Centralizado */}
                 <div className={`text-3xl mr-4 transition-colors duration-500 ${
                   activeSection === solution.id ? 'text-primary' : 'text-blue-700'
                 }`}>
@@ -428,30 +382,26 @@ export default function Solucoes() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {solution.features.map((feature, idx) => (
-                  <div key={idx} className={`p-6 rounded-lg border transition-all duration-500 ${
+                  <div key={idx} className={`p-6 rounded-lg border transition-all duration-500 text-center ${ // Centralizado
                     activeSection === solution.id 
                       ? 'bg-white/10 backdrop-blur-sm border-white/20' 
                       : 'bg-gray-50 border-gray-200'
                   }`}>
-                    <div className="flex items-start space-x-4">
-                      <div className={`text-2xl mt-1 transition-colors duration-500 ${
-                        activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                      }`}>
-                        <i className={feature.icon}></i>
-                      </div>
-                      <div>
-                        <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
-                          activeSection === solution.id ? 'text-white' : 'text-black'
-                        }`}>
-                          {feature.title}
-                        </h4>
-                        <p className={`transition-colors duration-500 ${
-                          activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-                        }`}>
-                          {feature.description}
-                        </p>
-                      </div>
+                    <div className={`text-2xl mb-4 mx-auto transition-colors duration-500 ${ // Centralizado o ícone
+                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                    }`}>
+                      <i className={feature.icon}></i>
                     </div>
+                    <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      {feature.title}
+                    </h4>
+                    <p className={`transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                    }`}>
+                      {feature.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -459,7 +409,7 @@ export default function Solucoes() {
 
             {/* Como funciona */}
             <div className="mb-16">
-              <div className="flex items-center mb-8">
+              <div className="flex items-center justify-center mb-8"> {/* Centralizado */}
                 <div className={`text-3xl mr-4 transition-colors duration-500 ${
                   activeSection === solution.id ? 'text-primary' : 'text-blue-700'
                 }`}>
@@ -495,7 +445,7 @@ export default function Solucoes() {
 
             {/* Diferencial AORKIA */}
             <div className="mb-16">
-              <div className="flex items-center mb-6">
+              <div className="flex items-center justify-center mb-6"> {/* Centralizado */}
                 <div className={`text-3xl mr-4 transition-colors duration-500 ${
                   activeSection === solution.id ? 'text-primary' : 'text-blue-700'
                 }`}>
@@ -512,7 +462,7 @@ export default function Solucoes() {
                   ? 'bg-primary/20 backdrop-blur-sm border-primary/30' 
                   : 'bg-blue-50 border-blue-200'
               }`}>
-                <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                <p className={`text-lg leading-relaxed text-center transition-colors duration-500 ${ // Centralizado
                   activeSection === solution.id ? 'text-white' : 'text-gray-800'
                 }`}>
                   {solution.differentialContent}
@@ -522,7 +472,7 @@ export default function Solucoes() {
 
             {/* Riscos */}
             <div className="mb-16">
-              <div className="flex items-center mb-6">
+              <div className="flex items-center justify-center mb-6"> {/* Centralizado */}
                 <div className="text-red-400 text-3xl mr-4">
                   <i className="ri-alert-line"></i>
                 </div>
@@ -534,7 +484,7 @@ export default function Solucoes() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {solution.risks.map((risk, idx) => (
-                  <div key={idx} className={`flex items-center space-x-3 p-4 rounded-lg border transition-all duration-500 ${
+                  <div key={idx} className={`flex items-center justify-center space-x-3 p-4 rounded-lg border transition-all duration-500 text-center ${ // Centralizado
                     activeSection === solution.id 
                       ? 'bg-red-900/20 border-red-500/30' 
                       : 'bg-red-50 border-red-200'
@@ -554,7 +504,7 @@ export default function Solucoes() {
 
             {/* CTA */}
             <div className="text-center mb-16">
-              <div className="flex items-center justify-center mb-6">
+              <div className="flex items-center justify-center mb-6"> {/* Centralizado */}
                 <div className={`text-3xl mr-4 transition-colors duration-500 ${
                   activeSection === solution.id ? 'text-primary' : 'text-blue-700'
                 }`}>
@@ -623,4 +573,3 @@ export default function Solucoes() {
     </>
   );
 }
-
