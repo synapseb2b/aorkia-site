@@ -69,19 +69,18 @@ export default function PostBackupImutavel() {
         </Link>
       </div>
 
-      <main className={`min-h-screen transition-colors duration-500 ${activeHero || activeCta ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      <main className={`min-h-screen ${activeHero || activeCta ? 'bg-black text-white' : 'bg-white text-black'}`}> {/* Removida a transição de cor aqui para o corpo do texto */}
         {/* Hero Section do Post */}
         <section id="hero-post" className="relative h-screen overflow-hidden flex flex-col justify-between pt-24 pb-12 px-4 text-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/image/Vídeo_Meme_CIO_em_Pânico.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
             Seu navegador não suporta vídeo.
           </video>
-          {/* Removidas as máscaras e imagens de fallback direto na superfície do vídeo */}
-          {/* O background e overlay ainda podem ser aplicados no container pai ou no overlay de cor */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/0 z-10"></div> {/* Overlay muito sutil para legibilidade do texto */}
+          {/* Removidas todas as máscaras e imagens de fallback que cobriam o vídeo */}
+          {/* O background e overlay foram removidos para mostrar o vídeo sem efeitos */}
 
           <div className="relative z-20 w-full text-left max-w-5xl mx-auto pl-4 md:pl-0"> {/* Alinhado à esquerda */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white animate-fade-in-up"> {/* Fonte um pouco menor */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-white animate-fade-in-up"> {/* Fonte um pouco menor */}
               Não!<br />Seu Google Workspace<br />NÃO ESTÁ SEGURO!
             </h1>
           </div>
@@ -102,8 +101,8 @@ export default function PostBackupImutavel() {
         </section>
 
         {/* Conteúdo Principal do Post - Layout de Blog Tradicional aprimorado */}
-        {/* Removido o efeito de transição de fundo do container da section, mantendo a cor padrão da main (branco) */}
-        <section className="py-16 md:py-24">
+        {/* Mantém o fundo branco e texto escuro para o corpo do artigo */}
+        <section id="content-post" className="py-16 md:py-24 bg-white text-black"> {/* Fundo branco e texto preto/cinza fixo */}
           <div className="container mx-auto max-w-4xl px-4">
 
             {/* Introdução com Layout em Duas Colunas e Citação em Destaque */}
@@ -277,12 +276,14 @@ export default function PostBackupImutavel() {
                 </ul>
               </div>
               <div className="flex items-center justify-center p-4"> {/* Coluna Direita: Imagem/Diagrama do Keepit */}
-                {/* Removido o componente Image e o placeholder de "Diagrama Keepit" */}
-                {/* Você pode adicionar aqui um SVG inline ou um elemento visual que ilustre o conceito de nuvem independente */}
-                {/* Por exemplo, um SVG simples de várias nuvens interconectadas ou uma representação abstrata */}
-                <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 text-lg">
-                  [Insira aqui um diagrama ou imagem visual do Keepit]
-                </div>
+                <Image
+                  src="/image/aorkia_keepit.png" // Apontando para a imagem 'aorkia_keepit.png'
+                  alt="Diagrama Keepit Cloud Independente"
+                  width={500}
+                  height={300}
+                  objectFit="contain"
+                  className="rounded-lg shadow-lg"
+                />
               </div>
             </div>
             <p className="text-lg leading-relaxed mt-8 font-bold text-gray-800 text-justify"> {/* Cor alterada para cinza escuro, justificado */}
@@ -326,8 +327,8 @@ export default function PostBackupImutavel() {
             }`}>
               A segurança dos dados no ambiente SaaS é complexa e exige uma abordagem proativa e especializada. Como parceiros estratégicos em cibersegurança, na AORKIA, entendemos profundamente esses desafios. Confiar em soluções que não foram projetadas para backup pode expor sua empresa a riscos inaceitáveis e perdas financeiras catastróficas em caso de um ataque de ransomware ou erro humano.
             </p>
-            <p className={`text-xl mb-8 font-bold transition-colors duration-500 ${ // Texto em negrito e cor branca/primária
-              activeCta ? 'text-white' : 'text-blue-700' /* Cor base para o texto do CTA */
+            <p className={`text-xl mb-8 font-bold text-white transition-colors duration-500 ${ // Texto em negrito e cor branca
+              activeCta ? 'text-white' : 'text-gray-700' // Mantém a cor escura quando a seção não está ativa no hover
             }`}>
               Investir em uma solução de recuperação robusta como a Keepit não é um custo, mas um investimento estratégico que protege o negócio, minimiza perdas, garante a continuidade das operações e oferece um retorno financeiro comprovado. Não espere pelo próximo ataque de ransomware.
             </p>
