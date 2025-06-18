@@ -96,8 +96,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>AORKIA | Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Ativamos tecnologia para resultados mensuráveis.</title>
-        <meta name="description" content="Descubra as soluções AORKIA: Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Ativamos tecnologia para resultados mensuráveis" />
+        <title>AORKIA | Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais.</title>
+        <meta name="description" content="Descubra as soluções AORKIA: Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
