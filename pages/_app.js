@@ -131,6 +131,7 @@ function MyApp({ Component, pageProps }) {
     const formData = new FormData(form);
 
     try {
+      // URL de implantação do Google Apps Script atualizada
       const response = await fetch('https://script.google.com/macros/s/AKfycby0dqYS39NiRN9rGiVRy18bUxsOCLbuFXlMoJ13x2aMHDN1DtE3ngctFxZ06t5xpT6b/exec', {
         method: 'POST',
         body: formData
