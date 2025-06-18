@@ -131,7 +131,7 @@ function MyApp({ Component, pageProps }) {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyXVnm65_jRLny939UAFYBDPAqhxAR2WfBp3c1LAW3m3WY9P9hQyc4yYR9PRyG29Rj-ZQ/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycby0dqYS39NiRN9rGiVRy18bUxsOCLbuFXlMoJ13x2aMHDN1DtE3ngctFxZ06t5xpT6b/exec', {
         method: 'POST',
         body: formData
       });
