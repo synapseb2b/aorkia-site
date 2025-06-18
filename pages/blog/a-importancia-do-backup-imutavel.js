@@ -76,17 +76,12 @@ export default function PostBackupImutavel() {
             <source src="/image/Vídeo_Meme_CIO_em_Pânico.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
             Seu navegador não suporta vídeo.
           </video>
-          {/* Fallback para imagem se o vídeo não carregar ou não existir */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(https://placehold.co/1920x1080/0076FF/FFFFFF?text=Hero+Backup+Imutavel)` }}
-          >
-            <div className="absolute inset-0 bg-black/70"></div>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
+          {/* Removidas as máscaras e imagens de fallback direto na superfície do vídeo */}
+          {/* O background e overlay ainda podem ser aplicados no container pai ou no overlay de cor */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/0 z-10"></div> {/* Overlay muito sutil para legibilidade do texto */}
 
           <div className="relative z-20 w-full text-left max-w-5xl mx-auto pl-4 md:pl-0"> {/* Alinhado à esquerda */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white animate-fade-in-up">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white animate-fade-in-up"> {/* Fonte um pouco menor */}
               Não!<br />Seu Google Workspace<br />NÃO ESTÁ SEGURO!
             </h1>
           </div>
@@ -107,9 +102,9 @@ export default function PostBackupImutavel() {
         </section>
 
         {/* Conteúdo Principal do Post - Layout de Blog Tradicional aprimorado */}
-        {/* Removido o efeito de transição de fundo, mantendo a cor padrão da main (branco) */}
+        {/* Removido o efeito de transição de fundo do container da section, mantendo a cor padrão da main (branco) */}
         <section className="py-16 md:py-24">
-          <div className="container mx-auto max-w-4xl px-4"> {/* Removido text-gray-700 daqui para controle mais granular */}
+          <div className="container mx-auto max-w-4xl px-4">
 
             {/* Introdução com Layout em Duas Colunas e Citação em Destaque */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 items-start">
@@ -282,14 +277,12 @@ export default function PostBackupImutavel() {
                 </ul>
               </div>
               <div className="flex items-center justify-center p-4"> {/* Coluna Direita: Imagem/Diagrama do Keepit */}
-                <Image
-                  src="https://placehold.co/500x300/0076FF/FFFFFF?text=Diagrama+Keepit" // Placeholder para imagem/diagrama
-                  alt="Diagrama Keepit Cloud Independente"
-                  width={500}
-                  height={300}
-                  objectFit="contain"
-                  className="rounded-lg shadow-lg"
-                />
+                {/* Removido o componente Image e o placeholder de "Diagrama Keepit" */}
+                {/* Você pode adicionar aqui um SVG inline ou um elemento visual que ilustre o conceito de nuvem independente */}
+                {/* Por exemplo, um SVG simples de várias nuvens interconectadas ou uma representação abstrata */}
+                <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 text-lg">
+                  [Insira aqui um diagrama ou imagem visual do Keepit]
+                </div>
               </div>
             </div>
             <p className="text-lg leading-relaxed mt-8 font-bold text-gray-800 text-justify"> {/* Cor alterada para cinza escuro, justificado */}
@@ -333,8 +326,8 @@ export default function PostBackupImutavel() {
             }`}>
               A segurança dos dados no ambiente SaaS é complexa e exige uma abordagem proativa e especializada. Como parceiros estratégicos em cibersegurança, na AORKIA, entendemos profundamente esses desafios. Confiar em soluções que não foram projetadas para backup pode expor sua empresa a riscos inaceitáveis e perdas financeiras catastróficas em caso de um ataque de ransomware ou erro humano.
             </p>
-            <p className={`text-xl mb-8 font-bold transition-colors duration-500 ${
-              activeCta ? 'text-primary' : 'text-blue-700'
+            <p className={`text-xl mb-8 font-bold transition-colors duration-500 ${ // Texto em negrito e cor branca/primária
+              activeCta ? 'text-white' : 'text-blue-700' /* Cor base para o texto do CTA */
             }`}>
               Investir em uma solução de recuperação robusta como a Keepit não é um custo, mas um investimento estratégico que protege o negócio, minimiza perdas, garante a continuidade das operações e oferece um retorno financeiro comprovado. Não espere pelo próximo ataque de ransomware.
             </p>
