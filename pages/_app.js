@@ -445,13 +445,13 @@ function MyApp({ Component, pageProps }) {
             {/* Formulário de Contato - Primeira coluna no mobile */}
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
-              <form onSubmit={handleFormSubmit} className="space-y-6">
+<form onSubmit={handleFormSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800">Nome</label>
                   <input
                     type="text"
                     id="name"
-                    name="name"
+                    name="nome" {/* ALTERADO */}
                     required
                     className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
                   />
@@ -471,12 +471,12 @@ function MyApp({ Component, pageProps }) {
                   <input
                     type="text"
                     id="company"
-                    name="company"
+                    name="empresa" {/* ALTERADO */}
                     className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
                   />
                 </div>
 
-                {/* SOLUÇÕES DE INTERESSE - REMOVIDAS AS DUAS ESPECIFICADAS */}
+                {/* SOLUÇÕES DE INTERESSE - Nenhuma alteração necessária aqui */}
                 <div>
                   <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
                   <div className="space-y-3">
@@ -514,7 +514,7 @@ function MyApp({ Component, pageProps }) {
                   <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800">Mensagem</label>
                   <textarea
                     id="message"
-                    name="message"
+                    name="mensagem" {/* ALTERADO */}
                     rows="4"
                     required
                     className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-gray-800"
