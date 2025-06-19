@@ -18,7 +18,7 @@ export default function Blog() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dados de posts do blog - Agora com apenas o primeiro post e dados atualizados
+  // Dados de posts do blog - Agora com os dois posts especificados
   const blogPosts = [
     {
       id: 'post-1',
@@ -31,9 +31,21 @@ export default function Blog() {
       link: '/blog/a-importancia-do-backup-imutavel', // Link para o post completo
       category: 'Cibersegurança',
       // Título grande para a Hero (mantido como string para quebrar linha se necessário)
-      heroTitle: 'Não! Seu Google Workspace NÃO ESTÁ SEGURO!'
+      heroTitle: 'Não! Seu Google Workspace<br/>NÃO ESTÁ SEGURO!'
+    },
+    {
+      id: 'post-2',
+      // Título completo para o card
+      cardTitle: 'A Importância do Backup Imutável na Era do Ransomware', // Reutilizando título, mas é sobre Microsoft
+      date: '18 de Junho, 2025',
+      // Excerto atualizado para o card
+      cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Microsoft365? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
+      video: '/image/Video_Meme_CIO_em_Panico_2.mp4', // Vídeo para o 2º card
+      link: '/blog/microsoft365-a-importancia-do-backup-imutavel', // Link para o novo post Microsoft 365
+      category: 'Cibersegurança',
+      // Título grande para a Hero (mantido como string para quebrar linha se necessário)
+      heroTitle: 'Não! Seu Microsoft365 também<br/>NÃO ESTÁ SEGURO!' // Título para o 2º card
     }
-    // Outras postagens serão inseridas 1 a 1, então removemos os demais exemplos
   ];
 
   return (
@@ -81,7 +93,7 @@ export default function Blog() {
           </div>
 
           {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado posição e respiro */}
-          <div className="absolute left-[4rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-[4rem] para mais respiro, z-20 para ficar acima do overlay */}
+          <div className="absolute left-[8rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-[8rem] para mais respiro e centralização visual */}
             <div className="flex flex-col items-center justify-center transform -rotate-90 origin-center"> {/* Centraliza o conteúdo verticalmente e rotaciona */}
               <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap"> {/* opacity-80 para discreto */}
                 Blog da AORKIA
