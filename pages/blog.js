@@ -18,33 +18,29 @@ export default function Blog() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dados de posts do blog - Agora com os dois posts especificados
+  // Dados de posts do blog - Agora com os dois posts especificados e dados atualizados
   const blogPosts = [
     {
       id: 'post-1',
-      // Título completo para o card
-      cardTitle: 'A Importância do Backup Imutável na Era do Ransomware',
+      // Título que estará na parte inferior do card
+      cardTitle: 'Não! Seu Google Workspace NÃO ESTÁ SEGURO!',
       date: '15 de Junho, 2025',
-      // Excerto atualizado para o card
+      // Excerto atualizado para a parte inferior do card
       cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Google Workspace? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
-      video: '/image/Video_Meme_CIO_em_Panico.mp4', // Caminho CORRIGIDO para o vídeo do card
+      video: '/image/Video_Meme_CIO_em_Panico.mp4', // Caminho do vídeo
       link: '/blog/a-importancia-do-backup-imutavel', // Link para o post completo
       category: 'Cibersegurança',
-      // Título grande para a Hero (mantido como string para quebrar linha se necessário)
-      heroTitle: 'Não! Seu Google Workspace<br/>NÃO ESTÁ SEGURO!'
     },
     {
       id: 'post-2',
-      // Título completo para o card
-      cardTitle: 'A Importância do Backup Imutável na Era do Ransomware', // Reutilizando título, mas é sobre Microsoft
+      // Título que estará na parte inferior do card
+      cardTitle: 'Não! Seu Microsoft365 <span class="text-primary italic">também</span> NÃO ESTÁ SEGURO!', // Título com "também" em laranja e itálico
       date: '18 de Junho, 2025',
-      // Excerto atualizado para o card
+      // Excerto atualizado para a parte inferior do card
       cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Microsoft365? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
       video: '/image/Video_Meme_CIO_em_Panico_2.mp4', // Vídeo para o 2º card
       link: '/blog/microsoft365-a-importancia-do-backup-imutavel', // Link para o novo post Microsoft 365
       category: 'Cibersegurança',
-      // Título grande para a Hero (mantido como string para quebrar linha se necessário)
-      heroTitle: 'Não! Seu Microsoft365 também<br/>NÃO ESTÁ SEGURO!' // Título para o 2º card
     }
   ];
 
@@ -75,10 +71,10 @@ export default function Blog() {
         </Link>
       </div>
 
-      {/* Removida a Hero Section principal. O conteúdo da página começa com a seção de posts. */}
+      {/* Conteúdo da página começa com a seção de posts. */}
       <main className="bg-black text-white min-h-screen pt-20 md:pt-24"> {/* Ajustado padding top para Navbar */}
 
-        {/* Seção de Posts do Blog - Agora a primeira visão do usuário */}
+        {/* Seção de Posts do Blog */}
         <section
           id="blog-posts"
           data-section-id="blog-posts"
@@ -102,28 +98,24 @@ export default function Blog() {
             </div>
           </div>
 
-
           <div className="container mx-auto max-w-7xl px-4 relative z-10"> {/* z-10 para ficar acima do fundo mas abaixo do título vertical */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
-                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col hover:border-primary"> {/* Card inteiro não é mais um Link, o Link é interno */}
-                  {/* Área do vídeo no card (Topo do Card) */}
-                  <Link href={post.link} className="w-full h-48 relative overflow-hidden flex items-center justify-center cursor-pointer"> {/* Link aqui */}
-                    {/* Não há fundo de imagem aqui, apenas o vídeo */}
+                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col hover:border-primary">
+                  {/* Área do vídeo no card (Topo do Card) - SOMENTE VÍDEO */}
+                  <Link href={post.link} className="w-full h-48 relative overflow-hidden flex items-center justify-center cursor-pointer">
                     <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
                       <source src={post.video} type="video/mp4" />
                       Seu navegador não suporta vídeo.
                     </video>
-                    {/* Texto sobreposto ao vídeo no card */}
-                    <div className="absolute z-10 p-4 text-center bg-black/40 w-full h-full flex items-center justify-center"> {/* Overlay escuro para legibilidade */}
-                      <h3 className="text-white text-2xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: post.heroTitle }}></h3>
-                    </div>
+                    {/* Removido o texto sobreposto ao vídeo */}
+                    <div className="absolute inset-0 bg-black/20 z-10"></div> {/* Overlay sutil sobre o vídeo */}
                   </Link>
                   
                   {/* Conteúdo do texto do card (Inferior do Card) */}
                   <div className="p-6 flex flex-col flex-grow items-center text-center bg-dark-blue-2"> {/* Centralizado, fundo azul petróleo */}
                     <span className="text-sm font-medium mb-2 block text-gray-400">{post.date} &bull; {post.category}</span>
-                    <h2 className="text-xl font-bold mb-3 text-white">{post.cardTitle}</h2>
+                    <h2 className="text-xl font-bold mb-3 text-white" dangerouslySetInnerHTML={{ __html: post.cardTitle }}></h2> {/* Usando dangerouslySetInnerHTML para o "também" formatado */}
                     <p className="text-base leading-relaxed mb-4 flex-grow text-gray-300">
                       {post.cardExcerpt}
                     </p>
@@ -135,7 +127,7 @@ export default function Blog() {
                       Ler Mais <i className="ri-arrow-right-line ml-2"></i>
                     </Link>
                   </div>
-                </div >
+                </div>
               ))}
             </div>
           </div>
