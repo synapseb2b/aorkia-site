@@ -94,9 +94,9 @@ export default function Blog() {
           <div className="container mx-auto max-w-7xl px-4 relative z-10"> {/* z-10 para ficar acima do fundo mas abaixo do título vertical */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
-                <Link href={post.link} key={post.id} className="block rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col cursor-pointer hover:border-primary"> {/* Card clicável */}
+                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col hover:border-primary"> {/* Card inteiro não é mais um Link, o Link é interno */}
                   {/* Área do vídeo no card (Topo do Card) */}
-                  <div className="w-full h-48 relative overflow-hidden flex items-center justify-center">
+                  <Link href={post.link} className="w-full h-48 relative overflow-hidden flex items-center justify-center cursor-pointer"> {/* Link aqui */}
                     {/* Não há fundo de imagem aqui, apenas o vídeo */}
                     <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
                       <source src={post.video} type="video/mp4" />
@@ -106,7 +106,7 @@ export default function Blog() {
                     <div className="absolute z-10 p-4 text-center bg-black/40 w-full h-full flex items-center justify-center"> {/* Overlay escuro para legibilidade */}
                       <h3 className="text-white text-2xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: post.heroTitle }}></h3>
                     </div>
-                  </div>
+                  </Link>
                   
                   {/* Conteúdo do texto do card (Inferior do Card) */}
                   <div className="p-6 flex flex-col flex-grow items-center text-center bg-dark-blue-2"> {/* Centralizado, fundo azul petróleo */}
@@ -115,10 +115,13 @@ export default function Blog() {
                     <p className="text-base leading-relaxed mb-4 flex-grow text-gray-300">
                       {post.cardExcerpt}
                     </p>
-                    {/* O "Ler Mais" agora é visual, o card inteiro é clicável */}
-                    <span className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors mt-auto">
+                    {/* O "Ler Mais" agora é um Link explícito, mantido para clareza */}
+                    <Link
+                      href={post.link}
+                      className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors mt-auto"
+                    >
                       Ler Mais <i className="ri-arrow-right-line ml-2"></i>
-                    </span>
+                    </Link>
                   </div>
                 </div >
               ))}
