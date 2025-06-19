@@ -5,10 +5,6 @@ import Image from 'next/image';
 
 export default function Blog() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  // activeSection não será mais usado para transições de fundo da seção de posts
-  // mas pode ser mantido se houver outras interações visuais baseadas em visibilidade.
-  // Por simplicidade na requisição, vou remover a lógica de activeSection para transição de fundo da seção blog-posts
-  // e fixar o tema escuro para a seção de posts.
 
   // Efeito para monitorar o progresso de rolagem
   useEffect(() => {
@@ -21,8 +17,6 @@ export default function Blog() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Não há mais necessidade das funções handleSectionInteraction e handleSectionLeave se não houver transição de fundo por seção.
 
   // Dados de posts do blog - Agora com apenas o primeiro post e dados atualizados
   const blogPosts = [
@@ -78,51 +72,55 @@ export default function Blog() {
           data-section-id="blog-posts"
           className="relative w-full py-24 md:py-32 overflow-hidden border-t border-b border-gray-800 bg-black text-white" /* Fundo escuro fixo */
         >
-          {/* Título "Blog da AORKIA" na vertical esquerda */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-top-left z-10 hidden md:block">
-            <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-70">
-              Blog da AORKIA
-            </h1>
-            <p className="text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p>
+          {/* Fundo da seção com futuro.png */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(/image/futuro.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div> {/* Overlay escuro para legibilidade */}
+          </div>
+
+          {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado posição e respiro */}
+          <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-10 para mais respiro, z-20 para ficar acima do overlay */}
+            <div className="flex flex-col items-center justify-center h-full"> {/* Centraliza o conteúdo verticalmente */}
+              <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-80 transform -rotate-90 origin-center whitespace-nowrap"> {/* opacity-80 para discreto */}
+                Blog da AORKIA
+              </h1>
+              <p className="text-xl text-gray-400 mt-2 transform -rotate-90 origin-center whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio */}
+            </div>
           </div>
 
 
-          {/* Removidos Background Image e Background Color dinâmicos para manter o fundo fixo da main */}
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
+          <div className="container mx-auto max-w-7xl px-4 relative z-10"> {/* z-10 para ficar acima do fundo mas abaixo do título vertical */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
-                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col">
+                <Link href={post.link} key={post.id} className="block rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col cursor-pointer hover:border-primary"> {/* Card clicável */}
                   {/* Área do vídeo no card (Topo do Card) */}
                   <div className="w-full h-48 relative overflow-hidden flex items-center justify-center">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(/image/futuro.png)` }} /* Fundo da parte superior do card */
-                    ></div>
+                    {/* Não há fundo de imagem aqui, apenas o vídeo */}
                     <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
                       <source src={post.video} type="video/mp4" />
                       Seu navegador não suporta vídeo.
                     </video>
                     {/* Texto sobreposto ao vídeo no card */}
-                    <div className="absolute z-10 p-4 text-center">
+                    <div className="absolute z-10 p-4 text-center bg-black/40 w-full h-full flex items-center justify-center"> {/* Overlay escuro para legibilidade */}
                       <h3 className="text-white text-2xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: post.heroTitle }}></h3>
                     </div>
                   </div>
                   
                   {/* Conteúdo do texto do card (Inferior do Card) */}
-                  <div className="p-6 flex flex-col flex-grow text-left bg-dark-blue-2"> {/* Fundo azul petróleo para a parte inferior */}
+                  <div className="p-6 flex flex-col flex-grow items-center text-center bg-dark-blue-2"> {/* Centralizado, fundo azul petróleo */}
                     <span className="text-sm font-medium mb-2 block text-gray-400">{post.date} &bull; {post.category}</span>
                     <h2 className="text-xl font-bold mb-3 text-white">{post.cardTitle}</h2>
                     <p className="text-base leading-relaxed mb-4 flex-grow text-gray-300">
                       {post.cardExcerpt}
                     </p>
-                    <Link
-                      href={post.link}
-                      className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors mt-auto"
-                    >
+                    {/* O "Ler Mais" agora é visual, o card inteiro é clicável */}
+                    <span className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors mt-auto">
                       Ler Mais <i className="ri-arrow-right-line ml-2"></i>
-                    </Link>
+                    </span>
                   </div>
-                </div>
+                </div >
               ))}
             </div>
           </div>
