@@ -81,12 +81,12 @@ export default function Blog() {
           </div>
 
           {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado posição e respiro */}
-          <div className="absolute left-16 top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-16 para mais respiro */}
-            <div className="flex flex-col items-center justify-center h-full"> {/* Centraliza o conteúdo verticalmente */}
-              <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-80 transform -rotate-90 origin-center whitespace-nowrap"> {/* opacity-80 para discreto */}
+          <div className="absolute left-[4rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-[4rem] para mais respiro, z-20 para ficar acima do overlay */}
+            <div className="flex flex-col items-center justify-center transform -rotate-90 origin-center"> {/* Centraliza o conteúdo verticalmente e rotaciona */}
+              <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap"> {/* opacity-80 para discreto */}
                 Blog da AORKIA
               </h1>
-              <p className="text-xl text-gray-400 mt-2 transform -rotate-90 origin-center whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio */}
+              <p className="text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio */}
             </div>
           </div>
 
