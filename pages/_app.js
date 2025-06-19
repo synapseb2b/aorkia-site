@@ -478,18 +478,19 @@ function MyApp({ Component, pageProps }) {
 
   {/* CAMPO TELEFONE ADICIONADO */}
   <div>
-    <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-gray-800">Telefone</label>
-    <input
-      type="tel"
-      id="telefone"
-      name="telefone"
-      required
-      placeholder="+55 31 91234-5678"
-      pattern="\+\d{2}\s\d{2}\s\d{4,5}-\d{4}"
-      title="Formato: +DDI DDD NÚMERO (ex: +55 31 91234-5678)"
-      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
-    />
-  </div>
+  <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-gray-800">Telefone</label>
+  <input
+    type="tel"
+    id="telefone"
+    name="telefone"
+    required
+    placeholder="+55 31 91234-5678"
+    // Pattern atualizado para tornar espaços e hífen opcionais
+    pattern="\+\d{2}\s?\d{2}\s?\d{4,5}-?\d{4}"
+    title="Formato: +55 31 91234-5678 ou +5531912345678"
+    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+  />
+</div>
 
   <div>
     <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
