@@ -28,14 +28,16 @@ export default function Blog() {
   const blogPosts = [
     {
       id: 'post-1',
-      // Título com quebra de linha para o card
-      title: 'Não! Seu Google Workspace<br/>NÃO ESTÁ SEGURO!',
+      // Título completo para o card
+      cardTitle: 'A Importância do Backup Imutável na Era do Ransomware',
       date: '15 de Junho, 2025',
       // Excerto atualizado para o card
-      excerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Google Workspace? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
-      video: '/image/Vídeo_Meme_CIO_em_Pânico.mp4', // Caminho para o vídeo do card
+      cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Google Workspace? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
+      video: '/image/Video_Meme_CIO_em_Panico.mp4', // Caminho para o vídeo do card
       link: '/blog/a-importancia-do-backup-imutavel', // Link para o post completo
-      category: 'Cibersegurança'
+      category: 'Cibersegurança',
+      // Título grande para a Hero (mantido como string para quebrar linha se necessário)
+      heroTitle: 'Não! Seu Google Workspace NÃO ESTÁ SEGURO!'
     }
     // Outras postagens serão inseridas 1 a 1, então removemos os demais exemplos
   ];
@@ -80,24 +82,25 @@ export default function Blog() {
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
-                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 hover:border-primary transition-all duration-300 h-full flex flex-col items-center text-center">
-                  {/* Área do vídeo no card */}
+                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col"> {/* Removido items-center text-center do container principal para o card */}
+                  {/* Área do vídeo/imagem no card (Topo do Card) */}
                   <div className="w-full h-48 relative overflow-hidden bg-black flex items-center justify-center">
                     <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
                       <source src={post.video} type="video/mp4" />
                       Seu navegador não suporta vídeo.
                     </video>
-                    {/* Texto sobreposto ao vídeo no card */}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4"> {/* Overlay sutil para legibilidade */}
-                      <h3 className="text-white text-2xl md:text-3xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: post.title }}></h3>
+                    {/* Texto sobreposto ao vídeo no card - Layout do print (Não! Seu Google Workspace NÃO ESTÁ SEGURO!) */}
+                    <div className="absolute z-10 p-4 text-center"> {/* Centraliza o texto sobre o vídeo */}
+                      <h3 className="text-white text-2xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: post.heroTitle }}></h3> {/* Usando heroTitle para o texto superior */}
                     </div>
                   </div>
                   
-                  {/* Conteúdo do texto do card */}
-                  <div className="p-6 flex flex-col flex-grow items-center text-center">
+                  {/* Conteúdo do texto do card (Inferior do Card) */}
+                  <div className="p-6 flex flex-col flex-grow text-left"> {/* Alinhado à esquerda */}
                     <span className="text-sm font-medium mb-2 block text-gray-400">{post.date} &bull; {post.category}</span>
+                    <h2 className="text-xl font-bold mb-3 text-white">{post.cardTitle}</h2> {/* Usando cardTitle */}
                     <p className="text-base leading-relaxed mb-4 flex-grow text-gray-300">
-                      {post.excerpt}
+                      {post.cardExcerpt} {/* Usando cardExcerpt */}
                     </p>
                     <Link
                       href={post.link}
