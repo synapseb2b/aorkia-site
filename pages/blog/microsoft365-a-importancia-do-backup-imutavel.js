@@ -42,6 +42,13 @@ export default function Microsoft365BackupImutavel() {
     }
   };
 
+  const handleVideoError = (e) => {
+    console.error("Erro ao carregar o vídeo:", e.target.src, e);
+    // Adicionar um fallback visual se o vídeo não carregar
+    e.target.style.display = 'none'; // Esconde o elemento de vídeo
+    e.target.parentNode.querySelector('.video-fallback-image').style.display = 'block'; // Mostra a imagem de fallback
+  };
+
   return (
     <>
       <Head>
@@ -72,18 +79,16 @@ export default function Microsoft365BackupImutavel() {
       <main className={`min-h-screen ${activeHero || activeCta ? 'bg-black text-white' : 'bg-white text-black'}`}>
         {/* Hero Section do Post */}
         <section id="hero-post" className="relative h-screen overflow-hidden flex flex-col justify-between pt-24 pb-12 px-4 text-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" onError={handleVideoError}>
             <source src="/image/Video_Meme_CIO_em_Panico_2.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
             Seu navegador não suporta vídeo.
           </video>
-          {/* Fallback para imagem se o vídeo não carregar ou não existir */}
+          {/* Imagem de fallback para caso o vídeo não carregue. Por padrão, está oculta. */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(https://placehold.co/1920x1080/0076FF/FFFFFF?text=Microsoft365+Backup+Hero)` }}
-          >
-            <div className="absolute inset-0 bg-black/70"></div>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
+            className="video-fallback-image absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(https://placehold.co/1920x1080/0076FF/FFFFFF?text=Microsoft365+Backup+Hero+Fallback)`, display: 'none' }}
+          ></div>
+          <div className="absolute inset-0 bg-black/10 z-10"></div> {/* Overlay muito sutil */}
 
           <div className="relative z-20 w-full text-left max-w-5xl mx-auto pl-4 md:pl-0">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-white animate-fade-in-up">
@@ -239,62 +244,7 @@ export default function Microsoft365BackupImutavel() {
                     <p className="text-5xl font-bold text-primary">US$ 822K</p>
                 </div>
             </div>
-            <p className="text-lg leading-relaxed mb-12 font-bold text-center text-gray-800">
-              Somando todos esses benefícios e subtraindo os custos (principalmente as taxas de licença de software de US$ 492.000 ), o estudo aponta um ROI impressionante e um Valor Presente Líquido (NPV) em três anos.
-            </p>
-
-
-            {/* Keepit: A Escolha Inteligente para Gestores */}
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black text-center">
-              Keepit: <span className="text-primary">A Escolha Inteligente para Gestores</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-              <div className="text-justify">
-                <p className="text-lg leading-relaxed mb-8 text-gray-700">
-                  A Keepit se posiciona como a solução ideal para preencher as lacunas deixadas por ferramentas como o Microsoft Purview eDiscovery e as limitações do próprio Microsoft 365 em termos de backup granular. Ela oferece:
-                </p>
-                <ul className="text-lg leading-relaxed space-y-4 text-left">
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Excelentes capacidades de backup, protegendo seus dados críticos.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Conformidade com legislações de proteção de dados.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Plataforma amigável e fácil de usar, sem necessidade de conhecimento de TI. Um líder de TI resumiu: "O treinamento dado pela Keepit durante a fase de implementação foi extremamente bom. Em 10 minutos, toda a minha equipe estava a bordo."
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Capacidades em nuvem robustas.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Uso para arquivamento e auditoria.
-                  </li>
-                </ul>
-              </div>
-              <div className="flex items-center justify-center p-4">
-                <Image
-                  src="/image/aorkia_keepit.png"
-                  alt="Diagrama Keepit Cloud Independente"
-                  width={500}
-                  height={300}
-                  objectFit="contain"
-                  className="rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-            <p className="text-lg leading-relaxed mt-8 font-bold text-gray-800 text-justify">
-              A Keepit se destaca como a única nuvem independente do mundo para proteção de dados SaaS. Isso significa que seus dados são copiados múltiplas vezes (quatro cópias, com duas em cada um de dois data centers independentes), garantindo imutabilidade por padrão e disponibilidade em uma infraestrutura isolada e à prova de adulteração.
-            </p>
-          </div>
-        </section>
-
-        {/* CTA Final do Post */}
-        <section
+            <p className="text-lg le
           id="cta-final-post"
           className="relative w-full py-20 px-4 overflow-hidden group border-t border-b border-gray-800"
           onMouseEnter={() => setActiveCta(true)}
