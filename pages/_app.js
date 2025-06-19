@@ -446,87 +446,86 @@ function MyApp({ Component, pageProps }) {
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
 <form onSubmit={handleFormSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800">Nome</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="nome" {/* ALTERADO */}
-                    required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-800">E-mail</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2 text-gray-800">Empresa</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="empresa" {/* ALTERADO */}
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
-                  />
-                </div>
+  <div>
+    <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800">Nome</label>
+    <input
+      type="text"
+      id="name"
+      name="nome"
+      required
+      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+    />
+  </div>
+  <div>
+    <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-800">E-mail</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+    />
+  </div>
+  <div>
+    <label htmlFor="company" className="block text-sm font-medium mb-2 text-gray-800">Empresa</label>
+    <input
+      type="text"
+      id="company"
+      name="empresa"
+      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+    />
+  </div>
 
-                {/* SOLUÇÕES DE INTERESSE - Nenhuma alteração necessária aqui */}
-                <div>
-                  <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
-                  <div className="space-y-3">
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="solucoes"
-                        value="Backup SaaS Estratégico"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-gray-800">Backup SaaS Estratégico</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="solucoes"
-                        value="Operações de Bordas Inteligentes"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-gray-800">Operações de Bordas Inteligentes</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="solucoes"
-                        value="Segurança para Operações Críticas"
-                        className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-gray-800">Segurança para Operações Críticas</span>
-                    </label>
-                  </div>
-                </div>
+  <div>
+    <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
+    <div className="space-y-3">
+      <label className="flex items-center">
+        <input
+          type="checkbox"
+          name="solucoes"
+          value="Backup SaaS Estratégico"
+          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+        />
+        <span className="text-gray-800">Backup SaaS Estratégico</span>
+      </label>
+      <label className="flex items-center">
+        <input
+          type="checkbox"
+          name="solucoes"
+          value="Operações de Bordas Inteligentes"
+          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+        />
+        <span className="text-gray-800">Operações de Bordas Inteligentes</span>
+      </label>
+      <label className="flex items-center">
+        <input
+          type="checkbox"
+          name="solucoes"
+          value="Segurança para Operações Críticas"
+          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+        />
+        <span className="text-gray-800">Segurança para Operações Críticas</span>
+      </label>
+    </div>
+  </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800">Mensagem</label>
-                  <textarea
-                    id="message"
-                    name="mensagem" {/* ALTERADO */}
-                    rows="4"
-                    required
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-gray-800"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
-                >
-                  Enviar Mensagem
-                </button>
-              </form>
+  <div>
+    <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800">Mensagem</label>
+    <textarea
+      id="message"
+      name="mensagem"
+      rows="4"
+      required
+      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-gray-800"
+    ></textarea>
+  </div>
+  <button
+    type="submit"
+    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
+  >
+    Enviar Mensagem
+  </button>
+</form>
 
               {formSubmitted && (
                 <div className="mt-4 p-4 bg-green-600/20 border border-green-600/30 rounded-lg">
