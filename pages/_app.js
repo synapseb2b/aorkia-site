@@ -159,9 +159,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="format-detection" content="telephone=no" />
         {/* Favicon configurado corretamente */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
-        <link rel="icon" href="/image/favicon.ico" />
+        <link rel="icon" type="public/image/png" sizes="32x32" href="/pubic/image/favicon-32x32.png" />
+        <link rel="icon" type="public/image/png" sizes="16x16" href="/public/image/favicon-16x16.png" />
+        <link rel="icon" href="public/image/favicon.ico" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
