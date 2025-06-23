@@ -238,15 +238,15 @@ function MyApp({ Component, pageProps }) {
       {/* Desktop Navbar - Corrigida para fundo branco e textos escuros */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
-          {/* Logo à esquerda - AUMENTADA */}
+          {/* Logo à esquerda - AUMENTADA 25% */}
           <Link href="/" className="flex-shrink-0">
-            <div className="logo-container h-16 relative">
+            <div className="logo-container h-20 relative">
               <Image
                 src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
                 alt="AORKIA"
-                className="h-16 w-auto"
-                width={160}
-                height={64}
+                className="h-20 w-auto"
+                width={200}
+                height={80}
                 priority
               />
             </div>
@@ -277,18 +277,10 @@ function MyApp({ Component, pageProps }) {
               Sobre
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            {/* Novo link para o Blog */}
-            <Link href="/blog" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Blog
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-            </Link>
-            <Link href="/contato" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Contato
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-            </Link>
           </nav>
         </div>
       </header>
+
 
       {/* Mobile Navbar - Corrigida para fundo branco e textos escuros */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] md:hidden">
