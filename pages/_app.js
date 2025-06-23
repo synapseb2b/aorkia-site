@@ -326,7 +326,7 @@ function MyApp({ Component, pageProps }) {
                   <Image
                     src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
                 alt="AORKIA"
-                className="h-20 w-auto"
+                className="h-16 w-auto"
                 width={200}
                 height={80}
                     priority
