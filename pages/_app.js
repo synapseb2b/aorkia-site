@@ -245,7 +245,7 @@ function MyApp({ Component, pageProps }) {
       <Image
         src="/image/logo_aorkia_color.png"
         alt="AORKIA"
-        className="h-20 w-auto"
+        className="h-16 w-auto"
         width={400}
         height={160}
         quality={100}
