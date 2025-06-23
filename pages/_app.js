@@ -219,14 +219,15 @@ function MyApp({ Component, pageProps }) {
         <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
           <div className="preloader-content text-center">
             <div className="logo-container relative">
-              <Image
-                src="/image/logo_aorkia_white.png"
-                alt="AORKIA"
-                className="h-32 w-auto z-10 relative animate-fade-in"
-                width={300}
-                height={128}
-                priority
-              />
+        <Image
+          src="/image/logo_aorkia_white.png"
+          alt="AORKIA"
+          className="h-32 w-auto z-10 relative animate-fade-in"
+          width={600}
+          height={256}
+          quality={100}
+          priority
+        />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-x-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
@@ -241,14 +242,15 @@ function MyApp({ Component, pageProps }) {
           {/* Logo à esquerda - AUMENTADA 25% */}
           <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-20 relative">
-              <Image
-                src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
-                alt="AORKIA"
-                className="h-20 w-auto"
-                width={200}
-                height={80}
-                priority
-              />
+      <Image
+        src="/image/logo_aorkia_color.png"
+        alt="AORKIA"
+        className="h-20 w-auto"
+        width={400}
+        height={160}
+        quality={100}
+        priority
+      />
             </div>
           </Link>
 
@@ -548,12 +550,13 @@ function MyApp({ Component, pageProps }) {
             {/* Informações de Contato - Segunda coluna no mobile */}
             <div className="order-2 lg:order-1 bg-gray-50 p-8 rounded-lg shadow-inner">
               <div className="mb-12">
-            <Image
-              src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
-              alt="AORKIA"
-              className="h-20 w-auto mb-6"
-              width={208}
-              height={83}
+              <Image
+                src="/image/logo_aorkia_color.png"
+                alt="AORKIA"
+                className="h-20 w-auto mb-6"
+                width={416}
+                height={166}
+                quality={100}
             />
                 <p className="text-gray-600 text-lg leading-relaxed">
                   Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável.
