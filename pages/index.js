@@ -124,8 +124,8 @@ export default function Home() {
                 Boas-vindas à AORKIA.
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Soluções B2B que blindam dados, reduzem riscos  <br className="hidden md:block" />
-                e transformam Tecnologia de Ponta em Vantagem Real
+                Dados Críticos Seguros.  <br className="hidden md:block" />
+                Operações Inteligentes.
               </h1>
             </div>
           </div>
