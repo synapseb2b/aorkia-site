@@ -85,7 +85,7 @@ const products = [
   },
   {
     id: 'bordas',
-    title: 'Operações de Bordas Inteligentes',
+    title: 'Inteligência Autônoma na Borda ',
     supportText: 'Decisão em Milissegundos. Performance no Ponto Crítico.',
     description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
     image: '/image/bordas.png',
@@ -96,8 +96,8 @@ const products = [
   return (
     <>
       <Head>
-        <title>AORKIA | Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais.</title>
-        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM)." />
+        <title>AORKIA | Backup SaaS Estratégico (Keepit),Inteligência Autônoma na Borda  (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais.</title>
+        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit),Inteligência Autônoma na Borda  (Edge), Segurança para Operações Críticas (DSPM)." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
