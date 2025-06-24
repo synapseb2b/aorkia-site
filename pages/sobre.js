@@ -66,7 +66,7 @@ export default function Sobre() {
     <>
       <Head>
         <title>Sobre a AORKIA | Soluções Estratégicas B2B</title>
-        <meta name="description" content="Conheça a AORKIA, empresa especializada em ativação de soluções estratégicas para o mercado B2B, com foco em Backup SaaS, Operações de Bordas Inteligentes, Segurança e Inteligência de Receita." />
+        <meta name="description" content="A AORKIA eleva a segurança e inteligência B2B. Ative Backup SaaS Estratégico (Keepit), Visbilidade Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (EDGE AI) para operações mais resilientes." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -154,7 +154,7 @@ export default function Sobre() {
                   A AORKIA nasce de uma convicção – forjada em mais de duas décadas de experiência imersiva no epicentro da tecnologia B2B – de que empresas ambiciosas merecem uma abordagem mais ágil e eficaz. Após testemunhar os desafios recorrentes de implementações lentas, custos imprevisíveis e o potencial de tecnologias globais muitas vezes não realizado plenamente, surgiu a visão de um novo tipo de parceiro. Um parceiro que não apenas oferece tecnologia, mas que a ativa com foco estratégico, transformando as melhores soluções do mundo em resultados de negócio reais e rentáveis para seus clientes.
                 </p>
                 <p>
-                  Fundada em 2025, a AORKIA é a materialização dessa visão. Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em Backup SaaS Estratégico, Operações de Bordas Inteligentes e Segurança para Operações Críticas. Nosso compromisso é com a implementação rápida, a redução de riscos associados à adoção tecnológica e a geração de valor imediato.
+                  Fundada em 2025, a AORKIA é a materialização dessa visão. Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em  Backup SaaS Estratégico (Keepit), Visbilidade Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (EDGE AI). Nosso compromisso é com a implementação rápida, a redução de riscos associados à adoção tecnológica e a geração de valor imediato.
                 </p>
                 <p>
                   Iniciamos nossa trajetória sobre uma base sólida de expertise de mercado, com o objetivo de construir uma equipe de Heads altamente capacitados, dedicados a cada pilar de solução. Olhamos para o futuro com a ambição de expandir nossa capacidade de transformar desafios complexos em diferenciação operacional e valor estratégico para empresas que, como nós, acreditam no poder da tecnologia ativada com inteligência e propósito.
