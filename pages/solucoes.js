@@ -115,12 +115,12 @@ export default function Solucoes() {
     },
     {
       id: 'dspm',
-      title: 'Segurança para Operações Críticas',
+      title: 'Visibilidade Estratégica de Dados Sensíveis',
       supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
       subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
       whyTitle: 'Por que você precisa de DSPM agora?',
       whyContent: 'A explosão de dados em ambientes multinuvem criou um novo tipo de risco: dados invisíveis, permissões excessivas e alertas sem contexto. Sem DSPM, sua empresa não sabe o que está exposto — até que seja tarde demais.',
-      whatTitle: 'O que a AORKIA entrega com Segurança para Operações Críticas?',
+      whatTitle: 'O que a AORKIA entrega com Visibilidade Estratégica de Dados Sensíveis?',
       features: [
         {
           icon: 'ri-search-eye-line',
@@ -221,7 +221,7 @@ export default function Solucoes() {
     <>
       <Head>
         <title>Soluções AORKIA - Ativamos Tecnologia para Resultados Reais</title>
-        <meta name="description" content="Descubra as soluções AORKIA: Keepit com AORKIA,Operações de Bordas Inteligentes, Segurança para Operações Críticas - DSPM. Ativamos tecnologia para resultados mensuráveis." />
+        <meta name="description" content="Descubra as soluções AORKIA: Keepit com AORKIA,Operações de Bordas Inteligentes, Visibilidade Estratégica de Dados Sensíveis - DSPM. Ativamos tecnologia para resultados mensuráveis." />
         <meta name="keywords" content="backup saas, edge ai, dspm, inteligência receita, presença digital, aorkia" />
         <link rel="canonical" href="https://aorkia.com/solucoes" />
       </Head>
