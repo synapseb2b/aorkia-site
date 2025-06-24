@@ -518,10 +518,10 @@ function MyApp({ Component, pageProps }) {
         <input
           type="checkbox"
           name="solucoes"
-          value="Operações de Bordas Inteligentes"
+          value="Inteligência Autônoma na Borda"
           className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Operações de Bordas Inteligentes</span>
+        <span className="text-gray-800">Inteligência Autônoma na Borda </span>
       </label>
     </div>
   </div>
