@@ -231,7 +231,7 @@ function MyApp({ Component, pageProps }) {
           </div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/30 rounded-full animate-pulse-fast blur-xl"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full animate-pulse-fast blur-2xl"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-x-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-primary/ 10 rounded-full animate-pulse-fast blur-3x1"></div>
             </div>
           </div>
         </div>
