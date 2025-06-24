@@ -116,8 +116,8 @@ const products = [
                 Boas-vindas à AORKIA.
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Dados Críticos Seguros.  <br className="hidden md:block" />
-                Operações Inteligentes.
+                Tecnologia de Ponta ativada com propósito.  <br className="hidden md:block" />
+                Inteligência entregue com precisão.
               </h1>
             </div>
           </div>
