@@ -234,8 +234,7 @@ function MyApp({ Component, pageProps }) {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-primary/10 rounded-full animate-pulse-fast blur-3xl"></div>
             </div>
           </div>
-        </div>
-      )}
+             )}
 
       {/* Desktop Navbar - Corrigida para fundo branco e textos escuros */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
