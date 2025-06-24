@@ -96,8 +96,8 @@ const products = [
   return (
     <>
       <Head>
-        <title>AORKIA | Backup SaaS Estratégico (Keepit),Inteligência Autônoma na Borda  (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais.</title>
-        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit),Inteligência Autônoma na Borda  (Edge), Segurança para Operações Críticas (DSPM)." />
+        <title>AORKIA | Backup SaaS Estratégico (Keepit), Visibilidade Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (Edge AI). Tecnologias de Ponta orientada a resultados reais.</title>
+        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit), Visibilidade Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (Edge AI)." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
