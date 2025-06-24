@@ -57,49 +57,41 @@ export default function Home() {
     }
   };
 
-  // Produtos com suas respectivas imagens (corrigido para /image/)
-  const products = [
-    {
-      id: 'solucoes',
-      title: 'AORKIA',
-      supportText: 'Conceito',
-      description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e resultados mensuráveis — sem ruído, sem promessas vazias.',
-      image: '/image/solucoesespecializadas.png',
-      link: '/solucoes'
-    },
-    {
-      id: 'backup',
-      title: 'Backup SaaS Estratégico',
-      supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
-      description: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
-      image: '/image/backup.png',
-      link: '/solucoes'
-      },
-        {
+// Produtos com suas respectivas imagens (corrigido para /image/)
+const products = [
+  {
+    id: 'solucoes',
+    title: 'AORKIA',
+    supportText: 'Conceito',
+    description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e resultados mensuráveis — sem ruído, sem promessas vazias.',
+    image: '/image/solucoesespecializadas.png',
+    link: '/solucoes'
+  },
+  {
+    id: 'backup',
+    title: 'Backup SaaS Estratégico',
+    supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
+    description: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
+    image: '/image/backup.png',
+    link: '/solucoes'
+  },
+  {
     id: 'dspm',
     title: 'Visibilidade Estratégica de Dados Sensíveis',
     supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
     description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
     image: '/image/dspm.png',
     link: '/solucoes'
-    },
-     {
-     id: 'bordas',
-     title: 'Operações de Bordas Inteligentes',
-     supportText: 'Decisão em Milissegundos. Performance no Ponto Crítico.',
-     description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
-     image: '/image/bordas.png',
-     link: '/solucoes'
-    }
-    {
-    id: 'dspm',
-    title: 'Visibilidade Estratégica de Dados Sensíveis',
-    supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
-    description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
-    image: '/image/dspm.png',
+  },
+  {
+    id: 'bordas',
+    title: 'Operações de Bordas Inteligentes',
+    supportText: 'Decisão em Milissegundos. Performance no Ponto Crítico.',
+    description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
+    image: '/image/bordas.png',
     link: '/solucoes'
-    }
-  ];
+  }
+];
 
   return (
     <>
