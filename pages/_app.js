@@ -559,7 +559,7 @@ function MyApp({ Component, pageProps }) {
                 quality={100}
             />
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e crescimento mensurável.
+                  A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados. Fortaleça seu negócio com a inteligência que ele precisa..
                 </p>
               </div>
 
