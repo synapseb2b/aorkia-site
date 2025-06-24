@@ -309,125 +309,301 @@ export default function Solucoes() {
             ${activeSection === solution.id ? 'bg-black text-white' : 'bg-white text-black'} 
             transition-colors duration-500`}
         >
-          {/* Background Image */}
+          {/* Background Image (aparece apenas quando ativo e em telas maiores) */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === solution.id ? 'opacity-20' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 hidden md:block
+              ${activeSection === solution.id ? 'opacity-100' : 'opacity-0'}
+            `}
             style={{ backgroundImage: `url(${solution.image})` }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+          
+          {/* Background Color (aparece quando não está ativo ou em telas menores) */}
+          <div 
+            className={`absolute inset-0 transition-opacity duration-500 md:hidden
+              ${activeSection === solution.id ? 'opacity-0' : 'opacity-100'}
+              ${activeSection === solution.id ? 'bg-black' : 'bg-white'} `}
           ></div>
 
-          <div className="relative z-10 container mx-auto max-w-7xl px-4 py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-screen">
+          {/* Content */}
+          <div className="relative z-10 min-h-screen py-20 px-4 flex flex-col justify-center">
+            <div className="container mx-auto max-w-7xl">
               
-              {/* Conteúdo Principal */}
-              <div className="space-y-12">
-                {/* Header da Solução */}
-                <div>
-                  {solution.logo && (
-                    <div className="mb-6">
-                      <Image 
-                        src={solution.logo} 
-                        alt={solution.title}
-                        className="h-12 w-auto"
-                        width={120}
-                        height={48}
-                      />
+              {/* Hero da Solução */}
+              <div className="text-center mb-16">
+                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.title}
+                </h2>
+                <p className={`text-xl md:text-2xl font-semibold mb-6 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  {solution.supportText}
+                </p>
+                <p className={`text-lg md:text-xl max-w-5xl mx-auto leading-relaxed transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                }`}>
+                {solution.subtitle}
+              </p>
+            </div>
+
+            {/* Por que preciso? */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  <i className="ri-question-line"></i>
+                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.whyTitle}
+                </h3>
+              </div>
+              <p className={`text-lg leading-relaxed max-w-4xl mx-auto text-center transition-colors duration-500 ${
+                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                {solution.whyContent}
+              </p>
+            </div>
+
+            {/* Nova seção: O Mito */}
+            {solution.mythTitle && (
+              <div className="mb-16">
+                <div className="flex items-center justify-center mb-6">
+                  <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                    activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                  }`}>
+                    <i className="ri-error-warning-line"></i>
+                  </div>
+                  <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                    activeSection === solution.id ? 'text-white' : 'text-black'
+                  }`}>
+                    {solution.mythTitle}
+                  </h3>
+                </div>
+                <div className={`p-8 rounded-lg border transition-all duration-500 ${
+                  activeSection === solution.id 
+                    ? 'bg-yellow-900/20 backdrop-blur-sm border-yellow-500/30' 
+                    : 'bg-yellow-50 border-yellow-200'
+                }`}>
+                  <p className={`text-lg leading-relaxed text-center transition-colors duration-500 ${
+                    activeSection === solution.id ? 'text-gray-200' : 'text-gray-800'
+                  }`}>
+                    {solution.mythContent}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* O que oferece */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center mb-8">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  <i className="ri-shield-check-line"></i>
+                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.whatTitle}
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {solution.features.map((feature, idx) => (
+                  <div key={idx} className={`p-6 rounded-lg border transition-all duration-500 text-center ${
+                    activeSection === solution.id 
+                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
+                      : 'bg-gray-50 border-gray-200'
+                  }`}>
+                    <div className={`text-2xl mb-4 mx-auto transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                    }`}>
+                      <i className={feature.icon}></i>
                     </div>
-                  )}
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4">{solution.title}</h2>
-                  <p className="text-xl md:text-2xl text-primary font-semibold mb-6">{solution.supportText}</p>
-                  <p className="text-lg leading-relaxed">{solution.subtitle}</p>
-                </div>
-
-                {/* Por que preciso */}
-                <div>
-                  <h3 className="text-2xl font-bold mb-4">{solution.whyTitle}</h3>
-                  <p className="text-lg leading-relaxed">{solution.whyContent}</p>
-                </div>
-
-                {/* Nova seção: O Mito */}
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-6 rounded-lg border-l-4 border-red-500">
-                  <h3 className="text-2xl font-bold mb-4 text-red-700 dark:text-red-400">{solution.mythTitle}</h3>
-                  <p className="text-lg leading-relaxed text-red-800 dark:text-red-200">{solution.mythContent}</p>
-                </div>
+                    <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      {feature.title}
+                    </h4>
+                    <p className={`transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                    }`}>
+                      {feature.description}
+                    </p>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* Features Grid */}
-              <div className="space-y-12">
-                <div>
-                  <h3 className="text-3xl font-bold mb-8">{solution.whatTitle}</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {solution.features.map((feature, idx) => (
-                      <div key={idx} className="p-6 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                        <div className="text-primary text-3xl mb-4">
-                          <i className={feature.icon}></i>
-                        </div>
-                        <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
-                        <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
-                      </div>
-                    ))}
-                  </div>
+            {/* Como funciona */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center mb-8">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  <i className="ri-settings-3-line"></i>
                 </div>
-
-                {/* Como funciona */}
-                <div>
-                  <h3 className="text-2xl font-bold mb-6">{solution.howTitle}</h3>
-                  <div className="space-y-4">
-                    {solution.howSteps.map((step, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">
-                          {idx + 1}
-                        </div>
-                        <p className="text-lg">{step}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Diferencial AORKIA */}
-                <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 p-6 rounded-lg">
-                  <h3 className="text-2xl font-bold mb-4 text-primary">{solution.differentialTitle}</h3>
-                  <p className="text-lg leading-relaxed">{solution.differentialContent}</p>
-                </div>
-
-                {/* Riscos */}
-                <div>
-                  <h3 className="text-2xl font-bold mb-6 text-red-600 dark:text-red-400">{solution.risksTitle}</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {solution.risks.map((risk, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <div className="text-red-500 text-xl mr-3 mt-1">
-                          <i className="ri-close-circle-line"></i>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300">{risk}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <div className="text-center bg-gradient-to-r from-primary to-green-600 text-white p-8 rounded-lg">
-                  <h3 className="text-2xl font-bold mb-4">{solution.ctaTitle}</h3>
-                  <p className="text-lg mb-6">{solution.ctaText}</p>
-                  <Link href="/contato" className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Falar com Especialista
-                  </Link>
-                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.howTitle}
+                </h3>
               </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {solution.howSteps.map((step, idx) => (
+                  <div key={idx} className={`p-6 rounded-lg text-center border transition-all duration-500 ${
+                    activeSection === solution.id 
+                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
+                      : 'bg-gray-50 border-gray-200'
+                  }`}>
+                    <div className={`text-3xl font-bold mb-4 transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                    }`}>
+                      {idx + 1}
+                    </div>
+                    <p className={`font-medium transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-white' : 'text-black'
+                    }`}>
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Diferencial AORKIA */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  <i className="ri-star-line"></i>
+                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.differentialTitle}
+                </h3>
+              </div>
+              <div className={`p-8 rounded-lg border transition-all duration-500 ${
+                activeSection === solution.id 
+                  ? 'bg-primary/20 backdrop-blur-sm border-primary/30' 
+                  : 'bg-blue-50 border-blue-200'
+              }`}>
+                <p className={`text-lg leading-relaxed text-center transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-gray-800'
+                }`}>
+                  {solution.differentialContent}
+                </p>
+              </div>
+            </div>
+
+            {/* Riscos */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <div className="text-red-400 text-3xl mr-4">
+                  <i className="ri-alert-line"></i>
+                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.risksTitle}
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {solution.risks.map((risk, idx) => (
+                  <div key={idx} className={`flex items-center justify-center space-x-3 p-4 rounded-lg border transition-all duration-500 text-center ${
+                    activeSection === solution.id 
+                      ? 'bg-red-900/20 border-red-500/30' 
+                      : 'bg-red-50 border-red-200'
+                  }`}>
+                    <div className="text-red-400 text-xl">
+                      <i className="ri-close-circle-line"></i>
+                    </div>
+                    <p className={`transition-colors duration-500 ${
+                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+                    }`}>
+                      {risk}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <div className={`text-3xl mr-4 transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
+                }`}>
+                  <i className="ri-rocket-line"></i>
+                </div>
+                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
+                  activeSection === solution.id ? 'text-white' : 'text-black'
+                }`}>
+                  {solution.ctaTitle}
+                </h3>
+              </div>
+              <p className={`text-lg mb-8 max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                {solution.ctaText}
+              </p>
+              <Link 
+                href="/contato" 
+                className={`inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
+                  activeSection === solution.id 
+                    ? 'bg-primary hover:bg-primary/90 text-white' 
+                    : 'bg-blue-700 hover:bg-blue-800 text-white'
+                }`}
+              >
+                Fale com um Especialista
+              </Link>
+            </div>
+
+            {/* Botão Voltar ao Topo */}
+            <div className="text-center">
+              <button
+                onClick={scrollToTop}
+                className={`inline-flex items-center space-x-2 px-6 py-3 rounded-lg border transition-all duration-300 ${
+                  activeSection === solution.id 
+                    ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' 
+                    : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <i className="ri-arrow-up-line"></i>
+                <span>Voltar ao Topo</span>
+              </button>
+            </div>
+
             </div>
           </div>
         </section>
       ))}
 
-      {/* Botão Voltar ao Topo */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-8 left-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all z-50"
-        aria-label="Voltar ao topo"
+      {/* Mobile Touch Controls */}
+      <div 
+        className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        <i className="ri-arrow-up-line text-xl"></i>
-      </button>
+        <div className="flex space-x-2 bg-black/80 backdrop-blur-sm rounded-full px-4 py-2">
+          {solutions.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === selectedSolutionIndex ? 'bg-primary' : 'bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
