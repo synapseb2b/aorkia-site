@@ -508,7 +508,7 @@ function MyApp({ Component, pageProps }) {
           value="Visibilidade Estratégica de Dados Sensíveis"
           className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Segurança para Operações Críticas</span>
+        <span className="text-gray-800">Visibilidade Estratégica de Dados Sensíveis</span>
       </label>
       <label className="flex items-center">
         <input
