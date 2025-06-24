@@ -75,6 +75,14 @@ export default function Home() {
       image: '/image/backup.png',
       link: '/solucoes'
       },
+        {
+    id: 'dspm',
+    title: 'Visibilidade Estratégica de Dados Sensíveis',
+    supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
+    description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
+    image: '/image/dspm.png',
+    link: '/solucoes'
+    },
      {
      id: 'bordas',
      title: 'Operações de Bordas Inteligentes',
@@ -82,10 +90,10 @@ export default function Home() {
      description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
      image: '/image/bordas.png',
      link: '/solucoes'
-    },
+    }
     {
     id: 'dspm',
-    title: 'Segurança para Operações Críticas',
+    title: 'Visibilidade Estratégica de Dados Sensíveis',
     supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
     description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
     image: '/image/dspm.png',
@@ -97,7 +105,7 @@ export default function Home() {
     <>
       <Head>
         <title>AORKIA | Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais.</title>
-        <meta name="description" content="Descubra as soluções AORKIA: Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM). Tecnologias de Ponta orientada a resultados reais." />
+        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit),Operações de Bordas Inteligentes (Edge), Segurança para Operações Críticas (DSPM)." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -258,7 +266,7 @@ export default function Home() {
                 <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertendo tecnologia de ponta em resultados concretos: proteção de dados, continuidade operacional e excelência em performance crítica.
+                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertemos tecnologia de ponta em resultados concretos: proteção de dados, continuidade operacional e excelência em performance crítica.
                 </p>
               </div>
             </div>
