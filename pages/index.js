@@ -71,23 +71,23 @@ const products = [
     id: 'backup',
     title: 'Backup SaaS Estratégico',
     supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
-    description: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
+    description: 'Sua estratégia de resiliência cibernética está realmente completa? Microsoft, Google e Salesforce não garantem a blindagem total dos seus dados contra exclusões, erros humanos ou ataques de ransomware, expondo sua empresa a perdas irreversíveis e sanções regulatórias. O mito de que a proteção nativa é suficiente cria uma falsa segurança: ela tem retenção limitada e não blinda contra exclusões em massa ou ransomware, sendo a responsabilidade final pelos dados sempre sua. A AORKIA transforma essa lacuna em proteção inabalável e vantagem estratégica, ativando Keepit — a plataforma líder global em backup SaaS. Garantimos backup 100% imutável com Air Gap para blindagem total, restauração granular e instantânea para todo o seu ecossistema SaaS, e conformidade automatizada com LGPD, GDPR e DORA. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University. Com a AORKIA, ative resiliência e ROI máximos.',
     image: '/image/backup.png',
     link: '/solucoes'
   },
   {
     id: 'dspm',
-    title: 'Visibilidade Estratégica de Dados Sensíveis',
+    title: 'Governança Estratégica de Dados Sensíveis',
     supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
-    description: 'Seus dados confidenciais estão espalhados em múltiplas nuvens? A AORKIA ativa Plataformas DSPM (Data Security Posture Management) que descobrem, classificam e monitoram acessos em tempo real — identificando vulnerabilidades antes que virem crises. Evite violações, multas e danos reputacionais com segurança contínua e visibilidade total.',
+    description: 'Sua estratégia de governança de dados sensíveis está realmente ativa? Seus dados confidenciais estão espalhados em múltiplas nuvens, expondo sua empresa a riscos invisíveis de vazamentos, multas regulatórias (LGPD, GDPR) e danos reputacionais. O mito de que a segurança perimetral tradicional oferece controle total não se sustenta: ela não revela onde seus dados mais críticos realmente residem e estão vulneráveis, criando uma falsa sensação de controle. A AORKIA transforma essa incerteza em controle proativo, ativando as melhores Plataformas DSPM (Data Security Posture Management) para uma governança inquestionável. Descobrimos e classificamos automaticamente cada dado confidencial — mesmo o "shadow data" —, priorizamos os riscos com contexto claro (quem acessa, como é usado), e garantimos correção automatizada e conformidade contínua com LGPD, GDPR e HIPAA com trilhas de auditoria completas. Assuma o controle real e converta sua conformidade em vantagem estratégica.',
     image: '/image/dspm.png',
     link: '/solucoes'
   },
   {
     id: 'bordas',
-    title: 'Inteligência Autônoma na Borda ',
+    title: 'Inteligência Autônoma na Borda',
     supportText: 'Decisão em Milissegundos. Performance no Ponto Crítico.',
-    description: 'Sua fábrica, varejo ou operação remota não pode esperar. A AORKIA ativa Plataformas Edge AI que analisam dados no local, preveem falhas em tempo real e garantem decisões automáticas, mesmo sem conexão com a nuvem. Resultados: menos paralisações, mais eficiência e total conformidade.',
+    description: 'Sua estratégia de inteligência operacional está realmente no ponto crítico da ação? Sua fábrica, varejo ou operação remota não pode esperar por decisões que dependem de data centers distantes. O mito de que a IA de ponta só funciona com processamento centralizado na nuvem cria gargalos invisíveis: latência, interrupções por falhas de conectividade e custos crescentes. Sua IA, poderosa na nuvem, não é inteligente onde a ação acontece, roubando sua agilidade e capacidade de inovação. A AORKIA transforma essa limitação em inteligência operacional estratégica, ativando Plataformas Edge AI que levam a inteligência artificial diretamente para onde os dados nascem. Nós garantimos decisões automáticas em tempo real, com escalabilidade distribuída, controle central e segurança de ponta a ponta. Desbloqueie agilidade, resiliência e inteligência operacional com menos paralisações, maior eficiência e total conformidade, abstraindo a complexidade da infraestrutura distribuída para você.',
     image: '/image/bordas.png',
     link: '/solucoes'
   }
