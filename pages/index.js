@@ -63,7 +63,7 @@ const products = [
     id: 'solucoes',
     title: 'AORKIA',
     supportText: 'Conceito',
-    description: 'Ativamos plataformas globais com foco em resiliência cibernética, inteligência operacional e resultados mensuráveis — sem ruído, sem promessas vazias.',
+    description: 'A AORKIA foca em ativar plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados, com o propósito de converter tecnologia de ponta em vantagem competitiva duradoura e valor imediato.',
     image: '/image/solucoesespecializadas.png',
     link: '/solucoes'
   },
@@ -116,8 +116,8 @@ const products = [
                 AORKIA:
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Ativamos tecnologia de ponta para transformar desafios críticos <br className="hidden md:block" />
-                em resultados reais e mensuráveis.
+                Ativamos tecnologia de ponta para transformar  <br className="hidden md:block" />
+                desafios críticos em resultados reais e mensuráveis.
               </h1>
             </div>
           </div>
