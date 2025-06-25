@@ -209,7 +209,7 @@ export default function PresencaDigital() {
 
       <div className="min-h-screen bg-black text-white">
         {/* 1. Seção Hero: A Declaração de Autoridade */}
-        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
+        <section className="relative min-h-screen overflow-hidden hero flex items-center justify-center py-20">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/image/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
@@ -219,30 +219,30 @@ export default function PresencaDigital() {
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center text-center">
               {/* Headline Principal */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
-                Presença Digital Estratégica: Quando Posicionamento, Percepção e Tecnologia se Unem para a Autoridade da sua Marca
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 tracking-tight text-white text-center">
+                <span className="text-primary">Presença Digital Estratégica:</span> Quando Posicionamento, Percepção e Tecnologia se Unem para a Autoridade da sua Marca
               </h1>
               
               {/* Frase de Suporte */}
-              <p className="text-xl md:text-2xl max-w-4xl mb-12 text-gray-300">
+              <p className="text-lg sm:text-xl md:text-2xl max-w-4xl mb-12 text-gray-300 text-center">
                 Desenvolvemos ecossistemas digitais para marcas B2B que não se contentam com o padrão, mas buscam a liderança de mercado.
               </p>
 
               {/* Competências - Torres de Competência */}
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-12 w-full max-w-6xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 mt-12 w-full max-w-6xl">
                 {competencias.map((competencia, index) => (
                   <div 
                     key={index} 
-                    className="text-center animate-fade-in-up"
+                    className="text-center animate-fade-in-up p-4 bg-black/30 backdrop-blur-sm rounded-lg"
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
-                    <div className="text-4xl text-primary mb-4">
+                    <div className="text-3xl sm:text-4xl text-primary mb-4 flex justify-center">
                       <i className={competencia.icon}></i>
                     </div>
-                    <h3 className="text-lg font-bold mb-2 text-white">
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-white text-center">
                       {competencia.titulo}
                     </h3>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-xs sm:text-sm text-gray-400 text-center">
                       {competencia.subtitulo}
                     </p>
                   </div>
@@ -263,8 +263,20 @@ export default function PresencaDigital() {
         </section>
 
         {/* 2. Mural da Metodologia: "Da Estratégia à Autoridade: Nosso Processo em 6 Fases" */}
-        <section id="metodologia" className="bg-white text-black py-24">
-          <div className="container mx-auto max-w-6xl px-4">
+        <section 
+          id="metodologia" 
+          className="relative py-24 text-black"
+          style={{
+            backgroundImage: 'url(/image/6fases.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Overlay para melhor legibilidade */}
+          <div className="absolute inset-0 bg-white/90"></div>
+          
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">
                 Da Estratégia à Autoridade: Nosso Processo em 6 Fases
@@ -319,30 +331,30 @@ export default function PresencaDigital() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               
               {/* Coluna Esquerda: O Problema */}
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-red-700">
+              <div className="text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-red-700 text-center">
                   O Risco da Presença Digital Padrão
                 </h2>
                 
                 {/* Cards com estatísticas */}
                 <div className="space-y-6 mb-8">
-                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500">
+                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500 text-center">
                     <div className="text-4xl font-bold text-red-600 mb-2">73%</div>
                     <p className="text-gray-700">dos decisores B2B formam opinião sobre fornecedores antes do primeiro contato</p>
                   </div>
                   
-                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500">
+                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500 text-center">
                     <div className="text-4xl font-bold text-red-600 mb-2">8 seg</div>
                     <p className="text-gray-700">é o tempo médio para formar impressão de credibilidade online</p>
                   </div>
                   
-                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500">
+                  <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500 text-center">
                     <div className="text-4xl font-bold text-red-600 mb-2">67%</div>
                     <p className="text-gray-700">das empresas B2B perdem oportunidades por presença digital inadequada</p>
                   </div>
                 </div>
 
-                <blockquote className="bg-red-100 border-l-4 border-red-500 p-6 rounded-lg">
+                <blockquote className="bg-red-100 border-l-4 border-red-500 p-6 rounded-lg text-center">
                   <p className="text-lg font-semibold text-red-900 italic">
                     "Não é apenas uma falha estética — é um risco direto ao negócio."
                   </p>
@@ -350,16 +362,16 @@ export default function PresencaDigital() {
               </div>
 
               {/* Coluna Direita: Nossa Filosofia */}
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
+              <div className="text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black text-center">
                   Como Construímos Autoridade Perceptível
                 </h2>
                 
                 {/* Grade 2x2 dos pilares */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {pilares.map((pilar, index) => (
-                    <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                      <div className="text-3xl text-primary mb-4">
+                    <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+                      <div className="text-3xl text-primary mb-4 flex justify-center">
                         <i className={pilar.icon}></i>
                       </div>
                       <h3 className="text-lg font-bold mb-2 text-black">
@@ -377,8 +389,20 @@ export default function PresencaDigital() {
         </section>
 
         {/* 4. Ecossistema Tecnológico: As Ferramentas da Nossa Precisão */}
-        <section id="stack" className="bg-black text-white py-24">
-          <div className="container mx-auto max-w-6xl px-4">
+        <section 
+          id="stack" 
+          className="relative py-24 text-white"
+          style={{
+            backgroundImage: 'url(/image/ecossistema.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Overlay para melhor legibilidade */}
+          <div className="absolute inset-0 bg-black/80"></div>
+          
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 Nosso Ecossistema Tecnológico
@@ -390,13 +414,13 @@ export default function PresencaDigital() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {stackCategorias.map((categoria, index) => (
-                <div key={index} className="bg-gray-900 p-6 rounded-lg">
-                  <h3 className="text-lg font-bold mb-4 text-primary">
+                <div key={index} className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg text-center">
+                  <h3 className="text-lg font-bold mb-4 text-primary text-center">
                     {categoria.categoria}
                   </h3>
                   <div className="space-y-3">
                     {categoria.tecnologias.map((tech, techIndex) => (
-                      <div key={techIndex} className="bg-gray-800 px-4 py-2 rounded text-center text-white">
+                      <div key={techIndex} className="bg-gray-800/80 px-4 py-2 rounded text-center text-white">
                         {tech}
                       </div>
                     ))}
@@ -408,8 +432,20 @@ export default function PresencaDigital() {
         </section>
 
         {/* 5. Transformações por Segmento: A Prova Real do Nosso Impacto */}
-        <section id="segmentos" className="bg-white text-black py-24">
-          <div className="container mx-auto max-w-4xl px-4">
+        <section 
+          id="segmentos" 
+          className="relative py-24 text-black"
+          style={{
+            backgroundImage: 'url(/image/segmentos.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Overlay para melhor legibilidade */}
+          <div className="absolute inset-0 bg-white/90"></div>
+          
+          <div className="container mx-auto max-w-4xl px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">
                 Resultados por Segmento: Onde a Estratégia Encontra a Realidade
@@ -422,36 +458,45 @@ export default function PresencaDigital() {
             {/* Accordion */}
             <div className="space-y-4">
               {segmentos.map((segmento, index) => (
-                <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
+                <div key={index} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg bg-white/95 backdrop-blur-sm">
                   <button
-                    className={`w-full px-6 py-4 text-left font-semibold text-lg transition-colors ${
+                    className={`w-full px-6 py-4 text-left font-semibold text-lg transition-all duration-300 ${
                       activeAccordion === index 
-                        ? 'bg-primary text-white' 
-                        : 'bg-gray-50 text-black hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-primary to-blue-600 text-white shadow-lg' 
+                        : 'bg-gradient-to-r from-gray-50 to-gray-100 text-black hover:from-gray-100 hover:to-gray-200'
                     }`}
                     onClick={() => setActiveAccordion(activeAccordion === index ? -1 : index)}
                   >
                     <div className="flex justify-between items-center">
                       <span>{segmento.titulo}</span>
-                      <i className={`ri-arrow-${activeAccordion === index ? 'up' : 'down'}-s-line`}></i>
+                      <i className={`ri-arrow-${activeAccordion === index ? 'up' : 'down'}-s-line transition-transform duration-300`}></i>
                     </div>
                   </button>
                   
                   {activeAccordion === index && (
-                    <div className="px-6 py-6 bg-white border-t border-gray-200">
+                    <div className="px-6 py-6 bg-white/95 backdrop-blur-sm border-t border-gray-200">
                       <div className="space-y-6">
-                        <div>
-                          <h4 className="font-bold text-red-600 mb-2">Desafio Comum:</h4>
+                        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                          <h4 className="font-bold text-red-700 mb-2 flex items-center">
+                            <i className="ri-error-warning-line mr-2"></i>
+                            Desafio Comum:
+                          </h4>
                           <p className="text-gray-700">{segmento.desafio}</p>
                         </div>
                         
-                        <div>
-                          <h4 className="font-bold text-primary mb-2">Nossa Solução AORKIA:</h4>
+                        <div className="bg-blue-50 border-l-4 border-primary p-4 rounded-r-lg">
+                          <h4 className="font-bold text-primary mb-2 flex items-center">
+                            <i className="ri-lightbulb-line mr-2"></i>
+                            Nossa Solução AORKIA:
+                          </h4>
                           <p className="text-gray-700">{segmento.solucao}</p>
                         </div>
                         
-                        <div>
-                          <h4 className="font-bold text-green-600 mb-2">Resultado-Chave:</h4>
+                        <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                          <h4 className="font-bold text-green-700 mb-2 flex items-center">
+                            <i className="ri-trophy-line mr-2"></i>
+                            Resultado-Chave:
+                          </h4>
                           <p className="text-gray-700 font-semibold">{segmento.resultado}</p>
                         </div>
                       </div>
@@ -466,26 +511,28 @@ export default function PresencaDigital() {
         {/* 6. CTA Final: A Máquina de Conversão */}
         <section id="cta" className="bg-gradient-to-r from-primary to-blue-600 text-white py-24">
           <div className="container mx-auto max-w-4xl px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
               Pronto para ativar uma presença digital com peso real de autoridade?
             </h2>
             
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-blue-100 text-center">
               Nossa abordagem não é para todos. É para empresas que enxergam seu ecossistema digital como um ativo estratégico central para o crescimento. Se essa é a sua visão, estamos prontos para construir.
             </p>
             
-            <p className="text-lg mb-12 text-blue-200">
+            <p className="text-lg mb-12 text-blue-200 text-center">
               O próximo passo é uma sessão de análise estratégica de 30 minutos, onde faremos um diagnóstico inicial do seu posicionamento e oportunidades.
             </p>
             
-            <Link 
-              href="/contato" 
-              className="inline-block bg-white text-primary px-12 py-4 rounded-lg font-bold text-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              AGENDAR ANÁLISE ESTRATÉGICA
-            </Link>
+            <div className="flex justify-center">
+              <Link 
+                href="/contato" 
+                className="inline-block bg-white text-primary px-12 py-4 rounded-lg font-bold text-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                AGENDAR ANÁLISE ESTRATÉGICA
+              </Link>
+            </div>
             
-            <div className="mt-8 text-sm text-blue-200">
+            <div className="mt-8 text-sm text-blue-200 text-center">
               <p>✓ Análise gratuita • ✓ Sem compromisso • ✓ Diagnóstico personalizado</p>
             </div>
           </div>
