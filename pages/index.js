@@ -113,10 +113,10 @@ const products = [
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
-                Boas-vindas à AORKIA.
+                AORKIA:
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Onde a tecnologia de ponta se transforma <br className="hidden md:block" />
+                Ativamos tecnologia de ponta para transformar desafios críticos <br className="hidden md:block" />
                 em resultados reais e mensuráveis.
               </h1>
             </div>
