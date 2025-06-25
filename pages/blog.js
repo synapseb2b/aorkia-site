@@ -88,17 +88,28 @@ export default function Blog() {
             <div className="absolute inset-0 bg-black/60"></div> {/* Overlay escuro para legibilidade */}
           </div>
 
-          {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado posição e respiro */}
-          <div className="absolute left-[8rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-[8rem] para mais respiro e centralização visual */}
-            <div className="flex flex-col items-center justify-center transform -rotate-90 origin-center"> {/* Centraliza o conteúdo verticalmente e rotaciona */}
-              <h1 className="text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap"> {/* opacity-80 para discreto */}
+          {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado para diferentes tamanhos de tela */}
+          <div className="absolute left-4 lg:left-[8rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-4 em telas menores, left-[8rem] em telas grandes */}
+            <div className="flex flex-col items-center justify-center transform -rotate-90 origin-center">
+              <h1 className="text-2xl lg:text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap"> {/* Texto menor em telas menores */}
                 Blog da AORKIA
               </h1>
-              <p className="text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio */}
+              <p className="text-sm lg:text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio responsivo */}
             </div>
           </div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10"> {/* z-10 para ficar acima do fundo mas abaixo do título vertical */}
+            
+            {/* Título centralizado para mobile - aparece apenas em telas pequenas */}
+            <div className="block md:hidden text-center mb-12">
+              <h1 className="text-4xl font-bold text-white tracking-wide uppercase mb-4">
+                Blog da AORKIA
+              </h1>
+              <p className="text-lg text-gray-400">
+                Insights e Inovação em Tecnologia B2B
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {blogPosts.map((post) => (
                 <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col hover:border-primary">
