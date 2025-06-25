@@ -71,7 +71,7 @@ const products = [
     id: 'backup',
     title: 'Backup SaaS Estratégico',
     supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
-    description: 'Sua resiliência cibernética está completa? Microsoft365 e Google Workspace não blindam totalmente seus dados contra exclusões, erros ou ransomware. A proteção nativa é um mito de falsa segurança: tem retenção limitada e a responsabilidade final é sempre sua. A AORKIA ativa Keepit — líder global em backup SaaS — para proteção inabalável e estratégica. Backup 100% imutável, restauração granular e instantânea para seu ecossistema SaaS. Conformidade automatizada com LGPD, GDPR e DORA. Ative resiliência com a confiança de mais de 15.000 empresas.',
+    description: 'Sua resiliência cibernética está completa? Microsoft365 e Google Workspace não blindam totalmente seus dados contra exclusões, erros ou ransomware. A retenção é limitada e a responsabilidade final é sempre sua. A AORKIA ativa Keepit — líder global em backup SaaS. Backup 100% imutável, restauração granular e instantânea para seu ecossistema SaaS. Conformidade automatizada com LGPD, GDPR e DORA. Ative resiliência com a confiança de mais de 15.000 empresas.',
     image: '/image/backup.png',
     link: '/solucoes'
   },
@@ -79,7 +79,7 @@ const products = [
     id: 'dspm',
     title: 'Governança Estratégica de Dados Sensíveis',
     supportText: 'Dados Sensíveis Sob Controle. Riscos Visíveis e Eliminados.',
-    description: 'Sua governança de dados sensíveis está ativa? Dados confidenciais em múltiplas nuvens expõem sua empresa a riscos: vazamentos, multas (LGPD, GDPR) e reputação. O mito da segurança perimetral cria falsa segurança, não revelando dados críticos vulneráveis. A AORKIA transforma incerteza em controle, ativando Plataformas DSPM para governança inquestionável. Descobrimos e classificamos dados automaticamente (incluindo "shadow data"), priorizamos riscos (acesso, uso), e garantimos correção e conformidade. Assuma o controle e converta conformidade em vantagem estratégica',
+    description: 'Sua governança de dados sensíveis está ativa? Dados confidenciais em múltiplas nuvens expõem sua empresa a riscos: vazamentos, multas (LGPD, GDPR) e reputação. A AORKIA transforma incerteza em controle, ativando Plataformas DSPM para governança inquestionável. Descobrimos e classificamos dados automaticamente (incluindo "shadow data"), priorizamos riscos (acesso, uso), e garantimos correção e conformidade. Assuma o controle e converta conformidade em vantagem estratégica',
     image: '/image/dspm.png',
     link: '/solucoes'
   },
