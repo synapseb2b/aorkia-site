@@ -17,7 +17,7 @@ export default function Solucoes() {
       title: 'Backup SaaS Estratégico',
       supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
       subtitle: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
-      video: '/videos/Keepit_AORKIA.mp4',
+      video: '/image/Keepit_AORKIA.mp4',
       mythTitle: 'O Mito da Proteção Nativa: Seus Dados Estão Realmente Seguros?',
       mythContent: 'Muitos gestores acreditam que as ferramentas nativas de Microsoft 365, Google Workspace ou Salesforce oferecem proteção suficiente contra perda de dados. O mito é que "se está na nuvem, está protegido" ou que as versões anteriores e lixeiras são backup real. A verdade é que essas ferramentas têm limitações críticas: retenção limitada (30-90 dias), sem proteção contra ransomware, exclusões em massa ou falhas internas. Além disso, os próprios fornecedores deixam claro que a responsabilidade pelos dados é sua, não deles.',
       mythHighlight: 'Confiar apenas na proteção nativa é como deixar a porta de casa aberta e esperar que nada aconteça.',
@@ -81,7 +81,7 @@ export default function Solucoes() {
       title: 'Visibilidade Estratégica de Dados Sensíveis',
       supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
       subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
-      video: '/videos/DSPM_AORKIA.mp4',
+      video: '/image/DSPM_AORKIA.',
       mythTitle: 'O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?',
       mythContent: 'Muitos gestores ainda acreditam que firewalls, antivírus e ferramentas tradicionais de segurança são suficientes para proteger dados sensíveis em ambientes de nuvem. O mito é que "se tenho controle de acesso, meus dados estão seguros" ou que as ferramentas de segurança existentes oferecem visibilidade completa. A verdade é que essas soluções focam no perímetro e na proteção de rede, mas não revelam que seus dados mais sensíveis podem estar acessíveis sem visibilidade, controle ou proteção eficaz.',
       mythHighlight: 'É uma falsa sensação de controle que expõe sua organização a riscos invisíveis de vazamento ou penalidade, até que seja tarde demais.',
@@ -144,7 +144,7 @@ export default function Solucoes() {
       title: 'Inteligência Autônoma na Borda',
       supportText: 'Decisão Imediata. Eficiência Local. IA no Ponto Crítico.',
       subtitle: 'A AORKIA ativa Plataformas Edge AI que processam dados onde eles nascem — na fábrica, no varejo, em equipamentos remotos — para decisões autônomas, respostas em tempo real e independência da nuvem.',
-      video: '/videos/Edge_AI_AORKIA.mp4',
+      video: '/image/Edge_AI_AORKIA.',
       mythTitle: 'O Mito da Centralização Total: Sua IA é Realmente Inteligente?',
       mythContent: 'Muitos gestores, acostumados com a potência da nuvem, acreditam que toda a inteligência e processamento de dados devem residir em data centers remotos. O mito é que a IA de ponta só funciona com grande poder de processamento centralizado, ou que suas operações já são "rápidas o suficiente". A verdade é que a dependência exclusiva da nuvem para cada decisão cria gargalos invisíveis: latência que retarda ações críticas, interrupções por falhas de conectividade e custos crescentes de transmissão de dados. Sua IA pode ser poderosa na nuvem, mas será que ela é realmente inteligente onde a ação acontece – no ponto crítico da sua operação?',
       mythHighlight: 'Confiar apenas na inteligência centralizada na nuvem é como ter um cérebro brilhante desconectado dos reflexos do corpo no momento da ação, roubando sua agilidade e capacidade de inovação no dia a dia.',
@@ -268,7 +268,7 @@ export default function Solucoes() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Vídeo de Fundo */}
         <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-          <source src="/image/video_hero.mp4" type="video/mp4" />
+          <source src="/image/video_hero." type="video/" />
           Seu navegador não suporta vídeo.
         </video>
 
@@ -372,7 +372,7 @@ export default function Solucoes() {
                   controls
                   poster="/image/video-poster.jpg"
                 >
-                  <source src={solution.video} type="video/mp4" />
+                  <source src={solution.video} type="video/" />
                   Seu navegador não suporta vídeo.
                 </video>
               </div>
