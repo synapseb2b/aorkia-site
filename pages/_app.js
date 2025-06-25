@@ -503,7 +503,7 @@ function MyApp({ Component, pageProps }) {
           value="Backup SaaS Estratégico"
           className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Backup SaaS Estratégico</span>
+        <span className="text-gray-800">Backup SaaS Estratégico (Keepit)</span>
       </label>
       <label className="flex items-center">
         <input
@@ -512,7 +512,7 @@ function MyApp({ Component, pageProps }) {
           value="Governança Estratégica de Dados Sensíveis"
           className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Governança Estratégica de Dados Sensíveis</span>
+        <span className="text-gray-800">Governança Estratégica de Dados Sensíveis (DSPM)</span>
       </label>
       <label className="flex items-center">
         <input
@@ -521,7 +521,7 @@ function MyApp({ Component, pageProps }) {
           value="Inteligência Autônoma na Borda"
           className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Inteligência Autônoma na Borda </span>
+        <span className="text-gray-800">Inteligência Autônoma na Borda (Edge AI)</span>
       </label>
     </div>
   </div>
