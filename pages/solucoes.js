@@ -10,18 +10,18 @@ export default function Solucoes() {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
 
-  // Soluções com os novos textos do PDF e nova ordem
+  // Soluções com nova ordem e textos atualizados
   const solutions = [
     {
       id: 'backup',
       title: 'Backup SaaS Estratégico',
       supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
       subtitle: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
-      whyTitle: 'Por que preciso da Keepit com AORKIA?',
-      whyContent: 'A responsabilidade sobre os dados é sua, não do provedor SaaS. Sem um backup isolado e imutável, qualquer exclusão acidental, falha interna ou ransomware pode causar perdas irreversíveis, interrupções operacionais e sanções regulatórias.',
+      video: '/videos/Keepit_AORKIA.mp4',
       mythTitle: 'O Mito da Proteção Nativa: Seus Dados Estão Realmente Seguros?',
-      mythContent: 'Muitos gestores acreditam que as ferramentas nativas de Microsoft 365, Google Workspace ou Salesforce oferecem proteção suficiente contra perda de dados. O mito é que "se está na nuvem, está protegido" ou que as versões anteriores e lixeiras são backup real. A verdade é que essas ferramentas têm limitações críticas: retenção limitada (30-90 dias), sem proteção contra ransomware, exclusões em massa ou falhas internas. Além disso, os próprios fornecedores deixam claro que a responsabilidade pelos dados é sua, não deles. Confiar apenas na proteção nativa é como deixar a porta de casa aberta e esperar que nada aconteça.',
-      whatTitle: 'O que você ativa com Keepit',
+      mythContent: 'Muitos gestores acreditam que as ferramentas nativas de Microsoft 365, Google Workspace ou Salesforce oferecem proteção suficiente contra perda de dados. O mito é que "se está na nuvem, está protegido" ou que as versões anteriores e lixeiras são backup real. A verdade é que essas ferramentas têm limitações críticas: retenção limitada (30-90 dias), sem proteção contra ransomware, exclusões em massa ou falhas internas. Além disso, os próprios fornecedores deixam claro que a responsabilidade pelos dados é sua, não deles.',
+      mythHighlight: 'Confiar apenas na proteção nativa é como deixar a porta de casa aberta e esperar que nada aconteça.',
+      solutionTitle: 'Backup Imutável: Proteção Real, Recuperação Garantida.',
       features: [
         {
           icon: 'ri-shield-keyhole-line',
@@ -44,25 +44,36 @@ export default function Solucoes() {
           description: 'Políticas configuráveis, trilhas de auditoria completas e certificações como ISO 27001, ISAE 3402 e DORA.'
         }
       ],
-      howTitle: 'Como funciona a ativação com a AORKIA',
-      howSteps: [
-        'Mapeamento do ambiente e riscos operacionais',
-        'Implantação e configuração personalizada da Keepit',
-        'Automação de snapshots, auditoria e planos de recuperação',
-        'Capacitação da equipe + suporte estratégico contínuo'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
+      differentialTitle: 'Por que ativar Backup SaaS com AORKIA?',
+      differentialSubtitle: 'Entregamos Proteção Estratégica e Conformidade Real',
       differentialContent: 'Na AORKIA, ativar Keepit é mais do que implementar uma tecnologia — é transformar proteção de dados em um pilar estratégico de continuidade, governança e vantagem competitiva.',
-      risksTitle: 'O que você pode perder sem isso',
-      risks: [
-        'E-mails, arquivos e históricos valiosos perdidos para sempre',
-        'Não conformidade com LGPD, GDPR, HIPAA ou DORA',
-        'Operações paralisadas por falhas humanas ou ataques externos',
-        'Impossibilidade de auditar e comprovar a integridade dos dados'
+      processTitle: 'Sua Proteção de Dados: Nosso Processo Estruturado.',
+      processSteps: [
+        {
+          title: 'Mapeamento do Ambiente e Riscos Operacionais',
+          description: 'Avaliação completa dos seus dados críticos e vulnerabilidades para proteção personalizada.'
+        },
+        {
+          title: 'Implantação e Configuração Personalizada da Keepit',
+          description: 'Ativação da plataforma com configurações otimizadas para seu ambiente e necessidades específicas.'
+        },
+        {
+          title: 'Automação de Snapshots, Auditoria e Planos de Recuperação',
+          description: 'Configuração de políticas automatizadas e procedimentos de recuperação para máxima eficiência.'
+        },
+        {
+          title: 'Capacitação da Equipe + Suporte Estratégico Contínuo',
+          description: 'Treinamento especializado e suporte AORKIA para gestão proativa da sua proteção de dados.'
+        }
       ],
-      ctaTitle: 'Proteja Seus Dados com Quem Ativa Resiliência de Verdade',
+      risksTitle: 'A Inação tem um Custo Alto: Não Deixe Seus Dados Vulneráveis.',
+      risks: [
+        'E-mails, arquivos e históricos valiosos perdidos para sempre, impactando operações críticas.',
+        'Não conformidade com LGPD, GDPR, HIPAA ou DORA, resultando em multas e sanções.',
+        'Operações paralisadas por falhas humanas ou ataques externos, comprometendo a continuidade.',
+        'Impossibilidade de auditar e comprovar a integridade dos dados para compliance e governança.'
+      ],
       ctaText: 'Blindar seus dados SaaS não é uma opção — é uma decisão estratégica. Converse com nossos especialistas e ative agora a proteção imutável com Keepit.',
-      image: '/image/backup.png',
       logo: '/image/keepit_logo_aorkia.png'
     },
     {
@@ -70,11 +81,11 @@ export default function Solucoes() {
       title: 'Visibilidade Estratégica de Dados Sensíveis',
       supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
       subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
-      whyTitle: 'Por que você precisa de DSPM agora?',
-      whyContent: 'A explosão de dados em ambientes multinuvem criou um novo tipo de risco: dados invisíveis, permissões excessivas e alertas sem contexto. Sem DSPM, sua empresa não sabe o que está exposto — até que seja tarde demais.',
+      video: '/videos/DSPM_AORKIA.mp4',
       mythTitle: 'O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?',
-      mythContent: 'Muitos gestores ainda acreditam que firewalls, antivírus e ferramentas tradicionais de segurança são suficientes para proteger dados sensíveis em ambientes de nuvem. O mito é que "se tenho controle de acesso, meus dados estão seguros" ou que as ferramentas de segurança existentes oferecem visibilidade completa. A verdade é que essas soluções focam no perímetro e na proteção de rede, mas não revelam que seus dados mais sensíveis podem estar acessíveis sem visibilidade, controle ou proteção eficaz. É uma falsa sensação de controle que expõe sua organização a riscos invisíveis de vazamento ou penalidade, até que seja tarde demais.',
-      whatTitle: 'O que a AORKIA entrega com Visibilidade Estratégica de Dados Sensíveis?',
+      mythContent: 'Muitos gestores ainda acreditam que firewalls, antivírus e ferramentas tradicionais de segurança são suficientes para proteger dados sensíveis em ambientes de nuvem. O mito é que "se tenho controle de acesso, meus dados estão seguros" ou que as ferramentas de segurança existentes oferecem visibilidade completa. A verdade é que essas soluções focam no perímetro e na proteção de rede, mas não revelam que seus dados mais sensíveis podem estar acessíveis sem visibilidade, controle ou proteção eficaz.',
+      mythHighlight: 'É uma falsa sensação de controle que expõe sua organização a riscos invisíveis de vazamento ou penalidade, até que seja tarde demais.',
+      solutionTitle: 'DSPM Inteligente: Visibilidade, Controle e Proteção Real de Dados.',
       features: [
         {
           icon: 'ri-search-eye-line',
@@ -97,77 +108,99 @@ export default function Solucoes() {
           description: 'Proteja aplicações nativas da nuvem com uma visão unificada de dados, permissões e riscos em tempo real.'
         }
       ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
-      howSteps: [
-        'Mapeamento completo de riscos e dados sensíveis',
-        'Integração com sua estratégia de segurança e compliance',
-        'Automação da remediação com visibilidade contínua',
-        'Capacitação da equipe + suporte estratégico AORKIA'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
+      differentialTitle: 'Por que ativar DSPM com AORKIA?',
+      differentialSubtitle: 'Entregamos Visibilidade Estratégica e Ação Concreta',
       differentialContent: 'Enquanto outras soluções apenas geram alertas, a AORKIA transforma dados em ação concreta. Ativamos as melhores plataformas DSPM do mercado e orquestramos sua proteção de dados com inteligência, contexto e precisão contínua.',
-      risksTitle: 'O que está em risco sem isso?',
-      risks: [
-        'Informações de clientes expostas sem rastreamento',
-        'Violações com impacto regulatório (LGPD, GDPR)',
-        'Perda de propriedade intelectual e reputação',
-        'Equipes paralisadas por alertas sem ação'
+      processTitle: 'Sua Visibilidade de Dados: Nosso Processo Estruturado.',
+      processSteps: [
+        {
+          title: 'Mapeamento Completo de Riscos e Dados Sensíveis',
+          description: 'Descoberta abrangente de todos os dados críticos e avaliação de vulnerabilidades em seu ambiente.'
+        },
+        {
+          title: 'Integração com sua Estratégia de Segurança e Compliance',
+          description: 'Alinhamento das políticas DSPM com seus frameworks de segurança e requisitos regulatórios existentes.'
+        },
+        {
+          title: 'Automação da Remediação com Visibilidade Contínua',
+          description: 'Implementação de correções automatizadas e monitoramento em tempo real para proteção proativa.'
+        },
+        {
+          title: 'Capacitação da Equipe + Suporte Estratégico AORKIA',
+          description: 'Treinamento especializado e suporte contínuo para maximizar o valor da sua estratégia de proteção de dados.'
+        }
       ],
-      ctaTitle: 'Assuma o Controle Real dos Seus Dados',
-      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.',
-      image: '/image/dspm.png'
+      risksTitle: 'A Inação tem um Custo Alto: Não Deixe Seus Dados Invisíveis.',
+      risks: [
+        'Informações de clientes expostas sem rastreamento, comprometendo confiança e reputação.',
+        'Violações com impacto regulatório (LGPD, GDPR), resultando em multas significativas.',
+        'Perda de propriedade intelectual e reputação por vazamentos não detectados.',
+        'Equipes paralisadas por alertas sem ação, desperdiçando recursos e tempo.'
+      ],
+      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.'
     },
     {
       id: 'bordas',
       title: 'Inteligência Autônoma na Borda',
       supportText: 'Decisão Imediata. Eficiência Local. IA no Ponto Crítico.',
       subtitle: 'A AORKIA ativa Plataformas Edge AI que processam dados onde eles nascem — na fábrica, no varejo, em equipamentos remotos — para decisões autônomas, respostas em tempo real e independência da nuvem.',
-      whyTitle: 'Por que ativar Inteligência Autônoma na Borda?',
-      whyContent: 'Levar a Inteligência Artificial até o ponto onde os dados são gerados não é mais tendência — é necessidade estratégica. Reduz latência, aumenta eficiência, habilita decisões locais instantâneas e libera sua operação da dependência total da nuvem. Segundo o Gartner, até 2029, 60% das implementações de edge computing usarão IA composta, ante menos de 5% em 2023.',
+      video: '/videos/Edge_AI_AORKIA.mp4',
       mythTitle: 'O Mito da Centralização Total: Sua IA é Realmente Inteligente?',
-      mythContent: 'Muitos gestores, acostumados com a potência da nuvem, acreditam que toda a inteligência e processamento de dados devem residir em data centers remotos. O mito é que a IA de ponta só funciona com grande poder de processamento centralizado, ou que suas operações já são "rápidas o suficiente". A verdade é que a dependência exclusiva da nuvem para cada decisão cria gargalos invisíveis: latência que retarda ações críticas, interrupções por falhas de conectividade e custos crescentes de transmissão de dados. Sua IA é poderosa na nuvem, mas será que ela é realmente inteligente onde a ação acontece – no ponto crítico da sua operação? Essa centralização pode estar roubando sua agilidade, eficiência e capacidade de inovação no dia a dia.',
-      whatTitle: 'O que a AORKIA ativa com Inteligência Autônoma na Borda?',
+      mythContent: 'Muitos gestores, acostumados com a potência da nuvem, acreditam que toda a inteligência e processamento de dados devem residir em data centers remotos. O mito é que a IA de ponta só funciona com grande poder de processamento centralizado, ou que suas operações já são "rápidas o suficiente". A verdade é que a dependência exclusiva da nuvem para cada decisão cria gargalos invisíveis: latência que retarda ações críticas, interrupções por falhas de conectividade e custos crescentes de transmissão de dados. Sua IA pode ser poderosa na nuvem, mas será que ela é realmente inteligente onde a ação acontece – no ponto crítico da sua operação?',
+      mythHighlight: 'Confiar apenas na inteligência centralizada na nuvem é como ter um cérebro brilhante desconectado dos reflexos do corpo no momento da ação, roubando sua agilidade e capacidade de inovação no dia a dia.',
+      solutionTitle: 'IA Funcional na Borda: Agilidade, Resiliência e Inteligência Operacional.',
       features: [
         {
           icon: 'ri-cpu-line',
           title: 'IA Ativa Onde os Dados Nascem',
-          description: 'Decisões automatizadas em tempo real, com latência mínima e impacto máximo.'
+          description: 'Decisões automatizadas em tempo real, com latência mínima e impacto máximo, sem depender da conectividade constante com a internet.'
         },
         {
           icon: 'ri-global-line',
           title: 'Escalabilidade Distribuída com Controle Central',
-          description: 'Implante e gerencie IA em centenas ou milhares de sites com gestão central estratégica.'
+          description: 'Implante e gerencie IA em centenas ou milhares de sites com gestão central estratégica unificada, otimizando custos e eficiência.'
         },
         {
           icon: 'ri-dashboard-3-line',
           title: 'Gestão Unificada de Dispositivos e Aplicações',
-          description: 'Ciclo de vida completo sob controle em uma única interface — menos custos, mais eficiência.'
+          description: 'Controle o ciclo de vida completo de seus sistemas de borda sob uma única interface, abstraindo a complexidade da infraestrutura distribuída.'
         },
         {
           icon: 'ri-shield-check-line',
           title: 'Segurança de Ponta a Ponta',
-          description: 'Proteção desde o hardware até a nuvem. Criptografia, isolamento e integridade garantida.'
+          description: 'Proteção robusta desde o hardware até a nuvem com criptografia, isolamento e integridade garantida, processando dados localmente para privacidade aprimorada.'
         }
       ],
-      howTitle: 'Como funciona a ativação com a AORKIA?',
-      howSteps: [
-        'Mapeamento dos casos de uso críticos',
-        'Escolha e integração das melhores plataformas Edge AI',
-        'Automação do provisionamento e orquestração centralizada',
-        'Treinamento, suporte e gestão contínua com visibilidade total'
-      ],
-      differentialTitle: 'O diferencial AORKIA',
+      differentialTitle: 'Por que ativar Edge AI com AORKIA?',
+      differentialSubtitle: 'Entregamos a IA Pronta, Segura e Dimensionada',
       differentialContent: 'Você não precisa entender de infraestrutura distribuída, containers ou gerenciamento de dispositivos. A AORKIA entrega IA funcional na borda — pronta, segura e dimensionada para seu negócio. Ativamos, monitoramos e escalamos junto com você.',
-      risksTitle: 'O que você perde sem isso?',
-      risks: [
-        'Operações paralisadas por latência ou falta de conectividade',
-        'Falta de resposta imediata em situações críticas',
-        'Custo alto com nuvem centralizada e suporte ineficiente',
-        'Perda de competitividade em eficiência, personalização e predição'
+      processTitle: 'Seu Caminho para a Inteligência Autônoma: Nosso Processo Estruturado.',
+      processSteps: [
+        {
+          title: 'Mapeamento dos Casos de Uso Críticos',
+          description: 'Avaliação detalhada das suas operações e necessidades para otimização com IA na borda.'
+        },
+        {
+          title: 'Escolha e Integração das Melhores Plataformas Edge AI',
+          description: 'Seleção e ativação das tecnologias líderes de mercado, como NVIDIA Jetson ou Azure IoT Edge, adaptadas ao seu ambiente.'
+        },
+        {
+          title: 'Automação do Provisionamento e Orquestração Centralizada',
+          description: 'Configuração de fluxos de trabalho para implantação e gerenciamento eficientes em escala, abstraindo a complexidade.'
+        },
+        {
+          title: 'Treinamento, Suporte e Gestão Contínua com Visibilidade Total',
+          description: 'Capacitação da sua equipe e suporte especializado AORKIA para máxima performance e resiliência.'
+        }
       ],
-      ctaTitle: 'Desbloqueie a IA onde ela mais importa',
-      ctaText: 'Ganhe velocidade, resiliência e inteligência operacional no exato momento em que os dados são gerados. Converse com a AORKIA e veja como ativar decisões autônomas no ponto mais crítico da sua operação.',
-      image: '/image/bordas.png'
+      risksTitle: 'A Inação tem um Custo Alto: Não Deixe Sua Operação para Trás.',
+      risks: [
+        'Operações paralisadas por latência ou falta de conectividade, impactando a produtividade.',
+        'Falta de resposta imediata em situações críticas, comprometendo segurança ou qualidade.',
+        'Custo alto com nuvem centralizada e suporte ineficiente, devido à transmissão constante de dados.',
+        'Perda de competitividade em eficiência, personalização e predição no seu segmento.'
+      ],
+      ctaText: 'Ganhe velocidade, resiliência e inteligência operacional no exato momento em que os dados são gerados. Converse com a AORKIA e veja como ativar decisões autônomas no ponto mais crítico da sua operação.'
     }
   ];
 
@@ -231,7 +264,7 @@ export default function Solucoes() {
         <link rel="canonical" href="https://aorkia.com/solucoes" />
       </Head>
 
-      {/* Hero Section com Vídeo */}
+      {/* Hero Section com Vídeo - MANTIDO ORIGINAL */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Vídeo de Fundo */}
         <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
@@ -251,7 +284,7 @@ export default function Solucoes() {
             Ativamos tecnologia de ponta para transformar desafios críticos em resultados mensuráveis e operações mais seguras.
           </p>
           
-          {/* Novo Seletor de Soluções em Cards - ORDEM ATUALIZADA */}
+          {/* Seletor de Soluções em Cards - ORDEM ATUALIZADA */}
           <div className="w-full max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
             {solutions.map((solution, index) => (
               <button
@@ -288,7 +321,6 @@ export default function Solucoes() {
               </button>
             ))}
           </div>
-
         </div>
 
         {/* Scroll Indicator */}
@@ -299,311 +331,210 @@ export default function Solucoes() {
         </div>
       </section>
 
-      {/* Solutions Sections */}
+      {/* Solutions Sections - NOVA ESTRUTURA CONFORME WIREFRAME */}
       {solutions.map((solution, index) => (
         <section
           key={solution.id}
           id={solution.id}
           data-solution-id={solution.id}
-          className={`relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800
-            ${activeSection === solution.id ? 'bg-black text-white' : 'bg-white text-black'} 
-            transition-colors duration-500`}
+          className="bg-white"
         >
-          {/* Background Image (aparece apenas quando ativo e em telas maiores) */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 hidden md:block
-              ${activeSection === solution.id ? 'opacity-100' : 'opacity-0'}
-            `}
-            style={{ backgroundImage: `url(${solution.image})` }}
-          >
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
-          
-          {/* Background Color (aparece quando não está ativo ou em telas menores) */}
-          <div 
-            className={`absolute inset-0 transition-opacity duration-500 md:hidden
-              ${activeSection === solution.id ? 'opacity-0' : 'opacity-100'}
-              ${activeSection === solution.id ? 'bg-black' : 'bg-white'} `}
-          ></div>
-
-          {/* Content */}
-          <div className="relative z-10 min-h-screen py-20 px-4 flex flex-col justify-center">
-            <div className="container mx-auto max-w-7xl">
-              
-              {/* Hero da Solução */}
-              <div className="text-center mb-16">
-                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.title}
-                </h2>
-                <p className={`text-xl md:text-2xl font-semibold mb-6 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  {solution.supportText}
-                </p>
-                <p className={`text-lg md:text-xl max-w-5xl mx-auto leading-relaxed transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-                }`}>
-                {solution.subtitle}
-              </p>
-            </div>
-
-            {/* Por que preciso? */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center mb-6">
-                <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  <i className="ri-question-line"></i>
-                </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.whyTitle}
-                </h3>
-              </div>
-              <p className={`text-lg leading-relaxed max-w-4xl mx-auto text-center transition-colors duration-500 ${
-                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-              }`}>
-                {solution.whyContent}
-              </p>
-            </div>
-
-            {/* Nova seção: O Mito */}
-            {solution.mythTitle && (
-              <div className="mb-16">
-                <div className="flex items-center justify-center mb-6">
-                  <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                    activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                  }`}>
-                    <i className="ri-error-warning-line"></i>
-                  </div>
-                  <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                    activeSection === solution.id ? 'text-white' : 'text-black'
-                  }`}>
-                    {solution.mythTitle}
-                  </h3>
-                </div>
-                <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                  activeSection === solution.id 
-                    ? 'bg-yellow-900/20 backdrop-blur-sm border-yellow-500/30' 
-                    : 'bg-yellow-50 border-yellow-200'
-                }`}>
-                  <p className={`text-lg leading-relaxed text-center transition-colors duration-500 ${
-                    activeSection === solution.id ? 'text-gray-200' : 'text-gray-800'
-                  }`}>
-                    {solution.mythContent}
-                  </p>
-                </div>
+          {/* 1ª PARTE: Introdução e Contexto */}
+          <div className="container mx-auto max-w-6xl px-4 py-20 text-center">
+            {/* Logo da solução (se existir) */}
+            {solution.logo && (
+              <div className="mb-8">
+                <Image 
+                  src={solution.logo} 
+                  alt={solution.title}
+                  className="h-12 w-auto mx-auto"
+                  width={120}
+                  height={48}
+                />
               </div>
             )}
 
-            {/* O que oferece */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center mb-8">
-                <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  <i className="ri-shield-check-line"></i>
-                </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.whatTitle}
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {solution.features.map((feature, idx) => (
-                  <div key={idx} className={`p-6 rounded-lg border transition-all duration-500 text-center ${
-                    activeSection === solution.id 
-                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
-                      : 'bg-gray-50 border-gray-200'
-                  }`}>
-                    <div className={`text-2xl mb-4 mx-auto transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                    }`}>
-                      <i className={feature.icon}></i>
-                    </div>
-                    <h4 className={`text-lg font-semibold mb-2 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
-                    }`}>
-                      {feature.title}
-                    </h4>
-                    <p className={`transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-                    }`}>
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
+            {/* Título Principal (H1) */}
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              {solution.title}
+            </h1>
+
+            {/* Subtítulo (Destaque) */}
+            <p className="text-xl md:text-2xl text-primary font-semibold mb-8">
+              {solution.supportText}
+            </p>
+
+            {/* Vídeo - Responsivo com largura dos cards */}
+            <div className="w-full max-w-4xl mx-auto mb-8">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <video 
+                  className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+                  controls
+                  poster="/image/video-poster.jpg"
+                >
+                  <source src={solution.video} type="video/mp4" />
+                  Seu navegador não suporta vídeo.
+                </video>
               </div>
             </div>
 
-            {/* Como funciona */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center mb-8">
-                <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  <i className="ri-settings-3-line"></i>
-                </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.howTitle}
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {solution.howSteps.map((step, idx) => (
-                  <div key={idx} className={`p-6 rounded-lg text-center border transition-all duration-500 ${
-                    activeSection === solution.id 
-                      ? 'bg-white/10 backdrop-blur-sm border-white/20' 
-                      : 'bg-gray-50 border-gray-200'
-                  }`}>
-                    <div className={`text-3xl font-bold mb-4 transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                    }`}>
-                      {idx + 1}
-                    </div>
-                    <p className={`font-medium transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-white' : 'text-black'
-                    }`}>
-                      {step}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            {/* Descrição principal */}
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 max-w-4xl mx-auto">
+              {solution.subtitle}
+            </p>
+
+            {/* CTA Primária */}
+            <div className="mb-8">
+              <Link 
+                href="/contato" 
+                className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
+              >
+                Falar com Especialista
+              </Link>
             </div>
 
-            {/* Diferencial AORKIA */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center mb-6">
-                <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  <i className="ri-star-line"></i>
-                </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.differentialTitle}
-                </h3>
-              </div>
-              <div className={`p-8 rounded-lg border transition-all duration-500 ${
-                activeSection === solution.id 
-                  ? 'bg-primary/20 backdrop-blur-sm border-primary/30' 
-                  : 'bg-blue-50 border-blue-200'
-              }`}>
-                <p className={`text-lg leading-relaxed text-center transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-gray-800'
-                }`}>
-                  {solution.differentialContent}
+            {/* Elemento de Confiança */}
+            <div className="text-sm text-gray-500">
+              <p>✓ Consultoria especializada • ✓ Implementação garantida • ✓ Suporte contínuo</p>
+            </div>
+          </div>
+
+          {/* 2ª PARTE: O Mito (com destaque visual) */}
+          <div className="bg-gradient-to-r from-red-50 to-orange-50 py-20">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-red-700 mb-8">
+                {solution.mythTitle}
+              </h2>
+              <p className="text-lg md:text-xl text-red-800 leading-relaxed mb-8">
+                {solution.mythContent}
+              </p>
+              <div className="bg-red-100 border-l-4 border-red-500 p-6 rounded-lg">
+                <p className="text-lg font-semibold text-red-900 italic">
+                  "{solution.mythHighlight}"
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Riscos */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center mb-6">
-                <div className="text-red-400 text-3xl mr-4">
-                  <i className="ri-alert-line"></i>
-                </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.risksTitle}
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {solution.risks.map((risk, idx) => (
-                  <div key={idx} className={`flex items-center justify-center space-x-3 p-4 rounded-lg border transition-all duration-500 text-center ${
-                    activeSection === solution.id 
-                      ? 'bg-red-900/20 border-red-500/30' 
-                      : 'bg-red-50 border-red-200'
-                  }`}>
-                    <div className="text-red-400 text-xl">
-                      <i className="ri-close-circle-line"></i>
+          {/* 3ª PARTE: A Solução AORKIA (4 benefícios com ícones) */}
+          <div className="bg-white py-20">
+            <div className="container mx-auto max-w-6xl px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
+                {solution.solutionTitle}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {solution.features.map((feature, idx) => (
+                  <div key={idx} className="text-center p-6 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-lg transition-all">
+                    <div className="text-primary text-4xl mb-4">
+                      <i className={feature.icon}></i>
                     </div>
-                    <p className={`transition-colors duration-500 ${
-                      activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-                    }`}>
-                      {risk}
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                    <p className="text-gray-700 leading-relaxed">{feature.description}</p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* CTA */}
-            <div className="text-center mb-16">
-              <div className="flex items-center justify-center mb-6">
-                <div className={`text-3xl mr-4 transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-primary' : 'text-blue-700'
-                }`}>
-                  <i className="ri-rocket-line"></i>
+          {/* 4ª PARTE: O Diferencial AORKIA */}
+          <div className="bg-gradient-to-r from-blue-50 to-green-50 py-20">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
+              <div className="mb-8">
+                <div className="inline-block bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                  DIFERENCIAL AORKIA
                 </div>
-                <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-500 ${
-                  activeSection === solution.id ? 'text-white' : 'text-black'
-                }`}>
-                  {solution.ctaTitle}
-                </h3>
               </div>
-              <p className={`text-lg mb-8 max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === solution.id ? 'text-gray-200' : 'text-gray-700'
-              }`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {solution.differentialTitle}
+              </h2>
+              <p className="text-xl text-primary font-semibold mb-8">
+                {solution.differentialSubtitle}
+              </p>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                {solution.differentialContent}
+              </p>
+            </div>
+          </div>
+
+          {/* 5ª PARTE: Como Funciona (4 passos) */}
+          <div className="bg-white py-20">
+            <div className="container mx-auto max-w-6xl px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
+                {solution.processTitle}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {solution.processSteps.map((step, idx) => (
+                  <div key={idx} className="flex items-start">
+                    <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
+                      {idx + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                      <p className="text-gray-700 leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 6ª PARTE: Riscos de Não Agir */}
+          <div className="bg-gray-100 py-20">
+            <div className="container mx-auto max-w-6xl px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-red-700 text-center mb-16">
+                {solution.risksTitle}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {solution.risks.map((risk, idx) => (
+                  <div key={idx} className="flex items-start bg-white p-6 rounded-lg shadow-sm border border-red-200">
+                    <div className="text-red-500 text-2xl mr-4 mt-1 flex-shrink-0">
+                      <i className="ri-close-circle-line"></i>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">{risk}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 7ª PARTE: CTA Final */}
+          <div className="bg-gradient-to-r from-primary to-green-600 py-20">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
+              <p className="text-xl md:text-2xl text-white leading-relaxed mb-8">
                 {solution.ctaText}
               </p>
               <Link 
                 href="/contato" 
-                className={`inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
-                  activeSection === solution.id 
-                    ? 'bg-primary hover:bg-primary/90 text-white' 
-                    : 'bg-blue-700 hover:bg-blue-800 text-white'
-                }`}
+                className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:bg-gray-100"
               >
                 Fale com um Especialista
               </Link>
             </div>
+          </div>
 
-            {/* Botão Voltar ao Topo */}
-            <div className="text-center">
+          {/* Voltar ao Topo */}
+          <div className="bg-white py-8">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
               <button
                 onClick={scrollToTop}
-                className={`inline-flex items-center space-x-2 px-6 py-3 rounded-lg border transition-all duration-300 ${
-                  activeSection === solution.id 
-                    ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' 
-                    : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200'
-                }`}
+                className="text-primary hover:text-primary/80 font-semibold transition-colors flex items-center mx-auto"
               >
-                <i className="ri-arrow-up-line"></i>
-                <span>Voltar ao Topo</span>
+                <i className="ri-arrow-up-line text-xl mr-2"></i>
+                Voltar ao Topo
               </button>
-            </div>
-
             </div>
           </div>
         </section>
       ))}
 
-      {/* Mobile Touch Controls */}
-      <div 
-        className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+      {/* Botão Voltar ao Topo Flutuante */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-8 left-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all z-50"
+        aria-label="Voltar ao topo"
       >
-        <div className="flex space-x-2 bg-black/80 backdrop-blur-sm rounded-full px-4 py-2">
-          {solutions.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === selectedSolutionIndex ? 'bg-primary' : 'bg-white/30'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+        <i className="ri-arrow-up-line text-xl"></i>
+      </button>
     </>
   );
 }
