@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Solucoes() {
   const [activeSection, setActiveSection] = useState('backup');
   const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0);
+  const [activePart, setActivePart] = useState(null); // Para controlar qual parte está ativa
   const selectorRef = useRef(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
@@ -17,7 +18,7 @@ export default function Solucoes() {
       title: 'Backup SaaS Estratégico',
       supportText: 'Proteção Imutável. Recuperação Rápida. Conformidade Garantida.',
       subtitle: 'Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR. Confiança de mais de 15.000 empresas em 74 países, incluindo Porsche e Oxford University.',
-      video: '/image/Keepit_AORKIA.mp4',
+      video: '/image/Keepit_AOIRKIA.mp4',
       mythTitle: 'O Mito da Proteção Nativa: Seus Dados Estão Realmente Seguros?',
       mythContent: 'Muitos gestores acreditam que as ferramentas nativas de Microsoft 365, Google Workspace ou Salesforce oferecem proteção suficiente contra perda de dados. O mito é que "se está na nuvem, está protegido" ou que as versões anteriores e lixeiras são backup real. A verdade é que essas ferramentas têm limitações críticas: retenção limitada (30-90 dias), sem proteção contra ransomware, exclusões em massa ou falhas internas. Além disso, os próprios fornecedores deixam claro que a responsabilidade pelos dados é sua, não deles.',
       mythHighlight: 'Confiar apenas na proteção nativa é como deixar a porta de casa aberta e esperar que nada aconteça.',
@@ -74,14 +75,24 @@ export default function Solucoes() {
         'Impossibilidade de auditar e comprovar a integridade dos dados para compliance e governança.'
       ],
       ctaText: 'Blindar seus dados SaaS não é uma opção — é uma decisão estratégica. Converse com nossos especialistas e ative agora a proteção imutável com Keepit.',
-      logo: '/image/keepit_logo_aorkia.png'
+      logo: '/image/keepit_logo_aorkia.png',
+      // Imagens para cada parte da seção
+      images: {
+        intro: '/image/backup.png',
+        myth: '/image/backup.png',
+        solution: '/image/backup.png',
+        differential: '/image/backup.png',
+        process: '/image/backup.png',
+        risks: '/image/backup.png',
+        cta: '/image/backup.png'
+      }
     },
     {
       id: 'dspm',
       title: 'Visibilidade Estratégica de Dados Sensíveis',
       supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
       subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
-      video: '/image/DSPM_AORKIA.',
+      video: '/image/DSPM_AORKIA.mp4',
       mythTitle: 'O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?',
       mythContent: 'Muitos gestores ainda acreditam que firewalls, antivírus e ferramentas tradicionais de segurança são suficientes para proteger dados sensíveis em ambientes de nuvem. O mito é que "se tenho controle de acesso, meus dados estão seguros" ou que as ferramentas de segurança existentes oferecem visibilidade completa. A verdade é que essas soluções focam no perímetro e na proteção de rede, mas não revelam que seus dados mais sensíveis podem estar acessíveis sem visibilidade, controle ou proteção eficaz.',
       mythHighlight: 'É uma falsa sensação de controle que expõe sua organização a riscos invisíveis de vazamento ou penalidade, até que seja tarde demais.',
@@ -137,14 +148,24 @@ export default function Solucoes() {
         'Perda de propriedade intelectual e reputação por vazamentos não detectados.',
         'Equipes paralisadas por alertas sem ação, desperdiçando recursos e tempo.'
       ],
-      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.'
+      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.',
+      // Imagens para cada parte da seção
+      images: {
+        intro: '/image/dspm.png',
+        myth: '/image/dspm.png',
+        solution: '/image/dspm.png',
+        differential: '/image/dspm.png',
+        process: '/image/dspm.png',
+        risks: '/image/dspm.png',
+        cta: '/image/dspm.png'
+      }
     },
     {
       id: 'bordas',
       title: 'Inteligência Autônoma na Borda',
       supportText: 'Decisão Imediata. Eficiência Local. IA no Ponto Crítico.',
       subtitle: 'A AORKIA ativa Plataformas Edge AI que processam dados onde eles nascem — na fábrica, no varejo, em equipamentos remotos — para decisões autônomas, respostas em tempo real e independência da nuvem.',
-      video: '/image/Edge_AI_AORKIA.',
+      video: '/image/Edge_AI_AORKIA.mp4',
       mythTitle: 'O Mito da Centralização Total: Sua IA é Realmente Inteligente?',
       mythContent: 'Muitos gestores, acostumados com a potência da nuvem, acreditam que toda a inteligência e processamento de dados devem residir em data centers remotos. O mito é que a IA de ponta só funciona com grande poder de processamento centralizado, ou que suas operações já são "rápidas o suficiente". A verdade é que a dependência exclusiva da nuvem para cada decisão cria gargalos invisíveis: latência que retarda ações críticas, interrupções por falhas de conectividade e custos crescentes de transmissão de dados. Sua IA pode ser poderosa na nuvem, mas será que ela é realmente inteligente onde a ação acontece – no ponto crítico da sua operação?',
       mythHighlight: 'Confiar apenas na inteligência centralizada na nuvem é como ter um cérebro brilhante desconectado dos reflexos do corpo no momento da ação, roubando sua agilidade e capacidade de inovação no dia a dia.',
@@ -200,7 +221,17 @@ export default function Solucoes() {
         'Custo alto com nuvem centralizada e suporte ineficiente, devido à transmissão constante de dados.',
         'Perda de competitividade em eficiência, personalização e predição no seu segmento.'
       ],
-      ctaText: 'Ganhe velocidade, resiliência e inteligência operacional no exato momento em que os dados são gerados. Converse com a AORKIA e veja como ativar decisões autônomas no ponto mais crítico da sua operação.'
+      ctaText: 'Ganhe velocidade, resiliência e inteligência operacional no exato momento em que os dados são gerados. Converse com a AORKIA e veja como ativar decisões autônomas no ponto mais crítico da sua operação.',
+      // Imagens para cada parte da seção
+      images: {
+        intro: '/image/bordas.png',
+        myth: '/image/bordas.png',
+        solution: '/image/bordas.png',
+        differential: '/image/bordas.png',
+        process: '/image/bordas.png',
+        risks: '/image/bordas.png',
+        cta: '/image/bordas.png'
+      }
     }
   ];
 
@@ -244,16 +275,69 @@ export default function Solucoes() {
         }
       });
       setActiveSection(currentActive);
+
+      // Detectar qual parte está visível e ativar transição
+      const parts = document.querySelectorAll('[data-part-id]');
+      parts.forEach((part) => {
+        const rect = part.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        
+        if (isVisible) {
+          const partId = part.getAttribute('data-part-id');
+          setActivePart(partId);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Função para ativar parte no hover/touch
+  const handlePartInteraction = (partId) => {
+    setActivePart(partId);
+  };
+
+  // Função para desativar parte (apenas no desktop)
+  const handlePartLeave = () => {
+    // No mobile, mantém ativo; no desktop, desativa
+    if (window.innerWidth >= 768) {
+      setActivePart(null);
+    }
+  };
+
   // Função para voltar ao topo
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Função para controlar vídeos com Intersection Observer
+  useEffect(() => {
+    const videos = document.querySelectorAll('video[data-auto-play]');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }, {
+      threshold: 0.5 // Vídeo precisa estar 50% visível para começar a tocar
+    });
+
+    videos.forEach((video) => {
+      observer.observe(video);
+    });
+
+    return () => {
+      videos.forEach((video) => {
+        observer.unobserve(video);
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -268,7 +352,7 @@ export default function Solucoes() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Vídeo de Fundo */}
         <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-          <source src="/image/video_hero." type="video/" />
+          <source src="/image/video_hero.mp4" type="video/mp4" />
           Seu navegador não suporta vídeo.
         </video>
 
@@ -340,175 +424,433 @@ export default function Solucoes() {
           className="bg-white"
         >
           {/* 1ª PARTE: Introdução e Contexto */}
-          <div className="container mx-auto max-w-6xl px-4 py-20 text-center">
-            {/* Logo da solução (se existir) */}
-            {solution.logo && (
+          <div 
+            data-part-id={`${solution.id}-intro`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-intro`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-intro`)}
+            onClick={() => handlePartInteraction(`${solution.id}-intro`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-intro` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.intro})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+                activePart === `${solution.id}-intro` ? 'opacity-0' : 'opacity-100'
+              }`}
+            ></div>
+
+            <div className={`relative z-10 container mx-auto max-w-6xl px-4 py-20 text-center transition-colors duration-500`}>
+              {/* Logo da solução (se existir) */}
+              {solution.logo && (
+                <div className="mb-8">
+                  <Image 
+                    src={solution.logo} 
+                    alt={solution.title}
+                    className="h-12 w-auto mx-auto"
+                    width={120}
+                    height={48}
+                  />
+                </div>
+              )}
+
+              {/* Título Principal (H1) */}
+              <h1 className={`text-4xl md:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                activePart === `${solution.id}-intro` ? 'text-white' : 'text-gray-900'
+              }`}>
+                {solution.title}
+              </h1>
+
+              {/* Subtítulo (Destaque) */}
+              <p className={`text-xl md:text-2xl font-semibold mb-8 transition-colors duration-500 ${
+                activePart === `${solution.id}-intro` ? 'text-primary-light' : 'text-primary'
+              }`}>
+                {solution.supportText}
+              </p>
+
+              {/* Vídeo - Responsivo com largura dos cards */}
+              <div className="w-full max-w-4xl mx-auto mb-8">
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  <video 
+                    data-auto-play
+                    className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+                    muted
+                    loop
+                    playsInline
+                    poster="/image/video-poster.jpg"
+                  >
+                    <source src={solution.video} type="video/mp4" />
+                    Seu navegador não suporta vídeo.
+                  </video>
+                </div>
+              </div>
+
+              {/* Descrição principal */}
+              <p className={`text-lg md:text-xl leading-relaxed mb-8 max-w-4xl mx-auto transition-colors duration-500 ${
+                activePart === `${solution.id}-intro` ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                {solution.subtitle}
+              </p>
+
+              {/* CTA Primária */}
               <div className="mb-8">
-                <Image 
-                  src={solution.logo} 
-                  alt={solution.title}
-                  className="h-12 w-auto mx-auto"
-                  width={120}
-                  height={48}
-                />
-              </div>
-            )}
-
-            {/* Título Principal (H1) */}
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              {solution.title}
-            </h1>
-
-            {/* Subtítulo (Destaque) */}
-            <p className="text-xl md:text-2xl text-primary font-semibold mb-8">
-              {solution.supportText}
-            </p>
-
-            {/* Vídeo - Responsivo com largura dos cards */}
-            <div className="w-full max-w-4xl mx-auto mb-8">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                <video 
-                  className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
-                  controls
-                  poster="/image/video-poster.jpg"
+                <Link 
+                  href="/contato" 
+                  className={`inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg ${
+                    activePart === `${solution.id}-intro` 
+                      ? 'bg-primary hover:bg-primary/90 text-white' 
+                      : 'bg-primary hover:bg-primary/90 text-white'
+                  }`}
                 >
-                  <source src={solution.video} type="video/" />
-                  Seu navegador não suporta vídeo.
-                </video>
+                  Falar com Especialista
+                </Link>
               </div>
-            </div>
 
-            {/* Descrição principal */}
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 max-w-4xl mx-auto">
-              {solution.subtitle}
-            </p>
-
-            {/* CTA Primária */}
-            <div className="mb-8">
-              <Link 
-                href="/contato" 
-                className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
-              >
-                Falar com Especialista
-              </Link>
-            </div>
-
-            {/* Elemento de Confiança */}
-            <div className="text-sm text-gray-500">
-              <p>✓ Consultoria especializada • ✓ Implementação garantida • ✓ Suporte contínuo</p>
+              {/* Elemento de Confiança */}
+              <div className={`text-sm transition-colors duration-500 ${
+                activePart === `${solution.id}-intro` ? 'text-gray-400' : 'text-gray-500'
+              }`}>
+                <p>✓ Consultoria especializada • ✓ Implementação garantida • ✓ Suporte contínuo</p>
+              </div>
             </div>
           </div>
 
           {/* 2ª PARTE: O Mito (com destaque visual) */}
-          <div className="bg-gradient-to-r from-red-50 to-orange-50 py-20">
-            <div className="container mx-auto max-w-4xl px-4 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-red-700 mb-8">
-                {solution.mythTitle}
-              </h2>
-              <p className="text-lg md:text-xl text-red-800 leading-relaxed mb-8">
-                {solution.mythContent}
-              </p>
-              <div className="bg-red-100 border-l-4 border-red-500 p-6 rounded-lg">
-                <p className="text-lg font-semibold text-red-900 italic">
-                  "{solution.mythHighlight}"
+          <div 
+            data-part-id={`${solution.id}-myth`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-myth`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-myth`)}
+            onClick={() => handlePartInteraction(`${solution.id}-myth`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-myth` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.myth})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                activePart === `${solution.id}-myth` ? 'opacity-0' : 'opacity-100'
+              }`}
+              style={{ background: 'linear-gradient(to right, #fef2f2, #fff7ed)' }}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-4xl px-4 text-center">
+                <h2 className={`text-3xl md:text-4xl font-bold mb-8 transition-colors duration-500 ${
+                  activePart === `${solution.id}-myth` ? 'text-white' : 'text-red-700'
+                }`}>
+                  {solution.mythTitle}
+                </h2>
+                <p className={`text-lg md:text-xl leading-relaxed mb-8 transition-colors duration-500 ${
+                  activePart === `${solution.id}-myth` ? 'text-gray-300' : 'text-red-800'
+                }`}>
+                  {solution.mythContent}
                 </p>
+                <div className={`border-l-4 p-6 rounded-lg transition-all duration-500 ${
+                  activePart === `${solution.id}-myth` 
+                    ? 'bg-white/10 border-red-300' 
+                    : 'bg-red-100 border-red-500'
+                }`}>
+                  <p className={`text-lg font-semibold italic transition-colors duration-500 ${
+                    activePart === `${solution.id}-myth` ? 'text-white' : 'text-red-900'
+                  }`}>
+                    "{solution.mythHighlight}"
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* 3ª PARTE: A Solução AORKIA (4 benefícios com ícones) */}
-          <div className="bg-white py-20">
-            <div className="container mx-auto max-w-6xl px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
-                {solution.solutionTitle}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {solution.features.map((feature, idx) => (
-                  <div key={idx} className="text-center p-6 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-lg transition-all">
-                    <div className="text-primary text-4xl mb-4">
-                      <i className={feature.icon}></i>
+          <div 
+            data-part-id={`${solution.id}-solution`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-solution`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-solution`)}
+            onClick={() => handlePartInteraction(`${solution.id}-solution`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-solution` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.solution})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+                activePart === `${solution.id}-solution` ? 'opacity-0' : 'opacity-100'
+              }`}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-6xl px-4">
+                <h2 className={`text-3xl md:text-4xl font-bold text-center mb-16 transition-colors duration-500 ${
+                  activePart === `${solution.id}-solution` ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {solution.solutionTitle}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {solution.features.map((feature, idx) => (
+                    <div key={idx} className={`text-center p-6 rounded-lg border transition-all duration-500 ${
+                      activePart === `${solution.id}-solution` 
+                        ? 'bg-white/10 border-white/20 hover:shadow-lg' 
+                        : 'bg-gray-50 border-gray-200 hover:shadow-lg'
+                    }`}>
+                      <div className={`text-4xl mb-4 transition-colors duration-500 ${
+                        activePart === `${solution.id}-solution` ? 'text-primary-light' : 'text-primary'
+                      }`}>
+                        <i className={feature.icon}></i>
+                      </div>
+                      <h3 className={`text-xl font-bold mb-4 transition-colors duration-500 ${
+                        activePart === `${solution.id}-solution` ? 'text-white' : 'text-gray-900'
+                      }`}>{feature.title}</h3>
+                      <p className={`leading-relaxed transition-colors duration-500 ${
+                        activePart === `${solution.id}-solution` ? 'text-gray-300' : 'text-gray-700'
+                      }`}>{feature.description}</p>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                    <p className="text-gray-700 leading-relaxed">{feature.description}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           {/* 4ª PARTE: O Diferencial AORKIA */}
-          <div className="bg-gradient-to-r from-blue-50 to-green-50 py-20">
-            <div className="container mx-auto max-w-4xl px-4 text-center">
-              <div className="mb-8">
-                <div className="inline-block bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-                  DIFERENCIAL AORKIA
+          <div 
+            data-part-id={`${solution.id}-differential`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-differential`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-differential`)}
+            onClick={() => handlePartInteraction(`${solution.id}-differential`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-differential` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.differential})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                activePart === `${solution.id}-differential` ? 'opacity-0' : 'opacity-100'
+              }`}
+              style={{ background: 'linear-gradient(to right, #eff6ff, #f0fdf4)' }}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-4xl px-4 text-center">
+                <div className="mb-8">
+                  <div className={`inline-block px-6 py-2 rounded-full text-sm font-semibold mb-4 transition-colors duration-500 ${
+                    activePart === `${solution.id}-differential` 
+                      ? 'bg-primary-light text-white' 
+                      : 'bg-primary text-white'
+                  }`}>
+                    DIFERENCIAL AORKIA
+                  </div>
                 </div>
+                <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-500 ${
+                  activePart === `${solution.id}-differential` ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {solution.differentialTitle}
+                </h2>
+                <p className={`text-xl font-semibold mb-8 transition-colors duration-500 ${
+                  activePart === `${solution.id}-differential` ? 'text-primary-light' : 'text-primary'
+                }`}>
+                  {solution.differentialSubtitle}
+                </p>
+                <p className={`text-lg md:text-xl leading-relaxed transition-colors duration-500 ${
+                  activePart === `${solution.id}-differential` ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  {solution.differentialContent}
+                </p>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {solution.differentialTitle}
-              </h2>
-              <p className="text-xl text-primary font-semibold mb-8">
-                {solution.differentialSubtitle}
-              </p>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                {solution.differentialContent}
-              </p>
             </div>
           </div>
 
           {/* 5ª PARTE: Como Funciona (4 passos) */}
-          <div className="bg-white py-20">
-            <div className="container mx-auto max-w-6xl px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
-                {solution.processTitle}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {solution.processSteps.map((step, idx) => (
-                  <div key={idx} className="flex items-start">
-                    <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
-                      {idx + 1}
+          <div 
+            data-part-id={`${solution.id}-process`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-process`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-process`)}
+            onClick={() => handlePartInteraction(`${solution.id}-process`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-process` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.process})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+                activePart === `${solution.id}-process` ? 'opacity-0' : 'opacity-100'
+              }`}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-6xl px-4">
+                <h2 className={`text-3xl md:text-4xl font-bold text-center mb-16 transition-colors duration-500 ${
+                  activePart === `${solution.id}-process` ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {solution.processTitle}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {solution.processSteps.map((step, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <div className={`rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0 transition-colors duration-500 ${
+                        activePart === `${solution.id}-process` 
+                          ? 'bg-primary-light text-white' 
+                          : 'bg-primary text-white'
+                      }`}>
+                        {idx + 1}
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold mb-3 transition-colors duration-500 ${
+                          activePart === `${solution.id}-process` ? 'text-white' : 'text-gray-900'
+                        }`}>{step.title}</h3>
+                        <p className={`leading-relaxed transition-colors duration-500 ${
+                          activePart === `${solution.id}-process` ? 'text-gray-300' : 'text-gray-700'
+                        }`}>{step.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                      <p className="text-gray-700 leading-relaxed">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           {/* 6ª PARTE: Riscos de Não Agir */}
-          <div className="bg-gray-100 py-20">
-            <div className="container mx-auto max-w-6xl px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-red-700 text-center mb-16">
-                {solution.risksTitle}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {solution.risks.map((risk, idx) => (
-                  <div key={idx} className="flex items-start bg-white p-6 rounded-lg shadow-sm border border-red-200">
-                    <div className="text-red-500 text-2xl mr-4 mt-1 flex-shrink-0">
-                      <i className="ri-close-circle-line"></i>
+          <div 
+            data-part-id={`${solution.id}-risks`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-risks`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-risks`)}
+            onClick={() => handlePartInteraction(`${solution.id}-risks`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-risks` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.risks})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-gray-100 transition-opacity duration-500 ${
+                activePart === `${solution.id}-risks` ? 'opacity-0' : 'opacity-100'
+              }`}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-6xl px-4">
+                <h2 className={`text-3xl md:text-4xl font-bold text-center mb-16 transition-colors duration-500 ${
+                  activePart === `${solution.id}-risks` ? 'text-white' : 'text-red-700'
+                }`}>
+                  {solution.risksTitle}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {solution.risks.map((risk, idx) => (
+                    <div key={idx} className={`flex items-start p-6 rounded-lg shadow-sm border transition-all duration-500 ${
+                      activePart === `${solution.id}-risks` 
+                        ? 'bg-white/10 border-red-300' 
+                        : 'bg-white border-red-200'
+                    }`}>
+                      <div className={`text-2xl mr-4 mt-1 flex-shrink-0 transition-colors duration-500 ${
+                        activePart === `${solution.id}-risks` ? 'text-red-300' : 'text-red-500'
+                      }`}>
+                        <i className="ri-close-circle-line"></i>
+                      </div>
+                      <p className={`leading-relaxed transition-colors duration-500 ${
+                        activePart === `${solution.id}-risks` ? 'text-gray-300' : 'text-gray-700'
+                      }`}>{risk}</p>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{risk}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           {/* 7ª PARTE: CTA Final */}
-          <div className="bg-gradient-to-r from-primary to-green-600 py-20">
-            <div className="container mx-auto max-w-4xl px-4 text-center">
-              <p className="text-xl md:text-2xl text-white leading-relaxed mb-8">
-                {solution.ctaText}
-              </p>
-              <Link 
-                href="/contato" 
-                className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:bg-gray-100"
-              >
-                Fale com um Especialista
-              </Link>
+          <div 
+            data-part-id={`${solution.id}-cta`}
+            className="relative w-full overflow-hidden group"
+            onMouseEnter={() => handlePartInteraction(`${solution.id}-cta`)}
+            onMouseLeave={handlePartLeave}
+            onTouchStart={() => handlePartInteraction(`${solution.id}-cta`)}
+            onClick={() => handlePartInteraction(`${solution.id}-cta`)}
+          >
+            {/* Background Image (aparece apenas no hover/ativo) */}
+            <div 
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                activePart === `${solution.id}-cta` ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${solution.images.cta})` }}
+            >
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+            
+            {/* Background Color (aparece quando não está em hover/ativo) */}
+            <div 
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                activePart === `${solution.id}-cta` ? 'opacity-0' : 'opacity-100'
+              }`}
+              style={{ background: 'linear-gradient(to right, #0076FF, #16a34a)' }}
+            ></div>
+
+            <div className="relative z-10 py-20">
+              <div className="container mx-auto max-w-4xl px-4 text-center">
+                <p className={`text-xl md:text-2xl leading-relaxed mb-8 transition-colors duration-500 ${
+                  activePart === `${solution.id}-cta` ? 'text-gray-300' : 'text-white'
+                }`}>
+                  {solution.ctaText}
+                </p>
+                <Link 
+                  href="/contato" 
+                  className={`inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg ${
+                    activePart === `${solution.id}-cta` 
+                      ? 'bg-white text-primary hover:bg-gray-100' 
+                      : 'bg-white text-primary hover:bg-gray-100'
+                  }`}
+                >
+                  Fale com um Especialista
+                </Link>
+              </div>
             </div>
           </div>
 
