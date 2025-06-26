@@ -227,27 +227,6 @@ export default function PresencaDigital() {
               <p className="text-lg sm:text-xl md:text-2xl max-w-4xl mb-12 text-gray-300 text-center">
                 Desenvolvemos ecossistemas digitais para marcas B2B que não se contentam com o padrão, mas buscam a liderança de mercado.
               </p>
-
-              {/* Competências - Torres de Competência */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 mt-12 w-full max-w-6xl">
-                {competencias.map((competencia, index) => (
-                  <div 
-                    key={index} 
-                    className="text-center animate-fade-in-up p-4 bg-black/30 backdrop-blur-sm rounded-lg"
-                    style={{ animationDelay: `${index * 200}ms` }}
-                  >
-                    <div className="text-3xl sm:text-4xl text-primary mb-4 flex justify-center">
-                      <i className={competencia.icon}></i>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold mb-2 text-white text-center">
-                      {competencia.titulo}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-400 text-center">
-                      {competencia.subtitulo}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -425,6 +404,52 @@ export default function PresencaDigital() {
                       </div>
                     ))}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Nova Seção: Torres de Competência AORKIA */}
+        <section 
+          id="torres-competencia" 
+          className="relative py-24 text-black"
+          style={{
+            backgroundImage: 'url(/image/ecossistema.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Overlay para melhor legibilidade */}
+          <div className="absolute inset-0 bg-white/90"></div>
+          
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">
+                Torres de Competência AORKIA
+              </h2>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                Cada pilar da nossa expertise trabalha em sinergia para construir a autoridade digital da sua marca.
+              </p>
+            </div>
+
+            {/* Grid das Competências */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+              {competencias.map((competencia, index) => (
+                <div 
+                  key={index} 
+                  className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  <div className="text-4xl text-primary mb-4 flex justify-center">
+                    <i className={competencia.icon}></i>
+                  </div>
+                  <h3 className="text-lg font-bold mb-3 text-black text-center">
+                    {competencia.titulo}
+                  </h3>
+                  <p className="text-sm text-gray-700 text-center leading-relaxed">
+                    {competencia.subtitulo}
+                  </p>
                 </div>
               ))}
             </div>
