@@ -437,49 +437,59 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - Corrigido para fundo branco e textos escuros */}
+      {/* Footer Global - Com vídeo de fundo */}
       {/* Não mostrar footer na página presencadigital */}
       {router.pathname !== '/presencadigital' && (
-        <footer className="bg-white text-gray-800 py-16 border-t border-gray-200">
-        <div className="container mx-auto max-w-7xl px-4">
+        <footer className="relative bg-black text-white py-16 border-t border-gray-800 overflow-hidden">
+          {/* Vídeo de Fundo */}
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+            <source src="/image/video_hero.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          
+          {/* Overlay escuro para legibilidade */}
+          <div className="absolute inset-0 bg-black/70"></div>
+          
+          {/* Conteúdo do footer */}
+          <div className="relative z-10 container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Formulário de Contato - Primeira coluna no mobile */}
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
 <form onSubmit={handleFormSubmit} className="space-y-6">
   <div>
-    <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800">Nome</label>
+    <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">Nome</label>
     <input
       type="text"
       id="name"
       name="nome"
       required
-      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
     />
   </div>
   <div>
-    <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-800">E-mail</label>
+    <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">E-mail</label>
     <input
       type="email"
       id="email"
       name="email"
       required
-      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
     />
   </div>
   <div>
-    <label htmlFor="company" className="block text-sm font-medium mb-2 text-gray-800">Empresa</label>
+    <label htmlFor="company" className="block text-sm font-medium mb-2 text-white">Empresa</label>
     <input
       type="text"
       id="company"
       name="empresa"
-      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
     />
   </div>
 
   {/* CAMPO TELEFONE ADICIONADO */}
   <div>
-  <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-gray-800">Telefone</label>
+  <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-white">Telefone</label>
   <input
     type="tel"
     id="telefone"
@@ -489,60 +499,60 @@ function MyApp({ Component, pageProps }) {
     // Pattern atualizado para tornar espaços e hífen opcionais
     pattern="\+\d{2}\s?\d{2}\s?\d{4,5}-?\d{4}"
     title="Formato: +55 31 91234-5678 ou +5531912345678"
-    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-gray-800"
+    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
   />
 </div>
 
   <div>
-    <label className="block text-sm font-medium mb-3 text-gray-800">Soluções de interesse</label>
+    <label className="block text-sm font-medium mb-3 text-white">Soluções de interesse</label>
     <div className="space-y-3">
       <label className="flex items-center">
         <input
           type="checkbox"
           name="solucoes"
           value="Backup SaaS Estratégico"
-          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Backup SaaS Estratégico (Keepit)</span>
+        <span className="text-white">Backup SaaS Estratégico (Keepit)</span>
       </label>
       <label className="flex items-center">
         <input
           type="checkbox"
           name="solucoes"
           value="Governança Estratégica de Dados Sensíveis"
-          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Governança Estratégica de Dados Sensíveis (DSPM)</span>
+        <span className="text-white">Governança Estratégica de Dados Sensíveis (DSPM)</span>
       </label>
       <label className="flex items-center">
         <input
           type="checkbox"
           name="solucoes"
           value="Inteligência Autônoma na Borda"
-          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Inteligência Autônoma na Borda (Edge AI)</span>
+        <span className="text-white">Inteligência Autônoma na Borda (Edge AI)</span>
       </label>
       <label className="flex items-center">
         <input
           type="checkbox"
           name="solucoes"
           value="Presença Digital AORKIA"
-          className="mr-3 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
         />
-        <span className="text-gray-800">Presença Digital AORKIA</span>
+        <span className="text-white">Presença Digital AORKIA</span>
       </label>
     </div>
   </div>
 
   <div>
-    <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800">Mensagem</label>
+    <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">Mensagem</label>
     <textarea
       id="message"
       name="mensagem"
       rows="4"
       required
-      className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-gray-800"
+      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-white placeholder-gray-300"
     ></textarea>
   </div>
   <button
@@ -561,7 +571,7 @@ function MyApp({ Component, pageProps }) {
             </div>
 
             {/* Informações de Contato - Segunda coluna no mobile */}
-            <div className="order-2 lg:order-1 bg-gray-50 p-8 rounded-lg shadow-inner">
+            <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-inner">
               <div className="mb-12">
               <Image
                 src="/image/logo_aorkia_color.png"
@@ -571,7 +581,7 @@ function MyApp({ Component, pageProps }) {
                 height={166}
                 quality={100}
             />
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-gray-300 text-lg leading-relaxed">
                   A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados. Fortaleça seu negócio com a inteligência que ele precisa.
                 </p>
               </div>
@@ -585,24 +595,24 @@ function MyApp({ Component, pageProps }) {
                       onClick={copyEmailToClipboard}
                     >
                       <i className="ri-mail-line text-xl mr-3 text-primary"></i>
-                      <span className="text-gray-800">contato@aorkia.com</span>
-                      {emailCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span className="text-white">contato@aorkia.com</span>
+                      {emailCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                     <div
                       className="flex items-center cursor-pointer hover:text-primary transition-colors group"
                       onClick={copyPhoneToClipboard}
                     >
                       <i className="ri-phone-line text-xl mr-3 text-primary"></i>
-                      <span className="text-gray-800">+55 31 3958-6192</span>
-                      {phoneCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span className="text-white">+55 31 3958-6192</span>
+                      {phoneCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                     <div
                       className="flex items-start cursor-pointer hover:text-primary transition-colors group"
                       onClick={copyAddressToClipboard}
                     >
                       <i className="ri-map-pin-line text-xl mr-3 text-primary mt-1"></i>
-                      <span className="text-gray-800">Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
-                      {addressCopied && <span className="ml-2 text-green-600 text-sm">Copiado!</span>}
+                      <span className="text-white">Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
+                      {addressCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
                   </div>
                 </div>
@@ -610,13 +620,13 @@ function MyApp({ Component, pageProps }) {
                 <div>
                   <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
                   <div className="grid grid-cols-2 gap-3">
-                    <Link href="/" className="text-gray-800 hover:text-primary transition-colors">Home</Link>
-                    <Link href="/solucoes" className="text-gray-800 hover:text-primary transition-colors">Soluções</Link>
-                    <Link href="/keepit" className="text-gray-800 hover:text-primary transition-colors">Keepit</Link>
-                    <Link href="/sobre" className="text-gray-800 hover:text-primary transition-colors">Sobre</Link>
+                    <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
+                    <Link href="/solucoes" className="text-white hover:text-primary transition-colors">Soluções</Link>
+                    <Link href="/keepit" className="text-white hover:text-primary transition-colors">Keepit</Link>
+                    <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
                     {/* Novo link para o Blog no footer */}
-                    <Link href="/blog" className="text-gray-800 hover:text-primary transition-colors">Blog</Link>
-                    <Link href="/contato" className="text-gray-800 hover:text-primary transition-colors">Contato</Link>
+                    <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
+                    <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
                   </div>
                 </div>
               </div>
@@ -625,11 +635,11 @@ function MyApp({ Component, pageProps }) {
         </div>
 
         {/* Seção de Copyright - ATUALIZADA COM ANIMAÇÃO CRIATIVA */}
-        <div className="border-t border-gray-200 mt-16 pt-8"> {/* Borda cinza clara */}
+        <div className="border-t border-white/20 mt-16 pt-8"> {/* Borda branca transparente */}
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-center md:text-left">
-                <p className="text-gray-600 mb-3"> {/* Texto escuro */}
+                <p className="text-gray-300 mb-3"> {/* Texto claro */}
                   © 2025 AORKIA. Todos os direitos reservados.
                 </p>
                 {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
@@ -638,7 +648,7 @@ function MyApp({ Component, pageProps }) {
                   className="group relative inline-block"
                 >
                   <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
-                    <div className="bg-white rounded-lg px-4 py-2 group-hover:bg-gray-100 transition-all duration-300"> {/* Fundo branco, hover cinza claro */}
+                    <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 group-hover:bg-black/70 transition-all duration-300"> {/* Fundo escuro transparente */}
                       <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
                         ✨ Desenvolvido por Presença Digital AORKIA
                       </span>
@@ -652,13 +662,13 @@ function MyApp({ Component, pageProps }) {
                   href="https://wa.me/553139586192"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary transition-colors" // Texto escuro
+                  className="text-gray-300 hover:text-primary transition-colors" // Texto claro
                 >
                   <i className="ri-whatsapp-line text-xl"></i>
                 </a>
                 <a
                   href="mailto:contato@aorkia.com"
-                  className="text-gray-600 hover:text-primary transition-colors" // Texto escuro
+                  className="text-gray-300 hover:text-primary transition-colors" // Texto claro
                 >
                   <i className="ri-mail-line text-xl"></i>
                 </a>
