@@ -72,7 +72,7 @@ export default function Blog() {
       </div>
 
       {/* Conteúdo da página começa com a seção de posts. */}
-      <main className="bg-black text-white min-h-screen pt-20 md:pt-24"> {/* Ajustado padding top para Navbar */}
+      <main className="bg-black text-white min-h-screen"> {/* Removido padding top */}
 
         {/* Seção de Posts do Blog */}
         <section
