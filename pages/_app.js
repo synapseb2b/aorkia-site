@@ -574,7 +574,7 @@ function MyApp({ Component, pageProps }) {
             <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-inner">
               <div className="mb-12">
               <Image
-                src="/image/logo_aorkia_color.png"
+                src="/image/logo_aorkia_white.png"
                 alt="AORKIA"
                 className="h-20 w-auto mb-6"
                 width={416}
