@@ -264,10 +264,6 @@ function MyApp({ Component, pageProps }) {
               Soluções
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/presenca-digital" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Presença Digital
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-            </Link>
             {/* Logo Keepit sem texto - COM EFEITOS DE HOVER */}
             <Link href="/keepit" className="text-gray-800 hover:text-green-400 transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-green-400/5 border border-transparent hover:border-green-400/20 flex items-center">
               <Image
@@ -363,13 +359,6 @@ function MyApp({ Component, pageProps }) {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Soluções
-              </Link>
-              <Link
-                href="/presenca-digital"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Presença Digital
               </Link>
               {/* Logo Keepit sem texto no mobile */}
               <Link
