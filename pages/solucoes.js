@@ -619,7 +619,7 @@ export default function Solucoes() {
                         : 'bg-gray-50 border-gray-200 hover:shadow-lg'
                     }`}>
                       <div className={`text-4xl mb-4 transition-colors duration-500 ${
-                        activePart === `${solution.id}-solution` ? 'text-primary-light' : 'text-primary'
+                        activePart === `${solution.id}-solution` ? 'text-[#0076FF]' : 'text-black'
                       }`}>
                         <i className={feature.icon}></i>
                       </div>
@@ -680,7 +680,7 @@ export default function Solucoes() {
                   {solution.differentialTitle}
                 </h2>
                 <p className={`text-xl font-semibold mb-8 transition-colors duration-500 ${
-                  activePart === `${solution.id}-differential` ? 'text-primary-light' : 'text-primary'
+                  activePart === `${solution.id}-differential` ? 'text-[#0076FF]' : 'text-black'
                 }`}>
                   {solution.differentialSubtitle}
                 </p>
@@ -731,8 +731,8 @@ export default function Solucoes() {
                     <div key={idx} className="flex items-start">
                       <div className={`rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0 transition-colors duration-500 ${
                         activePart === `${solution.id}-process` 
-                          ? 'bg-primary-light text-white' 
-                          : 'bg-primary text-white'
+                          ? 'bg-[#0076FF] text-white' 
+                          : 'bg-black text-white'
                       }`}>
                         {idx + 1}
                       </div>
