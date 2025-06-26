@@ -246,7 +246,7 @@ export default function Solucoes() {
 
   const handleTouchEnd = () => {
     if (!touchStartX || !touchEndX) return;
-    
+
     const distance = touchStartX - touchEndX;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -269,7 +269,7 @@ export default function Solucoes() {
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
+
         if (isVisible) {
           currentActive = section.getAttribute('data-solution-id');
         }
@@ -281,7 +281,7 @@ export default function Solucoes() {
       parts.forEach((part) => {
         const rect = part.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
+
         if (isVisible) {
           const partId = part.getAttribute('data-part-id');
           setActivePart(partId);
@@ -314,7 +314,7 @@ export default function Solucoes() {
   // Função para controlar vídeos com Intersection Observer
   useEffect(() => {
     const videos = document.querySelectorAll('video[data-auto-play]');
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
@@ -367,7 +367,7 @@ export default function Solucoes() {
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
             Ativamos tecnologia de ponta para transformar desafios críticos em resultados mensuráveis e operações mais seguras.
           </p>
-          
+
           {/* Seletor de Soluções em Cards - ORDEM ATUALIZADA */}
           <div className="w-full max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
             {solutions.map((solution, index) => (
@@ -441,7 +441,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 bg-white transition-opacity duration-500 ${
@@ -470,9 +470,9 @@ export default function Solucoes() {
                 {solution.title}
               </h1>
 
-              {/* Subtítulo (Destaque) */}
+              {/* Subtítulo (Destaque) - CORREÇÃO APLICADA */}
               <p className={`text-xl md:text-2xl font-semibold mb-8 transition-colors duration-500 ${
-                activePart === `${solution.id}-intro` ? 'text-primary-light' : 'text-primary'
+                activePart === `${solution.id}-intro` ? 'text-white' : 'text-primary'
               }`}>
                 {solution.supportText}
               </p>
@@ -542,7 +542,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 transition-opacity duration-500 ${
@@ -596,7 +596,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 bg-white transition-opacity duration-500 ${
@@ -654,7 +654,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 transition-opacity duration-500 ${
@@ -711,7 +711,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 bg-white transition-opacity duration-500 ${
@@ -769,7 +769,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 bg-gray-100 transition-opacity duration-500 ${
@@ -824,7 +824,7 @@ export default function Solucoes() {
             >
               <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            
+
             {/* Background Color (aparece quando não está em hover/ativo) */}
             <div 
               className={`absolute inset-0 transition-opacity duration-500 ${
