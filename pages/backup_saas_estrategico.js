@@ -3,10 +3,98 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const faqData = [
+  {
+    question: "O que é Keepit?",
+    answer: "Keepit é uma plataforma de backup e recuperação como serviço (SaaS). Ele protege dados de aplicações em nuvem como Microsoft 365 e Google Workspace, armazenando cópias seguras em uma nuvem independente para garantir a restauração em caso de perda de dados."
+  },
+  {
+    question: "Por que a proteção nativa do Microsoft 365 ou Google Workspace não é suficiente?",
+    answer: "As ferramentas nativas têm retenção de dados limitada (geralmente 30-90 dias) e não oferecem proteção real contra ransomware ou exclusões acidentais em massa. A responsabilidade final pela segurança dos dados é sempre do cliente, como afirmado pelos próprios fornecedores."
+  },
+  {
+    question: "Como o Keepit protege contra ataques de ransomware?",
+    answer: "A Keepit cria backups 100% imutáveis em uma nuvem isolada com tecnologia Air Gap. Isso significa que, mesmo que um ransomware atinja sua rede, os backups permanecem intactos e inacessíveis para os atacantes, garantindo uma restauração segura e completa."
+  },
+  {
+    question: "Por que devo ativar o Keepit com a AORKIA e não diretamente?",
+    answer: "A AORKIA transforma a ferramenta na solução completa. Nós adicionamos a camada de consultoria estratégica, implementação otimizada para o seu negócio e suporte especializado contínuo, garantindo que a tecnologia gere o máximo de valor em governança e continuidade."
+  },
+  {
+    question: "Como o Keepit me ajuda a preparar para uma auditoria de dados?",
+    answer: "A plataforma simplifica a preparação para auditorias, permitindo localizar dados rapidamente com filtros avançados e gerando trilhas de auditoria detalhadas de todas as atividades. Isso facilita a comprovação da integridade e do controle de acesso aos dados para auditores internos e externos."
+  },
+  {
+    question: "A plataforma Keepit é certificada pela ISO 27001?",
+    answer: "Sim. A Keepit possui a certificação ISO/IEC 27001, o padrão internacional mais reconhecido para Sistemas de Gestão da Segurança da Informação. Isso atesta que a plataforma segue as mais rigorosas práticas de segurança para proteger a confidencialidade, integridade e disponibilidade dos seus dados."
+  },
+  {
+    question: "O que significa que o backup é \"imutável\"?",
+    answer: "\"Imutável\" significa que, uma vez que uma cópia de segurança é feita, ela não pode ser alterada ou apagada por ninguém – nem por um usuário, nem por um administrador, nem por software malicioso – durante todo o seu ciclo de vida. Cada backup é uma \"fotografia\" protegida e inviolável."
+  },
+  {
+    question: "A AORKIA garante que a implementação siga as melhores práticas de mercado?",
+    answer: "Sim. Nosso processo estruturado inclui o mapeamento completo do seu ambiente, a avaliação de riscos e a configuração personalizada da Keepit segundo frameworks como NIST. Garantimos que a solução seja ativada de forma otimizada para suas necessidades de segurança e conformidade."
+  },
+  {
+    question: "O que é a certificação ISAE 3402 e por que ela é importante para o backup?",
+    answer: "ISAE 3402 é um padrão global que atesta a qualidade dos controles internos de uma organização de serviços. Para o backup, a certificação ISAE 3402 da Keepit garante que os processos de segurança, disponibilidade e confidencialidade dos dados são continuamente auditados e validados por terceiros independentes, oferecendo uma camada extra de confiança."
+  },
+  {
+    question: "É possível recuperar apenas um e-mail ou arquivo específico?",
+    answer: "Sim. A Keepit oferece recuperação granular, permitindo que você encontre e restaure exatamente o que precisa – seja um único e-mail, um arquivo, uma pasta ou uma conta inteira – de forma rápida e com poucos cliques."
+  },
+  {
+    question: "Como o backup na Keepit se alinha aos controles de segurança da ISO 27001?",
+    answer: "A solução se alinha diretamente a vários controles da ISO 27001, como A.12.3 (Backup), A.17.1 (Disponibilidade) e A.18.1 (Conformidade). Ao oferecer backups imutáveis, isolados e com recuperação testável, a Keepit ajuda sua empresa a atender e comprovar a implementação desses controles essenciais."
+  },
+  {
+    question: "Como a AORKIA e Keepit ajudam a cumprir as exigências da LGPD e DORA?",
+    answer: "Nós garantimos que seus backups fiquem em datacenters no Brasil (soberania de dados). Configuramos políticas de retenção para o tempo exigido por lei e facilitamos a localização e exclusão de dados para atender aos direitos dos titulares, garantindo conformidade com a LGPD. Para a DORA, a solução oferece a resiliência cibernética e a capacidade de recuperação de desastres que a regulação exige para o setor financeiro."
+  },
+  {
+    question: "O Keepit oferece trilhas de auditoria detalhadas de todas as ações?",
+    answer: "Sim. Todas as atividades na plataforma, como acessos de administradores, buscas e restaurações de dados, são registradas em logs de auditoria imutáveis. Isso fornece visibilidade completa sobre quem fez o quê e quando, sendo fundamental para investigações e auditorias."
+  },
+  {
+    question: "Quais serviços e aplicações a Keepit protege?",
+    answer: "A cobertura é ampla, incluindo Microsoft 365 (Outlook, OneDrive, SharePoint, Teams), Google Workspace, Salesforce, Microsoft Entra ID, Dynamics 365, Microsoft Power Platform e Zendesk, com mais serviços sendo adicionados continuamente."
+  },
+  {
+    question: "Como posso usar o relatório ISAE 3402 da Keepit na minha própria auditoria?",
+    answer: "Você pode apresentar o relatório ISAE 3402 da Keepit aos seus auditores como prova de que seu fornecedor de backup possui controles de segurança e operacionais robustos e validados. Isso pode reduzir o escopo e o custo da sua própria auditoria, pois demonstra que você utiliza um serviço que já é auditado."
+  },
+  {
+    question: "Qual o ROI (Retorno sobre o Investimento) da solução ativada pela AORKIA?",
+    answer: "O ROI é comprovado. Um estudo da Forrester indicou um ROI de 163% em 3 anos para a Keepit. A solução mitiga o risco de perdas financeiras com multas, ransomware e paralisações operacionais, além de gerar economia com a otimização de licenças de software de ex-funcionários."
+  },
+  {
+    question: "É possível testar o plano de recuperação de desastres (Disaster Recovery)?",
+    answer: "Sim. Ter uma cópia dos dados em um local separado e sempre acessível é vital para a recuperação de desastres. A plataforma permite que você realize testes de restauração a qualquer momento, garantindo que seus planos de recuperação sejam eficazes e que sua equipe esteja preparada para uma emergência real."
+  },
+  {
+    question: "O que acontece com os dados de um funcionário que saiu da empresa?",
+    answer: "Com a Keepit, você pode reter os dados de ex-funcionários pelo tempo que for necessário, sem precisar manter uma licença ativa do Microsoft 365 ou Google Workspace para eles. Isso gera uma economia direta e significativa em licenças de software."
+  },
+  {
+    question: "Meus dados de backup ficam realmente armazenados no Brasil?",
+    answer: "Sim. Com a ativação da AORKIA, garantimos contratualmente que seus dados de backup sejam armazenados em datacenters localizados em território brasileiro, atendendo plenamente aos requisitos de soberania de dados da LGPD."
+  },
+  {
+    question: "Como funciona o suporte técnico se eu tiver um problema ou dúvida?",
+    answer: "A AORKIA oferece suporte estratégico contínuo em português. Nossa equipe de especialistas está disponível para ajudar com dúvidas, orientar em processos de recuperação e garantir que você extraia o máximo valor da solução."
+  },
+  {
+    question: "Como posso iniciar uma conversa estratégica com a AORKIA?",
+    answer: "Você pode entrar em contato através do nosso site. Um de nossos especialistas irá agendar uma conversa para entender seus desafios de conformidade e continuidade, e desenhar a melhor solução de resiliência para o seu negócio."
+  }
+];
+
 export default function BackupSaaSEstrategico() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
   const [sectionBackgrounds, setSectionBackgrounds] = useState({});
+  const [openFaqItems, setOpenFaqItems] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +113,8 @@ export default function BackupSaaSEstrategico() {
         'desafios',
         'confianca',
         'depoimentos',
-        'certificacoes'
+        'certificacoes',
+        'faq'
       ];
 
       const newBackgrounds = {};
@@ -65,6 +154,13 @@ export default function BackupSaaSEstrategico() {
 
   const getSectionBackground = (sectionId) => {
     return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
+  };
+
+  const toggleFaqItem = (index) => {
+    setOpenFaqItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
   };
 
   return (
@@ -746,6 +842,54 @@ export default function BackupSaaSEstrategico() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" data-section="faq" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('faq')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
+              Perguntas Frequentes sobre Proteção SaaS
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              {faqData.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+                    <button
+                      onClick={() => toggleFaqItem(index)}
+                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    >
+                      <span className="text-lg font-semibold text-gray-800 pr-4">
+                        {item.question}
+                      </span>
+                      <div className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-green-500 text-white font-bold transition-transform duration-200 ${openFaqItems[index] ? 'rotate-45' : ''}`}>
+                        +
+                      </div>
+                    </button>
+                    
+                    <div className={`overflow-hidden transition-all duration-300 ${openFaqItems[index] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-6 pb-4 pt-2">
+                        <p className="text-gray-700 leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
