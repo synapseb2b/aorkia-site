@@ -3,10 +3,42 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const faqData = [
+  {
+    question: "Qual a principal diferença entre DSPM e CSPM?",
+    answer: "CSPM protege a infraestrutura da nuvem (as \"paredes da casa\"), enquanto a DSPM protege o que há de mais valioso dentro dela: os próprios dados."
+  },
+  {
+    question: "O que é \"shadow data\" e por que é tão perigoso?",
+    answer: "É qualquer dado que sua TI não conhece ou não gerencia. É perigoso porque frequentemente não está protegido, tornando-se uma porta de entrada para atacantes e um passivo de conformidade com a LGPD."
+  },
+  {
+    question: "Como a DSPM ajuda a proteger nossa Propriedade Intelectual?",
+    answer: "Ao descobrir e classificar automaticamente todos os dados, ela identifica onde sua PI (códigos-fonte, patentes) está armazenada e garante que apenas pessoas autorizadas tenham acesso, mitigando riscos de roubo e vazamento."
+  },
+  {
+    question: "Por que devo ativar uma plataforma DSPM com a AORKIA?",
+    answer: "A AORKIA adiciona a camada de consultoria estratégica. Nós não apenas implementamos a ferramenta; nós a integramos ao seu ecossistema de segurança (CSPM, SIEM), otimizamos para suas políticas e fornecemos suporte contínuo para transformar os dados em controle real."
+  },
+  {
+    question: "A solução funciona em ambientes multi-cloud (AWS, Azure, GCP) e híbridos?",
+    answer: "Sim. A DSPM é projetada para oferecer uma visão unificada e consistente em todos os seus ambientes de dados, sejam eles em múltiplas nuvens, SaaS ou on-premise."
+  },
+  {
+    question: "Como a DSPM ajuda na conformidade com a LGPD?",
+    answer: "Ela automatiza a descoberta e classificação de dados pessoais, monitora o acesso e o fluxo desses dados e gera relatórios detalhados que simplificam a comprovação de conformidade para auditorias e solicitações da ANPD (Autoridade Nacional de Proteção de Dados)."
+  },
+  {
+    question: "A implementação de uma DSPM é um processo demorado?",
+    answer: "Não com a abordagem da AORKIA. Utilizamos ferramentas \"agentless\" (sem agente) e integrações pré-construídas para garantir um rápido tempo de valorização, com visibilidade inicial em questão de horas, não meses."
+  }
+];
+
 export default function GovernancaDadosSensiveis() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
   const [sectionBackgrounds, setSectionBackgrounds] = useState({});
+  const [openFaqItems, setOpenFaqItems] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +57,8 @@ export default function GovernancaDadosSensiveis() {
         'desafios',
         'confianca',
         'depoimentos',
-        'certificacoes'
+        'certificacoes',
+        'faq'
       ];
 
       const newBackgrounds = {};
@@ -67,6 +100,13 @@ export default function GovernancaDadosSensiveis() {
     return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
   };
 
+  const toggleFaqItem = (index) => {
+    setOpenFaqItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   return (
     <>
       <Head>
@@ -89,17 +129,18 @@ export default function GovernancaDadosSensiveis() {
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            src="/video/DSPM_AORKIA.mp4"
+            src="/video/dspm.mp4"
             autoPlay
             loop
             muted
             playsInline
           ></video>
-          <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-black/70 z-10"></div>
           
           <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
-              Governança Estratégica de Dados Sensíveis
+              Governança Estratégica<br />
+              de Dados Sensíveis
             </h1>
             <p className="text-xl md:text-2xl font-semibold mb-8 text-center">
               Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.
@@ -124,7 +165,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('risco-real')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -133,7 +174,7 @@ export default function GovernancaDadosSensiveis() {
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
-              O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?
+              O Mito da Segurança Perimetral: Você realmente sabe onde estão seus dados?
             </h2>
             
             <div className="max-w-6xl mx-auto">
@@ -210,7 +251,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('responsabilidade')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -247,7 +288,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('resiliencia')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -310,7 +351,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('pilares')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -424,7 +465,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -471,7 +512,7 @@ export default function GovernancaDadosSensiveis() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -541,77 +582,13 @@ export default function GovernancaDadosSensiveis() {
           </div>
         </section>
 
-        {/* Confiança Validada pelo Mercado Global */}
-        <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-white relative overflow-hidden">
-          {/* Background Image Transition */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
-            style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
-              Confiança Validada pelo Mercado Global
-            </h2>
-            
-            {/* Clientes Globais */}
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Globais</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-              </div>
-            </div>
-
-            {/* Clientes Nacionais */}
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Nacionais</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <p className="text-lg text-gray-600">
-                Empresas líderes confiam em <strong className="text-primary">tecnologias DSPM</strong> para <strong className="text-primary">governança estratégica</strong> de dados
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* O que os Especialistas em Governança de Dados dizem? */}
+        {/* O que os Heads de Governança de Dados dizem sobre DSPM? */}
         <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-white relative overflow-hidden">
           {/* Background Image Transition */}
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('depoimentos')}`}
             style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -620,7 +597,7 @@ export default function GovernancaDadosSensiveis() {
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
-              O que os Especialistas em Governança de Dados dizem?
+              O que os Heads de Governança de Dados dizem sobre DSPM?
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -669,58 +646,7 @@ export default function GovernancaDadosSensiveis() {
           </div>
         </section>
 
-        {/* Certificações e Recursos */}
-        <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-white relative overflow-hidden">
-          {/* Background Image Transition */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('certificacoes')}`}
-            style={{
-              backgroundImage: 'url(/image/dsmp_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          <div className="container mx-auto px-4 max-w-4xl relative z-10">
-            <div className="relative bg-gradient-to-br from-blue-600 to-purple-800 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
-              {/* Elementos decorativos */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-              
-              <div className="relative z-10 text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
-                  Certificações e Conformidade
-                </h3>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                  <div className="flex flex-col items-center">
-                    <Image src="/icon/iso_27001.png" alt="ISO 27001" width={60} height={60} className="mb-2" />
-                    <span className="text-white text-sm font-medium">ISO 27001</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <Image src="/icon/isae_3402.png" alt="ISAE 3402" width={60} height={60} className="mb-2" />
-                    <span className="text-white text-sm font-medium">ISAE 3402</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <i className="ri-shield-check-line text-4xl text-white mb-2"></i>
-                    <span className="text-white text-sm font-medium">GDPR</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <i className="ri-government-line text-4xl text-white mb-2"></i>
-                    <span className="text-white text-sm font-medium">LGPD</span>
-                  </div>
-                </div>
-                
-                <p className="text-lg text-white/90 leading-relaxed">
-                  Máxima segurança e conformidade com as principais certificações internacionais e regulamentações de proteção de dados.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* O que o Mercado Diz: Análise do Gartner */}
+        {/* O que o Mercado Diz: Análise do Gartner sobre DSPM */}
         <section id="gartner" data-section="gartner" className="py-16 md:py-24 bg-white relative">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
@@ -740,17 +666,17 @@ export default function GovernancaDadosSensiveis() {
                     </div>
                     <span className="ml-3 text-2xl font-bold text-gray-800">Líder</span>
                   </div>
-                  <p className="text-lg text-gray-600 mb-8">DSPM é uma das tecnologias emergentes mais importantes para segurança de dados</p>
+                  <p className="text-lg text-gray-600 mb-8">DSPM é uma das tecnologias emergentes mais importantes para segurança de dados, com um impacto "transformacional" previsto pelo Gartner.</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">85%</div>
-                    <p className="text-gray-700">das organizações terão implementado DSPM até 2026</p>
+                    <div className="text-4xl font-bold text-primary mb-2">20%</div>
+                    <p className="text-gray-700">das organizações terão implementado DSPM até 2026.</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">70%</div>
-                    <p className="text-gray-700">de redução no tempo de descoberta de dados sensíveis</p>
+                    <div className="text-4xl font-bold text-primary mb-2">US$ 2,7 MILHÕES</div>
+                    <p className="text-gray-700">é o custo médio de uma violação de dados.</p>
                   </div>
                 </div>
                 
@@ -759,10 +685,58 @@ export default function GovernancaDadosSensiveis() {
                     "DSPM oferece visibilidade e controle sem precedentes sobre dados sensíveis em ambientes de nuvem complexos."
                   </blockquote>
                   <p className="text-sm text-gray-500 text-center mt-4">
-                    Fonte: Gartner Market Guide for Data Security Posture Management
+                    Fonte: Gartner Hype Cycle™ for Data Security & Forrester "Lessons Learned From The World's Biggest Data Breaches".
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" data-section="faq" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('faq')}`}
+            style={{
+              backgroundImage: 'url(/image/dspm_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
+              Perguntas Frequentes sobre Governança de Dados
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              {faqData.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+                    <button
+                      onClick={() => toggleFaqItem(index)}
+                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    >
+                      <span className="text-lg font-semibold text-gray-800 pr-4">
+                        {item.question}
+                      </span>
+                      <div className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-green-500 text-white font-bold transition-transform duration-200 ${openFaqItems[index] ? 'rotate-45' : ''}`}>
+                        +
+                      </div>
+                    </button>
+                    
+                    <div className={`overflow-hidden transition-all duration-300 ${openFaqItems[index] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-6 pb-4 pt-2">
+                        <p className="text-gray-700 leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
