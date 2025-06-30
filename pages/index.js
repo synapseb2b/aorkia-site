@@ -57,14 +57,14 @@ export default function Home() {
     }
   };
 
-// Produtos com suas respectivas imagens (corrigido para /image/)
+// Produtos com suas respectivas imagens - CAMINHOS CORRIGIDOS
 const products = [
   {
     id: 'solucoes',
     title: 'AORKIA',
     supportText: 'Conceito',
     description: 'A AORKIA ativa tecnologia de ponta para transformar desafios críticos de segurança e governança de dados em vantagem competitiva duradoura, oferecendo soluções curadas e expertise estratégica em resiliência cibernética e proteção inabalável de dados.',
-    image: '/image/solucoesespecializadas.png',
+    image: '/image/solucoes_especializadas.png', // CORRIGIDO: nome do arquivo
     link: '/solucoes'
   },
   {
@@ -73,7 +73,7 @@ const products = [
     supportText: 'Proteção Imutável.',
     description: 'A proteção nativa do Microsoft 365 e Google Workspace falha contra ransomware, erros humanos e perda de dados críticos. A AORKIA ativa Keepit, líder global em backup SaaS, e transforma a proteção de dados em um pilar estratégico de continuidade e governança. Garanta recuperação instantânea com um backup imutável com soberania de dados no Brasil  — uma solução confiada por mais de 15.000 empresas.',
     image: '/image/backup.png',
-    link: '/solucoes'
+    link: '/backup_saas_estrategico' // CORRIGIDO: link correto
   },
   {
     id: 'dspm',
@@ -81,7 +81,7 @@ const products = [
     supportText: 'Dados Sensíveis Sob Controle.',
     description: 'Dados sensíveis e dados criados fora dos controles de TI espalhados por múltiplas nuvens deixam sua empresa vulnerável a vazamentos e multas severas da LGPD. A AORKIA transforma essa incerteza em controle absoluto. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões. Obtenha visibilidade unificada e transforme governança em vantagem competitiva.',
     image: '/image/dspm.png',
-    link: '/solucoes'
+    link: '/governanca_dados_sensiveis' // CORRIGIDO: link correto
   },
 ];
 
@@ -94,15 +94,22 @@ const products = [
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 */}
+        {/* Seção Hero - VÍDEO CORRIGIDO */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/video_hero.mp4" type="video/mp4" />
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            preload="auto"
+          >
+            <source src="/video/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
 
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+          <div className="container mx-auto max-w-6xl px-4 relative z-20">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
                 AORKIA:
@@ -130,7 +137,7 @@ const products = [
           </div>
         </section>
 
-        {/* Seção Produtos - Estilo Jam3 */}
+        {/* Seção Produtos - IMAGENS DE FUNDO E LOGO KEEPIT CORRIGIDOS */}
         <section id="work" ref={workSectionRef} className="relative">
           {products.map((product, index) => (
             <div 
@@ -142,9 +149,9 @@ const products = [
               onTouchStart={() => handleProductInteraction(product.id)}
               onClick={() => handleProductInteraction(product.id)}
             >
-              {/* Background Image (aparece apenas no hover/ativo) */}
+              {/* Background Image - CORRIGIDO para aparecer no hover/ativo */}
               <div 
-                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 z-0 ${
                   activeProduct === product.id ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ backgroundImage: `url(${product.image})` }}
@@ -152,9 +159,9 @@ const products = [
                 <div className="absolute inset-0 bg-black/60"></div>
               </div>
               
-              {/* Background Color (aparece quando não está em hover/ativo) */}
+              {/* Background Color - CORRIGIDO para aparecer quando não está em hover/ativo */}
               <div 
-                className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+                className={`absolute inset-0 bg-white transition-opacity duration-500 z-0 ${
                   activeProduct === product.id ? 'opacity-0' : 'opacity-100'
                 }`}
               ></div>
@@ -173,11 +180,12 @@ const products = [
                     }`}>
                       {product.title}
                     </h3>
+                    {/* LOGO KEEPIT CORRIGIDA - caminho e posicionamento */}
                     {product.id === 'backup' && (
                       <div className="mt-4 mb-6">
                         <Image 
-                          src="/image/keepit_logo_aorkia.png" 
-                          alt="Keepit" 
+                          src="/icon/keepit_logo_aorkia.png" 
+                          alt="Keepit AORKIA" 
                           className="h-12 w-auto"
                           width={160}
                           height={48}
@@ -194,12 +202,12 @@ const products = [
                     </p>
                     <div className="mt-8">
                       <Link 
-                        href="/pages/govenanca_estrategica_de_dados_sensiveis" 
+                        href={product.link} 
                         className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
                           activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
                         }`}
                       >
-                        <span>Veja exemplos de riscos que você não enxerga</span>
+                        <span>Saiba mais sobre esta solução</span>
                         <i className="ri-arrow-right-line ml-2"></i>
                       </Link>
                     </div>
@@ -210,7 +218,7 @@ const products = [
           ))}
         </section>
 
-        {/* Seção Pré-Footer - Estilo Jam3 */}
+        {/* Seção Pré-Footer - IMAGEM DE FUNDO CORRIGIDA */}
         <section 
           className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
           data-product-id="futuro"
@@ -219,9 +227,9 @@ const products = [
           onTouchStart={() => handleProductInteraction('futuro')}
           onClick={() => handleProductInteraction('futuro')}
         >
-          {/* Background Image (aparece apenas no hover/ativo) */}
+          {/* Background Image - CORRIGIDO */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 z-0 ${
               activeProduct === 'futuro' ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ backgroundImage: `url(/image/futuro.png)` }}
@@ -229,9 +237,9 @@ const products = [
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
-          {/* Background Color (aparece quando não está em hover/ativo) */}
+          {/* Background Color */}
           <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+            className={`absolute inset-0 bg-white transition-opacity duration-500 z-0 ${
               activeProduct === 'futuro' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>

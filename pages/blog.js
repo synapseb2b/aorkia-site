@@ -18,28 +18,24 @@ export default function Blog() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dados de posts do blog - Agora com os dois posts especificados e dados atualizados
+  // Dados de posts do blog - VÍDEOS CORRIGIDOS
   const blogPosts = [
     {
       id: 'post-1',
-      // Título que estará na parte inferior do card
       cardTitle: 'Não! Seu Google Workspace NÃO ESTÁ SEGURO!',
       date: '15 de Junho, 2025',
-      // Excerto atualizado para a parte inferior do card
       cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Google Workspace? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
-      video: '/image/Video_Meme_CIO_em_Panico.mp4', // Caminho do vídeo
-      link: '/blog/a-importancia-do-backup-imutavel', // Link para o post completo
+      video: '/video/video_meme_cio_em_panico_google_workspace.mp4', // CAMINHO CORRIGIDO
+      link: '/blog/a-importancia-do-backup-imutavel',
       category: 'Cibersegurança',
     },
     {
       id: 'post-2',
-      // Título que estará na parte inferior do card
-      cardTitle: 'Não! Seu Microsoft365 <span class="text-primary italic">também</span> NÃO ESTÁ SEGURO!', // Título com "também" em laranja e itálico
+      cardTitle: 'Não! Seu Microsoft365 <span class="text-primary italic">também</span> NÃO ESTÁ SEGURO!',
       date: '18 de Junho, 2025',
-      // Excerto atualizado para a parte inferior do card
       cardExcerpt: 'Você, gestor, realmente acredita na segurança dos dados da sua empresa no Microsoft365? Prepare-se para uma verdade incômoda: o que parece proteção pode ser uma porta aberta para riscos catastróficos.',
-      video: '/image/Video_Meme_CIO_em_Panico_2.mp4', // Vídeo para o 2º card
-      link: '/blog/microsoft365-a-importancia-do-backup-imutavel', // Link para o novo post Microsoft 365
+      video: '/video/video_meme_cio_em_panico_m365.mp4', // CAMINHO CORRIGIDO
+      link: '/blog/microsoft365-a-importancia-do-backup-imutavel',
       category: 'Cibersegurança',
     }
   ];
@@ -71,72 +67,94 @@ export default function Blog() {
         </Link>
       </div>
 
-      {/* Conteúdo da página começa com a seção de posts. */}
-      <main className="bg-black text-white min-h-screen"> {/* Removido padding top */}
-
+      <main className="bg-black text-white min-h-screen">
         {/* Seção de Posts do Blog */}
         <section
           id="blog-posts"
           data-section-id="blog-posts"
-          className="relative w-full py-24 md:py-32 overflow-hidden border-t border-b border-gray-800 bg-black text-white" /* Fundo escuro fixo */
+          className="relative w-full py-24 md:py-32 overflow-hidden border-t border-b border-gray-800 bg-black text-white"
         >
           {/* Fundo da seção com futuro.png */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(/image/futuro.png)` }}
           >
-            <div className="absolute inset-0 bg-black/60"></div> {/* Overlay escuro para legibilidade */}
+            <div className="absolute inset-0 bg-black/60"></div>
           </div>
 
-          {/* Título "Blog da AORKIA" na vertical esquerda - Ajustado para diferentes tamanhos de tela */}
-          <div className="absolute left-4 lg:left-[8rem] top-1/2 -translate-y-1/2 z-20 hidden md:block"> {/* left-4 em telas menores, left-[8rem] em telas grandes */}
+          {/* Título "Blog da AORKIA" na vertical esquerda */}
+          <div className="absolute left-4 lg:left-[8rem] top-1/2 -translate-y-1/2 z-20 hidden md:block">
             <div className="flex flex-col items-center justify-center transform -rotate-90 origin-center">
-              <h1 className="text-2xl lg:text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap"> {/* Texto menor em telas menores */}
+              <h1 className="text-2xl lg:text-4xl font-bold text-white tracking-widest uppercase opacity-80 whitespace-nowrap">
                 Blog da AORKIA
               </h1>
-              <p className="text-sm lg:text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p> {/* Texto de apoio responsivo */}
+              <p className="text-sm lg:text-xl text-gray-400 mt-2 whitespace-nowrap">Insights e Inovação em Tecnologia B2B</p>
             </div>
           </div>
 
-          <div className="container mx-auto max-w-7xl px-4 relative z-10"> {/* z-10 para ficar acima do fundo mas abaixo do título vertical */}
-            
-            {/* Título centralizado para mobile - aparece apenas em telas pequenas */}
-            <div className="block md:hidden text-center mb-12">
-              <h1 className="text-4xl font-bold text-white tracking-wide uppercase mb-4">
-                Blog da AORKIA
-              </h1>
-              <p className="text-lg text-gray-400">
-                Insights e Inovação em Tecnologia B2B
-              </p>
-            </div>
+          {/* Título Mobile */}
+          <div className="block md:hidden text-center mb-12 relative z-20">
+            <h1 className="text-3xl font-bold text-white mb-4">Blog da AORKIA</h1>
+            <p className="text-lg text-gray-400">Insights e Inovação em Tecnologia B2B</p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {blogPosts.map((post) => (
-                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 h-full flex flex-col hover:border-primary">
-                  {/* Área do vídeo no card (Topo do Card) - SOMENTE VÍDEO */}
-                  <Link href={post.link} className="w-full h-48 relative overflow-hidden flex items-center justify-center cursor-pointer">
-                    <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
-                      <source src={post.video} type="video/mp4" />
-                      Seu navegador não suporta vídeo.
-                    </video>
-                    {/* Removido o texto sobreposto ao vídeo */}
-                    <div className="absolute inset-0 bg-black/20 z-10"></div> {/* Overlay sutil sobre o vídeo */}
-                  </Link>
-                  
-                  {/* Conteúdo do texto do card (Inferior do Card) */}
-                  <div className="p-6 flex flex-col flex-grow items-center text-center bg-dark-blue-2"> {/* Centralizado, fundo azul petróleo */}
-                    <span className="text-sm font-medium mb-2 block text-gray-400">{post.date} &bull; {post.category}</span>
-                    <h2 className="text-xl font-bold mb-3 text-white" dangerouslySetInnerHTML={{ __html: post.cardTitle }}></h2> {/* Usando dangerouslySetInnerHTML para o "também" formatado */}
-                    <p className="text-base leading-relaxed mb-4 flex-grow text-gray-300">
-                      {post.cardExcerpt}
-                    </p>
-                    {/* O "Ler Mais" agora é um Link explícito, mantido para clareza */}
-                    <Link
-                      href={post.link}
-                      className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors mt-auto"
-                    >
-                      Ler Mais <i className="ri-arrow-right-line ml-2"></i>
-                    </Link>
+          {/* Container dos Cards - VÍDEOS CORRIGIDOS */}
+          <div className="relative z-10 container mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {blogPosts.map((post, index) => (
+                <div key={post.id} className="group relative">
+                  {/* Card Container */}
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                    
+                    {/* Vídeo Container - CORRIGIDO */}
+                    <div className="relative aspect-video overflow-hidden">
+                      <video 
+                        className="w-full h-full object-cover"
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline
+                        preload="metadata"
+                      >
+                        <source src={post.video} type="video/mp4" />
+                        Seu navegador não suporta vídeo.
+                      </video>
+                      
+                      {/* Overlay com categoria */}
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          {post.category}
+                        </span>
+                      </div>
+                      
+                      {/* Overlay de hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                    </div>
+
+                    {/* Conteúdo do Card */}
+                    <div className="p-6 lg:p-8">
+                      <div className="flex items-center text-sm text-gray-400 mb-4">
+                        <i className="ri-calendar-line mr-2"></i>
+                        <span>{post.date}</span>
+                      </div>
+                      
+                      <h3 
+                        className="text-xl lg:text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors duration-300"
+                        dangerouslySetInnerHTML={{ __html: post.cardTitle }}
+                      />
+                      
+                      <p className="text-gray-300 text-base lg:text-lg leading-relaxed mb-6">
+                        {post.cardExcerpt}
+                      </p>
+                      
+                      <Link 
+                        href={post.link}
+                        className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors duration-300"
+                      >
+                        <span>Ler artigo completo</span>
+                        <i className="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -144,9 +162,33 @@ export default function Blog() {
           </div>
         </section>
 
-        {/* Removida a seção CTA Final "Pronto para Ativar Resultados Reais?" */}
-        {/* O cliente deve ir direto para o formulário. */}
+        {/* Seção CTA */}
+        <section className="relative w-full py-24 bg-primary">
+          <div className="container mx-auto max-w-6xl px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+              Quer Mais Insights?
+            </h2>
+            <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
+              Assine nossa newsletter e receba conteúdos exclusivos sobre tecnologia, segurança e inovação.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/contato"
+                className="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Fale com um Especialista
+              </Link>
+              <Link
+                href="/backup_saas_estrategico"
+                className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors"
+              >
+                Conheça Nossas Soluções
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
 }
+

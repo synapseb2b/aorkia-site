@@ -100,7 +100,7 @@ function MyApp({ Component, pageProps }) {
 
   // Função para copiar email para área de transferência
   const copyEmailToClipboard = () => {
-    document.execCommand('copy', false, 'contato@aorkia.com'); // Usando execCommand para compatibilidade
+    document.execCommand('copy', false, 'contato@aorkia.com');
     setEmailCopied(true);
     setTimeout(() => {
       setEmailCopied(false);
@@ -109,7 +109,7 @@ function MyApp({ Component, pageProps }) {
 
   // Função para copiar telefone para área de transferência
   const copyPhoneToClipboard = () => {
-    document.execCommand('copy', false, '+55 31 3958-6192'); // Usando execCommand para compatibilidade
+    document.execCommand('copy', false, '+55 31 3958-6192');
     setPhoneCopied(true);
     setTimeout(() => {
       setPhoneCopied(false);
@@ -118,7 +118,7 @@ function MyApp({ Component, pageProps }) {
 
   // Função para copiar endereço para área de transferência
   const copyAddressToClipboard = () => {
-    document.execCommand('copy', false, 'Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG'); // Usando execCommand para compatibilidade
+    document.execCommand('copy', false, 'Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG');
     setAddressCopied(true);
     setTimeout(() => {
       setAddressCopied(false);
@@ -132,7 +132,6 @@ function MyApp({ Component, pageProps }) {
     const formData = new FormData(form);
 
     try {
-      // URL de implantação do Google Apps Script atualizada
       const response = await fetch('https://script.google.com/macros/s/AKfycby0dqYS39NiRN9rGiVRy18bUxsOCLbuFXlMoJ13x2aMHDN1DtE3ngctFxZ06t5xpT6b/exec', {
         method: 'POST',
         body: formData
@@ -149,8 +148,6 @@ function MyApp({ Component, pageProps }) {
       }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
-      // Usar um modal personalizado ou elemento na página em vez de alert
-      // alert('Erro ao enviar mensagem. Tente novamente.');
     }
   };
 
@@ -160,9 +157,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="format-detection" content="telephone=no" />
         {/* Favicon configurado corretamente */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/pubic/image/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
-        <link rel="icon" href="image/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+        <link rel="icon" href="/favicon/favicon.ico" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -221,7 +218,7 @@ function MyApp({ Component, pageProps }) {
           <div className="preloader-content text-center">
            <div className="logo-container h-20 relative overflow-hidden flex items-center">
             <Image
-              src="/image/logo_aorkia_color.png"
+              src="/logo/logo_aorkia_color_transparent.png"
               alt="AORKIA"
               className="h-20 w-auto"
               width={200}
@@ -237,14 +234,14 @@ function MyApp({ Component, pageProps }) {
           </div>
              )}
 
-      {/* Desktop Navbar - ALTERAÇÃO 1 APLICADA */}
+      {/* Desktop Navbar - UX MELHORADA E LOGO CORRIGIDA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
-          {/* Logo à esquerda - AUMENTADA 25% */}
+          {/* Logo à esquerda - LOGO CORRIGIDA */}
           <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-20 relative">
               <Image
-                src="/image/logo_aorkia_color.png"
+                src="/logo/logo_aorkia_color_transparent.png"
                 alt="AORKIA"
                 className="h-20 w-auto"
                 width={200}
@@ -262,7 +259,7 @@ function MyApp({ Component, pageProps }) {
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
             
-            {/* Dropdown Soluções - ALTERAÇÃO 1 APLICADA */}
+            {/* Dropdown Soluções - UX MELHORADA */}
             <div 
               className="relative"
               onMouseEnter={() => setSolutionsDropdownOpen(true)}
@@ -274,25 +271,25 @@ function MyApp({ Component, pageProps }) {
                 <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
               </button>
               
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu - MELHORADO */}
               {solutionsDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-[70]">
-                  <div className="py-2">
-                    <Link 
-                      href="/keepit" 
-                      className="block px-6 py-3 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
-                    >
-                      <div className="font-medium">Backup SaaS Estratégico</div>
-                      <div className="text-sm text-gray-600">Keepit</div>
-                    </Link>
-                    <Link 
-                      href="/dspm" 
-                      className="block px-6 py-3 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
-                    >
-                      <div className="font-medium">Governança Estratégica de Dados Sensíveis</div>
-                      <div className="text-sm text-gray-600">DSPM</div>
-                    </Link>
-                  </div>
+                <div className="absolute top-full left-0 mt-1 w-96 bg-white border border-gray-200 rounded-lg shadow-xl z-[70] py-2">
+                  <Link 
+                    href="/backup_saas_estrategico" 
+                    className="block px-6 py-4 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-100 last:border-b-0"
+                    onClick={() => setSolutionsDropdownOpen(false)}
+                  >
+                    <div className="font-semibold text-lg">Backup SaaS Estratégico</div>
+                    <div className="text-sm text-gray-600 mt-1">Keepit - Proteção imutável para Microsoft 365, Google Workspace e Salesforce</div>
+                  </Link>
+                  <Link 
+                    href="/governanca_dados_sensiveis" 
+                    className="block px-6 py-4 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
+                    onClick={() => setSolutionsDropdownOpen(false)}
+                  >
+                    <div className="font-semibold text-lg">Governança Estratégica de Dados Sensíveis</div>
+                    <div className="text-sm text-gray-600 mt-1">DSPM - Visibilidade e controle total dos seus dados sensíveis</div>
+                  </Link>
                 </div>
               )}
             </div>
@@ -313,13 +310,13 @@ function MyApp({ Component, pageProps }) {
         </div>
       </header>
 
-      {/* Mobile Navbar - Corrigida para fundo branco e textos escuros */}
+      {/* Mobile Navbar - LOGO CORRIGIDA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] md:hidden">
         <div className="flex justify-between items-center h-full px-4">
           <Link href="/" className="py-2">
             <div className="logo-container h-16 relative">
               <Image
-                src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
+                src="/logo/logo_aorkia_color_transparent.png"
                 alt="AORKIA"
                 className="h-16 w-auto"
                 width={200}
@@ -344,13 +341,13 @@ function MyApp({ Component, pageProps }) {
 
       {/* Menu Mobile Fullscreen */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[65] flex flex-col"> {/* Fundo branco */}
+        <div className="fixed inset-0 bg-white z-[65] flex flex-col">
           <div className="container mx-auto px-4 py-8 h-full flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                 <div className="logo-container h-14 relative">
                   <Image
-                    src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
+                    src="/logo/logo_aorkia_color_transparent.png"
                     alt="AORKIA"
                     className="h-16 w-auto"
                     width={200}
@@ -360,7 +357,7 @@ function MyApp({ Component, pageProps }) {
                 </div>
               </Link>
               <button
-                className="text-gray-800 text-3xl" // Texto escuro
+                className="text-gray-800 text-3xl"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Fechar menu"
               >
@@ -381,14 +378,14 @@ function MyApp({ Component, pageProps }) {
                 <div className="text-gray-800 text-3xl md:text-5xl font-bold mb-4">Soluções</div>
                 <div className="space-y-3">
                   <Link
-                    href="/keepit"
+                    href="/backup_saas_estrategico"
                     className="block text-gray-600 text-xl hover:text-primary transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Backup SaaS Estratégico - Keepit
                   </Link>
                   <Link
-                    href="/dspm"
+                    href="/governanca_dados_sensiveis"
                     className="block text-gray-600 text-xl hover:text-primary transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -432,9 +429,8 @@ function MyApp({ Component, pageProps }) {
         </div>
       )}
 
-      {/* Botões flutuantes - Z-INDEX CORRIGIDO */}
+      {/* Botões flutuantes */}
       <div className="fixed bottom-8 right-8 z-[50] flex flex-col gap-4">
-        {/* Botão WhatsApp */}
         <a
           href="https://wa.me/553139586192"
           target="_blank"
@@ -445,7 +441,6 @@ function MyApp({ Component, pageProps }) {
           <i className="ri-whatsapp-line text-xl"></i>
         </a>
 
-        {/* Botão Home */}
         <Link href="/" className="bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
           <i className="ri-home-4-line text-xl"></i>
         </Link>
@@ -459,13 +454,12 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
 
-      {/* Footer Global - Com vídeo de fundo */}
-      {/* Não mostrar footer na página presencadigital */}
+      {/* Footer Global - LOGO CORRIGIDA */}
       {router.pathname !== '/presencadigital' && (
         <footer className="relative bg-black text-white py-16 border-t border-gray-800 overflow-hidden">
           {/* Vídeo de Fundo */}
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/video_hero.mp4" type="video/mp4" />
+            <source src="/video/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
           
@@ -475,7 +469,7 @@ function MyApp({ Component, pageProps }) {
           {/* Conteúdo do footer */}
           <div className="relative z-10 container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Formulário de Contato - Primeira coluna no mobile */}
+            {/* Formulário de Contato */}
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
 <form onSubmit={handleFormSubmit} className="space-y-6">
@@ -509,7 +503,6 @@ function MyApp({ Component, pageProps }) {
     />
   </div>
 
-  {/* CAMPO TELEFONE ADICIONADO */}
   <div>
   <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-white">Telefone</label>
   <input
@@ -518,7 +511,6 @@ function MyApp({ Component, pageProps }) {
     name="telefone"
     required
     placeholder="+55 31 91234-5678"
-    // Pattern atualizado para tornar espaços e hífen opcionais
     pattern="\+\d{2}\s?\d{2}\s?\d{4,5}-?\d{4}"
     title="Formato: +55 31 91234-5678 ou +5531912345678"
     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
@@ -546,7 +538,6 @@ function MyApp({ Component, pageProps }) {
         />
         <span className="text-white">Governança Estratégica de Dados Sensíveis (DSPM)</span>
       </label>
-      {/* ALTERAÇÃO 2: Removido "Inteligência Autônoma na Borda (Edge AI)" */}
       <label className="flex items-center">
         <input
           type="checkbox"
@@ -584,18 +575,17 @@ function MyApp({ Component, pageProps }) {
               )}
             </div>
 
-            {/* Informações de Contato - Segunda coluna no mobile */}
+            {/* Informações de Contato - LOGO CORRIGIDA */}
             <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-inner">
               <div className="mb-12">
               <Image
-                src="/image/logo_aorkia_white.png"
+                src="/logo/logo_aorkia_white_transparent.png"
                 alt="AORKIA"
                 className="h-20 w-auto mb-6"
                 width={416}
                 height={166}
                 quality={100}
             />
-                {/* ALTERAÇÃO 2: Texto do footer atualizado */}
                 <p className="text-gray-300 text-lg leading-relaxed">
                   A AORKIA ativa plataformas globais para resiliência cibernética e governança de dados. Fortaleça seu negócio com a inteligência que ele precisa.
                 </p>
@@ -636,8 +626,8 @@ function MyApp({ Component, pageProps }) {
                   <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
                   <div className="grid grid-cols-2 gap-3">
                     <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
-                    <Link href="/keepit" className="text-white hover:text-primary transition-colors">Keepit</Link>
-                    <Link href="/dspm" className="text-white hover:text-primary transition-colors">DSPM</Link>
+                    <Link href="/backup_saas_estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
+                    <Link href="/governanca_dados_sensiveis" className="text-white hover:text-primary transition-colors">DSPM</Link>
                     <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
                     <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
                     <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
@@ -648,21 +638,20 @@ function MyApp({ Component, pageProps }) {
           </div>
         </div>
 
-        {/* Seção de Copyright - ATUALIZADA COM ANIMAÇÃO CRIATIVA */}
-        <div className="border-t border-white/20 mt-16 pt-8"> {/* Borda branca transparente */}
+        {/* Seção de Copyright */}
+        <div className="border-t border-white/20 mt-16 pt-8">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-center md:text-left">
-                <p className="text-gray-300 mb-3"> {/* Texto claro */}
+                <p className="text-gray-300 mb-3">
                   © 2025 AORKIA. Todos os direitos reservados.
                 </p>
-                {/* LINK ATUALIZADO PARA A ROTA CORRETA */}
                 <Link
                   href="https://aorkia.com/presencadigital/"
                   className="group relative inline-block"
                 >
                   <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
-                    <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 group-hover:bg-black/70 transition-all duration-300"> {/* Fundo escuro transparente */}
+                    <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 group-hover:bg-black/70 transition-all duration-300">
                       <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
                         ✨ Desenvolvido por Presença Digital AORKIA
                       </span>
@@ -676,13 +665,13 @@ function MyApp({ Component, pageProps }) {
                   href="https://wa.me/553139586192"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-primary transition-colors" // Texto claro
+                  className="text-gray-300 hover:text-primary transition-colors"
                 >
                   <i className="ri-whatsapp-line text-xl"></i>
                 </a>
                 <a
                   href="mailto:contato@aorkia.com"
-                  className="text-gray-300 hover:text-primary transition-colors" // Texto claro
+                  className="text-gray-300 hover:text-primary transition-colors"
                 >
                   <i className="ri-mail-line text-xl"></i>
                 </a>
@@ -695,9 +684,9 @@ function MyApp({ Component, pageProps }) {
 
       {/* Banner de Cookies */}
       {showCookieBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-300 p-4 z-[70]"> {/* Fundo cinza claro */}
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-300 p-4 z-[70]">
           <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-800 text-sm"> {/* Texto escuro */}
+            <p className="text-gray-800 text-sm">
               Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de cookies.
             </p>
             <div className="flex gap-3">

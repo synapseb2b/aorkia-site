@@ -55,11 +55,11 @@ export default function Sobre() {
   };
 
   const parceiros = [
-    { name: 'Keepit', icon: '/image/keepit_logo_aorkia.png' }, // Substitua por seu caminho de logo Keepit
-    { name: 'Microsoft', icon: '/image/microsoft_logo.png' }, // Substitua por seu caminho de logo Microsoft
-    { name: 'Google', icon: '/image/google_logo.png' },     // Substitua por seu caminho de logo Google
-    { name: 'Tenable', icon: '/image/tenable_logo.png' },           // Substitua por seu caminho de logo Tenable
-    { name: 'Salesforce', icon: '/image/salesforce_logo.png' } // Substitua por seu caminho de logo Salesforce
+    { name: 'Keepit', icon: '/icon/keepit_logo_aorkia.png' },
+    { name: 'Microsoft', icon: '/icon/microsoft_365.png' },
+    { name: 'Google', icon: '/icon/gcp.png' },
+    { name: 'AWS', icon: '/icon/aws.png' },
+    { name: 'Salesforce', icon: '/icon/salesforce.png' }
   ];
 
   return (
@@ -71,15 +71,22 @@ export default function Sobre() {
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero - Estilo Jam3 com vídeo igual à Home e Soluções */}
+        {/* Seção Hero - VÍDEO CORRIGIDO */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/video_hero.mp4" type="video/mp4" />
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            preload="auto"
+          >
+            <source src="/video/video_hero.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
 
-          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+          <div className="container mx-auto max-w-6xl px-4 relative z-20">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
                 Conheça a AORKIA.
@@ -94,276 +101,215 @@ export default function Sobre() {
               {/* Botão para rolar para a história */}
               <button
                 onClick={(e) => scrollToSection(e, 'historia')}
-                className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500"
+                className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500 rounded-lg"
               >
                 Conheça nossa história
               </button>
             </div>
           </div>
-
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a
-              href="#historia"
-              onClick={(e) => scrollToSection(e, 'historia')}
-              className="text-white text-4xl"
-            >
-              <i className="ri-arrow-down-line"></i>
-            </a>
-          </div>
         </section>
 
-        {/* Seção Nossa História - Estilo Jam3 com transições e textos centralizados */}
-        <section
+        {/* Seção História */}
+        <section 
           id="historia"
           data-section-id="historia"
-          className="relative w-full min-h-screen overflow-hidden group border-t border-b border-gray-800"
-          onMouseEnter={() => handleSectionInteraction('historia')}
-          onMouseLeave={handleSectionLeave}
-          onTouchStart={() => handleSectionInteraction('historia')}
-          onClick={() => handleSectionInteraction('historia')}
+          className="relative w-full min-h-screen py-24 bg-white text-black"
         >
-          {/* Background Image (aparece apenas no hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'historia' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/futuro.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
-
-          {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'historia' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
-            <div className="flex flex-col items-center text-center"> {/* Centralizado */}
-              <h2 className={`text-3xl md:text-5xl font-bold mb-12 transition-colors duration-500 ${
-                activeSection === 'historia' ? 'text-white' : 'text-black'
-              }`}>
-                Nossa História
-              </h2>
-
-              <div className={`text-lg md:text-xl max-w-4xl space-y-8 transition-colors duration-500 ${
-                activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
-              }`}>
-                <p>
-                  A AORKIA nasce de uma convicção – forjada em mais de duas décadas de experiência imersiva no epicentro da tecnologia B2B – de que empresas ambiciosas merecem uma abordagem mais ágil e eficaz. Após testemunhar os desafios recorrentes de implementações lentas, custos imprevisíveis e o potencial de tecnologias globais muitas vezes não realizado plenamente, surgiu a visão de um novo tipo de parceiro. Um parceiro que não apenas oferece tecnologia, mas que a ativa com foco estratégico, transformando as melhores soluções do mundo em resultados de negócio reais e rentáveis para seus clientes.
-                </p>
-                <p>
-                  Fundada em 2025, a AORKIA é a materialização dessa visão. Somos especialistas em realizar a curadoria e ativação de plataformas de ponta em Backup SaaS Estratégico e Governança Estratégica de Dados Sensíveis. Nosso compromisso é com a implementação rápida, a redução de riscos associados à adoção tecnológica e a geração de valor imediato.
-                </p>
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-black">
+                  Nossa História
+                </h2>
+                <div className="space-y-6 text-lg text-gray-700">
+                  <p>
+                    A AORKIA nasceu da necessidade de transformar a complexidade tecnológica em vantagem competitiva real. Fundada por especialistas com décadas de experiência em segurança cibernética e governança de dados, nossa missão é ativar as melhores plataformas globais para resolver os desafios mais críticos das empresas.
+                  </p>
+                  <p>
+                    Não somos apenas consultores ou revendedores. Somos ativadores de tecnologia de ponta, transformando soluções complexas em resultados tangíveis e duradouros para nossos clientes.
+                  </p>
+                  <p>
+                    Nossa abordagem única combina expertise técnica profunda com visão estratégica de negócios, garantindo que cada implementação gere valor imediato e crescimento sustentável.
+                  </p>
+                </div>
+              </div>
+              <div className="relative">
+                <Image
+                  src="/image/sobre_historia.png"
+                  alt="História da AORKIA"
+                  className="w-full h-auto rounded-lg shadow-2xl"
+                  width={600}
+                  height={400}
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Seção Nossos Valores - Estilo Jam3 com transições e textos centralizados */}
-        <section
+        {/* Seção Nossos Valores - IMAGEM DE FUNDO CORRIGIDA */}
+        <section 
           id="valores"
           data-section-id="valores"
-          className="relative w-full min-h-screen overflow-hidden group border-b border-gray-800"
+          className="relative w-full min-h-screen py-24 overflow-hidden"
           onMouseEnter={() => handleSectionInteraction('valores')}
           onMouseLeave={handleSectionLeave}
           onTouchStart={() => handleSectionInteraction('valores')}
-          onClick={() => handleSectionInteraction('valores')}
         >
-          {/* Background Image (aparece apenas no hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+          {/* Background Image - CORRIGIDO */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 z-0 ${
               activeSection === 'valores' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/light_pont.png)` }}
+            style={{ backgroundImage: `url(/image/horizonte.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
-
-          {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+          
+          {/* Background Color */}
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-500 z-0 ${
               activeSection === 'valores' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
 
-          <div className="container mx-auto max-w-6xl px-4 py-24 md:py-32 relative z-10">
-            <div className="flex flex-col items-center"> {/* Centralizado */}
-              <h2 className={`text-3xl md:text-5xl font-bold mb-16 transition-colors duration-500 ${
-                activeSection === 'valores' ? 'text-white' : 'text-black'
-              }`}>
-                Nossos Valores
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
-                  activeSection === 'valores'
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                }`}>
-                  <div className={`text-5xl mb-6 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-primary' : 'text-blue-700'
-                  }`}>
-                    <i className="ri-rocket-line"></i>
-                  </div>
-                  <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-white' : 'text-black'
-                  }`}>
-                    Ativação Estratégica
-                  </h3>
-                  <p className={`transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    Mais do que implementar, ativamos o valor real da tecnologia global para o seu negócio.
-                  </p>
+          <div className="container mx-auto max-w-6xl px-4 relative z-10">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${
+              activeSection === 'valores' ? 'text-white' : 'text-black'
+            }`}>
+              Nossos Valores
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-shield-check-line text-2xl text-white"></i>
                 </div>
-
-                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
-                  activeSection === 'valores'
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
+                <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-white' : 'text-black'
                 }`}>
-                  <div className={`text-5xl mb-6 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-primary' : 'text-blue-700'
-                  }`}>
-                    <i className="ri-award-line"></i>
-                  </div>
-                  <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-white' : 'text-black'
-                  }`}>
-                    Curadoria de Excelência
-                  </h3>
-                  <p className={`transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    Selecionamos e entregamos apenas soluções líderes e comprovadamente robustas.
-                  </p>
-                </div>
-
-                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
-                  activeSection === 'valores'
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
+                  Excelência
+                </h3>
+                <p className={`text-lg transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  <div className={`text-5xl mb-6 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-primary' : 'text-blue-700'
-                  }`}>
-                    <i className="ri-focus-3-line"></i>
-                  </div>
-                  <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-white' : 'text-black'
-                  }`}>
-                    Foco no Cliente e em Resultados
-                  </h3>
-                  <p className={`transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    Construímos parcerias que transformam o investimento em tecnologia em vantagem competitiva duradoura.
-                  </p>
+                  Buscamos a perfeição em cada projeto, entregando soluções que superam expectativas e geram resultados excepcionais.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-lightbulb-line text-2xl text-white"></i>
                 </div>
-
-                <div className={`p-8 rounded-lg border transition-all duration-500 text-center ${ /* Centralizado */
-                  activeSection === 'valores'
-                  ? 'border-primary/30 bg-black/30 hover:bg-black/50'
-                  : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
+                <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-white' : 'text-black'
                 }`}>
-                  <div className={`text-5xl mb-6 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-primary' : 'text-blue-700'
-                  }`}>
-                    <i className="ri-eye-line"></i>
-                  </div>
-                  <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-white' : 'text-black'
-                  }`}>
-                    Visão de Futuro, Expertise Presente
-                  </h3>
-                  <p className={`transition-colors duration-500 ${
-                    activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    Nascemos da experiência para construir o futuro, com um compromisso de evoluir constantemente e entregar o máximo potencial tecnológico aos nossos clientes.
-                  </p>
+                  Inovação
+                </h3>
+                <p className={`text-lg transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Ativamos as tecnologias mais avançadas do mercado, sempre na vanguarda da transformação digital.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-team-line text-2xl text-white"></i>
                 </div>
+                <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-white' : 'text-black'
+                }`}>
+                  Parceria
+                </h3>
+                <p className={`text-lg transition-colors duration-500 ${
+                  activeSection === 'valores' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Construímos relacionamentos duradouros, trabalhando lado a lado com nossos clientes para alcançar o sucesso.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Seção Parceiros Estratégicos - Estilo Jam3 com transições e logos */}
-        <section
-          id="parceiros"
-          data-section-id="parceiros"
-          className="relative w-full overflow-hidden group border-b border-gray-800 py-24"
-          onMouseEnter={() => handleSectionInteraction('parceiros')}
+        {/* Seção Parcerias Estratégicas - IMAGEM DE FUNDO CORRIGIDA */}
+        <section 
+          id="parcerias"
+          data-section-id="parcerias"
+          className="relative w-full min-h-screen py-24 overflow-hidden"
+          onMouseEnter={() => handleSectionInteraction('parcerias')}
           onMouseLeave={handleSectionLeave}
-          onTouchStart={() => handleSectionInteraction('parceiros')}
-          onClick={() => handleSectionInteraction('parceiros')}
+          onTouchStart={() => handleSectionInteraction('parcerias')}
         >
-          {/* Background Image (aparece apenas no hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeSection === 'parceiros' ? 'opacity-100' : 'opacity-0'
+          {/* Background Image - CORRIGIDO */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 z-0 ${
+              activeSection === 'parcerias' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/ponta.png)` }}
+            style={{ backgroundImage: `url(/image/horizonte.png)` }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
-
-          {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeSection === 'parceiros' ? 'opacity-0' : 'opacity-100'
+          
+          {/* Background Color */}
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-500 z-0 ${
+              activeSection === 'parcerias' ? 'opacity-0' : 'opacity-100'
             }`}
           ></div>
 
           <div className="container mx-auto max-w-6xl px-4 relative z-10">
-            <div className="flex flex-col items-center"> {/* Centralizado */}
-              <h2 className={`text-3xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${ /* Centralizado */
-                activeSection === 'parceiros' ? 'text-white' : 'text-black'
-              }`}>
-                Parcerias Estratégicas
-              </h2>
-
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-8 w-full"> {/* Adicionado w-full para alinhar o grid */}
-                {parceiros.map((parceiro, index) => (
-                  <div key={index} className={`flex items-center justify-center h-32 rounded-lg border transition-all duration-500 ${
-                    activeSection === 'parceiros'
-                    ? 'border-primary/30 bg-black/30 hover:bg-black/50'
-                    : 'border-gray-300 bg-gray-100 hover:bg-gray-200'
-                  }`}>
-                    {parceiro.icon ? (
-                      <Image
-                        src={parceiro.icon}
-                        alt={parceiro.name}
-                        width={100} // Ajuste conforme o tamanho ideal da logo
-                        height={50} // Ajuste conforme o tamanho ideal da logo
-                        objectFit="contain" // Garante que a logo se ajuste ao contêiner
-                        className="max-h-full max-w-full opacity-80 group-hover:opacity-100 transition-opacity"
-                      />
-                    ) : (
-                      <p className={`text-2xl font-bold transition-colors duration-500 ${
-                        activeSection === 'parceiros' ? 'text-white' : 'text-black'
-                      }`}>
-                        {parceiro.name}
-                      </p>
-                    )}
+            <h2 className={`text-4xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${
+              activeSection === 'parcerias' ? 'text-white' : 'text-black'
+            }`}>
+              Parcerias Estratégicas
+            </h2>
+            
+            <p className={`text-xl text-center mb-16 max-w-4xl mx-auto transition-colors duration-500 ${
+              activeSection === 'parcerias' ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Trabalhamos com os líderes globais em tecnologia para oferecer as melhores soluções do mercado.
+            </p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+              {parceiros.map((parceiro, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-all duration-300">
+                    <Image
+                      src={parceiro.icon}
+                      alt={parceiro.name}
+                      className="w-full h-12 object-contain mx-auto"
+                      width={120}
+                      height={48}
+                    />
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="mt-16 text-center">
-                <Link
-                  href="/contato"
-                  className={`inline-flex items-center text-lg font-medium px-8 py-3 border transition-all duration-500 ${
-                    activeSection === 'parceiros'
-                    ? 'text-white border-white hover:bg-white hover:text-black'
-                    : 'text-black border-black hover:bg-black hover:text-white'
-                  }`}
-                >
-                  <span>Fale Conosco</span>
-                  <i className="ri-arrow-right-line ml-2"></i>
-                </Link>
-              </div>
+        {/* Seção CTA Final */}
+        <section className="relative w-full py-24 bg-primary">
+          <div className="container mx-auto max-w-6xl px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+              Pronto para Transformar seu Negócio?
+            </h2>
+            <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
+              Descubra como a AORKIA pode ativar as melhores tecnologias para impulsionar seus resultados.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/contato"
+                className="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Fale com um Especialista
+              </Link>
+              <Link
+                href="/backup_saas_estrategico"
+                className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors"
+              >
+                Conheça Nossas Soluções
+              </Link>
             </div>
           </div>
         </section>
@@ -371,3 +317,4 @@ export default function Sobre() {
     </>
   );
 }
+
