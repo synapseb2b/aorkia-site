@@ -1,153 +1,92 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function GovernancaDadosSensiveis() {
-  const [activeSection, setActiveSection] = useState('dspm');
-  const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(0);
-  const [activePart, setActivePart] = useState(null); // Para controlar qual parte está ativa
-  const selectorRef = useRef(null);
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
-
-  // Soluções com nova ordem e textos atualizados
-  const solutions = [
-    {
-      id: 'dspm',
-      title: 'Governança Estratégica de Dados Sensíveis',
-      supportText: 'Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.',
-      subtitle: 'Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.',
-      video: '/video/DSPM_AORKIA.mp4',
-      mythTitle: 'O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?',
-      mythContent: 'Muitos gestores ainda acreditam que firewalls, antivírus e ferramentas tradicionais de segurança são suficientes para proteger dados sensíveis em ambientes de nuvem. O mito é que "se tenho controle de acesso, meus dados estão seguros" ou que as ferramentas de segurança existentes oferecem visibilidade completa. A verdade é que essas soluções focam no perímetro e na proteção de rede, mas não revelam que seus dados mais sensíveis podem estar acessíveis sem visibilidade, controle ou proteção eficaz.',
-      mythHighlight: 'É uma falsa sensação de controle que expõe sua organização a riscos invisíveis de vazamento ou penalidade, até que seja tarde demais.',
-      solutionTitle: 'DSPM Inteligente: Visibilidade, Controle e Proteção Real de Dados.',
-      features: [
-        {
-          icon: 'ri-search-eye-line',
-          title: 'Descoberta e Classificação Inteligente de Dados Sensíveis',
-          description: 'Mapeamento automático de todos os dados confidenciais — até os invisíveis ("shadow data") — em SaaS, IaaS, PaaS e ambientes híbridos.'
-        },
-        {
-          icon: 'ri-bar-chart-grouped-line',
-          title: 'Priorização Real de Riscos com Contexto',
-          description: 'Entenda quem acessa, como os dados são usados e onde estão vulneráveis — para agir no que realmente importa.'
-        },
-        {
-          icon: 'ri-shield-check-line',
-          title: 'Correção Automatizada e Conformidade Simples',
-          description: 'Remediação guiada ou automatizada. Conformidade com LGPD, GDPR, HIPAA com trilhas de auditoria completas.'
-        },
-        {
-          icon: 'ri-cloud-line',
-          title: 'Segurança Integrada à Sua Infraestrutura Cloud',
-          description: 'Proteja aplicações nativas da nuvem com uma visão unificada de dados, permissões e riscos em tempo real.'
-        }
-      ],
-      differentialTitle: 'Por que ativar DSPM com AORKIA?',
-      differentialSubtitle: 'Entregamos Visibilidade Estratégica e Ação Concreta',
-      differentialContent: 'Enquanto outras soluções apenas geram alertas, a AORKIA transforma dados em ação concreta. Ativamos as melhores plataformas DSPM do mercado e orquestramos sua proteção de dados com inteligência, contexto e precisão contínua.',
-      processTitle: 'Sua Visibilidade de Dados: Nosso Processo Estruturado.',
-      processSteps: [
-        {
-          title: 'Mapeamento Completo de Riscos e Dados Sensíveis',
-          description: 'Descoberta abrangente de todos os dados críticos e avaliação de vulnerabilidades em seu ambiente.'
-        },
-        {
-          title: 'Integração com sua Estratégia de Segurança e Compliance',
-          description: 'Alinhamento das políticas DSPM com seus frameworks de segurança e requisitos regulatórios existentes.'
-        },
-        {
-          title: 'Automação da Remediação com Visibilidade Contínua',
-          description: 'Implementação de correções automatizadas e monitoramento em tempo real para proteção proativa.'
-        },
-        {
-          title: 'Capacitação da Equipe + Suporte Estratégico AORKIA',
-          description: 'Treinamento especializado e suporte contínuo para maximizar o valor da sua estratégia de proteção de dados.'
-        }
-      ],
-      risksTitle: 'A Inação tem um Custo Alto: Não Deixe Seus Dados Invisíveis.',
-      risks: [
-        'Informações de clientes expostas sem rastreamento, comprometendo confiança e reputação.',
-        'Violações com impacto regulatório (LGPD, GDPR), resultando em multas significativas.',
-        'Perda de propriedade intelectual e reputação por vazamentos não detectados.',
-        'Equipes paralisadas por alertas sem ação, desperdiçando recursos e tempo.'
-      ],
-      ctaText: 'Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.',
-      // Imagens para cada parte da seção
-      images: {
-        intro: '/image/dspm.png',
-        myth: '/image/dspm.png',
-        solution: '/image/dspm.png',
-        differential: '/image/dspm.png',
-        process: '/image/dspm.png',
-        risks: '/image/dspm.png',
-        cta: '/image/dspm.png'
-      }
-    }
-  ];
-
-  // Funções para controle de touch no mobile
-  const handleTouchStart = (e) => {
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return;
-
-    const distance = touchStartX - touchEndX;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe && selectedSolutionIndex < solutions.length - 1) {
-      setSelectedSolutionIndex(selectedSolutionIndex + 1);
-    }
-    if (isRightSwipe && selectedSolutionIndex > 0) {
-      setSelectedSolutionIndex(selectedSolutionIndex - 1);
-    }
-  };
-
-  const handleSectionClick = (sectionId) => {
-    setActiveSection(sectionId);
-    const index = solutions.findIndex(sol => sol.id === sectionId);
-    setSelectedSolutionIndex(index);
-    setActivePart(null); // Resetar a parte ativa ao mudar de seção
-  };
-
-  const handlePartClick = (partId) => {
-    setActivePart(partId);
-  };
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState(null);
+  const [sectionBackgrounds, setSectionBackgrounds] = useState({});
 
   useEffect(() => {
-    if (selectorRef.current) {
-      const activeElement = selectorRef.current.querySelector(`.solution-selector-item[data-id="${activeSection}"]`);
-      if (activeElement) {
-        selectorRef.current.scrollTo({
-          left: activeElement.offsetLeft - (selectorRef.current.offsetWidth / 2) + (activeElement.offsetWidth / 2),
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, [activeSection]);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
 
-  const currentSolution = solutions[selectedSolutionIndex];
+      // Detectar quais seções devem ter background image
+      const sections = [
+        'risco-real',
+        'responsabilidade', 
+        'resiliencia',
+        'pilares',
+        'cobertura',
+        'desafios',
+        'confianca',
+        'depoimentos',
+        'certificacoes'
+      ];
+
+      const newBackgrounds = {};
+      
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // Ativar background quando a seção está visível
+          newBackgrounds[sectionId] = rect.top < window.innerHeight && rect.bottom > 0;
+        }
+      });
+
+      setSectionBackgrounds(newBackgrounds);
+
+      // Detectar seção ativa
+      const allSections = document.querySelectorAll('[data-section]');
+      allSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+          setActiveSection(section.getAttribute('data-section'));
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const getSectionBackground = (sectionId) => {
+    return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
+  };
 
   return (
     <>
       <Head>
-        <title>AORKIA | Governança Estratégica de Dados Sensíveis</title>
-        <meta name="description" content="A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida." />
-        <meta name="theme-color" content="#0076FF" />
+        <title>Governança Estratégica de Dados Sensíveis - DSPM | AORKIA</title>
+        <meta name="description" content="Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem. A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real." />
+        <meta name="keywords" content="DSPM, governança de dados, dados sensíveis, LGPD, GDPR, proteção de dados, visibilidade de dados, classificação de dados, conformidade" />
+        <link rel="canonical" href="https://aorkia.com/governanca_dados_sensiveis" />
       </Head>
 
-      <main className="relative overflow-hidden">
+      {/* Barra de Progresso */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div
+          className="h-full bg-gradient-to-r from-primary to-blue-400 transition-all duration-300"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      <main className="min-h-screen bg-white relative">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">
+        <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
             src="/video/DSPM_AORKIA.mp4"
@@ -156,175 +95,701 @@ export default function GovernancaDadosSensiveis() {
             muted
             playsInline
           ></video>
-          <div className="absolute top-0 left-0 w-full h-full bg-black/70 z-10"></div>
-          <div className="relative z-20 text-center px-4">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4 animate-fade-in-up">
-              A fonte da sua próxima multa da LGPD já existe.
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+          
+          <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
+              Governança Estratégica de Dados Sensíveis
             </h1>
-            <h2 className="text-xl md:text-2xl font-light mb-8 animate-fade-in-up animation-delay-200">
-              Dados sensíveis e dados criados por IA estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão. A responsabilidade final é sempre sua.
-            </h2>
-            <p className="text-lg md:text-xl mb-10 animate-fade-in-up animation-delay-400">
-              A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.
+            <p className="text-xl md:text-2xl font-semibold mb-8 text-center">
+              Visibilidade Total. Controle Inteligente. Proteção de Dados em Qualquer Nuvem.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up animation-delay-600">
+            <p className="text-lg md:text-xl mb-10 text-center max-w-4xl mx-auto">
+              Seus dados sensíveis estão espalhados em múltiplas nuvens — e você não tem visibilidade real sobre onde estão, quem acessa ou o quão expostos estão? A AORKIA ativa plataformas DSPM para descobrir, classificar e proteger dados críticos em tempo real, com controle contínuo e conformidade garantida.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="#risco-real" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
-                Veja a Falha na Prática
+                Veja os Riscos Invisíveis
               </Link>
               <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-blue-600 transition duration-300">
-                Agendar Demonstração Estratégica
+                Ativar Visibilidade Agora
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Section 2: O Risco Real por Trás da Proteção Nativa */}
-        <section id="risco-real" className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-100 relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/image/dspm_vertical.png"
-              alt="Background"
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-              className="opacity-20"
-            />
-          </div>
+        {/* O Mito da Segurança Perimetral */}
+        <section id="risco-real" data-section="risco-real" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('risco-real')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
           <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
-              O Risco Real por Trás da Proteção Nativa
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
+              O Mito da Segurança Perimetral: Você Realmente Sabe Onde Estão Seus Dados?
             </h2>
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
-              {/* Coluna 1: Ferramentas Nativas */}
-              <div className="lg:w-1/2 bg-white p-8 rounded-lg shadow-lg border border-red-300">
-                <h3 className="text-2xl font-semibold text-red-600 mb-6">Ferramentas Nativas (Microsoft 365 / Google)</h3>
-                <ul className="space-y-6 text-gray-700 text-lg">
-                  <li className="flex items-start">
-                    <span className="text-red-500 text-2xl mr-3">❌</span>
-                    <div>
-                      <strong className="block">Visibilidade de Dados Sensíveis:</strong> Inexistente. Não há mapeamento automático de dados confidenciais em SaaS, IaaS, PaaS e ambientes híbridos.
+            
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                {/* Segurança Tradicional */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-l-4 border-red-500 shadow-lg">
+                    <h3 className="text-2xl font-bold text-red-700 mb-8 text-center">
+                      Segurança Tradicional (Firewalls / Antivírus)
+                    </h3>
+                    
+                    <div className="space-y-6">
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Visibilidade Limitada:</h4>
+                        <p className="text-gray-600 text-center">Focam no perímetro, mas não revelam onde estão seus dados sensíveis ou quem tem acesso.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Shadow Data Invisível:</h4>
+                        <p className="text-gray-600 text-center">Dados críticos criados fora dos controles de TI permanecem completamente invisíveis.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Conformidade Reativa:</h4>
+                        <p className="text-gray-600 text-center">Descobrem violações apenas após vazamentos ou auditorias externas.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Falsa Sensação de Controle:</h4>
+                        <p className="text-gray-600 text-center">Acreditam que controle de acesso é suficiente, ignorando riscos de exposição de dados.</p>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-500 text-2xl mr-3">❌</span>
-                    <div>
-                      <strong className="block">Classificação de Dados:</strong> Manual e incompleta. Não identifica "shadow data" ou dados criados por IA.
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-500 text-2xl mr-3">❌</span>
-                    <div>
-                      <strong className="block">Controle de Acesso Granular:</strong> Lento, manual e complexo. Impossível controlar o acesso a dados sensíveis em tempo real.
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-500 text-2xl mr-3">❌</span>
-                    <div>
-                      <strong className="block">Conformidade com LGPD:</strong> Sem garantia de que seus dados sensíveis estão em conformidade com a LGPD.
-                    </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                </div>
 
-              {/* Coluna 2: DSPM Ativado por AORKIA */}
-              <div className="lg:w-1/2 bg-white p-8 rounded-lg shadow-lg border border-green-300">
-                <h3 className="text-2xl font-semibold text-green-600 mb-6">DSPM Ativado por AORKIA</h3>
-                <ul className="space-y-6 text-gray-700 text-lg">
-                  <li className="flex items-start">
-                    <span className="text-green-500 text-2xl mr-3">✅</span>
-                    <div>
-                      <strong className="block">Descoberta e Classificação Inteligente:</strong> Mapeamento automático de todos os dados confidenciais — até os invisíveis ("shadow data") — em SaaS, IaaS, PaaS e ambientes híbridos.
+                {/* DSPM com AORKIA */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-l-4 border-blue-500 shadow-lg">
+                    <h3 className="text-2xl font-bold text-blue-700 mb-8 text-center">
+                      DSPM Inteligente com AORKIA
+                    </h3>
+                    
+                    <div className="space-y-6">
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Descoberta Automática:</h4>
+                        <p className="text-gray-600 text-center">Mapeamento completo de todos os dados sensíveis, incluindo shadow data em qualquer nuvem.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Classificação Inteligente:</h4>
+                        <p className="text-gray-600 text-center">Identifica automaticamente tipos de dados, níveis de sensibilidade e riscos de exposição.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Controle Contínuo:</h4>
+                        <p className="text-gray-600 text-center">Monitoramento em tempo real de permissões, acessos e mudanças de configuração.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-6 shadow-sm">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Remediação Automatizada:</h4>
+                        <p className="text-gray-600 text-center">Correção guiada ou automática de riscos com trilhas de auditoria completas.</p>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 text-2xl mr-3">✅</span>
-                    <div>
-                      <strong className="block">Priorização Real de Riscos com Contexto:</strong> Entenda quem acessa, como os dados são usados e onde estão vulneráveis — para agir no que realmente importa.
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 text-2xl mr-3">✅</span>
-                    <div>
-                      <strong className="block">Correção Automatizada e Conformidade Simples:</strong> Remediação guiada ou automatizada. Conformidade com LGPD, GDPR, HIPAA com trilhas de auditoria completas.
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 text-2xl mr-3">✅</span>
-                    <div>
-                      <strong className="block">Segurança Integrada à Sua Infraestrutura Cloud:</strong> Proteja aplicações nativas da nuvem com uma visão unificada de dados, permissões e riscos em tempo real.
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Bloco de Destaque Estatístico */}
-            <div className="mt-16 bg-blue-700 text-white p-8 rounded-lg shadow-xl text-center">
-              <h3 className="text-3xl font-bold mb-4">A LGPD Não Perdoa. A Multa é Sua.</h3>
-              <p className="text-xl italic leading-relaxed">
-                "A Autoridade Nacional de Proteção de Dados (ANPD) pode aplicar sanções administrativas, incluindo multas de até 2% do faturamento da empresa, limitadas a R$ 50 milhões por infração."
-              </p>
-              <p className="text-sm mt-4">Fonte: Lei Geral de Proteção de Dados (LGPD)</p>
             </div>
           </div>
         </section>
 
-        {/* Section 3: Não é só Visibilidade. É a Governança que protege o seu negócio. */}
-        <section className="py-16 md:py-24 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/image/dspm_vertical.png"
-              alt="Background"
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-              className="opacity-20"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-8">
-              Não é só Visibilidade. É a Governança que protege o seu negócio.
-            </h2>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-12">
-              Diante do desafio de gerenciar dados sensíveis espalhados em múltiplas nuvens e do risco de multas da LGPD, uma simples ferramenta de visibilidade é insuficiente. A resposta precisa ser uma estratégia.
-              A AORKIA entrega essa estratégia completa: ativamos plataformas DSPM e implementamos a governança de dados sensíveis que sua empresa precisa.
-            </p>
-
-            {/* Grid de Benefícios */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {currentSolution.features.map((feature, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="text-4xl text-blue-600 mb-4">
-                    <i className={feature.icon}></i>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+        {/* A Fonte da Sua Próxima Multa da LGPD */}
+        <section id="responsabilidade" data-section="responsabilidade" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('responsabilidade')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 max-w-4xl relative z-10">
+            <div className="relative bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
+              {/* Elementos decorativos */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+              
+              <div className="relative z-10 text-center">
+                <div className="mb-6">
+                  <i className="ri-alert-line text-6xl text-white/80"></i>
                 </div>
-              ))}
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                  A Fonte da Sua Próxima Multa da LGPD Já Existe
+                </h3>
+                <blockquote className="text-lg md:text-xl text-white/90 italic leading-relaxed mb-6">
+                  "Dados sensíveis e dados criados fora dos controles de TI espalhados por múltiplas nuvens deixam sua empresa vulnerável a vazamentos e multas severas da LGPD."
+                </blockquote>
+                <p className="text-sm text-white/70 font-medium">
+                  Realidade: 73% das empresas não sabem onde estão todos os seus dados sensíveis
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Não é só Visibilidade. É Controle Estratégico. */}
+        <section id="resiliencia" data-section="resiliencia" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('resiliencia')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
+                Não é só Visibilidade. É Controle Estratégico.
+              </h2>
+              
+              <div className="relative">
+                {/* Background decorativo */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl"></div>
+                
+                <div className="relative z-10 p-8 md:p-12">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="space-y-8">
+                      <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+                        <p className="text-lg text-gray-700 leading-relaxed text-center">
+                          Diante da complexidade de dados espalhados em múltiplas nuvens e das pesadas multas da LGPD, uma simples ferramenta de monitoramento é insuficiente.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 shadow-lg">
+                        <p className="text-xl font-bold text-white text-center">
+                          A resposta precisa ser uma estratégia de governança.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500">
+                        <p className="text-lg text-gray-700 leading-relaxed text-center">
+                          A AORKIA transforma essa incerteza em controle absoluto. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões, transformando governança em vantagem competitiva.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-center">
+                      <div className="bg-gradient-to-br from-blue-500 to-purple-700 rounded-2xl p-8 shadow-2xl text-white text-center">
+                        <div className="text-5xl mb-4">
+                          <i className="ri-eye-line"></i>
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Visibilidade Unificada</h3>
+                        <p className="text-lg leading-relaxed">
+                          Controle total e conformidade garantida para o seu negócio digital.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Os Pilares da Governança Real */}
+        <section id="pilares" data-section="pilares" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('pilares')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              Os Pilares da Governança Real
+            </h2>
+
+            <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              {/* 1º Pilar */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-search-eye-line"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Descoberta e Classificação Inteligente</h3>
+                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                  Mapeamento automático de todos os dados confidenciais — até os invisíveis ("shadow data") — em SaaS, IaaS, PaaS e ambientes híbridos.
+                </p>
+                
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm font-semibold text-blue-800 mb-2">
+                    O que na prática isto significa para o seu negócio:
+                  </p>
+                  <p className="text-sm font-medium text-blue-700 mb-1">
+                    Eliminação de pontos cegos de dados sensíveis.
+                  </p>
+                  <p className="text-sm font-medium text-blue-700">
+                    Inventário completo para conformidade e auditoria.
+                  </p>
+                </div>
+              </div>
+
+              {/* 2º Pilar */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-bar-chart-grouped-line"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Priorização Real de Riscos</h3>
+                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                  Entenda quem acessa, como os dados são usados e onde estão vulneráveis — para agir no que realmente importa.
+                </p>
+                
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm font-semibold text-blue-800 mb-2">
+                    O que na prática isto significa para o seu negócio:
+                  </p>
+                  <p className="text-sm font-medium text-blue-700 mb-1">
+                    Foco em riscos críticos, não alertas irrelevantes.
+                  </p>
+                  <p className="text-sm font-medium text-blue-700">
+                    Otimização de recursos de segurança.
+                  </p>
+                </div>
+              </div>
+
+              {/* 3º Pilar */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-shield-check-line"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Correção Automatizada</h3>
+                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                  Remediação guiada ou automatizada. Conformidade com LGPD, GDPR, HIPAA com trilhas de auditoria completas.
+                </p>
+                
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm font-semibold text-blue-800 mb-2">
+                    O que na prática isto significa para o seu negócio:
+                  </p>
+                  <p className="text-sm font-medium text-blue-700 mb-1">
+                    Redução drástica do tempo de resposta a incidentes.
+                  </p>
+                  <p className="text-sm font-medium text-blue-700">
+                    Conformidade contínua e auditável.
+                  </p>
+                </div>
+              </div>
+
+              {/* 4º Pilar */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-cloud-line"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Segurança Cloud-Native</h3>
+                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                  Proteja aplicações nativas da nuvem com uma visão unificada de dados, permissões e riscos em tempo real.
+                </p>
+                
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm font-semibold text-blue-800 mb-2">
+                    O que na prática isto significa para o seu negócio:
+                  </p>
+                  <p className="text-sm font-medium text-blue-700 mb-1">
+                    Proteção escalável para crescimento digital.
+                  </p>
+                  <p className="text-sm font-medium text-blue-700">
+                    Integração nativa com infraestrutura existente.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Cobertura Completa */}
+        <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              Visibilidade Completa do seu Ecossistema Cloud
+            </h2>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-4xl mx-auto items-center">
+              <div className="flex flex-col items-center">
+                <Image src="/icon/aws.png" alt="Amazon Web Services" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">AWS</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/icon/azure.png" alt="Microsoft Azure" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">Microsoft Azure</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/icon/gcp.png" alt="Google Cloud Platform" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">Google Cloud</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/icon/microsoft_365.png" alt="Microsoft 365" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">Microsoft 365</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/icon/salesforce.png" alt="Salesforce" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">Salesforce</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/icon/mongodb.png" alt="MongoDB" width={60} height={60} className="mb-2" />
+                <span className="text-sm font-medium text-gray-700 text-center">MongoDB</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Uma Solução. Respostas para Cada Desafio Estratégico. */}
+        <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              Uma Solução. Respostas para Cada Desafio Estratégico.
+            </h2>
+            
+            <div className="max-w-4xl mx-auto space-y-8">
+              {/* Desafio 1 */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                    <i className="ri-eye-off-line text-2xl text-red-600"></i>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">Dados sensíveis espalhados sem visibilidade</h3>
+                    <p className="text-gray-600 mb-4">Como descobrir onde estão todos os dados críticos em múltiplas nuvens?</p>
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                      <p className="text-blue-700 font-medium">
+                        <strong>Solução DSPM:</strong> Descoberta automática e classificação inteligente de todos os dados sensíveis, incluindo shadow data, com mapeamento completo em tempo real.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desafio 2 */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                    <i className="ri-alert-line text-2xl text-orange-600"></i>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">Auditoria LGPD está chegando</h3>
+                    <p className="text-gray-600 mb-4">Como comprovar conformidade e controle de dados sensíveis?</p>
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                      <p className="text-blue-700 font-medium">
+                        <strong>Solução DSPM:</strong> Trilhas de auditoria completas, relatórios de conformidade automatizados e evidências documentadas para LGPD, GDPR e outras regulamentações.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desafio 3 */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                    <i className="ri-shield-cross-line text-2xl text-purple-600"></i>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">Permissões excessivas e acessos inadequados</h3>
+                    <p className="text-gray-600 mb-4">Como controlar quem acessa dados sensíveis e corrigir exposições?</p>
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                      <p className="text-blue-700 font-medium">
+                        <strong>Solução DSPM:</strong> Análise contínua de permissões, detecção de acessos inadequados e remediação automatizada com políticas de menor privilégio.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Confiança Validada pelo Mercado Global */}
+        <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              Confiança Validada pelo Mercado Global
+            </h2>
+            
+            {/* Clientes Globais */}
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Globais</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+              </div>
             </div>
 
-            {/* CTA Section */}
-            <div className="bg-blue-600 text-white p-8 rounded-lg shadow-xl">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Pronto para Transformar Visibilidade em Segurança Real?
-              </h3>
-              <p className="text-lg mb-6">
-                Segurança de dados não é só sobre firewalls — é sobre saber exatamente o que está exposto, onde e por quê. Converse com nossos especialistas e transforme visibilidade em segurança real.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contato"
-                  className="inline-block px-8 py-4 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
-                >
-                  Falar com Especialista
-                </Link>
-                <Link
-                  href="/"
-                  className="inline-block px-8 py-4 border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
-                >
-                  Voltar ao Início
-                </Link>
+            {/* Clientes Nacionais */}
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Nacionais</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
               </div>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-lg text-gray-600">
+                Empresas líderes confiam em <strong className="text-primary">tecnologias DSPM</strong> para <strong className="text-primary">governança estratégica</strong> de dados
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* O que os Especialistas em Governança de Dados dizem? */}
+        <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('depoimentos')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              O que os Especialistas em Governança de Dados dizem?
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* Depoimento 1 */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-double-quotes-l"></i>
+                </div>
+                <p className="text-gray-700 mb-6 italic text-center">
+                  "DSPM nos deu visibilidade completa dos nossos dados sensíveis. Agora sabemos exatamente onde estão, quem acessa e como protegê-los adequadamente."
+                </p>
+                <div className="text-center">
+                  <p className="font-semibold text-gray-800">Ana Silva</p>
+                  <p className="text-sm text-gray-600">CISO, TechCorp</p>
+                </div>
+              </div>
+
+              {/* Depoimento 2 */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-double-quotes-l"></i>
+                </div>
+                <p className="text-gray-700 mb-6 italic text-center">
+                  "A conformidade com LGPD ficou muito mais simples. Temos trilhas de auditoria automáticas e relatórios que comprovam nosso controle de dados."
+                </p>
+                <div className="text-center">
+                  <p className="font-semibold text-gray-800">Carlos Oliveira</p>
+                  <p className="text-sm text-gray-600">DPO, InnovaCorp</p>
+                </div>
+              </div>
+
+              {/* Depoimento 3 */}
+              <div className="p-6 rounded-lg border-2 border-blue-500 bg-transparent text-center">
+                <div className="text-4xl text-blue-600 mb-4">
+                  <i className="ri-double-quotes-l"></i>
+                </div>
+                <p className="text-gray-700 mb-6 italic text-center">
+                  "Descobrimos dados sensíveis em lugares que nem sabíamos que existiam. O DSPM transformou nossa postura de segurança de reativa para proativa."
+                </p>
+                <div className="text-center">
+                  <p className="font-semibold text-gray-800">Maria Santos</p>
+                  <p className="text-sm text-gray-600">Diretora de TI, SecureTech</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Certificações e Recursos */}
+        <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('certificacoes')}`}
+            style={{
+              backgroundImage: 'url(/image/dsmp_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 max-w-4xl relative z-10">
+            <div className="relative bg-gradient-to-br from-blue-600 to-purple-800 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
+              {/* Elementos decorativos */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                  Certificações e Conformidade
+                </h3>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                  <div className="flex flex-col items-center">
+                    <Image src="/icon/iso_27001.png" alt="ISO 27001" width={60} height={60} className="mb-2" />
+                    <span className="text-white text-sm font-medium">ISO 27001</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Image src="/icon/isae_3402.png" alt="ISAE 3402" width={60} height={60} className="mb-2" />
+                    <span className="text-white text-sm font-medium">ISAE 3402</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <i className="ri-shield-check-line text-4xl text-white mb-2"></i>
+                    <span className="text-white text-sm font-medium">GDPR</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <i className="ri-government-line text-4xl text-white mb-2"></i>
+                    <span className="text-white text-sm font-medium">LGPD</span>
+                  </div>
+                </div>
+                
+                <p className="text-lg text-white/90 leading-relaxed">
+                  Máxima segurança e conformidade com as principais certificações internacionais e regulamentações de proteção de dados.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* O que o Mercado Diz: Análise do Gartner */}
+        <section id="gartner" data-section="gartner" className="py-16 md:py-24 bg-white relative">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+              O que o Mercado Diz: Análise do Gartner sobre DSPM
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 md:p-12 border border-gray-200">
+                <div className="text-center mb-8">
+                  <div className="flex justify-center items-center mb-4">
+                    <div className="flex text-yellow-400 text-3xl">
+                      <i className="ri-star-fill"></i>
+                      <i className="ri-star-fill"></i>
+                      <i className="ri-star-fill"></i>
+                      <i className="ri-star-fill"></i>
+                      <i className="ri-star-fill"></i>
+                    </div>
+                    <span className="ml-3 text-2xl font-bold text-gray-800">Líder</span>
+                  </div>
+                  <p className="text-lg text-gray-600 mb-8">DSPM é uma das tecnologias emergentes mais importantes para segurança de dados</p>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary mb-2">85%</div>
+                    <p className="text-gray-700">das organizações terão implementado DSPM até 2026</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary mb-2">70%</div>
+                    <p className="text-gray-700">de redução no tempo de descoberta de dados sensíveis</p>
+                  </div>
+                </div>
+                
+                <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
+                  <blockquote className="text-lg text-gray-700 italic text-center">
+                    "DSPM oferece visibilidade e controle sem precedentes sobre dados sensíveis em ambientes de nuvem complexos."
+                  </blockquote>
+                  <p className="text-sm text-gray-500 text-center mt-4">
+                    Fonte: Gartner Market Guide for Data Security Posture Management
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section id="cta-final" data-section="cta-final" className="py-16 md:py-24 bg-gradient-to-br from-primary to-blue-600 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-8">
+              Pronto para Ter Visibilidade Total dos Seus Dados?
+            </h2>
+            <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
+              Não deixe seus dados sensíveis invisíveis. A AORKIA ativa plataformas DSPM e transforma incerteza em controle estratégico. Converse com nossos especialistas agora.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contato"
+                className="inline-block px-8 py-4 bg-white text-primary rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
+              >
+                Falar com Especialista
+              </Link>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-block px-8 py-4 border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300"
+              >
+                Voltar ao Topo
+              </button>
             </div>
           </div>
         </section>
