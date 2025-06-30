@@ -73,7 +73,7 @@ export default function PostBackupImutavel() {
         {/* Hero Section do Post */}
         <section id="hero-post" className="relative h-screen overflow-hidden flex flex-col justify-between pt-24 pb-12 px-4 text-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/image/Video_Meme_CIO_em_Panico.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
+            <source src="/video/Video_Meme_CIO_em_Panico.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
             Seu navegador não suporta vídeo.
           </video>
           {/* Removidas todas as máscaras e imagens de fallback que cobriam o vídeo */}
@@ -227,122 +227,33 @@ export default function PostBackupImutavel() {
                 ))}
             </div>
 
-            {/* Destaque de ROI final */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 mb-12">
-                <div className="bg-primary/10 border border-primary/30 rounded-lg p-8 text-center flex flex-col items-center justify-center">
-                    <p className="text-sm uppercase text-primary font-bold mb-2">ROI Impressionante</p>
-                    <p className="text-5xl font-bold text-primary">163%</p>
-                </div>
-                <div className="bg-primary/10 border border-primary/30 rounded-lg p-8 text-center flex flex-col items-center justify-center">
-                    <p className="text-sm uppercase text-primary font-bold mb-2">Valor Presente Líquido (NPV)</p>
-                    <p className="text-5xl font-bold text-primary">US$ 822K</p>
-                </div>
-            </div>
-            <p className="text-lg leading-relaxed mb-12 font-bold text-center text-gray-800"> {/* Cor alterada para cinza escuro */}
-              Somando todos esses benefícios e subtraindo os custos (principalmente as taxas de licença de software de US$ 492.000 ), o estudo aponta um ROI impressionante e um Valor Presente Líquido (NPV) em três anos.
-            </p>
-
-
-            {/* Keepit: A Escolha Inteligente para Gestores */}
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black text-center"> {/* Centralizado */}
-              Keepit: <span className="text-primary">A Escolha Inteligente para Gestores</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-              <div className="text-justify"> {/* Coluna Esquerda: Texto e Lista de Benefícios do Keepit Justificado */}
-                <p className="text-lg leading-relaxed mb-8 text-gray-700">
-                  A Keepit se posiciona como a solução ideal para preencher as lacunas deixadas por ferramentas como o Google Vault. Ela oferece:
-                </p>
-                <ul className="text-lg leading-relaxed space-y-4 text-left">
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Excelentes capacidades de backup, protegendo seus dados críticos.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Conformidade com legislações de proteção de dados.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Plataforma amigável e fácil de usar, sem necessidade de conhecimento de TI. Um líder de TI resumiu: "Em 10 minutos, toda a minha equipe estava a bordo."
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Capacidades em nuvem robustas.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="ri-check-line text-xl mr-3 text-primary"></i>
-                    Uso para arquivamento e auditoria.
-                  </li>
-                </ul>
-              </div>
-              <div className="flex items-center justify-center p-4"> {/* Coluna Direita: Imagem/Diagrama do Keepit */}
-                <Image
-                  src="/image/aorkia_keepit.png" // Apontando para a imagem 'aorkia_keepit.png'
-                  alt="Diagrama Keepit Cloud Independente"
-                  width={500}
-                  height={300}
-                  objectFit="contain"
-                  className="rounded-lg shadow-lg"
-                />
+            {/* Conclusão e CTA */}
+            <div className="bg-primary text-white p-8 rounded-lg shadow-xl text-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Não Deixe Seus Dados Vulneráveis
+              </h2>
+              <p className="text-lg mb-6">
+                A proteção real dos seus dados SaaS não é uma opção — é uma necessidade estratégica. Converse com nossos especialistas e descubra como implementar backup imutável com Keepit.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/contato"
+                  className="inline-block px-8 py-4 bg-white text-primary rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
+                >
+                  Falar com Especialista
+                </Link>
+                <Link
+                  href="/blog"
+                  className="inline-block px-8 py-4 border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300"
+                >
+                  Voltar ao Blog
+                </Link>
               </div>
             </div>
-            <p className="text-lg leading-relaxed mt-8 font-bold text-gray-800 text-justify"> {/* Cor alterada para cinza escuro, justificado */}
-              A Keepit se destaca como a única nuvem independente do mundo para proteção de dados SaaS. Isso significa que seus dados são copiados múltiplas vezes (quatro cópias, com duas em cada um de dois data centers independentes), garantindo imutabilidade por padrão e disponibilidade em uma infraestrutura isolada e à prova de adulteração.
-            </p>
-          </div>
-        </section>
-
-        {/* CTA Final do Post */}
-        <section
-          id="cta-final-post"
-          className="relative w-full py-20 px-4 overflow-hidden group border-t border-b border-gray-800"
-          onMouseEnter={() => setActiveCta(true)}
-          onMouseLeave={() => setActiveCta(false)} // Volta para o tema de conteúdo
-        >
-          {/* Background Image (aparece apenas no hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
-              activeCta ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/light_pont.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
-
-          {/* Background Color (aparece quando não está em hover/ativo) */}
-          <div
-            className={`absolute inset-0 bg-white transition-opacity duration-500 ${
-              activeCta ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-4xl text-center relative z-10">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-              activeCta ? 'text-white' : 'text-black'
-            }`}>
-              Não Deixe o Futuro do Seu Negócio ao Acaso
-            </h2>
-            <p className={`text-xl mb-8 transition-colors duration-500 ${
-              activeCta ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              A segurança dos dados no ambiente SaaS é complexa e exige uma abordagem proativa e especializada. Como parceiros estratégicos em cibersegurança, na AORKIA, entendemos profundamente esses desafios. Confiar em soluções que não foram projetadas para backup pode expor sua empresa a riscos inaceitáveis e perdas financeiras catastróficas em caso de um ataque de ransomware ou erro humano.
-            </p>
-            <p className={`text-xl mb-8 font-bold text-white transition-colors duration-500 ${ // Texto em negrito e cor branca
-              activeCta ? 'text-white' : 'text-gray-700' // Mantém a cor escura quando a seção não está ativa no hover
-            }`}>
-              Investir em uma solução de recuperação robusta como a Keepit não é um custo, mas um investimento estratégico que protege o negócio, minimiza perdas, garante a continuidade das operações e oferece um retorno financeiro comprovado. Não espere pelo próximo ataque de ransomware.
-            </p>
-            <Link
-              href="/contato"
-              className={`inline-block px-10 py-5 rounded-lg font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl ${
-                activeCta ? 'bg-primary hover:bg-primary/90 text-white' : 'bg-blue-700 hover:bg-blue-800 text-white'
-              }`}
-            >
-              Fale com a AORKIA hoje mesmo.
-            </Link>
           </div>
         </section>
       </main>
     </>
   );
 }
+
