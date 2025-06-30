@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function BackupSaaSEstrategico() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
-  const [showBackgroundImage, setShowBackgroundImage] = useState(false);
+  const [sectionBackgrounds, setSectionBackgrounds] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,22 +15,35 @@ export default function BackupSaaSEstrategico() {
       const progress = (scrollTop / docHeight) * 100;
       setScrollProgress(progress);
 
-      // Detectar quando mostrar imagem de fundo
-      const riscoSection = document.getElementById('risco-real');
-      const gartnerSection = document.getElementById('gartner');
+      // Detectar quais seções devem ter background image
+      const sections = [
+        'risco-real',
+        'responsabilidade', 
+        'resiliencia',
+        'pilares',
+        'cobertura',
+        'desafios',
+        'confianca',
+        'depoimentos',
+        'certificacoes'
+      ];
+
+      const newBackgrounds = {};
       
-      if (riscoSection && gartnerSection) {
-        const riscoRect = riscoSection.getBoundingClientRect();
-        const gartnerRect = gartnerSection.getBoundingClientRect();
-        
-        // Mostrar imagem quando usuário está entre essas seções
-        const shouldShow = riscoRect.top < window.innerHeight && gartnerRect.bottom > 0;
-        setShowBackgroundImage(shouldShow);
-      }
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // Ativar background quando a seção está visível
+          newBackgrounds[sectionId] = rect.top < window.innerHeight && rect.bottom > 0;
+        }
+      });
+
+      setSectionBackgrounds(newBackgrounds);
 
       // Detectar seção ativa
-      const sections = document.querySelectorAll('[data-section]');
-      sections.forEach((section) => {
+      const allSections = document.querySelectorAll('[data-section]');
+      allSections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
           setActiveSection(section.getAttribute('data-section'));
@@ -50,6 +63,10 @@ export default function BackupSaaSEstrategico() {
     }
   };
 
+  const getSectionBackground = (sectionId) => {
+    return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
+  };
+
   return (
     <>
       <Head>
@@ -67,18 +84,7 @@ export default function BackupSaaSEstrategico() {
         />
       </div>
 
-      {/* Background Image Transition */}
-      <div 
-        className={`fixed inset-0 z-0 transition-opacity duration-1000 ${showBackgroundImage ? 'opacity-20' : 'opacity-0'}`}
-        style={{
-          backgroundImage: 'url(/image/backup_vertical.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      />
-
-      <main className="min-h-screen bg-white relative z-10">
+      <main className="min-h-screen bg-white relative">
         {/* Hero Section */}
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
@@ -113,8 +119,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* O Risco Real por trás da Proteção Nativa */}
-        <section id="risco-real" data-section="risco-real" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="risco-real" data-section="risco-real" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('risco-real')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
               O Risco Real por trás da Proteção Nativa
             </h2>
@@ -188,8 +205,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* A Responsabilidade é Sua. A Microsoft Confirma. */}
-        <section id="responsabilidade" data-section="responsabilidade" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4 max-w-4xl">
+        <section id="responsabilidade" data-section="responsabilidade" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('responsabilidade')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 max-w-4xl relative z-10">
             <div className="relative bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
               {/* Elementos decorativos */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
@@ -214,8 +242,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Não é só um Backup. É a Resiliência que salva o seu negócio. */}
-        <section id="resiliencia" data-section="resiliencia" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="resiliencia" data-section="resiliencia" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('resiliencia')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
                 Não é só um Backup. É a Resiliência que salva o seu negócio.
@@ -229,7 +268,7 @@ export default function BackupSaaSEstrategico() {
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8">
                       <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
-                        <p className="text-lg text-gray-700 leading-relaxed">
+                        <p className="text-lg text-gray-700 leading-relaxed text-center">
                           Diante do risco iminente de perda de dados em nuvem e das pesadas multas da LGPD, uma simples ferramenta de backup é insuficiente.
                         </p>
                       </div>
@@ -241,7 +280,7 @@ export default function BackupSaaSEstrategico() {
                       </div>
                       
                       <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500">
-                        <p className="text-lg text-gray-700 leading-relaxed">
+                        <p className="text-lg text-gray-700 leading-relaxed text-center">
                           A AORKIA entrega essa estratégia completa: ativamos a Keepit e implementamos seu backup imutável, com soberania de dados no Brasil, como um pilar fundamental de continuidade e governança.
                         </p>
                       </div>
@@ -266,8 +305,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Os Pilares da Proteção Real */}
-        <section id="pilares" data-section="pilares" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="pilares" data-section="pilares" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('pilares')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
               Os Pilares da Proteção Real
             </h2>
@@ -352,8 +402,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Cobertura Completa */}
-        <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
               Cobertura Completa do seu Ecossistema SaaS
             </h2>
@@ -364,7 +425,7 @@ export default function BackupSaaSEstrategico() {
                 <span className="text-sm font-medium text-gray-700 text-center">Microsoft 365</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/google_workspace.png" alt="Google Workspace" width={60} height={60} className="mb-2" />
+                <Image src="/icon/gcp.png" alt="Google Workspace" width={60} height={60} className="mb-2" />
                 <span className="text-sm font-medium text-gray-700 text-center">Google Workspace</span>
               </div>
               <div className="flex flex-col items-center">
@@ -388,8 +449,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Uma Solução. Respostas para Cada Desafio Estratégico. */}
-        <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
               Uma Solução. Respostas para Cada Desafio Estratégico.
             </h2>
@@ -453,8 +525,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Confiança Validada pelo Mercado Global */}
-        <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
               Confiança Validada pelo Mercado Global
             </h2>
@@ -506,52 +589,63 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* O que os Clientes que ativaram Keepit dizem? */}
-        <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4">
+        <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('depoimentos')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
               O que os Clientes que ativaram Keepit dizem?
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {/* Depoimento 1 */}
+              {/* Depoimento 1 - ALPLA */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
                   <i className="ri-double-quotes-l"></i>
                 </div>
                 <p className="text-gray-700 mb-6 italic text-center">
-                  "A implementação da Keepit pela AORKIA nos deu a tranquilidade que precisávamos. Sabemos que nossos dados estão protegidos e podemos recuperar qualquer coisa em minutos."
+                  "A Keepit nos permite escalar nosso negócio facilmente, adicionando novos usuários do Microsoft 365 sem custos ocultos."
                 </p>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-800">João Silva</p>
-                  <p className="text-sm text-gray-600">CTO, TechCorp</p>
+                  <p className="font-semibold text-gray-800">Stefan Toefferl</p>
+                  <p className="text-sm text-gray-600">Engenheiro Sênior de Data Center, ALPLA</p>
                 </div>
               </div>
 
-              {/* Depoimento 2 */}
+              {/* Depoimento 2 - Porsche */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
                   <i className="ri-double-quotes-l"></i>
                 </div>
                 <p className="text-gray-700 mb-6 italic text-center">
-                  "Quando sofremos um ataque de ransomware, a Keepit foi nossa salvação. Recuperamos tudo em poucas horas e não perdemos nenhum dado crítico."
+                  "Estávamos procurando uma solução SaaS e não queríamos fazer o backup de todos os dados localmente (on-premise). O backup em nuvem da Keepit, simples e fácil de usar, entregou o que estávamos procurando."
                 </p>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-800">Maria Santos</p>
-                  <p className="text-sm text-gray-600">Diretora de TI, InnovaCorp</p>
+                  <p className="font-semibold text-gray-800">Michael Bojko</p>
+                  <p className="text-sm text-gray-600">Engenheiro de Sistemas na Porsche Informatik</p>
                 </div>
               </div>
 
-              {/* Depoimento 3 */}
+              {/* Depoimento 3 - HDI */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
                   <i className="ri-double-quotes-l"></i>
                 </div>
                 <p className="text-gray-700 mb-6 italic text-center">
-                  "A conformidade com LGPD ficou muito mais simples com a Keepit. Temos todos os dados no Brasil e as trilhas de auditoria que precisamos."
+                  "Temos as mais altas necessidades de proteção de dados, pois lidamos com dados ativos, dados pessoais para seguros de vida e seguros privados. Temos um intervalo de tempo muito curto para 'voltar à ativa' em caso de um desastre."
                 </p>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-800">Carlos Oliveira</p>
-                  <p className="text-sm text-gray-600">Compliance Officer, SecureTech</p>
+                  <p className="font-semibold text-gray-800">Philipp Poppe</p>
+                  <p className="text-sm text-gray-600">HDI Cloud, Gerente de Produto de Serviços Essenciais</p>
                 </div>
               </div>
             </div>
@@ -559,8 +653,19 @@ export default function BackupSaaSEstrategico() {
         </section>
 
         {/* Certificações e Recursos */}
-        <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-white relative">
-          <div className="container mx-auto px-4 max-w-4xl">
+        <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-white relative overflow-hidden">
+          {/* Background Image Transition */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('certificacoes')}`}
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          <div className="container mx-auto px-4 max-w-4xl relative z-10">
             <div className="relative bg-gradient-to-br from-green-600 to-green-800 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
               {/* Elementos decorativos */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
