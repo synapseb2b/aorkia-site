@@ -110,10 +110,8 @@ const products = [
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
                 Ativamos tecnologia de ponta para transformar o risco de dados em resiliência inabalável e vantagem competitiva.
               </h1>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link
                   href="#work"
                   onClick={scrollToWork}
@@ -128,6 +126,8 @@ const products = [
                   Inicie uma Conversa Estratégica
                 </Link>
               </div>
+            </div>
+          </div>
         </section>
 
         {/* Seção Produtos - Estilo Jam3 */}
@@ -203,6 +203,7 @@ const products = [
                         <i className="ri-arrow-right-line ml-2"></i>
                       </Link>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,7 +272,8 @@ const products = [
             </div>
           </div>
         </section>
- </main>
+      </main>
     </>
   );
 }
+
