@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }) {
   const [phoneCopied, setPhoneCopied] = useState(false);
   const [addressCopied, setAddressCopied] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
 
   // Efeito para carregar scripts externos como RemixIcon
   useEffect(() => {
@@ -236,21 +237,21 @@ function MyApp({ Component, pageProps }) {
           </div>
              )}
 
-      {/* Desktop Navbar - Corrigida para fundo branco e textos escuros */}
+      {/* Desktop Navbar - ALTERAÇÃO 1 APLICADA */}
       <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
           {/* Logo à esquerda - AUMENTADA 25% */}
           <Link href="/" className="flex-shrink-0">
             <div className="logo-container h-20 relative">
-      <Image
-        src="/image/logo_aorkia_color.png"
-        alt="AORKIA"
-        className="h-20 w-auto"
-        width={200}
-        height={80}
-        quality={100}
-        priority
-      />
+              <Image
+                src="/image/logo_aorkia_color.png"
+                alt="AORKIA"
+                className="h-20 w-auto"
+                width={200}
+                height={80}
+                quality={100}
+                priority
+              />
             </div>
           </Link>
 
@@ -260,23 +261,44 @@ function MyApp({ Component, pageProps }) {
               Home
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
-            <Link href="/solucoes" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Soluções
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-            </Link>
-            {/* Logo Keepit sem texto - COM EFEITOS DE HOVER */}
-            <Link href="/keepit" className="text-gray-800 hover:text-green-400 transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-green-400/5 border border-transparent hover:border-green-400/20 flex items-center">
-              <Image
-                src="/image/keepit_logo_aorkia.png" // Assume que esta logo já é adequada para fundo claro
-                alt="Keepit"
-                className="h-6 w-auto"
-                width={80}
-                height={24}
-              />
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-6"></span>
-            </Link>
+            
+            {/* Dropdown Soluções - ALTERAÇÃO 1 APLICADA */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setSolutionsDropdownOpen(true)}
+              onMouseLeave={() => setSolutionsDropdownOpen(false)}
+            >
+              <button className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20 flex items-center">
+                Soluções
+                <i className="ri-arrow-down-s-line ml-1"></i>
+                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+              </button>
+              
+              {/* Dropdown Menu */}
+              {solutionsDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-[70]">
+                  <div className="py-2">
+                    <Link 
+                      href="/keepit" 
+                      className="block px-6 py-3 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
+                    >
+                      <div className="font-medium">Backup SaaS Estratégico</div>
+                      <div className="text-sm text-gray-600">Keepit</div>
+                    </Link>
+                    <Link 
+                      href="/dspm" 
+                      className="block px-6 py-3 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
+                    >
+                      <div className="font-medium">Governança Estratégica de Dados Sensíveis</div>
+                      <div className="text-sm text-gray-600">DSPM</div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link href="/sobre" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-             Sobre
+              Sobre
               <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
             </Link>
             <Link href="/blog" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
@@ -329,10 +351,10 @@ function MyApp({ Component, pageProps }) {
                 <div className="logo-container h-14 relative">
                   <Image
                     src="/image/logo_aorkia_color.png" // Logo colorida para fundo branco
-                alt="AORKIA"
-                className="h-16 w-auto"
-                width={200}
-                height={80}
+                    alt="AORKIA"
+                    className="h-16 w-auto"
+                    width={200}
+                    height={80}
                     priority
                   />
                 </div>
@@ -353,27 +375,28 @@ function MyApp({ Component, pageProps }) {
               >
                 Home
               </Link>
-              <Link
-                href="/solucoes"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Soluções
-              </Link>
-              {/* Logo Keepit sem texto no mobile */}
-              <Link
-                href="/keepit"
-                className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-green-400 transition-colors flex items-center justify-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Image
-                  src="/image/keepit_logo_aorkia.png" // Assume que esta logo já é adequada para fundo claro
-                  alt="Keepit"
-                  className="h-8 md:h-12 w-auto"
-                  width={120}
-                  height={48}
-                />
-              </Link>
+              
+              {/* Soluções no Mobile - Expandido */}
+              <div className="text-center">
+                <div className="text-gray-800 text-3xl md:text-5xl font-bold mb-4">Soluções</div>
+                <div className="space-y-3">
+                  <Link
+                    href="/keepit"
+                    className="block text-gray-600 text-xl hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Backup SaaS Estratégico - Keepit
+                  </Link>
+                  <Link
+                    href="/dspm"
+                    className="block text-gray-600 text-xl hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Governança Estratégica de Dados Sensíveis - DSPM
+                  </Link>
+                </div>
+              </div>
+
               <Link
                 href="/sobre"
                 className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
@@ -381,7 +404,6 @@ function MyApp({ Component, pageProps }) {
               >
                 Sobre
               </Link>
-              {/* Novo link para o Blog no mobile */}
               <Link
                 href="/blog"
                 className="text-gray-800 text-3xl md:text-5xl font-bold hover:text-primary transition-colors"
@@ -524,15 +546,7 @@ function MyApp({ Component, pageProps }) {
         />
         <span className="text-white">Governança Estratégica de Dados Sensíveis (DSPM)</span>
       </label>
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="solucoes"
-          value="Inteligência Autônoma na Borda"
-          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
-        />
-        <span className="text-white">Inteligência Autônoma na Borda (Edge AI)</span>
-      </label>
+      {/* ALTERAÇÃO 2: Removido "Inteligência Autônoma na Borda (Edge AI)" */}
       <label className="flex items-center">
         <input
           type="checkbox"
@@ -581,8 +595,9 @@ function MyApp({ Component, pageProps }) {
                 height={166}
                 quality={100}
             />
+                {/* ALTERAÇÃO 2: Texto do footer atualizado */}
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados. Fortaleça seu negócio com a inteligência que ele precisa.
+                  A AORKIA ativa plataformas globais para resiliência cibernética e governança de dados. Fortaleça seu negócio com a inteligência que ele precisa.
                 </p>
               </div>
 
@@ -621,10 +636,9 @@ function MyApp({ Component, pageProps }) {
                   <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
                   <div className="grid grid-cols-2 gap-3">
                     <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
-                    <Link href="/solucoes" className="text-white hover:text-primary transition-colors">Soluções</Link>
                     <Link href="/keepit" className="text-white hover:text-primary transition-colors">Keepit</Link>
+                    <Link href="/dspm" className="text-white hover:text-primary transition-colors">DSPM</Link>
                     <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
-                    {/* Novo link para o Blog no footer */}
                     <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
                     <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
                   </div>
@@ -708,4 +722,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
- 
+

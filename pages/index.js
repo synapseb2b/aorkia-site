@@ -63,41 +63,33 @@ const products = [
     id: 'solucoes',
     title: 'AORKIA',
     supportText: 'Conceito',
-    description: 'A AORKIA foca em ativar plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados, com o propósito de converter tecnologia de ponta em vantagem competitiva duradoura e valor imediato.',
+    description: 'A AORKIA ativa tecnologia de ponta para transformar desafios críticos de segurança e governança de dados em vantagem competitiva duradoura, oferecendo soluções curadas e expertise estratégica em resiliência cibernética e proteção inabalável de dados.',
     image: '/image/solucoesespecializadas.png',
     link: '/solucoes'
   },
   {
     id: 'backup',
-    title: 'Backup SaaS Estratégico',
+    title: 'Sua proteção de dados SaaS é uma ilusão.',
     supportText: 'Proteção Imutável.',
-    description: 'Sua resiliência cibernética está completa? Microsoft365 e Google Workspace não blindam totalmente seus dados contra exclusões, erros ou ransomware. A retenção é limitada e a responsabilidade final é sempre sua. A AORKIA ativa Keepit — líder global em backup SaaS. Backup 100% imutável, restauração granular e instantânea para seu ecossistema SaaS. Conformidade automatizada com LGPD, GDPR e DORA. Ative resiliência com a confiança de mais de 15.000 empresas.',
+    description: 'A proteção nativa do Microsoft 365 e Google Workspace falha contra ransomware, erros humanos e perda de dados críticos. A AORKIA ativa Keepit, líder global em backup SaaS, e transforma a proteção de dados em um pilar estratégico de continuidade e governança. Garanta recuperação instantânea com um backup imutável com soberania de dados no Brasil  — uma solução confiada por mais de 15.000 empresas.',
     image: '/image/backup.png',
     link: '/solucoes'
   },
   {
     id: 'dspm',
-    title: 'Governança Estratégica de Dados Sensíveis',
+    title: 'A fonte da sua próxima multa da LGPD já existe.',
     supportText: 'Dados Sensíveis Sob Controle.',
-    description: 'Sua governança de dados sensíveis está ativa? Dados confidenciais em múltiplas nuvens expõem sua empresa a riscos: vazamentos, multas (LGPD, GDPR) e reputação. A AORKIA transforma incerteza em controle, ativando Plataformas DSPM para governança inquestionável. Descobrimos e classificamos dados automaticamente (incluindo "shadow data"), priorizamos riscos (acesso, uso), e garantimos correção e conformidade. Assuma o controle e converta conformidade em vantagem estratégica',
+    description: 'Dados sensíveis e dados criados fora dos controles de TI espalhados por múltiplas nuvens deixam sua empresa vulnerável a vazamentos e multas severas da LGPD. A AORKIA transforma essa incerteza em controle absoluto. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões. Obtenha visibilidade unificada e transforme governança em vantagem competitiva.',
     image: '/image/dspm.png',
     link: '/solucoes'
   },
-  {
-    id: 'bordas',
-    title: 'Inteligência Autônoma na Borda',
-    supportText: 'Performance no Ponto Crítico.',
-    description: 'Sua fábrica, varejo ou operação remota não pode esperar. O mito da IA centralizada na nuvem cria gargalos: latência, interrupções e custos. A AORKIA ativa Plataformas Edge AI no local, garantindo decisões automáticas em tempo real, mesmo sem nuvem. Oferecemos escalabilidade distribuída, controle central e segurança de ponta a ponta. Desbloqueie agilidade, resiliência e inteligência operacional, abstraindo a complexidade da infraestrutura para você.',
-    image: '/image/bordas.png',
-    link: '/solucoes'
-  }
 ];
 
   return (
     <>
       <Head>
-        <title>AORKIA | Backup SaaS Estratégico (Keepit), Governança Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (Edge AI). Tecnologias de Ponta orientada a resultados reais.</title>
-        <meta name="description" content="Tecnologias de Ponta orientada a resultados reais: Backup SaaS Estratégico (Keepit), Governança Estratégica de Dados Sensíveis (DSPM) e Inteligência Autônoma na Borda (Edge AI)." />
+        <title>AORKIA | Resiliência Cibernética, Inteligência Operacional e Proteção de Dados. Ativamos tecnologia de ponta para resultados reais.</title>
+        <meta name="description" content="A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados, convertendo tecnologia de ponta em vantagem competitiva duradoura e valor imediato." />
         <meta name="theme-color" content="#0076FF" />
       </Head>
 
@@ -116,21 +108,26 @@ const products = [
                 AORKIA:
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-                Ativamos tecnologia de ponta para transformar  <br className="hidden md:block" />
-                desafios críticos em resultados reais e mensuráveis.
+                Ativamos tecnologia de ponta para transformar o risco de dados em resiliência inabalável e vantagem competitiva.
               </h1>
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 flex justify-center animate-bounce">
-            <a 
-              href="#work" 
-              onClick={scrollToWork}
-              className="text-white text-4xl"
-            >
-              <i className="ri-arrow-down-line"></i>
-            </a>
-          </div>
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link
+                  href="#work"
+                  onClick={scrollToWork}
+                  className="bg-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors"
+                >
+                  Explore Nossas Soluções
+                </Link>
+                <Link
+                  href="/contato"
+                  className="bg-transparent border border-white text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-black transition-colors"
+                >
+                  Inicie uma Conversa Estratégica
+                </Link>
+              </div>
         </section>
 
         {/* Seção Produtos - Estilo Jam3 */}
@@ -197,16 +194,15 @@ const products = [
                     </p>
                     <div className="mt-8">
                       <Link 
-                        href={product.link} 
+                        href="/pages/govenanca_estrategica_de_dados_sensiveis" 
                         className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
                           activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
                         }`}
                       >
-                        <span>Saiba mais</span>
+                        <span>Veja exemplos de riscos que você não enxerga</span>
                         <i className="ri-arrow-right-line ml-2"></i>
                       </Link>
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -258,8 +254,19 @@ const products = [
                 <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertemos tecnologia de ponta em resultados concretos: proteção de dados, continuidade operacional e excelência em performance crítica.
+                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertemos tecnologia de ponta em resultados concretos: proteção inabalável de dados, continuidade operacional e governança estratégica.
                 </p>
+                <div className="mt-8">
+                  <Link 
+                    href="/contato" 
+                    className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
+                      activeProduct === 'futuro' ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
+                    }`}
+                  >
+                    <span>Inicie uma Conversa Estratégica</span>
+                    <i className="ri-arrow-right-line ml-2"></i>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
