@@ -103,7 +103,7 @@ export default function Sobre() {
                 onClick={(e) => scrollToSection(e, 'historia')}
                 className="text-lg font-medium px-8 py-3 border text-white border-white hover:bg-white hover:text-black transition-all duration-500 rounded-lg"
               >
-                Conheça nossa história
+                Conheça nossa história 
               </button>
             </div>
           </div>
@@ -422,9 +422,6 @@ export default function Sobre() {
                   { name: 'AWS', icon: '/icon/aws.png' },
                   { name: 'Microsoft Azure', icon: '/icon/azure.png' },
                   { name: 'Google Cloud', icon: '/icon/gcp.png' },
-                  { name: 'Dropbox', icon: '/icon/dropbox.png' },
-                  { name: 'Box', icon: '/icon/box.png' },
-                  { name: 'OneDrive', icon: '/icon/onedrive.png' }
                 ].map((platform, index) => (
                   <div key={index} className="group">
                     <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
