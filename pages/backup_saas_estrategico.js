@@ -95,6 +95,7 @@ export default function BackupSaaSEstrategico() {
   const [activeSection, setActiveSection] = useState(null);
   const [sectionBackgrounds, setSectionBackgrounds] = useState({});
   const [openFaqItems, setOpenFaqItems] = useState({});
+  const [showAllFaq, setShowAllFaq] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,6 +164,13 @@ export default function BackupSaaSEstrategico() {
     }));
   };
 
+  const toggleShowAllFaq = () => {
+    setShowAllFaq(!showAllFaq);
+  };
+
+  // Determinar quais FAQs mostrar
+  const faqsToShow = showAllFaq ? faqData : faqData.slice(0, 7);
+
   return (
     <>
       <Head>
@@ -185,7 +193,7 @@ export default function BackupSaaSEstrategico() {
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            src="/video/keepit_AOIRKIA.mp4"
+            src="/video/video_hero.mp4"
             autoPlay
             loop
             muted
@@ -201,11 +209,11 @@ export default function BackupSaaSEstrategico() {
               Proteção Imutável. Recuperação Rápida. Conformidade Garantida.
             </p>
             <p className="text-lg md:text-xl mb-10 text-center max-w-4xl mx-auto">
-              Microsoft, Google e Salesforce não protegem seus dados contra exclusões, erros humanos ou ransomware. A AORKIA ativa a Keepit — líder global em backup SaaS — para garantir recuperação granular, backups 100% imutáveis e conformidade com LGPD e GDPR.
+              Seus dados SaaS estão vulneráveis a ransomware, exclusões acidentais e falhas de sistema — e você não tem controle real sobre sua recuperação? A AORKIA ativa a Keepit para criar uma camada de proteção imutável, com backup independente e recuperação granular que garante a continuidade do seu negócio.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="#risco-real" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
-                Veja o Risco Real
+                Veja os Riscos Reais
               </Link>
               <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-green-600 transition duration-300">
                 Ativar Proteção Agora
@@ -236,7 +244,7 @@ export default function BackupSaaSEstrategico() {
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 {/* Ferramentas Nativas */}
                 <div className="relative">
-                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-l-4 border-red-500 shadow-lg">
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-2 border-red-500 shadow-lg">
                     <h3 className="text-2xl font-bold text-red-700 mb-8 text-center">
                       Ferramentas Nativas (Microsoft 365 / Google)
                     </h3>
@@ -267,7 +275,7 @@ export default function BackupSaaSEstrategico() {
 
                 {/* Backup SaaS com Keepit */}
                 <div className="relative">
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-l-4 border-green-500 shadow-lg">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-500 shadow-lg">
                     <h3 className="text-2xl font-bold text-green-700 mb-8 text-center">
                       Backup SaaS com Keepit
                     </h3>
@@ -327,10 +335,10 @@ export default function BackupSaaSEstrategico() {
                   A Responsabilidade é Sua. A Microsoft Confirma.
                 </h3>
                 <blockquote className="text-lg md:text-xl text-white/90 italic leading-relaxed mb-6">
-                  "A Microsoft não garante que será possível recuperar dados excluídos após o período de retenção. É responsabilidade do cliente implementar soluções de backup adequadas."
+                  "Você é responsável por implementar procedimentos de backup e recuperação suficientes para atender às suas necessidades de disponibilidade e continuidade."
                 </blockquote>
                 <p className="text-sm text-white/70 font-medium">
-                  Fonte: Documentação Oficial Microsoft 365
+                  Modelo de Responsabilidade Compartilhada - Microsoft Azure
                 </p>
               </div>
             </div>
@@ -358,18 +366,18 @@ export default function BackupSaaSEstrategico() {
               
               <div className="relative">
                 {/* Background decorativo */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-blue-50 rounded-3xl"></div>
                 
                 <div className="relative z-10 p-8 md:p-12">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8">
-                      <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+                      <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
                         <p className="text-lg text-gray-700 leading-relaxed text-center">
                           Diante do risco iminente de perda de dados em nuvem e das pesadas multas da LGPD, uma simples ferramenta de backup é insuficiente.
                         </p>
                       </div>
                       
-                      <div className="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 shadow-lg">
+                      <div className="bg-gradient-to-r from-primary to-green-600 rounded-xl p-6 shadow-lg">
                         <p className="text-xl font-bold text-white text-center">
                           A resposta precisa ser uma estratégia.
                         </p>
@@ -383,13 +391,13 @@ export default function BackupSaaSEstrategico() {
                     </div>
                     
                     <div className="flex items-center justify-center">
-                      <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-8 shadow-2xl text-white text-center">
+                      <div className="bg-gradient-to-br from-green-500 to-blue-700 rounded-2xl p-8 shadow-2xl text-white text-center">
                         <div className="text-5xl mb-4">
                           <i className="ri-shield-check-line"></i>
                         </div>
-                        <h3 className="text-xl font-bold mb-4">Resultado Garantido</h3>
+                        <h3 className="text-xl font-bold mb-4">Proteção Garantida</h3>
                         <p className="text-lg leading-relaxed">
-                          Recuperação instantânea e tranquilidade da conformidade total para o seu negócio.
+                          Backup imutável e recuperação rápida para o seu negócio digital.
                         </p>
                       </div>
                     </div>
@@ -422,14 +430,11 @@ export default function BackupSaaSEstrategico() {
               {/* 1º Pilar */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
-                  <i className="ri-shield-keyhole-line"></i>
+                  <i className="ri-lock-line"></i>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800">Backup Imutável com Air Gap</h3>
                 <p className="text-base text-gray-700 mb-6 leading-relaxed">
-                  Seus backups são armazenados em uma nuvem privada e independente, com tecnologia verificada por blockchain que garante a imutabilidade.
-                </p>
-                <p className="text-base text-gray-700 mb-4 leading-relaxed">
-                  Desta forma, nenhum ataque de ransomware pode alcançá-los ou corrompê-los, exatamente por estarem isolados da sua rede (Air Gap)!
+                  Seus dados são protegidos em uma nuvem completamente isolada, impossível de ser alterada ou corrompida por ransomware ou falhas humanas.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -437,10 +442,10 @@ export default function BackupSaaSEstrategico() {
                     O que na prática isto significa para o seu negócio:
                   </p>
                   <p className="text-sm font-medium text-green-700 mb-1">
-                    Risco de paralisação por ransomware é mitigado.
+                    Zero risco de perda total de dados.
                   </p>
                   <p className="text-sm font-medium text-green-700">
-                    Em caso de ataque, a recuperação dos seus dados é 100% garantida, protegendo a receita e a reputação da empresa.
+                    Recuperação garantida mesmo em ataques severos.
                   </p>
                 </div>
               </div>
@@ -448,11 +453,11 @@ export default function BackupSaaSEstrategico() {
               {/* 2º Pilar */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
-                  <i className="ri-restart-line"></i>
+                  <i className="ri-search-line"></i>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">Restauração Granular e Instantânea</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Recuperação Granular Inteligente</h3>
                 <p className="text-base text-gray-700 mb-6 leading-relaxed">
-                  Uma interface de busca inteligente permite localizar e restaurar qualquer item – de um único e-mail a uma conta inteira do Salesforce – em minutos, sem scripts complexos.
+                  Encontre e restaure exatamente o que precisa — desde um único e-mail até contas completas — em minutos, não horas.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -460,10 +465,10 @@ export default function BackupSaaSEstrategico() {
                     O que na prática isto significa para o seu negócio:
                   </p>
                   <p className="text-sm font-medium text-green-700 mb-1">
-                    O tempo de inatividade (downtime) é drasticamente reduzido.
+                    Tempo de inatividade mínimo.
                   </p>
                   <p className="text-sm font-medium text-green-700">
-                    A produtividade da equipe é mantida, pois a recuperação de um erro humano não paralisa a operação.
+                    Produtividade mantida durante incidentes.
                   </p>
                 </div>
               </div>
@@ -471,14 +476,11 @@ export default function BackupSaaSEstrategico() {
               {/* 3º Pilar */}
               <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
                 <div className="text-4xl text-green-600 mb-4">
-                  <i className="ri-map-pin-line"></i>
+                  <i className="ri-government-line"></i>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">Soberania de Dados no Brasil</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">Conformidade e Auditoria Automática</h3>
                 <p className="text-base text-gray-700 mb-6 leading-relaxed">
-                  Garantia de que seus dados residem em uma nuvem privada e independente, com duas cópias replicadas em datacenters distintos localizados em São Paulo.
-                </p>
-                <p className="text-base text-gray-700 mb-4 leading-relaxed">
-                  Isso assegura soberania total dos dados em território nacional, atendendo plenamente aos requisitos mais rigorosos da LGPD.
+                  Trilhas de auditoria completas, dados no Brasil e certificações internacionais garantem conformidade total com LGPD e regulamentações.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -486,10 +488,10 @@ export default function BackupSaaSEstrategico() {
                     O que na prática isto significa para o seu negócio:
                   </p>
                   <p className="text-sm font-medium text-green-700 mb-1">
-                    Risco de multas por não conformidade é eliminado.
+                    Zero multas por não conformidade.
                   </p>
                   <p className="text-sm font-medium text-green-700">
-                    Simplifica auditorias e garante que a empresa cumpra as regulamentações de proteção de dados mais rigorosas.
+                    Auditorias simplificadas e documentadas.
                   </p>
                 </div>
               </div>
@@ -497,7 +499,7 @@ export default function BackupSaaSEstrategico() {
           </div>
         </section>
 
-        {/* Cobertura Completa */}
+        {/* Cobertura Completa do seu Ecossistema SaaS */}
         <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-white relative overflow-hidden">
           {/* Background Image Transition */}
           <div 
@@ -643,16 +645,16 @@ export default function BackupSaaSEstrategico() {
               <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Globais</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
               </div>
             </div>
@@ -662,16 +664,16 @@ export default function BackupSaaSEstrategico() {
               <h3 className="text-xl font-semibold text-center text-gray-700 mb-8">Clientes Nacionais</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 grayscale hover:grayscale-0 transition-all duration-300" />
+                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
                 </div>
               </div>
             </div>
@@ -865,7 +867,7 @@ export default function BackupSaaSEstrategico() {
             </h2>
             
             <div className="max-w-4xl mx-auto">
-              {faqData.map((item, index) => (
+              {faqsToShow.map((item, index) => (
                 <div key={index} className="mb-4">
                   <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
                     <button
@@ -890,6 +892,37 @@ export default function BackupSaaSEstrategico() {
                   </div>
                 </div>
               ))}
+              
+              {/* Botão "Outras Perguntas" */}
+              {!showAllFaq && (
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={toggleShowAllFaq}
+                    className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden w-full hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    <div className="px-6 py-4 flex items-center justify-between">
+                      <span className="text-lg font-semibold text-gray-800">
+                        Outras Perguntas
+                      </span>
+                      <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">
+                        +
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              )}
+              
+              {/* Botão "Mostrar Menos" quando todas as perguntas estão visíveis */}
+              {showAllFaq && (
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={toggleShowAllFaq}
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Mostrar Menos
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </section>

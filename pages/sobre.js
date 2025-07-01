@@ -109,7 +109,7 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção História - LAYOUT REPENSADO */}
+        {/* Seção Nossa História - NOVA VERSÃO CONFORME SOLICITADO */}
         <section 
           id="historia"
           data-section-id="historia"
@@ -133,79 +133,14 @@ export default function Sobre() {
           ></div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-16 text-center transition-colors duration-500 ${
+              activeSection === 'historia' ? 'text-white' : 'text-black'
+            }`}>
+              Nossa História
+            </h2>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Coluna Esquerda - Timeline Visual */}
-              <div className="space-y-8">
-                <h2 className={`text-4xl md:text-5xl font-bold mb-12 transition-colors duration-500 ${
-                  activeSection === 'historia' ? 'text-white' : 'text-black'
-                }`}>
-                  Nossa História
-                </h2>
-                
-                <div className="relative">
-                  {/* Linha temporal */}
-                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#0076FF]"></div>
-                  
-                  {/* Marcos da timeline */}
-                  <div className="space-y-12">
-                    <div className="relative flex items-start">
-                      <div className="w-12 h-12 bg-[#0076FF] rounded-full flex items-center justify-center z-10">
-                        <i className="ri-lightbulb-line text-white text-xl"></i>
-                      </div>
-                      <div className="ml-6">
-                        <h3 className={`text-xl font-bold mb-2 transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-white' : 'text-black'
-                        }`}>
-                          Fundação
-                        </h3>
-                        <p className={`text-lg transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
-                        }`}>
-                          Especialistas com décadas de experiência em segurança cibernética
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="relative flex items-start">
-                      <div className="w-12 h-12 bg-[#0076FF] rounded-full flex items-center justify-center z-10">
-                        <i className="ri-rocket-line text-white text-xl"></i>
-                      </div>
-                      <div className="ml-6">
-                        <h3 className={`text-xl font-bold mb-2 transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-white' : 'text-black'
-                        }`}>
-                          Missão
-                        </h3>
-                        <p className={`text-lg transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
-                        }`}>
-                          Ativar as melhores plataformas globais para resultados tangíveis
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="relative flex items-start">
-                      <div className="w-12 h-12 bg-[#0076FF] rounded-full flex items-center justify-center z-10">
-                        <i className="ri-trophy-line text-white text-xl"></i>
-                      </div>
-                      <div className="ml-6">
-                        <h3 className={`text-xl font-bold mb-2 transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-white' : 'text-black'
-                        }`}>
-                          Diferencial
-                        </h3>
-                        <p className={`text-lg transition-colors duration-500 ${
-                          activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
-                        }`}>
-                          Expertise técnica + visão estratégica de negócios
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Coluna Direita - Conteúdo Textual */}
+              {/* Coluna Esquerda - Conteúdo Textual */}
               <div className="space-y-8">
                 <div className={`prose prose-lg max-w-none transition-colors duration-500 ${
                   activeSection === 'historia' ? 'prose-invert' : ''
@@ -213,13 +148,7 @@ export default function Sobre() {
                   <p className={`text-xl leading-relaxed mb-6 transition-colors duration-500 ${
                     activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Na AORKIA, transformamos complexidade tecnológica em vantagem competitiva real para o seu negócio.
-                  </p>
-                  
-                  <p className={`text-xl leading-relaxed mb-6 transition-colors duration-500 ${
-                    activeSection === 'historia' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    Somos ativadores de tecnologia de ponta, não apenas consultores ou revendedores.
+                    Na AORKIA, transformamos complexidade tecnológica em vantagem competitiva real para o seu negócio. Somos ativadores de tecnologia de ponta, não apenas consultores ou revendedores.
                   </p>
                   
                   <p className={`text-xl leading-relaxed mb-6 transition-colors duration-500 ${
@@ -235,11 +164,31 @@ export default function Sobre() {
                   </p>
                 </div>
               </div>
+
+              {/* Coluna Direita - Vídeo Torre Comando */}
+              <div className="flex items-center justify-center">
+                <div className="relative w-full max-w-lg">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-auto rounded-2xl shadow-2xl"
+                    preload="auto"
+                  >
+                    <source src="/video/torre_comando.mp4" type="video/mp4" />
+                    Seu navegador não suporta vídeo.
+                  </video>
+                  
+                  {/* Overlay decorativo */}
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20 pointer-events-none"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Seção Nossos Valores - LAYOUT REPENSADO */}
+        {/* Seção Nossos Valores - MANTIDA ORIGINAL */}
         <section 
           id="valores"
           data-section-id="valores"
@@ -373,7 +322,7 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Parcerias Estratégicas - LAYOUT REPENSADO */}
+        {/* Seção Parcerias Estratégicas - MANTIDA ORIGINAL */}
         <section 
           id="parcerias"
           data-section-id="parcerias"
@@ -401,157 +350,48 @@ export default function Sobre() {
               <h2 className={`text-4xl md:text-5xl font-bold mb-8 transition-colors duration-500 ${
                 activeSection === 'parcerias' ? 'text-white' : 'text-black'
               }`}>
-                Nosso Ecossistema de Proteção
+                Parcerias Estratégicas
               </h2>
-              
-              <p className={`text-xl max-w-4xl mx-auto transition-colors duration-500 ${
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
                 activeSection === 'parcerias' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Sua empresa usa as maiores plataformas. Nós garantimos a segurança e o controle delas.
+                Trabalhamos com os líderes globais em tecnologia para entregar as melhores soluções para nossos clientes.
               </p>
             </div>
             
-            {/* Categoria 1: Produtividade e Colaboração */}
-            <div className="mb-16">
-              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
-                activeSection === 'parcerias' ? 'text-white' : 'text-black'
-              }`}>
-                Produtividade e Colaboração
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {[
-                  { name: 'Microsoft 365', icon: '/icon/microsoft_365.png' },
-                  { name: 'Google Workspace', icon: '/icon/google_workspace.png' },
-                  { name: 'Salesforce', icon: '/icon/salesforce.png' },
-                  { name: 'Zendesk', icon: '/icon/zendesk.png' },
-                  { name: 'Jira', icon: '/icon/jira.png' }
-                ].map((platform, index) => (
-                  <div key={index} className="group">
-                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
-                      activeSection === 'parcerias' 
-                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
-                        : 'bg-white border border-gray-200 hover:shadow-lg'
-                    }`}>
-                      <Image
-                        src={platform.icon}
-                        alt={platform.name}
-                        className="w-full h-12 object-contain mx-auto mb-3"
-                        width={120}
-                        height={48}
-                      />
-                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
-                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
-                      }`}>
-                        {platform.name}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              {/* Logos das parcerias */}
+              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
+                <Image src="/logo/keepit_logo_aorkia.png" alt="Keepit" width={120} height={60} className="filter brightness-0 invert" />
+              </div>
+              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
+                <Image src="/logo/microsoft_partner.png" alt="Microsoft Partner" width={120} height={60} className="filter brightness-0 invert" />
+              </div>
+              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
+                <Image src="/logo/aws_partner.png" alt="AWS Partner" width={120} height={60} className="filter brightness-0 invert" />
+              </div>
+              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
+                <Image src="/logo/google_cloud_partner.png" alt="Google Cloud Partner" width={120} height={60} className="filter brightness-0 invert" />
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Categoria 2: Desenvolvimento e DevOps */}
-            <div className="mb-16">
-              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
-                activeSection === 'parcerias' ? 'text-white' : 'text-black'
-              }`}>
-                Desenvolvimento e DevOps
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {[
-                  { name: 'Azure DevOps', icon: '/icon/azure_devops.png' },
-                  { name: 'Power Platform', icon: '/icon/power_platform.png' },
-                  { name: 'Dynamics 365', icon: '/icon/dynamics_365.png' },
-                  { name: 'Confluence', icon: '/icon/confluence.png' },
-                  { name: 'Microsoft Entra ID', icon: '/icon/microsoft_entra_id.png' }
-                ].map((platform, index) => (
-                  <div key={index} className="group">
-                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
-                      activeSection === 'parcerias' 
-                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
-                        : 'bg-white border border-gray-200 hover:shadow-lg'
-                    }`}>
-                      <Image
-                        src={platform.icon}
-                        alt={platform.name}
-                        className="w-full h-12 object-contain mx-auto mb-3"
-                        width={120}
-                        height={48}
-                      />
-                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
-                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
-                      }`}>
-                        {platform.name}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Categoria 3: Infraestrutura Cloud */}
-            <div>
-              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
-                activeSection === 'parcerias' ? 'text-white' : 'text-black'
-              }`}>
-                Infraestrutura Cloud
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {[
-                  { name: 'AWS', icon: '/icon/aws.png' },
-                  { name: 'Microsoft Azure', icon: '/icon/azure.png' },
-                  { name: 'Google Cloud', icon: '/icon/gcp.png' },
-
-                ].map((platform, index) => (
-                  <div key={index} className="group">
-                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
-                      activeSection === 'parcerias' 
-                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
-                        : 'bg-white border border-gray-200 hover:shadow-lg'
-                    }`}>
-                      <Image
-                        src={platform.icon}
-                        alt={platform.name}
-                        className="w-full h-12 object-contain mx-auto mb-3"
-                        width={120}
-                        height={48}
-                      />
-                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
-                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
-                      }`}>
-                        {platform.name}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Section */}
-            <div className="text-center mt-16">
-              <div className={`inline-block p-8 rounded-2xl transition-all duration-500 ${
-                activeSection === 'parcerias' 
-                  ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
-                  : 'bg-gray-50 border border-gray-200'
-              }`}>
-                <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                  activeSection === 'parcerias' ? 'text-white' : 'text-black'
-                }`}>
-                  Protegemos o que você mais usa
-                </h3>
-                <p className={`text-lg mb-6 transition-colors duration-500 ${
-                  activeSection === 'parcerias' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Ativamos proteção de ponta para suas plataformas críticas
-                </p>
-                <Link 
-                  href="/contato"
-                  className="inline-block px-8 py-3 bg-[#0076FF] text-white font-medium rounded-lg hover:bg-[#0056CC] transition-colors duration-300"
-                >
-                  Fale com nossos especialistas
-                </Link>
-              </div>
-            </div>
+        {/* CTA Final */}
+        <section className="py-24 bg-gradient-to-r from-[#0076FF] to-[#0056CC] text-white">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              Pronto para Ativar o Futuro da Sua Empresa?
+            </h2>
+            <p className="text-xl mb-12 max-w-2xl mx-auto">
+              Converse com nossos especialistas e descubra como podemos transformar seus desafios em vantagens competitivas.
+            </p>
+            <Link
+              href="/contato"
+              className="inline-block px-8 py-4 bg-white text-[#0076FF] rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
+            >
+              Falar com Especialista
+            </Link>
           </div>
         </section>
       </main>
