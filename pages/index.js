@@ -70,15 +70,15 @@ const products = [
   {
     id: 'backup',
     title: 'Sua proteção de dados SaaS é uma ilusão.',
-    supportText: 'Proteção Imutável.',
+    supportText: 'Backup SaaS Estratégico',
     description: 'A proteção nativa do Microsoft 365 e Google Workspace falha contra ransomware, erros humanos e perda de dados críticos. A AORKIA ativa Keepit, líder global em backup SaaS, e transforma a proteção de dados em um pilar estratégico de continuidade e governança. Garanta recuperação instantânea com um backup imutável com soberania de dados no Brasil  — uma solução confiada por mais de 15.000 empresas.',
-    image: '/image/backup.png',
+    image: '/image/keepit_aorkia.png',
     link: '/backup_saas_estrategico' // CORRIGIDO: link correto
   },
   {
     id: 'dspm',
     title: 'A fonte da sua próxima multa da LGPD já existe.',
-    supportText: 'Dados Sensíveis Sob Controle.',
+    supportText: 'Governança Estratégica de Dados Sensíveis.',
     description: 'Dados sensíveis e dados criados fora dos controles de TI espalhados por múltiplas nuvens deixam sua empresa vulnerável a vazamentos e multas severas da LGPD. A AORKIA transforma essa incerteza em controle absoluto. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões. Obtenha visibilidade unificada e transforme governança em vantagem competitiva.',
     image: '/image/dspm.png',
     link: '/governanca_dados_sensiveis' // CORRIGIDO: link correto
