@@ -63,25 +63,28 @@ const products = [
     id: 'solucoes',
     title: 'AORKIA',
     supportText: 'Conceito',
-    description: 'A AORKIA ativa tecnologia de ponta para transformar desafios críticos de segurança e governança de dados em vantagem competitiva duradoura, oferecendo soluções curadas e expertise estratégica em resiliência cibernética e proteção inabalável de dados.',
+    description: 'Sua empresa conquista controle absoluto e um futuro digital fortalecido com a AORKIA. Vamos além da simples implementação, transformando seus desafios mais críticos em resiliência cibernética e proteção inabalável. Fazemos isso através da curadoria e ativação estratégica de plataformas líderes em Backup SaaS Estratégico e Governança Estratégica de Dados Sensíveis.',
     image: '/image/solucoes_especializadas.png', // CORRIGIDO: nome do arquivo
-    link: '/solucoes'
+    link: '/solucoes',
+    ctaText: 'Explore Nossas Soluções'
   },
   {
     id: 'backup',
     title: 'Sua proteção de dados SaaS é uma ilusão.',
     supportText: 'Backup SaaS Estratégico',
-    description: 'A proteção nativa do Microsoft 365 e Google Workspace falha contra ransomware, erros humanos e perda de dados críticos. A AORKIA ativa Keepit, líder global em backup SaaS, e transforma a proteção de dados em um pilar estratégico de continuidade e governança. Garanta recuperação instantânea com um backup imutável com soberania de dados no Brasil  — uma solução confiada por mais de 15.000 empresas.',
+    description: 'Com a AORKIA, você blinda seus dados SaaS com uma recuperação instantânea e transforma a proteção em um pilar estratégico de continuidade e governança. Ativamos a Keepit, líder global em backup SaaS, entregando um backup imutável com soberania de dados no Brasil — uma solução confiada por mais de 15.000 empresas. A verdade é que a proteção nativa do Microsoft 365 e Google Workspace, por si só, falha contra ransomware, erros humanos e perda de dados críticos.',
     image: '/image/keepit_aorkia.png',
-    link: '/backup_saas_estrategico' // CORRIGIDO: link correto
+    link: '/backup_saas_estrategico', // CORRIGIDO: link correto
+    ctaText: 'Veja na prática como a proteção nativa falha'
   },
   {
     id: 'dspm',
     title: 'A fonte da sua próxima multa da LGPD já existe.',
-    supportText: 'Governança Estratégica de Dados Sensíveis.',
-    description: 'Dados sensíveis e dados criados fora dos controles de TI espalhados por múltiplas nuvens deixam sua empresa vulnerável a vazamentos e multas severas da LGPD. A AORKIA transforma essa incerteza em controle absoluto. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões. Obtenha visibilidade unificada e transforme governança em vantagem competitiva.',
+    supportText: 'Governança Estratégica de Dados Sensíveis',
+    description: 'Obtenha visibilidade unificada e transforme a governança de dados em uma vantagem competitiva decisiva com a AORKIA. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões, convertendo incertezas em controle absoluto. A verdade é que dados sensíveis e informações criadas fora dos controles de TI, espalhados por múltiplas nuvens, deixam sua empresa vulnerável a vazamentos e multas severas da LGPD.',
     image: '/image/dspm.png',
-    link: '/governanca_dados_sensiveis' // CORRIGIDO: link correto
+    link: '/governanca_dados_sensiveis', // CORRIGIDO: link correto
+    ctaText: 'Veja exemplos de riscos que você não enxerga'
   },
 ];
 
@@ -207,7 +210,7 @@ const products = [
                           activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
                         }`}
                       >
-                        <span>Saiba mais sobre esta solução</span>
+                        <span>{product.ctaText}</span>
                         <i className="ri-arrow-right-line ml-2"></i>
                       </Link>
                     </div>
@@ -263,7 +266,7 @@ const products = [
                 <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Ativamos plataformas globais líderes, adaptadas à realidade do seu negócio. Convertemos tecnologia de ponta em resultados concretos: proteção inabalável de dados, continuidade operacional e governança estratégica.
+                  Sua empresa ganha proteção inabalável de dados, continuidade operacional e governança estratégica com a AORKIA. Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.
                 </p>
                 <div className="mt-8">
                   <Link 
