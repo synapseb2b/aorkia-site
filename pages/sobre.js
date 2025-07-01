@@ -322,60 +322,133 @@ export default function Sobre() {
           </div>
         </section>
 
-        {/* Seção Parcerias Estratégicas - MANTIDA ORIGINAL */}
-        <section 
-          id="parcerias"
-          data-section-id="parcerias"
-          ref={(el) => (sectionRefs.current.parcerias = el)}
-          className="relative w-full min-h-screen py-24 overflow-hidden"
-        >
-          {/* Background com transição */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'parcerias' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/horizonte.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'parcerias' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-8 transition-colors duration-500 ${
-                activeSection === 'parcerias' ? 'text-white' : 'text-black'
-              }`}>
-                Parcerias Estratégicas
+                Nosso Ecossistema de Proteção
               </h2>
-              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+              
+              <p className={`text-xl max-w-4xl mx-auto transition-colors duration-500 ${
                 activeSection === 'parcerias' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Trabalhamos com os líderes globais em tecnologia para entregar as melhores soluções para nossos clientes.
+                Sua empresa usa as maiores plataformas. Nós garantimos a segurança e o controle delas.
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {/* Logos das parcerias */}
-              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
-                <Image src="/logo/keepit_logo_aorkia.png" alt="Keepit" width={120} height={60} className="filter brightness-0 invert" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
-                <Image src="/logo/microsoft_partner.png" alt="Microsoft Partner" width={120} height={60} className="filter brightness-0 invert" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
-                <Image src="/logo/aws_partner.png" alt="AWS Partner" width={120} height={60} className="filter brightness-0 invert" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:scale-105 transition-transform duration-300">
-                <Image src="/logo/google_cloud_partner.png" alt="Google Cloud Partner" width={120} height={60} className="filter brightness-0 invert" />
+            {/* Categoria 1: Produtividade e Colaboração */}
+            <div className="mb-16">
+              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
+                activeSection === 'parcerias' ? 'text-white' : 'text-black'
+              }`}>
+                Produtividade e Colaboração
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {[
+                  { name: 'Microsoft 365', icon: '/icon/microsoft_365.png' },
+                  { name: 'Google Workspace', icon: '/icon/google_workspace.png' },
+                  { name: 'Salesforce', icon: '/icon/salesforce.png' },
+                  { name: 'Zendesk', icon: '/icon/zendesk.png' },
+                  { name: 'Jira', icon: '/icon/jira.png' }
+                ].map((platform, index) => (
+                  <div key={index} className="group">
+                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
+                      activeSection === 'parcerias' 
+                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
+                        : 'bg-white border border-gray-200 hover:shadow-lg'
+                    }`}>
+                      <Image
+                        src={platform.icon}
+                        alt={platform.name}
+                        className="w-full h-12 object-contain mx-auto mb-3"
+                        width={120}
+                        height={48}
+                      />
+                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
+                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
+                      }`}>
+                        {platform.name}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
+
+            {/* Categoria 2: Desenvolvimento e DevOps */}
+            <div className="mb-16">
+              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
+                activeSection === 'parcerias' ? 'text-white' : 'text-black'
+              }`}>
+                Desenvolvimento e DevOps
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {[
+                  { name: 'Azure DevOps', icon: '/icon/azure_devops.png' },
+                  { name: 'Power Platform', icon: '/icon/power_platform.png' },
+                  { name: 'Dynamics 365', icon: '/icon/dynamics_365.png' },
+                  { name: 'Confluence', icon: '/icon/confluence.png' },
+                  { name: 'Microsoft Entra ID', icon: '/icon/microsoft_entra_id.png' }
+                ].map((platform, index) => (
+                  <div key={index} className="group">
+                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
+                      activeSection === 'parcerias' 
+                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
+                        : 'bg-white border border-gray-200 hover:shadow-lg'
+                    }`}>
+                      <Image
+                        src={platform.icon}
+                        alt={platform.name}
+                        className="w-full h-12 object-contain mx-auto mb-3"
+                        width={120}
+                        height={48}
+                      />
+                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
+                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
+                      }`}>
+                        {platform.name}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Categoria 3: Infraestrutura Cloud */}
+            <div>
+              <h3 className={`text-2xl font-bold mb-8 text-center transition-colors duration-500 ${
+                activeSection === 'parcerias' ? 'text-white' : 'text-black'
+              }`}>
+                Infraestrutura Cloud
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {[
+                  { name: 'AWS', icon: '/icon/aws.png' },
+                  { name: 'Microsoft Azure', icon: '/icon/azure.png' },
+                  { name: 'Google Cloud', icon: '/icon/gcp.png' },
+                  { name: 'Dropbox', icon: '/icon/dropbox.png' },
+                  { name: 'Box', icon: '/icon/box.png' },
+                  { name: 'OneDrive', icon: '/icon/onedrive.png' }
+                ].map((platform, index) => (
+                  <div key={index} className="group">
+                    <div className={`p-6 rounded-xl transition-all duration-300 group-hover:scale-105 ${
+                      activeSection === 'parcerias' 
+                        ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20' 
+                        : 'bg-white border border-gray-200 hover:shadow-lg'
+                    }`}>
+                      <Image
+                        src={platform.icon}
+                        alt={platform.name}
+                        className="w-full h-12 object-contain mx-auto mb-3"
+                        width={120}
+                        height={48}
+                      />
+                      <p className={`text-sm text-center font-medium transition-colors duration-500 ${
+                        activeSection === 'parcerias' ? 'text-white' : 'text-gray-700'
+                      }`}>
+                        {platform.name}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
         {/* CTA Final */}
         <section className="py-24 bg-gradient-to-r from-[#0076FF] to-[#0056CC] text-white">

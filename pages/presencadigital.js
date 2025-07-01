@@ -6,7 +6,41 @@ import Image from 'next/image';
 export default function PresencaDigital() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeAccordion, setActiveAccordion] = useState(0);
-  const [sectionBackgrounds, setSectionBackgrounds] = useState({});
+  const [activeSection, setActiveSection] = useState(null);
+  const sectionRefs = useRef({});
+
+  // IntersectionObserver para detectar seções visíveis
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('data-section-id');
+            setActiveSection(sectionId);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.3,
+      }
+    );
+
+    Object.values(sectionRefs.current).forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      Object.values(sectionRefs.current).forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,36 +48,11 @@ export default function PresencaDigital() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (scrollTop / docHeight) * 100;
       setScrollProgress(progress);
-
-      // Detectar quais seções devem ter background image
-      const sections = [
-        'metodologia',
-        'servicos',
-        'filosofia',
-        'faq'
-      ];
-
-      const newBackgrounds = {};
-      
-      sections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-          newBackgrounds[sectionId] = isVisible;
-        }
-      });
-
-      setSectionBackgrounds(newBackgrounds);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const getSectionBackground = (sectionId) => {
-    return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
-  };
 
   // Função para rolagem suave
   const scrollToSection = (e, id) => {
@@ -118,46 +127,50 @@ export default function PresencaDigital() {
     }
   ];
 
-  // Serviços oferecidos
-  const servicos = [
+  // Serviços oferecidos - NOVA ESTRUTURA
+  const servicosCards = [
     {
-      categoria: 'Estratégia de Autoridade Digital',
-      beneficio: 'Define o caminho mais curto entre sua expertise e o resultado financeiro.',
-      items: [
+      id: 1,
+      titulo: 'Estratégia de Autoridade Digital',
+      imagem: '/image/autoridade.png',
+      topicos: [
         'Auditoria Completa de Presença Digital',
         'Mapeamento de Persona e Cliente Ideal (ICP)',
         'Arquitetura de Conteúdo de Valor',
-        'Posicionamento para IA (GPO & LLMs): Mais do que SEO. Garantimos que sua marca não apenas seja encontrada, mas se torne a resposta de autoridade para as perguntas que seus clientes fazem a IAs como ChatGPT e Perplexity.'
+        'Posicionamento para IA (GPO & LLMs)'
       ]
     },
     {
-      categoria: 'Design para Conversão e Confiança',
-      beneficio: 'Transforma visitantes em clientes através de uma experiência que gera confiança e valor percebido a cada clique.',
-      items: [
+      id: 2,
+      titulo: 'Design para Conversão e Confiança',
+      imagem: '/image/design.png',
+      topicos: [
         'Design de Interface focado na Jornada do Usuário (UI/UX)',
         'Identidade Visual B2B de Alto Impacto',
         'Prototipagem Interativa para Validação Rápida',
-        'Design System: A base para escalar sua marca com consistência e eficiência.'
+        'Design System para escalar sua marca'
       ]
     },
     {
-      categoria: 'Desenvolvimento Robusto para o Futuro',
-      beneficio: 'Constrói um alicerce digital que garante performance hoje e está pronto para o futuro da IA.',
-      items: [
+      id: 3,
+      titulo: 'Desenvolvimento Robusto para o Futuro',
+      imagem: '/image/desenvolvimento.png',
+      topicos: [
         'Desenvolvimento Frontend de Alta Performance',
         'Otimização de Velocidade e Core Web Vitals',
         'SEO Técnico e Indexabilidade',
-        'Arquitetura Pronta para IA (Schema & Dados Estruturados): Implementamos o código que permite que IAs e buscadores entendam profundamente suas ofertas, transformando seu site em um "vendedor" que dialoga com a tecnologia 24/7.'
+        'Arquitetura Pronta para IA (Schema & Dados Estruturados)'
       ]
     },
     {
-      categoria: 'Narrativas que Geram Negócios',
-      beneficio: 'Cria a narrativa que converte cliques em contratos e posiciona sua empresa como a voz líder do seu mercado.',
-      items: [
+      id: 4,
+      titulo: 'Narrativas que Geram Negócios',
+      imagem: '/image/copy.png',
+      topicos: [
         'Copywriting Estratégico para Vendas',
         'Marketing de Conteúdo B2B',
         'Criação de Landing Pages de Alta Conversão',
-        'Narrativas de Autoridade para IA: Não escrevemos apenas textos. Construímos a narrativa que responde às dores do seu cliente de forma tão clara e convincente que as IAs a adotam como a resposta definitiva, consolidando sua liderança de pensamento.'
+        'Narrativas de Autoridade para IA'
       ]
     }
   ];
@@ -223,106 +236,148 @@ export default function PresencaDigital() {
 
       <main className="bg-white text-gray-900">
         {/* Seção Hero */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}></div>
-          </div>
+        <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            preload="auto"
+          >
+            <source src="/video/presenca_digital.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
 
-          <div className="container mx-auto max-w-7xl px-4 py-20 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Conteúdo Principal */}
-              <div className="text-center lg:text-left">
-                <div className="mb-6">
-                  <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
-                    A Estratégica Digital por trás das Vendas Complexas
-                  </span>
-                </div>
-                
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                  Transformamos sua empresa em uma 
-                  <span className="text-primary"> Autoridade Digital</span>
-                </h1>
-                
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Combinamos design de conversão, desenvolvimento de performance e narrativas de autoridade para construir o ativo digital que seu negócio precisa para gerar mais receita e solidificar sua autoridade no mercado.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                  <button
-                    onClick={(e) => scrollToSection(e, 'metodologia')}
-                    className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:shadow-lg"
-                  >
-                    Ver Nossa Metodologia
-                  </button>
-                  <Link
-                    href="#contato"
-                    className="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 text-center"
-                  >
-                    Iniciar Projeto
-                  </Link>
-                </div>
+          <div className="container mx-auto max-w-6xl px-4 relative z-20">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">
+                A Estratégica Digital por trás das Vendas Complexas
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight text-white">
+                Transformamos sua empresa em uma 
+                <span className="text-[#0076FF]"> Autoridade Digital</span>
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mb-12 text-gray-300">
+                Combinamos design de conversão, desenvolvimento de performance e narrativas de autoridade para construir o ativo digital que seu negócio precisa para gerar mais receita e solidificar sua autoridade no mercado.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <button
+                  onClick={(e) => scrollToSection(e, 'metodologia')}
+                  className="bg-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors"
+                >
+                  Ver Nossa Metodologia
+                </button>
+                <Link
+                  href="#contato"
+                  className="bg-transparent border border-white text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-black transition-colors"
+                >
+                  Iniciar Projeto
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
         {/* Seção Metodologia */}
-        <section id="metodologia" className="py-24 bg-gray-50">
-          <div className="container mx-auto max-w-7xl px-4">
+        <section 
+          id="metodologia" 
+          data-section-id="metodologia"
+          ref={(el) => (sectionRefs.current.metodologia = el)}
+          className="relative py-24 bg-gray-50 text-center overflow-hidden"
+        >
+          {/* Background com transição */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Nossa Metodologia</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-white' : 'text-black'
+              }`}>Nossa Metodologia</h2>
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Seis fases estruturadas para transformar sua presença digital em uma máquina de geração de leads qualificados.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Timeline Vertical Centralizada */}
+            <div className="max-w-4xl mx-auto">
               {metodologia.map((fase, index) => (
-                <div key={index} className={`${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                  {index % 2 === 0 ? (
-                    // Conteúdo à esquerda, imagem à direita
-                    <>
-                      <div className="lg:pr-12">
-                        <div className="flex items-center mb-6">
-                          <span className="text-6xl font-bold text-primary/20 mr-4">{fase.numero}</span>
-                          <h3 className="text-2xl font-bold">{fase.titulo}</h3>
-                        </div>
-                        <p className="text-lg text-gray-600 leading-relaxed">{fase.descricao}</p>
-                      </div>
-                      <div className="mt-8 lg:mt-0">
-                        <Image
-                          src={fase.imagem}
-                          alt={fase.titulo}
-                          className="w-full h-auto rounded-lg shadow-lg"
-                          width={600}
-                          height={400}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    // Imagem à esquerda, conteúdo à direita
-                    <>
-                      <div className="lg:order-1">
-                        <Image
-                          src={fase.imagem}
-                          alt={fase.titulo}
-                          className="w-full h-auto rounded-lg shadow-lg"
-                          width={600}
-                          height={400}
-                        />
-                      </div>
-                      <div className="lg:order-2 lg:pl-12 mt-8 lg:mt-0">
-                        <div className="flex items-center mb-6">
-                          <span className="text-6xl font-bold text-primary/20 mr-4">{fase.numero}</span>
-                          <h3 className="text-2xl font-bold">{fase.titulo}</h3>
-                        </div>
-                        <p className="text-lg text-gray-600 leading-relaxed">{fase.descricao}</p>
-                      </div>
-                    </>
+                <div key={index} className="relative flex items-center justify-center mb-16 last:mb-0">
+                  {/* Linha vertical */}
+                  {index < metodologia.length - 1 && (
+                    <div className={`absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'bg-white/30' : 'bg-primary/30'
+                    }`}></div>
                   )}
+                  
+                  {/* Conteúdo alternado */}
+                  <div className={`flex items-center w-full ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                    {/* Número e linha */}
+                    <div className="flex-1 flex items-center justify-center">
+                      {index % 2 === 0 && (
+                        <div className="text-right pr-8">
+                          <div className="flex items-center justify-end mb-4">
+                            <span className={`text-6xl font-bold mr-4 transition-colors duration-500 ${
+                              activeSection === 'metodologia' ? 'text-white' : 'text-primary'
+                            }`}>{fase.numero}</span>
+                            <div className={`w-8 h-0.5 transition-colors duration-500 ${
+                              activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
+                            }`}></div>
+                          </div>
+                          <h3 className={`text-2xl font-bold mb-4 text-right transition-colors duration-500 ${
+                            activeSection === 'metodologia' ? 'text-white' : 'text-black'
+                          }`}>{fase.titulo}</h3>
+                          <p className={`text-lg leading-relaxed text-right max-w-md ml-auto transition-colors duration-500 ${
+                            activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
+                          }`}>{fase.descricao}</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Círculo central */}
+                    <div className={`w-4 h-4 rounded-full z-10 flex-shrink-0 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
+                    }`}></div>
+
+                    {/* Conteúdo do lado direito */}
+                    <div className="flex-1 flex items-center justify-center">
+                      {index % 2 === 1 && (
+                        <div className="text-left pl-8">
+                          <div className="flex items-center justify-start mb-4">
+                            <div className={`w-8 h-0.5 transition-colors duration-500 ${
+                              activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
+                            }`}></div>
+                            <span className={`text-6xl font-bold ml-4 transition-colors duration-500 ${
+                              activeSection === 'metodologia' ? 'text-white' : 'text-primary'
+                            }`}>{fase.numero}</span>
+                          </div>
+                          <h3 className={`text-2xl font-bold mb-4 text-left transition-colors duration-500 ${
+                            activeSection === 'metodologia' ? 'text-white' : 'text-black'
+                          }`}>{fase.titulo}</h3>
+                          <p className={`text-lg leading-relaxed text-left max-w-md transition-colors duration-500 ${
+                            activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
+                          }`}>{fase.descricao}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -330,23 +385,63 @@ export default function PresencaDigital() {
         </section>
 
         {/* Seção Filosofia */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto max-w-7xl px-4">
+        <section 
+          data-section-id="filosofia"
+          ref={(el) => (sectionRefs.current.filosofia = el)}
+          className="relative py-24 bg-white text-center overflow-hidden"
+        >
+          {/* Background com transição */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'filosofia' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'filosofia' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Nossa Filosofia</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'filosofia' ? 'text-white' : 'text-black'
+              }`}>Nossa Filosofia</h2>
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'filosofia' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Presença digital não é sobre estar online. É sobre estar presente onde sua audiência toma decisões.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {pilares.map((pilar, index) => (
-                <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i className={`${pilar.icon} text-2xl text-primary`}></i>
+                <div key={index} className={`group p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
+                  activeSection === 'filosofia' 
+                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
+                    : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
+                }`}>
+                  <div className="flex items-start space-x-6">
+                    <div className="w-16 h-16 bg-[#0076FF] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <i className={`${pilar.icon} text-2xl text-white`}></i>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                        activeSection === 'filosofia' ? 'text-white' : 'text-black'
+                      }`}>
+                        {pilar.titulo}
+                      </h3>
+                      <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                        activeSection === 'filosofia' ? 'text-gray-300' : 'text-gray-700'
+                      }`}>
+                        {pilar.descricao}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{pilar.titulo}</h3>
-                  <p className="text-gray-600">{pilar.descricao}</p>
                 </div>
               ))}
             </div>
@@ -354,56 +449,215 @@ export default function PresencaDigital() {
         </section>
 
         {/* Seção Serviços */}
-        <section className="py-24 bg-gray-50">
-          <div className="container mx-auto max-w-7xl px-4">
+        <section 
+          data-section-id="servicos"
+          ref={(el) => (sectionRefs.current.servicos = el)}
+          className="relative py-24 bg-gray-50 text-center overflow-hidden"
+        >
+          {/* Background com transição */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'servicos' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'servicos' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Nossos Serviços</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'servicos' ? 'text-white' : 'text-black'
+              }`}>Nossos Serviços</h2>
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Soluções completas para empresas que precisam comunicar valor técnico e gerar leads qualificados.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {servicos.map((categoria, index) => (
-                <div key={index} className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <h3 className="text-xl font-bold mb-4 text-primary">{categoria.categoria}</h3>
-                  <ul className="space-y-3">
-                    {categoria.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start">
-                        <i className="ri-check-line text-primary mr-2 mt-1"></i>
-                        <span className="text-gray-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {/* Layout 01 | 02, 03 | 04 */}
+            <div className="max-w-6xl mx-auto">
+              {/* Primeira linha: 01 | 02 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                {servicosCards.slice(0, 2).map((servico, index) => (
+                  <div key={servico.id} className={`relative flex items-center justify-center ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                    {/* Card */}
+                    <div className={`rounded-2xl p-8 max-w-md w-full hover:shadow-lg transition-all duration-300 ${
+                      activeSection === 'servicos' 
+                        ? 'bg-white/10 backdrop-blur-sm border-2 border-white/30' 
+                        : 'bg-transparent border-2 border-[#0076FF]'
+                    }`}>
+                      {/* Imagem retangular */}
+                      <div className="mb-6">
+                        <Image
+                          src={servico.imagem}
+                          alt={servico.titulo}
+                          className="w-full h-48 object-cover rounded-lg"
+                          width={400}
+                          height={200}
+                        />
+                      </div>
+                      
+                      {/* Área de texto */}
+                      <div className="text-center">
+                        {/* Headline H3 */}
+                        <h3 className={`text-2xl font-bold mb-6 transition-colors duration-500 ${
+                          activeSection === 'servicos' ? 'text-white' : 'text-black'
+                        }`}>
+                          {servico.titulo}
+                        </h3>
+                        
+                        {/* Texto em tópicos */}
+                        <ul className="space-y-3 text-left">
+                          {servico.topicos.map((topico, topicoIndex) => (
+                            <li key={topicoIndex} className="flex items-start">
+                              <i className={`ri-check-line mr-2 mt-1 flex-shrink-0 transition-colors duration-500 ${
+                                activeSection === 'servicos' ? 'text-white' : 'text-[#0076FF]'
+                              }`}></i>
+                              <span className={`transition-colors duration-500 ${
+                                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
+                              }`}>{topico}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    {/* Número */}
+                    <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-8 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-colors duration-500 ${
+                      activeSection === 'servicos' ? 'bg-white text-black' : 'bg-[#0076FF] text-white'
+                    }`}>
+                      <span className="font-bold text-lg">0{servico.id}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Segunda linha: 03 | 04 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {servicosCards.slice(2, 4).map((servico, index) => (
+                  <div key={servico.id} className={`relative flex items-center justify-center ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                    {/* Card */}
+                    <div className={`rounded-2xl p-8 max-w-md w-full hover:shadow-lg transition-all duration-300 ${
+                      activeSection === 'servicos' 
+                        ? 'bg-white/10 backdrop-blur-sm border-2 border-white/30' 
+                        : 'bg-transparent border-2 border-[#0076FF]'
+                    }`}>
+                      {/* Imagem retangular */}
+                      <div className="mb-6">
+                        <Image
+                          src={servico.imagem}
+                          alt={servico.titulo}
+                          className="w-full h-48 object-cover rounded-lg"
+                          width={400}
+                          height={200}
+                        />
+                      </div>
+                      
+                      {/* Área de texto */}
+                      <div className="text-center">
+                        {/* Headline H3 */}
+                        <h3 className={`text-2xl font-bold mb-6 transition-colors duration-500 ${
+                          activeSection === 'servicos' ? 'text-white' : 'text-black'
+                        }`}>
+                          {servico.titulo}
+                        </h3>
+                        
+                        {/* Texto em tópicos */}
+                        <ul className="space-y-3 text-left">
+                          {servico.topicos.map((topico, topicoIndex) => (
+                            <li key={topicoIndex} className="flex items-start">
+                              <i className={`ri-check-line mr-2 mt-1 flex-shrink-0 transition-colors duration-500 ${
+                                activeSection === 'servicos' ? 'text-white' : 'text-[#0076FF]'
+                              }`}></i>
+                              <span className={`transition-colors duration-500 ${
+                                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
+                              }`}>{topico}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    {/* Número */}
+                    <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-8 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-colors duration-500 ${
+                      activeSection === 'servicos' ? 'bg-white text-black' : 'bg-[#0076FF] text-white'
+                    }`}>
+                      <span className="font-bold text-lg">0{servico.id}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Seção FAQ */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto max-w-4xl px-4">
+        <section 
+          data-section-id="faq"
+          ref={(el) => (sectionRefs.current.faq = el)}
+          className="relative py-24 bg-white text-center overflow-hidden"
+        >
+          {/* Background com transição */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'faq' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'faq' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-4xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Perguntas Frequentes</h2>
-              <p className="text-xl text-gray-600">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'faq' ? 'text-white' : 'text-black'
+              }`}>Perguntas Frequentes</h2>
+              <p className={`text-xl transition-colors duration-500 ${
+                activeSection === 'faq' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Esclarecemos as principais dúvidas sobre nossos projetos de presença digital.
               </p>
             </div>
 
             <div className="space-y-4">
               {faq.map((item, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg">
+                <div key={index} className={`rounded-lg transition-all duration-500 ${
+                  activeSection === 'faq' 
+                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
+                    : 'border border-gray-200'
+                }`}>
                   <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                    className={`w-full px-6 py-4 text-left flex justify-between items-center transition-colors ${
+                      activeSection === 'faq' ? 'hover:bg-white/5' : 'hover:bg-gray-50'
+                    }`}
                     onClick={() => setActiveAccordion(activeAccordion === index ? -1 : index)}
                   >
-                    <span className="font-semibold text-lg">{item.pergunta}</span>
-                    <i className={`ri-arrow-${activeAccordion === index ? 'up' : 'down'}-s-line text-xl text-primary`}></i>
+                    <span className={`font-semibold text-lg transition-colors duration-500 ${
+                      activeSection === 'faq' ? 'text-white' : 'text-black'
+                    }`}>{item.pergunta}</span>
+                    <i className={`ri-arrow-${activeAccordion === index ? 'up' : 'down'}-s-line text-xl transition-colors duration-500 ${
+                      activeSection === 'faq' ? 'text-white' : 'text-primary'
+                    }`}></i>
                   </button>
                   {activeAccordion === index && (
                     <div className="px-6 pb-4">
-                      <p className="text-gray-600 leading-relaxed">{item.resposta}</p>
+                      <p className={`leading-relaxed text-left transition-colors duration-500 ${
+                        activeSection === 'faq' ? 'text-gray-300' : 'text-gray-600'
+                      }`}>{item.resposta}</p>
                     </div>
                   )}
                 </div>
