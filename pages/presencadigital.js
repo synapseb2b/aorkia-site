@@ -68,38 +68,38 @@ export default function PresencaDigital() {
     {
       numero: '01',
       titulo: 'Diagnóstico e Estratégia',
-      descricao: 'O que fazemos: Mapeamos seu mercado, as dores do seu cliente ideal (ICP) e seu posicionamento competitivo. \n\nO que você ganha: A definição da estratégia de autoridade e da narrativa central que guiará todo o projeto para gerar resultados mensuráveis.',
-      imagem: '/image/voice.png'
+      descricao: 'O que fazemos: Mapeamos seu mercado, as dores do seu cliente ideal (ICP) e seu posicionamento competitivo. O que você ganha: A definição da estratégia de autoridade e da narrativa central que guiará todo o projeto para gerar resultados mensuráveis.',
+      imagem: '/image/voice.png' // CORRIGIDO
     },
     {
       numero: '02',
       titulo: 'Arquitetura para Conversão',
-      descricao: 'O que fazemos: Organizamos a jornada do usuário e a hierarquia do conteúdo com um único foco: a conversão. \n\nO que você ganha: Um caminho claro que guia seu visitante ideal do primeiro clique à ação desejada, construindo confiança em cada etapa.',
-      imagem: '/image/wireframe.png'
+      descricao: 'O que fazemos: Organizamos a jornada do usuário e a hierarquia do conteúdo com um único foco: a conversão. O que você ganha: Um caminho claro que guia seu visitante ideal do primeiro clique à ação desejada, construindo confiança em cada etapa.',
+      imagem: '/image/wireframe.png' // CORRIGIDO
     },
     {
       numero: '03',
       titulo: 'Copywriting de Decisão',
-      descricao: 'O que fazemos: Criamos o texto que traduz seus diferenciais técnicos em argumentos de negócio. \n\nO que você ganha: Headlines, propostas de valor e CTAs que falam a língua do seu cliente B2B e o ajudam a tomar a decisão de comprar.',
-      imagem: '/image/screenshot_AORKIA.png'
+      descricao: 'O que fazemos: Criamos o texto que traduz seus diferenciais técnicos em argumentos de negócio. O que você ganha: Headlines, propostas de valor e CTAs que falam a língua do seu cliente B2B e o ajudam a tomar a decisão de comprar.',
+      imagem: '/image/screenshot_AORKIA.png' // MANTIDO
     },
     {
       numero: '04',
       titulo: 'Design de Confiança e Valor',
-      descricao: 'O que fazemos: Desenhamos uma interface que materializa sua credibilidade e profissionalismo. \n\nO que você ganha: Uma experiência visual que transmite o alto valor da sua marca antes mesmo da primeira palavra ser lida, gerando confiança instantânea.',
-      imagem: '/image/interface.png'
+      descricao: 'O que fazemos: Desenhamos uma interface que materializa sua credibilidade e profissionalismo. O que você ganha: Uma experiência visual que transmite o alto valor da sua marca antes mesmo da primeira palavra ser lida, gerando confiança instantânea.',
+      imagem: '/image/interface.png' // CORRIGIDO
     },
     {
       numero: '05',
       titulo: 'Construção e Performance',
-      descricao: 'O que fazemos: Escrevemos um código limpo, aplicamos SEO técnico e garantimos performance de carregamento obsessiva. \n\nO que você ganha: Um ativo digital rápido, seguro e escalável, que funciona perfeitamente em qualquer dispositivo e é amado pelos mecanismos de busca.',
-      imagem: '/image/code.png'
+      descricao: 'O que fazemos: Escrevemos um código limpo, aplicamos SEO técnico e garantimos performance de carregamento obsessiva. O que você ganha: Um ativo digital rápido, seguro e escalável, que funciona perfeitamente em qualquer dispositivo e é amado pelos mecanismos de busca.',
+      imagem: '/image/code.png' // CORRIGIDO
     },
     {
       numero: '06',
       titulo: 'Otimização para a Nova Busca (GEO + GPO)',
-      descricao: 'O que fazemos: GEO + GPO é nossa resposta para o presente e o futuro da descoberta online. Otimizamos sua presença para dominar os rankings do Google (GEO) e, simultaneamente, para se tornar a resposta de autoridade para IAs conversacionais como ChatGPT e Perplexity (GPO - Generative Presence Optimization). \n\nO que você ganha: Relevância máxima, hoje e amanhã. Você garante que seus clientes te encontrem nas buscas tradicionais e, crucialmente, nas novas conversas com inteligência artificial.',
-      imagem: '/image/geo_&_seo.png'
+      descricao: 'O que fazemos: GEO + GPO é nossa resposta para o presente e o futuro da descoberta online. Otimizamos sua presença para dominar os rankings do Google (GEO) e, simultaneamente, para se tornar a resposta de autoridade para IAs conversacionais como ChatGPT e Perplexity (GPO - Generative Presence Optimization). O que você ganha: Relevância máxima, hoje e amanhã. Você garante que seus clientes te encontrem nas buscas tradicionais e, crucialmente, nas novas conversas com inteligência artificial.',
+      imagem: '/image/geo_&_seo.png' // CORRIGIDO
     }
   ];
 
@@ -320,58 +320,44 @@ export default function PresencaDigital() {
             <div className="max-w-4xl mx-auto">
               {metodologia.map((fase, index) => (
                 <div key={index} className="relative flex items-center justify-center mb-16 last:mb-0">
-                  {/* Linha vertical - REMOVIDA */}
-
-                  {/* Círculo do número */}
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl relative z-10 transition-colors duration-500 ${
-                    activeSection === 'metodologia' ? 'bg-primary' : 'bg-gray-400'
+                  {/* Linha vertical */}
+                  {index < metodologia.length - 1 && (
+                    <div className={`absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'bg-white/30' : 'bg-primary/30'
+                    }`}></div>
+                  )}
+                  
+                  {/* Conteúdo da Fase */}
+                  <div className={`w-full p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
+                    activeSection === 'metodologia' 
+                      ? 'bg-white/10 backdrop-blur-sm border border-white/20'
+                      : 'bg-white border border-gray-200 shadow-lg'
                   }`}>
-                    {fase.numero}
-                  </div>
-
-                  {/* Conteúdo da fase */}
-                  <div className="ml-8 text-left max-w-xl">
-                    <h3 className={`text-2xl font-semibold mb-2 transition-colors duration-500 ${
-                      activeSection === 'metodologia' ? 'text-white' : 'text-black'
-                    }`}>
-                      {fase.titulo}
-                    </h3>
-                    <p className={`text-lg transition-colors duration-500 ${
-                      activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {fase.descricao}
-                    </p>
-                    <div className="mt-4">
-                      <Image 
-                        src={fase.imagem} 
-                        alt={fase.titulo} 
-                        width={200} 
-                        height={150} 
-                        className="rounded-lg shadow-lg"
-                      />
+                    <div className="flex flex-col md:flex-row items-center gap-8">
+                      {/* Imagem */}
+                      <div className="md:w-1/3 flex-shrink-0">
+                        <Image
+                          src={fase.imagem}
+                          alt={fase.titulo}
+                          width={300}
+                          height={200}
+                          className="rounded-lg object-cover w-full h-auto"
+                        />
+                      </div>
+                      {/* Texto */}
+                      <div className="md:w-2/3 text-left">
+                        <span className={`text-6xl font-bold opacity-20 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-primary'
+                        }`}>{fase.numero}</span>
+                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-black'
+                        }`}>{fase.titulo}</h3>
+                        <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+                        }`}>{fase.descricao}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Pilares */}
-        <section 
-          id="pilares" 
-          data-section-id="pilares"
-          ref={(el) => (sectionRefs.current.pilares = el)}
-          className="py-24 bg-white text-center"
-        >
-          <div className="container mx-auto max-w-6xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-900">Nossos Pilares</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {pilares.map((pilar, index) => (
-                <div key={index} className="p-8 bg-gray-100 rounded-lg shadow-lg">
-                  <i className={`${pilar.icon} text-5xl text-primary mb-4`}></i>
-                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">{pilar.titulo}</h3>
-                  <p className="text-gray-700">{pilar.descricao}</p>
                 </div>
               ))}
             </div>
@@ -380,32 +366,44 @@ export default function PresencaDigital() {
 
         {/* Seção Serviços */}
         <section 
-          id="servicos" 
+          id="servicos"
           data-section-id="servicos"
           ref={(el) => (sectionRefs.current.servicos = el)}
-          className="py-24 bg-gray-900 text-white"
+          className="py-24 bg-white"
         >
-          <div className="container mx-auto max-w-6xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Nossos Serviços</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nossos Serviços</h2>
+              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+                Soluções integradas para construir e escalar sua autoridade digital.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {servicosCards.map((servico) => (
-                <div key={servico.id} className="bg-gray-800 rounded-lg shadow-lg p-8 flex flex-col items-center text-center">
-                  <Image 
-                    src={servico.imagem} 
-                    alt={servico.titulo} 
-                    width={150} 
-                    height={150} 
-                    className="mb-6 rounded-full border-4 border-primary"
-                  />
-                  <h3 className="text-3xl font-bold mb-4 text-primary">{servico.titulo}</h3>
-                  <ul className="list-none space-y-2 text-lg text-gray-300">
-                    {servico.topicos.map((topico, idx) => (
-                      <li key={idx} className="flex items-center justify-center">
-                        <i className="ri-check-double-line text-primary mr-2"></i>
-                        {topico}
-                      </li>
-                    ))}
-                  </ul>
+                <div key={servico.id} className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300">
+                  <div className="relative h-48">
+                    <Image
+                      src={servico.imagem}
+                      alt={servico.titulo}
+                      layout="fill"
+                      objectFit="cover"
+                      className="group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-4 text-gray-900">{servico.titulo}</h3>
+                    <ul className="space-y-3 text-gray-700">
+                      {servico.topicos.map((topico, i) => (
+                        <li key={i} className="flex items-start">
+                          <svg className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{topico}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
@@ -413,65 +411,57 @@ export default function PresencaDigital() {
         </section>
 
         {/* Seção FAQ */}
-        <section 
-          id="faq" 
-          data-section-id="faq"
-          ref={(el) => (sectionRefs.current.faq = el)}
-          className="py-24 bg-white"
-        >
+        <section id="faq" className="py-24 bg-gray-50">
           <div className="container mx-auto max-w-4xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-gray-900">Perguntas Frequentes</h2>
-            <div className="space-y-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Perguntas Frequentes</h2>
+              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+                Respostas claras para suas dúvidas mais importantes sobre como podemos ajudar seu negócio a crescer.
+              </p>
+            </div>
+
+            <div className="space-y-4">
               {faq.map((item, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg">
+                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <button
-                    className="flex justify-between items-center w-full p-6 text-left text-xl font-semibold text-gray-800 focus:outline-none"
                     onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
+                    className="w-full flex justify-between items-center p-6 text-left font-semibold text-lg text-gray-800 hover:bg-gray-100 transition-colors"
                   >
-                    {item.pergunta}
+                    <span>{item.pergunta}</span>
                     <svg
-                      className={`w-6 h-6 transform transition-transform duration-300 ${
-                        activeAccordion === index ? 'rotate-180' : ''
-                      }`}
+                      className={`w-6 h-6 transform transition-transform duration-300 ${activeAccordion === index ? 'rotate-180' : ''}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      ></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {activeAccordion === index && (
-                    <div className="p-6 border-t border-gray-200 text-gray-700">
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden ${activeAccordion === index ? 'max-h-screen' : 'max-h-0'}`}
+                  >
+                    <div className="p-6 pt-0 text-gray-700 leading-relaxed">
                       <p>{item.resposta}</p>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Seção CTA Final */}
-        <section 
-          id="contato" 
-          data-section-id="contato"
-          ref={(el) => (sectionRefs.current.contato = el)}
-          className="py-24 bg-primary text-white text-center"
-        >
-          <div className="container mx-auto max-w-4xl px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">Pronto para Transformar sua Presença Digital?</h2>
-            <p className="text-xl mb-12">Entre em contato e descubra como a AORKIA pode impulsionar seu negócio B2B.</p>
-            <Link 
-              href="/contato" 
-              className="bg-white text-primary px-10 py-4 rounded-full text-xl font-semibold hover:bg-gray-200 transition-colors shadow-lg"
+        {/* Seção Contato */}
+        <section id="contato" className="py-24 bg-primary text-white">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para se tornar uma Autoridade Digital?</h2>
+            <p className="text-xl max-w-3xl mx-auto mb-12">
+              Vamos conversar sobre como a Presença Digital AORKIA pode transformar seu negócio. Agende uma chamada estratégica e descubra o potencial inexplorado da sua marca.
+            </p>
+            <Link
+              href="/contato"
+              className="bg-white text-primary px-10 py-4 rounded-full text-xl font-bold hover:bg-gray-200 transition-colors"
             >
-              Fale Conosco
+              Agendar Chamada Estratégica
             </Link>
           </div>
         </section>
@@ -479,5 +469,4 @@ export default function PresencaDigital() {
     </>
   );
 }
-
 
