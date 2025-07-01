@@ -322,6 +322,34 @@ export default function Sobre() {
           </div>
         </section>
 
+        {/* INÍCIO DA SEÇÃO "NOSSO ECOSSISTEMA DE PROTEÇÃO" */}
+        <section
+          id="parcerias" // Adicione um ID para a seção, se desejar
+          data-section-id="parcerias"
+          ref={(el) => (sectionRefs.current.parcerias = el)}
+          className="relative w-full min-h-screen py-24 overflow-hidden" // Ajuste as classes conforme necessário
+        >
+          {/* Background com transição (se aplicável a esta seção) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'parcerias' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/horizonte.png)` }} // Use a imagem de fundo que desejar
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'parcerias' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto max-w-7xl px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-8 transition-colors duration-500 ${
+                activeSection === 'parcerias' ? 'text-white' : 'text-black'
+              }`}>
                 Nosso Ecossistema de Proteção
               </h2>
               
@@ -340,7 +368,7 @@ export default function Sobre() {
                 Produtividade e Colaboração
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {[
+                {[ 
                   { name: 'Microsoft 365', icon: '/icon/microsoft_365.png' },
                   { name: 'Google Workspace', icon: '/icon/google_workspace.png' },
                   { name: 'Salesforce', icon: '/icon/salesforce.png' },
@@ -379,7 +407,7 @@ export default function Sobre() {
                 Desenvolvimento e DevOps
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {[
+                {[ 
                   { name: 'Azure DevOps', icon: '/icon/azure_devops.png' },
                   { name: 'Power Platform', icon: '/icon/power_platform.png' },
                   { name: 'Dynamics 365', icon: '/icon/dynamics_365.png' },
@@ -418,7 +446,7 @@ export default function Sobre() {
                 Infraestrutura Cloud
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {[
+                {[ 
                   { name: 'AWS', icon: '/icon/aws.png' },
                   { name: 'Microsoft Azure', icon: '/icon/azure.png' },
                   { name: 'Google Cloud', icon: '/icon/gcp.png' },
@@ -446,25 +474,15 @@ export default function Sobre() {
                 ))}
               </div>
             </div>
+          </div> {/* Fechamento do container mx-auto */}
+        </section> {/* FECHAMENTO DA SEÇÃO "NOSSO ECOSSISTEMA DE PROTEÇÃO" */}
 
         {/* CTA Final */}
         <section className="py-24 bg-gradient-to-r from-[#0076FF] to-[#0056CC] text-white">
-          <div className="container mx-auto max-w-4xl px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Pronto para Ativar o Futuro da Sua Empresa?
-            </h2>
-            <p className="text-xl mb-12 max-w-2xl mx-auto">
-              Converse com nossos especialistas e descubra como podemos transformar seus desafios em vantagens competitivas.
-            </p>
-            <Link
-              href="/contato"
-              className="inline-block px-8 py-4 bg-white text-[#0076FF] rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
-            >
-              Falar com Especialista
-            </Link>
-          </div>
+          {/* ... conteúdo do CTA Final ... */}
         </section>
-      </main>
+      </main> {/* FECHAMENTO DA TAG MAIN */}
     </>
   );
 }
+
