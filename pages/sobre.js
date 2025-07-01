@@ -463,7 +463,6 @@ export default function Sobre() {
               Falar com Especialista
             </Link>
           </div>
-        </section>
       </main>
     </>
   );
