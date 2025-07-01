@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -327,119 +327,35 @@ export default function PresencaDigital() {
                     }`}></div>
                   )}
                   
-                  {/* Conteúdo alternado */}
-                  <div className={`flex items-center w-full ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                    {/* Número e linha */}
-                    <div className="flex-1 flex items-center justify-center">
-                      {index % 2 === 0 && (
-                        <div className="text-right pr-8">
-                          <div className="flex items-center justify-end mb-4">
-                            <span className={`text-6xl font-bold mr-4 transition-colors duration-500 ${
-                              activeSection === 'metodologia' ? 'text-white' : 'text-primary'
-                            }`}>{fase.numero}</span>
-                            <div className={`w-8 h-0.5 transition-colors duration-500 ${
-                              activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
-                            }`}></div>
-                          </div>
-                          <h3 className={`text-2xl font-bold mb-4 text-right transition-colors duration-500 ${
-                            activeSection === 'metodologia' ? 'text-white' : 'text-black'
-                          }`}>{fase.titulo}</h3>
-                          <p className={`text-lg leading-relaxed text-right max-w-md ml-auto transition-colors duration-500 ${
-                            activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
-                          }`}>{fase.descricao}</p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Círculo central */}
-                    <div className={`w-4 h-4 rounded-full z-10 flex-shrink-0 transition-colors duration-500 ${
-                      activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
-                    }`}></div>
-
-                    {/* Conteúdo do lado direito */}
-                    <div className="flex-1 flex items-center justify-center">
-                      {index % 2 === 1 && (
-                        <div className="text-left pl-8">
-                          <div className="flex items-center justify-start mb-4">
-                            <div className={`w-8 h-0.5 transition-colors duration-500 ${
-                              activeSection === 'metodologia' ? 'bg-white' : 'bg-primary'
-                            }`}></div>
-                            <span className={`text-6xl font-bold ml-4 transition-colors duration-500 ${
-                              activeSection === 'metodologia' ? 'text-white' : 'text-primary'
-                            }`}>{fase.numero}</span>
-                          </div>
-                          <h3 className={`text-2xl font-bold mb-4 text-left transition-colors duration-500 ${
-                            activeSection === 'metodologia' ? 'text-white' : 'text-black'
-                          }`}>{fase.titulo}</h3>
-                          <p className={`text-lg leading-relaxed text-left max-w-md transition-colors duration-500 ${
-                            activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
-                          }`}>{fase.descricao}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Seção Filosofia */}
-        <section 
-          data-section-id="filosofia"
-          ref={(el) => (sectionRefs.current.filosofia = el)}
-          className="relative py-24 bg-white text-center overflow-hidden"
-        >
-          {/* Background com transição */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'filosofia' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/6fases.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'filosofia' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                activeSection === 'filosofia' ? 'text-white' : 'text-black'
-              }`}>Nossa Filosofia</h2>
-              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'filosofia' ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Presença digital não é sobre estar online. É sobre estar presente onde sua audiência toma decisões.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {pilares.map((pilar, index) => (
-                <div key={index} className={`group p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
-                  activeSection === 'filosofia' 
-                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
-                    : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
-                }`}>
-                  <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-[#0076FF] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <i className={`${pilar.icon} text-2xl text-white`}></i>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                        activeSection === 'filosofia' ? 'text-white' : 'text-black'
-                      }`}>
-                        {pilar.titulo}
-                      </h3>
-                      <p className={`text-lg leading-relaxed transition-colors duration-500 ${
-                        activeSection === 'filosofia' ? 'text-gray-300' : 'text-gray-700'
-                      }`}>
-                        {pilar.descricao}
-                      </p>
+                  {/* Conteúdo da Fase */}
+                  <div className={`w-full p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
+                    activeSection === 'metodologia' 
+                      ? 'bg-white/10 backdrop-blur-sm border border-white/20'
+                      : 'bg-white border border-gray-200 shadow-lg'
+                  }`}>
+                    <div className="flex flex-col md:flex-row items-center gap-8">
+                      {/* Imagem */}
+                      <div className="md:w-1/3 flex-shrink-0">
+                        <Image
+                          src={fase.imagem}
+                          alt={fase.titulo}
+                          width={300}
+                          height={200}
+                          className="rounded-lg object-cover w-full h-auto"
+                        />
+                      </div>
+                      {/* Texto */}
+                      <div className="md:w-2/3 text-left">
+                        <span className={`text-6xl font-bold opacity-20 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-primary'
+                        }`}>{fase.numero}</span>
+                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-black'
+                        }`}>{fase.titulo}</h3>
+                        <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+                        }`}>{fase.descricao}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -450,247 +366,103 @@ export default function PresencaDigital() {
 
         {/* Seção Serviços */}
         <section 
+          id="servicos"
           data-section-id="servicos"
           ref={(el) => (sectionRefs.current.servicos = el)}
-          className="relative py-24 bg-gray-50 text-center overflow-hidden"
+          className="py-24 bg-white"
         >
-          {/* Background com transição */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'servicos' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/6fases.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'servicos' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-7xl px-4 relative z-10">
+          <div className="container mx-auto max-w-7xl px-4">
             <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                activeSection === 'servicos' ? 'text-white' : 'text-black'
-              }`}>Nossos Serviços</h2>
-              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Soluções completas para empresas que precisam comunicar valor técnico e gerar leads qualificados.
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nossos Serviços</h2>
+              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+                Soluções integradas para construir e escalar sua autoridade digital.
               </p>
             </div>
 
-            {/* Layout 01 | 02, 03 | 04 */}
-            <div className="max-w-6xl mx-auto">
-              {/* Primeira linha: 01 | 02 */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                {servicosCards.slice(0, 2).map((servico, index) => (
-                  <div key={servico.id} className={`relative flex items-center justify-center ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                    {/* Card */}
-                    <div className={`rounded-2xl p-8 max-w-md w-full hover:shadow-lg transition-all duration-300 ${
-                      activeSection === 'servicos' 
-                        ? 'bg-white/10 backdrop-blur-sm border-2 border-white/30' 
-                        : 'bg-transparent border-2 border-[#0076FF]'
-                    }`}>
-                      {/* Imagem retangular */}
-                      <div className="mb-6">
-                        <Image
-                          src={servico.imagem}
-                          alt={servico.titulo}
-                          className="w-full h-48 object-cover rounded-lg"
-                          width={400}
-                          height={200}
-                        />
-                      </div>
-                      
-                      {/* Área de texto */}
-                      <div className="text-center">
-                        {/* Headline H3 */}
-                        <h3 className={`text-2xl font-bold mb-6 transition-colors duration-500 ${
-                          activeSection === 'servicos' ? 'text-white' : 'text-black'
-                        }`}>
-                          {servico.titulo}
-                        </h3>
-                        
-                        {/* Texto em tópicos */}
-                        <ul className="space-y-3 text-left">
-                          {servico.topicos.map((topico, topicoIndex) => (
-                            <li key={topicoIndex} className="flex items-start">
-                              <i className={`ri-check-line mr-2 mt-1 flex-shrink-0 transition-colors duration-500 ${
-                                activeSection === 'servicos' ? 'text-white' : 'text-[#0076FF]'
-                              }`}></i>
-                              <span className={`transition-colors duration-500 ${
-                                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
-                              }`}>{topico}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    {/* Número */}
-                    <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-8 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-colors duration-500 ${
-                      activeSection === 'servicos' ? 'bg-white text-black' : 'bg-[#0076FF] text-white'
-                    }`}>
-                      <span className="font-bold text-lg">0{servico.id}</span>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {servicosCards.map((servico) => (
+                <div key={servico.id} className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300">
+                  <div className="relative h-48">
+                    <Image
+                      src={servico.imagem}
+                      alt={servico.titulo}
+                      layout="fill"
+                      objectFit="cover"
+                      className="group-hover:scale-110 transition-transform duration-500"
+                    />
                   </div>
-                ))}
-              </div>
-
-              {/* Segunda linha: 03 | 04 */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {servicosCards.slice(2, 4).map((servico, index) => (
-                  <div key={servico.id} className={`relative flex items-center justify-center ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                    {/* Card */}
-                    <div className={`rounded-2xl p-8 max-w-md w-full hover:shadow-lg transition-all duration-300 ${
-                      activeSection === 'servicos' 
-                        ? 'bg-white/10 backdrop-blur-sm border-2 border-white/30' 
-                        : 'bg-transparent border-2 border-[#0076FF]'
-                    }`}>
-                      {/* Imagem retangular */}
-                      <div className="mb-6">
-                        <Image
-                          src={servico.imagem}
-                          alt={servico.titulo}
-                          className="w-full h-48 object-cover rounded-lg"
-                          width={400}
-                          height={200}
-                        />
-                      </div>
-                      
-                      {/* Área de texto */}
-                      <div className="text-center">
-                        {/* Headline H3 */}
-                        <h3 className={`text-2xl font-bold mb-6 transition-colors duration-500 ${
-                          activeSection === 'servicos' ? 'text-white' : 'text-black'
-                        }`}>
-                          {servico.titulo}
-                        </h3>
-                        
-                        {/* Texto em tópicos */}
-                        <ul className="space-y-3 text-left">
-                          {servico.topicos.map((topico, topicoIndex) => (
-                            <li key={topicoIndex} className="flex items-start">
-                              <i className={`ri-check-line mr-2 mt-1 flex-shrink-0 transition-colors duration-500 ${
-                                activeSection === 'servicos' ? 'text-white' : 'text-[#0076FF]'
-                              }`}></i>
-                              <span className={`transition-colors duration-500 ${
-                                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
-                              }`}>{topico}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    {/* Número */}
-                    <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-8 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-colors duration-500 ${
-                      activeSection === 'servicos' ? 'bg-white text-black' : 'bg-[#0076FF] text-white'
-                    }`}>
-                      <span className="font-bold text-lg">0{servico.id}</span>
-                    </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-4 text-gray-900">{servico.titulo}</h3>
+                    <ul className="space-y-3 text-gray-700">
+                      {servico.topicos.map((topico, i) => (
+                        <li key={i} className="flex items-start">
+                          <svg className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{topico}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção FAQ */}
-        <section 
-          data-section-id="faq"
-          ref={(el) => (sectionRefs.current.faq = el)}
-          className="relative py-24 bg-white text-center overflow-hidden"
-        >
-          {/* Background com transição */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'faq' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/6fases.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'faq' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="container mx-auto max-w-4xl px-4 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                activeSection === 'faq' ? 'text-white' : 'text-black'
-              }`}>Perguntas Frequentes</h2>
-              <p className={`text-xl transition-colors duration-500 ${
-                activeSection === 'faq' ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Esclarecemos as principais dúvidas sobre nossos projetos de presença digital.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              {faq.map((item, index) => (
-                <div key={index} className={`rounded-lg transition-all duration-500 ${
-                  activeSection === 'faq' 
-                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
-                    : 'border border-gray-200'
-                }`}>
-                  <button
-                    className={`w-full px-6 py-4 text-left flex justify-between items-center transition-colors ${
-                      activeSection === 'faq' ? 'hover:bg-white/5' : 'hover:bg-gray-50'
-                    }`}
-                    onClick={() => setActiveAccordion(activeAccordion === index ? -1 : index)}
-                  >
-                    <span className={`font-semibold text-lg transition-colors duration-500 ${
-                      activeSection === 'faq' ? 'text-white' : 'text-black'
-                    }`}>{item.pergunta}</span>
-                    <i className={`ri-arrow-${activeAccordion === index ? 'up' : 'down'}-s-line text-xl transition-colors duration-500 ${
-                      activeSection === 'faq' ? 'text-white' : 'text-primary'
-                    }`}></i>
-                  </button>
-                  {activeAccordion === index && (
-                    <div className="px-6 pb-4">
-                      <p className={`leading-relaxed text-left transition-colors duration-500 ${
-                        activeSection === 'faq' ? 'text-gray-300' : 'text-gray-600'
-                      }`}>{item.resposta}</p>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Seção CTA Final */}
-        <section id="contato" className="py-24 bg-primary">
-          <div className="container mx-auto max-w-6xl px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
-              Pronto para Transformar sua Presença Digital?
-            </h2>
-            <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
-              Vamos conversar sobre como podemos transformar sua empresa em uma autoridade digital que gera leads qualificados.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/contato"
-                className="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                Iniciar Projeto
-              </Link>
-              <a
-                href="https://wa.me/553139586192"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors"
-              >
-                WhatsApp Direto
-              </a>
+        {/* Seção FAQ */}
+        <section id="faq" className="py-24 bg-gray-50">
+          <div className="container mx-auto max-w-4xl px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Perguntas Frequentes</h2>
+              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+                Respostas claras para suas dúvidas mais importantes sobre como podemos ajudar seu negócio a crescer.
+              </p>
             </div>
+
+            <div className="space-y-4">
+              {faq.map((item, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button
+                    onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
+                    className="w-full flex justify-between items-center p-6 text-left font-semibold text-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                  >
+                    <span>{item.pergunta}</span>
+                    <svg
+                      className={`w-6 h-6 transform transition-transform duration-300 ${activeAccordion === index ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden ${activeAccordion === index ? 'max-h-screen' : 'max-h-0'}`}
+                  >
+                    <div className="p-6 pt-0 text-gray-700 leading-relaxed">
+                      <p>{item.resposta}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Seção Contato */}
+        <section id="contato" className="py-24 bg-primary text-white">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para se tornar uma Autoridade Digital?</h2>
+            <p className="text-xl max-w-3xl mx-auto mb-12">
+              Vamos conversar sobre como a Presença Digital AORKIA pode transformar seu negócio. Agende uma chamada estratégica e descubra o potencial inexplorado da sua marca.
+            </p>
+            <Link
+              href="/contato"
+              className="bg-white text-primary px-10 py-4 rounded-full text-xl font-bold hover:bg-gray-200 transition-colors"
+            >
+              Agendar Chamada Estratégica
+            </Link>
           </div>
         </section>
       </main>
