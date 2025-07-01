@@ -185,7 +185,7 @@ export default function BackupSaaSEstrategico() {
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            src="/video/video_hero.mp4"
+            src="/video/keepit_AOIRKIA.mp4"
             autoPlay
             loop
             muted
@@ -533,7 +533,7 @@ export default function BackupSaaSEstrategico() {
                 <span className="text-sm font-medium text-gray-700 text-center">Zendesk</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/microsoft_dynamics_365.png" alt="Dynamics 365" width={60} height={60} className="mb-2" />
+                <Image src="/icon/dynamics_365.png" alt="Dynamics 365" width={60} height={60} className="mb-2" />
                 <span className="text-sm font-medium text-gray-700 text-center">Dynamics 365</span>
               </div>
               <div className="flex flex-col items-center">
