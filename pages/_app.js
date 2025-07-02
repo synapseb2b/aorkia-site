@@ -507,53 +507,55 @@ function MyApp({ Component, pageProps }) {
                   </div>
                 </Link>
 
-                {/* Soluções - Accordion */}
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                  <button
-                    onClick={() => setSolutionsDropdownOpen(!solutionsDropdownOpen)}
-                    className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group"
+{/* Soluções - Accordion */}
+              <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <button
+                  onClick={() => setSolutionsDropdownOpen(!solutionsDropdownOpen)}
+                  className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    {/* LINHA ADICIONADA AQUI */}
+                    <span className="text-lg font-medium">Soluções</span>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {/* Submenu */}
+                {solutionsDropdownOpen && (
+                  <div className="ml-14 mt-2 space-y-1 animate-fade-in-up">
+                    <Link href="/backup_saas_estrategico" passHref>
+                      <div
+                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <div className="font-medium">Backup SaaS Estratégico</div>
+                        <div className="text-sm text-white/60 mt-1">Keepit - Proteção imutável</div>
                       </div>
-                    </div>
-                    <svg
-                      className={`w-5 h-5 transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                     viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  
-                  {/* Submenu */}
-                  {solutionsDropdownOpen && (
-                    <div className="ml-14 mt-2 space-y-1 animate-fade-in-up">
-                      <Link href="/backup_saas_estrategico" passHref>
-                        <div
-                          className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <div className="font-medium">Backup SaaS Estratégico</div>
-                          <div className="text-sm text-white/60 mt-1">Keepit - Proteção imutável</div>
-                        </div>
-                      </Link>
-                      <Link href="/governanca_dados_sensiveis" passHref>
-                        <div
-                          className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <div className="font-medium">Governança de Dados</div>
-                          <div className="text-sm text-white/60 mt-1">DSPM - Controle total</div>
-                        </div>
-                      </Link>
-                    </div>
-                  )}
-                </div>
+                    </Link>
+                    <Link href="/governanca_dados_sensiveis" passHref>
+                      <div
+                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <div className="font-medium">Governança de Dados</div>
+                        <div className="text-sm text-white/60 mt-1">DSPM - Controle total</div>
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
 
                 {/* Sobre */}
                 <Link href="/sobre" passHref>
