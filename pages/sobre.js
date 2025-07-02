@@ -277,7 +277,7 @@ export default function Sobre() {
               }`}>
                 <div className="flex items-start space-x-6">
                   <div className="w-16 h-16 bg-[#0076FF] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <i className="ri-target-line text-2xl text-white"></i>
+                    <i className="ri-line-chart-line text-2xl text-white"></i>
                   </div>
                   <div className="flex-1">
                     <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${

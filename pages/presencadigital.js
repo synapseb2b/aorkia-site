@@ -459,7 +459,7 @@ export default function PresencaDigital() {
             </p>
             <Link
               href="/contato"
-              className="bg-white text-primary px-10 py-4 rounded-full text-xl font-bold hover:bg-gray-200 transition-colors"
+              className="bg-white text-primary px-6 py-3 rounded-full text-lg font-bold hover:bg-gray-200 transition-colors w-full sm:w-auto whitespace-nowrap"
             >
               Agendar Chamada Estratégica
             </Link>
