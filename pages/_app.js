@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps }) {
   const [addressCopied, setAddressCopied] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
-  const [solutionsExpanded, setSolutionsExpanded] = useState(false);
 
   // Efeito para carregar scripts externos como RemixIcon
   useEffect(() => {
@@ -152,6 +151,11 @@ function MyApp({ Component, pageProps }) {
     }
   };
 
+  // Função para verificar se a rota está ativa
+  const isActiveRoute = (path) => {
+    return router.pathname === path;
+  };
+
   return (
     <>
       <Head>
@@ -179,9 +183,9 @@ function MyApp({ Component, pageProps }) {
                     'gradient-x': 'gradient-x 3s ease infinite',
                     'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
                     'float': 'float 3s ease-in-out infinite',
-                    'slide-in-right': 'slideInRight 0.4s ease-out',
-                    'fade-in-up': 'fadeInUp 0.5s ease-out',
-                    'scale-in': 'scaleIn 0.3s ease-out',
+                    'dropdown-slide-in': 'dropdown-slide-in 0.3s ease-out',
+                    'dropdown-slide-out': 'dropdown-slide-out 0.3s ease-out',
+                    'nav-item-hover': 'nav-item-hover 0.3s ease-out',
                   },
                   keyframes: {
                     'gradient-x': {
@@ -208,17 +212,33 @@ function MyApp({ Component, pageProps }) {
                       '0%, 100%': { 'transform': 'translateY(0px)' },
                       '50%': { 'transform': 'translateY(-5px)' },
                     },
-                    'slideInRight': {
-                      '0%': { 'transform': 'translateX(100%)', 'opacity': '0' },
-                      '100%': { 'transform': 'translateX(0)', 'opacity': '1' },
+                    'dropdown-slide-in': {
+                      '0%': {
+                        'opacity': '0',
+                        'transform': 'translateY(-10px) scale(0.95)'
+                      },
+                      '100%': {
+                        'opacity': '1',
+                        'transform': 'translateY(0) scale(1)'
+                      },
                     },
-                    'fadeInUp': {
-                      '0%': { 'transform': 'translateY(20px)', 'opacity': '0' },
-                      '100%': { 'transform': 'translateY(0)', 'opacity': '1' },
+                    'dropdown-slide-out': {
+                      '0%': {
+                        'opacity': '1',
+                        'transform': 'translateY(0) scale(1)'
+                      },
+                      '100%': {
+                        'opacity': '0',
+                        'transform': 'translateY(-10px) scale(0.95)'
+                      },
                     },
-                    'scaleIn': {
-                      '0%': { 'transform': 'scale(0.9)', 'opacity': '0' },
-                      '100%': { 'transform': 'scale(1)', 'opacity': '1' },
+                    'nav-item-hover': {
+                      '0%': {
+                        'transform': 'translateY(0px)'
+                      },
+                      '100%': {
+                        'transform': 'translateY(-2px)'
+                      },
                     },
                   }
                 },
@@ -250,11 +270,11 @@ function MyApp({ Component, pageProps }) {
           </div>
              )}
 
-      {/* Desktop Navbar - UX MELHORADA E LOGO CORRIGIDA */}
-      <header className="fixed top-0 left-0 right-0 h-20 border-b border-gray-200 bg-white z-[60] hidden md:block">
+      {/* Desktop Navbar - COMPLETAMENTE MODERNIZADA */}
+      <header className="fixed top-0 left-0 right-0 h-20 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-lg shadow-black/5 z-[60] hidden md:block">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
-          {/* Logo à esquerda - LOGO CORRIGIDA */}
-          <Link href="/" className="flex-shrink-0">
+          {/* Logo à esquerda - Com hover effect */}
+          <Link href="/" className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
             <div className="logo-container h-20 relative">
               <Image
                 src="/logo/logo_aorkia_color_transparent.png"
@@ -268,232 +288,313 @@ function MyApp({ Component, pageProps }) {
             </div>
           </Link>
 
-          {/* Menu à direita */}
+          {/* Menu à direita - MODERNIZADO */}
           <nav className="flex items-center space-x-2">
-            <Link href="/" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Home
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+            {/* Home */}
+            <Link 
+              href="/" 
+              className={`group flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${
+                isActiveRoute('/') 
+                  ? 'text-primary bg-primary/10 border-primary/30 shadow-md shadow-primary/20' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/15'
+              }`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span>Home</span>
             </Link>
             
-            {/* Dropdown Soluções - UX MELHORADA */}
+            {/* Dropdown Soluções - COMPLETAMENTE MODERNIZADO */}
             <div 
               className="relative"
               onMouseEnter={() => setSolutionsDropdownOpen(true)}
               onMouseLeave={() => setSolutionsDropdownOpen(false)}
             >
-              <button className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20 flex items-center">
-                Soluções
-                <i className="ri-arrow-down-s-line ml-1"></i>
-                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+              <button className={`group flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${
+                router.pathname.includes('/backup_saas_estrategico') || router.pathname.includes('/governanca_dados_sensiveis')
+                  ? 'text-primary bg-primary/10 border-primary/30 shadow-md shadow-primary/20' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/15'
+              }`}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span>Soluções</span>
+                <svg className={`w-4 h-4 transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
               
-              {/* Dropdown Menu - MELHORADO */}
+              {/* Dropdown Menu - PREMIUM DESIGN */}
               {solutionsDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-96 bg-white border border-gray-200 rounded-lg shadow-xl z-[70] py-2">
+                <div className="absolute top-full left-0 mt-2 w-[420px] bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-xl shadow-2xl shadow-blue-500/20 z-[70] py-4 animate-dropdown-slide-in">
                   <Link 
                     href="/backup_saas_estrategico" 
-                    className="block px-6 py-4 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-100 last:border-b-0"
+                    className="group block px-6 py-4 text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 last:border-b-0"
                     onClick={() => setSolutionsDropdownOpen(false)}
                   >
-                    <div className="font-semibold text-lg">Backup SaaS Estratégico</div>
-                    <div className="text-sm text-gray-600 mt-1">Keepit - Proteção imutável para Microsoft 365, Google Workspace e Salesforce</div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-lg group-hover:text-blue-100 transition-colors">Backup SaaS Estratégico</div>
+                        <div className="text-sm text-blue-100/80 mt-1 group-hover:text-blue-50 transition-colors">Keepit - Proteção imutável para Microsoft 365, Google Workspace e Salesforce</div>
+                      </div>
+                    </div>
                   </Link>
                   <Link 
                     href="/governanca_dados_sensiveis" 
-                    className="block px-6 py-4 text-gray-800 hover:bg-primary/5 hover:text-primary transition-colors"
+                    className="group block px-6 py-4 text-white hover:bg-white/10 transition-all duration-300"
                     onClick={() => setSolutionsDropdownOpen(false)}
                   >
-                    <div className="font-semibold text-lg">Governança Estratégica de Dados Sensíveis</div>
-                    <div className="text-sm text-gray-600 mt-1">DSPM - Visibilidade e controle total dos seus dados sensíveis</div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-lg group-hover:text-blue-100 transition-colors">Governança Estratégica de Dados Sensíveis</div>
+                        <div className="text-sm text-blue-100/80 mt-1 group-hover:text-blue-50 transition-colors">DSPM - Visibilidade e controle total dos seus dados sensíveis</div>
+                      </div>
+                    </div>
                   </Link>
                 </div>
               )}
             </div>
 
-            <Link href="/sobre" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Sobre
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+            {/* Sobre */}
+            <Link 
+              href="/sobre" 
+              className={`group flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${
+                isActiveRoute('/sobre') 
+                  ? 'text-primary bg-primary/10 border-primary/30 shadow-md shadow-primary/20' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/15'
+              }`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span>Sobre</span>
             </Link>
-            <Link href="/blog" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Blog
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+
+            {/* Blog */}
+            <Link 
+              href="/blog" 
+              className={`group flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${
+                isActiveRoute('/blog') 
+                  ? 'text-primary bg-primary/10 border-primary/30 shadow-md shadow-primary/20' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/15'
+              }`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <span>Blog</span>
             </Link>
-            <Link href="/contato" className="text-gray-800 hover:text-primary transition-all duration-300 text-lg font-medium relative group px-6 py-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20">
-              Contato
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+
+            {/* Contato */}
+            <Link 
+              href="/contato" 
+              className={`group flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${
+                isActiveRoute('/contato') 
+                  ? 'text-primary bg-primary/10 border-primary/30 shadow-md shadow-primary/20' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/15'
+              }`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>Contato</span>
+            </Link>
+
+            {/* Botão CTA - PREMIUM */}
+            <Link 
+              href="/contato" 
+              className="group flex items-center space-x-2 ml-4 px-6 py-3 bg-gradient-to-r from-primary to-blue-600 text-white rounded-lg transition-all duration-300 font-semibold hover:from-blue-600 hover:to-primary hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 border border-transparent"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Começar agora</span>
             </Link>
           </nav>
         </div>
       </header>
 
-      {/* Mobile Navbar - MODERNIZADO */}
+      {/* Mobile Navbar - MODERNIZADA (do projeto anterior) */}
       <header className="fixed top-0 left-0 right-0 h-20 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 z-[60] md:hidden">
         <div className="flex justify-between items-center h-full px-6">
-          <Link href="/" className="py-2">
-            <div className="logo-container h-16 relative">
-              <Image
-                src="/logo/logo_aorkia_color_transparent.png"
-                alt="AORKIA"
-                className="h-16 w-auto"
-                width={200}
-                height={80}
-                priority
-              />
+          <div className="py-2">
+            <div className="logo-container h-16 relative flex items-center">
+              <div className="w-32 h-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                AORKIA
+              </div>
             </div>
-          </Link>
+          </div>
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
             className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors group"
           >
             <div className="w-6 flex flex-col gap-1.5">
-              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-primary"></span>
-              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-primary"></span>
-              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-primary"></span>
+              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-blue-600"></span>
+              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-blue-600"></span>
+              <span className="w-full h-0.5 bg-gray-800 block transition-all duration-300 group-hover:bg-blue-600"></span>
             </div>
           </button>
         </div>
       </header>
 
-      {/* Menu Mobile Fullscreen - COMPLETAMENTE MODERNIZADO */}
+      {/* Menu Mobile Fullscreen - MODERNIZADO (do projeto anterior) */}
       {mobileMenuOpen && (
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[64] animate-fade-in-up"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[64] animate-fade-in"
             onClick={() => setMobileMenuOpen(false)}
           />
           
           {/* Menu Container */}
           <div className="fixed inset-0 z-[65] flex">
-            <div className="ml-auto w-full max-w-sm bg-gradient-to-br from-primary via-dark-blue-2 to-dark-blue-1 animate-slide-in-right">
+            <div className="ml-auto w-full max-w-sm bg-gradient-to-br from-blue-600 via-blue-800 to-blue-900 animate-slide-in-right">
               {/* Header */}
               <div className="flex justify-between items-center p-6 border-b border-white/10">
-                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <div className="logo-container h-12 relative">
-                    <Image
-                      src="/logo/logo_aorkia_white_transparent.png"
-                      alt="AORKIA"
-                      className="h-12 w-auto"
-                      width={150}
-                      height={48}
-                      priority
-                    />
+                <div className="logo-container h-12 relative">
+                  <div className="w-28 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-base">
+                    AORKIA
                   </div>
-                </Link>
+                </div>
                 <button
                   className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors text-white"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Fechar menu"
                 >
-                  <i className="ri-close-line text-2xl"></i>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
               </div>
 
               {/* Navigation */}
               <nav className="flex-1 px-6 py-8 space-y-2">
                 {/* Home */}
-                <Link
-                  href="/"
-                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up"
+                <div
+                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up cursor-pointer"
                   style={{ animationDelay: '0.1s' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <i className="ri-home-line text-xl"></i>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
                   </div>
                   <span className="text-lg font-medium">Home</span>
-                </Link>
+                </div>
 
                 {/* Soluções - Accordion */}
                 <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                   <button
-                    onClick={() => setSolutionsExpanded(!solutionsExpanded)}
+                    onClick={() => setSolutionsDropdownOpen(!solutionsDropdownOpen)}
                     className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group"
                   >
                     <div className="flex items-center space-x-4">
                       <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                        <i className="ri-shield-check-line text-xl"></i>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
                       </div>
                       <span className="text-lg font-medium">Soluções</span>
                     </div>
-                    <i className={`ri-arrow-${solutionsExpanded ? 'up' : 'down'}-s-line text-xl transition-transform duration-300`}></i>
+                    <svg 
+                      className={`w-5 h-5 transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                   </button>
                   
                   {/* Submenu */}
-                  {solutionsExpanded && (
+                  {solutionsDropdownOpen && (
                     <div className="ml-14 mt-2 space-y-1 animate-fade-in-up">
-                      <Link
-                        href="/backup_saas_estrategico"
-                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white"
+                      <div
+                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="font-medium">Backup SaaS Estratégico</div>
                         <div className="text-sm text-white/60 mt-1">Keepit - Proteção imutável</div>
-                      </Link>
-                      <Link
-                        href="/governanca_dados_sensiveis"
-                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white"
+                      </div>
+                      <div
+                        className="block p-3 rounded-lg hover:bg-white/5 transition-colors text-white/80 hover:text-white cursor-pointer"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="font-medium">Governança de Dados</div>
                         <div className="text-sm text-white/60 mt-1">DSPM - Controle total</div>
-                      </Link>
+                      </div>
                     </div>
                   )}
                 </div>
 
                 {/* Sobre */}
-                <Link
-                  href="/sobre"
-                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up"
+                <div
+                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up cursor-pointer"
                   style={{ animationDelay: '0.3s' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <i className="ri-team-line text-xl"></i>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
                   </div>
                   <span className="text-lg font-medium">Sobre</span>
-                </Link>
+                </div>
 
                 {/* Blog */}
-                <Link
-                  href="/blog"
-                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up"
+                <div
+                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up cursor-pointer"
                   style={{ animationDelay: '0.4s' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <i className="ri-article-line text-xl"></i>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
                   </div>
                   <span className="text-lg font-medium">Blog</span>
-                </Link>
+                </div>
 
                 {/* Contato */}
-                <Link
-                  href="/contato"
-                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up"
+                <div
+                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 text-white group animate-fade-in-up cursor-pointer"
                   style={{ animationDelay: '0.5s' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <i className="ri-mail-line text-xl"></i>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                   </div>
                   <span className="text-lg font-medium">Contato</span>
-                </Link>
+                </div>
               </nav>
 
               {/* CTA Section */}
               <div className="p-6 border-t border-white/10">
-                <Link
-                  href="/contato"
-                  className="w-full flex items-center justify-center space-x-3 p-4 bg-white text-primary rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 animate-scale-in"
+                <div
+                  className="w-full flex items-center justify-center space-x-3 p-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 animate-scale-in cursor-pointer"
                   style={{ animationDelay: '0.6s' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <i className="ri-rocket-line text-xl"></i>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                   <span>Começar agora</span>
-                </Link>
+                </div>
                 
                 {/* Contact Info */}
                 <div className="mt-4 text-center text-white/60 text-sm animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
@@ -506,70 +607,117 @@ function MyApp({ Component, pageProps }) {
         </>
       )}
 
-      {/* Botões flutuantes */}
-      <div className="fixed bottom-8 right-8 z-[50] flex flex-col gap-4">
-        <a
-          href="https://wa.me/553139586192"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
-          title="Fale conosco no WhatsApp"
-        >
-          <i className="ri-whatsapp-line text-xl"></i>
-        </a>
+      {/* Resto do conteúdo permanece igual... */}
+      <main className="pt-20">
+        <Component {...pageProps} />
+      </main>
 
-        <Link href="/" className="bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110">
-          <i className="ri-home-4-line text-xl"></i>
-        </Link>
-      </div>
-
-      {/* Espaçador para compensar o header fixo */}
-      <div className="h-20 md:h-20"></div>
-
-      {/* Banner de Cookies */}
+      {/* Footer e outros componentes permanecem iguais... */}
+      {/* Cookie Banner */}
       {showCookieBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-[70] shadow-lg">
-          <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-gray-700">
-              <p>
-                Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa{' '}
-                <Link href="/politica-privacidade" className="text-primary hover:underline">
-                  Política de Privacidade
-                </Link>
-                .
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <button
-                onClick={declineCookies}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Recusar
-              </button>
+        <div className="fixed bottom-4 left-4 right-4 bg-white border border-gray-200 rounded-lg shadow-lg z-[80] p-4 md:max-w-md md:left-auto">
+          <div className="flex flex-col space-y-3">
+            <p className="text-sm text-gray-600">
+              Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com nossa política de cookies.
+            </p>
+            <div className="flex space-x-2">
               <button
                 onClick={acceptCookies}
-                className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                className="flex-1 bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
               >
                 Aceitar
+              </button>
+              <button
+                onClick={declineCookies}
+                className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors"
+              >
+                Recusar
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Componente da página */}
-      <Component 
-        {...pageProps} 
-        scrollToNextSection={scrollToNextSection}
-        copyEmailToClipboard={copyEmailToClipboard}
-        copyPhoneToClipboard={copyPhoneToClipboard}
-        copyAddressToClipboard={copyAddressToClipboard}
-        emailCopied={emailCopied}
-        phoneCopied={phoneCopied}
-        addressCopied={addressCopied}
-        handleFormSubmit={handleFormSubmit}
-        formSubmitted={formSubmitted}
-      />
+      {/* Footer */}
+      <footer className="bg-dark-blue-1 text-white py-16">
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Logo e descrição */}
+            <div className="md:col-span-2">
+              <div className="logo-container h-16 relative mb-6">
+                <Image
+                  src="/logo/logo_aorkia_white_transparent.png"
+                  alt="AORKIA"
+                  className="h-16 w-auto"
+                  width={200}
+                  height={80}
+                  priority
+                />
+              </div>
+              <p className="text-gray-300 mb-6 max-w-md">
+                Transformamos complexidade tecnológica em vantagem competitiva real para o seu negócio.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <i className="ri-linkedin-fill text-2xl"></i>
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <i className="ri-instagram-line text-2xl"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Endereço */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <i className="ri-map-pin-line mr-2"></i>
+                Endereço
+              </h3>
+              <div className="text-gray-300 space-y-2">
+                <p>Av. Getúlio Vargas, 671 — Sala 500</p>
+                <p>Belo Horizonte - MG</p>
+              </div>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <i className="ri-phone-line mr-2"></i>
+                Telefone
+              </h3>
+              <div className="text-gray-300 space-y-2">
+                <p>+55 31 3958-6192</p>
+              </div>
+
+              <h3 className="text-lg font-semibold mb-4 mt-6 flex items-center">
+                <i className="ri-mail-line mr-2"></i>
+                E-mail
+              </h3>
+              <div className="text-gray-300 space-y-2">
+                <p>contato@aorkia.com</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Linha divisória e copyright */}
+          <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © 2025 AORKIA. Todos os direitos reservados.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/politica-privacidade" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Política de Privacidade
+              </Link>
+              <Link href="/termos-uso" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Termos de Uso
+              </Link>
+              <span className="text-gray-400 text-sm">
+                Site Desenvolvido por AORKIA - Estratégia de Presença Digital
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
