@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,46 +6,6 @@ import Image from 'next/image';
 export default function PresencaDigital() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeAccordion, setActiveAccordion] = useState(0);
-  const [activeSection, setActiveSection] = useState(null);
-  const sectionRefs = useRef({});
-
-  // IntersectionObserver para detectar seções visíveis
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute('data-section-id');
-            setActiveSection(sectionId);
-          } else {
-            const sectionId = entry.target.getAttribute('data-section-id');
-            if (activeSection === sectionId) {
-              setActiveSection(null);
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '-10% 0px -10% 0px',
-        threshold: 0.2,
-      }
-    );
-
-    Object.values(sectionRefs.current).forEach((section) => {
-      if (section) {
-        observer.observe(section);
-      }
-    });
-
-    return () => {
-      Object.values(sectionRefs.current).forEach((section) => {
-        if (section) {
-          observer.unobserve(section);
-        }
-      });
-    };
-  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +28,7 @@ export default function PresencaDigital() {
     }
   };
 
-  // Metodologia em 6 fases - CAMINHOS CORRIGIDOS
+  // Metodologia em 6 fases
   const metodologia = [
     {
       numero: '01',
@@ -108,7 +68,7 @@ export default function PresencaDigital() {
     }
   ];
 
-  // Serviços oferecidos - NOVA ESTRUTURA
+  // Serviços oferecidos
   const servicosCards = [
     {
       id: 1,
@@ -215,7 +175,7 @@ export default function PresencaDigital() {
         </Link>
       </div>
 
-      <main className="bg-white text-gray-900">
+      <main className="bg-white text-black">
         {/* Seção Hero */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video 
@@ -265,31 +225,12 @@ export default function PresencaDigital() {
         {/* Seção Nossa Metodologia */}
         <section 
           id="metodologia" 
-          data-section-id="metodologia"
-          ref={(el) => (sectionRefs.current.metodologia = el)}
-          className="relative w-full min-h-screen py-24 overflow-hidden transition-all duration-1000 ease-in-out"
-          style={{
-            backgroundImage: activeSection === 'metodologia' ? 'url(/image/soft_future.png)' : 'white',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          className="py-16 md:py-24 bg-white relative overflow-hidden"
         >
-          {/* Overlay suave para melhor legibilidade */}
-          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-            activeSection === 'metodologia' 
-              ? 'bg-black/20' 
-              : 'bg-transparent'
-          }`}></div>
-
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
-              }`}>Nossa Metodologia</h2>
-              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'metodologia' ? 'text-gray-200' : 'text-gray-600'
-              }`}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">Nossa Metodologia</h2>
+              <p className="text-xl max-w-3xl mx-auto text-black">
                 Seis fases estruturadas para transformar sua presença digital em uma máquina de geração de leads qualificados.
               </p>
             </div>
@@ -300,17 +241,11 @@ export default function PresencaDigital() {
                 <div key={index} className="relative flex items-center justify-center mb-16 last:mb-0">
                   {/* Linha vertical */}
                   {index < metodologia.length - 1 && (
-                    <div className={`absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 transition-colors duration-500 ${
-                      activeSection === 'metodologia' ? 'bg-white/30' : 'bg-primary/30'
-                    }`}></div>
+                    <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-primary/30"></div>
                   )}
                   
                   {/* Conteúdo da Fase */}
-                  <div className={`w-full p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
-                    activeSection === 'metodologia' 
-                      ? 'bg-white/10 backdrop-blur-sm border border-white/20'
-                      : 'bg-white border border-gray-200 shadow-lg'
-                  }`}>
+                  <div className="w-full p-8 rounded-2xl bg-white border border-gray-200 shadow-lg hover:scale-105 transition-all duration-500">
                     <div className="flex flex-col md:flex-row items-center gap-8">
                       {/* Imagem */}
                       <div className="md:w-1/3 flex-shrink-0">
@@ -324,15 +259,9 @@ export default function PresencaDigital() {
                       </div>
                       {/* Texto */}
                       <div className="md:w-2/3 text-center">
-                        <span className={`text-6xl font-bold opacity-20 transition-colors duration-500 ${
-                          activeSection === 'metodologia' ? 'text-white' : 'text-primary'
-                        }`}>{fase.numero}</span>
-                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                          activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
-                        }`}>{fase.titulo}</h3>
-                        <p className={`text-lg leading-relaxed transition-colors duration-500 ${
-                          activeSection === 'metodologia' ? 'text-gray-200' : 'text-gray-700'
-                        }`}>{fase.descricao}</p>
+                        <span className="text-6xl font-bold opacity-20 text-primary">{fase.numero}</span>
+                        <h3 className="text-2xl font-bold mb-4 text-black">{fase.titulo}</h3>
+                        <p className="text-lg leading-relaxed text-black">{fase.descricao}</p>
                       </div>
                     </div>
                   </div>
@@ -345,42 +274,19 @@ export default function PresencaDigital() {
         {/* Seção Nossos Serviços */}
         <section 
           id="servicos"
-          data-section-id="servicos"
-          ref={(el) => (sectionRefs.current.servicos = el)}
-          className="relative w-full min-h-screen py-24 overflow-hidden transition-all duration-1000 ease-in-out"
-          style={{
-            backgroundImage: activeSection === 'servicos' ? 'url(/image/soft_future.png)' : 'white',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          className="py-16 md:py-24 bg-white relative overflow-hidden"
         >
-          {/* Overlay suave para melhor legibilidade */}
-          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-            activeSection === 'servicos' 
-              ? 'bg-black/20' 
-              : 'bg-transparent'
-          }`}></div>
-
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
-                activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
-              }`}>Nossos Serviços</h2>
-              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'servicos' ? 'text-gray-200' : 'text-gray-600'
-              }`}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">Nossos Serviços</h2>
+              <p className="text-xl max-w-3xl mx-auto text-black">
                 Soluções integradas para construir e escalar sua autoridade digital.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {servicosCards.map((servico) => (
-                <div key={servico.id} className={`rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300 hover:shadow-xl ${
-                  activeSection === 'servicos' 
-                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
-                    : 'bg-gray-50'
-                }`}>
+                <div key={servico.id} className="rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300 hover:shadow-xl bg-gray-50">
                   <div className="relative h-48">
                     <Image
                       src={servico.imagem}
@@ -391,12 +297,8 @@ export default function PresencaDigital() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className={`text-xl font-bold mb-4 text-center transition-colors duration-500 ${
-                      activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
-                    }`}>{servico.titulo}</h3>
-                    <ul className={`space-y-3 transition-colors duration-500 ${
-                      activeSection === 'servicos' ? 'text-gray-200' : 'text-gray-700'
-                    }`}>
+                    <h3 className="text-xl font-bold mb-4 text-center text-black">{servico.titulo}</h3>
+                    <ul className="space-y-3 text-black">
                       {servico.topicos.map((topico, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -417,8 +319,8 @@ export default function PresencaDigital() {
         <section id="faq" className="py-24 bg-gray-50">
           <div className="container mx-auto max-w-4xl px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Perguntas Frequentes</h2>
-              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">Perguntas Frequentes</h2>
+              <p className="text-xl max-w-3xl mx-auto text-black">
                 Respostas claras para suas dúvidas mais importantes sobre como podemos ajudar seu negócio a crescer.
               </p>
             </div>
@@ -428,7 +330,7 @@ export default function PresencaDigital() {
                 <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <button
                     onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
-                    className="w-full flex justify-between items-center p-6 text-left font-semibold text-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    className="w-full flex justify-between items-center p-6 text-left font-semibold text-lg text-black hover:bg-gray-100 transition-colors"
                   >
                     <span>{item.pergunta}</span>
                     <svg
@@ -443,7 +345,7 @@ export default function PresencaDigital() {
                   <div
                     className={`transition-all duration-500 ease-in-out overflow-hidden ${activeAccordion === index ? 'max-h-screen' : 'max-h-0'}`}
                   >
-                    <div className="p-6 pt-0 text-gray-700 leading-relaxed text-center">
+                    <div className="p-6 pt-0 text-black leading-relaxed text-center">
                       <p>{item.resposta}</p>
                     </div>
                   </div>
