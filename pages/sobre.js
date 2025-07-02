@@ -143,7 +143,7 @@ export default function Sobre() {
                   <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i className="ri-building-line text-3xl text-blue-500"></i>
                   </div>
-                  <h3 className="text-2xl font-bold text-blue-700 mb-4">Fundada em 2019</h3>
+                  <h3 className="text-2xl font-bold text-blue-700 mb-4">Nossa Origem</h3>
                 </div>
                 
                 <div className="space-y-6 text-center">
