@@ -17,13 +17,18 @@ export default function PresencaDigital() {
           if (entry.isIntersecting) {
             const sectionId = entry.target.getAttribute('data-section-id');
             setActiveSection(sectionId);
+          } else {
+            const sectionId = entry.target.getAttribute('data-section-id');
+            if (activeSection === sectionId) {
+              setActiveSection(null);
+            }
           }
         });
       },
       {
         root: null,
-        rootMargin: '-20% 0px -20% 0px',
-        threshold: 0.3,
+        rootMargin: '-10% 0px -10% 0px',
+        threshold: 0.2,
       }
     );
 
@@ -40,7 +45,7 @@ export default function PresencaDigital() {
         }
       });
     };
-  }, []);
+  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,37 +74,37 @@ export default function PresencaDigital() {
       numero: '01',
       titulo: 'Diagnóstico e Estratégia',
       descricao: 'O que fazemos: Mapeamos seu mercado, as dores do seu cliente ideal (ICP) e seu posicionamento competitivo. O que você ganha: A definição da estratégia de autoridade e da narrativa central que guiará todo o projeto para gerar resultados mensuráveis.',
-      imagem: '/image/voice.png' // CORRIGIDO
+      imagem: '/image/voice.png'
     },
     {
       numero: '02',
       titulo: 'Arquitetura para Conversão',
       descricao: 'O que fazemos: Organizamos a jornada do usuário e a hierarquia do conteúdo com um único foco: a conversão. O que você ganha: Um caminho claro que guia seu visitante ideal do primeiro clique à ação desejada, construindo confiança em cada etapa.',
-      imagem: '/image/wireframe.png' // CORRIGIDO
+      imagem: '/image/wireframe.png'
     },
     {
       numero: '03',
       titulo: 'Copywriting de Decisão',
       descricao: 'O que fazemos: Criamos o texto que traduz seus diferenciais técnicos em argumentos de negócio. O que você ganha: Headlines, propostas de valor e CTAs que falam a língua do seu cliente B2B e o ajudam a tomar a decisão de comprar.',
-      imagem: '/image/screenshot_AORKIA.png' // MANTIDO
+      imagem: '/image/screenshot_AORKIA.png'
     },
     {
       numero: '04',
       titulo: 'Design de Confiança e Valor',
       descricao: 'O que fazemos: Desenhamos uma interface que materializa sua credibilidade e profissionalismo. O que você ganha: Uma experiência visual que transmite o alto valor da sua marca antes mesmo da primeira palavra ser lida, gerando confiança instantânea.',
-      imagem: '/image/interface.png' // CORRIGIDO
+      imagem: '/image/interface.png'
     },
     {
       numero: '05',
       titulo: 'Construção e Performance',
       descricao: 'O que fazemos: Escrevemos um código limpo, aplicamos SEO técnico e garantimos performance de carregamento obsessiva. O que você ganha: Um ativo digital rápido, seguro e escalável, que funciona perfeitamente em qualquer dispositivo e é amado pelos mecanismos de busca.',
-      imagem: '/image/code.png' // CORRIGIDO
+      imagem: '/image/code.png'
     },
     {
       numero: '06',
       titulo: 'Otimização para a Nova Busca (GEO + GPO)',
       descricao: 'O que fazemos: GEO + GPO é nossa resposta para o presente e o futuro da descoberta online. Otimizamos sua presença para dominar os rankings do Google (GEO) e, simultaneamente, para se tornar a resposta de autoridade para IAs conversacionais como ChatGPT e Perplexity (GPO - Generative Presence Optimization). O que você ganha: Relevância máxima, hoje e amanhã. Você garante que seus clientes te encontrem nas buscas tradicionais e, crucialmente, nas novas conversas com inteligência artificial.',
-      imagem: '/image/geo_&_seo.png' // CORRIGIDO
+      imagem: '/image/geo_&_seo.png'
     }
   ];
 
@@ -262,23 +267,20 @@ export default function PresencaDigital() {
           id="metodologia" 
           data-section-id="metodologia"
           ref={(el) => (sectionRefs.current.metodologia = el)}
-          className="relative w-full min-h-screen py-24 overflow-hidden"
+          className="relative w-full min-h-screen py-24 overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: activeSection === 'metodologia' ? 'url(/image/soft_future.png)' : 'white',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Background com transição da imagem soft_future */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/soft_future.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
+          {/* Overlay suave para melhor legibilidade */}
+          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            activeSection === 'metodologia' 
+              ? 'bg-black/20' 
+              : 'bg-transparent'
+          }`}></div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
@@ -286,7 +288,7 @@ export default function PresencaDigital() {
                 activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
               }`}>Nossa Metodologia</h2>
               <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
+                activeSection === 'metodologia' ? 'text-gray-200' : 'text-gray-600'
               }`}>
                 Seis fases estruturadas para transformar sua presença digital em uma máquina de geração de leads qualificados.
               </p>
@@ -329,7 +331,7 @@ export default function PresencaDigital() {
                           activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
                         }`}>{fase.titulo}</h3>
                         <p className={`text-lg leading-relaxed transition-colors duration-500 ${
-                          activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+                          activeSection === 'metodologia' ? 'text-gray-200' : 'text-gray-700'
                         }`}>{fase.descricao}</p>
                       </div>
                     </div>
@@ -345,23 +347,20 @@ export default function PresencaDigital() {
           id="servicos"
           data-section-id="servicos"
           ref={(el) => (sectionRefs.current.servicos = el)}
-          className="relative w-full min-h-screen py-24 overflow-hidden"
+          className="relative w-full min-h-screen py-24 overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: activeSection === 'servicos' ? 'url(/image/soft_future.png)' : 'white',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Background com transição da imagem soft_future */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'servicos' ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/soft_future.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'servicos' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
+          {/* Overlay suave para melhor legibilidade */}
+          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            activeSection === 'servicos' 
+              ? 'bg-black/20' 
+              : 'bg-transparent'
+          }`}></div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
@@ -369,7 +368,7 @@ export default function PresencaDigital() {
                 activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
               }`}>Nossos Serviços</h2>
               <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
-                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-600'
+                activeSection === 'servicos' ? 'text-gray-200' : 'text-gray-600'
               }`}>
                 Soluções integradas para construir e escalar sua autoridade digital.
               </p>
@@ -396,7 +395,7 @@ export default function PresencaDigital() {
                       activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
                     }`}>{servico.titulo}</h3>
                     <ul className={`space-y-3 transition-colors duration-500 ${
-                      activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
+                      activeSection === 'servicos' ? 'text-gray-200' : 'text-gray-700'
                     }`}>
                       {servico.topicos.map((topico, i) => (
                         <li key={i} className="flex items-start">

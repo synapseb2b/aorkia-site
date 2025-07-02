@@ -16,13 +16,18 @@ export default function Home() {
           if (entry.isIntersecting) {
             const sectionId = entry.target.getAttribute('data-section-id');
             setActiveSection(sectionId);
+          } else {
+            const sectionId = entry.target.getAttribute('data-section-id');
+            if (activeSection === sectionId) {
+              setActiveSection(null);
+            }
           }
         });
       },
       {
         root: null,
-        rootMargin: '-20% 0px -20% 0px',
-        threshold: 0.3,
+        rootMargin: '-10% 0px -10% 0px',
+        threshold: 0.2,
       }
     );
 
@@ -39,7 +44,7 @@ export default function Home() {
         }
       });
     };
-  }, []);
+  }, [activeSection]);
 
   // Monitorar progresso de rolagem
   useEffect(() => {
@@ -93,28 +98,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção 1: Sua empresa está lines_future */}
+        {/* Seção 1: Sua empresa está vulnerável */}
         <section 
           id="valor-imediato"
           data-section-id="valor-imediato"
           ref={(el) => (sectionRefs.current['valor-imediato'] = el)}
-          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: activeSection === 'valor-imediato' ? 'url(/image/soft_future.png)' : 'linear-gradient(to bottom, #000511, #021028)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Background com transição da imagem risco */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'valor-imediato' ? 'opacity-20' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/lines_future.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'valor-imediato' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
+          {/* Overlay suave para melhor legibilidade */}
+          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            activeSection === 'valor-imediato' 
+              ? 'bg-black/30' 
+              : 'bg-transparent'
+          }`}></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
@@ -257,23 +259,20 @@ export default function Home() {
           id="problemas-criticos"
           data-section-id="problemas-criticos"
           ref={(el) => (sectionRefs.current['problemas-criticos'] = el)}
-          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: activeSection === 'problemas-criticos' ? 'url(/image/soft_future.png)' : 'linear-gradient(to bottom, #000511, #021028)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Background com transição da imagem risco */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'problemas-criticos' ? 'opacity-20' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/lines_future.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'problemas-criticos' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
+          {/* Overlay suave para melhor legibilidade */}
+          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            activeSection === 'problemas-criticos' 
+              ? 'bg-black/30' 
+              : 'bg-transparent'
+          }`}></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
@@ -340,23 +339,20 @@ export default function Home() {
           id="solucoes-especializadas"
           data-section-id="solucoes-especializadas"
           ref={(el) => (sectionRefs.current['solucoes-especializadas'] = el)}
-          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: activeSection === 'solucoes-especializadas' ? 'url(/image/soft_future.png)' : 'linear-gradient(to bottom, #000511, #021028)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Background com transição da imagem risco */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'solucoes-especializadas' ? 'opacity-20' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url(/image/lines_future.png)` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          <div 
-            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
-              activeSection === 'solucoes-especializadas' ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
+          {/* Overlay suave para melhor legibilidade */}
+          <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            activeSection === 'solucoes-especializadas' 
+              ? 'bg-black/30' 
+              : 'bg-transparent'
+          }`}></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 max-w-5xl mx-auto">
