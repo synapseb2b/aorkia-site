@@ -115,7 +115,7 @@ export default function Home() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('valor-imediato')}`}
             style={{
-              backgroundImage: 'url(/image/flow_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -235,13 +235,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Os Dois Maiores Riscos do Seu Negócio */}
+        {/* Os Dois Maiores Riscos do Seu Negócio - LAYOUT APERFEIÇOADO */}
         <section id="problemas-criticos" data-section="problemas-criticos" className="py-16 md:py-24 bg-white relative overflow-hidden">
           {/* Background Image Transition */}
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('problemas-criticos')}`}
             style={{
-              backgroundImage: 'url(/image/flow_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -249,45 +249,68 @@ export default function Home() {
           />
           
           <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
               Os Dois Maiores Riscos do Seu Negócio
             </h2>
             
-            <div className="max-w-4xl mx-auto space-y-8">
-              {/* Risco 1 */}
-              <div className="bg-gradient-to-r from-red-50 to-purple-50 p-8 rounded-xl border border-gray-200">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                    <i className="ri-shield-cross-line text-2xl text-red-600"></i>
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">
+              
+              {/* Risco 1 - A Ilusão da Proteção Nativa */}
+              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-2 border-red-500 shadow-lg">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i className="ri-shield-cross-line text-3xl text-red-500"></i>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">A Ilusão da Proteção Nativa</h3>
-                    <p className="text-gray-600 mb-4">A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre. Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.</p>
-                    <p className="text-gray-600 mb-4">A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware. O resultado? Em caso de ataque, a recuperação é incerta e a continuidade do seu negócio fica refém da sorte.</p>
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-red-500">
-                      <p className="text-red-700 font-medium text-center">
-                        <strong>Está preparado para essa aposta?</strong>
-                      </p>
-                    </div>
+                  <h3 className="text-2xl font-bold text-red-700 mb-4">A Ilusão da Proteção Nativa</h3>
+                </div>
+                
+                <div className="space-y-6 text-center">
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <p className="text-gray-700 leading-relaxed">
+                      A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre. Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <p className="text-gray-700 leading-relaxed">
+                      A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-red-600 rounded-lg p-6 shadow-lg">
+                    <p className="text-white font-bold text-lg">
+                      Está preparado para essa aposta?
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Risco 2 */}
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-xl border border-gray-200">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <i className="ri-time-line text-2xl text-purple-600"></i>
+              {/* Risco 2 - A Bomba-Relógio dos Dados Internos */}
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-500 shadow-lg">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i className="ri-time-line text-3xl text-purple-500"></i>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">A Bomba-Relógio dos Dados Internos</h3>
-                    <p className="text-gray-600 mb-4">A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação. "Shadow Data", acessos indevidos e dados sensíveis espalhados sem qualquer visibilidade.</p>
-                    <p className="text-gray-600 mb-4">Você não tem como proteger o que não sabe que existe. O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.</p>
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
-                      <p className="text-purple-700 font-medium text-center">
-                        <strong>Sabe onde está o seu maior passivo neste exato momento?</strong>
-                      </p>
-                    </div>
+                  <h3 className="text-2xl font-bold text-purple-700 mb-4">A Bomba-Relógio dos Dados Internos</h3>
+                </div>
+                
+                <div className="space-y-6 text-center">
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <p className="text-gray-700 leading-relaxed">
+                      A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação. "Shadow Data", acessos indevidos e dados sensíveis espalhados sem qualquer visibilidade.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <p className="text-gray-700 leading-relaxed">
+                      Você não tem como proteger o que não sabe que existe. O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-purple-600 rounded-lg p-6 shadow-lg">
+                    <p className="text-white font-bold text-lg">
+                      Sabe onde está o seu maior passivo neste exato momento?
+                    </p>
                   </div>
                 </div>
               </div>
@@ -301,7 +324,7 @@ export default function Home() {
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('solucoes-especializadas')}`}
             style={{
-              backgroundImage: 'url(/image/flow_vertical.png)',
+              backgroundImage: 'url(/image/dspm_vertical.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -323,21 +346,21 @@ export default function Home() {
                   <i className="ri-safe-2-line"></i>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800">Backup SaaS Estratégico</h3>
-                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                <p className="text-base text-gray-700 mb-6 leading-relaxed text-center">
                   Ativamos a plataforma líder de backup imutável para garantir que o seu negócio nunca pare. Seus dados ficam protegidos numa nuvem independente, à prova de ransomware.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-6">
-                  <p className="text-sm font-semibold text-green-800 mb-2">
+                  <p className="text-sm font-semibold text-green-800 mb-2 text-center">
                     Para o Risco da Proteção Ilusória:
                   </p>
-                  <p className="text-sm font-medium text-green-700 mb-1">
+                  <p className="text-sm font-medium text-green-700 mb-1 text-center">
                     ✓ Recuperação instantânea
                   </p>
-                  <p className="text-sm font-medium text-green-700 mb-1">
+                  <p className="text-sm font-medium text-green-700 mb-1 text-center">
                     ✓ Soberania de dados no Brasil
                   </p>
-                  <p className="text-sm font-medium text-green-700">
+                  <p className="text-sm font-medium text-green-700 text-center">
                     ✓ Economia com licenças
                   </p>
                 </div>
@@ -353,21 +376,21 @@ export default function Home() {
                   <i className="ri-radar-line"></i>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800">Governança de Dados</h3>
-                <p className="text-base text-gray-700 mb-6 leading-relaxed">
+                <p className="text-base text-gray-700 mb-6 leading-relaxed text-center">
                   Implementamos uma governança ativa para transformar "dados invisíveis" em ativos protegidos. Descobrimos, classificamos e protegemos seus dados sensíveis.
                 </p>
                 
                 <div className="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
-                  <p className="text-sm font-semibold text-purple-800 mb-2">
+                  <p className="text-sm font-semibold text-purple-800 mb-2 text-center">
                     Para o Risco da Bomba-Relógio Interna:
                   </p>
-                  <p className="text-sm font-medium text-purple-700 mb-1">
+                  <p className="text-sm font-medium text-purple-700 mb-1 text-center">
                     ✓ Visibilidade total sobre dados
                   </p>
-                  <p className="text-sm font-medium text-purple-700 mb-1">
+                  <p className="text-sm font-medium text-purple-700 mb-1 text-center">
                     ✓ Prevenção contra fugas
                   </p>
-                  <p className="text-sm font-medium text-purple-700">
+                  <p className="text-sm font-medium text-purple-700 text-center">
                     ✓ Conformidade com a LGPD
                   </p>
                 </div>
