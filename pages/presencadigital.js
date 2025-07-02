@@ -7,39 +7,23 @@ export default function PresencaDigital() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeAccordion, setActiveAccordion] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
-  const [sectionBackgrounds, setSectionBackgrounds] = useState({});
   const sectionRefs = useRef({});
 
-  // IntersectionObserver para detectar seções visíveis e ativar backgrounds
+  // IntersectionObserver para detectar seções visíveis
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const newBackgrounds = { ...sectionBackgrounds };
-        
         entries.forEach((entry) => {
-          const sectionId = entry.target.getAttribute('data-section-id');
-          
           if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('data-section-id');
             setActiveSection(sectionId);
-            
-            // Ativar background para seções específicas
-            if (sectionId === 'metodologia' || sectionId === 'servicos') {
-              newBackgrounds[sectionId] = true;
-            }
-          } else {
-            // Desativar background quando sair da seção
-            if (sectionId === 'metodologia' || sectionId === 'servicos') {
-              newBackgrounds[sectionId] = false;
-            }
           }
         });
-        
-        setSectionBackgrounds(newBackgrounds);
       },
       {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.3,
       }
     );
 
@@ -79,11 +63,6 @@ export default function PresencaDigital() {
     }
   };
 
-  // Função para obter estado do background
-  const getSectionBackground = (sectionId) => {
-    return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
-  };
-
   // Metodologia em 6 fases - CAMINHOS CORRIGIDOS
   const metodologia = [
     {
@@ -121,30 +100,6 @@ export default function PresencaDigital() {
       titulo: 'Otimização para a Nova Busca (GEO + GPO)',
       descricao: 'O que fazemos: GEO + GPO é nossa resposta para o presente e o futuro da descoberta online. Otimizamos sua presença para dominar os rankings do Google (GEO) e, simultaneamente, para se tornar a resposta de autoridade para IAs conversacionais como ChatGPT e Perplexity (GPO - Generative Presence Optimization). O que você ganha: Relevância máxima, hoje e amanhã. Você garante que seus clientes te encontrem nas buscas tradicionais e, crucialmente, nas novas conversas com inteligência artificial.',
       imagem: '/image/geo_&_seo.png' // CORRIGIDO
-    }
-  ];
-
-  // Pilares da filosofia
-  const pilares = [
-    {
-      titulo: 'Presença Digital Estratégica',
-      descricao: 'Não é sobre estar online. É sobre estar presente onde sua audiência toma decisões.',
-      icon: 'ri-global-line'
-    },
-    {
-      titulo: 'Conversão por Design',
-      descricao: 'Cada elemento visual e textual é pensado para guiar o visitante em direção à ação desejada.',
-      icon: 'ri-focus-3-line'
-    },
-    {
-      titulo: 'Autoridade Técnica',
-      descricao: 'Conteúdo que demonstra expertise real, construindo confiança através de conhecimento aplicado.',
-      icon: 'ri-award-line'
-    },
-    {
-      titulo: 'Performance Mensurável',
-      descricao: 'Métricas que importam: tempo de carregamento, taxa de conversão e geração de leads qualificados.',
-      icon: 'ri-line-chart-line'
     }
   ];
 
@@ -307,26 +262,32 @@ export default function PresencaDigital() {
           id="metodologia" 
           data-section-id="metodologia"
           ref={(el) => (sectionRefs.current.metodologia = el)}
-          className="relative py-24 overflow-hidden"
+          className="relative w-full min-h-screen py-24 overflow-hidden"
         >
           {/* Background com transição da imagem 6fases */}
           <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${getSectionBackground('metodologia')}`}
-            style={{
-              backgroundImage: 'url(/image/6fases.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
           
-          {/* Background branco padrão */}
-          <div className="absolute inset-0 bg-gray-50 z-0"></div>
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'metodologia' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nossa Metodologia</h2>
-              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
+              }`}>Nossa Metodologia</h2>
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Seis fases estruturadas para transformar sua presença digital em uma máquina de geração de leads qualificados.
               </p>
             </div>
@@ -337,11 +298,17 @@ export default function PresencaDigital() {
                 <div key={index} className="relative flex items-center justify-center mb-16 last:mb-0">
                   {/* Linha vertical */}
                   {index < metodologia.length - 1 && (
-                    <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-primary/30"></div>
+                    <div className={`absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 transition-colors duration-500 ${
+                      activeSection === 'metodologia' ? 'bg-white/30' : 'bg-primary/30'
+                    }`}></div>
                   )}
                   
                   {/* Conteúdo da Fase */}
-                  <div className="w-full p-8 rounded-2xl bg-white border border-gray-200 shadow-lg hover:scale-105 transition-all duration-500 hover:shadow-xl">
+                  <div className={`w-full p-8 rounded-2xl transition-all duration-500 hover:scale-105 ${
+                    activeSection === 'metodologia' 
+                      ? 'bg-white/10 backdrop-blur-sm border border-white/20'
+                      : 'bg-white border border-gray-200 shadow-lg'
+                  }`}>
                     <div className="flex flex-col md:flex-row items-center gap-8">
                       {/* Imagem */}
                       <div className="md:w-1/3 flex-shrink-0">
@@ -354,10 +321,16 @@ export default function PresencaDigital() {
                         />
                       </div>
                       {/* Texto */}
-                      <div className="md:w-2/3 text-left">
-                        <span className="text-6xl font-bold opacity-20 text-primary">{fase.numero}</span>
-                        <h3 className="text-2xl font-bold mb-4 text-gray-900">{fase.titulo}</h3>
-                        <p className="text-lg leading-relaxed text-gray-700">{fase.descricao}</p>
+                      <div className="md:w-2/3 text-center">
+                        <span className={`text-6xl font-bold opacity-20 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-primary'
+                        }`}>{fase.numero}</span>
+                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-white' : 'text-gray-900'
+                        }`}>{fase.titulo}</h3>
+                        <p className={`text-lg leading-relaxed transition-colors duration-500 ${
+                          activeSection === 'metodologia' ? 'text-gray-300' : 'text-gray-700'
+                        }`}>{fase.descricao}</p>
                       </div>
                     </div>
                   </div>
@@ -372,33 +345,43 @@ export default function PresencaDigital() {
           id="servicos"
           data-section-id="servicos"
           ref={(el) => (sectionRefs.current.servicos = el)}
-          className="relative py-24 overflow-hidden"
+          className="relative w-full min-h-screen py-24 overflow-hidden"
         >
           {/* Background com transição da imagem 6fases */}
           <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${getSectionBackground('servicos')}`}
-            style={{
-              backgroundImage: 'url(/image/6fases.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'servicos' ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/6fases.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
           
-          {/* Background branco padrão */}
-          <div className="absolute inset-0 bg-white z-0"></div>
+          <div 
+            className={`absolute inset-0 bg-white transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'servicos' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
 
           <div className="container mx-auto max-w-7xl px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nossos Serviços</h2>
-              <p className="text-xl max-w-3xl mx-auto text-gray-600">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+                activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
+              }`}>Nossos Serviços</h2>
+              <p className={`text-xl max-w-3xl mx-auto transition-colors duration-500 ${
+                activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Soluções integradas para construir e escalar sua autoridade digital.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {servicosCards.map((servico) => (
-                <div key={servico.id} className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+                <div key={servico.id} className={`rounded-2xl shadow-lg overflow-hidden group hover:scale-105 transition-transform duration-300 hover:shadow-xl ${
+                  activeSection === 'servicos' 
+                    ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
+                    : 'bg-gray-50'
+                }`}>
                   <div className="relative h-48">
                     <Image
                       src={servico.imagem}
@@ -409,14 +392,18 @@ export default function PresencaDigital() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-4 text-gray-900">{servico.titulo}</h3>
-                    <ul className="space-y-3 text-gray-700">
+                    <h3 className={`text-xl font-bold mb-4 text-center transition-colors duration-500 ${
+                      activeSection === 'servicos' ? 'text-white' : 'text-gray-900'
+                    }`}>{servico.titulo}</h3>
+                    <ul className={`space-y-3 transition-colors duration-500 ${
+                      activeSection === 'servicos' ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
                       {servico.topicos.map((topico, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>{topico}</span>
+                          <span className="text-center">{topico}</span>
                         </li>
                       ))}
                     </ul>
@@ -457,7 +444,7 @@ export default function PresencaDigital() {
                   <div
                     className={`transition-all duration-500 ease-in-out overflow-hidden ${activeAccordion === index ? 'max-h-screen' : 'max-h-0'}`}
                   >
-                    <div className="p-6 pt-0 text-gray-700 leading-relaxed">
+                    <div className="p-6 pt-0 text-gray-700 leading-relaxed text-center">
                       <p>{item.resposta}</p>
                     </div>
                   </div>

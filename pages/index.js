@@ -3,54 +3,57 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Componente otimizado para seções com transição de fundo
-const SectionWrapper = ({ children, id, className = "" }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+export default function Home() {
+  const [activeSection, setActiveSection] = useState(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRefs = useRef({});
 
+  // IntersectionObserver para detectar seções visíveis
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('data-section-id');
+            setActiveSection(sectionId);
+          }
+        });
       },
       {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.3,
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    Object.values(sectionRefs.current).forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      Object.values(sectionRefs.current).forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
     };
   }, []);
 
-  return (
-    <section ref={sectionRef} id={id} className={`relative overflow-hidden ${className}`}>
-      {/* Transição de fundo com imagem risco */}
-      <div
-        className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
-          isVisible ? 'opacity-10' : 'opacity-0'
-        }`}
-        style={{
-          backgroundImage: 'url(/image/risco.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      <div className="relative z-10">{children}</div>
-    </section>
-  );
-};
+  // Monitorar progresso de rolagem
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      setScrollProgress(scrollPercent);
+    };
 
-export default function Home() {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToWork = (e) => {
     e.preventDefault();
     document.getElementById('valor-imediato')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -91,8 +94,29 @@ export default function Home() {
         </section>
 
         {/* Seção 1: Sua empresa está vulnerável */}
-        <SectionWrapper id="valor-imediato" className="py-20 md:py-32">
-          <div className="container mx-auto px-4">
+        <section 
+          id="valor-imediato"
+          data-section-id="valor-imediato"
+          ref={(el) => (sectionRefs.current['valor-imediato'] = el)}
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+        >
+          {/* Background com transição da imagem risco */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'valor-imediato' ? 'opacity-20' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/risco.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'valor-imediato' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
                 Sua empresa está vulnerável<br />
@@ -119,7 +143,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
                         <i className="ri-shield-cross-line text-xl text-red-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Proteção Ilusória</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Acredita que a proteção nativa da Microsoft e Google é suficiente, ignorando as lacunas que podem levar à perda total de dados.</p>
                       </div>
@@ -131,7 +155,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
                         <i className="ri-eye-off-line text-xl text-red-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Dados Invisíveis</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Dados sensíveis espalhados e sem controlo de quem lhes acede — um convite aberto a fugas de informação e violações da LGPD.</p>
                       </div>
@@ -143,7 +167,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
                         <i className="ri-alarm-warning-line text-xl text-red-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Risco de Multas</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Exposição constante a multas da LGPD e à paralisia operacional causada por ataques de ransomware.</p>
                       </div>
@@ -155,7 +179,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
                         <i className="ri-time-line text-xl text-red-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Reação Tardia</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Opera em modo reativo, descobrindo a perda de dados ou a inconformidade apenas quando o dano já é irreversível.</p>
                       </div>
@@ -180,7 +204,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                         <i className="ri-shield-check-line text-xl text-green-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Proteção Real</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Implementamos um backup 100% imutável, garantindo a recuperação dos seus dados em qualquer cenário de desastre.</p>
                       </div>
@@ -192,7 +216,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                         <i className="ri-radar-line text-xl text-green-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Governança Ativa</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Entregamos governança ativa, com mapeamento e controlo total sobre onde estão os seus dados e quem lhes acede.</p>
                       </div>
@@ -204,7 +228,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                         <i className="ri-government-line text-xl text-green-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Conformidade Garantida</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Asseguramos a sua conformidade com a LGPD através de soberania de dados e trilhas de auditoria que simplificam qualquer auditoria.</p>
                       </div>
@@ -216,7 +240,7 @@ export default function Home() {
                       <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                         <i className="ri-lightbulb-line text-xl text-green-400"></i>
                       </div>
-                      <div>
+                      <div className="text-center flex-1">
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Prevenção Inteligente</h4>
                         <p className="text-gray-300 text-lg leading-relaxed">Mudamos o seu paradigma para a prevenção, com a identificação e mitigação de riscos antes que estes se transformem em crises.</p>
                       </div>
@@ -226,11 +250,32 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Seção 2: Os Dois Maiores Riscos */}
-        <SectionWrapper id="problemas-criticos" className="py-20 md:py-32">
-          <div className="container mx-auto px-4">
+        <section 
+          id="problemas-criticos"
+          data-section-id="problemas-criticos"
+          ref={(el) => (sectionRefs.current['problemas-criticos'] = el)}
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+        >
+          {/* Background com transição da imagem risco */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'problemas-criticos' ? 'opacity-20' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/risco.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'problemas-criticos' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
                 Os Dois Maiores Riscos<br />
@@ -252,7 +297,7 @@ export default function Home() {
                     <div className="w-16 h-1 bg-red-500 mx-auto rounded-full"></div>
                   </div>
 
-                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed">
+                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed text-center">
                     <p>A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre. Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.</p>
                     
                     <p>A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware. O resultado? Em caso de ataque, a recuperação é incerta e a continuidade do seu negócio fica refém da sorte.</p>
@@ -275,7 +320,7 @@ export default function Home() {
                     <div className="w-16 h-1 bg-purple-500 mx-auto rounded-full"></div>
                   </div>
 
-                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed">
+                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed text-center">
                     <p>A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação. "Shadow Data", acessos indevidos e dados sensíveis espalhados sem qualquer visibilidade.</p>
                     
                     <p>Você não tem como proteger o que não sabe que existe. O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.</p>
@@ -288,18 +333,39 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Seção 3: A Nossa Resposta Estratégica */}
-        <SectionWrapper id="solucoes-especializadas" className="py-20 md:py-32">
-          <div className="container mx-auto px-4">
+        <section 
+          id="solucoes-especializadas"
+          data-section-id="solucoes-especializadas"
+          ref={(el) => (sectionRefs.current['solucoes-especializadas'] = el)}
+          className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
+        >
+          {/* Background com transição da imagem risco */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'solucoes-especializadas' ? 'opacity-20' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(/image/risco.png)` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          
+          <div 
+            className={`absolute inset-0 bg-gradient-to-b from-[#000511] to-[#021028] transition-opacity duration-800 ease-out z-0 ${
+              activeSection === 'solucoes-especializadas' ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 max-w-5xl mx-auto">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
                 A Nossa Resposta<br />
                 <span className="text-primary">Estratégica</span>
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-purple-500 mx-auto rounded-full mb-8"></div>
-              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</p>
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed text-center">Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</p>
             </div>
 
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
@@ -319,15 +385,15 @@ export default function Home() {
                   <p className="text-gray-300 flex-grow text-lg leading-relaxed text-center mb-8">Ativamos a plataforma líder de backup imutável para garantir que o seu negócio nunca pare. Seus dados ficam protegidos numa nuvem independente, à prova de ransomware.</p>
                   
                   <div className="space-y-4 mb-8">
-                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-green-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Recuperação instantânea</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-green-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Soberania de dados no Brasil</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-green-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Economia com licenças</span>
                     </div>
@@ -354,15 +420,15 @@ export default function Home() {
                   <p className="text-gray-300 flex-grow text-lg leading-relaxed text-center mb-8">Implementamos uma governança ativa para transformar "dados invisíveis" em ativos protegidos. Descobrimos, classificamos e protegemos seus dados sensíveis.</p>
                   
                   <div className="space-y-4 mb-8">
-                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-purple-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Visibilidade total sobre dados</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-purple-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Prevenção contra fugas</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                    <div className="flex items-center justify-center space-x-3 text-purple-300 text-lg">
                       <i className="ri-checkbox-circle-line text-xl"></i>
                       <span>Conformidade com a LGPD</span>
                     </div>
@@ -384,7 +450,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </SectionWrapper>
+        </section>
       </main>
     </>
   );
