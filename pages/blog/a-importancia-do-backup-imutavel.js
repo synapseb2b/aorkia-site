@@ -73,7 +73,7 @@ export default function PostBackupImutavel() {
         {/* Hero Section do Post */}
         <section id="hero-post" className="relative h-screen overflow-hidden flex flex-col justify-between pt-24 pb-12 px-4 text-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video/Video_Meme_CIO_em_Panico.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
+            <source src="/video/video_meme_cio_em_panico_google_workspace.mp4" type="video/mp4" /> {/* Vídeo específico do post */}
             Seu navegador não suporta vídeo.
           </video>
           {/* Removidas todas as máscaras e imagens de fallback que cobriam o vídeo */}

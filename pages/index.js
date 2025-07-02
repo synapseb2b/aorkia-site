@@ -3,36 +3,54 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Home() {
-  // Hooks para efeito de transição de fundo
-  const [isValorImediatoVisible, setIsValorImediatoVisible] = useState(false);
-  const [isProblemasCriticosVisible, setIsProblemasCriticosVisible] = useState(false);
-  const [isSolucoesVisible, setIsSolucoesVisible] = useState(false);
-
-  const valorImediatoRef = useRef(null);
-  const problemasCriticosRef = useRef(null);
-  const solucoesRef = useRef(null);
+// Componente otimizado para seções com transição de fundo
+const SectionWrapper = ({ children, id, className = "" }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const createObserver = (ref, setState) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          setState(entry.isIntersecting);
-        },
-        { threshold: 0.1 }
-      );
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
 
-      if (ref.current) observer.observe(ref.current);
-      return () => {
-        if (ref.current) observer.unobserve(ref.current);
-      };
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
-
-    createObserver(valorImediatoRef, setIsValorImediatoVisible);
-    createObserver(problemasCriticosRef, setIsProblemasCriticosVisible);
-    createObserver(solucoesRef, setIsSolucoesVisible);
   }, []);
 
+  return (
+    <section ref={sectionRef} id={id} className={`relative overflow-hidden ${className}`}>
+      {/* Transição de fundo com imagem risco */}
+      <div
+        className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
+          isVisible ? 'opacity-10' : 'opacity-0'
+        }`}
+        style={{
+          backgroundImage: 'url(/image/risco.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      <div className="relative z-10">{children}</div>
+    </section>
+  );
+};
+
+export default function Home() {
   const scrollToWork = (e) => {
     e.preventDefault();
     document.getElementById('valor-imediato')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -47,7 +65,7 @@ export default function Home() {
       </Head>
 
       <main className="bg-gradient-to-b from-[#000511] to-[#021028] text-gray-200">
-        {/* Seção Hero */}
+        {/* Seção Hero (INTOCADA) */}
         <section className="relative h-screen overflow-hidden hero flex items-center justify-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0" preload="auto">
             <source src="/video/video_hero.mp4" type="video/mp4" />
@@ -73,155 +91,302 @@ export default function Home() {
         </section>
 
         {/* Seção 1: Sua empresa está vulnerável */}
-        <div className="relative">
-          <div className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isValorImediatoVisible ? 'opacity-5' : 'opacity-0'}`} style={{ backgroundImage: 'url(/image/risco.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
-          <section ref={valorImediatoRef} id="valor-imediato" className="py-16 md:py-24 relative">
-            <div className="container mx-auto px-4 relative z-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-                Sua empresa está vulnerável e você não sabe
+        <SectionWrapper id="valor-imediato" className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                Sua empresa está vulnerável<br />
+                <span className="text-red-400">e você não sabe</span>
               </h2>
-              <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
-                
-                {/* Situação Atual */}
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-red-400 mb-6 text-center">Situação Atual da Maioria das Empresas</h3>
-                  <div className="p-6 rounded-xl border border-red-500/50 bg-red-900/20 backdrop-blur-md hover:border-red-500/80 hover:bg-red-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Proteção Ilusória</h4>
-                    <p className="text-justify font-normal text-gray-300">Acredita que a proteção nativa da Microsoft e Google é suficiente, ignorando as lacunas que podem levar à perda total de dados.</p>
+              <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-green-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+              
+              {/* Coluna: Situação Atual */}
+              <div className="space-y-8">
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
+                    <i className="ri-error-warning-line text-3xl text-red-400"></i>
                   </div>
-                  <div className="p-6 rounded-xl border border-red-500/50 bg-red-900/20 backdrop-blur-md hover:border-red-500/80 hover:bg-red-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Dados Invisíveis</h4>
-                    <p className="text-justify font-normal text-gray-300">Dados sensíveis espalhados e sem controlo de quem lhes acede — um convite aberto a fugas de informação e violações da LGPD.</p>
-                  </div>
-                  <div className="p-6 rounded-xl border border-red-500/50 bg-red-900/20 backdrop-blur-md hover:border-red-500/80 hover:bg-red-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Risco de Multas</h4>
-                    <p className="text-justify font-normal text-gray-300">Exposição constante a multas da LGPD e à paralisia operacional causada por ataques de ransomware.</p>
-                  </div>
-                  <div className="p-6 rounded-xl border border-red-500/50 bg-red-900/20 backdrop-blur-md hover:border-red-500/80 hover:bg-red-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Reação Tardia</h4>
-                    <p className="text-justify font-normal text-gray-300">Opera em modo reativo, descobrindo a perda de dados ou a inconformidade apenas quando o dano já é irreversível.</p>
-                  </div>
+                  <h3 className="text-3xl font-bold text-red-400 mb-4">Situação Atual</h3>
+                  <p className="text-gray-400 text-lg">A realidade oculta da maioria das empresas</p>
                 </div>
 
-                {/* Com AORKIA */}
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-green-400 mb-6 text-center">Com a AORKIA</h3>
-                  <div className="p-6 rounded-xl border border-green-500/50 bg-green-900/20 backdrop-blur-md hover:border-green-500/80 hover:bg-green-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Proteção Real</h4>
-                    <p className="text-justify font-normal text-gray-300">Implementamos um backup 100% imutável, garantindo a recuperação dos seus dados em qualquer cenário de desastre.</p>
+                  <div className="group p-8 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-900/10 to-red-800/5 backdrop-blur-lg hover:border-red-500/60 hover:bg-red-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
+                        <i className="ri-shield-cross-line text-xl text-red-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Proteção Ilusória</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Acredita que a proteção nativa da Microsoft e Google é suficiente, ignorando as lacunas que podem levar à perda total de dados.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6 rounded-xl border border-green-500/50 bg-green-900/20 backdrop-blur-md hover:border-green-500/80 hover:bg-green-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Governança Ativa</h4>
-                    <p className="text-justify font-normal text-gray-300">Entregamos governança ativa, com mapeamento e controlo total sobre onde estão os seus dados e quem lhes acede.</p>
+
+                  <div className="group p-8 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-900/10 to-red-800/5 backdrop-blur-lg hover:border-red-500/60 hover:bg-red-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
+                        <i className="ri-eye-off-line text-xl text-red-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Dados Invisíveis</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Dados sensíveis espalhados e sem controlo de quem lhes acede — um convite aberto a fugas de informação e violações da LGPD.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6 rounded-xl border border-green-500/50 bg-green-900/20 backdrop-blur-md hover:border-green-500/80 hover:bg-green-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Conformidade Garantida</h4>
-                    <p className="text-justify font-normal text-gray-300">Asseguramos a sua conformidade com a LGPD através de soberania de dados e trilhas de auditoria que simplificam qualquer auditoria.</p>
+
+                  <div className="group p-8 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-900/10 to-red-800/5 backdrop-blur-lg hover:border-red-500/60 hover:bg-red-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
+                        <i className="ri-alarm-warning-line text-xl text-red-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Risco de Multas</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Exposição constante a multas da LGPD e à paralisia operacional causada por ataques de ransomware.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6 rounded-xl border border-green-500/50 bg-green-900/20 backdrop-blur-md hover:border-green-500/80 hover:bg-green-900/30 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-center mb-2 text-white">Prevenção Inteligente</h4>
-                    <p className="text-justify font-normal text-gray-300">Mudamos o seu paradigma para a prevenção, com a identificação e mitigação de riscos antes que estes se transformem em crises.</p>
+
+                  <div className="group p-8 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-900/10 to-red-800/5 backdrop-blur-lg hover:border-red-500/60 hover:bg-red-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
+                        <i className="ri-time-line text-xl text-red-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-red-100 transition-colors">Reação Tardia</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Opera em modo reativo, descobrindo a perda de dados ou a inconformidade apenas quando o dano já é irreversível.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coluna: Com AORKIA */}
+              <div className="space-y-8">
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                    <i className="ri-shield-check-line text-3xl text-green-400"></i>
+                  </div>
+                  <h3 className="text-3xl font-bold text-green-400 mb-4">Com a AORKIA</h3>
+                  <p className="text-gray-400 text-lg">Transformação estratégica e proteção real</p>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="group p-8 rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-900/10 to-green-800/5 backdrop-blur-lg hover:border-green-500/60 hover:bg-green-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                        <i className="ri-shield-check-line text-xl text-green-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Proteção Real</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Implementamos um backup 100% imutável, garantindo a recuperação dos seus dados em qualquer cenário de desastre.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group p-8 rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-900/10 to-green-800/5 backdrop-blur-lg hover:border-green-500/60 hover:bg-green-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                        <i className="ri-radar-line text-xl text-green-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Governança Ativa</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Entregamos governança ativa, com mapeamento e controlo total sobre onde estão os seus dados e quem lhes acede.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group p-8 rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-900/10 to-green-800/5 backdrop-blur-lg hover:border-green-500/60 hover:bg-green-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                        <i className="ri-government-line text-xl text-green-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Conformidade Garantida</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Asseguramos a sua conformidade com a LGPD através de soberania de dados e trilhas de auditoria que simplificam qualquer auditoria.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group p-8 rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-900/10 to-green-800/5 backdrop-blur-lg hover:border-green-500/60 hover:bg-green-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                        <i className="ri-brain-line text-xl text-green-400"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Prevenção Inteligente</h4>
+                        <p className="text-gray-300 text-lg leading-relaxed">Mudamos o seu paradigma para a prevenção, com a identificação e mitigação de riscos antes que estes se transformem em crises.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </SectionWrapper>
 
         {/* Seção 2: Os Dois Maiores Riscos */}
-        <div className="relative">
-          <div className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isProblemasCriticosVisible ? 'opacity-5' : 'opacity-0'}`} style={{ backgroundImage: 'url(/image/risco.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
-          <section ref={problemasCriticosRef} id="problemas-criticos" className="py-16 md:py-24 relative">
-            <div className="container mx-auto px-4 relative z-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-                Os Dois Maiores Riscos do Seu Negócio
+        <SectionWrapper id="problemas-criticos" className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                Os Dois Maiores Riscos<br />
+                <span className="text-red-400">do Seu Negócio</span>
               </h2>
-              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
-                
-                {/* Card 1 */}
-                <div className="bg-gray-900/30 backdrop-blur-lg rounded-2xl p-8 border border-red-500/50 border-t-4 border-t-red-500 hover:bg-gray-900/50 transition-all duration-300">
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">A Ilusão da Proteção Nativa</h3>
-                  <div className="text-justify text-gray-300 space-y-4">
-                    <p>A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre.</p>
-                    <p>Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.</p>
-                    <p>A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware, que pode encriptar e tornar inúteis todos os seus dados operacionais.</p>
-                    <p>O resultado? Em caso de ataque, a recuperação é incerta e a continuidade do seu negócio fica refém da sorte.</p>
-                    <p className="font-semibold text-red-300">Está preparado para essa aposta?</p>
+              <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-purple-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
+              
+              {/* Risco 1 */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-xl rounded-3xl p-10 border border-red-500/40 border-t-4 border-t-red-500 hover:bg-gray-900/80 hover:border-red-500/70 transition-all duration-500 shadow-2xl hover:shadow-red-500/20 transform hover:-translate-y-3">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-red-500/20 rounded-full mb-6 group-hover:bg-red-500/30 transition-colors">
+                      <i className="ri-shield-cross-line text-4xl text-red-400"></i>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-4">A Ilusão da Proteção Nativa</h3>
+                    <div className="w-16 h-1 bg-red-500 mx-auto rounded-full"></div>
+                  </div>
+
+                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed">
+                    <p>A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre. Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.</p>
+                    
+                    <p>A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware. O resultado? Em caso de ataque, a recuperação é incerta e a continuidade do seu negócio fica refém da sorte.</p>
+                    
+                    <div className="bg-red-900/30 rounded-xl p-6 border border-red-500/30 mt-8">
+                      <p className="font-bold text-red-300 text-xl text-center">Está preparado para essa aposta?</p>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Card 2 */}
-                <div className="bg-gray-900/30 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/50 border-t-4 border-t-purple-500 hover:bg-gray-900/50 transition-all duration-300">
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">A Bomba-Relógio dos Dados Internos</h3>
-                  <div className="text-justify text-gray-300 space-y-4">
-                    <p>A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação.</p>
-                    <p>Departamentos criam bases de dados paralelas sem o controlo da TI ("Shadow Data"), funcionários têm acesso a informações críticas que não deveriam e dados sensíveis de clientes estão espalhados sem qualquer visibilidade.</p>
-                    <p>Você não tem como proteger o que não sabe que existe.</p>
-                    <p>O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.</p>
-                    <p className="font-semibold text-purple-300">Sabe onde está o seu maior passivo neste exato momento?</p>
+              {/* Risco 2 */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-xl rounded-3xl p-10 border border-purple-500/40 border-t-4 border-t-purple-500 hover:bg-gray-900/80 hover:border-purple-500/70 transition-all duration-500 shadow-2xl hover:shadow-purple-500/20 transform hover:-translate-y-3">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-purple-500/20 rounded-full mb-6 group-hover:bg-purple-500/30 transition-colors">
+                      <i className="ri-time-line text-4xl text-purple-400"></i>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-4">A Bomba-Relógio dos Dados Internos</h3>
+                    <div className="w-16 h-1 bg-purple-500 mx-auto rounded-full"></div>
+                  </div>
+
+                  <div className="text-gray-300 space-y-6 text-lg leading-relaxed">
+                    <p>A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação. "Shadow Data", acessos indevidos e dados sensíveis espalhados sem qualquer visibilidade.</p>
+                    
+                    <p>Você não tem como proteger o que não sabe que existe. O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.</p>
+                    
+                    <div className="bg-purple-900/30 rounded-xl p-6 border border-purple-500/30 mt-8">
+                      <p className="font-bold text-purple-300 text-xl text-center">Sabe onde está o seu maior passivo neste exato momento?</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </SectionWrapper>
 
         {/* Seção 3: A Nossa Resposta Estratégica */}
-        <div className="relative">
-          <div className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isSolucoesVisible ? 'opacity-5' : 'opacity-0'}`} style={{ backgroundImage: 'url(/image/risco.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
-          <section ref={solucoesRef} id="solucoes-especializadas" className="py-16 md:py-24 relative">
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-16 max-w-4xl mx-auto">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">A Nossa Resposta Estratégica para Cada Risco</h2>
-                <p className="text-xl text-gray-300">Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</p>
-              </div>
-              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
-                
-                {/* Card 1 - Backup */}
-                <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl p-8 flex flex-col border border-green-500/50 hover:border-green-500/80 transition-all duration-300">
-                  <div className="text-center mb-6">
-                    <i className="ri-safe-2-line text-5xl text-green-400"></i>
-                    <h3 className="text-2xl font-bold text-white mt-4">Backup SaaS Estratégico</h3>
-                    <p className="font-semibold text-gray-400 mt-1">Para o Risco da Proteção Ilusória</p>
-                  </div>
-                  <p className="text-justify text-gray-300 flex-grow">Ativamos a plataforma líder de backup imutável para garantir que o seu negócio nunca pare. Seus dados do Microsoft 365, Google Workspace e outras aplicações SaaS ficam protegidos numa nuvem independente e isolada, à prova de ransomware e erros humanos.</p>
-                  <div className="my-6 space-y-2 text-green-300">
-                    <p>✓ Recuperação instantânea após um ataque.</p>
-                    <p>✓ Soberania de dados com backup no Brasil.</p>
-                    <p>✓ Economia com licenças de ex-funcionários.</p>
-                  </div>
-                  <Link href="/backup_saas_estrategico" className="mt-auto block w-full text-center py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-300 bg-[#00683f] hover:bg-[#005232]">
-                    Conhecer a Solução de Backup SaaS &gt;
-                  </Link>
-                </div>
+        <SectionWrapper id="solucoes-especializadas" className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-20 max-w-5xl mx-auto">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                A Nossa Resposta<br />
+                <span className="text-primary">Estratégica</span>
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-purple-500 mx-auto rounded-full mb-8"></div>
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</p>
+            </div>
 
-                {/* Card 2 - Governança */}
-                <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl p-8 flex flex-col border border-purple-500/50 hover:border-purple-500/80 transition-all duration-300">
-                  <div className="text-center mb-6">
-                    <i className="ri-radar-line text-5xl text-purple-400"></i>
-                    <h3 className="text-2xl font-bold text-white mt-4">Governança Estratégica de Dados</h3>
-                    <p className="font-semibold text-gray-400 mt-1">Para o Risco da Bomba-Relógio Interna</p>
+            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
+              
+              {/* Solução 1 - Backup */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-900/70 to-gray-800/50 backdrop-blur-xl rounded-3xl p-10 flex flex-col border border-green-500/40 hover:border-green-500/80 transition-all duration-500 shadow-2xl hover:shadow-green-500/20 transform hover:-translate-y-3 h-full">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500/20 rounded-full mb-6 group-hover:bg-green-500/30 transition-colors">
+                      <i className="ri-safe-2-line text-4xl text-green-400"></i>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">Backup SaaS Estratégico</h3>
+                    <p className="font-semibold text-gray-400 text-lg">Para o Risco da Proteção Ilusória</p>
+                    <div className="w-16 h-1 bg-green-500 mx-auto rounded-full mt-4"></div>
                   </div>
-                  <p className="text-justify text-gray-300 flex-grow">Implementamos uma estratégia de governança ativa para transformar os seus "dados invisíveis" em ativos protegidos e em conformidade. Descobrimos, classificamos e protegemos os seus dados sensíveis, onde quer que eles estejam.</p>
-                  <div className="my-6 space-y-2 text-purple-300">
-                    <p>✓ Visibilidade total sobre dados sensíveis.</p>
-                    <p>✓ Prevenção contra fugas de informação.</p>
-                    <p>✓ Conformidade contínua com a LGPD.</p>
+
+                  <p className="text-gray-300 flex-grow text-lg leading-relaxed text-center mb-8">Ativamos a plataforma líder de backup imutável para garantir que o seu negócio nunca pare. Seus dados ficam protegidos numa nuvem independente, à prova de ransomware.</p>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Recuperação instantânea</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Soberania de dados no Brasil</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-green-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Economia com licenças</span>
+                    </div>
                   </div>
-                  <Link href="/governanca_dados_sensiveis" className="mt-auto block w-full text-center py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-300 bg-[#5e17eb] hover:bg-[#4b13b9]">
-                    Conhecer a Solução de Governança &gt;
+
+                  <Link href="/backup_saas_estrategico" className="mt-auto block w-full text-center py-4 px-6 rounded-xl text-white font-semibold transition-all duration-300 bg-gradient-to-r from-[#00683f] to-[#005232] hover:from-[#005232] hover:to-[#004028] text-lg shadow-lg hover:shadow-green-500/30 transform hover:scale-105">
+                    Conhecer a Solução de Backup <i className="ri-arrow-right-line ml-2"></i>
                   </Link>
                 </div>
               </div>
-              <div className="text-center mt-16">
-                <Link href="/contato" className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 inline-flex items-center">
-                  Inicie uma Conversa Estratégica <i className="ri-arrow-right-line ml-2"></i>
+
+              {/* Solução 2 - Governança */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-900/70 to-gray-800/50 backdrop-blur-xl rounded-3xl p-10 flex flex-col border border-purple-500/40 hover:border-purple-500/80 transition-all duration-500 shadow-2xl hover:shadow-purple-500/20 transform hover:-translate-y-3 h-full">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-purple-500/20 rounded-full mb-6 group-hover:bg-purple-500/30 transition-colors">
+                      <i className="ri-radar-line text-4xl text-purple-400"></i>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">Governança de Dados</h3>
+                    <p className="font-semibold text-gray-400 text-lg">Para o Risco da Bomba-Relógio Interna</p>
+                    <div className="w-16 h-1 bg-purple-500 mx-auto rounded-full mt-4"></div>
+                  </div>
+
+                  <p className="text-gray-300 flex-grow text-lg leading-relaxed text-center mb-8">Implementamos uma governança ativa para transformar "dados invisíveis" em ativos protegidos. Descobrimos, classificamos e protegemos seus dados sensíveis.</p>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Visibilidade total sobre dados</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Prevenção contra fugas</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-purple-300 text-lg">
+                      <i className="ri-checkbox-circle-line text-xl"></i>
+                      <span>Conformidade com a LGPD</span>
+                    </div>
+                  </div>
+
+                  <Link href="/governanca_dados_sensiveis" className="mt-auto block w-full text-center py-4 px-6 rounded-xl text-white font-semibold transition-all duration-300 bg-gradient-to-r from-[#5e17eb] to-[#4b13b9] hover:from-[#4b13b9] hover:to-[#3a0f94] text-lg shadow-lg hover:shadow-purple-500/30 transform hover:scale-105">
+                    Conhecer a Solução de Governança <i className="ri-arrow-right-line ml-2"></i>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Central */}
+            <div className="text-center mt-24">
+              <div className="inline-block p-1 rounded-full bg-gradient-to-r from-primary to-green-500">
+                <Link href="/contato" className="bg-[#000511] hover:bg-transparent text-white font-bold py-4 px-12 rounded-full text-xl transition-all duration-300 inline-flex items-center shadow-2xl hover:shadow-primary/40 transform hover:scale-105">
+                  Inicie uma Conversa Estratégica <i className="ri-arrow-right-line ml-3 text-2xl"></i>
                 </Link>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </SectionWrapper>
       </main>
     </>
   );
 }
+

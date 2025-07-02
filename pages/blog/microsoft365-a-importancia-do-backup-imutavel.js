@@ -85,7 +85,7 @@ export default function Microsoft365BackupImutavel() {
         <section id="hero-post" className="relative h-screen overflow-hidden flex flex-col justify-between pt-24 pb-12 px-4 text-center">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" onError={handleVideoError}>
             {/* Caminho do vídeo corrigido */}
-            <source src="/video/Video_Meme_CIO_em_Panico_2.mp4" type="video/mp4" />
+            <source src="/video/video_meme_cio_em_panico_m365.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo.
           </video>
           {/* Imagem de fallback para caso o vídeo não carregue. Por padrão, está oculta. */}
