@@ -91,12 +91,12 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
           
           <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">AORKIA:</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">Boas vindas à AORKIA</p>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
-              Ativamos tecnologia de ponta para transformar o risco de dados em resiliência inabalável e vantagem competitiva.
+              Transformamos o risco de dados em resiliência inabalável
             </h1>
             <p className="text-lg md:text-xl mb-10 text-center max-w-4xl mx-auto">
-              A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados, convertendo tecnologia de ponta em vantagem competitiva duradoura e valor imediato.
+              Ativamos plataformas globais de ponta para transformar seus dados em ativos protegidos e conformes.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="#valor-imediato" onClick={(e) => scrollToSection(e, 'valor-imediato')} className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition duration-300">
