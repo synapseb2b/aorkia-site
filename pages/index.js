@@ -105,7 +105,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'valor-imediato' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/risco.png)` }}
+            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
@@ -264,7 +264,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'problemas-criticos' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/risco.png)` }}
+            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
@@ -347,7 +347,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'solucoes-especializadas' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/risco.png)` }}
+            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
