@@ -620,29 +620,6 @@ function MyApp({ Component, pageProps }) {
                 </Link>
               </nav>
 
-{/* CTA Section */}
-<div className="p-6 border-t border-white/10">
-  <Link href="/contato" passHref>
-    <div
-      className="w-full flex items-center justify-center space-x-3 p-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 animate-scale-in cursor-pointer"
-      style={{ animationDelay: '0.7s' }}
-      onClick={() => setMobileMenuOpen(false)}
-    >
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-      <span>Começar agora</span>
-    </div>
-  </Link>
-  
-  {/* Contact Info */}
-  <div className="mt-4 text-center text-white/60 text-sm animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-    <p>+55 31 3958-6192</p>
-    <p>contato@aorkia.com</p>
-  </div>
-</div>
-              </nav>
-
               {/* CTA Section */}
               <div className="p-6 border-t border-white/10">
                 <div
