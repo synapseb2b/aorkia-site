@@ -430,9 +430,14 @@ function MyApp({ Component, pageProps }) {
         <div className="flex justify-between items-center h-full px-6">
           <div className="py-2">
             <div className="logo-container h-16 relative flex items-center">
-              <div className="w-32 h-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                AORKIA
-              </div>
+              <Image
+                src="/logo/logo_aorkia_color_transparent.png"
+                alt="AORKIA"
+                className="h-16 w-auto"
+                width={200}
+                height={80}
+                priority
+              />
             </div>
           </div>
           <button
@@ -464,9 +469,14 @@ function MyApp({ Component, pageProps }) {
               {/* Header */}
               <div className="flex justify-between items-center p-6 border-b border-white/10">
                 <div className="logo-container h-12 relative">
-                  <div className="w-28 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-base">
-                    AORKIA
-                  </div>
+                  <Image
+                    src="/logo/logo_aorkia_white_transparent.png"
+                    alt="AORKIA"
+                    className="h-12 w-auto"
+                    width={200}
+                    height={80}
+                    priority
+                  />
                 </div>
                 <button
                   className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors text-white"
