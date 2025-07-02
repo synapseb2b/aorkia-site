@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção 1: Sua empresa está vulnerável */}
+        {/* Seção 1: Sua empresa está lines_future */}
         <section 
           id="valor-imediato"
           data-section-id="valor-imediato"
@@ -105,7 +105,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'valor-imediato' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
+            style={{ backgroundImage: `url(/image/lines_future.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
@@ -264,7 +264,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'problemas-criticos' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
+            style={{ backgroundImage: `url(/image/lines_future.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
@@ -347,7 +347,7 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'solucoes-especializadas' ? 'opacity-20' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/vulneravel.png)` }}
+            style={{ backgroundImage: `url(/image/lines_future.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
