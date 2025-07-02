@@ -82,7 +82,7 @@ export default function Home() {
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            src="/video/video_hero.mp4"
+            src="/video/keepit_aorkia.mp4"
             autoPlay
             loop
             muted
