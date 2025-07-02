@@ -63,7 +63,13 @@ const products = [
     id: 'solucoes',
     title: 'AORKIA',
     supportText: 'Conceito',
-    description: 'Sua empresa conquista controle absoluto e um futuro digital fortalecido com a AORKIA. Vamos além da simples implementação, transformando seus desafios mais críticos em resiliência cibernética e proteção inabalável. Fazemos isso através da curadoria e ativação estratégica de plataformas líderes em Backup SaaS Estratégico e Governança Estratégica de Dados Sensíveis.',
+    description: (
+      <>
+        <p className="mb-4">Sua empresa conquista controle absoluto e um futuro digital fortalecido com a AORKIA.</p>
+        <p className="mb-4">Vamos além da simples implementação, transformando seus desafios mais críticos em resiliência cibernética e proteção inabalável.</p>
+        <p>Fazemos isso através da curadoria e ativação estratégica de plataformas líderes em Backup SaaS Estratégico e Governança Estratégica de Dados Sensíveis.</p>
+      </>
+    ),
     image: '/image/solucoes_especializadas.png', // CORRIGIDO: nome do arquivo
     link: '/solucoes',
     ctaText: 'Explore Nossas Soluções'
@@ -72,7 +78,13 @@ const products = [
     id: 'backup',
     title: 'Sua proteção de dados SaaS é uma ilusão.',
     supportText: 'Backup SaaS Estratégico',
-    description: 'Com a AORKIA, você blinda seus dados SaaS com uma recuperação instantânea e transforma a proteção em um pilar estratégico de continuidade e governança. Ativamos a Keepit, líder global em backup SaaS, entregando um backup imutável com soberania de dados no Brasil — uma solução confiada por mais de 15.000 empresas. A verdade é que a proteção nativa do Microsoft 365 e Google Workspace, por si só, falha contra ransomware, erros humanos e perda de dados críticos.',
+    description: (
+      <>
+        <p className="mb-4">Com a AORKIA, você blinda seu Microsoft 365 e outras Plataformas SaaS com uma recuperação instantânea e transforma a proteção em um pilar estratégico de continuidade e governança.</p>
+        <p className="mb-4">Ativamos a Keepit, líder global em backup SaaS, entregando um backup imutável com soberania de dados no Brasil.</p>
+        <p>A verdade é que a proteção nativa do Microsoft 365 e Google Workspace, por si só, falha contra ransomware, erros humanos e perda de dados críticos.</p>
+      </>
+    ),
     image: '/image/keepit_aorkia.png',
     link: '/backup_saas_estrategico', // CORRIGIDO: link correto
     ctaText: 'Veja na prática como a proteção nativa falha'
@@ -81,7 +93,12 @@ const products = [
     id: 'dspm',
     title: 'A fonte da sua próxima multa da LGPD já existe.',
     supportText: 'Governança Estratégica de Dados Sensíveis',
-    description: 'Obtenha visibilidade unificada e transforme a governança de dados em uma vantagem competitiva decisiva com a AORKIA. Ativamos plataformas DSPM que oferecem um mapa preciso dos seus dados, riscos e permissões, convertendo incertezas em controle absoluto. A verdade é que dados sensíveis e informações criadas fora dos controles de TI, espalhados por múltiplas nuvens, deixam sua empresa vulnerável a vazamentos e multas severas da LGPD.',
+    description: (
+      <>
+        <p className="mb-4">Sua empresa ganha proteção inabalável de dados, continuidade operacional e governança estratégica com a AORKIA.</p>
+        <p>Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</p>
+      </>
+    ),
     image: '/image/dspm.png',
     link: '/governanca_dados_sensiveis', // CORRIGIDO: link correto
     ctaText: 'Veja exemplos de riscos que você não enxerga'
@@ -146,7 +163,7 @@ const products = [
             <div 
               key={product.id}
               data-product-id={product.id}
-              className="relative w-full h-screen md:h-[80vh] overflow-hidden group border-t border-b border-gray-800"
+              className="relative w-full min-h-screen md:h-[80vh] overflow-hidden group border-t border-b border-gray-800"
               onMouseEnter={() => handleProductInteraction(product.id)}
               onMouseLeave={handleProductLeave}
               onTouchStart={() => handleProductInteraction(product.id)}
@@ -170,15 +187,15 @@ const products = [
               ></div>
               
               {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                   <div>
                     <p className={`text-lg mb-2 transition-colors duration-500 ${
                       activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {product.supportText}
                     </p>
-                    <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                    <h3 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 transition-colors duration-500 leading-tight ${
                       activeProduct === product.id ? 'text-white' : 'text-black'
                     }`}>
                       {product.title}
@@ -189,7 +206,7 @@ const products = [
                         <Image 
                           src="/icon/keepit_logo_aorkia.png" 
                           alt="Keepit AORKIA" 
-                          className="h-12 w-auto"
+                          className="h-10 md:h-12 w-auto"
                           width={160}
                           height={48}
                           priority
@@ -198,15 +215,15 @@ const products = [
                     )}
                   </div>
                   <div>
-                    <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
+                    <div className={`text-lg sm:text-xl md:text-2xl max-w-2xl transition-colors duration-500 text-justify ${
                       activeProduct === product.id ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {product.description}
-                    </p>
-                    <div className="mt-8">
+                    </div>
+                    <div className="mt-6 md:mt-8">
                       <Link 
                         href={product.link} 
-                        className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
+                        className={`inline-flex items-center text-base md:text-lg font-medium transition-colors duration-500 ${
                           activeProduct === product.id ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
                         }`}
                       >
@@ -223,7 +240,7 @@ const products = [
 
         {/* Seção Pré-Footer - IMAGEM DE FUNDO CORRIGIDA */}
         <section 
-          className="relative w-full h-screen md:h-[80vh] overflow-hidden group"
+          className="relative w-full min-h-screen md:h-[80vh] overflow-hidden group"
           data-product-id="futuro"
           onMouseEnter={() => handleProductInteraction('futuro')}
           onMouseLeave={handleProductLeave}
@@ -248,30 +265,31 @@ const products = [
           ></div>
           
           {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div>
                 <p className={`text-lg mb-2 transition-colors duration-500 ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
                   AORKIA
                 </p>
-                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-colors duration-500 ${
+                <h3 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 transition-colors duration-500 leading-tight ${
                   activeProduct === 'futuro' ? 'text-white' : 'text-black'
                 }`}>
                   Tecnologia de Ponta. Vantagem Competitiva.
                 </h3>
               </div>
               <div>
-                <p className={`text-xl md:text-2xl max-w-2xl transition-colors duration-500 ${
+                <p className={`text-lg sm:text-xl md:text-2xl max-w-2xl transition-colors duration-500 text-justify ${
                   activeProduct === 'futuro' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Sua empresa ganha proteção inabalável de dados, continuidade operacional e governança estratégica com a AORKIA. Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.
+                  <span className="block mb-4">Sua empresa ganha proteção inabalável de dados, continuidade operacional e governança estratégica com a AORKIA.</span>
+                  <span className="block">Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.</span>
                 </p>
-                <div className="mt-8">
+                <div className="mt-6 md:mt-8">
                   <Link 
                     href="/contato" 
-                    className={`inline-flex items-center text-lg font-medium transition-colors duration-500 ${
+                    className={`inline-flex items-center text-base md:text-lg font-medium transition-colors duration-500 ${
                       activeProduct === 'futuro' ? 'text-primary hover:text-primary/80' : 'text-blue-700 hover:text-blue-800'
                     }`}
                   >
