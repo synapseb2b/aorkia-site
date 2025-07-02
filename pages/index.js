@@ -214,7 +214,7 @@ export default function Home() {
                   <div className="group p-8 rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-900/10 to-green-800/5 backdrop-blur-lg hover:border-green-500/60 hover:bg-green-900/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                        <i className="ri-brain-line text-xl text-green-400"></i>
+                        <i className="ri-lightbulb-line text-xl text-green-400"></i>
                       </div>
                       <div>
                         <h4 className="text-xl font-semibold mb-3 text-white group-hover:text-green-100 transition-colors">Prevenção Inteligente</h4>
