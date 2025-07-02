@@ -264,12 +264,12 @@ export default function PresencaDigital() {
           ref={(el) => (sectionRefs.current.metodologia = el)}
           className="relative w-full min-h-screen py-24 overflow-hidden"
         >
-          {/* Background com transição da imagem flow */}
+          {/* Background com transição da imagem soft_future */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'metodologia' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/flow.png)` }}
+            style={{ backgroundImage: `url(/image/soft_future.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
@@ -347,12 +347,12 @@ export default function PresencaDigital() {
           ref={(el) => (sectionRefs.current.servicos = el)}
           className="relative w-full min-h-screen py-24 overflow-hidden"
         >
-          {/* Background com transição da imagem flow */}
+          {/* Background com transição da imagem soft_future */}
           <div 
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-800 ease-out z-0 ${
               activeSection === 'servicos' ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(/image/flow.png)` }}
+            style={{ backgroundImage: `url(/image/soft_future.png)` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
