@@ -121,17 +121,16 @@ export default function Home() {
         </section>
 
         {/* Seção 1: Valor Imediato - Pirâmide Invertida */}
-        <div className="relative bg-white">
+        <div className="relative">
           <div
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isValorImediatoVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isValorImediatoVisible ? 'opacity-10' : 'opacity-0'}`}
             style={{
               backgroundImage: 'url(/image/risco.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundAttachment: 'fixed'
             }}
           />
-          <section ref={valorImediatoRef} id="valor-imediato" className="py-16 md:py-24 bg-transparent relative overflow-hidden">
+          <section ref={valorImediatoRef} id="valor-imediato" className="py-16 md:py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
                 Sua empresa está vulnerável e você não sabe
@@ -217,17 +216,16 @@ export default function Home() {
         </div>
 
         {/* Seção 2: Problemas Críticos */}
-        <div className="relative bg-gray-50">
+        <div className="relative">
            <div
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isProblemasCriticosVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isProblemasCriticosVisible ? 'opacity-10' : 'opacity-0'}`}
             style={{
               backgroundImage: 'url(/image/risco.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundAttachment: 'fixed'
             }}
           />
-          <section ref={problemasCriticosRef} id="problemas-criticos" className="py-16 md:py-24 bg-transparent relative overflow-hidden">
+          <section ref={problemasCriticosRef} id="problemas-criticos" className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-8">
                 Os Dois Maiores Riscos do Seu Negócio
@@ -333,17 +331,16 @@ export default function Home() {
         </div>
         
         {/* Seção 3: Soluções Especializadas */}
-        <div className="relative bg-white">
+        <div className="relative">
           <div
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isSolucoesVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isSolucoesVisible ? 'opacity-10' : 'opacity-0'}`}
             style={{
               backgroundImage: 'url(/image/solucoes_especializadas.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundAttachment: 'fixed'
             }}
           />
-          <section ref={solucoesRef} id="solucoes-especializadas" className="py-16 md:py-24 bg-transparent relative overflow-hidden">
+          <section ref={solucoesRef} id="solucoes-especializadas" className="py-16 md:py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
