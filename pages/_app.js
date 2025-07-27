@@ -429,104 +429,83 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </main>
 
-      {/* Footer Global */}
-        <footer className="relative bg-black text-white py-16 border-t border-gray-800 overflow-hidden">
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/video/video_hero.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo.
-          </video>
-          <div className="absolute inset-0 bg-black/70"></div>
-          <div className="relative z-10 container mx-auto max-w-7xl px-4">
+{/* Footer Global Corrigido */}
+      <footer className="relative bg-black text-white py-16 border-t border-gray-800 overflow-hidden">
+        {/* Vídeo de Fundo */}
+        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+          <source src="/video/video_hero.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeo.
+        </video>
+        
+        {/* Overlay escuro para legibilidade */}
+        <div className="absolute inset-0 bg-black/70"></div>
+        
+        {/* Conteúdo do footer */}
+        <div className="relative z-10 container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Formulário de Contato */}
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold mb-8 text-primary">Vamos conversar?</h3>
-<form onSubmit={handleFormSubmit} className="space-y-6">
-  <div>
-    <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">Nome</label>
-    <input
-      type="text"
-      id="name"
-      name="nome"
-      required
-      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
-    />
-  </div>
-  <div>
-    <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">E-mail</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
-    />
-  </div>
-  <div>
-    <label htmlFor="company" className="block text-sm font-medium mb-2 text-white">Empresa</label>
-    <input
-      type="text"
-      id="company"
-      name="empresa"
-      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
-    />
-  </div>
-
-  <div>
-  <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-white">Telefone</label>
-  <input
-    type="tel"
-    id="telefone"
-    name="telefone"
-    required
-    placeholder="+55 31 91234-5678"
-    pattern="\+\d{2}\s?\d{2}\s?\d{4,5}-?\d{4}"
-    title="Formato: +55 31 91234-5678 ou +5531912345678"
-    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
-  />
-</div>
-
-  <div>
-    <label className="block text-sm font-medium mb-3 text-white">Soluções de interesse</label>
-    <div className="space-y-3">
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="solucoes"
-          value="Backup SaaS Estratégico"
-          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
-        />
-        <span className="text-white">Backup SaaS Estratégico (Keepit)</span>
-      </label>
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="solucoes"
-          value="Governança Estratégica de Dados Sensíveis"
-          className="mr-3 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
-        />
-        <span className="text-white">Governança Estratégica de Dados Sensíveis (DSPM)</span>
-      </label>
-    </div>
-  </div>
-
-  <div>
-    <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">Mensagem</label>
-    <textarea
-      id="message"
-      name="mensagem"
-      rows="4"
-      required
-      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-white placeholder-gray-300"
-    ></textarea>
-  </div>
-  <button
-    type="submit"
-    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
-  >
-    Enviar Mensagem
-  </button>
-</form>
-
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">Nome</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="nome"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2 text-white">Empresa</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="empresa"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="telefone" className="block text-sm font-medium mb-2 text-white">Telefone</label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    name="telefone"
+                    required
+                    placeholder="+55 31 3958-6192"
+                    pattern="\+\d{2}\s?\d{2}\s?\d{4,5}-?\d{4}"
+                    title="Formato: +55 31 3958-6192"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors text-white placeholder-gray-300"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">Mensagem</label>
+                  <textarea
+                    id="message"
+                    name="mensagem"
+                    rows="4"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none text-white placeholder-gray-300"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all font-semibold"
+                >
+                  Enviar Mensagem
+                </button>
+              </form>
               {formSubmitted && (
                 <div className="mt-4 p-4 bg-green-600/20 border border-green-600/30 rounded-lg">
                   <p className="text-green-400 font-medium">Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
@@ -534,61 +513,42 @@ function MyApp({ Component, pageProps }) {
               )}
             </div>
 
+            {/* Informações de Contato */}
             <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-inner">
               <div className="mb-12">
-              <Image
-                src="/logo/logo_aorkia_white_transparent.png"
-                alt="AORKIA"
-                className="h-20 w-auto mb-6"
-                width={416}
-                height={166}
-                quality={100}
-            />
+                <Image
+                  src="/logo/logo_synapseb2b_white_transparent.png" // Ajuste o caminho se necessário
+                  alt="Synapse B2B"
+                  className="h-20 w-auto mb-6"
+                  width={416}
+                  height={166}
+                  quality={100}
+                />
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  A AORKIA ativa plataformas globais para resiliência cibernética e governança de dados. Fortaleça seu negócio com a inteligência que ele precisa.
+                  Transformamos expertise técnica em receita previsível para empresas B2B de alta complexidade.
                 </p>
               </div>
-
               <div className="space-y-8">
                 <div>
                   <h4 className="text-xl font-semibold mb-4 text-primary">Contato</h4>
                   <div className="space-y-3">
-                    <div
-                      className="flex items-center cursor-pointer hover:text-primary transition-colors group"
-                      onClick={copyEmailToClipboard}
-                    >
+                    <div className="flex items-center cursor-pointer hover:text-primary transition-colors group" onClick={copyEmailToClipboard}>
                       <i className="ri-mail-line text-xl mr-3 text-primary"></i>
-                      <span className="text-white">contato@aorkia.com</span>
+                      <span className="text-white">contato@synapseb2b.com</span>
                       {emailCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
-                    <div
-                      className="flex items-center cursor-pointer hover:text-primary transition-colors group"
-                      onClick={copyPhoneToClipboard}
-                    >
+                    <div className="flex items-center cursor-pointer hover:text-primary transition-colors group" onClick={copyPhoneToClipboard}>
                       <i className="ri-phone-line text-xl mr-3 text-primary"></i>
                       <span className="text-white">+55 31 3958-6192</span>
                       {phoneCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
                     </div>
-                    <div
-                      className="flex items-start cursor-pointer hover:text-primary transition-colors group"
-                      onClick={copyAddressToClipboard}
-                    >
-                      <i className="ri-map-pin-line text-xl mr-3 text-primary mt-1"></i>
-                      <span className="text-white">Av. Getúlio Vargas, 671 — Sala 500, Belo Horizonte - MG</span>
-                      {addressCopied && <span className="ml-2 text-green-400 text-sm">Copiado!</span>}
-                    </div>
                   </div>
                 </div>
-
                 <div>
-                  <h4 className="text-xl font-semibold mb-4 text-primary">Navegação</h4>
+                  <h4 className="text-xl font-semibold mb-4 text-primary">Legal</h4>
                   <div className="grid grid-cols-2 gap-3">
-                    <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
-                    <Link href="/backup_saas_estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
-                    <Link href="/governanca_dados_sensiveis" className="text-white hover:text-primary transition-colors">DSPM</Link>
-                    <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
-                    <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
-                    <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
+                    <Link href="/termos-de-uso" className="text-white hover:text-primary transition-colors">Termos de Uso</Link>
+                    <Link href="/politica-de-privacidade" className="text-white hover:text-primary transition-colors">Política de Privacidade</Link>
                   </div>
                 </div>
               </div>
@@ -596,25 +556,35 @@ function MyApp({ Component, pageProps }) {
           </div>
         </div>
 
+        {/* Seção de Copyright */}
         <div className="border-t border-white/20 mt-16 pt-8">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-center md:text-left">
-                <p className="text-gray-300 mb-4">© 2025 Synapse B2B. Todos os direitos reservados. Desenvolvido por Synapse B2B</p>
-              </div>
-              <div className="flex space-x-6 mt-4 md:mt-0">
-                <a
-                  href="https://wa.me/553139586192"
+                <p className="text-gray-300 mb-4">
+                  © 2025 Synapse B2B. Todos os direitos reservados.
+                </p>
+                <Link
+                  href="https://synapseb2b.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-primary transition-colors"
+                  className="group relative inline-block"
                 >
+                  <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] animate-gradient-x p-[2px]">
+                    <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 group-hover:bg-black/70 transition-all duration-300">
+                      <span className="text-sm font-medium bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-primary transition-all duration-300 animate-float">
+                        ✨ Desenvolvido por Synapse B2B
+                      </span>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-glow pointer-events-none"></div>
+                </Link>
+              </div>
+              <div className="flex space-x-6 mt-4 md:mt-0">
+                <a href="https://wa.me/553139586192" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
                   <i className="ri-whatsapp-line text-xl"></i>
                 </a>
-                <a
-                  href="mailto:contato@aorkia.com"
-                  className="text-gray-300 hover:text-primary transition-colors"
-                >
+                <a href="mailto:contato@synapseb2b.com" className="text-gray-300 hover:text-primary transition-colors">
                   <i className="ri-mail-line text-xl"></i>
                 </a>
               </div>
@@ -623,28 +593,22 @@ function MyApp({ Component, pageProps }) {
         </div>
       </footer>
 
-      {/* Cookie Banner */}
+      {/* Banner de Cookies Corrigido */}
       {showCookieBanner && (
         <div className="fixed bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-300 p-4 z-[70]">
-            <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-gray-800 text-sm">
-                Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de cookies.
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={acceptCookies}
-                  className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all text-sm font-medium"
-                >
-                  Aceitar
-                </button>
-                <button
-                  onClick={declineCookies}
-                  className="border border-gray-400 text-gray-800 hover:bg-gray-200 px-4 py-2 rounded-lg transition-all text-sm font-medium"
-                >
-                  Recusar
-                </button>
-              </div>
+          <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-800 text-sm">
+              Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <Link href="/politica-de-privacidade" className="font-semibold underline hover:text-primary">política de cookies.</Link>
+            </p>
+            <div className="flex gap-3">
+              <button onClick={acceptCookies} className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all text-sm font-medium">
+                Aceitar
+              </button>
+              <button onClick={declineCookies} className="border border-gray-400 text-gray-800 hover:bg-gray-200 px-4 py-2 rounded-lg transition-all text-sm font-medium">
+                Recusar
+              </button>
             </div>
+          </div>
         </div>
       )}
     </>
