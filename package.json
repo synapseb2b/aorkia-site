@@ -1,18 +1,20 @@
-{
-  "name": "aorkia-site",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "14.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "^3.0.0",
-    "@swc/helpers": "0.5.17",
-    "@swc/core": "1.3.92"
-  }
+// ANTES (Seu arquivo atual)
+"dependencies": {
+    "next": "14.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.0.0",
+    "@swc/helpers": "0.5.17",
+    "@swc/core": "1.3.92"
+}
+
+// DEPOIS (Como deve ficar)
+"dependencies": {
+    "next": "14.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.0.0",
+    "@swc/helpers": "0.5.17",
+    "@swc/core": "1.3.92",
+    "lucide-react": "^0.395.0"
 }
