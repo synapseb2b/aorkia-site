@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
+  transpilePackages: ['lucide-react'], // Adicionado para resolver o erro de Module not found
   async headers() {
     return [
       {
