@@ -255,7 +255,6 @@ export default function Home() {
             </div>
             <div className="text-center text-xs mt-8 pt-8 border-t border-gray-800">
               © 2025 AORKIA. Todos os direitos reservados.
-              Desenvolvido por Synapse B2B | Plataformas Digitais arquitetadas em Engenharia de Receita.
             </div>
           </div>
         </footer>
