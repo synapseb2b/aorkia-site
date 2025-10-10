@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ShieldCheck, Cloud, FileText, Lock, ShieldAlert, CheckCircle, XCircle, Globe, Clock, Server, Scale } from 'lucide-react';
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState(null);
-  const [sectionBackgrounds, setSectionBackgrounds] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,423 +13,253 @@ export default function Home() {
       const docHeight = document.body.offsetHeight - window.innerHeight;
       const progress = (scrollTop / docHeight) * 100;
       setScrollProgress(progress);
-
-      // Detectar quais seções devem ter background image
-      const sections = [
-        'valor-imediato',
-        'problemas-criticos', 
-        'solucoes-especializadas'
-      ];
-
-      const newBackgrounds = {};
-      
-      sections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          // Ativar background quando a seção está visível
-          newBackgrounds[sectionId] = rect.top < window.innerHeight && rect.bottom > 0;
-        }
-      });
-
-      setSectionBackgrounds(newBackgrounds);
-
-      // Detectar seção ativa
-      const allSections = document.querySelectorAll('[data-section]');
-      allSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
-          setActiveSection(section.getAttribute('data-section'));
-        }
-      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const getSectionBackground = (sectionId) => {
-    return sectionBackgrounds[sectionId] ? 'opacity-20' : 'opacity-0';
-  };
-
   return (
     <>
       <Head>
-        <title>AORKIA | Resiliência Cibernética e Governança de Dados</title>
-        <meta name="description" content="A AORKIA ativa plataformas globais para resiliência cibernética, inteligência operacional e proteção inabalável de dados, convertendo tecnologia de ponta em vantagem competitiva duradoura e valor imediato." />
-        <meta name="theme-color" content="#000511" />
+        <title>AORKIA | Resiliência Cibernética para Dados SaaS</title>
+        <meta name="description" content="A AORKIA ativa a Keepit, líder global em proteção de dados SaaS, para garantir que seu negócio nunca pare. Backup imutável e recuperação à prova de ransomware." />
+        <meta name="theme-color" content="#000000" />
       </Head>
 
       {/* Barra de Progresso */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
         <div
           className="h-full bg-gradient-to-r from-primary to-green-400 transition-all duration-300"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      <main className="min-h-screen bg-white relative">
-        {/* Hero Section */}
-        <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
+      <main className="bg-black text-white">
+        {/* Seção Hero */}
+        <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
           <video
-            className="absolute top-0 left-0 w-full h-full object-cover z-0"
+            className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-30"
             src="/video/video_hero.mp4"
             autoPlay
             loop
             muted
             playsInline
           ></video>
-          <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
           
-          <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4">Boas vindas à AORKIA</p>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
-              Transformamos o risco de dados em resiliência inabalável
+          <div className="relative z-20 px-4 max-w-5xl mx-auto animate-fade-in">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-primary">
+              Resiliência não é negociável. Continuidade, também não.
             </h1>
-            <p className="text-lg md:text-xl mb-10 text-center max-w-4xl mx-auto">
-              Ativamos plataformas globais de ponta para transformar seus dados em ativos protegidos e conformes.
-            </p>
+            <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+              Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós garantimos que seu negócio nunca pare: backup imutável, recuperação instantânea e conformidade garantida.
+            </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="#valor-imediato" onClick={(e) => scrollToSection(e, 'valor-imediato')} className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition duration-300">
-                Explore Nossas Soluções
+              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                Conheça o Backup Estratégico
               </Link>
-              <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-primary transition duration-300">
-                Inicie uma Conversa Estratégica
+              <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-lg">
+                Fale com um Especialista
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Sua empresa está vulnerável e você não sabe */}
-        <section id="valor-imediato" data-section="valor-imediato" className="py-16 md:py-24 bg-white relative overflow-hidden">
-          {/* Background Image Transition */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('valor-imediato')}`}
-            style={{
-              backgroundImage: 'url(/image/dspm_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
-              Sua empresa está vulnerável e você não sabe
-            </h2>
-            
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 items-start">
-                {/* Situação Atual */}
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-2 border-red-500 shadow-lg">
-                    <h3 className="text-2xl font-bold text-red-700 mb-8 text-center">
-                      Situação Atual
-                    </h3>
-                    
-                    <div className="space-y-6">
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-shield-cross-line text-xl text-red-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Proteção Ilusória</h4>
-                        <p className="text-gray-600 text-center">Acredita que a proteção nativa da Microsoft e Google é suficiente, ignorando as lacunas que podem levar à perda total de dados.</p>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-eye-off-line text-xl text-red-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Dados Invisíveis</h4>
-                        <p className="text-gray-600 text-center">Dados sensíveis espalhados e sem controlo de quem lhes acede — um convite aberto a fugas de informação e violações da LGPD.</p>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-alarm-warning-line text-xl text-red-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Risco de Multas</h4>
-                        <p className="text-gray-600 text-center">Exposição constante a multas da LGPD e à paralisia operacional causada por ataques de ransomware.</p>
-                      </div>
-
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-time-line text-xl text-red-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Reação Tardia</h4>
-                        <p className="text-gray-600 text-center">Opera em modo reativo, descobrindo a perda de dados ou a inconformidade apenas quando o dano já é irreversível.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Com AORKIA */}
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-500 shadow-lg">
-                    <h3 className="text-2xl font-bold text-green-700 mb-8 text-center">
-                      Com a AORKIA
-                    </h3>
-                    
-                    <div className="space-y-6">
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-shield-check-line text-xl text-green-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Proteção Real</h4>
-                        <p className="text-gray-600 text-center">Implementamos um backup 100% imutável, garantindo a recuperação dos seus dados em qualquer cenário de desastre.</p>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-radar-line text-xl text-green-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Governança Ativa</h4>
-                        <p className="text-gray-600 text-center">Entregamos governança ativa, com mapeamento e controlo total sobre onde estão os seus dados e quem lhes acede.</p>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-government-line text-xl text-green-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Conformidade Garantida</h4>
-                        <p className="text-gray-600 text-center">Asseguramos a sua conformidade com a LGPD através de soberania de dados e trilhas de auditoria que simplificam qualquer auditoria.</p>
-                      </div>
-
-                      <div className="bg-white rounded-lg p-6 shadow-sm">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <i className="ri-lightbulb-line text-xl text-green-400"></i>
-                          </div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center">Prevenção Inteligente</h4>
-                        <p className="text-gray-600 text-center">Mudamos o seu paradigma para a prevenção, com a identificação e mitigação de riscos antes que estes se transformem em crises.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Os Dois Maiores Riscos do Seu Negócio - LAYOUT APERFEIÇOADO */}
-        <section id="problemas-criticos" data-section="problemas-criticos" className="py-16 md:py-24 bg-white relative overflow-hidden">
-          {/* Background Image Transition */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('problemas-criticos')}`}
-            style={{
-              backgroundImage: 'url(/image/dspm_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-16">
-              Os Dois Maiores Riscos do Seu Negócio
-            </h2>
-            
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">
-              
-              {/* Risco 1 - A Ilusão da Proteção Nativa */}
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-2 border-red-500 shadow-lg">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i className="ri-shield-cross-line text-3xl text-red-500"></i>
-                  </div>
-                  <h3 className="text-2xl font-bold text-red-700 mb-4">A Ilusão da Proteção Nativa</h3>
-                </div>
-                
-                <div className="space-y-6 text-center">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <p className="text-gray-700 leading-relaxed">
-                      A confiança na proteção padrão do Microsoft 365 ou Google Workspace é o primeiro passo para um desastre. Essas ferramentas não foram desenhadas para serem uma solução de backup contra ameaças externas.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <p className="text-gray-700 leading-relaxed">
-                      A retenção de dados é limitada, a recuperação é complexa e, o mais crítico: elas falham em proteger contra um ataque de ransomware.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-red-600 rounded-lg p-6 shadow-lg">
-                    <p className="text-white font-bold text-lg">
-                      Está preparado para essa aposta?
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Risco 2 - A Bomba-Relógio dos Dados Internos */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-500 shadow-lg">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i className="ri-time-line text-3xl text-purple-500"></i>
-                  </div>
-                  <h3 className="text-2xl font-bold text-purple-700 mb-4">A Bomba-Relógio dos Dados Internos</h3>
-                </div>
-                
-                <div className="space-y-6 text-center">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <p className="text-gray-700 leading-relaxed">
-                      A fonte da sua próxima multa da LGPD não virá de um hacker, mas de dentro da sua própria operação. "Shadow Data", acessos indevidos e dados sensíveis espalhados sem qualquer visibilidade.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <p className="text-gray-700 leading-relaxed">
-                      Você não tem como proteger o que não sabe que existe. O resultado? Multas da LGPD, fugas de dados por erros internos e a perda de confiança de clientes e do mercado.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-purple-600 rounded-lg p-6 shadow-lg">
-                    <p className="text-white font-bold text-lg">
-                      Sabe onde está o seu maior passivo neste exato momento?
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* A Nossa Resposta Estratégica */}
-        <section id="solucoes-especializadas" data-section="solucoes-especializadas" className="py-16 md:py-24 bg-white relative overflow-hidden">
-          {/* Background Image Transition */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('solucoes-especializadas')}`}
-            style={{
-              backgroundImage: 'url(/image/dspm_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
-              A Nossa Resposta Estratégica
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto text-center text-gray-600 mb-16">
-              Nós convertemos tecnologia de ponta em resultados concretos, ativando plataformas globais líderes adaptadas à realidade do seu negócio.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Backup SaaS Estratégico */}
-              <div className="p-6 rounded-lg border-2 border-green-500 bg-transparent text-center">
-                <div className="text-4xl text-green-600 mb-4">
-                  <i className="ri-safe-2-line"></i>
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">Backup SaaS Estratégico</h3>
-                <p className="text-base text-gray-700 mb-6 leading-relaxed text-center">
-                  Ativamos a plataforma líder de backup imutável para garantir que o seu negócio nunca pare. Seus dados ficam protegidos numa nuvem independente, à prova de ransomware.
-                </p>
-                
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-6">
-                  <p className="text-sm font-semibold text-green-800 mb-2 text-center">
-                    Para o Risco da Proteção Ilusória:
-                  </p>
-                  <p className="text-sm font-medium text-green-700 mb-1 text-center">
-                    ✓ Recuperação instantânea
-                  </p>
-                  <p className="text-sm font-medium text-green-700 mb-1 text-center">
-                    ✓ Soberania de dados no Brasil
-                  </p>
-                  <p className="text-sm font-medium text-green-700 text-center">
-                    ✓ Economia com licenças
-                  </p>
-                </div>
-
-                <Link href="/backup_saas_estrategico" className="inline-block w-full text-center py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-300 bg-green-600 hover:bg-green-700">
-                  Conhecer a Solução de Backup →
-                </Link>
-              </div>
-
-              {/* Governança de Dados */}
-              <div className="p-6 rounded-lg border-2 border-purple-500 bg-transparent text-center">
-                <div className="text-4xl text-purple-600 mb-4">
-                  <i className="ri-radar-line"></i>
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">Governança de Dados</h3>
-                <p className="text-base text-gray-700 mb-6 leading-relaxed text-center">
-                  Implementamos uma governança ativa para transformar "dados invisíveis" em ativos protegidos. Descobrimos, classificamos e protegemos seus dados sensíveis.
-                </p>
-                
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
-                  <p className="text-sm font-semibold text-purple-800 mb-2 text-center">
-                    Para o Risco da Bomba-Relógio Interna:
-                  </p>
-                  <p className="text-sm font-medium text-purple-700 mb-1 text-center">
-                    ✓ Visibilidade total sobre dados
-                  </p>
-                  <p className="text-sm font-medium text-purple-700 mb-1 text-center">
-                    ✓ Prevenção contra fugas
-                  </p>
-                  <p className="text-sm font-medium text-purple-700 text-center">
-                    ✓ Conformidade com a LGPD
-                  </p>
-                </div>
-
-                <Link href="/governanca_dados_sensiveis" className="inline-block w-full text-center py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-300 bg-purple-600 hover:bg-purple-700">
-                  Conhecer a Solução de Governança →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Final */}
-        <section id="cta-final" data-section="cta-final" className="py-16 md:py-24 bg-gradient-to-br from-primary to-green-600 text-white">
+        {/* Bloco de Confiança */}
+        <section className="py-16 md:py-24 bg-gray-900">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-8">
-              Pronto para Transformar Risco em Resiliência?
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              A confiança de quem opera sem margem para erro.
+            </h1>
+            <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
+              Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
             </h2>
-            <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
-              Não deixe seus dados vulneráveis. A AORKIA ativa as melhores plataformas globais e implementa a proteção estratégica que sua empresa precisa. Converse com nossos especialistas agora.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contato"
-                className="inline-block px-8 py-4 bg-white text-primary rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300"
-              >
-                Inicie uma Conversa Estratégica
-              </Link>
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="inline-block px-8 py-4 border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300"
-              >
-                Voltar ao Topo
-              </button>
+            {/* Carrossel de Logos - Placeholder */}
+            <div className="overflow-hidden relative py-4">
+              <div className="flex animate-marquee-left whitespace-nowrap">
+                <div className="flex items-center justify-around w-full">
+                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/crayon.png" alt="Crayon" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/sgs.png" alt="SGS" width={80} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                </div>
+                {/* Duplicar para efeito de carrossel contínuo */}
+                <div className="flex items-center justify-around w-full">
+                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/crayon.png" alt="Crayon" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/sgs.png" alt="SGS" width={80} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* Seção Plataforma */}
+        <section className="py-20 md:py-28 bg-black">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Uma Plataforma Inteligente para Múltiplas Cargas de Trabalho SaaS</h2>
+              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                Nossa solução de backup e recuperação de dados em nuvem, ponta a ponta e agnóstica a fornecedores, garante que seus dados críticos de aplicações SaaS estejam seguros e rapidamente recuperáveis. Tenha confiança absoluta em sua conformidade e resiliência cibernética com a Keepit.
+              </p>
+            </div>
+            {/* Carrossel de Produtos - Placeholder */}
+            <div className="overflow-hidden relative py-4">
+              <div className="flex animate-marquee-left whitespace-nowrap">
+                <div className="flex items-center justify-around w-full">
+                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                </div>
+                {/* Duplicar para efeito de carrossel contínuo */}
+                <div className="flex items-center justify-around w-full">
+                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seção Escolha Inteligente */}
+        <section className="py-20 md:py-28 bg-gray-900">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-primary text-sm font-semibold uppercase mb-2 block">Faça a escolha inteligente</span>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuvem Independente para Resiliência e Recuperação</h2>
+                <p className="text-lg text-gray-300 mb-6">
+                  Embora você possa acreditar que seu provedor de SaaS oferece backup e recuperação completos, essa responsabilidade é, na verdade, exclusivamente sua. O modelo de responsabilidade compartilhada deixa isso claro.
+                </p>
+                <p className="text-lg text-gray-300 mb-8">
+                  Gerencie a resiliência e mantenha o controle estratégico diante de tecnologias emergentes e do avanço da inteligência artificial. Prepare sua proteção de dados para o futuro e garanta conformidade rigorosa com a arquitetura de nuvem independente da Keepit.
+                </p>
+                <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                  Entenda a Diferença
+                </Link>
+              </div>
+              <div>
+                {/* Imagem ou ilustração */}
+                <Image src="/image/keepit_intelligent_choice.png" alt="Escolha Inteligente Keepit" width={600} height={400} className="rounded-lg shadow-lg" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seção Seus Dados. Hoje. Amanhã. */}
+        <section className="py-20 md:py-28 bg-black">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Seus Dados. Hoje. Amanhã.</h2>
+              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                Garanta a continuidade do seu negócio com a proteção mais robusta e confiável do mercado.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center p-6 bg-gray-900/50 rounded-lg border border-gray-700">
+                <div className="flex items-center justify-center w-16 h-16 bg-primary/10 border border-primary/30 rounded-full mx-auto mb-6">
+                  <ShieldAlert className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Resiliência Contra Perda de Dados</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Proteção imutável para recuperação rápida e confiável. Mantenha o controle absoluto dos seus dados e elimine riscos operacionais, mesmo ao adotar novas tecnologias e enfrentar ameaças ransomware.
+                </p>
+              </div>
+              <div className="text-center p-6 bg-gray-900/50 rounded-lg border border-gray-700">
+                <div className="flex items-center justify-center w-16 h-16 bg-primary/10 border border-primary/30 rounded-full mx-auto mb-6">
+                  <Cloud className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Backup em Nuvem Independente</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Certificado de ponta a ponta, sem sub-processadores. A arquitetura air-gapped da Keepit garante isolamento total, recuperação resiliente e segura, livre de vulnerabilidades de fornecedores.
+                </p>
+              </div>
+              <div className="text-center p-6 bg-gray-900/50 rounded-lg border border-gray-700">
+                <div className="flex items-center justify-center w-16 h-16 bg-primary/10 border border-primary/30 rounded-full mx-auto mb-6">
+                  <Scale className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Conformidade Fácil e Confiável</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Certificações ISO 27001, ISAE 3402. Mantenha-se em conformidade com LGPD, GDPR, HIPAA, NIS2, NIST e outras regulamentações globais sem esforço adicional ou complexidade operacional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seção CTA Final */}
+        <section className="py-20 md:py-32 text-center bg-gradient-to-br from-primary to-green-600">
+            <div className="container mx-auto px-4 max-w-4xl">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Não Deixe o Risco Definir o Seu Futuro.</h2>
+                <p className="text-lg md:text-xl text-white mb-10">
+                    A AORKIA, parceira oficial da Keepit, oferece a única solução de Backup SaaS Estratégico que realmente protege seu negócio. Converse com nossos especialistas e transforme vulnerabilidade em vantagem competitiva.
+                </p>
+                <Link href="/contato" className="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-10 rounded-lg transition duration-300 text-xl">
+                    Agende Sua Análise de Resiliência
+                </Link>
+            </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="bg-gray-950 py-12">
+          <div className="container mx-auto px-4 text-gray-400">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <h3 className="text-white text-lg font-bold mb-4">AORKIA</h3>
+                <p className="text-sm mb-2">Resiliência Cibernética de classe mundial. Parceiro oficial Keepit no Brasil.</p>
+                <p className="text-xs">Direção estratégica: Synapse B2B</p>
+              </div>
+              <div>
+                <h3 className="text-white text-lg font-bold mb-4">Navegação</h3>
+                <ul>
+                  <li className="mb-2"><Link href="/plataforma" className="hover:text-primary transition-colors">Plataforma</Link></li>
+                  <li className="mb-2"><Link href="/solucao" className="hover:text-primary transition-colors">Solução</Link></li>
+                  <li className="mb-2"><Link href="/contato" className="hover:text-primary transition-colors">Contato</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-white text-lg font-bold mb-4">Legal</h3>
+                <ul>
+                  <li className="mb-2"><Link href="/termos-de-uso" className="hover:text-primary transition-colors">Termos de Uso</Link></li>
+                  <li className="mb-2"><Link href="/privacidade" className="hover:text-primary transition-colors">Privacidade</Link></li>
+                  <li className="mb-2"><Link href="/conformidade" className="hover:text-primary transition-colors">Conformidade</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-white text-lg font-bold mb-4">Contato</h3>
+                <p className="text-sm">[Informações de Contato]</p>
+              </div>
+            </div>
+            <div className="text-center text-xs mt-8 pt-8 border-t border-gray-800">
+              © 2025 AORKIA. Todos os direitos reservados.
+              Desenvolvido por Synapse B2B | Plataformas Digitais arquitetadas em Engenharia de Receita.
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );
 }
-
