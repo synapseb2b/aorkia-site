@@ -163,32 +163,29 @@ export default function Blog() {
         </section>
 
         {/* Seção CTA */}
-        <section className="relative w-full py-24 bg-primary">
-          <div className="container mx-auto max-w-6xl px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
-              Quer Mais Insights?
-            </h2>
-            <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
-              Assine nossa newsletter e receba conteúdos exclusivos sobre tecnologia, segurança e inovação.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/contato"
-                className="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                Fale com um Especialista
-              </Link>
-              <Link
-                href="/backup_saas_estrategico"
-                className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors"
-              >
-                Conheça Nossas Soluções
-              </Link>
+        <section className="py-20 md:py-32 text-center bg-gradient-to-br from-primary to-green-600">
+            <div className="container mx-auto px-4 max-w-4xl">
+                <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">
+                    Quer Mais Insights?
+                </h2>
+                <p className="text-lg md:text-xl text-gray-900 mb-10 max-w-3xl mx-auto">
+                    Assine nossa newsletter e receba conteúdos exclusivos sobre tecnologia, segurança e inovação.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <Link 
+                        href="/contato" 
+                        className="bg-black text-primary hover:bg-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                        Fale com um Especialista
+                    </Link>
+                    <Link 
+                        href="/backup_saas_estrategico" 
+                        className="bg-transparent border-2 border-black text-black font-bold py-3 px-8 rounded-lg hover:bg-black hover:text-primary transition duration-300 text-lg">
+                        Conheça Nossas Soluções
+                    </Link>
+                </div>
             </div>
-          </div>
         </section>
       </main>
     </>
   );
 }
-
