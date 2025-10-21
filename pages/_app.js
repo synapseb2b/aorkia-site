@@ -121,8 +121,8 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon.png" />
         <link rel="icon" href="/favicon/favicon.ico" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
@@ -175,8 +175,8 @@ function MyApp({ Component, pageProps }) {
             <Image
               src="/logo/logo_aorkia.png"
               alt="AORKIA"
-              width={180}
-              height={70}
+              width={70}
+              height={40}
               quality={100}
               priority
             />

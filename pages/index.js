@@ -77,15 +77,17 @@ export default function Home() {
         <SectionDivider />
 
         {/* Bloco de Confiança */}
-        <section className="py-16 md:py-24 bg-gray-900">
-            <div className="container mx-auto px-4 text-center">
+        <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4">
                 <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
-                    <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                        A confiança de quem opera sem margem para erro.
-                    </h1>
-                    <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
-                        Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
-                    </h2>
+                    <div className="text-center">
+                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                          A confiança de quem opera sem margem para erro.
+                        </h1>
+                        <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
+                          Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
+                        </h2>
+                    </div>
                     <div className="overflow-hidden relative py-4">
                         <div className="flex animate-marquee-left whitespace-nowrap">
                             <div className="flex items-center justify-around w-full">
@@ -115,7 +117,7 @@ export default function Home() {
         <SectionDivider />
 
         {/* Seção Plataforma */}
-        <section className="py-20 md:py-28 bg-black">
+        <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
               <div className="text-center mb-16">
