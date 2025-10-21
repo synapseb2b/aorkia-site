@@ -71,7 +71,7 @@ a img {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: hsla(165, 100%, 47%, 0.07); /* Usa a cor primária com 7% de opacidade */
+    background-color: hsla(165, 100%, 47%, 0.15); /* Opacidade aumentada para 15% para maior brilho */
     z-index: 0;
     border-radius: 0.5rem; /* Bordas arredondadas */
 }
