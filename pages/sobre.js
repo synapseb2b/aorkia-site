@@ -49,10 +49,10 @@ export default function Sobre() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-primary">
                     Nós existimos para que o seu negócio nunca pare.
                 </h1>
-                <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
                     Em um mundo onde a continuidade digital é inegociável, a AORKIA nasceu com um propósito claro: ser a linha de frente da Resiliência Cibernética para dados SaaS no Brasil.
                 </h2>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                 Conheça o Backup Estratégico
               </Link>
@@ -144,3 +144,4 @@ export default function Sobre() {
     </>
   );
 }
+

@@ -66,7 +66,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-primary mb-4">Navegação</h3>
             <ul className="space-y-3">
               <li><Link href="/" className="text-gray-300 hover:text-primary transition-colors">Home</Link></li>
-              <li><Link href="/backup_saas_estrategico" className="text-gray-300 hover:text-primary transition-colors">Backup SaaS Estratégico</Link></li>
+              <li><Link href="/backup-saas-estrategico" className="text-gray-300 hover:text-primary transition-colors">Backup SaaS Estratégico</Link></li>
               <li><Link href="/sobre" className="text-gray-300 hover:text-primary transition-colors">Sobre</Link></li>
               <li><Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">Blog</Link></li>
               <li><Link href="/contato" className="text-gray-300 hover:text-primary transition-colors">Contato</Link></li>
@@ -143,7 +143,11 @@ function MyApp({ Component, pageProps }) {
             observer.observe(section);
         });
 
-        return () => sections.forEach(section => observer.unobserve(section));
+        return () => sections.forEach(section => {
+          if (section) {
+            observer.unobserve(section)
+          }
+        });
     }, [router.pathname]); // Re-executa ao mudar de rota
 
   useEffect(() => {
@@ -229,16 +233,16 @@ function MyApp({ Component, pageProps }) {
             <Image
               src="/logo/logo_aorkia.png"
               alt="AORKIA"
-              width={120} 
+              width={140} 
               height={50}
               quality={100}
               priority
-              className="md:w-36"
+              className="md:w-32"
             />
           </Link>
           <nav className="hidden md:flex items-center space-x-2">
              {['Home', 'Backup SaaS Estratégico', 'Sobre', 'Blog', 'Contato'].map((item) => {
-                const path = `/${item.toLowerCase().replace(/\s+/g, '-').replace('home', '')}`;
+                const path = `/${item.toLowerCase().replace(/backup saas estratégico/g, 'backup-saas-estrategico').replace(/\s+/g, '-').replace('home', '')}`;
                 return (
                     <Link key={item} href={path} className={`relative px-4 py-2 rounded-lg font-medium text-lg transition-colors duration-300 ${ isActiveRoute(path) ? 'text-primary' : 'text-text-color hover:text-primary'}`}>
                         <span>{item}</span>
@@ -253,7 +257,7 @@ function MyApp({ Component, pageProps }) {
           
            {/* Mobile Menu Button */}
            <button
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Abrir menu"
             className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors group"
           >
@@ -282,7 +286,7 @@ function MyApp({ Component, pageProps }) {
           </div>
           <nav className="flex flex-col items-center justify-center h-full -mt-20 text-2xl space-y-8">
             <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
-            <Link href="/backup_saas_estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
+            <Link href="/backup-saas-estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
             <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
             <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
             <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
