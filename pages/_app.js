@@ -186,8 +186,8 @@ function MyApp({ Component, pageProps }) {
             <Image
               src="/logo/logo_aorkia.png"
               alt="AORKIA"
-              width={80}
-              height={50}
+              width={90}
+              height={40}
               quality={100}
               priority
             />
