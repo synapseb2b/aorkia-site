@@ -71,7 +71,7 @@ a img {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: hsla(165, 100%, 47%, 0.25); /* Opacidade aumentada para 25% para maior brilho */
+    background-color: #00F0B5; /* Verde Ciano Principal */
     z-index: 0;
     border-radius: 0.5rem; /* Bordas arredondadas */
 }
