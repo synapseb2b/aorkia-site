@@ -7,6 +7,7 @@
   --text-color: #FFFFFF; /* Branco */
 }
 
+/* Global body styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,7 +17,7 @@ body {
   color: var(--text-color);
 }
 
-/* Custom animations */
+/* Custom animations not handled by Tailwind */
 @keyframes pulse-fast {
   0%, 100% {
     transform: scale(1);
@@ -45,7 +46,7 @@ body {
   animation: fade-in 1s ease-in-out;
 }
 
-/* Utility classes for responsive images */
+/* Utility classes */
 .image-full-width {
   width: 100%;
   height: auto;
@@ -57,41 +58,8 @@ body {
   object-fit: cover;
 }
 
-/* Ensure images within links are not styled with borders */
+/* Reset default styles */
 a img {
   border: none;
 }
 
-/* Example of how to use the new colors */
-.header {
-  background-color: var(--background-light);
-  padding: 1rem;
-  border-bottom: 2px solid var(--primary-color);
-}
-
-.button-primary {
-  background-color: var(--primary-color);
-  color: var(--background-dark);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.button-primary:hover {
-  opacity: 0.9;
-}
-
-h1, h2, h3 {
-  color: var(--primary-color);
-}
-
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
