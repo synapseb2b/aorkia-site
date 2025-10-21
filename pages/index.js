@@ -50,7 +50,7 @@ export default function Home() {
           
           <div className="relative z-20 px-4 max-w-5xl mx-auto animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-primary">
-              Resiliência não é negociável. Continuidade, também não.
+              Resiliência é Inegociável. Continuidade, também.
             </h1>
             <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
               Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós garantimos que seu negócio nunca pare: backup imutável, recuperação instantânea e conformidade garantida.
