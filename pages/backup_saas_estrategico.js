@@ -90,6 +90,15 @@ const faqData = [
   }
 ];
 
+// Componente Divisor de Seção
+const SectionDivider = () => (
+  <div className="relative w-full h-12 flex items-center justify-center my-12">
+    <div className="absolute w-full h-px bg-primary/20"></div>
+    <div className="absolute w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-fast"></div>
+  </div>
+);
+
+
 export default function BackupSaaSEstrategico() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
@@ -188,7 +197,7 @@ export default function BackupSaaSEstrategico() {
         />
       </div>
 
-      <main className="min-h-screen bg-black text-white relative">
+      <main className="min-h-screen bg-black text-white relative text-center">
         {/* Hero Section */}
         <section id="hero" data-section="hero" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
           <video
@@ -222,6 +231,8 @@ export default function BackupSaaSEstrategico() {
           </div>
         </section>
         
+        <SectionDivider />
+
         {/* O Risco Real por trás da Proteção Nativa (REIMAGINADO) */}
         <section id="risco-real" data-section="risco-real" className="py-20 md:py-28 bg-black relative overflow-hidden">
             <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'url(/image/backup_vertical.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
@@ -235,8 +246,8 @@ export default function BackupSaaSEstrategico() {
 
                 <div className="grid lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
                     {/* Coluna do Risco */}
-                    <div className="bg-gray-900/50 border border-red-500/30 rounded-2xl p-8 flex flex-col shadow-lg shadow-red-500/10">
-                        <div className="flex items-center mb-6">
+                    <div className="bg-gray-900/50 border border-white/30 rounded-2xl p-8 flex flex-col shadow-lg shadow-red-500/10 text-center">
+                        <div className="flex items-center justify-center mb-6">
                             <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mr-4">
                                 <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                             </div>
@@ -251,8 +262,8 @@ export default function BackupSaaSEstrategico() {
                     </div>
 
                     {/* Coluna da Solução */}
-                    <div className="bg-gray-900/50 border border-primary/30 rounded-2xl p-8 flex flex-col shadow-lg shadow-primary/10">
-                        <div className="flex items-center mb-6">
+                    <div className="bg-gray-900/50 border border-primary/30 rounded-2xl p-8 flex flex-col shadow-lg shadow-primary/10 text-center">
+                        <div className="flex items-center justify-center mb-6">
                             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
                                 <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             </div>
@@ -269,6 +280,7 @@ export default function BackupSaaSEstrategico() {
             </div>
         </section>
 
+        <SectionDivider />
 
         {/* A Responsabilidade é Sua. A Microsoft Confirma. */}
         <section id="responsabilidade" data-section="responsabilidade" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
@@ -283,11 +295,8 @@ export default function BackupSaaSEstrategico() {
           />
           
           <div className="container mx-auto px-4 max-w-4xl relative z-10">
-            <div className="relative bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden border border-primary/20">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/10 rounded-full translate-y-12 -translate-x-12 blur-2xl"></div>
-              
-              <div className="relative z-10 text-center">
+            <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+              <div className="text-center">
                 <div className="mb-6">
                   <svg className="w-16 h-16 mx-auto text-primary/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 </div>
@@ -305,6 +314,8 @@ export default function BackupSaaSEstrategico() {
           </div>
         </section>
 
+        <SectionDivider />
+
         {/* Não é só um Backup. É a Resiliência que salva o seu negócio. (REIMAGINADO) */}
         <section id="resiliencia" data-section="resiliencia" className="py-20 md:py-28 bg-black relative overflow-hidden">
             <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'url(/image/backup_vertical.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
@@ -320,7 +331,7 @@ export default function BackupSaaSEstrategico() {
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-black to-gray-900/20 rounded-3xl blur-xl"></div>
                     
                     <div className="relative z-10 p-8 md:p-12 grid md:grid-cols-5 gap-8 items-center">
-                        <div className="md:col-span-3 space-y-6">
+                        <div className="md:col-span-3 space-y-6 text-center">
                             <div className="bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
                                 <p className="text-lg text-gray-300 leading-relaxed">
                                     Simplesmente "salvar uma cópia" é uma tática do passado. Na nuvem, onde ameaças se movem na velocidade da luz, a única defesa eficaz é uma <strong className="text-primary">estratégia de resiliência ativa</strong>.
@@ -346,15 +357,19 @@ export default function BackupSaaSEstrategico() {
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="m12 7.1 2.9 2.9-1.4 1.4-1.5-1.5-1.5 1.5-1.4-1.4zM12 12l2.9 2.9-1.4 1.4-1.5-1.5-1.5 1.5-1.4-1.4z"/></svg>
                                 </div>
                                 <h3 className="text-2xl font-bold mb-2">Continuidade Garantida</h3>
-                                <p className="text-lg leading-relaxed text-gray-300">
-                                    Recuperação instantânea. Conformidade contínua. Operação ininterrupta.
-                                </p>
+                                <div className="text-lg leading-relaxed text-gray-300">
+                                    <p>Recuperação instantânea.</p>
+                                    <p>Conformidade contínua.</p>
+                                    <p>Operação ininterrupta.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <SectionDivider />
 
         {/* Os Pilares da Proteção Real */}
         <section id="pilares" data-section="pilares" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
@@ -445,6 +460,8 @@ export default function BackupSaaSEstrategico() {
             </div>
           </div>
         </section>
+        
+        <SectionDivider />
 
         {/* Cobertura Completa do seu Ecossistema SaaS */}
         <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-black relative overflow-hidden">
@@ -465,34 +482,36 @@ export default function BackupSaaSEstrategico() {
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-4xl mx-auto items-center">
               <div className="flex flex-col items-center">
-                <Image src="/icon/microsoft_365.png" alt="Microsoft 365" width={60} height={60} className="mb-2" />
+                <Image src="/icon/m365.png" alt="Microsoft 365" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Microsoft 365</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/gcp.png" alt="Google Workspace" width={60} height={60} className="mb-2" />
+                <Image src="/icon/gcp.png" alt="Google Workspace" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Google Workspace</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/salesforce.png" alt="Salesforce" width={60} height={60} className="mb-2" />
+                <Image src="/icon/salesforce.png" alt="Salesforce" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Salesforce</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/zendesk.png" alt="Zendesk" width={60} height={60} className="mb-2" />
+                <Image src="/icon/zendesk.png" alt="Zendesk" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Zendesk</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/dynamics_365.png" alt="Dynamics 365" width={60} height={60} className="mb-2" />
+                <Image src="/icon/dynamics.png" alt="Dynamics 365" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Dynamics 365</span>
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={60} height={60} className="mb-2" />
+                <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 <span className="text-sm font-medium text-gray-300 text-center">Azure DevOps</span>
               </div>
             </div>
           </div>
         </section>
+        
+        <SectionDivider />
 
-        {/* Uma Solução. Respostas para Cada Desafio Estratégico. */}
+        {/* Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados. */}
         <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
           <div 
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
@@ -506,66 +525,68 @@ export default function BackupSaaSEstrategico() {
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
-              Uma Solução. Respostas para Cada Desafio Estratégico.
+              Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados.
             </h2>
             
             <div className="max-w-4xl mx-auto space-y-8">
               {/* Desafio 1 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700">
-                <div className="flex items-start space-x-4">
+              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                <div className="flex items-center justify-center space-x-4 mb-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center">
                     <i className="ri-error-warning-line text-2xl text-red-500"></i>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2">Ransomware atingiu nossa infraestrutura SaaS</h3>
-                    <p className="text-gray-400 mb-4">Como recuperar rapidamente sem pagar resgate?</p>
-                    <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                      <p className="text-gray-300 font-medium">
-                        <strong>Solução Keepit:</strong> Backup imutável com Air Gap garante que seus dados estejam protegidos em nuvem independente. Recuperação completa em horas, não semanas.
-                      </p>
-                    </div>
+                  <h3 className="text-xl font-bold text-white">Ransomware atingiu nossa infraestrutura SaaS</h3>
+                </div>
+                <div className="flex-1">
+                  <p className="text-gray-400 mb-4">Como recuperar rapidamente sem pagar resgate?</p>
+                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                    <p className="text-gray-300 font-medium">
+                      <strong>Solução Keepit:</strong> Backup imutável com Air Gap garante que seus dados estejam protegidos em nuvem independente. Recuperação completa em horas, não semanas.
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Desafio 2 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700">
-                <div className="flex items-start space-x-4">
+              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                <div className="flex items-center justify-center space-x-4 mb-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center">
                     <i className="ri-user-unfollow-line text-2xl text-orange-500"></i>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2">Funcionário deletou dados críticos por engano</h3>
-                    <p className="text-gray-400 mb-4">Como recuperar informações específicas sem afetar o restante?</p>
-                    <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                      <p className="text-gray-300 font-medium">
-                        <strong>Solução Keepit:</strong> Restauração granular permite recuperar desde um único e-mail até contas completas em minutos, com busca inteligente.
-                      </p>
-                    </div>
+                  <h3 className="text-xl font-bold text-white">Funcionário deletou dados críticos por engano</h3>
+                </div>
+                <div className="flex-1">
+                  <p className="text-gray-400 mb-4">Como recuperar informações específicas sem afetar o restante?</p>
+                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                    <p className="text-gray-300 font-medium">
+                      <strong>Solução Keepit:</strong> Restauração granular permite recuperar desde um único e-mail até contas completas em minutos, com busca inteligente.
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Desafio 3 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700">
-                <div className="flex items-start space-x-4">
+              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                <div className="flex items-center justify-center space-x-4 mb-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center">
                     <i className="ri-shield-cross-line text-2xl text-purple-500"></i>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2">Auditoria LGPD está chegando</h3>
-                    <p className="text-gray-400 mb-4">Como comprovar conformidade e controle de dados?</p>
-                    <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                      <p className="text-gray-300 font-medium">
-                        <strong>Solução Keepit:</strong> Dados no Brasil, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 garantem conformidade total.
-                      </p>
-                    </div>
+                   <h3 className="text-xl font-bold text-white">Auditoria LGPD está chegando</h3>
+                </div>
+                <div className="flex-1">
+                  <p className="text-gray-400 mb-4">Como comprovar conformidade e controle de dados?</p>
+                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                    <p className="text-gray-300 font-medium">
+                      <strong>Solução Keepit:</strong> Dados no Brasil, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 garantem conformidade total.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* Confiança Validada pelo Mercado Global */}
         <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-black relative overflow-hidden">
@@ -589,16 +610,16 @@ export default function BackupSaaSEstrategico() {
               <h3 className="text-xl font-semibold text-center text-gray-400 mb-8">Clientes Globais</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
               </div>
             </div>
@@ -608,16 +629,16 @@ export default function BackupSaaSEstrategico() {
               <h3 className="text-xl font-semibold text-center text-gray-400 mb-8">Clientes Nacionais</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300" />
+                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
               </div>
             </div>
@@ -629,6 +650,8 @@ export default function BackupSaaSEstrategico() {
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* O que os Clientes que ativaram Keepit dizem? */}
         <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
@@ -693,6 +716,8 @@ export default function BackupSaaSEstrategico() {
           </div>
         </section>
 
+        <SectionDivider />
+
         {/* Certificações e Recursos */}
         <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-black relative overflow-hidden">
           <div 
@@ -706,11 +731,8 @@ export default function BackupSaaSEstrategico() {
           />
           
           <div className="container mx-auto px-4 max-w-4xl relative z-10">
-            <div className="relative bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden border border-primary/20">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/10 rounded-full translate-y-12 -translate-x-12 blur-2xl"></div>
-              
-              <div className="relative z-10 text-center">
+            <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+              <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
                   Certificações e Recursos
                 </h3>
@@ -741,6 +763,8 @@ export default function BackupSaaSEstrategico() {
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* O que o Mercado Diz: Análise do Gartner Peer Insights */}
         <section id="gartner" data-section="gartner" className="py-16 md:py-24 bg-gray-900 relative">
@@ -788,6 +812,8 @@ export default function BackupSaaSEstrategico() {
             </div>
           </div>
         </section>
+        
+        <SectionDivider />
 
         {/* FAQ Section */}
         <section id="faq" data-section="faq" className="py-16 md:py-24 bg-black relative overflow-hidden">
@@ -808,7 +834,7 @@ export default function BackupSaaSEstrategico() {
             
             <div className="max-w-4xl mx-auto">
               {faqsToShow.map((item, index) => (
-                <div key={index} className="mb-4">
+                <div key={index} className="mb-4 text-left">
                   <div className="bg-gray-900/50 rounded-lg shadow-md border border-gray-700 overflow-hidden">
                     <button
                       onClick={() => toggleFaqItem(index)}
@@ -840,7 +866,7 @@ export default function BackupSaaSEstrategico() {
                     onClick={toggleShowAllFaq}
                     className="bg-gray-900/50 rounded-lg shadow-md border border-gray-700 overflow-hidden w-full hover:bg-gray-800/50 transition-colors duration-200"
                   >
-                    <div className="px-6 py-4 flex items-center justify-between">
+                    <div className="px-6 py-4 flex items-center justify-between text-left">
                       <span className="text-lg font-semibold text-white">
                         Outras Perguntas
                       </span>
@@ -897,3 +923,4 @@ export default function BackupSaaSEstrategico() {
     </>
   );
 }
+

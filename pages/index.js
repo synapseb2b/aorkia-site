@@ -4,6 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Cloud, FileText, Lock, ShieldAlert, CheckCircle, XCircle, Globe, Clock, Server, Scale } from 'lucide-react';
 
+// Componente Divisor de Seção
+const SectionDivider = () => (
+  <div className="relative w-full h-12 flex items-center justify-center my-12">
+    <div className="absolute w-full h-px bg-primary/20"></div>
+    <div className="absolute w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-fast"></div>
+  </div>
+);
+
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -35,7 +43,7 @@ export default function Home() {
         />
       </div>
 
-      <main className="bg-black text-white">
+      <main className="bg-black text-white text-center">
         {/* Seção Hero */}
         <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
           <video
@@ -56,7 +64,7 @@ export default function Home() {
               Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós garantimos que seu negócio nunca pare: backup imutável, recuperação instantânea e conformidade garantida.
             </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                 Conheça o Backup Estratégico
               </Link>
               <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-lg">
@@ -65,6 +73,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* Bloco de Confiança */}
         <section className="py-16 md:py-24 bg-gray-900">
@@ -75,32 +85,32 @@ export default function Home() {
             <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
               Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
             </h2>
-            {/* Carrossel de Logos - Placeholder */}
             <div className="overflow-hidden relative py-4">
               <div className="flex animate-marquee-left whitespace-nowrap">
                 <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
-                {/* Duplicar para efeito de carrossel contínuo */}
                 <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* Seção Plataforma */}
         <section className="py-20 md:py-28 bg-black">
@@ -111,59 +121,62 @@ export default function Home() {
                 Nossa solução de backup e recuperação de dados em nuvem, ponta a ponta e agnóstica a fornecedores, garante que seus dados críticos de aplicações SaaS estejam seguros e rapidamente recuperáveis. Tenha confiança absoluta em sua conformidade e resiliência cibernética com a Keepit.
               </p>
             </div>
-            {/* Carrossel de Produtos - Placeholder */}
             <div className="overflow-hidden relative py-4">
               <div className="flex animate-marquee-left whitespace-nowrap">
                 <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
-                {/* Duplicar para efeito de carrossel contínuo */}
                 <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
+                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <SectionDivider />
+
         {/* Seção Escolha Inteligente */}
         <section className="py-20 md:py-28 bg-gray-900">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-primary text-sm font-semibold uppercase mb-2 block">Faça a escolha inteligente</span>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuvem Independente para Resiliência e Recuperação</h2>
-                <p className="text-lg text-gray-300 mb-6">
-                  Embora você possa acreditar que seu provedor de SaaS oferece backup e recuperação completos, essa responsabilidade é, na verdade, exclusivamente sua. O modelo de responsabilidade compartilhada deixa isso claro.
-                </p>
-                <p className="text-lg text-gray-300 mb-8">
-                  Gerencie a resiliência e mantenha o controle estratégico diante de tecnologias emergentes e do avanço da inteligência artificial. Prepare sua proteção de dados para o futuro e garanta conformidade rigorosa com a arquitetura de nuvem independente da Keepit.
-                </p>
-                <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-                  Entenda a Diferença
-                </Link>
-              </div>
-              <div>
-                {/* Imagem ou ilustração */}
-                <Image src="/image/keepit_intelligent_choice.png" alt="Escolha Inteligente Keepit" width={600} height={400} className="rounded-lg shadow-lg" />
+            <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+              <div className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
+                <div>
+                  <span className="text-primary text-sm font-semibold uppercase mb-2 block">Faça a escolha inteligente</span>
+                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuvem Independente para Resiliência e Recuperação</h2>
+                  <p className="text-lg text-gray-300 mb-6">
+                    Embora você possa acreditar que seu provedor de SaaS oferece backup e recuperação completos, essa responsabilidade é, na verdade, exclusivamente sua. O modelo de responsabilidade compartilhada deixa isso claro.
+                  </p>
+                  <p className="text-lg text-gray-300 mb-8">
+                    Gerencie a resiliência e mantenha o controle estratégico diante de tecnologias emergentes e do avanço da inteligência artificial. Prepare sua proteção de dados para o futuro e garanta conformidade rigorosa com a arquitetura de nuvem independente da Keepit.
+                  </p>
+                  <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                    Entenda a Diferença
+                  </Link>
+                </div>
+                <div className="flex justify-center">
+                  <Image src="/image/keepit_intelligent_choice.png" alt="Escolha Inteligente Keepit" width={600} height={400} className="rounded-lg shadow-lg shadow-primary/20" />
+                </div>
               </div>
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* Seção Seus Dados. Hoje. Amanhã. */}
         <section className="py-20 md:py-28 bg-black">
@@ -208,53 +221,25 @@ export default function Home() {
 
         {/* Seção CTA Final */}
         <section className="py-20 md:py-32 text-center bg-gradient-to-br from-primary to-green-600">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Não Deixe o Risco Definir o Seu Futuro.</h2>
-                <p className="text-lg md:text-xl text-white mb-10">
-                    A AORKIA, parceira oficial da Keepit, oferece a única solução de Backup SaaS Estratégico que realmente protege seu negócio. Converse com nossos especialistas e transforme vulnerabilidade em vantagem competitiva.
-                </p>
-                <Link href="/contato" className="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-10 rounded-lg transition duration-300 text-xl">
-                    Agende Sua Análise de Resiliência
-                </Link>
-            </div>
+          <div className="container mx-auto px-4 max-w-4xl">
+              <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">Não Deixe o Risco Definir o Seu Futuro.</h2>
+              <p className="text-lg md:text-xl text-gray-900 mb-10">
+                  A AORKIA, parceira oficial da Keepit, oferece a única solução de Backup SaaS Estratégico que realmente protege seu negócio. Converse com nossos especialistas e transforme vulnerabilidade em vantagem competitiva.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                  <Link href="/contato" className="bg-black text-primary hover:bg-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                      Falar com Especialista
+                  </Link>
+                  <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="bg-transparent border-2 border-black text-black font-bold py-3 px-8 rounded-lg hover:bg-black hover:text-primary transition duration-300 text-lg">
+                      Voltar ao Topo
+                  </button>
+              </div>
+          </div>
         </section>
 
-        {/* FOOTER */}
-        <footer className="bg-gray-950 py-12">
-          <div className="container mx-auto px-4 text-gray-400">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-white text-lg font-bold mb-4">AORKIA</h3>
-                <p className="text-sm mb-2">Resiliência Cibernética de classe mundial. Parceiro oficial Keepit no Brasil.</p>
-                <p className="text-xs">Direção estratégica: Synapse B2B</p>
-              </div>
-              <div>
-                <h3 className="text-white text-lg font-bold mb-4">Navegação</h3>
-                <ul>
-                  <li className="mb-2"><Link href="/plataforma" className="hover:text-primary transition-colors">Plataforma</Link></li>
-                  <li className="mb-2"><Link href="/solucao" className="hover:text-primary transition-colors">Solução</Link></li>
-                  <li className="mb-2"><Link href="/contato" className="hover:text-primary transition-colors">Contato</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-white text-lg font-bold mb-4">Legal</h3>
-                <ul>
-                  <li className="mb-2"><Link href="/termos-de-uso" className="hover:text-primary transition-colors">Termos de Uso</Link></li>
-                  <li className="mb-2"><Link href="/privacidade" className="hover:text-primary transition-colors">Privacidade</Link></li>
-                  <li className="mb-2"><Link href="/conformidade" className="hover:text-primary transition-colors">Conformidade</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-white text-lg font-bold mb-4">Contato</h3>
-                <p className="text-sm">[Informações de Contato]</p>
-              </div>
-            </div>
-            <div className="text-center text-xs mt-8 pt-8 border-t border-gray-800">
-              © 2025 AORKIA. Todos os direitos reservados.
-            </div>
-          </div>
-        </footer>
+        {/* O Footer será renderizado pelo _app.js */}
       </main>
     </>
   );
 }
+
