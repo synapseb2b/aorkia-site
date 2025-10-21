@@ -245,7 +245,7 @@ function MyApp({ Component, pageProps }) {
           <Link href="/" className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
             <div className="logo-container h-20 relative">
               <Image
-                src="/logo/logo_logo_symbol_aorkia.png"
+                src="/logo/logo_symbol_aorkia.png"
                 alt="AORKIA"
                 className="h-20 w-auto"
                 width={200}

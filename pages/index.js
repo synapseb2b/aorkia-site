@@ -84,8 +84,6 @@ export default function Home() {
                   <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/crayon.png" alt="Crayon" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/sgs.png" alt="SGS" width={80} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                 </div>
@@ -96,8 +94,6 @@ export default function Home() {
                   <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/crayon.png" alt="Crayon" width={100} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
-                  <Image src="/icon/sgs.png" alt="SGS" width={80} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                   <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-70 hover:opacity-100 transition-opacity" />
                 </div>
