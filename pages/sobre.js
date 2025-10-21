@@ -34,26 +34,33 @@ export default function Sobre() {
 
       <main className="bg-black text-white text-center">
         {/* Seção Hero */}
-        <section className="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
-            <div 
-                className="absolute inset-0 z-0 opacity-20"
-                style={{
-                backgroundImage: 'url(/image/sobre_hero.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-                }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
+        <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-30"
+            src="/video/video_hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          ></video>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
           
-            <div className="relative z-20 px-4 max-w-4xl mx-auto animate-fade-in">
-                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-primary">
+          <div className="relative z-20 px-4 max-w-5xl mx-auto animate-fade-in">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-primary">
                     Nós existimos para que o seu negócio nunca pare.
                 </h1>
                 <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                     Em um mundo onde a continuidade digital é inegociável, a AORKIA nasceu com um propósito claro: ser a linha de frente da Resiliência Cibernética para dados SaaS no Brasil.
                 </h2>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                Conheça o Backup Estratégico
+              </Link>
+              <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-lg">
+                Fale com um Especialista
+              </Link>
             </div>
+          </div>
         </section>
 
         <SectionDivider />

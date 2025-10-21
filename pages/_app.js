@@ -4,7 +4,21 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import '../styles/style.css';
-import { Mail, Phone, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MessageCircle, ArrowUp } from 'lucide-react';
+
+// Componente "Aurora"
+const AuroraEffect = () => {
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+    return <div className="aurora-effect"></div>;
+};
+
 
 // Componente Botão WhatsApp Flutuante
 const WhatsAppButton = () => (
@@ -13,18 +27,25 @@ const WhatsAppButton = () => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Fale Conosco pelo WhatsApp"
-    className="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all duration-300 z-50 transform hover:scale-110"
+    className="fixed bottom-6 right-6 bg-primary text-black w-16 h-16 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all duration-300 z-50 transform hover:scale-110 animate-pulse-slow"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-      <path d="M16.634 14.256c-.227-.114-.472-.184-.728-.21l-.01-.003c-.93-.16-1.846-.5-2.618-1.028-.24-.163-.44-.378-.58-.633-.532-.976-.838-2.127-.838-3.374s.306-2.398.838-3.374c.14-.255.34-.47.58-.633.772-.529-1.688-.868-2.618-1.028l.01-.003c.256-.026.501-.096.728-.21a1.25 1.25 0 0 0 .61-1.313c-.156-.883-.717-1.638-1.488-2.01a1.24 1.24 0 0 0-1.072-.05L12.5 1.503a1.248 1.248 0 0 0-1.001 0l-2.254.902a1.24 1.24 0 0 0-1.072.05c-.77.372-1.332-1.127-1.488-2.01a1.25 1.25 0 0 0 .61 1.313c.227.114.472.184.728.21l.01.003c.93.16 1.846.5 2.618 1.028.24.163.44.378.58.633.532.976.838 2.127.838 3.374s-.306 2.398-.838 3.374c-.14.255-.34.47-.58.633-.772.529-1.688-.868-2.618-1.028l-.01.003c-.256-.026-.501-.096-.728-.21a1.25 1.25 0 0 0-.61 1.313c.156.883.717 1.638 1.488 2.01a1.24 1.24 0 0 0 1.072.05l2.254.902a1.248 1.248 0 0 0 1.001 0l2.254-.902a1.24 1.24 0 0 0 1.072-.05c.77-.372-1.332-1.127-1.488-2.01a1.25 1.25 0 0 0-.61-1.313ZM12 14.25a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5Z" />
-    </svg>
+    <MessageCircle size={32} />
   </a>
 );
 
 // Componente Footer
 const Footer = () => {
   return (
-    <footer className="bg-black border-t border-primary/20 text-white pt-16 pb-8">
+    <footer className="bg-black border-t border-primary/20 text-white pt-16 pb-8 relative">
+       <div className="absolute top-4 right-4">
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="bg-gray-800/50 hover:bg-primary hover:text-black text-primary p-3 rounded-full transition-all duration-300"
+                aria-label="Voltar ao topo"
+            >
+                <ArrowUp size={24} />
+            </button>
+        </div>
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
           {/* Coluna Esquerda: Logo e Descrição */}
@@ -93,24 +114,37 @@ const Footer = () => {
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [cookieConsent, setCookieConsent] = useState(null); // Inicia como null
+  const [cookieConsent, setCookieConsent] = useState(null);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
-    // A verificação do consentimento de cookies agora só roda no lado do cliente
     const consent = localStorage.getItem('cookieConsent');
-    if (consent === 'true') {
-      setCookieConsent(true);
-    } else if (consent === 'false') {
-        setCookieConsent(false);
+    if (consent === 'true' || consent === 'false') {
+      setCookieConsent(consent === 'true');
     } else {
-      // Se não houver registro, mostra o banner após um delay
       const timer = setTimeout(() => {
         setShowCookieBanner(true);
       }, 2000);
       return () => clearTimeout(timer);
     }
   }, []);
+  
+    useEffect(() => {
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        return () => sections.forEach(section => observer.unobserve(section));
+    }, [router.pathname]); // Re-executa ao mudar de rota
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -165,13 +199,18 @@ function MyApp({ Component, pageProps }) {
                   animation: {
                     'marquee-left': 'marquee-left 40s linear infinite',
                     'pulse-fast': 'pulse-fast 1.5s infinite ease-in-out',
-                    'fade-in': 'fade-in 1s ease-in-out',
+                    'pulse-slow': 'pulse-slow 2s infinite ease-in-out',
+                    'fade-in': 'fade-in 1s ease-in-out forwards',
                   },
                   keyframes: {
                     'marquee-left': {
                         '0%': { transform: 'translateX(0%)' },
                         '100%': { transform: 'translateX(-100%)' },
                     },
+                    'pulse-slow': {
+                        '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(0, 240, 181, 0.7)' },
+                        '50%': { transform: 'scale(1.05)', boxShadow: '0 0 0 10px rgba(0, 240, 181, 0)' },
+                    }
                   }
                 },
               },
@@ -180,74 +219,73 @@ function MyApp({ Component, pageProps }) {
         }} />
       </Head>
 
-      <header className="fixed top-0 left-0 right-0 h-20 bg-black/90 backdrop-blur-sm border-b border-primary/20 shadow-lg shadow-black/5 z-[60] hidden md:block">
+      <div className="hidden lg:block">
+        <AuroraEffect />
+      </div>
+
+      <header className="fixed top-0 left-0 right-0 h-20 bg-black/80 backdrop-blur-lg border-b border-primary/20 shadow-lg shadow-black/20 z-[60] transition-all duration-300">
         <div className="container mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
           <Link href="/" className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
             <Image
               src="/logo/logo_aorkia.png"
               alt="AORKIA"
-              width={90}
-              height={40}
+              width={120} 
+              height={50}
               quality={100}
               priority
+              className="md:w-36"
             />
           </Link>
-          <nav className="flex items-center space-x-2">
-            <Link href="/" className={`group flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${ isActiveRoute('/') ? 'text-primary bg-primary/10 border-primary/30' : 'text-text-color hover:text-primary hover:bg-primary/5'}`}>
-              <span>Home</span>
-            </Link>
-            <Link href="/backup_saas_estrategico" className={`group flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${ isActiveRoute('/backup_saas_estrategico') ? 'text-primary bg-primary/10 border-primary/30' : 'text-text-color hover:text-primary hover:bg-primary/5'}`}>
-              <span>Backup SaaS Estratégico</span>
-            </Link>
-            <Link href="/sobre" className={`group flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${ isActiveRoute('/sobre') ? 'text-primary bg-primary/10 border-primary/30' : 'text-text-color hover:text-primary hover:bg-primary/5'}`}>
-              <span>Sobre</span>
-            </Link>
-            <Link href="/blog" className={`group flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${ isActiveRoute('/blog') ? 'text-primary bg-primary/10 border-primary/30' : 'text-text-color hover:text-primary hover:bg-primary/5'}`}>
-              <span>Blog</span>
-            </Link>
-            <Link href="/contato" className={`group flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium text-lg border border-transparent ${ isActiveRoute('/contato') ? 'text-primary bg-primary/10 border-primary/30' : 'text-text-color hover:text-primary hover:bg-primary/5'}`}>
-              <span>Contato</span>
-            </Link>
+          <nav className="hidden md:flex items-center space-x-2">
+             {['Home', 'Backup SaaS Estratégico', 'Sobre', 'Blog', 'Contato'].map((item) => {
+                const path = `/${item.toLowerCase().replace(/\s+/g, '-').replace('home', '')}`;
+                return (
+                    <Link key={item} href={path} className={`relative px-4 py-2 rounded-lg font-medium text-lg transition-colors duration-300 ${ isActiveRoute(path) ? 'text-primary' : 'text-text-color hover:text-primary'}`}>
+                        <span>{item}</span>
+                         {isActiveRoute(path) && (
+                            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-primary rounded-full"></span>
+                         )}
+                         <span className="absolute inset-0 border-primary/30 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 border"></span>
+                    </Link>
+                );
+             })}
           </nav>
-        </div>
-      </header>
-      
-       <header className="fixed top-0 left-0 right-0 h-20 bg-black/90 backdrop-blur-sm border-b border-primary/20 z-[60] md:hidden">
-        <div className="flex justify-between items-center h-full px-6">
-          <Link href="/">
-            <Image
-              src="/logo/logo_aorkia.png"
-              alt="AORKIA"
-              width={150}
-              height={60}
-              priority
-            />
-          </Link>
-          <button
+          
+           {/* Mobile Menu Button */}
+           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu"
-            className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors group"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors group"
           >
             <div className="w-6 flex flex-col gap-1.5">
-              <span className="w-full h-0.5 bg-white block"></span>
-              <span className="w-full h-0.5 bg-white block"></span>
-              <span className="w-full h-0.5 bg-white block"></span>
+              <span className={`w-full h-0.5 bg-white block transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`w-full h-0.5 bg-white block transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-full h-0.5 bg-white block transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </div>
           </button>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-black/90 backdrop-blur-lg z-[70] transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
-          <div className="flex justify-end p-6">
-               <button onClick={() => setMobileMenuOpen(false)} aria-label="Fechar menu" className="text-white text-4xl">&times;</button>
+      <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-[70] transition-transform duration-500 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
+          <div className="flex justify-between items-center h-20 px-6 border-b border-primary/20">
+             <Link href="/" className="flex-shrink-0">
+                <Image
+                src="/logo/logo_aorkia.png"
+                alt="AORKIA"
+                width={100}
+                height={40}
+                priority
+                />
+            </Link>
+            <button onClick={() => setMobileMenuOpen(false)} aria-label="Fechar menu" className="text-white text-4xl hover:text-primary">&times;</button>
           </div>
-          <nav className="flex flex-col items-center justify-center h-full -mt-16 text-2xl space-y-8">
-            <Link href="/" className="text-white hover:text-primary">Home</Link>
-            <Link href="/backup_saas_estrategico" className="text-white hover:text-primary">Backup SaaS</Link>
-            <Link href="/sobre" className="text-white hover:text-primary">Sobre</Link>
-            <Link href="/blog" className="text-white hover:text-primary">Blog</Link>
-            <Link href="/contato" className="text-white hover:text-primary">Contato</Link>
+          <nav className="flex flex-col items-center justify-center h-full -mt-20 text-2xl space-y-8">
+            <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
+            <Link href="/backup-saas-estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
+            <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
+            <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
+            <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
           </nav>
       </div>
 

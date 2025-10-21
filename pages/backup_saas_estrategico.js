@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ShieldAlert, UserX, FileSearch } from 'lucide-react';
 
 const faqData = [
   {
@@ -42,7 +43,7 @@ const faqData = [
   },
   {
     question: "É possível recuperar apenas um e-mail ou arquivo específico?",
-    answer: "Sim. A Keepit oferece recuperação granular, permitindo que você encontre e restaure exatamente o que precisa – seja um único e-mail, um arquivo, uma pasta ou uma conta inteira – de forma rápida e com poucos cliques."
+    answer: "Sim. A Keepit oferece recuperação granular, permitindo que você encontre e restaure exatamente o que precisa – seja um único e--mail, um arquivo, uma pasta ou uma conta inteira – de forma rápida e com poucos cliques."
   },
   {
     question: "Como o backup na Keepit se alinha aos controles de segurança da ISO 27001?",
@@ -246,7 +247,7 @@ export default function BackupSaaSEstrategico() {
 
                 <div className="grid lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
                     {/* Coluna do Risco */}
-                    <div className="bg-gray-900/50 border border-white/30 rounded-2xl p-8 flex flex-col shadow-lg shadow-red-500/10 text-center">
+                    <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 flex flex-col shadow-lg shadow-red-500/10 text-center">
                         <div className="flex items-center justify-center mb-6">
                             <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mr-4">
                                 <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
@@ -284,15 +285,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* A Responsabilidade é Sua. A Microsoft Confirma. */}
         <section id="responsabilidade" data-section="responsabilidade" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('responsabilidade')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('responsabilidade')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 max-w-4xl relative z-10">
             <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
@@ -359,7 +361,7 @@ export default function BackupSaaSEstrategico() {
                                 <h3 className="text-2xl font-bold mb-2">Continuidade Garantida</h3>
                                 <div className="text-lg leading-relaxed text-gray-300">
                                     <p>Recuperação instantânea.</p>
-                                    <p>Conformidade contínua.</p>
+                                    <p>Conformidade contínua.</p> 
                                     <p>Operação ininterrupta.</p>
                                 </div>
                             </div>
@@ -373,15 +375,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* Os Pilares da Proteção Real */}
         <section id="pilares" data-section="pilares" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('pilares')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('pilares')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
@@ -465,45 +468,40 @@ export default function BackupSaaSEstrategico() {
 
         {/* Cobertura Completa do seu Ecossistema SaaS */}
         <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-black relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
               Cobertura Completa do seu Ecossistema SaaS
             </h2>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-4xl mx-auto items-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-5xl mx-auto items-center">
               <div className="flex flex-col items-center">
-                <Image src="/icon/m365.png" alt="Microsoft 365" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Microsoft 365</span>
+                <Image src="/icon/m365.png" alt="Microsoft 365" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/gcp.png" alt="Google Workspace" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Google Workspace</span>
+                <Image src="/icon/google_workspace.png" alt="Google Workspace" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/salesforce.png" alt="Salesforce" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Salesforce</span>
+                <Image src="/icon/salesforce.png" alt="Salesforce" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/zendesk.png" alt="Zendesk" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Zendesk</span>
+                <Image src="/icon/zendesk.png" alt="Zendesk" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/dynamics.png" alt="Dynamics 365" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Dynamics 365</span>
+                <Image src="/icon/dynamics.png" alt="Dynamics 365" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
               <div className="flex flex-col items-center">
-                <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={60} height={60} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                <span className="text-sm font-medium text-gray-300 text-center">Azure DevOps</span>
+                <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
               </div>
             </div>
           </div>
@@ -513,15 +511,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados. */}
         <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
@@ -590,15 +589,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* Confiança Validada pelo Mercado Global */}
         <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-black relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
@@ -642,12 +642,6 @@ export default function BackupSaaSEstrategico() {
                 </div>
               </div>
             </div>
-            
-            <div className="text-center">
-              <p className="text-lg text-gray-400">
-                Mais de <strong className="text-primary">15.000 empresas</strong> em <strong className="text-primary">74 países</strong> confiam na Keepit
-              </p>
-            </div>
           </div>
         </section>
 
@@ -655,15 +649,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* O que os Clientes que ativaram Keepit dizem? */}
         <section id="depoimentos" data-section="depoimentos" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('depoimentos')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('depoimentos')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
@@ -720,15 +715,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* Certificações e Recursos */}
         <section id="certificacoes" data-section="certificacoes" className="py-16 md:py-24 bg-black relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('certificacoes')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('certificacoes')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 max-w-4xl relative z-10">
             <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
@@ -768,6 +764,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* O que o Mercado Diz: Análise do Gartner Peer Insights */}
         <section id="gartner" data-section="gartner" className="py-16 md:py-24 bg-gray-900 relative">
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
               O que o Mercado Diz: Análise do Gartner Peer Insights
@@ -817,15 +823,16 @@ export default function BackupSaaSEstrategico() {
 
         {/* FAQ Section */}
         <section id="faq" data-section="faq" className="py-16 md:py-24 bg-black relative overflow-hidden">
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('faq')}`}
-            style={{
-              backgroundImage: 'url(/image/backup_vertical.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+             <div 
+                className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('faq')}`}
+                style={{
+                backgroundImage: 'url(/image/backup_vertical.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.1
+                }}
+            />
           
           <div className="container mx-auto px-4 relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
