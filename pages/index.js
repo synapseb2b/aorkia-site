@@ -77,8 +77,17 @@ export default function Home() {
         <SectionDivider />
 
         {/* Bloco de Confiança */}
-        <section className="py-16 md:py-24 bg-transparent">
-          <div className="container mx-auto px-4 text-center">
+        <section className="py-16 md:py-24 relative overflow-hidden">
+           <div 
+            className="absolute inset-0 z-0 opacity-20"
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="container mx-auto px-4 text-center relative z-10">
              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
                 <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
                   A confiança de quem opera sem margem para erro.
@@ -116,6 +125,14 @@ export default function Home() {
                         <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
                 </div>
+                <p className="text-lg text-gray-300 mt-12">
+                    Mais de <strong className="text-primary">15.000 empresas</strong> em <strong className="text-primary">74 países</strong> confiam na Keepit
+                </p>
+                <div className="mt-8">
+                    <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                        Descubra a Proteção SaaS
+                    </Link>
+                </div>
             </div>
           </div>
         </section>
@@ -123,8 +140,17 @@ export default function Home() {
         <SectionDivider />
 
         {/* Seção Plataforma */}
-        <section className="py-20 md:py-28 bg-transparent">
-          <div className="container mx-auto px-4 max-w-6xl">
+        <section className="py-20 md:py-28 relative overflow-hidden">
+           <div 
+            className="absolute inset-0 z-0 opacity-20"
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="container mx-auto px-4 max-w-6xl relative z-10">
             <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Uma Plataforma Inteligente para Múltiplas Cargas de Trabalho SaaS</h2>
@@ -145,26 +171,34 @@ export default function Home() {
                         <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
                         <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
-                    <div className="relative w-32 h-20 flex items-center justify-center">
+                     <div className="relative w-32 h-20 flex items-center justify-center">
                         <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                        <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                        <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
                     <div className="relative w-32 h-20 flex items-center justify-center">
                         <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                        <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                        <Image src="/icon/aws.png" alt="AWS" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                     <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/azure.png" alt="Azure" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
                     <div className="relative w-32 h-20 flex items-center justify-center">
                         <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                        <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                        <Image src="/icon/dynamics.png" alt="Dynamics 365" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
                     <div className="relative w-32 h-20 flex items-center justify-center">
                         <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                        <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                        <Image src="/icon/zendesk.png" alt="Zendesk" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
                     </div>
-                    <div className="relative w-32 h-20 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                        <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
-                    </div>
+                </div>
+                 <p className="text-base text-gray-400 mt-12 max-w-4xl mx-auto">
+                    Entre as aplicações SaaS suportadas pela Keepit estão Microsoft 365, Teams, SharePoint, OneDrive, Exchange, Power Platform, Entra ID, Dynamics, Azure DevOps, Salesforce, Google Workspace, Jira, Confluence, Zendesk, Dropbox, AWS, Azure, Snowflake e MongoDB.
+                </p>
+                <div className="mt-8">
+                    <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                        Ver Cobertura Completa
+                    </Link>
                 </div>
             </div>
           </div>
@@ -173,8 +207,17 @@ export default function Home() {
         <SectionDivider />
 
         {/* Seção Escolha Inteligente */}
-        <section className="py-20 md:py-28 bg-transparent">
-          <div className="container mx-auto px-4 max-w-6xl">
+        <section className="py-20 md:py-28 relative overflow-hidden">
+           <div 
+            className="absolute inset-0 z-0 opacity-20"
+            style={{
+              backgroundImage: 'url(/image/backup_vertical.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="container mx-auto px-4 max-w-6xl relative z-10">
             <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
                 <div>

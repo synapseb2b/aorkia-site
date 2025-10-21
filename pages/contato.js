@@ -1,15 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { Mail, Phone, Building, User, MessageSquare } from 'lucide-react';
-
-// Componente Divisor de Seção
-const SectionDivider = () => (
-  <div className="relative w-full h-12 flex items-center justify-center my-12">
-    <div className="absolute w-full h-px bg-primary/20"></div>
-    <div className="absolute w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-fast"></div>
-  </div>
-);
 
 export default function Contato() {
   const [formData, setFormData] = useState({
@@ -51,7 +42,7 @@ ${formData.message}
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
     
     window.open(whatsappUrl, '_blank');
-    setFormStatus('Sua mensagem foi preparada. Envie pelo WhatsApp!');
+    setFormStatus('Redirecionando... Por favor, confirme o envio no WhatsApp.');
   };
 
   return (
@@ -62,34 +53,19 @@ ${formData.message}
       </Head>
 
       <main className="bg-black text-white">
-        {/* Seção Hero */}
-        <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
-            <div 
-                className="absolute inset-0 z-0 opacity-20"
-                style={{
-                backgroundImage: 'url(/image/contato_hero.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-                }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
-          
-            <div className="relative z-20 px-4 max-w-4xl mx-auto animate-fade-in">
-                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-primary">
+        {/* Seção do Formulário e Informações */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-4 max-w-6xl">
+
+            <div className="text-center mb-16">
+                <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary">
                     Vamos Conversar?
                 </h1>
-                <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                    Estamos prontos para entender seu desafio e desenhar a estratégia de resiliência que seu negócio precisa. Preencha o formulário ou entre em contato pelos nossos canais.
-                </h2>
+                <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    Estamos prontos para entender seu desafio. Preencha o formulário ou entre em contato pelos nossos canais.
+                </p>
             </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Seção do Formulário e Informações */}
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4 max-w-6xl">
+            
             <div className="grid md:grid-cols-2 gap-16 items-start">
               
               {/* Formulário */}
@@ -117,7 +93,7 @@ ${formData.message}
                     <textarea name="message" rows="5" placeholder="Mensagem" value={formData.message} onChange={handleChange} className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 pr-4 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"></textarea>
                   </div>
                   <button type="submit" className="w-full bg-primary text-black font-bold py-4 px-8 rounded-lg hover:bg-primary/90 transition-all duration-300 text-lg">
-                    Enviar via WhatsApp
+                    Enviar Mensagem
                   </button>
                   {formStatus && <p className="text-center mt-4 text-primary">{formStatus}</p>}
                 </form>
@@ -157,3 +133,4 @@ ${formData.message}
     </>
   );
 }
+
