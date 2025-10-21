@@ -282,7 +282,7 @@ function MyApp({ Component, pageProps }) {
           </div>
           <nav className="flex flex-col items-center justify-center h-full -mt-20 text-2xl space-y-8">
             <Link href="/" className="text-white hover:text-primary transition-colors">Home</Link>
-            <Link href="/backup-saas-estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
+            <Link href="/backup_saas_estrategico" className="text-white hover:text-primary transition-colors">Backup SaaS</Link>
             <Link href="/sobre" className="text-white hover:text-primary transition-colors">Sobre</Link>
             <Link href="/blog" className="text-white hover:text-primary transition-colors">Blog</Link>
             <Link href="/contato" className="text-white hover:text-primary transition-colors">Contato</Link>
