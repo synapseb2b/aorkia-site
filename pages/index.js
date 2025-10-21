@@ -88,7 +88,7 @@ export default function Home() {
             }}
           />
           <div className="container mx-auto px-4 text-center relative z-10">
-             <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+             <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12">
                 <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
                   A confiança de quem opera sem margem para erro.
                 </h1>
@@ -151,7 +151,7 @@ export default function Home() {
             }}
           />
           <div className="container mx-auto px-4 max-w-6xl relative z-10">
-            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Uma Plataforma Inteligente para Múltiplas Cargas de Trabalho SaaS</h2>
                 <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
