@@ -224,7 +224,7 @@ function MyApp({ Component, pageProps }) {
           <div className="preloader-content text-center">
            <div className="logo-container h-20 relative overflow-hidden flex items-center">
             <Image
-              src="/logo/logo_aorkia_color_transparent.png"
+              src="/logo/logo_symbol_aorkia.png"
               alt="AORKIA"
               className="h-20 w-auto"
               width={200}
@@ -245,7 +245,7 @@ function MyApp({ Component, pageProps }) {
           <Link href="/" className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
             <div className="logo-container h-20 relative">
               <Image
-                src="/logo/logo_aorkia_color_transparent.png"
+                src="/logo/logo_logo_symbol_aorkia.png"
                 alt="AORKIA"
                 className="h-20 w-auto"
                 width={200}
@@ -343,7 +343,7 @@ function MyApp({ Component, pageProps }) {
           <div className="py-2">
             <div className="logo-container h-16 relative flex items-center">
               <Image
-                src="/logo/logo_aorkia_color_transparent.png"
+                src="/logo/logo_symbol_aorkia.png"
                 alt="AORKIA"
                 className="h-16 w-auto"
                 width={200}
@@ -374,7 +374,7 @@ function MyApp({ Component, pageProps }) {
               <div className="flex justify-between items-center p-6 border-b border-white/10">
                 <div className="logo-container h-12 relative">
                   <Image
-                    src="/logo/logo_aorkia_white_transparent.png"
+                    src="/logo/logo_symbol_aorkia.png"
                     alt="AORKIA"
                     className="h-12 w-auto"
                     width={200}
@@ -517,7 +517,7 @@ function MyApp({ Component, pageProps }) {
             <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-inner">
               <div className="mb-12">
                 <Image
-                  src="/logo/logo_synapseb2b_white_transparent.png" // Ajuste o caminho se necessário
+                  src="/logo/logo_symbol_aorkia.png" // Ajuste o caminho se necessário
                   alt="Synapse B2B"
                   className="h-20 w-auto mb-6"
                   width={416}
