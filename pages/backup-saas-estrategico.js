@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldAlert, UserX, FileSearch } from 'lucide-react';
- 
+
 const faqData = [
   {
     question: "O que é Keepit?",
@@ -43,7 +43,7 @@ const faqData = [
   },
   {
     question: "É possível recuperar apenas um e-mail ou arquivo específico?",
-    answer: "Sim. A Keepit oferece recuperação granular, permitindo que você encontre e restaure exatamente o que precisa – seja um único e--mail, um arquivo, uma pasta ou uma conta inteira – de forma rápida e com poucos cliques."
+    answer: "Sim. A Keepit oferece recuperação granular, permitindo que você encontre e restaure exatamente o que precisa – seja um único e-mail, um arquivo, uma pasta ou uma conta inteira – de forma rápida e com poucos cliques."
   },
   {
     question: "Como o backup na Keepit se alinha aos controles de segurança da ISO 27001?",
@@ -468,7 +468,7 @@ export default function BackupSaaSEstrategico() {
 
         {/* Cobertura Completa do seu Ecossistema SaaS */}
         <section id="cobertura" data-section="cobertura" className="py-16 md:py-24 bg-black relative overflow-hidden">
-             <div 
+            <div 
                 className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('cobertura')}`}
                 style={{
                 backgroundImage: 'url(/image/backup_vertical.png)',
@@ -479,39 +479,38 @@ export default function BackupSaaSEstrategico() {
                 }}
             />
           
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
-              Cobertura Completa do seu Ecossistema SaaS
-            </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-5xl mx-auto items-center">
-              <div className="flex flex-col items-center">
-                <Image src="/icon/m365.png" alt="Microsoft 365" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/icon/google_workspace.png" alt="Google Workspace" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/icon/salesforce.png" alt="Salesforce" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/icon/zendesk.png" alt="Zendesk" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/icon/dynamics.png" alt="Dynamics 365" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={80} height={80} className="mb-2 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-              </div>
+            <div className="container mx-auto px-4 relative z-10 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
+                Cobertura Completa do seu Ecossistema SaaS
+                </h2>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 max-w-6xl mx-auto items-center mb-8">
+                    {/* Logos */}
+                    <Image src="/icon/m365.png" alt="Microsoft 365" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/google_workspace.png" alt="Google Workspace" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/salesforce.png" alt="Salesforce" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/azure_devops.png" alt="Azure DevOps" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/aws.png" alt="AWS" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/azure.png" alt="Azure" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/dynamics.png" alt="Dynamics 365" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/zendesk.png" alt="Zendesk" width={80} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                </div>
+
+                <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-10">
+                    Entre as aplicações SaaS suportadas pela Keepit estão Microsoft 365, Teams, SharePoint, OneDrive, Exchange, Power Platform, Entra ID, Dynamics, Azure DevOps, Salesforce, Google Workspace, Jira, Confluence, Zendesk, Dropbox, AWS, Azure, Snowflake e MongoDB.
+                </p>
+
+                <Link href="/contato" className="inline-block bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                    Ver Cobertura Completa
+                </Link>
             </div>
-          </div>
         </section>
         
         <SectionDivider />
 
         {/* Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados. */}
         <section id="desafios" data-section="desafios" className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-             <div 
+            <div 
                 className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('desafios')}`}
                 style={{
                 backgroundImage: 'url(/image/backup_vertical.png)',
@@ -522,74 +521,66 @@ export default function BackupSaaSEstrategico() {
                 }}
             />
           
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
-              Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados.
-            </h2>
-            
-            <div className="max-w-4xl mx-auto space-y-8">
-              {/* Desafio 1 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
-                <div className="flex items-center justify-center space-x-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center">
-                    <i className="ri-error-warning-line text-2xl text-red-500"></i>
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Ransomware atingiu nossa infraestrutura SaaS</h3>
+            <div className="container mx-auto px-4 relative z-10">
+                <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
+                Controle Total, Recuperação Rápida: A Solução Definitiva para Seus Dados.
+                </h2>
+                
+                <div className="max-w-4xl mx-auto space-y-8">
+                    {/* Card 1 */}
+                    <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                        <div className="flex items-center justify-center space-x-4 mb-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center">
+                                <ShieldAlert className="text-red-500 w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white">Ransomware atingiu nossa infraestrutura SaaS</h3>
+                        </div>
+                        <p className="text-gray-400 mb-4">Como recuperar rapidamente sem pagar resgate?</p>
+                        <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                            <p className="text-gray-300 font-medium">
+                            <strong>Solução Keepit:</strong> Backup imutável com Air Gap garante que seus dados estejam protegidos em nuvem independente. Recuperação completa em horas, não semanas.
+                            </p>
+                        </div>
+                    </div>
+                    {/* Card 2 */}
+                    <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                        <div className="flex items-center justify-center space-x-4 mb-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center">
+                                <UserX className="text-orange-500 w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white">Funcionário deletou dados críticos por engano</h3>
+                        </div>
+                        <p className="text-gray-400 mb-4">Como recuperar informações específicas sem afetar o restante?</p>
+                        <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                            <p className="text-gray-300 font-medium">
+                            <strong>Solução Keepit:</strong> Restauração granular permite recuperar desde um único e-mail até contas completas em minutos, com busca inteligente.
+                            </p>
+                        </div>
+                    </div>
+                    {/* Card 3 */}
+                    <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
+                        <div className="flex items-center justify-center space-x-4 mb-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center">
+                                <FileSearch className="text-purple-500 w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white">Auditoria LGPD está chegando</h3>
+                        </div>
+                        <p className="text-gray-400 mb-4">Como comprovar conformidade e controle de dados?</p>
+                        <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
+                            <p className="text-gray-300 font-medium">
+                            <strong>Solução Keepit:</strong> Dados no Brasil, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 garantem conformidade total.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 mb-4">Como recuperar rapidamente sem pagar resgate?</p>
-                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                    <p className="text-gray-300 font-medium">
-                      <strong>Solução Keepit:</strong> Backup imutável com Air Gap garante que seus dados estejam protegidos em nuvem independente. Recuperação completa em horas, não semanas.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Desafio 2 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
-                <div className="flex items-center justify-center space-x-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center">
-                    <i className="ri-user-unfollow-line text-2xl text-orange-500"></i>
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Funcionário deletou dados críticos por engano</h3>
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 mb-4">Como recuperar informações específicas sem afetar o restante?</p>
-                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                    <p className="text-gray-300 font-medium">
-                      <strong>Solução Keepit:</strong> Restauração granular permite recuperar desde um único e-mail até contas completas em minutos, com busca inteligente.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Desafio 3 */}
-              <div className="bg-gradient-to-r from-gray-800 to-black p-8 rounded-xl border border-gray-700 text-center">
-                <div className="flex items-center justify-center space-x-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center">
-                    <i className="ri-shield-cross-line text-2xl text-purple-500"></i>
-                  </div>
-                   <h3 className="text-xl font-bold text-white">Auditoria LGPD está chegando</h3>
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 mb-4">Como comprovar conformidade e controle de dados?</p>
-                  <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
-                    <p className="text-gray-300 font-medium">
-                      <strong>Solução Keepit:</strong> Dados no Brasil, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 garantem conformidade total.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </section>
 
         <SectionDivider />
 
         {/* Confiança Validada pelo Mercado Global */}
         <section id="confianca" data-section="confianca" className="py-16 md:py-24 bg-black relative overflow-hidden">
-             <div 
+            <div 
                 className={`absolute inset-0 z-0 transition-opacity duration-1000 ${getSectionBackground('confianca')}`}
                 style={{
                 backgroundImage: 'url(/image/backup_vertical.png)',
@@ -600,49 +591,31 @@ export default function BackupSaaSEstrategico() {
                 }}
             />
           
-          <div className="container mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
-              Confiança Validada pelo Mercado Global
-            </h2>
-            
-            {/* Clientes Globais */}
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold text-center text-gray-400 mb-8">Clientes Globais</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+            <div className="container mx-auto px-4 relative z-10 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
+                Confiança Validada pelo Mercado Global
+                </h2>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-5xl mx-auto items-center mb-8">
+                    {/* Logos */}
+                    <Image src="/icon/porsche.png" alt="Porsche" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/oxford_university.png" alt="Oxford University" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/alpla.png" alt="Alpla" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/hdi.png" alt="HDI" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/arezzo.png" alt="Arezzo" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
+                    <Image src="/icon/itausa.png" alt="ITAUSA" width={120} height={80} className="[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))] mx-auto" />
                 </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/oxford_university.png" alt="Oxford University" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/alpla.png" alt="Alpla" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/hdi.png" alt="HDI" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-              </div>
-            </div>
+                
+                <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-10">
+                    Mais de 15.000 empresas em 74 países confiam na Keepit
+                </p>
 
-            {/* Clientes Nacionais */}
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold text-center text-gray-400 mb-8">Clientes Nacionais</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto items-center">
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/arezzo.png" alt="Arezzo" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/db_diagnosticos.png" alt="DB Diagnósticos" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image src="/icon/itausa.png" alt="ITAUSA" width={80} height={60} className="mb-2 hover:scale-110 transition-all duration-300 [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-              </div>
+                <Link href="/contato" className="inline-block bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                    A próxima pode ser a sua!
+                </Link>
             </div>
-          </div>
         </section>
 
         <SectionDivider />
