@@ -77,35 +77,45 @@ export default function Home() {
         <SectionDivider />
 
         {/* Bloco de Confiança */}
-        <section className="py-16 md:py-24 bg-gray-900">
+        <section className="py-16 md:py-24 bg-transparent">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              A confiança de quem opera sem margem para erro.
-            </h1>
-            <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
-              Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
-            </h2>
-            <div className="overflow-hidden relative py-4">
-              <div className="flex animate-marquee-left whitespace-nowrap">
-                <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
+             <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+                <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                  A confiança de quem opera sem margem para erro.
+                </h1>
+                <h2 className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-12">
+                  Clientes globais da Keepit operam em ambientes onde cada minuto de parada impacta diretamente o resultado. São organizações que não podem errar — e escolheram a mesma infraestrutura que protege seus dados críticos.
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center">
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-40 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
                 </div>
-                <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/porsche.png" alt="Porsche" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/oxford_university.png" alt="Universidade de Oxford" width={150} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/arezzo.png" alt="Arezzo&Co" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/hdi.png" alt="HDI Global" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/national_gallery.png" alt="National Gallery of Denmark - SMK" width={180} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/banco_bv.png" alt="Banco BV" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/itausa.png" alt="Itaúsa" width={120} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -113,37 +123,49 @@ export default function Home() {
         <SectionDivider />
 
         {/* Seção Plataforma */}
-        <section className="py-20 md:py-28 bg-black">
+        <section className="py-20 md:py-28 bg-transparent">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Uma Plataforma Inteligente para Múltiplas Cargas de Trabalho SaaS</h2>
-              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                Nossa solução de backup e recuperação de dados em nuvem, ponta a ponta e agnóstica a fornecedores, garante que seus dados críticos de aplicações SaaS estejam seguros e rapidamente recuperáveis. Tenha confiança absoluta em sua conformidade e resiliência cibernética com a Keepit.
-              </p>
-            </div>
-            <div className="overflow-hidden relative py-4">
-              <div className="flex animate-marquee-left whitespace-nowrap">
-                <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
-                <div className="flex items-center justify-around w-full">
-                  <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                  <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="mx-8 opacity-80 hover:opacity-100 transition-opacity [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.6))]" />
-                </div>
+            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Uma Plataforma Inteligente para Múltiplas Cargas de Trabalho SaaS</h2>
+                <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                  Nossa solução de backup e recuperação de dados em nuvem, ponta a ponta e agnóstica a fornecedores, garante que seus dados críticos de aplicações SaaS estejam seguros e rapidamente recuperáveis. Tenha confiança absoluta em sua conformidade e resiliência cibernética com a Keepit.
+                </p>
               </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/m365.png" alt="Microsoft 365" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/google_workspace.png" alt="Google Workspace" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/salesforce.png" alt="Salesforce" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/dynamics.png" alt="Dynamics" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/sharepoint.png" alt="SharePoint" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/onedrive.png" alt="OneDrive" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/teams.png" alt="Teams" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                    <div className="relative w-32 h-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
+                        <Image src="/icon/exchange.png" alt="Exchange" width={100} height={50} className="opacity-80 hover:opacity-100 transition-opacity relative z-10" />
+                    </div>
+                </div>
             </div>
           </div>
         </section>
@@ -151,9 +173,9 @@ export default function Home() {
         <SectionDivider />
 
         {/* Seção Escolha Inteligente */}
-        <section className="py-20 md:py-28 bg-gray-900">
+        <section className="py-20 md:py-28 bg-transparent">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
+            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
                 <div>
                   <span className="text-primary text-sm font-semibold uppercase mb-2 block">Faça a escolha inteligente</span>
