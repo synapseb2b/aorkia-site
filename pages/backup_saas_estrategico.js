@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldAlert, UserX, FileSearch } from 'lucide-react';
-
+ 
 const faqData = [
   {
     question: "O que é Keepit?",
