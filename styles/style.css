@@ -1,20 +1,30 @@
 /* Base styles */
+:root {
+  --primary-color: #00F0B5; /* Verde Ciano Principal */
+  --background-dark: #1A1A1A; /* Fundo Escuro */
+  --background-light: #2E2E2E; /* Cinza Chumbo */
+  --accent-color: #C0C0C0; /* Prata Metálico */
+  --text-color: #FFFFFF; /* Branco */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--background-dark);
+  color: var(--text-color);
 }
 
 /* Custom animations */
 @keyframes pulse-fast {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: 0.7;
   }
   50% {
-    transform: scale(1.2);
-    opacity: 0.6;
+    transform: scale(1.05);
+    opacity: 1;
   }
 }
 
@@ -52,4 +62,36 @@ a img {
   border: none;
 }
 
+/* Example of how to use the new colors */
+.header {
+  background-color: var(--background-light);
+  padding: 1rem;
+  border-bottom: 2px solid var(--primary-color);
+}
 
+.button-primary {
+  background-color: var(--primary-color);
+  color: var(--background-dark);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
