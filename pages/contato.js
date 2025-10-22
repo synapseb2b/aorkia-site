@@ -27,19 +27,10 @@ export default function Contato() {
     }
 
     const whatsappNumber = "5531988019006";
-    const text = `
-*Novo Contato - Site AORKIA*
+    // Formata a mensagem para WhatsApp com quebras de linha corretas
+    const text = `*Novo Contato - Site AORKIA*%0A%0A*Nome:* ${formData.name}%0A*Empresa:* ${formData.company || 'Não informado'}%0A*Email:* ${formData.email}%0A*Telefone:* ${formData.phone}%0A%0A*Mensagem:*%0A${formData.message}`;
 
-*Nome:* ${formData.name}
-*Empresa:* ${formData.company || 'Não informado'}
-*Email:* ${formData.email}
-*Telefone:* ${formData.phone}
-
-*Mensagem:*
-${formData.message}
-    `.trim();
-
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
     
     window.open(whatsappUrl, '_blank');
     setFormStatus('Redirecionando... Por favor, confirme o envio no WhatsApp.');
@@ -62,7 +53,7 @@ ${formData.message}
                     Estamos prontos para entender seu desafio.
                 </h1>
                 <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                    Vamos Conversar?
+                    Seus dados SaaS estão seguros? Sua conformidade está em dia? Vamos mapear juntos a estratégia de resiliência ideal para o seu negócio.
                 </p>
             </div>
             
@@ -103,7 +94,7 @@ ${formData.message}
               <div className="text-center md:text-left pt-8">
                   <h3 className="text-3xl font-bold text-white mb-6">Canais Diretos</h3>
                   <p className="text-gray-400 mb-10 text-lg">
-                      Prefere um contato mais direto?
+                      Prefere uma abordagem mais direta? Utilize nossos canais abaixo.
                   </p>
                   <div className="space-y-8">
                       <div className="flex items-center justify-center md:justify-start">
