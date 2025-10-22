@@ -64,7 +64,8 @@ export default function Home() {
               Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós garantimos que seu negócio nunca pare: backup imutável, recuperação instantânea e conformidade garantida.
             </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+              {/* CORRIGIDO */}
+              <Link href="/backup-saas-estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                 Conheça o Backup Estratégico
               </Link>
               <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-lg">
@@ -129,7 +130,8 @@ export default function Home() {
                     Mais de <strong className="text-primary">15.000 empresas</strong> em <strong className="text-primary">74 países</strong> confiam na Keepit
                 </p>
                 <div className="mt-8">
-                    <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                    {/* CORRIGIDO */}
+                    <Link href="/backup-saas-estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                         Descubra a Proteção SaaS
                     </Link>
                 </div>
@@ -196,7 +198,8 @@ export default function Home() {
                     Entre as aplicações SaaS suportadas pela Keepit estão Microsoft 365, Teams, SharePoint, OneDrive, Exchange, Power Platform, Entra ID, Dynamics, Azure DevOps, Salesforce, Google Workspace, Jira, Confluence, Zendesk, Dropbox, AWS, Azure, Snowflake e MongoDB.
                 </p>
                 <div className="mt-8">
-                    <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                    {/* CORRIGIDO */}
+                    <Link href="/backup-saas-estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                         Ver Cobertura Completa
                     </Link>
                 </div>
@@ -229,7 +232,8 @@ export default function Home() {
                   <p className="text-lg text-gray-300 mb-8">
                     Gerencie a resiliência e mantenha o controle estratégico diante de tecnologias emergentes e do avanço da inteligência artificial. Prepare sua proteção de dados para o futuro e garanta conformidade rigorosa com a arquitetura de nuvem independente da Keepit.
                   </p>
-                  <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+                   {/* CORRIGIDO */}
+                  <Link href="/backup-saas-estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                     Entenda a Diferença
                   </Link>
                 </div>

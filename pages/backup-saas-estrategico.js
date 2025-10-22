@@ -501,7 +501,7 @@ export default function BackupSaaSEstrategico() {
                 </p>
 
                 <Link href="/contato" className="inline-block bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-                    Ver Cobertura Completa
+                    Ativar Meu Backup SaaS Estratégico
                 </Link>
             </div>
         </section>

@@ -59,10 +59,10 @@ ${formData.message}
 
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary">
-                    Vamos Conversar?
+                    Estamos prontos para entender seu desafio.
                 </h1>
                 <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                    Estamos prontos para entender seu desafio. Preencha o formulário ou entre em contato pelos nossos canais.
+                    Vamos Conversar?
                 </p>
             </div>
             
@@ -103,7 +103,7 @@ ${formData.message}
               <div className="text-center md:text-left pt-8">
                   <h3 className="text-3xl font-bold text-white mb-6">Canais Diretos</h3>
                   <p className="text-gray-400 mb-10 text-lg">
-                      Prefere um contato mais direto? Fique à vontade para nos chamar ou enviar um e-mail.
+                      Prefere um contato mais direto?
                   </p>
                   <div className="space-y-8">
                       <div className="flex items-center justify-center md:justify-start">
