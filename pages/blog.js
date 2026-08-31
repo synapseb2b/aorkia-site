@@ -46,7 +46,6 @@ export default function Blog() {
         <title>Blog AORKIA | Insights e Inovação em Tecnologia B2B</title>
         <meta name="description" content="Explore artigos, análises e insights sobre as últimas tendências em cibersegurança, inteligência artificial, edge computing e estratégia digital para o mercado B2B." />
         <meta name="keywords" content="blog aorkia, tecnologia b2b, cibersegurança, edge ai, dspm, transformação digital, inovação" />
-        <link rel="canonical" href="https://aorkia.com/blog" />
       </Head>
 
       {/* Barra de Progresso */}

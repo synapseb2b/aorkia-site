@@ -40,7 +40,6 @@ export default function Microsoft365BackupImutavel() {
         <title>Backup Imutável Microsoft 365 | Blog AORKIA</title>
         <meta name="description" content="Descubra por que Azure Backup e Microsoft Purview eDiscovery não protegem seus dados do Microsoft 365 contra ransomware e erros humanos. A importância do backup imutável com Keepit." />
         <meta name="keywords" content="backup imutável, ransomware, Microsoft 365, Azure Backup, Microsoft Purview, eDiscovery, Keepit, cibersegurança, proteção de dados, DR, recuperação de desastres, AORKIA" />
-        <link rel="canonical" href="https://aorkia.com/blog/microsoft365-a-importancia-do-backup-imutavel" />
       </Head>
 
       {/* Barra de Progresso */}

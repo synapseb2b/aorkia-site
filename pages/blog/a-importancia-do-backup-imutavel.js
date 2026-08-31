@@ -41,7 +41,6 @@ export default function PostBackupImutavel() {
         <title>Backup Imutável na Era do Ransomware | Blog AORKIA</title>
         <meta name="description" content="Descubra por que Google Workspace, Backup and DR e Google Vault não protegem seus dados contra ransomware e erros humanos. A importância do backup imutável com Keepit." />
         <meta name="keywords" content="backup imutável, ransomware, Google Workspace, Google Vault, Keepit, cibersegurança, proteção de dados, DR, recuperação de desastres, AORKIA" />
-        <link rel="canonical" href="https://aorkia.com/blog/a-importancia-do-backup-imutavel" />
       </Head>
 
       {/* Barra de Progresso */}

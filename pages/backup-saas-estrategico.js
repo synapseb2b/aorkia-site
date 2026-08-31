@@ -187,7 +187,6 @@ export default function BackupSaaSEstrategico() {
         <title>Backup SaaS Estratégico - Keepit | AORKIA</title>
         <meta name="description" content="Proteção Imutável. Recuperação Rápida. Conformidade Garantida. A AORKIA ativa a Keepit para backup SaaS estratégico com proteção real contra ransomware." />
         <meta name="keywords" content="backup saas, keepit, proteção imutável, recuperação rápida, conformidade, LGPD, GDPR, ransomware, Microsoft 365, Google Workspace, Salesforce" />
-        <link rel="canonical" href="https://aorkia.com/backup_saas_estrategico" />
       </Head>
 
       {/* Barra de Progresso */}

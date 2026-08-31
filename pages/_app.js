@@ -182,11 +182,16 @@ function MyApp({ Component, pageProps }) {
 
   const isActiveRoute = (path) => router.pathname === path;
 
+  // URL canônica: o apex redireciona para www, então toda página aponta para uma origem só
+  const canonicalPath = router.asPath.split(/[?#]/)[0];
+  const canonicalUrl = `https://www.aorkia.com${canonicalPath.endsWith('/') ? canonicalPath : `${canonicalPath}/`}`;
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon/favicon.ico" />
+        <link rel="canonical" href={canonicalUrl} />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
