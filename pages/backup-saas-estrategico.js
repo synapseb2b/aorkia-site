@@ -39,7 +39,7 @@ const faqData = [
   },
   {
     question: "O que é a certificação ISAE 3402 e por que ela é importante para o backup?",
-    answer: "ISAE 3402 é um padrão global que atesta a qualidade dos controles internos de uma organização de serviços. Para o backup, a certificação ISAE 3402 da Keepit garante que os processos de segurança, disponibilidade e confidencialidade dos dados são continuamente auditados e validados por terceiros independentes, oferecendo uma camada extra de confiança."
+    answer: "ISAE 3402 é um padrão global de asseguração sobre os controles internos de uma organização de serviços. Não é uma certificação, e sim um relatório anual: a Keepit mantém um ISAE 3402 Type II, auditado pela Deloitte, que atesta a efetividade operacional dos controles ao longo do período. A Keepit também mantém relatórios SOC 2 Type 1 e Type 2, com 108 controles alinhados aos Trust Services Criteria do AICPA, igualmente auditados pela Deloitte."
   },
   {
     question: "É possível recuperar apenas um e-mail ou arquivo específico?",
@@ -51,7 +51,7 @@ const faqData = [
   },
   {
     question: "Como a AORKIA e Keepit ajudam a cumprir as exigências da LGPD e DORA?",
-    answer: "Nós garantimos que seus backups fiquem em datacenters no Brasil (soberania de dados). Configuramos políticas de retenção para o tempo exigido por lei e facilitamos a localização e exclusão de dados para atender aos direitos dos titulares, garantindo conformidade com a LGPD. Para a DORA, a solução oferece a resiliência cibernética e a capacidade de recuperação de desastres que a regulação exige para o setor financeiro."
+    answer: "A LGPD não exige que os dados fiquem em território nacional: ela autoriza a transferência internacional mediante salvaguardas adequadas (art. 33). Com a Keepit, você escolhe a região de residência e os dados não deixam essa região, exceto por restaurações ou downloads que você mesmo iniciar. Configuramos políticas de retenção pelo prazo exigido por lei e facilitamos a localização e a exclusão de dados para atender aos direitos dos titulares. Para a DORA, a plataforma entrega as capacidades de resiliência e recuperação que a regulação exige do setor financeiro."
   },
   {
     question: "O Keepit oferece trilhas de auditoria detalhadas de todas as ações?",
@@ -67,7 +67,7 @@ const faqData = [
   },
   {
     question: "Qual o ROI (Retorno sobre o Investimento) da solução ativada pela AORKIA?",
-    answer: "O ROI é comprovado. Um estudo da Forrester indicou um ROI de 163% em 3 anos para a Keepit. A solução mitiga o risco de perdas financeiras com multas, ransomware e paralisações operacionais, além de gerar economia com a otimização de licenças de software de ex-funcionários."
+    answer: "Um estudo Total Economic Impact conduzido pela Forrester para a Keepit apontou ROI de 163% em três anos. Os ganhos mais diretos são a economia com licenças de ex-colaboradores, cujos dados ficam retidos na Keepit sem exigir licença ativa na plataforma de origem, e a redução do tempo gasto por TI em restaurações manuais. Os números variam conforme o porte e o ambiente de cada organização."
   },
   {
     question: "É possível testar o plano de recuperação de desastres (Disaster Recovery)?",
@@ -78,8 +78,8 @@ const faqData = [
     answer: "Com a Keepit, você pode reter os dados de ex-funcionários pelo tempo que for necessário, sem precisar manter uma licença ativa do Microsoft 365 ou Google Workspace para eles. Isso gera uma economia direta e significativa em licenças de software."
   },
   {
-    question: "Meus dados de backup ficam realmente armazenados no Brasil?",
-    answer: "Sim. Com a ativação da AORKIA, garantimos contratualmente que seus dados de backup sejam armazenados em datacenters localizados em território brasileiro, atendendo plenamente aos requisitos de soberania de dados da LGPD."
+    question: "Onde ficam armazenados os meus dados de backup?",
+    answer: "Você escolhe a região. A Keepit opera oito regiões de data center: Américas (Washington D.C. e Toronto), Europa (Londres e Zurique), União Europeia (Copenhague e Frankfurt) e Ásia-Pacífico (Sydney). Uma região no Brasil está em preparação. Definida a região, os dados nunca a deixam, exceto por restaurações ou downloads iniciados por você. Cada região opera duas instalações espelhadas em modo ativo-ativo, resultando em quatro cópias dos seus dados em no mínimo duas localizações físicas distintas."
   },
   {
     question: "Como funciona o suporte técnico se eu tiver um problema ou dúvida?",
@@ -185,7 +185,7 @@ export default function BackupSaaSEstrategico() {
     <>
       <Head>
         <title>Backup SaaS Estratégico - Keepit | AORKIA</title>
-        <meta name="description" content="Proteção Imutável. Recuperação Rápida. Conformidade Garantida. A AORKIA ativa a Keepit para backup SaaS estratégico com proteção real contra ransomware." />
+        <meta name="description" content="Proteção Imutável. Restauração Granular. Evidência Auditável. A AORKIA ativa a Keepit para backup SaaS com recuperação de um único item em minutos." />
         <meta name="keywords" content="backup saas, keepit, proteção imutável, recuperação rápida, conformidade, LGPD, GDPR, ransomware, Microsoft 365, Google Workspace, Salesforce" />
       </Head>
 
@@ -215,7 +215,7 @@ export default function BackupSaaSEstrategico() {
               Backup SaaS Estratégico
             </h1>
             <p className="text-xl md:text-2xl font-semibold mb-8 text-center">
-              Proteção Imutável. Recuperação Rápida. Conformidade Garantida.
+              Proteção Imutável. Restauração Granular. Evidência Auditável.
             </p>
             <p className="text-lg md:text-xl mb-10 text-center max-w-4xl mx-auto text-gray-300">
               Seus dados SaaS estão vulneráveis a ransomware, exclusões acidentais e falhas de sistema — e você não tem controle real sobre sua recuperação? A AORKIA ativa a Keepit para criar uma camada de proteção imutável, com backup independente e recuperação granular que garante a continuidade do seu negócio.
@@ -272,7 +272,7 @@ export default function BackupSaaSEstrategico() {
                         <div className="space-y-4 text-gray-300 flex-grow">
                             <p><strong>Cofre Imutável (Air-Gapped):</strong> Seus backups vivem em uma fortaleza digital, isolada e imune a qualquer ataque na sua rede principal.</p>
                             <p><strong>Recuperação Cirúrgica:</strong> Restaure um único e-mail ou uma estrutura de pastas inteira em minutos, com a certeza de que os dados estão limpos e íntegros.</p>
-                            <p><strong>Conformidade Auditável:</strong> Soberania de dados no Brasil e trilhas de auditoria completas que transformam uma auditoria da LGPD em um processo simples e rápido.</p>
+                            <p><strong>Conformidade Auditável:</strong> Você escolhe a região onde os dados residem, e as trilhas de auditoria completas tornam uma auditoria da LGPD um processo documentado e rastreável.</p>
                             <p className="mt-auto pt-4 font-semibold text-primary">Nós transferimos a responsabilidade da sorte para a matemática. Com a AORKIA, a continuidade do seu negócio é uma certeza, não uma aposta.</p>
                         </div>
                     </div>
@@ -406,10 +406,10 @@ export default function BackupSaaSEstrategico() {
                     O que na prática isto significa para o seu negócio:
                   </p>
                   <p className="text-sm font-medium text-gray-300 mb-1">
-                    Zero risco de perda total de dados.
+                    Cópia íntegra e isolada, fora do alcance da produção.
                   </p>
                   <p className="text-sm font-medium text-gray-300">
-                    Recuperação garantida mesmo em ataques severos.
+                    Recuperação a partir de uma cópia que o ataque não alcança.
                   </p>
                 </div>
               </div>
@@ -442,9 +442,9 @@ export default function BackupSaaSEstrategico() {
                 <div className="text-4xl text-primary mb-4">
                   <i className="ri-government-line"></i>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-white">Conformidade e Auditoria Automática</h3>
+                <h3 className="text-xl font-bold mb-4 text-white">Conformidade Apoiada e Auditoria Rastreável</h3>
                 <p className="text-base text-gray-300 mb-6 leading-relaxed">
-                  Trilhas de auditoria completas, dados no Brasil e certificações internacionais garantem conformidade total com LGPD e regulamentações.
+                  Trilhas de auditoria completas, região de dados sob seu controle e certificações ISO 27001, ISAE 3402 e SOC 2 sustentam seus esforços de conformidade com a LGPD.
                 </p>
                 
                 <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
@@ -452,7 +452,7 @@ export default function BackupSaaSEstrategico() {
                     O que na prática isto significa para o seu negócio:
                   </p>
                   <p className="text-sm font-medium text-gray-300 mb-1">
-                    Zero multas por não conformidade.
+                    Evidência documentada para apresentar ao auditor.
                   </p>
                   <p className="text-sm font-medium text-gray-300">
                     Auditorias simplificadas e documentadas.
@@ -567,7 +567,7 @@ export default function BackupSaaSEstrategico() {
                         <p className="text-gray-400 mb-4">Como comprovar conformidade e controle de dados?</p>
                         <div className="bg-gray-900 p-4 rounded-lg border-l-4 border-primary">
                             <p className="text-gray-300 font-medium">
-                            <strong>Solução Keepit:</strong> Dados no Brasil, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 garantem conformidade total.
+                            <strong>Solução Keepit:</strong> Região de dados sob seu controle, trilhas de auditoria completas e certificações ISO 27001, ISAE 3402 e SOC 2 entregam a evidência que o auditor pede.
                             </p>
                         </div>
                     </div>
@@ -608,7 +608,7 @@ export default function BackupSaaSEstrategico() {
                 </div>
                 
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-10">
-                    Mais de 15.000 empresas em 74 países confiam na Keepit
+                    Mais de 25.000 empresas confiam seus dados de nuvem à Keepit
                 </p>
 
                 <Link href="/contato" className="inline-block bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
@@ -734,64 +734,6 @@ export default function BackupSaaSEstrategico() {
 
         <SectionDivider />
 
-        {/* O que o Mercado Diz: Análise do Gartner Peer Insights */}
-        <section id="gartner" data-section="gartner" className="py-16 md:py-24 bg-gray-900 relative">
-             <div 
-                className={`absolute inset-0 z-0 transition-opacity duration-1000`}
-                style={{
-                backgroundImage: 'url(/image/backup_vertical.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                opacity: 0.1
-                }}
-            />
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
-              O que o Mercado Diz: Análise do Gartner Peer Insights
-            </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 md:p-12 border border-primary/20">
-                <div className="text-center mb-8">
-                  <div className="flex justify-center items-center mb-4">
-                    <div className="flex text-yellow-400 text-3xl">
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                    </div>
-                    <span className="ml-3 text-2xl font-bold text-white">4.8/5</span>
-                  </div>
-                  <p className="text-lg text-gray-400 mb-8">Avaliação média no Gartner Peer Insights</p>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">95%</div>
-                    <p className="text-gray-300">dos usuários recomendam a Keepit</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
-                    <p className="text-gray-300">em facilidade de uso</p>
-                  </div>
-                </div>
-                
-                <div className="mt-8 p-6 bg-black/50 rounded-lg border border-gray-700">
-                  <blockquote className="text-lg text-gray-300 italic text-center">
-                    "A Keepit oferece a melhor solução de backup SaaS do mercado. Interface intuitiva, recuperação rápida e suporte excepcional."
-                  </blockquote>
-                  <p className="text-sm text-gray-500 text-center mt-4">
-                    Fonte: Gartner Peer Insights
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <SectionDivider />
 
         {/* FAQ Section */}
         <section id="faq" data-section="faq" className="py-16 md:py-24 bg-black relative overflow-hidden">

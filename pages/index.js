@@ -31,7 +31,7 @@ export default function Home() {
     <>
       <Head>
         <title>AORKIA | Resiliência Cibernética para Dados SaaS</title>
-        <meta name="description" content="A AORKIA ativa a Keepit, líder global em proteção de dados SaaS, para garantir que seu negócio nunca pare. Backup imutável e recuperação à prova de ransomware." />
+        <meta name="description" content="A AORKIA ativa a Keepit, líder global em proteção de dados SaaS, para garantir que seu negócio nunca pare. Backup imutável, restauração granular em minutos e evidência auditável para a LGPD." />
         <meta name="theme-color" content="#000000" />
       </Head>
 
@@ -61,7 +61,7 @@ export default function Home() {
               Resiliência é Inegociável. Continuidade, também.
             </h1>
             <h2 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-              Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós garantimos que seu negócio nunca pare: backup imutável, recuperação instantânea e conformidade garantida.
+              Seu provedor SaaS não faz backup dos seus dados. Essa responsabilidade é sua — e o mercado só descobre isso quando já é tarde. Nós cobrimos essa lacuna: backup imutável, restauração granular em minutos e trilhas de auditoria completas.
             </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               {/* CORRIGIDO */}
@@ -127,7 +127,7 @@ export default function Home() {
                     </div>
                 </div>
                 <p className="text-lg text-gray-300 mt-12">
-                    Mais de <strong className="text-primary">15.000 empresas</strong> em <strong className="text-primary">74 países</strong> confiam na Keepit
+                    Mais de <strong className="text-primary">25.000 empresas</strong> confiam seus dados de nuvem à Keepit
                 </p>
                 <div className="mt-8">
                     {/* CORRIGIDO */}
@@ -293,7 +293,7 @@ export default function Home() {
           <div className="container mx-auto px-4 max-w-4xl">
               <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">Não Deixe o Risco Definir o Seu Futuro.</h2>
               <p className="text-lg md:text-xl text-gray-900 mb-10">
-                  A AORKIA, parceira oficial da Keepit, oferece a única solução de Backup SaaS Estratégico que realmente protege seu negócio. Converse com nossos especialistas e transforme vulnerabilidade em vantagem competitiva.
+                  A AORKIA ativa a Keepit com consultoria de implantação, configuração adequada ao seu ambiente e suporte contínuo em português. Converse com nossos especialistas e transforme vulnerabilidade em vantagem competitiva.
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                   <Link href="/contato" className="bg-black text-primary hover:bg-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">

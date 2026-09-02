@@ -53,7 +53,7 @@ export default function Sobre() {
                     Em um mundo onde a continuidade digital é inegociável, a AORKIA nasceu com um propósito claro: ser a linha de frente da Resiliência Cibernética para dados SaaS no Brasil.
                 </h2>
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/backup_saas_estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+              <Link href="/backup-saas-estrategico" className="bg-primary hover:bg-primary/90 text-black font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                 Conheça o Backup Estratégico
               </Link>
               <Link href="/contato" className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-lg">
@@ -100,7 +100,7 @@ export default function Sobre() {
                     <ValueCard 
                         icon={Award}
                         title="Excelência Comprovada"
-                        text="Só trabalhamos com o líder de mercado. A Keepit é a escolha de mais de 15.000 empresas globais porque sua tecnologia é inquestionável. Trazemos essa excelência mundial para a realidade brasileira, com suporte e implementação locais."
+                        text="Só trabalhamos com o líder de mercado. A Keepit protege os dados de nuvem de mais de 25.000 empresas em todo o mundo. Trazemos essa excelência mundial para a realidade brasileira, com suporte e implementação locais."
                     />
                 </div>
             </div>
@@ -134,7 +134,7 @@ export default function Sobre() {
                     <Link href="/contato" className="bg-black text-primary hover:bg-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
                         Falar com Especialista
                     </Link>
-                    <Link href="/backup_saas_estrategico" className="bg-transparent border-2 border-black text-black font-bold py-3 px-8 rounded-lg hover:bg-black hover:text-primary transition duration-300 text-lg">
+                    <Link href="/backup-saas-estrategico" className="bg-transparent border-2 border-black text-black font-bold py-3 px-8 rounded-lg hover:bg-black hover:text-primary transition duration-300 text-lg">
                         Conheça a Solução
                     </Link>
                 </div>

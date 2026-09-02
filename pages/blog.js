@@ -177,7 +177,7 @@ export default function Blog() {
                         Fale com um Especialista
                     </Link>
                     <Link 
-                        href="/backup_saas_estrategico" 
+                        href="/backup-saas-estrategico" 
                         className="bg-transparent border-2 border-black text-black font-bold py-3 px-8 rounded-lg hover:bg-black hover:text-primary transition duration-300 text-lg">
                         Conheça Nossas Soluções
                     </Link>
